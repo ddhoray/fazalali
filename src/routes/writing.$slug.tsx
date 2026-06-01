@@ -71,7 +71,7 @@ function ArticlePage() {
 
       <Reveal delay={0.1}>
         <div className="prose-essay mt-16 space-y-7 text-lg leading-[1.75] text-foreground/85">
-          {article.body.map((p, idx) => (
+          {article.body.map((p: string, idx: number) => (
             <p key={idx} className={idx === 0 ? "first-letter:font-display first-letter:text-6xl first-letter:leading-none first-letter:mr-2 first-letter:float-left first-letter:mt-1" : ""}>
               {p}
             </p>
