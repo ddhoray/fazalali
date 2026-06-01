@@ -1,8 +1,9 @@
 import { motion, useReducedMotion } from "motion/react";
 
 /**
- * Reveals a string line-by-line (split on newline or by sentence).
- * Each line animates blurry-to-clear, sliding up sequentially.
+ * Reveals an array of lines sequentially, blurry → clear with a soft rise.
+ * Uses the same proven pattern as BlurReveal so it always renders even if
+ * the IntersectionObserver fires late.
  */
 export function LineReveal({
   lines,
@@ -21,21 +22,20 @@ export function LineReveal({
   return (
     <div className={className}>
       {lines.map((line, i) => (
-        <div key={i} className="overflow-hidden">
-          <motion.div
-            initial={reduce ? false : { y: "110%", opacity: 0, filter: "blur(10px)" }}
-            whileInView={{ y: "0%", opacity: 1, filter: "blur(0px)" }}
-            viewport={{ once: true, margin: "-10% 0px" }}
-            transition={{
-              duration: 1.0,
-              delay: delay + i * stagger,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            className={lineClassName}
-          >
-            {line}
-          </motion.div>
-        </div>
+        <motion.div
+          key={i}
+          initial={reduce ? false : { opacity: 0, y: 18, filter: "blur(12px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, margin: "-5% 0px" }}
+          transition={{
+            duration: 1.0,
+            delay: delay + i * stagger,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className={lineClassName}
+        >
+          {line}
+        </motion.div>
       ))}
     </div>
   );
