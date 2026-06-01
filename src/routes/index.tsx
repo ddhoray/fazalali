@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion, useScroll, useTransform, type MotionValue } from "motion/react";
-import { useRef } from "react";
+import { motion, useScroll, useTransform } from "motion/react";
+import { useRef, useState } from "react";
 import { BookOpen, Sparkles, PenLine, Compass, ArrowUpRight } from "lucide-react";
 import { BlurReveal, SlideIn } from "@/components/site/BlurReveal";
-import { LineReveal } from "@/components/site/LineReveal";
+import { WordScrollReveal } from "@/components/site/WordScrollReveal";
 import { ParallaxImage } from "@/components/site/ParallaxImage";
 import { HoverImage } from "@/components/site/HoverImage";
 import { CirclePill } from "@/components/site/CirclePill";
@@ -83,7 +83,7 @@ function Hero() {
 
       <motion.div
         style={{ opacity }}
-        className="relative z-10 flex h-full flex-col justify-between px-5 pt-28 pb-20 sm:px-10 sm:pb-28"
+        className="relative z-10 flex h-full flex-col justify-between px-5 pt-24 pb-16 sm:px-10 sm:pb-24"
       >
         <div>
           <motion.p
@@ -110,7 +110,7 @@ function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-8 max-w-md text-sm leading-relaxed opacity-80 md:text-base"
+            className="mt-6 max-w-md text-sm leading-relaxed opacity-80 md:text-base"
           >
             Dr. Fazal Ibrahim Ali — Cambridge-trained, Trinidad-born. Writing on
             critical theory in AI, the founding of Omeros AI, and a small book
@@ -159,7 +159,7 @@ function Word({
 function Quietline() {
   return (
     <section className="border-y hairline bg-background">
-      <div className="mx-auto grid max-w-[1700px] grid-cols-1 items-center gap-6 px-5 py-7 sm:grid-cols-3 sm:px-8">
+      <div className="mx-auto grid max-w-[1700px] grid-cols-1 items-center gap-4 px-5 py-5 sm:grid-cols-3 sm:px-8 sm:py-6">
         <BlurReveal as="span" className="eyebrow text-muted-foreground">
           Est. Trinidad, 1974
         </BlurReveal>
@@ -207,10 +207,12 @@ const featured = [
 ];
 
 function FeaturedSticky() {
+  const [active, setActive] = useState(0);
+
   return (
-    <section className="relative py-16 md:py-20">
+    <section className="relative py-14 md:py-18">
       <div className="mx-auto max-w-[1700px] px-5 sm:px-8">
-        <div className="mb-10 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-5">
+        <div className="mb-8 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-5">
           <div>
             <BlurReveal as="p" className="eyebrow text-muted-foreground">
               Featured Work
@@ -227,17 +229,22 @@ function FeaturedSticky() {
         </div>
 
         {/* Sticky image left, scrolling frames right */}
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-14">
           <div className="lg:col-span-6">
             <div className="lg:sticky lg:top-24">
-              <StickyImageStack items={featured} />
+              <ActiveImageStack items={featured} active={active} />
             </div>
           </div>
 
-          <ol className="lg:col-span-6 lg:py-[18vh]">
+          <ol className="lg:col-span-6">
             {featured.map((item, i) => (
-              <li key={item.title} className="border-b hairline py-10 first:pt-0 last:border-b-0 md:py-16">
-                <SlideIn from="right" delay={i * 0.04}>
+              <motion.li
+                key={item.title}
+                onViewportEnter={() => setActive(i)}
+                viewport={{ amount: 0.55, margin: "-20% 0px -35% 0px" }}
+                className="border-b hairline py-10 first:pt-0 last:border-b-0 md:py-14"
+              >
+                <SlideIn from="right" delay={0.04}>
                   <Link to={item.to as never} className="group block">
                     <div className="mb-4 flex items-center gap-3 text-muted-foreground">
                       <item.icon className="size-4" />
@@ -247,15 +254,15 @@ function FeaturedSticky() {
                     <h3 className="font-display text-4xl leading-[0.98] tracking-[-0.02em] transition-transform duration-700 group-hover:translate-x-2 md:text-6xl">
                       {item.title}<span className="italic">.</span>
                     </h3>
-                    <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
+                    <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
                       {item.note}
                     </p>
-                    <span className="mt-6 inline-flex items-center gap-2 text-sm transition-opacity opacity-70 group-hover:opacity-100">
+                    <span className="mt-5 inline-flex items-center gap-2 text-sm transition-opacity opacity-70 group-hover:opacity-100">
                       Read more <ArrowUpRight className="size-4" />
                     </span>
                   </Link>
                 </SlideIn>
-              </li>
+              </motion.li>
             ))}
           </ol>
         </div>
@@ -264,68 +271,39 @@ function FeaturedSticky() {
   );
 }
 
-function StickyImageStack({ items }: { items: typeof featured }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
-
+function ActiveImageStack({
+  items,
+  active,
+}: {
+  items: typeof featured;
+  active: number;
+}) {
   return (
-    <div ref={ref} className="relative aspect-[4/5] w-full overflow-hidden bg-foreground/5">
+    <div className="relative aspect-[4/5] w-full overflow-hidden bg-foreground/5">
       {items.map((item, i) => (
-        <StickyFrame
+        <motion.img
           key={item.title}
-          item={item}
-          index={i}
-          total={items.length}
-          progress={scrollYProgress}
-          y={y}
+          src={item.image}
+          alt={item.title}
+          initial={false}
+          animate={{
+            opacity: i === active ? 1 : 0,
+            scale: i === active ? 1.02 : 1.08,
+            filter: i === active ? "blur(0px)" : "blur(8px)",
+          }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute inset-0 size-full object-cover"
+          loading="lazy"
         />
       ))}
       <Grain />
-      <div className="absolute inset-x-0 bottom-0 z-10 flex items-center justify-between bg-gradient-to-t from-black/60 to-transparent p-5 text-on-image md:p-7">
-        <span className="nav-link">Now showing</span>
-        <span className="nav-link">{items.length} frames</span>
+      <div className="absolute inset-x-0 bottom-0 z-10 flex items-center justify-between bg-gradient-to-t from-black/65 to-transparent p-5 text-on-image md:p-7">
+        <span className="nav-link">
+          Now showing · {String(active + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}
+        </span>
+        <span className="nav-link">{items[active].title}</span>
       </div>
     </div>
-  );
-}
-
-function StickyFrame({
-  item,
-  index,
-  total,
-  progress,
-  y,
-}: {
-  item: (typeof featured)[number];
-  index: number;
-  total: number;
-  progress: MotionValue<number>;
-  y: MotionValue<string>;
-}) {
-  const seg = 1 / total;
-  const start = index * seg;
-  const end = start + seg;
-  const opacity = useTransform(
-    progress,
-    [Math.max(0, start - 0.05), start + 0.05, end - 0.05, Math.min(1, end + 0.05)],
-    index === 0
-      ? [1, 1, 1, 0]
-      : index === total - 1
-        ? [0, 1, 1, 1]
-        : [0, 1, 1, 0],
-  );
-  return (
-    <motion.img
-      src={item.image}
-      alt={item.title}
-      style={{ opacity, y }}
-      className="absolute inset-0 size-full scale-110 object-cover"
-      loading="lazy"
-    />
   );
 }
 
@@ -333,7 +311,7 @@ function StickyFrame({
 
 function ParallaxBreak() {
   return (
-    <section className="relative h-[60svh] min-h-[420px] w-full overflow-hidden">
+    <section className="relative h-[55svh] min-h-[380px] w-full overflow-hidden">
       <ParallaxImage src={featuredWriting} alt="" className="absolute inset-0" strength={22} />
       <div className="relative z-10 flex h-full items-center justify-center px-6 text-center text-on-image">
         <BlurReveal
@@ -347,28 +325,19 @@ function ParallaxBreak() {
   );
 }
 
-/* ─────────────────────── Manifesto (line-by-line reveal) ────────────────────── */
+/* ─────────────────────── Manifesto (word-by-word scroll reveal) ────────────────────── */
 
 function Manifesto() {
   return (
-    <section className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 md:py-24">
-      <BlurReveal as="p" className="eyebrow mb-8 flex items-center gap-3 text-muted-foreground">
+    <section className="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 md:py-20">
+      <BlurReveal as="p" className="eyebrow mb-6 flex items-center gap-3 text-muted-foreground">
         <Compass className="size-4" /> A note before reading
       </BlurReveal>
-      <LineReveal
+      <WordScrollReveal
         className="font-display text-[7vw] leading-[1.08] tracking-[-0.025em] text-balance sm:text-[3.4vw]"
-        lines={[
-          "I am not building AI.",
-          "I am not selling chips.",
-          "I am thinking with the machines,",
-          "against them, around them —",
-          "from a small island that has always",
-          "read the world more carefully",
-          "than the world has read it.",
-        ]}
-        stagger={0.18}
+        text="I am not building AI. I am not selling chips. I am thinking with the machines, against them, around them — from a small island that has always read the world more carefully than the world has read it."
       />
-      <BlurReveal as="p" delay={0.2} className="mt-10 max-w-md text-sm leading-relaxed text-muted-foreground">
+      <BlurReveal as="p" delay={0.1} className="mt-8 max-w-md text-sm leading-relaxed text-muted-foreground">
         — Fazal Ali, on opening the new site, 2026.
       </BlurReveal>
     </section>
@@ -380,18 +349,17 @@ function Manifesto() {
 function Portrait() {
   return (
     <section
-      className="relative overflow-hidden py-20 md:py-28"
+      className="relative overflow-hidden py-16 md:py-20"
       style={{ backgroundColor: "#0a0a0a", color: "#f6f4ef" }}
     >
-      {/* Subtle grain overlay */}
       <Grain />
 
       <div className="relative z-10 mx-auto max-w-[1500px] px-5 sm:px-8">
         <div
-          className="mb-10 flex items-center justify-between border-b pb-5"
+          className="mb-8 flex items-center justify-between border-b pb-4"
           style={{ borderColor: "rgba(246,244,239,0.2)" }}
         >
-          <BlurReveal as="p" className="eyebrow" >
+          <BlurReveal as="p" className="eyebrow">
             <span style={{ color: "rgba(246,244,239,0.65)" }}>The writer</span>
           </BlurReveal>
           <BlurReveal as="p" delay={0.1} className="eyebrow">
@@ -399,33 +367,8 @@ function Portrait() {
           </BlurReveal>
         </div>
 
-        {/* HERO NAME — huge, bold, unmissable */}
-        <BlurReveal
-          as="h2"
-          className="font-display font-medium leading-[0.86] tracking-[-0.04em]"
-          y={28}
-        >
-          <span
-            className="block text-[22vw] md:text-[15vw]"
-            style={{ color: "#ffffff" }}
-          >
-            Fazal
-          </span>
-          <span
-            className="block italic text-[22vw] md:text-[15vw]"
-            style={{ color: "#ffffff" }}
-          >
-            Ali<span className="not-italic">.</span>
-          </span>
-        </BlurReveal>
-
-        <BlurReveal delay={0.18} className="mt-6 max-w-2xl">
-          <p className="font-display text-2xl italic md:text-3xl" style={{ color: "rgba(246,244,239,0.85)" }}>
-            Writer · Scholar · Founder of <span className="not-italic">Omeros AI</span>
-          </p>
-        </BlurReveal>
-
-        <div className="mt-16 grid grid-cols-12 gap-8 md:gap-12">
+        {/* Compact composition: portrait + name interlocked, no big vertical gap */}
+        <div className="grid grid-cols-12 items-end gap-6 md:gap-10">
           <SlideIn from="left" className="col-span-12 md:col-span-5">
             <div className="grain relative aspect-[4/5] w-full overflow-hidden">
               <img
@@ -440,40 +383,71 @@ function Portrait() {
             </div>
           </SlideIn>
 
-          <div className="col-span-12 flex flex-col justify-between gap-8 md:col-span-7">
+          <div className="col-span-12 md:col-span-7">
             <BlurReveal
-              delay={0.1}
-              className="max-w-xl text-base leading-relaxed md:text-lg"
+              as="h2"
+              className="font-display font-medium leading-[0.84] tracking-[-0.04em]"
+              y={28}
             >
-              <span style={{ color: "rgba(246,244,239,0.82)" }}>
-                Cambridge-trained, mentored by Amartya Sen, Lord Martin Rees and
-                Sir Leszek Borysiewicz. For twenty years the work stayed inside
-                lecture rooms. This site is the first time I have stepped out
-                from behind the lectern — the books, the ideas, the art, and a
-                contribution from Trinidad to a conversation usually written
-                elsewhere.
+              <span
+                className="block text-[18vw] md:text-[11vw]"
+                style={{ color: "#ffffff" }}
+              >
+                Fazal
+              </span>
+              <span
+                className="block italic text-[18vw] md:text-[11vw]"
+                style={{ color: "#ffffff" }}
+              >
+                Ali<span className="not-italic">.</span>
               </span>
             </BlurReveal>
 
-            <BlurReveal
-              delay={0.18}
-              className="font-display text-2xl italic leading-[1.2] md:text-3xl"
-            >
-              <span style={{ color: "rgba(246,244,239,0.95)" }}>
-                &ldquo;I have grown braver. A little more adventurous.&rdquo;
-              </span>
-            </BlurReveal>
-
-            <div
-              className="flex flex-wrap items-center justify-between gap-6 border-t pt-6"
-              style={{ borderColor: "rgba(246,244,239,0.2)" }}
-            >
-              <p className="eyebrow" style={{ color: "rgba(246,244,239,0.55)" }}>
-                Cambridge · Trinidad · 2026
+            <BlurReveal delay={0.16} className="mt-5 max-w-xl">
+              <p
+                className="font-display text-xl italic md:text-2xl"
+                style={{ color: "rgba(246,244,239,0.85)" }}
+              >
+                Writer · Scholar · Founder of <span className="not-italic">Omeros AI</span>
               </p>
-              <CirclePill to="/about" label="More about me" invert />
-            </div>
+            </BlurReveal>
           </div>
+        </div>
+
+        {/* Bio + quote row */}
+        <div className="mt-12 grid grid-cols-12 gap-8 md:mt-14 md:gap-12">
+          <BlurReveal
+            delay={0.1}
+            className="col-span-12 md:col-span-7 text-base leading-relaxed md:text-lg"
+          >
+            <span style={{ color: "rgba(246,244,239,0.82)" }}>
+              Cambridge-trained, mentored by Amartya Sen, Lord Martin Rees and
+              Sir Leszek Borysiewicz. For twenty years the work stayed inside
+              lecture rooms. This site is the first time I have stepped out
+              from behind the lectern — the books, the ideas, the art, and a
+              contribution from Trinidad to a conversation usually written
+              elsewhere.
+            </span>
+          </BlurReveal>
+
+          <BlurReveal
+            delay={0.18}
+            className="col-span-12 font-display text-2xl italic leading-[1.2] md:col-span-5 md:text-3xl"
+          >
+            <span style={{ color: "rgba(246,244,239,0.95)" }}>
+              &ldquo;I have grown braver. A little more adventurous.&rdquo;
+            </span>
+          </BlurReveal>
+        </div>
+
+        <div
+          className="mt-10 flex flex-wrap items-center justify-between gap-6 border-t pt-5"
+          style={{ borderColor: "rgba(246,244,239,0.2)" }}
+        >
+          <p className="eyebrow" style={{ color: "rgba(246,244,239,0.55)" }}>
+            Cambridge · Trinidad · 2026
+          </p>
+          <CirclePill to="/about" label="More about me" invert />
         </div>
       </div>
     </section>
@@ -483,21 +457,23 @@ function Portrait() {
 /* ───────────────────────── Range ──────────────────────── */
 
 const range = [
-  { n: "01", title: "Critical Theory in AI", body: "Frontier models read as social substrate — not products, not miracles.", icon: Sparkles },
-  { n: "02", title: "Education for Liberty", body: "What a child needs to learn so the next machine is a freedom, not a fence.", icon: BookOpen },
-  { n: "03", title: "Omeros AI", body: "A Caribbean reading of intelligence — named for Walcott, kept close to the sea.", icon: Compass },
-  { n: "04", title: "From the West Indies", body: "A contribution from Trinidad to a conversation rarely written from here.", icon: PenLine },
+  { n: "01", title: "Critical Theory in AI", body: "Frontier models read as social substrate — not products, not miracles.", icon: Sparkles, tag: "Theory" },
+  { n: "02", title: "Education for Liberty", body: "What a child needs to learn so the next machine is a freedom, not a fence.", icon: BookOpen, tag: "Book" },
+  { n: "03", title: "Omeros AI", body: "A Caribbean reading of intelligence — named for Walcott, kept close to the sea.", icon: Compass, tag: "Studio" },
+  { n: "04", title: "From the West Indies", body: "A contribution from Trinidad to a conversation rarely written from here.", icon: PenLine, tag: "Essays" },
 ];
 
 const rangeImages = [practiceEssays, practiceBook, practiceOmeros, featuredWriting];
 
 function Range() {
+  const [hover, setHover] = useState<number | null>(null);
+
   return (
-    <section className="mx-auto max-w-[1700px] px-5 py-20 sm:px-8 md:py-24">
-      <div className="mb-14 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-6">
+    <section className="mx-auto max-w-[1700px] px-5 py-16 sm:px-8 md:py-20">
+      <div className="mb-10 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-5">
         <div className="max-w-3xl">
           <BlurReveal as="p" className="eyebrow text-muted-foreground">Range</BlurReveal>
-          <BlurReveal as="h2" delay={0.08} className="mt-4 font-display text-5xl leading-[1.02] md:text-7xl">
+          <BlurReveal as="h2" delay={0.08} className="mt-3 font-display text-5xl leading-[1.02] md:text-7xl">
             Four threads, <em className="italic">one practice.</em>
           </BlurReveal>
         </div>
@@ -506,55 +482,120 @@ function Range() {
         </BlurReveal>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:gap-8">
+      <div
+        className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:gap-6"
+        onMouseLeave={() => setHover(null)}
+      >
         {range.map((r, i) => (
-          <SlideIn key={r.n} delay={i * 0.08} from={i % 2 === 0 ? "left" : "right"}>
-            <article className="group relative flex h-full flex-col overflow-hidden bg-card">
-              {/* Always-visible colored image */}
-              <div className="relative aspect-[16/9] w-full overflow-hidden bg-foreground/5">
-                <img
-                  src={rangeImages[i]}
-                  alt={r.title}
-                  className="card-image absolute inset-0 size-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.06]"
-                  loading="lazy"
-                />
-                <Grain />
-                {/* Floating index + icon */}
-                <div className="absolute inset-x-0 top-0 flex items-center justify-between p-5 text-white md:p-6">
-                  <span className="inline-flex size-10 items-center justify-center rounded-full bg-white/15 backdrop-blur-md transition-colors group-hover:bg-white/25">
-                    <r.icon className="size-4" />
-                  </span>
-                  <span className="nav-link rounded-full bg-black/40 px-3 py-1.5 backdrop-blur-md">
-                    ({r.n})
-                  </span>
-                </div>
-                {/* Title overlay at bottom of image */}
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent p-5 md:p-7">
-                  <h4 className="font-display text-3xl leading-[1.02] text-white transition-transform duration-700 group-hover:-translate-y-1 md:text-5xl">
-                    {r.title}<span className="italic">.</span>
-                  </h4>
-                </div>
-              </div>
-
-              {/* Body */}
-              <div className="flex flex-1 flex-col justify-between gap-6 border-t hairline p-6 md:p-8">
-                <p className="max-w-md text-base leading-relaxed text-muted-foreground">
-                  {r.body}
-                </p>
-                <div className="flex items-center justify-between border-t hairline pt-4">
-                  <span className="eyebrow text-muted-foreground">
-                    Thread {r.n}
-                  </span>
-                  <span className="inline-flex items-center gap-2 text-sm transition-transform duration-500 group-hover:translate-x-1">
-                    Read the thread <ArrowUpRight className="size-4" />
-                  </span>
-                </div>
-              </div>
-            </article>
+          <SlideIn key={r.n} delay={i * 0.06} from={i % 2 === 0 ? "left" : "right"}>
+            <RangeCard
+              r={r}
+              image={rangeImages[i]}
+              isHover={hover === i}
+              isDim={hover !== null && hover !== i}
+              onEnter={() => setHover(i)}
+            />
           </SlideIn>
         ))}
       </div>
     </section>
+  );
+}
+
+function RangeCard({
+  r,
+  image,
+  isHover,
+  isDim,
+  onEnter,
+}: {
+  r: (typeof range)[number];
+  image: string;
+  isHover: boolean;
+  isDim: boolean;
+  onEnter: () => void;
+}) {
+  return (
+    <motion.article
+      onMouseEnter={onEnter}
+      animate={{ opacity: isDim ? 0.5 : 1 }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      className="group relative isolate flex h-full flex-col overflow-hidden bg-card"
+    >
+      {/* Image area */}
+      <div className="relative aspect-[16/10] w-full overflow-hidden bg-foreground/5">
+        <motion.img
+          src={image}
+          alt={r.title}
+          animate={{ scale: isHover ? 1.08 : 1.0 }}
+          transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+          className="card-image absolute inset-0 size-full object-cover"
+          loading="lazy"
+        />
+        <Grain />
+
+        {/* Floating large number — animates up on hover */}
+        <motion.span
+          aria-hidden
+          animate={{
+            y: isHover ? -8 : 0,
+            opacity: isHover ? 1 : 0.85,
+          }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="pointer-events-none absolute -bottom-2 left-4 font-display text-[110px] leading-none text-white/85 md:left-6 md:text-[160px]"
+          style={{ textShadow: "0 2px 24px rgba(0,0,0,0.35)" }}
+        >
+          {r.n}
+        </motion.span>
+
+        {/* Top row */}
+        <div className="absolute inset-x-0 top-0 flex items-center justify-between p-4 text-white md:p-5">
+          <span className="inline-flex size-9 items-center justify-center rounded-full bg-white/15 backdrop-blur-md transition-colors group-hover:bg-white/25">
+            <r.icon className="size-4" />
+          </span>
+          <span className="nav-link rounded-full bg-black/45 px-3 py-1.5 backdrop-blur-md">
+            {r.tag}
+          </span>
+        </div>
+      </div>
+
+      {/* Body */}
+      <div className="relative flex flex-1 flex-col justify-between gap-5 border-t hairline p-5 md:p-7">
+        {/* sliding underline accent */}
+        <motion.span
+          aria-hidden
+          initial={false}
+          animate={{ scaleX: isHover ? 1 : 0 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          style={{ transformOrigin: "left" }}
+          className="absolute left-0 top-0 h-px w-full bg-foreground"
+        />
+
+        <div>
+          <motion.h4
+            animate={{ x: isHover ? 4 : 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="font-display text-3xl leading-[1.02] md:text-4xl"
+          >
+            {r.title}<span className="italic">.</span>
+          </motion.h4>
+          <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground md:text-base">
+            {r.body}
+          </p>
+        </div>
+
+        <div className="flex items-center justify-between border-t hairline pt-3">
+          <span className="eyebrow text-muted-foreground">Thread {r.n}</span>
+          <motion.span
+            animate={{ x: isHover ? 4 : 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="inline-flex items-center gap-2 text-sm"
+          >
+            Read the thread <ArrowUpRight className="size-4" />
+          </motion.span>
+        </div>
+      </div>
+    </motion.article>
   );
 }
 
@@ -565,8 +606,8 @@ const writingImages = [practiceEssays, practiceBook, practiceOmeros];
 function LatestWriting() {
   const latest = articles.slice(0, 3);
   return (
-    <section className="mx-auto max-w-[1700px] px-5 py-20 sm:px-8 md:py-24">
-      <div className="mb-10 flex items-end justify-between gap-6 border-b hairline pb-5">
+    <section className="mx-auto max-w-[1700px] px-5 py-16 sm:px-8 md:py-20">
+      <div className="mb-8 flex items-end justify-between gap-6 border-b hairline pb-5">
         <div>
           <BlurReveal as="p" className="eyebrow text-muted-foreground">From the Journal</BlurReveal>
           <BlurReveal as="h2" delay={0.08} className="mt-3 font-display text-4xl md:text-6xl">
@@ -585,7 +626,7 @@ function LatestWriting() {
               <Link
                 to="/writing/$slug"
                 params={{ slug: a.slug }}
-                className="group grid grid-cols-1 gap-4 py-7 md:grid-cols-[160px_1fr_auto] md:items-baseline md:gap-12 md:py-9"
+                className="group grid grid-cols-1 gap-3 py-6 md:grid-cols-[160px_1fr_auto] md:items-baseline md:gap-12 md:py-8"
               >
                 <span className="eyebrow text-muted-foreground">
                   {new Date(a.date).toLocaleDateString("en-GB", {
