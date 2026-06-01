@@ -1,9 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
-import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
-import { GlassPanel } from "@/components/site/GlassPanel";
 import { ScrollGrowBento, type BentoItem } from "@/components/site/ScrollGrowBento";
 import { articles } from "@/content/articles";
 
@@ -19,49 +17,51 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "Fazal Ali — Writer, Scholar, Omeros AI" },
       {
         property: "og:description",
-        content:
-          "Writing on critical theory in AI from the West Indies. Books, ideas, art.",
+        content: "Writing on critical theory in AI from the West Indies. Books, ideas, art.",
       },
     ],
   }),
   component: Home,
 });
 
+const PORTRAIT =
+  "https://fazalali.com/wp-content/uploads/2025/10/Fazal-Ali-Profile-2025.jpeg";
+
 const bento: BentoItem[] = [
   {
-    eyebrow: "Book",
+    eyebrow: "01 — The Book",
     title: "Education for Liberty",
-    body: "A persuasive work built on Amartya Sen's Development as Freedom and John Rawls' A Theory of Justice.",
+    body: "Built on Amartya Sen's Development as Freedom and John Rawls' A Theory of Justice.",
     to: "/education-for-liberty",
-    span: "lg:col-span-4 lg:row-span-2",
+    span: "lg:col-span-4",
   },
   {
-    eyebrow: "Identity",
+    eyebrow: "02 — Identity",
     title: "Omeros AI",
-    body: "The brand identity for a body of writing on critical theory in AI — not building AI, thinking with it.",
+    body: "A name borrowed from Walcott. A practice of critical theory in artificial intelligence.",
     to: "/omeros-ai",
     span: "lg:col-span-2",
   },
   {
-    eyebrow: "Place",
+    eyebrow: "03 — Place",
     title: "From the West Indies",
     body: "A contribution from Trinidad to a conversation that has, until now, mostly been written elsewhere.",
     to: "/about",
     span: "lg:col-span-2",
   },
   {
-    eyebrow: "Writing",
-    title: "Articles & essays",
+    eyebrow: "04 — Writing",
+    title: "Essays, slowly, often",
     body: "Weekly pieces on AI, education, infrastructure, and the future the children we have will inherit.",
     to: "/writing",
-    span: "lg:col-span-3",
+    span: "lg:col-span-2",
   },
   {
-    eyebrow: "About",
-    title: "Cambridge, UWI, and what came after",
-    body: "Mentored by Amartya Sen, Lord Martin Rees, and Sir Leszek Borysiewicz. Provost. Chairman. Writer.",
+    eyebrow: "05 — About",
+    title: "Cambridge, UWI, after",
+    body: "Mentored by Amartya Sen, Lord Martin Rees, and Sir Leszek Borysiewicz.",
     to: "/about",
-    span: "lg:col-span-3",
+    span: "lg:col-span-2",
   },
 ];
 
@@ -69,7 +69,8 @@ function Home() {
   return (
     <>
       <Hero />
-      <Manifesto />
+      <Marquee />
+      <Editorial />
       <BentoSection />
       <FeaturedWriting />
       <ClosingCTA />
@@ -80,108 +81,147 @@ function Home() {
 function Hero() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], [0, -80]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.3]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, -60]);
 
   return (
-    <section ref={ref} className="relative mx-auto flex min-h-[88vh] max-w-7xl flex-col items-center justify-center px-5 text-center sm:px-8">
-      <motion.div style={{ y, opacity }} className="flex flex-col items-center">
-        <motion.span
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="glass mb-8 inline-flex items-center gap-2 rounded-none px-4 py-1.5 text-xs uppercase tracking-[0.22em] text-muted-foreground"
-        >
-          <span className="size-1.5 rounded-none bg-foreground/70" />
-          Omeros AI · Est. Trinidad
-        </motion.span>
+    <section ref={ref} className="relative">
+      <div className="mx-auto grid max-w-[1600px] grid-cols-1 px-5 sm:px-10 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
+        <motion.div style={{ y }} className="flex flex-col justify-between pt-6 lg:py-16">
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            className="eyebrow text-muted-foreground"
+          >
+            New Identity · Spring 2026
+          </motion.span>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.4, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="font-display text-[14vw] leading-[0.92] tracking-tight text-balance sm:text-[10vw] md:text-[8.5vw] lg:text-[7.5rem]"
-        >
-          Fazal <em className="italic">Ali</em>
-        </motion.h1>
+          <motion.h1
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-10 font-display text-[18vw] leading-[0.86] tracking-[-0.03em] sm:text-[14vw] lg:text-[11vw] xl:text-[12rem]"
+          >
+            FAZAL
+            <br />
+            <em className="italic">Ali.</em>
+          </motion.h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-8 max-w-xl text-balance text-base text-muted-foreground md:text-lg"
-        >
-          Writer. Scholar. A West Indian voice on the critical theory of artificial intelligence.
-        </motion.p>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.2, delay: 0.5 }}
+            className="mt-12 grid grid-cols-2 gap-10 border-t hairline pt-8 lg:mt-auto"
+          >
+            <div>
+              <p className="eyebrow text-muted-foreground">The Subject</p>
+              <p className="mt-3 font-display text-2xl leading-tight">
+                Critical theory in artificial intelligence.
+              </p>
+            </div>
+            <div>
+              <p className="eyebrow text-muted-foreground">The Place</p>
+              <p className="mt-3 font-display text-2xl leading-tight">
+                Trinidad &amp; Tobago, West Indies.
+              </p>
+            </div>
+          </motion.div>
+        </motion.div>
 
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.8 }}
-          className="mt-10 flex flex-wrap items-center justify-center gap-3"
+          initial={{ opacity: 0, scale: 1.04 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-10 lg:mt-0 lg:pt-16"
         >
-          <Link
-            to="/writing"
-            className="inline-flex items-center gap-2 rounded-none bg-foreground px-6 py-3 text-sm text-background transition-opacity hover:opacity-90"
-          >
-            Read the writing
-            <ArrowRight className="size-4" />
-          </Link>
-          <Link
-            to="/about"
-            className="glass inline-flex items-center gap-2 rounded-none px-6 py-3 text-sm"
-          >
-            About Fazal
-          </Link>
+          <div className="relative aspect-[3/4] w-full overflow-hidden bg-muted">
+            <img
+              src={PORTRAIT}
+              alt="Dr. Fazal Ibrahim Ali"
+              className="absolute inset-0 size-full object-cover grayscale-[0.15]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-foreground/15 via-transparent to-transparent" />
+            <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between text-background mix-blend-difference">
+              <span className="nav-link">FW/26 · Edition One</span>
+              <span className="nav-link">Omeros AI</span>
+            </div>
+          </div>
         </motion.div>
-      </motion.div>
+      </div>
 
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 2, delay: 1.4 }}
-        className="absolute bottom-8 text-[10px] uppercase tracking-[0.3em] text-muted-foreground"
+        transition={{ duration: 2, delay: 1.2 }}
+        className="mt-10 flex items-center justify-center gap-3 text-muted-foreground"
       >
-        Scroll to explore
+        <span className="block h-px w-12 bg-current" />
+        <span className="nav-link">Scroll</span>
+        <span className="block h-px w-12 bg-current" />
       </motion.div>
     </section>
   );
 }
 
-function Manifesto() {
+function Marquee() {
+  const items = [
+    "WRITER", "SCHOLAR", "CAMBRIDGE", "UWI", "OMEROS AI", "TRINIDAD", "EDUCATION FOR LIBERTY",
+    "CRITICAL THEORY", "WEST INDIES", "WRITER", "SCHOLAR",
+  ];
   return (
-    <section className="mx-auto mt-24 max-w-5xl px-5 sm:px-8 md:mt-40">
-      <Reveal>
-        <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
-          A note from Fazal
-        </p>
-      </Reveal>
-      <Reveal delay={0.05}>
-        <p className="mt-6 font-display text-3xl leading-[1.15] text-balance md:text-5xl">
-          <em>“The site is about me</em> — my books, my ideas, my writing, my art. My contribution to the West Indies. For the first time I am adding character. I have grown. I am a bit braver, and more adventurous.<em>”</em>
-        </p>
-      </Reveal>
-      <Reveal delay={0.1}>
-        <p className="mt-8 max-w-xl text-sm text-muted-foreground">
-          The writing is about critical theory in AI. Not building AI. Not selling chips.
-          Thinking with the machines, against them, around them — from a small island that has always
-          read the world more carefully than the world has read it.
-        </p>
-      </Reveal>
+    <div className="mt-32 overflow-hidden border-y hairline py-6">
+      <motion.div
+        animate={{ x: ["0%", "-50%"] }}
+        transition={{ duration: 40, ease: "linear", repeat: Infinity }}
+        className="flex w-max gap-12 whitespace-nowrap"
+      >
+        {[...items, ...items].map((t, i) => (
+          <span key={i} className="font-display text-3xl tracking-tight md:text-5xl">
+            {t} <span className="mx-6 text-muted-foreground">—</span>
+          </span>
+        ))}
+      </motion.div>
+    </div>
+  );
+}
+
+function Editorial() {
+  return (
+    <section className="mx-auto mt-32 max-w-[1600px] px-5 sm:px-10">
+      <div className="grid gap-16 lg:grid-cols-12">
+        <Reveal className="lg:col-span-3">
+          <p className="eyebrow text-muted-foreground">A note</p>
+        </Reveal>
+        <Reveal delay={0.05} className="lg:col-span-9">
+          <p className="font-display text-[2.2rem] leading-[1.08] text-balance md:text-6xl">
+            <em className="italic">“The site is about me.</em> My books, my ideas, my writing, my art. My contribution to the West Indies. For the first time I am adding character. I have grown — I am a bit braver, and more adventurous.<em>”</em>
+          </p>
+          <p className="mt-10 max-w-xl text-sm leading-relaxed text-muted-foreground">
+            The work is critical theory in AI. Not building AI. Not selling chips. Thinking with the
+            machines, against them, around them — from a small island that has always read the world
+            more carefully than the world has read it.
+          </p>
+        </Reveal>
+      </div>
     </section>
   );
 }
 
 function BentoSection() {
   return (
-    <section className="mx-auto mt-28 max-w-7xl px-5 sm:px-8 md:mt-40">
-      <Reveal className="mb-10 flex items-end justify-between gap-6">
-        <h2 className="font-display text-4xl md:text-6xl">The work, in pieces.</h2>
-        <p className="hidden max-w-xs text-sm text-muted-foreground md:block">
-          A bento of the things that matter — book, identity, place, writing.
-        </p>
-      </Reveal>
-      <ScrollGrowBento items={bento} />
+    <section className="mt-32">
+      <div className="mx-auto max-w-[1600px] px-5 sm:px-10">
+        <Reveal className="mb-12 flex items-end justify-between gap-6">
+          <div>
+            <p className="eyebrow text-muted-foreground">The Collection</p>
+            <h2 className="mt-4 font-display text-5xl leading-none md:text-7xl">The work, in pieces.</h2>
+          </div>
+          <Link to="/writing" className="nav-link hidden md:inline">View all →</Link>
+        </Reveal>
+      </div>
+      <div className="mx-auto max-w-[1600px] px-5 sm:px-10">
+        <ScrollGrowBento items={bento} />
+      </div>
     </section>
   );
 }
@@ -189,40 +229,32 @@ function BentoSection() {
 function FeaturedWriting() {
   const latest = articles.slice(0, 3);
   return (
-    <section className="mx-auto mt-28 max-w-7xl px-5 sm:px-8 md:mt-40">
-      <Reveal className="mb-10 flex items-end justify-between gap-6">
-        <div>
-          <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">Latest</p>
-          <h2 className="mt-3 font-display text-4xl md:text-6xl">From the desk.</h2>
-        </div>
-        <Link to="/writing" className="hidden text-sm underline-offset-4 hover:underline md:inline">
-          All articles →
-        </Link>
+    <section className="mx-auto mt-32 max-w-[1600px] px-5 sm:px-10">
+      <Reveal className="mb-12 flex items-end justify-between gap-6 border-b hairline pb-6">
+        <h2 className="font-display text-5xl leading-none md:text-7xl">Editorial.</h2>
+        <Link to="/writing" className="nav-link">All essays</Link>
       </Reveal>
 
-      <div className="grid gap-5 md:grid-cols-3">
+      <div className="grid gap-px bg-foreground/15 md:grid-cols-3">
         {latest.map((a, i) => (
-          <Reveal key={a.slug} delay={i * 0.08}>
-            <Link
-              to="/writing/$slug"
-              params={{ slug: a.slug }}
-              className="group block"
-            >
-              <GlassPanel className="flex h-full flex-col p-7 transition-transform duration-500 group-hover:-translate-y-1">
-                <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                  {a.topic}
+          <Reveal key={a.slug} delay={i * 0.05}>
+            <Link to="/writing/$slug" params={{ slug: a.slug }} className="group block h-full bg-background p-8 transition-colors hover:bg-muted">
+              <div className="flex items-center justify-between">
+                <span className="eyebrow text-muted-foreground">{a.topic}</span>
+                <span className="eyebrow text-muted-foreground">
+                  {new Date(a.date).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" })}
                 </span>
-                <h3 className="mt-5 font-display text-2xl leading-tight text-balance">
-                  {a.title}
-                </h3>
-                <p className="mt-4 text-sm text-muted-foreground text-pretty">
-                  {a.excerpt}
-                </p>
-                <div className="mt-8 flex items-center justify-between text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                  <span>{new Date(a.date).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" })}</span>
-                  <span className="inline-flex items-center gap-1">Read <ArrowRight className="size-3" /></span>
-                </div>
-              </GlassPanel>
+              </div>
+              <h3 className="mt-10 font-display text-3xl leading-[1.05] text-balance md:text-4xl">
+                {a.title}
+              </h3>
+              <p className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground">
+                {a.excerpt}
+              </p>
+              <div className="mt-10 flex items-center gap-3">
+                <span className="nav-link">Read essay</span>
+                <span className="block h-px w-10 bg-foreground transition-all duration-500 group-hover:w-20" />
+              </div>
             </Link>
           </Reveal>
         ))}
@@ -233,28 +265,27 @@ function FeaturedWriting() {
 
 function ClosingCTA() {
   return (
-    <section className="mx-auto mt-32 max-w-5xl px-5 sm:px-8 md:mt-48">
-      <Reveal>
-        <GlassPanel strong className="relative overflow-hidden p-12 text-center md:p-20">
-          <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
-            Correspondence
-          </p>
-          <h2 className="mt-6 font-display text-5xl text-balance md:text-7xl">
+    <section className="mt-32 border-t hairline">
+      <div className="mx-auto grid max-w-[1600px] gap-10 px-5 py-32 sm:px-10 md:grid-cols-2 md:items-end">
+        <Reveal>
+          <p className="eyebrow text-muted-foreground">Correspondence</p>
+          <h2 className="mt-6 font-display text-6xl leading-[0.95] text-balance md:text-9xl">
             Write me <em className="italic">a note.</em>
           </h2>
-          <p className="mx-auto mt-6 max-w-md text-sm text-muted-foreground">
+        </Reveal>
+        <Reveal delay={0.05}>
+          <p className="max-w-md text-base text-muted-foreground">
             Press, residencies, conversations on AI and the Caribbean — all welcome.
+            Read personally, replied to from <span className="text-foreground">writeme@fazalali.com</span>.
           </p>
-          <div className="mt-10">
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-2 rounded-none bg-foreground px-7 py-3.5 text-sm text-background transition-opacity hover:opacity-90"
-            >
-              Start a letter <ArrowRight className="size-4" />
-            </Link>
-          </div>
-        </GlassPanel>
-      </Reveal>
+          <Link
+            to="/contact"
+            className="mt-10 inline-flex items-center gap-4 border-b hairline pb-2 font-display text-2xl"
+          >
+            Start a letter <span className="block h-px w-12 bg-foreground" />
+          </Link>
+        </Reveal>
+      </div>
     </section>
   );
 }
