@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
-import { Reveal } from "@/components/site/Reveal";
+import { BlurReveal, SlideIn } from "@/components/site/BlurReveal";
+import { ParallaxImage } from "@/components/site/ParallaxImage";
 import { HoverImage } from "@/components/site/HoverImage";
 import { CirclePill } from "@/components/site/CirclePill";
 import { Grain } from "@/components/site/Grain";
@@ -42,6 +43,7 @@ function Home() {
       <Hero />
       <Quietline />
       <FeaturedSection />
+      <ParallaxBreak />
       <Manifesto />
       <Portrait />
       <Range />
@@ -58,7 +60,7 @@ function Hero() {
     target: ref,
     offset: ["start start", "end start"],
   });
-  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "14%"]);
+  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.85], [1, 0]);
 
   return (
@@ -66,7 +68,7 @@ function Hero() {
       ref={ref}
       className="relative h-[100svh] min-h-[640px] w-full overflow-hidden bg-foreground text-background"
     >
-      <motion.div style={{ y: imageY }} className="absolute inset-0 -top-[8%] h-[116%]">
+      <motion.div style={{ y: imageY }} className="absolute inset-0 -top-[10%] h-[120%]">
         <video
           src={heroVideo.url}
           poster={heroImage}
@@ -78,18 +80,13 @@ function Hero() {
           className="size-full object-cover"
         />
         <Grain />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/15 to-black/75" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/15 to-black/80" />
       </motion.div>
 
       <motion.div
         style={{ opacity }}
-        className="relative z-10 flex h-full flex-col justify-between px-5 pb-16 pt-28 sm:px-10 sm:pb-24 sm:pt-32"
+        className="relative z-10 flex h-full flex-col justify-end px-5 pb-20 sm:px-10 sm:pb-28"
       >
-        <div className="flex items-center justify-between">
-          <span className="eyebrow opacity-80">Vol. 01 — Trinidad &amp; the Machines</span>
-          <span className="eyebrow hidden opacity-60 md:inline">MMXXVI</span>
-        </div>
-
         <h1 className="font-display text-[13vw] leading-[0.92] tracking-[-0.035em] sm:text-[10vw] md:text-[8vw]">
           <Word delay={0.1}>Reading the</Word>{" "}
           <Word delay={0.22} italic>machines</Word>
@@ -99,7 +96,6 @@ function Hero() {
         </h1>
       </motion.div>
 
-      {/* scroll cue */}
       <motion.div
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 0.7, y: 0 }}
@@ -124,9 +120,9 @@ function Word({
   return (
     <span className="inline-block overflow-hidden align-bottom">
       <motion.span
-        initial={{ y: "110%" }}
-        animate={{ y: "0%" }}
-        transition={{ duration: 1.1, delay, ease: [0.22, 1, 0.36, 1] }}
+        initial={{ y: "110%", filter: "blur(12px)" }}
+        animate={{ y: "0%", filter: "blur(0px)" }}
+        transition={{ duration: 1.2, delay, ease: [0.22, 1, 0.36, 1] }}
         className={`inline-block ${italic ? "italic" : ""}`}
       >
         {children}
@@ -136,29 +132,26 @@ function Word({
 }
 
 /* ───────────────── Quiet editorial divider ──────────────── */
-/* Replaces the noisy marquee. A still, premium rule with a
-   centered editorial line. */
 
 function Quietline() {
   return (
     <section className="border-y hairline bg-background">
-      <div className="mx-auto grid max-w-[1700px] grid-cols-1 items-center gap-6 px-5 py-10 sm:grid-cols-3 sm:px-8">
-        <span className="eyebrow text-muted-foreground">Est. Trinidad, 1974</span>
-        <p className="text-center font-display text-xl italic md:text-2xl">
+      <div className="mx-auto grid max-w-[1700px] grid-cols-1 items-center gap-6 px-5 py-8 sm:grid-cols-3 sm:px-8">
+        <BlurReveal as="span" className="eyebrow text-muted-foreground">
+          Est. Trinidad, 1974
+        </BlurReveal>
+        <BlurReveal delay={0.1} className="text-center font-display text-xl italic md:text-2xl">
           A small island, a long sentence, a slow machine.
-        </p>
-        <span className="eyebrow text-right text-muted-foreground">
+        </BlurReveal>
+        <BlurReveal as="span" delay={0.2} className="eyebrow text-right text-muted-foreground">
           Issue 01 / Folio I
-        </span>
+        </BlurReveal>
       </div>
     </section>
   );
 }
 
 /* ─────────────────────── Featured ─────────────────────── */
-/* Asymmetric editorial layout — one large hero piece on the left,
-   two stacked secondary pieces on the right. Distinct from the
-   Latest Writing row list below. */
 
 const featured = [
   {
@@ -190,32 +183,34 @@ const featured = [
 function FeaturedSection() {
   const [hero, ...rest] = featured;
   return (
-    <section className="relative py-28 md:py-40">
+    <section className="relative py-20 md:py-28">
       <div className="mx-auto max-w-[1700px] px-5 sm:px-8">
-        <Reveal className="mb-12 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-6">
+        <div className="mb-10 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-5">
           <div>
-            <p className="eyebrow text-muted-foreground">Featured Work</p>
-            <h2 className="mt-4 font-display text-4xl md:text-6xl">
+            <BlurReveal as="p" className="eyebrow text-muted-foreground">
+              Featured Work
+            </BlurReveal>
+            <BlurReveal as="h2" delay={0.08} className="mt-3 font-display text-4xl md:text-6xl">
               Three things, <em className="italic">in order.</em>
-            </h2>
+            </BlurReveal>
           </div>
-          <Link to="/writing" className="nav-link opacity-70 hover:opacity-100">
-            All work →
-          </Link>
-        </Reveal>
+          <BlurReveal delay={0.2}>
+            <Link to="/writing" className="nav-link opacity-70 hover:opacity-100">
+              All work →
+            </Link>
+          </BlurReveal>
+        </div>
 
         <div className="grid grid-cols-12 gap-6 md:gap-10">
-          {/* Hero feature — large left */}
-          <Reveal className="col-span-12 lg:col-span-7">
+          <SlideIn from="left" className="col-span-12 lg:col-span-7">
             <FeatureCard item={hero} large />
-          </Reveal>
+          </SlideIn>
 
-          {/* Two stacked right */}
           <div className="col-span-12 flex flex-col gap-6 md:gap-10 lg:col-span-5">
             {rest.map((item, i) => (
-              <Reveal key={item.title} delay={0.1 + i * 0.08}>
+              <SlideIn key={item.title} from="right" delay={0.1 + i * 0.1}>
                 <FeatureCard item={item} />
-              </Reveal>
+              </SlideIn>
             ))}
           </div>
         </div>
@@ -241,7 +236,7 @@ function FeatureCard({
         <img
           src={item.image}
           alt={item.title}
-          className="card-image absolute inset-0 size-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.04]"
+          className="card-image absolute inset-0 size-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.05]"
           loading="lazy"
         />
         <Grain />
@@ -266,46 +261,62 @@ function FeatureCard({
   );
 }
 
+/* ─────────────────── Parallax Break (fixed image band) ─────────────────── */
+
+function ParallaxBreak() {
+  return (
+    <section className="relative h-[60svh] min-h-[420px] w-full overflow-hidden">
+      <ParallaxImage src={featuredWriting} alt="" className="absolute inset-0" strength={22} />
+      <div className="relative z-10 flex h-full items-center justify-center px-6 text-center text-background">
+        <BlurReveal
+          as="p"
+          className="max-w-3xl font-display text-3xl italic leading-[1.1] md:text-5xl"
+        >
+          &ldquo;The machine is a sentence. Read it slowly.&rdquo;
+        </BlurReveal>
+      </div>
+    </section>
+  );
+}
+
 /* ─────────────────────── Manifesto ────────────────────── */
 
 function Manifesto() {
   return (
-    <section className="mx-auto max-w-[1500px] px-5 py-32 sm:px-8 md:py-40">
-      <Reveal className="mb-10">
-        <p className="eyebrow text-muted-foreground">A note before reading</p>
-      </Reveal>
-      <Reveal delay={0.05}>
-        <h2 className="font-display text-[7vw] leading-[1.04] tracking-[-0.025em] text-balance sm:text-[3.6vw]">
-          I am not building <em className="italic">AI</em>. I am not selling chips. I am
-          thinking <em className="italic">with</em> the machines, against them, around
-          them — from a small island that has always read the world more carefully than
-          the world has read it.
-        </h2>
-      </Reveal>
-      <Reveal delay={0.15}>
-        <p className="mt-10 max-w-md text-sm leading-relaxed text-muted-foreground">
-          — Fazal Ali, on opening the new site, 2026.
-        </p>
-      </Reveal>
+    <section className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 md:py-32">
+      <BlurReveal as="p" className="eyebrow mb-8 text-muted-foreground">
+        A note before reading
+      </BlurReveal>
+      <BlurReveal
+        as="h2"
+        delay={0.08}
+        className="font-display text-[7vw] leading-[1.04] tracking-[-0.025em] text-balance sm:text-[3.6vw]"
+      >
+        I am not building <em className="italic">AI</em>. I am not selling chips. I am
+        thinking <em className="italic">with</em> the machines, against them, around
+        them — from a small island that has always read the world more carefully than
+        the world has read it.
+      </BlurReveal>
+      <BlurReveal as="p" delay={0.2} className="mt-8 max-w-md text-sm leading-relaxed text-muted-foreground">
+        — Fazal Ali, on opening the new site, 2026.
+      </BlurReveal>
     </section>
   );
 }
 
 /* ─────────────────────── Portrait ─────────────────────── */
-/* Single-screen, compact: portrait left, text right.
-   No scrolling required to read the headline + bio + CTA. */
 
 function Portrait() {
   return (
-    <section className="section-dark relative overflow-hidden py-20 md:py-28">
+    <section className="section-dark relative overflow-hidden py-20 md:py-24">
       <div className="mx-auto max-w-[1500px] px-5 sm:px-8">
-        <Reveal className="mb-10 flex items-center justify-between border-b border-current/20 pb-5">
-          <p className="eyebrow opacity-60">On the writer</p>
-          <p className="eyebrow opacity-60">Trinidad · b. 1974</p>
-        </Reveal>
+        <div className="mb-10 flex items-center justify-between border-b border-current/20 pb-5">
+          <BlurReveal as="p" className="eyebrow opacity-60">On the writer</BlurReveal>
+          <BlurReveal as="p" delay={0.1} className="eyebrow opacity-60">Trinidad · b. 1974</BlurReveal>
+        </div>
 
         <div className="grid grid-cols-12 gap-6 md:gap-12">
-          <Reveal className="col-span-12 md:col-span-5">
+          <SlideIn from="left" className="col-span-12 md:col-span-5">
             <div className="grain relative aspect-[4/5] w-full overflow-hidden">
               <img
                 src={portrait}
@@ -317,37 +328,31 @@ function Portrait() {
               />
               <Grain />
             </div>
-          </Reveal>
+          </SlideIn>
 
-          <div className="col-span-12 flex flex-col justify-between gap-8 md:col-span-7">
-            <Reveal delay={0.05}>
-              <h3 className="font-display text-4xl leading-[1.02] tracking-[-0.02em] md:text-6xl">
-                My name is <em className="italic">Fazal Ali</em>.
-              </h3>
-            </Reveal>
+          <div className="col-span-12 flex flex-col justify-between gap-6 md:col-span-7">
+            <BlurReveal as="h3" className="font-display text-4xl leading-[1.02] tracking-[-0.02em] md:text-6xl">
+              My name is <em className="italic">Fazal Ali</em>.
+            </BlurReveal>
 
-            <Reveal delay={0.1}>
-              <p className="max-w-xl text-base leading-relaxed text-background/75 md:text-lg">
-                Cambridge-trained, mentored by Amartya Sen, Lord Martin Rees and Sir
-                Leszek Borysiewicz. For twenty years the work stayed inside lecture
-                rooms. This site is the first time I have stepped out from behind the
-                lectern — the books, the ideas, the art, and a contribution from
-                Trinidad to a conversation usually written elsewhere.
-              </p>
-            </Reveal>
+            <BlurReveal delay={0.1} className="max-w-xl text-base leading-relaxed text-background/75 md:text-lg">
+              Cambridge-trained, mentored by Amartya Sen, Lord Martin Rees and Sir
+              Leszek Borysiewicz. For twenty years the work stayed inside lecture
+              rooms. This site is the first time I have stepped out from behind the
+              lectern — the books, the ideas, the art, and a contribution from
+              Trinidad to a conversation usually written elsewhere.
+            </BlurReveal>
 
-            <Reveal delay={0.18}>
-              <p className="font-display text-2xl italic leading-[1.2] text-background/85 md:text-3xl">
-                &ldquo;I have grown braver. A little more adventurous.&rdquo;
-              </p>
-            </Reveal>
+            <BlurReveal delay={0.18} className="font-display text-2xl italic leading-[1.2] text-background/85 md:text-3xl">
+              &ldquo;I have grown braver. A little more adventurous.&rdquo;
+            </BlurReveal>
 
-            <Reveal delay={0.24} className="flex flex-wrap items-center justify-between gap-6 pt-2">
+            <SlideIn delay={0.24} className="flex flex-wrap items-center justify-between gap-6 pt-2">
               <p className="eyebrow opacity-55">
                 Writer · Scholar · Founder of Omeros AI
               </p>
               <CirclePill to="/about" label="More about me" invert />
-            </Reveal>
+            </SlideIn>
           </div>
         </div>
       </div>
@@ -368,18 +373,18 @@ const rangeImages = [practiceEssays, practiceBook, practiceOmeros, featuredWriti
 
 function Range() {
   return (
-    <section className="mx-auto max-w-[1700px] px-5 py-28 sm:px-8 md:py-32">
-      <Reveal className="mb-16 max-w-3xl">
-        <p className="eyebrow text-muted-foreground">Range</p>
-        <h2 className="mt-6 font-display text-5xl leading-[1.02] md:text-7xl">
+    <section className="mx-auto max-w-[1700px] px-5 py-20 sm:px-8 md:py-28">
+      <div className="mb-12 max-w-3xl">
+        <BlurReveal as="p" className="eyebrow text-muted-foreground">Range</BlurReveal>
+        <BlurReveal as="h2" delay={0.08} className="mt-5 font-display text-5xl leading-[1.02] md:text-7xl">
           Four threads, <em className="italic">one practice.</em>
-        </h2>
-      </Reveal>
+        </BlurReveal>
+      </div>
 
       <div className="grid grid-cols-1 gap-px bg-foreground/15 sm:grid-cols-2 lg:grid-cols-4">
         {range.map((r, i) => (
-          <Reveal key={r.n} delay={i * 0.05}>
-            <div className="group relative flex h-full min-h-[340px] cursor-default flex-col justify-between gap-10 overflow-hidden bg-background p-7 md:p-8">
+          <SlideIn key={r.n} delay={i * 0.08}>
+            <div className="group relative flex h-full min-h-[320px] cursor-default flex-col justify-between gap-10 overflow-hidden bg-background p-7 md:p-8">
               <img
                 src={rangeImages[i]}
                 alt=""
@@ -398,7 +403,7 @@ function Range() {
                 </p>
               </div>
             </div>
-          </Reveal>
+          </SlideIn>
         ))}
       </div>
     </section>
@@ -412,25 +417,27 @@ const writingImages = [practiceEssays, practiceBook, practiceOmeros];
 function LatestWriting() {
   const latest = articles.slice(0, 3);
   return (
-    <section className="mx-auto max-w-[1700px] px-5 py-28 sm:px-8 md:py-40">
-      <Reveal className="mb-12 flex items-end justify-between gap-6 border-b hairline pb-6">
+    <section className="mx-auto max-w-[1700px] px-5 py-20 sm:px-8 md:py-28">
+      <div className="mb-10 flex items-end justify-between gap-6 border-b hairline pb-5">
         <div>
-          <p className="eyebrow text-muted-foreground">From the Journal</p>
-          <h2 className="mt-4 font-display text-4xl md:text-6xl">
+          <BlurReveal as="p" className="eyebrow text-muted-foreground">From the Journal</BlurReveal>
+          <BlurReveal as="h2" delay={0.08} className="mt-3 font-display text-4xl md:text-6xl">
             Recent pieces<span className="italic">.</span>
-          </h2>
+          </BlurReveal>
         </div>
-        <Link to="/writing" className="nav-link">All essays →</Link>
-      </Reveal>
+        <BlurReveal delay={0.16}>
+          <Link to="/writing" className="nav-link">All essays →</Link>
+        </BlurReveal>
+      </div>
 
       <div className="divide-y hairline">
         {latest.map((a, i) => (
-          <Reveal key={a.slug} delay={i * 0.05}>
+          <SlideIn key={a.slug} delay={i * 0.06} from="bottom">
             <HoverImage src={writingImages[i % writingImages.length]} alt={a.title}>
               <Link
                 to="/writing/$slug"
                 params={{ slug: a.slug }}
-                className="group grid grid-cols-1 gap-4 py-8 md:grid-cols-[160px_1fr_auto] md:items-baseline md:gap-12 md:py-10"
+                className="group grid grid-cols-1 gap-4 py-7 md:grid-cols-[160px_1fr_auto] md:items-baseline md:gap-12 md:py-9"
               >
                 <span className="eyebrow text-muted-foreground">
                   {new Date(a.date).toLocaleDateString("en-GB", {
@@ -447,7 +454,7 @@ function LatestWriting() {
                 </span>
               </Link>
             </HoverImage>
-          </Reveal>
+          </SlideIn>
         ))}
       </div>
     </section>
