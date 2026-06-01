@@ -270,38 +270,62 @@ function StickyImageStack({ items }: { items: typeof featured }) {
     target: ref,
     offset: ["start end", "end start"],
   });
-  // Subtle parallax inside the sticky frame
   const y = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
 
   return (
     <div ref={ref} className="relative aspect-[4/5] w-full overflow-hidden bg-foreground/5">
-      {items.map((item, i) => {
-        // Each image fades in for its scroll segment
-        const seg = 1 / items.length;
-        const start = i * seg;
-        const end = start + seg;
-        const opacity = useTransform(
-          scrollYProgress,
-          [Math.max(0, start - 0.05), start + 0.05, end - 0.05, Math.min(1, end + 0.05)],
-          i === 0 ? [1, 1, 1, 0] : i === items.length - 1 ? [0, 1, 1, 1] : [0, 1, 1, 0],
-        );
-        return (
-          <motion.img
-            key={item.title}
-            src={item.image}
-            alt={item.title}
-            style={{ opacity, y }}
-            className="absolute inset-0 size-full scale-110 object-cover"
-            loading="lazy"
-          />
-        );
-      })}
+      {items.map((item, i) => (
+        <StickyFrame
+          key={item.title}
+          item={item}
+          index={i}
+          total={items.length}
+          progress={scrollYProgress}
+          y={y}
+        />
+      ))}
       <Grain />
       <div className="absolute inset-x-0 bottom-0 z-10 flex items-center justify-between bg-gradient-to-t from-black/60 to-transparent p-5 text-on-image md:p-7">
         <span className="nav-link">Now showing</span>
         <span className="nav-link">{items.length} frames</span>
       </div>
     </div>
+  );
+}
+
+function StickyFrame({
+  item,
+  index,
+  total,
+  progress,
+  y,
+}: {
+  item: (typeof featured)[number];
+  index: number;
+  total: number;
+  progress: ReturnType<typeof useScroll>["scrollYProgress"];
+  y: ReturnType<typeof useTransform<number, string>>;
+}) {
+  const seg = 1 / total;
+  const start = index * seg;
+  const end = start + seg;
+  const opacity = useTransform(
+    progress,
+    [Math.max(0, start - 0.05), start + 0.05, end - 0.05, Math.min(1, end + 0.05)],
+    index === 0
+      ? [1, 1, 1, 0]
+      : index === total - 1
+        ? [0, 1, 1, 1]
+        : [0, 1, 1, 0],
+  );
+  return (
+    <motion.img
+      src={item.image}
+      alt={item.title}
+      style={{ opacity, y }}
+      className="absolute inset-0 size-full scale-110 object-cover"
+      loading="lazy"
+    />
   );
 }
 
