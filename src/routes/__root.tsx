@@ -14,6 +14,8 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteNav } from "../components/site/SiteNav";
 import { SiteFooter } from "../components/site/SiteFooter";
 import { SmoothScroll } from "../components/site/SmoothScroll";
+import { IntroReveal } from "../components/site/IntroReveal";
+import { PageTransition } from "../components/site/PageTransition";
 
 function NotFoundComponent() {
   return (
@@ -136,9 +138,12 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <SmoothScroll />
+      <IntroReveal />
       <SiteNav />
       <main>
-        <Outlet />
+        <PageTransition>
+          <Outlet />
+        </PageTransition>
       </main>
       <SiteFooter />
     </QueryClientProvider>
