@@ -115,7 +115,7 @@ function RootShell({ children }: { children: ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body className="grain">
+      <body>
         {children}
         <Scripts />
       </body>
@@ -128,9 +128,8 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Aurora />
       <SiteNav />
-      <main className="pt-28">
+      <main className="pt-24">
         <Outlet />
       </main>
       <SiteFooter />
