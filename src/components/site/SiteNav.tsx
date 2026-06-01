@@ -27,10 +27,10 @@ export function SiteNav() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-500",
+        "fixed inset-x-0 top-0 z-50 transition-all duration-500 text-foreground",
         scrolled
-          ? "bg-background/80 text-foreground backdrop-blur-md"
-          : "bg-transparent text-background",
+          ? "bg-background/85 backdrop-blur-md border-b hairline"
+          : "bg-background/40 backdrop-blur-sm",
       )}
     >
       <div className="mx-auto flex max-w-[1700px] items-center justify-between px-5 py-4 sm:px-8 sm:py-5">
