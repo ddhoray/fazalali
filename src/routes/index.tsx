@@ -609,10 +609,10 @@ function LatestWriting() {
   const latest = articles.slice(0, 3);
   return (
     <section className="mx-auto max-w-[1700px] px-5 py-16 sm:px-8 md:py-20">
-      <div className="mb-8 flex items-end justify-between gap-6 border-b hairline pb-5">
+      <div className="mb-8 flex flex-wrap items-end justify-between gap-4 border-b hairline pb-5">
         <div>
           <BlurReveal as="p" className="eyebrow text-muted-foreground">From the Journal</BlurReveal>
-          <BlurReveal as="h2" delay={0.08} className="mt-3 font-display text-4xl md:text-6xl">
+          <BlurReveal as="h2" delay={0.08} className="mt-3 font-display text-[11vw] leading-[1] sm:text-5xl md:text-6xl">
             Recent pieces<span className="italic">.</span>
           </BlurReveal>
         </div>
