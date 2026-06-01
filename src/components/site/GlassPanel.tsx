@@ -2,18 +2,21 @@ import { forwardRef, type HTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
+  bordered?: boolean;
   strong?: boolean;
-  as?: "div" | "section" | "article" | "aside";
 }
 
+/**
+ * Minimal editorial panel. Sharp edges, hairline border.
+ */
 export const GlassPanel = forwardRef<HTMLDivElement, Props>(
-  ({ className, strong, as: Tag = "div", ...rest }, ref) => {
+  ({ className, bordered = true, strong: _strong, ...rest }, ref) => {
     return (
-      <Tag
-        ref={ref as never}
+      <div
+        ref={ref}
         className={cn(
-          strong ? "glass-strong" : "glass",
-          "rounded-3xl",
+          "bg-card",
+          bordered && "border hairline",
           className,
         )}
         {...rest}

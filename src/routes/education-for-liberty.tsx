@@ -47,7 +47,7 @@ function BookPage() {
       <div className="mt-16 grid gap-6 md:grid-cols-[1.1fr_1fr]">
         <Reveal>
           <GlassPanel strong className="flex aspect-[4/5] items-center justify-center p-10">
-            <div className="flex aspect-[3/4] w-full max-w-sm flex-col justify-between rounded-2xl border border-foreground/15 bg-background/60 p-7 shadow-[var(--shadow-lift)]">
+            <div className="flex aspect-[3/4] w-full max-w-sm flex-col justify-between rounded-none border border-foreground/15 bg-background/60 p-7 shadow-[var(--shadow-lift)]">
               <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">Fazal Ibrahim Ali</p>
               <div>
                 <p className="font-display text-4xl leading-[0.95]">Education for Liberty</p>
@@ -80,7 +80,7 @@ function BookPage() {
 
             <Link
               to="/contact"
-              className="inline-flex w-fit items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm text-background"
+              className="inline-flex w-fit items-center gap-2 rounded-none bg-foreground px-6 py-3 text-sm text-background"
             >
               Enquire about the book <ArrowRight className="size-4" />
             </Link>
