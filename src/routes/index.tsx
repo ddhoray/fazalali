@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform, type MotionValue } from "motion/react";
 import { useRef } from "react";
 import { BookOpen, Sparkles, PenLine, Compass, ArrowUpRight } from "lucide-react";
 import { BlurReveal, SlideIn } from "@/components/site/BlurReveal";
@@ -303,8 +303,8 @@ function StickyFrame({
   item: (typeof featured)[number];
   index: number;
   total: number;
-  progress: ReturnType<typeof useScroll>["scrollYProgress"];
-  y: ReturnType<typeof useTransform<number, string>>;
+  progress: MotionValue<number>;
+  y: MotionValue<string>;
 }) {
   const seg = 1 / total;
   const start = index * seg;
