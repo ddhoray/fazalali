@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform, type MotionValue } from "motion/react"
 import { useRef } from "react";
 import { BookOpen, Sparkles, PenLine, Compass, ArrowUpRight } from "lucide-react";
 import { BlurReveal, SlideIn } from "@/components/site/BlurReveal";
-import { LineReveal, WordReveal } from "@/components/site/LineReveal";
+import { LineReveal } from "@/components/site/LineReveal";
 import { ParallaxImage } from "@/components/site/ParallaxImage";
 import { HoverImage } from "@/components/site/HoverImage";
 import { CirclePill } from "@/components/site/CirclePill";
