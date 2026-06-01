@@ -9,38 +9,154 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WritingRouteImport } from './routes/writing'
+import { Route as OmerosAiRouteImport } from './routes/omeros-ai'
+import { Route as EducationForLibertyRouteImport } from './routes/education-for-liberty'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as WritingSlugRouteImport } from './routes/writing.$slug'
 
+const WritingRoute = WritingRouteImport.update({
+  id: '/writing',
+  path: '/writing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OmerosAiRoute = OmerosAiRouteImport.update({
+  id: '/omeros-ai',
+  path: '/omeros-ai',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EducationForLibertyRoute = EducationForLibertyRouteImport.update({
+  id: '/education-for-liberty',
+  path: '/education-for-liberty',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WritingSlugRoute = WritingSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => WritingRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/education-for-liberty': typeof EducationForLibertyRoute
+  '/omeros-ai': typeof OmerosAiRoute
+  '/writing': typeof WritingRouteWithChildren
+  '/writing/$slug': typeof WritingSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/education-for-liberty': typeof EducationForLibertyRoute
+  '/omeros-ai': typeof OmerosAiRoute
+  '/writing': typeof WritingRouteWithChildren
+  '/writing/$slug': typeof WritingSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/education-for-liberty': typeof EducationForLibertyRoute
+  '/omeros-ai': typeof OmerosAiRoute
+  '/writing': typeof WritingRouteWithChildren
+  '/writing/$slug': typeof WritingSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/education-for-liberty'
+    | '/omeros-ai'
+    | '/writing'
+    | '/writing/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/education-for-liberty'
+    | '/omeros-ai'
+    | '/writing'
+    | '/writing/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/education-for-liberty'
+    | '/omeros-ai'
+    | '/writing'
+    | '/writing/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
+  EducationForLibertyRoute: typeof EducationForLibertyRoute
+  OmerosAiRoute: typeof OmerosAiRoute
+  WritingRoute: typeof WritingRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/writing': {
+      id: '/writing'
+      path: '/writing'
+      fullPath: '/writing'
+      preLoaderRoute: typeof WritingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/omeros-ai': {
+      id: '/omeros-ai'
+      path: '/omeros-ai'
+      fullPath: '/omeros-ai'
+      preLoaderRoute: typeof OmerosAiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/education-for-liberty': {
+      id: '/education-for-liberty'
+      path: '/education-for-liberty'
+      fullPath: '/education-for-liberty'
+      preLoaderRoute: typeof EducationForLibertyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +164,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/writing/$slug': {
+      id: '/writing/$slug'
+      path: '/$slug'
+      fullPath: '/writing/$slug'
+      preLoaderRoute: typeof WritingSlugRouteImport
+      parentRoute: typeof WritingRoute
+    }
   }
 }
 
+interface WritingRouteChildren {
+  WritingSlugRoute: typeof WritingSlugRoute
+}
+
+const WritingRouteChildren: WritingRouteChildren = {
+  WritingSlugRoute: WritingSlugRoute,
+}
+
+const WritingRouteWithChildren =
+  WritingRoute._addFileChildren(WritingRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
+  EducationForLibertyRoute: EducationForLibertyRoute,
+  OmerosAiRoute: OmerosAiRoute,
+  WritingRoute: WritingRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
