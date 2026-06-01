@@ -464,8 +464,7 @@ function Portrait() {
               </span>
             </BlurReveal>
 
-            <SlideIn
-              delay={0.24}
+            <div
               className="flex flex-wrap items-center justify-between gap-6 border-t pt-6"
               style={{ borderColor: "rgba(246,244,239,0.2)" }}
             >
@@ -473,7 +472,7 @@ function Portrait() {
                 Cambridge · Trinidad · 2026
               </p>
               <CirclePill to="/about" label="More about me" invert />
-            </SlideIn>
+            </div>
           </div>
         </div>
       </div>
