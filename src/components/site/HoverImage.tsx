@@ -1,9 +1,10 @@
-import { useRef, useState, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { motion, AnimatePresence, useMotionValue, useSpring } from "motion/react";
 
 /**
  * Cursor-following image preview (desktop only).
- * Images render in full color for a "live" editorial feel.
+ * The image is rendered in a fixed-position portal-like layer
+ * so it follows the actual cursor across the viewport.
  */
 export function HoverImage({
   src,
@@ -16,27 +17,34 @@ export function HoverImage({
   children: ReactNode;
   className?: string;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
-  const mx = useMotionValue(0);
-  const my = useMotionValue(0);
-  const x = useSpring(mx, { stiffness: 180, damping: 22, mass: 0.5 });
-  const y = useSpring(my, { stiffness: 180, damping: 22, mass: 0.5 });
+  const mx = useMotionValue(-9999);
+  const my = useMotionValue(-9999);
+  const x = useSpring(mx, { stiffness: 350, damping: 28, mass: 0.4 });
+  const y = useSpring(my, { stiffness: 350, damping: 28, mass: 0.4 });
 
-  function onMove(e: React.PointerEvent) {
-    if (e.pointerType !== "mouse") return;
-    const rect = ref.current?.getBoundingClientRect();
-    if (!rect) return;
-    mx.set(e.clientX - rect.left);
-    my.set(e.clientY - rect.top);
+  function setFromEvent(e: React.PointerEvent) {
+    mx.set(e.clientX);
+    my.set(e.clientY);
   }
 
   return (
     <div
-      ref={ref}
-      onPointerEnter={(e) => e.pointerType === "mouse" && setVisible(true)}
-      onPointerLeave={() => setVisible(false)}
-      onPointerMove={onMove}
+      onPointerEnter={(e) => {
+        if (e.pointerType !== "mouse") return;
+        // Jump (no spring) to cursor before showing to avoid a flash from 0,0
+        mx.jump(e.clientX);
+        my.jump(e.clientY);
+        setVisible(true);
+      }}
+      onPointerLeave={(e) => {
+        if (e.pointerType !== "mouse") return;
+        setVisible(false);
+      }}
+      onPointerMove={(e) => {
+        if (e.pointerType !== "mouse") return;
+        setFromEvent(e);
+      }}
       className={`relative ${className}`}
     >
       {children}
@@ -46,9 +54,9 @@ export function HoverImage({
             initial={{ opacity: 0, scale: 0.94 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.96 }}
-            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-            style={{ x, y, translateX: "-50%", translateY: "-110%" }}
-            className="pointer-events-none absolute left-0 top-0 z-40 hidden h-[300px] w-[230px] overflow-hidden shadow-2xl md:block"
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            style={{ x, y, translateX: "-50%", translateY: "-50%" }}
+            className="pointer-events-none fixed left-0 top-0 z-50 hidden h-[320px] w-[240px] overflow-hidden shadow-2xl md:block"
           >
             <img
               src={src}
