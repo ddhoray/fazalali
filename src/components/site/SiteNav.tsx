@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { BrandMark } from "./BrandMark";
+import { ThemeToggle } from "./ThemeToggle";
 
 const links = [
   { to: "/writing", label: "Writing" },
@@ -28,12 +28,18 @@ export function SiteNav() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-500",
         scrolled
-          ? "bg-background/85 text-foreground backdrop-blur-md"
+          ? "bg-background/80 text-foreground backdrop-blur-md"
           : "bg-transparent text-background",
       )}
     >
-      <div className="mx-auto flex max-w-[1700px] items-center justify-between px-5 py-5 sm:px-8">
-        <BrandMark />
+      <div className="mx-auto flex max-w-[1700px] items-center justify-between px-5 py-4 sm:px-8 sm:py-5">
+        <Link to="/" aria-label="Fazal Ali — Home" className="inline-flex items-baseline gap-1.5">
+          <span className="font-display text-2xl leading-none tracking-tight">F</span>
+          <span className="font-display text-2xl italic leading-none tracking-tight">a</span>
+          <span className="ml-1 hidden text-[10px] uppercase tracking-[0.28em] opacity-60 sm:inline">
+            Fazal Ali
+          </span>
+        </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
@@ -46,15 +52,19 @@ export function SiteNav() {
               {l.label}
             </Link>
           ))}
+          <ThemeToggle />
         </nav>
 
-        <button
-          aria-label="Menu"
-          onClick={() => setOpen((v) => !v)}
-          className="inline-flex size-10 items-center justify-center md:hidden"
-        >
-          {open ? <X className="size-5" /> : <Menu className="size-5" />}
-        </button>
+        <div className="flex items-center gap-3 md:hidden">
+          <ThemeToggle />
+          <button
+            aria-label="Menu"
+            onClick={() => setOpen((v) => !v)}
+            className="inline-flex size-9 items-center justify-center"
+          >
+            {open ? <X className="size-5" /> : <Menu className="size-5" />}
+          </button>
+        </div>
       </div>
 
       {open && (
