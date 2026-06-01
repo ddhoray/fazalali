@@ -67,7 +67,7 @@ function Hero() {
   return (
     <section
       ref={ref}
-      className="relative h-[100svh] min-h-[640px] w-full overflow-hidden bg-[#0a0a0a] text-on-image"
+      className="relative h-[100svh] min-h-[600px] w-full overflow-hidden bg-[#0a0a0a] text-on-image"
     >
       <motion.div style={{ y: imageY }} className="absolute inset-0 -top-[10%] h-[120%]">
         <img
@@ -78,12 +78,13 @@ function Hero() {
           height={1280}
         />
         <Grain />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/20 to-black/85" />
+        {/* Stronger scrim on mobile for legibility */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/30 to-black/90 md:from-black/55 md:via-black/20 md:to-black/85" />
       </motion.div>
 
       <motion.div
         style={{ opacity }}
-        className="relative z-10 flex h-full flex-col justify-between px-5 pt-24 pb-16 sm:px-10 sm:pb-24"
+        className="relative z-10 flex h-full flex-col justify-between px-5 pt-20 pb-16 sm:px-10 sm:pt-28 sm:pb-24"
       >
         <div>
           <motion.p
@@ -97,7 +98,7 @@ function Hero() {
         </div>
 
         <div>
-          <h1 className="font-display text-[13vw] leading-[0.92] tracking-[-0.035em] sm:text-[10vw] md:text-[8vw]">
+          <h1 className="font-display text-[15vw] leading-[0.94] tracking-[-0.035em] sm:text-[10vw] md:text-[8vw]">
             <Word delay={0.1}>Reading</Word>{" "}
             <Word delay={0.22}>the</Word>{" "}
             <Word delay={0.34} italic>machines</Word>
@@ -110,7 +111,7 @@ function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-6 max-w-md text-sm leading-relaxed opacity-80 md:text-base"
+            className="mt-5 max-w-md text-[13px] leading-relaxed opacity-85 sm:mt-6 sm:text-sm md:text-base"
           >
             Dr. Fazal Ibrahim Ali — Cambridge-trained, Trinidad-born. Writing on
             critical theory in AI, the founding of Omeros AI, and a small book
@@ -123,7 +124,7 @@ function Hero() {
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 0.7, y: 0 }}
         transition={{ delay: 1.6, duration: 0.8 }}
-        className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 text-[10px] uppercase tracking-[0.32em] text-on-image"
+        className="absolute bottom-5 left-1/2 z-10 -translate-x-1/2 text-[10px] uppercase tracking-[0.32em] text-on-image"
       >
         ↓ Scroll
       </motion.div>
@@ -217,7 +218,7 @@ function FeaturedSticky() {
             <BlurReveal as="p" className="eyebrow text-muted-foreground">
               Featured Work
             </BlurReveal>
-            <BlurReveal as="h2" delay={0.08} className="mt-3 font-display text-4xl md:text-6xl">
+            <BlurReveal as="h2" delay={0.08} className="mt-3 font-display text-[11vw] leading-[1] sm:text-5xl md:text-6xl">
               Three things, <em className="italic">in order.</em>
             </BlurReveal>
           </div>
@@ -228,10 +229,10 @@ function FeaturedSticky() {
           </BlurReveal>
         </div>
 
-        {/* Sticky image left, scrolling frames right */}
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-14">
+        {/* Sticky image (works on mobile too), scrolling frames right */}
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-14">
           <div className="lg:col-span-6">
-            <div className="lg:sticky lg:top-24">
+            <div className="sticky top-20 lg:top-24">
               <ActiveImageStack items={featured} active={active} />
             </div>
           </div>
@@ -241,23 +242,23 @@ function FeaturedSticky() {
               <motion.li
                 key={item.title}
                 onViewportEnter={() => setActive(i)}
-                viewport={{ amount: 0.55, margin: "-20% 0px -35% 0px" }}
-                className="border-b hairline py-10 first:pt-0 last:border-b-0 md:py-14"
+                viewport={{ amount: 0.4, margin: "-25% 0px -40% 0px" }}
+                className="border-b hairline py-8 first:pt-0 last:border-b-0 md:py-14"
               >
                 <SlideIn from="right" delay={0.04}>
                   <Link to={item.to as never} className="group block">
-                    <div className="mb-4 flex items-center gap-3 text-muted-foreground">
-                      <item.icon className="size-4" />
+                    <div className="mb-3 flex flex-wrap items-center gap-3 text-muted-foreground">
+                      <item.icon className="size-4 shrink-0" />
                       <span className="nav-link">{item.eyebrow}</span>
                       <span className="ml-auto nav-link">{item.year}</span>
                     </div>
-                    <h3 className="font-display text-4xl leading-[0.98] tracking-[-0.02em] transition-transform duration-700 group-hover:translate-x-2 md:text-6xl">
+                    <h3 className="font-display text-[10vw] leading-[0.98] tracking-[-0.02em] transition-transform duration-700 group-hover:translate-x-2 sm:text-5xl md:text-6xl">
                       {item.title}<span className="italic">.</span>
                     </h3>
-                    <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
+                    <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-muted-foreground md:mt-4 md:text-base">
                       {item.note}
                     </p>
-                    <span className="mt-5 inline-flex items-center gap-2 text-sm transition-opacity opacity-70 group-hover:opacity-100">
+                    <span className="mt-4 inline-flex items-center gap-2 text-xs transition-opacity opacity-70 group-hover:opacity-100 md:mt-5 md:text-sm">
                       Read more <ArrowUpRight className="size-4" />
                     </span>
                   </Link>
@@ -279,7 +280,7 @@ function ActiveImageStack({
   active: number;
 }) {
   return (
-    <div className="relative aspect-[4/5] w-full overflow-hidden bg-foreground/5">
+    <div className="relative aspect-[16/11] w-full overflow-hidden bg-foreground/5 sm:aspect-[4/3] lg:aspect-[4/5]">
       {items.map((item, i) => (
         <motion.img
           key={item.title}
@@ -297,11 +298,11 @@ function ActiveImageStack({
         />
       ))}
       <Grain />
-      <div className="absolute inset-x-0 bottom-0 z-10 flex items-center justify-between bg-gradient-to-t from-black/65 to-transparent p-5 text-on-image md:p-7">
-        <span className="nav-link">
-          Now showing · {String(active + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}
+      <div className="absolute inset-x-0 bottom-0 z-10 flex flex-wrap items-center justify-between gap-3 bg-gradient-to-t from-black/70 to-transparent p-4 text-on-image md:p-7">
+        <span className="nav-link text-[10px]">
+          {String(active + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}
         </span>
-        <span className="nav-link">{items[active].title}</span>
+        <span className="nav-link text-[10px] truncate">{items[active].title}</span>
       </div>
     </div>
   );
@@ -367,9 +368,40 @@ function Portrait() {
           </BlurReveal>
         </div>
 
-        {/* Compact composition: portrait + name interlocked, no big vertical gap */}
+        {/* Compact composition: name on top on mobile, side-by-side on desktop */}
         <div className="grid grid-cols-12 items-end gap-6 md:gap-10">
-          <SlideIn from="left" className="col-span-12 md:col-span-5">
+          {/* Name first on mobile (order-1), image right column on desktop */}
+          <div className="order-1 col-span-12 md:order-2 md:col-span-7">
+            <BlurReveal
+              as="h2"
+              className="font-display font-medium leading-[0.84] tracking-[-0.04em]"
+              y={28}
+            >
+              <span
+                className="block text-[26vw] sm:text-[20vw] md:text-[11vw]"
+                style={{ color: "#ffffff" }}
+              >
+                Fazal
+              </span>
+              <span
+                className="block italic text-[26vw] sm:text-[20vw] md:text-[11vw]"
+                style={{ color: "#ffffff" }}
+              >
+                Ali<span className="not-italic">.</span>
+              </span>
+            </BlurReveal>
+
+            <BlurReveal delay={0.16} className="mt-4 max-w-xl md:mt-5">
+              <p
+                className="font-display text-lg italic sm:text-xl md:text-2xl"
+                style={{ color: "rgba(246,244,239,0.85)" }}
+              >
+                Writer · Scholar · Founder of <span className="not-italic">Omeros AI</span>
+              </p>
+            </BlurReveal>
+          </div>
+
+          <SlideIn from="left" className="order-2 col-span-12 md:order-1 md:col-span-5">
             <div className="grain relative aspect-[4/5] w-full overflow-hidden">
               <img
                 src={portrait}
@@ -382,36 +414,6 @@ function Portrait() {
               <Grain />
             </div>
           </SlideIn>
-
-          <div className="col-span-12 md:col-span-7">
-            <BlurReveal
-              as="h2"
-              className="font-display font-medium leading-[0.84] tracking-[-0.04em]"
-              y={28}
-            >
-              <span
-                className="block text-[18vw] md:text-[11vw]"
-                style={{ color: "#ffffff" }}
-              >
-                Fazal
-              </span>
-              <span
-                className="block italic text-[18vw] md:text-[11vw]"
-                style={{ color: "#ffffff" }}
-              >
-                Ali<span className="not-italic">.</span>
-              </span>
-            </BlurReveal>
-
-            <BlurReveal delay={0.16} className="mt-5 max-w-xl">
-              <p
-                className="font-display text-xl italic md:text-2xl"
-                style={{ color: "rgba(246,244,239,0.85)" }}
-              >
-                Writer · Scholar · Founder of <span className="not-italic">Omeros AI</span>
-              </p>
-            </BlurReveal>
-          </div>
         </div>
 
         {/* Bio + quote row */}
@@ -473,7 +475,7 @@ function Range() {
       <div className="mb-10 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-5">
         <div className="max-w-3xl">
           <BlurReveal as="p" className="eyebrow text-muted-foreground">Range</BlurReveal>
-          <BlurReveal as="h2" delay={0.08} className="mt-3 font-display text-5xl leading-[1.02] md:text-7xl">
+          <BlurReveal as="h2" delay={0.08} className="mt-3 font-display text-[12vw] leading-[1.02] sm:text-5xl md:text-7xl">
             Four threads, <em className="italic">one practice.</em>
           </BlurReveal>
         </div>
@@ -542,7 +544,7 @@ function RangeCard({
             opacity: isHover ? 1 : 0.85,
           }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="pointer-events-none absolute -bottom-2 left-4 font-display text-[110px] leading-none text-white/85 md:left-6 md:text-[160px]"
+          className="pointer-events-none absolute -bottom-1 left-3 font-display text-[80px] leading-none text-white/85 sm:text-[110px] md:left-6 md:text-[160px]"
           style={{ textShadow: "0 2px 24px rgba(0,0,0,0.35)" }}
         >
           {r.n}
@@ -607,10 +609,10 @@ function LatestWriting() {
   const latest = articles.slice(0, 3);
   return (
     <section className="mx-auto max-w-[1700px] px-5 py-16 sm:px-8 md:py-20">
-      <div className="mb-8 flex items-end justify-between gap-6 border-b hairline pb-5">
+      <div className="mb-8 flex flex-wrap items-end justify-between gap-4 border-b hairline pb-5">
         <div>
           <BlurReveal as="p" className="eyebrow text-muted-foreground">From the Journal</BlurReveal>
-          <BlurReveal as="h2" delay={0.08} className="mt-3 font-display text-4xl md:text-6xl">
+          <BlurReveal as="h2" delay={0.08} className="mt-3 font-display text-[11vw] leading-[1] sm:text-5xl md:text-6xl">
             Recent pieces<span className="italic">.</span>
           </BlurReveal>
         </div>
@@ -635,7 +637,7 @@ function LatestWriting() {
                     year: "numeric",
                   })}
                 </span>
-                <h3 className="font-display text-3xl leading-[1.05] transition-transform duration-700 group-hover:translate-x-3 md:text-5xl">
+                <h3 className="font-display text-[7vw] leading-[1.05] transition-transform duration-700 group-hover:translate-x-3 sm:text-3xl md:text-5xl">
                   {a.title}
                 </h3>
                 <span className="nav-link text-muted-foreground transition-colors group-hover:text-foreground">
