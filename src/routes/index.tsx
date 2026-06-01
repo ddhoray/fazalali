@@ -475,7 +475,7 @@ function Range() {
       <div className="mb-10 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-5">
         <div className="max-w-3xl">
           <BlurReveal as="p" className="eyebrow text-muted-foreground">Range</BlurReveal>
-          <BlurReveal as="h2" delay={0.08} className="mt-3 font-display text-5xl leading-[1.02] md:text-7xl">
+          <BlurReveal as="h2" delay={0.08} className="mt-3 font-display text-[12vw] leading-[1.02] sm:text-5xl md:text-7xl">
             Four threads, <em className="italic">one practice.</em>
           </BlurReveal>
         </div>
