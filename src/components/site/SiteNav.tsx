@@ -26,7 +26,9 @@ export function SiteNav() {
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-500",
-        scrolled ? "bg-background/70 backdrop-blur-md" : "bg-transparent",
+        scrolled
+          ? "bg-background/80 text-foreground backdrop-blur-md"
+          : "bg-transparent text-background",
       )}
     >
       <div className="mx-auto flex max-w-[1700px] items-center justify-between px-5 py-5 sm:px-8">
@@ -39,8 +41,8 @@ export function SiteNav() {
             <Link
               key={l.to}
               to={l.to}
-              className="nav-link text-foreground/60 transition-colors hover:text-foreground"
-              activeProps={{ className: "text-foreground" }}
+              className="nav-link opacity-60 transition-opacity hover:opacity-100"
+              activeProps={{ className: "opacity-100" }}
             >
               {l.label}
             </Link>
@@ -51,7 +53,7 @@ export function SiteNav() {
           href="https://www.instagram.com/thefazalali/"
           target="_blank"
           rel="noreferrer"
-          className="nav-link hidden md:inline"
+          className="nav-link hidden md:inline opacity-80 hover:opacity-100"
         >
           Instagram
         </a>
