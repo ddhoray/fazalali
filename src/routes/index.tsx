@@ -467,6 +467,7 @@ function Portrait() {
             <SlideIn
               delay={0.24}
               className="flex flex-wrap items-center justify-between gap-6 border-t pt-6"
+              style={{ borderColor: "rgba(246,244,239,0.2)" }}
             >
               <p className="eyebrow" style={{ color: "rgba(246,244,239,0.55)" }}>
                 Cambridge · Trinidad · 2026
