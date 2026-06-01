@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform, type MotionValue } from "motion/react"
 import { useRef } from "react";
 import { BookOpen, Sparkles, PenLine, Compass, ArrowUpRight } from "lucide-react";
 import { BlurReveal, SlideIn } from "@/components/site/BlurReveal";
-import { LineReveal, WordReveal } from "@/components/site/LineReveal";
+import { LineReveal } from "@/components/site/LineReveal";
 import { ParallaxImage } from "@/components/site/ParallaxImage";
 import { HoverImage } from "@/components/site/HoverImage";
 import { CirclePill } from "@/components/site/CirclePill";
@@ -379,22 +379,53 @@ function Manifesto() {
 
 function Portrait() {
   return (
-    <section className="section-dark relative overflow-hidden py-20 md:py-28">
-      <div className="mx-auto max-w-[1500px] px-5 sm:px-8">
-        <div className="mb-12 flex items-center justify-between border-b border-current/20 pb-5">
-          <BlurReveal as="p" className="eyebrow opacity-60">The writer</BlurReveal>
-          <BlurReveal as="p" delay={0.1} className="eyebrow opacity-60">Trinidad · b. 1974</BlurReveal>
+    <section
+      className="relative overflow-hidden py-20 md:py-28"
+      style={{ backgroundColor: "#0a0a0a", color: "#f6f4ef" }}
+    >
+      {/* Subtle grain overlay */}
+      <Grain />
+
+      <div className="relative z-10 mx-auto max-w-[1500px] px-5 sm:px-8">
+        <div
+          className="mb-10 flex items-center justify-between border-b pb-5"
+          style={{ borderColor: "rgba(246,244,239,0.2)" }}
+        >
+          <BlurReveal as="p" className="eyebrow" >
+            <span style={{ color: "rgba(246,244,239,0.65)" }}>The writer</span>
+          </BlurReveal>
+          <BlurReveal as="p" delay={0.1} className="eyebrow">
+            <span style={{ color: "rgba(246,244,239,0.65)" }}>Trinidad · b. 1974</span>
+          </BlurReveal>
         </div>
 
-        {/* Name as hero */}
+        {/* HERO NAME — huge, bold, unmissable */}
         <BlurReveal
           as="h2"
-          className="mb-12 font-display text-[14vw] leading-[0.92] tracking-[-0.03em] text-white md:text-[8.5vw]"
+          className="font-display font-medium leading-[0.86] tracking-[-0.04em]"
+          y={28}
         >
-          <WordReveal text="Fazal" /> <em className="italic"><WordReveal text="Ali." delay={0.15} /></em>
+          <span
+            className="block text-[22vw] md:text-[15vw]"
+            style={{ color: "#ffffff" }}
+          >
+            Fazal
+          </span>
+          <span
+            className="block italic text-[22vw] md:text-[15vw]"
+            style={{ color: "#ffffff" }}
+          >
+            Ali<span className="not-italic">.</span>
+          </span>
         </BlurReveal>
 
-        <div className="grid grid-cols-12 gap-6 md:gap-12">
+        <BlurReveal delay={0.18} className="mt-6 max-w-2xl">
+          <p className="font-display text-2xl italic md:text-3xl" style={{ color: "rgba(246,244,239,0.85)" }}>
+            Writer · Scholar · Founder of <span className="not-italic">Omeros AI</span>
+          </p>
+        </BlurReveal>
+
+        <div className="mt-16 grid grid-cols-12 gap-8 md:gap-12">
           <SlideIn from="left" className="col-span-12 md:col-span-5">
             <div className="grain relative aspect-[4/5] w-full overflow-hidden">
               <img
@@ -410,24 +441,38 @@ function Portrait() {
           </SlideIn>
 
           <div className="col-span-12 flex flex-col justify-between gap-8 md:col-span-7">
-            <BlurReveal delay={0.1} className="max-w-xl text-base leading-relaxed text-white/80 md:text-lg">
-              Cambridge-trained, mentored by Amartya Sen, Lord Martin Rees and Sir
-              Leszek Borysiewicz. For twenty years the work stayed inside lecture
-              rooms. This site is the first time I have stepped out from behind the
-              lectern — the books, the ideas, the art, and a contribution from
-              Trinidad to a conversation usually written elsewhere.
+            <BlurReveal
+              delay={0.1}
+              className="max-w-xl text-base leading-relaxed md:text-lg"
+            >
+              <span style={{ color: "rgba(246,244,239,0.82)" }}>
+                Cambridge-trained, mentored by Amartya Sen, Lord Martin Rees and
+                Sir Leszek Borysiewicz. For twenty years the work stayed inside
+                lecture rooms. This site is the first time I have stepped out
+                from behind the lectern — the books, the ideas, the art, and a
+                contribution from Trinidad to a conversation usually written
+                elsewhere.
+              </span>
             </BlurReveal>
 
-            <BlurReveal delay={0.18} className="font-display text-2xl italic leading-[1.2] text-white/90 md:text-3xl">
-              &ldquo;I have grown braver. A little more adventurous.&rdquo;
+            <BlurReveal
+              delay={0.18}
+              className="font-display text-2xl italic leading-[1.2] md:text-3xl"
+            >
+              <span style={{ color: "rgba(246,244,239,0.95)" }}>
+                &ldquo;I have grown braver. A little more adventurous.&rdquo;
+              </span>
             </BlurReveal>
 
-            <SlideIn delay={0.24} className="flex flex-wrap items-center justify-between gap-6 pt-2">
-              <p className="eyebrow text-white/55">
-                Writer · Scholar · Founder of Omeros AI
+            <div
+              className="flex flex-wrap items-center justify-between gap-6 border-t pt-6"
+              style={{ borderColor: "rgba(246,244,239,0.2)" }}
+            >
+              <p className="eyebrow" style={{ color: "rgba(246,244,239,0.55)" }}>
+                Cambridge · Trinidad · 2026
               </p>
               <CirclePill to="/about" label="More about me" invert />
-            </SlideIn>
+            </div>
           </div>
         </div>
       </div>
