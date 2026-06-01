@@ -3,13 +3,14 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "./ThemeToggle";
+import fiaLogo from "@/assets/brand-fia.png";
 
 const links = [
-  { to: "/writing", label: "Writing" },
-  { to: "/education-for-liberty", label: "Book" },
+  { to: "/writing", label: "Articles" },
+  { to: "/education-for-liberty", label: "Education for Liberty" },
   { to: "/omeros-ai", label: "Omeros" },
   { to: "/about", label: "About" },
-  { to: "/contact", label: "Contact" },
+  { to: "/contact", label: "Write Me" },
 ] as const;
 
 export function SiteNav() {
@@ -26,17 +27,16 @@ export function SiteNav() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-500",
+        "fixed inset-x-0 top-0 z-50 transition-all duration-500 text-foreground",
         scrolled
-          ? "bg-background/80 text-foreground backdrop-blur-md"
-          : "bg-transparent text-background",
+          ? "bg-background/85 backdrop-blur-md border-b hairline"
+          : "bg-background/40 backdrop-blur-sm",
       )}
     >
       <div className="mx-auto flex max-w-[1700px] items-center justify-between px-5 py-4 sm:px-8 sm:py-5">
-        <Link to="/" aria-label="Fazal Ali — Home" className="inline-flex items-baseline gap-1.5">
-          <span className="font-display text-2xl leading-none tracking-tight">F</span>
-          <span className="font-display text-2xl italic leading-none tracking-tight">a</span>
-          <span className="ml-1 hidden text-[10px] uppercase tracking-[0.28em] opacity-60 sm:inline">
+        <Link to="/" aria-label="Fazal Ali — Home" className="inline-flex items-center gap-2">
+          <img src={fiaLogo} alt="" className="h-7 w-auto sm:h-8" />
+          <span className="hidden text-[10px] uppercase tracking-[0.28em] opacity-70 sm:inline">
             Fazal Ali
           </span>
         </Link>

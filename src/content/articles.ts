@@ -86,4 +86,56 @@ export const articles: Article[] = [
       "The defence of data must become a doctrine, not a department.",
     ],
   },
+  {
+    slug: "screen-economies-and-ai-powered-price-tags",
+    title: "Screen economies and AI-powered price tags",
+    excerpt:
+      "AI-powered Electronic Shelf Labels are being adopted by major retail chains. These tiny screens turn the supermarket aisle into a real-time market.",
+    date: "2026-04-18",
+    topic: "Critical Theory in AI",
+    body: [
+      "The supermarket has always been a sensor. With electronic shelf labels, it becomes a transmitter.",
+      "Prices that used to settle into the week now flicker by the hour. The shopper enters a small, continuous auction.",
+      "A screen economy is not a new economy. It is the old one, accelerated past the speed at which we used to feel it.",
+    ],
+  },
+  {
+    slug: "the-100-model-war-and-shadow-ai",
+    title: "The 100-Model War and shadow AI",
+    excerpt:
+      "The Hundred Model War started in 2023. From Beijing to Shenzhen, China is implementing its frontier strategy at industrial scale.",
+    date: "2026-04-12",
+    topic: "Critical Theory in AI",
+    body: [
+      "A hundred models is not a market. It is a strategy. Variety is the cover under which a single state intent moves.",
+      "Shadow AI is the workplace name for the same pattern at smaller scale — capable systems running outside the policies meant to govern them.",
+      "The two are reflections of each other. The question is who reads the mirror.",
+    ],
+  },
+  {
+    slug: "a-regional-ai-research-resource-and-lab-similar-to-cern",
+    title: "A regional AI research resource and lab, similar to CERN",
+    excerpt:
+      "AI-generated content is poisoning the internet, making it less reliable to access clear facts. A regional commons could be a counterweight.",
+    date: "2026-04-04",
+    topic: "Caribbean Futures",
+    body: [
+      "CERN worked because the question was big enough that no single nation could afford to ask it well alone.",
+      "Frontier AI now poses a question of the same size for the Caribbean. A regional research commons would not compete with the hyperscalers; it would interpret them.",
+      "The result would be small in compute and large in agency. That is the right trade for a region that has always made meaning out of scarcity.",
+    ],
+  },
+  {
+    slug: "from-divine-attributes-to-ai-scaling-curves",
+    title: "From divine attributes to AI scaling curves",
+    excerpt:
+      "Deep within the glass-walled offices of Anthropic and OpenAI, the quest for the orderly harmony of Copernicus and Tycho Brahe continues.",
+    date: "2026-03-28",
+    topic: "Critical Theory in AI",
+    body: [
+      "The scaling curve is a contemporary theology. Each new order of magnitude promises a property that did not exist at the last.",
+      "What earlier ages called divine attributes — omniscience, omnipresence, foresight — are now reframed as emergent capabilities.",
+      "The honest question is not whether the curve continues. It is what we owe a system that begins to behave as if it were one of those attributes.",
+    ],
+  },
 ];
