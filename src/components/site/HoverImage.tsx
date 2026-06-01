@@ -2,8 +2,8 @@ import { useRef, useState, type ReactNode } from "react";
 import { motion, AnimatePresence, useMotionValue, useSpring } from "motion/react";
 
 /**
- * Wrap any element. On desktop pointer-hover, a small framed image
- * follows the cursor with soft spring easing. Hidden on touch / mobile.
+ * Cursor-following image preview (desktop only).
+ * Images render in full color for a "live" editorial feel.
  */
 export function HoverImage({
   src,
@@ -43,18 +43,17 @@ export function HoverImage({
       <AnimatePresence>
         {visible && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.92 }}
+            initial={{ opacity: 0, scale: 0.94 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.96 }}
             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
             style={{ x, y, translateX: "-50%", translateY: "-110%" }}
-            className="pointer-events-none absolute left-0 top-0 z-40 hidden h-[280px] w-[220px] overflow-hidden md:block"
+            className="pointer-events-none absolute left-0 top-0 z-40 hidden h-[300px] w-[230px] overflow-hidden shadow-2xl md:block"
           >
             <img
               src={src}
               alt={alt}
-              className="size-full object-cover grayscale transition-[filter] duration-700 ease-out"
-              style={{ filter: "grayscale(0)" }}
+              className="size-full object-cover"
               loading="lazy"
             />
           </motion.div>

@@ -1,19 +1,23 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * Renders a single word that stretches edge-to-edge of its container by
- * computing the precise letter-spacing needed. Works on resize.
+ * Word that auto-scales its font-size so it spans the container width
+ * at a fixed, tasteful letter-spacing (no massive gaps between letters).
  */
 export function JustifiedWordmark({
   text,
   className = "",
+  letterSpacingEm = 0.02,
+  maxFontPx = 360,
 }: {
   text: string;
   className?: string;
+  letterSpacingEm?: number;
+  maxFontPx?: number;
 }) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const measureRef = useRef<HTMLSpanElement>(null);
-  const [spacing, setSpacing] = useState(0);
+  const [fontSize, setFontSize] = useState(64);
 
   useEffect(() => {
     const compute = () => {
@@ -21,11 +25,12 @@ export function JustifiedWordmark({
       const measure = measureRef.current;
       if (!wrap || !measure) return;
       const containerWidth = wrap.clientWidth;
+      // Measure natural width at 100px
+      measure.style.fontSize = "100px";
       const baseWidth = measure.getBoundingClientRect().width;
-      // distribute remaining space across gaps between visible chars
-      const gaps = Math.max(text.replace(/\s/g, "").length - 1, 1);
-      const extra = Math.max(containerWidth - baseWidth, 0);
-      setSpacing(extra / gaps);
+      if (baseWidth === 0) return;
+      const next = Math.min(maxFontPx, (containerWidth / baseWidth) * 100);
+      setFontSize(next);
     };
     compute();
     const ro = new ResizeObserver(compute);
@@ -35,24 +40,23 @@ export function JustifiedWordmark({
       ro.disconnect();
       window.removeEventListener("resize", compute);
     };
-  }, [text]);
+  }, [text, maxFontPx]);
 
   return (
     <div ref={wrapRef} className={`w-full overflow-hidden ${className}`}>
-      {/* hidden measurer — same font/size, zero spacing */}
       <span
         ref={measureRef}
         aria-hidden
-        className="pointer-events-none invisible absolute whitespace-nowrap"
-        style={{ letterSpacing: 0 }}
+        className="pointer-events-none invisible absolute whitespace-nowrap font-display"
+        style={{ letterSpacing: `${letterSpacingEm}em` }}
       >
         {text}
       </span>
       <div
-        className="whitespace-nowrap font-display leading-[0.82]"
+        className="whitespace-nowrap text-center font-display leading-[0.82]"
         style={{
-          letterSpacing: `${spacing}px`,
-          fontSize: "clamp(3rem, 18vw, 22rem)",
+          fontSize: `${fontSize}px`,
+          letterSpacing: `${letterSpacingEm}em`,
         }}
       >
         {text}
