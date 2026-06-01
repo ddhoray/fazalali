@@ -1,91 +1,101 @@
-## Reference review — bartoszkolenda.com
 
-Pulled the live site. The homepage is a slow, cinematic, mostly single-column ride with these signature moves:
+# Homepage Redesign — Pass 2
 
-1. **Opening "title card"** — full-viewport empty stage. A short statement appears center-screen in a refined serif italic mixed with a clean sans ("Designing *Functional and Aesthetic* Outdoor Green Environments."). The page label sits at the very bottom, small. No nav distractions. Long pause before anything else.
-2. **Featured work** — large, full-bleed media cards stacked vertically. Each card has a soft noise/grain overlay, a small "View" pill, and a tiny caption row (title + year) below. Cards reveal on scroll with a subtle fade + slight upward translate. There is a perceptible scroll-pinning / parallax feel between cards.
-3. **Manifesto block** — an oversized serif sentence ("Landscape design is not just about placing plants…") on its own breath of space.
-4. **Portrait + bio** — a tall portrait of him with grain texture beside a short personal paragraph and a "More about me" link with the chunky arrow-circle button motif.
-5. **Services list** — alternating image / label / paragraph rows. Image left, big title right, then description and a "MORE" pill. Each row gets its own scroll reveal.
-6. **Range / categories** — small numbered chapters "(01) (02)…" with image + 1-line description.
-7. **Footer** — gigantic name "BartKolenda" set as a horizon-line wordmark; tiny meta links (Instagram, email, year) anchored at the very bottom.
-8. **Texture & finish** — persistent fine film-grain overlay on imagery, hairline rules, monochrome palette, generous negative space, slow easings (~900–1200ms, custom cubic-bezier).
+A focused refinement pass on the homepage only. Inner pages stay as-is.
 
-Animation language to mirror: scroll-driven fade-up reveals, image scale-in on enter, sticky/pin behavior on hero, smooth in-page anchor scrolling, hover micro-interactions on pills/buttons (circle grows, label slides).
+## 1. Reference research (before any code)
 
-## What gets built (homepage only, this pass)
+- Scrape **bartoszkolenda.com** (footer / contact) to lift: email, phone, physical address, and every social link. Use these verbatim in our footer + contact strip.
+- Scrape the same site for the **logomark** (SVG/PNG). We will regenerate a sharpened, vectorish version of the same mark as a clean SVG and use it in the header — auto-inverting based on background (white on dark hero, black on light sections). This becomes the brand mark in the nav.
+- Pull one or two motion cues from **fluid.glass** (slow image-reveal masks, soft fluid easing on hover, cursor-following image previews). We will adapt — not copy — into our existing motion vocabulary.
 
-Black & white editorial homepage at `/`, replacing the current Zara-flavored layout. Keep the rest of the site (about, writing, book, omeros, contact) untouched for now.
+## 2. Hero — declutter + fix the image
 
-### Sections, top to bottom
+Current hero has too many micro-labels (Vol. 01, Edition 01, Trinidad, FW2026, etc.). Strip all of it.
+
+New hero:
+- Full-bleed editorial photograph (regenerate `hero-desk.jpg` as a sharper, higher-contrast version — currently feels muddy).
+- Only three on-screen elements: the brand mark (top-left, in nav), the nav links (top-right), and a single staggered serif statement centered-left. No eyebrow chips, no edition numbers, no location stamps.
+- Subtle parallax on the image, slow word-reveal on the headline. Nothing else.
+
+## 3. Featured Work — kill the sticky-stack, build a "floating image" section
+
+Replace `FeaturedStack.tsx` with a new section where the **text is the layout** and the **image floats in response**:
 
 ```text
-┌──────────────────────────────────────────┐
-│  minimal nav (left wordmark, right links)│
-├──────────────────────────────────────────┤
-│  TITLE CARD                               │
-│  centered serif+italic statement          │
-│  tiny "FazalAli" mark at bottom           │
-├──────────────────────────────────────────┤
-│  FEATURED WORK (stack of 3 large cards)   │
-│  Education for Liberty / Omeros AI /      │
-│  Selected Essays — full-bleed media,      │
-│  grain overlay, view pill, caption row    │
-├──────────────────────────────────────────┤
-│  MANIFESTO                                │
-│  oversized italic quote, breath of space  │
-├──────────────────────────────────────────┤
-│  PORTRAIT + BIO                           │
-│  tall b&w portrait | short paragraph +    │
-│  "More about me" circle-arrow button      │
-├──────────────────────────────────────────┤
-│  WHAT I DO (services-style rows)          │
-│  Writing · Books · Talks · Critical Theory│
-│  alternating image/title/paragraph rows   │
-├──────────────────────────────────────────┤
-│  RANGE / CHAPTERS                         │
-│  (01) Essays  (02) Education for Liberty  │
-│  (03) Omeros AI  (04) West Indies         │
-├──────────────────────────────────────────┤
-│  FOOTER                                   │
-│  giant "FAZAL ALI" wordmark spanning      │
-│  full width; meta row underneath          │
-└──────────────────────────────────────────┘
+┌──────────────────────────────────────────────────┐
+│  01                                              │
+│                                                  │
+│  Education            ◐ [floating image follows  │
+│  for Liberty            cursor / hover target]   │
+│                                                  │
+│                                  ESSAY · 2026 →  │
+├──────────────────────────────────────────────────┤
+│  02                                              │
+│  Omeros AI                                       │
+│  ...                                             │
 ```
 
-### Design system updates
+- Each row is a giant serif title on a light field.
+- On hover (desktop) a small framed image fades + scales in next to the cursor, locked to the row.
+- On mobile, the image sits inline under the title (no cursor logic).
+- Image transitions from B&W → full color on hover (see §5).
+- Reuses the existing 3 featured images — no new generation needed for this section.
 
-- **Palette:** pure black `#0a0a0a` on milk-white `#f6f4ef` (and inverted for sections). Drop any colored accents from the current build.
-- **Type:** keep Bodoni Moda for display (italic carries the editorial gesture), pair with a cleaner geometric sans for body — switch from Inter to **Söhne-like / Geist Sans** (use `Geist` from Google Fonts as the closest free analogue). Tight tracking, generous leading.
-- **Grain texture:** reintroduce a subtle SVG/PNG noise overlay (`.grain`) on imagery only.
-- **Edges:** stay sharp (no border radius), hairline rules at `foreground/15`.
-- **Buttons:** circle-arrow pill ("View", "More about me", "MORE") — fixed-height pill with right-aligned arrow that translates on hover.
+## 4. Portrait section — "Fazal Ali as the hero"
 
-### Animation language (motion/react)
+Regenerate the portrait (`fazal-portrait.jpg`) — **same face, same facial features, do not alter likeness**. Direction: high-contrast editorial portrait, soft natural light, magazine cover composition, slightly grainier, more aesthetic, color preserved (this becomes one of our "color-allowed" images).
 
-- Hero title: staggered word fade-up after 200ms, 1.1s ease `[0.22,1,0.36,1]`.
-- Scroll reveals: every section uses `whileInView` opacity 0→1 + y 40→0, 900ms.
-- Featured cards: image `scale` 1.05→1 on enter; card stays sticky briefly before the next slides over (CSS `position: sticky` with offset).
-- Footer wordmark: scales/fades in as it enters viewport; subtle continuous breathing (1.00 ↔ 1.01) via `motion`.
-- Lenis-style smooth scroll: add `lenis` package for buttery scroll.
+Layout:
+- Portrait centered on the page, large (~55vh tall, portrait crop).
+- Bio text wraps **around** the image in a magazine-style layout: short paragraph top-left, role/credentials top-right, longer bio bottom-left, pull-quote bottom-right. Hairline rules between.
+- The portrait itself stays in color; everything around it is mono — so he reads as the hero of the page.
 
-### Portrait regeneration
+## 5. Color system — selective color on hover
 
-Use `imagegen--edit_image` on the current portrait (`https://fazalali.com/wp-content/uploads/2025/10/Fazal-Ali-Profile-2025.jpeg`) with an editorial brief: high-contrast b&w, sharper detail, cleaner background, magazine-cover feel, **facial features preserved exactly**. Save to `src/assets/fazal-portrait.jpg`, aspect 3:4, premium quality.
+Site stays black & white by default. We add a `.mono-to-color` utility:
 
-### Files
+- All editorial images render through `filter: grayscale(1) contrast(1.05)` by default.
+- On hover (and on focus), transition over 700ms to `grayscale(0)` — the image "blooms" into color.
+- Applies to: featured-work images, range grid, recent pieces. Does **not** apply to the portrait (always color) or to pure typographic sections.
 
-- `src/styles.css` — add `.grain`, switch body font to Geist, refine tokens for pure b&w.
-- `src/routes/__root.tsx` — load Geist + Bodoni Moda from Google Fonts; mount Lenis smooth-scroll provider.
-- `src/components/site/SiteNav.tsx` — slim to just left wordmark + 3 right links, no border, transparent over hero.
-- `src/components/site/SiteFooter.tsx` — replace current layout with giant `FAZAL ALI` wordmark + small meta row.
-- `src/components/site/FeaturedStack.tsx` — new sticky-stack card component.
-- `src/components/site/CirclePill.tsx` — new arrow-circle button.
-- `src/components/site/Grain.tsx` — new noise overlay.
-- `src/routes/index.tsx` — full rewrite to the layout above.
-- `src/assets/fazal-portrait.jpg` — regenerated portrait.
-- Add dep: `lenis` (via `bun add lenis`).
+## 6. Recent pieces / AI mood board — hover preview
 
-### Out of scope (this pass)
+For the article/mood-board list, add a cursor-following preview:
+- Hovering a list item reveals a small framed thumbnail near the cursor (fluid.glass-style ease-out).
+- Thumbnail fades + slightly scales; leaves on mouseout.
+- Reuses existing assets; no new images.
 
-- Inner pages (about, writing, writing/$slug, education-for-liberty, omeros-ai, contact) keep their current look. We'll roll the same system through them in the next round once you sign off on the homepage feel.
+## 7. Footer — letter-spaced wordmark + real contact
+
+- "FAZAL ALI" wordmark stretched to **exactly** the footer width using `letter-spacing` + `font-stretch` (computed from container width via a `ResizeObserver` so it always justifies edge-to-edge).
+- Real contact info replaces the placeholder Trinidad / Omeros AI strip:
+  - Email, phone, address (pulled from reference site research in §1)
+  - Social links (Instagram, plus whatever else the reference site lists)
+- One-line credit row stays.
+
+## 8. Nav
+
+- Replace text logotype with the regenerated SVG brand mark.
+- Mark auto-inverts using `currentColor` so it follows the existing scroll/section text-color logic (white on dark hero → black on light section).
+- Remove the "Instagram" link from the nav (moves to footer only) to reduce clutter.
+
+## 9. Files touched
+
+- `src/routes/index.tsx` — declutter hero, replace featured section, restructure portrait section
+- `src/components/site/FeaturedStack.tsx` → **replaced** by `FloatingImageList.tsx`
+- `src/components/site/SiteNav.tsx` — SVG logo, drop Instagram link
+- `src/components/site/SiteFooter.tsx` — justified wordmark, real contact info
+- `src/components/site/HoverImage.tsx` — **new**, cursor-following preview component (used by recent pieces + featured list)
+- `src/components/site/BrandMark.tsx` — **new**, the regenerated SVG logo
+- `src/styles.css` — `.mono-to-color` utility, justified-wordmark helpers
+- `src/assets/fazal-portrait.jpg` — regenerate (face preserved)
+- `src/assets/hero-desk.jpg` — regenerate (sharper, higher contrast)
+
+## 10. Out of scope
+
+Inner pages (about, writing, book, omeros, contact) — untouched this pass. We tighten the homepage first, then propagate.
+
+---
+
+**Question before I build:** can you confirm the reference site for the address / phone / socials / logo is **bartoszkolenda.com** (the one you sent earlier)? If the contact info should come from somewhere else (your own details, or a different site), paste it and I'll use that instead.

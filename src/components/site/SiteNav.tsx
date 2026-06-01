@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { BrandMark } from "./BrandMark";
 
 const links = [
   { to: "/writing", label: "Writing" },
@@ -27,14 +28,12 @@ export function SiteNav() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-500",
         scrolled
-          ? "bg-background/80 text-foreground backdrop-blur-md"
+          ? "bg-background/85 text-foreground backdrop-blur-md"
           : "bg-transparent text-background",
       )}
     >
       <div className="mx-auto flex max-w-[1700px] items-center justify-between px-5 py-5 sm:px-8">
-        <Link to="/" className="font-display text-xl tracking-tight">
-          Fazal<span className="italic">Ali</span>
-        </Link>
+        <BrandMark />
 
         <nav className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
@@ -48,15 +47,6 @@ export function SiteNav() {
             </Link>
           ))}
         </nav>
-
-        <a
-          href="https://www.instagram.com/thefazalali/"
-          target="_blank"
-          rel="noreferrer"
-          className="nav-link hidden md:inline opacity-80 hover:opacity-100"
-        >
-          Instagram
-        </a>
 
         <button
           aria-label="Menu"
