@@ -229,10 +229,10 @@ function FeaturedSticky() {
           </BlurReveal>
         </div>
 
-        {/* Sticky image left, scrolling frames right */}
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-14">
+        {/* Sticky image (works on mobile too), scrolling frames right */}
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-14">
           <div className="lg:col-span-6">
-            <div className="lg:sticky lg:top-24">
+            <div className="sticky top-20 lg:top-24">
               <ActiveImageStack items={featured} active={active} />
             </div>
           </div>
@@ -242,23 +242,23 @@ function FeaturedSticky() {
               <motion.li
                 key={item.title}
                 onViewportEnter={() => setActive(i)}
-                viewport={{ amount: 0.55, margin: "-20% 0px -35% 0px" }}
-                className="border-b hairline py-10 first:pt-0 last:border-b-0 md:py-14"
+                viewport={{ amount: 0.4, margin: "-25% 0px -40% 0px" }}
+                className="border-b hairline py-8 first:pt-0 last:border-b-0 md:py-14"
               >
                 <SlideIn from="right" delay={0.04}>
                   <Link to={item.to as never} className="group block">
-                    <div className="mb-4 flex items-center gap-3 text-muted-foreground">
-                      <item.icon className="size-4" />
+                    <div className="mb-3 flex flex-wrap items-center gap-3 text-muted-foreground">
+                      <item.icon className="size-4 shrink-0" />
                       <span className="nav-link">{item.eyebrow}</span>
                       <span className="ml-auto nav-link">{item.year}</span>
                     </div>
-                    <h3 className="font-display text-4xl leading-[0.98] tracking-[-0.02em] transition-transform duration-700 group-hover:translate-x-2 md:text-6xl">
+                    <h3 className="font-display text-[10vw] leading-[0.98] tracking-[-0.02em] transition-transform duration-700 group-hover:translate-x-2 sm:text-5xl md:text-6xl">
                       {item.title}<span className="italic">.</span>
                     </h3>
-                    <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
+                    <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-muted-foreground md:mt-4 md:text-base">
                       {item.note}
                     </p>
-                    <span className="mt-5 inline-flex items-center gap-2 text-sm transition-opacity opacity-70 group-hover:opacity-100">
+                    <span className="mt-4 inline-flex items-center gap-2 text-xs transition-opacity opacity-70 group-hover:opacity-100 md:mt-5 md:text-sm">
                       Read more <ArrowUpRight className="size-4" />
                     </span>
                   </Link>
