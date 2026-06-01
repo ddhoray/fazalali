@@ -280,7 +280,7 @@ function ActiveImageStack({
   active: number;
 }) {
   return (
-    <div className="relative aspect-[4/5] w-full overflow-hidden bg-foreground/5">
+    <div className="relative aspect-[16/11] w-full overflow-hidden bg-foreground/5 sm:aspect-[4/3] lg:aspect-[4/5]">
       {items.map((item, i) => (
         <motion.img
           key={item.title}
@@ -298,11 +298,11 @@ function ActiveImageStack({
         />
       ))}
       <Grain />
-      <div className="absolute inset-x-0 bottom-0 z-10 flex items-center justify-between bg-gradient-to-t from-black/65 to-transparent p-5 text-on-image md:p-7">
-        <span className="nav-link">
-          Now showing · {String(active + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}
+      <div className="absolute inset-x-0 bottom-0 z-10 flex flex-wrap items-center justify-between gap-3 bg-gradient-to-t from-black/70 to-transparent p-4 text-on-image md:p-7">
+        <span className="nav-link text-[10px]">
+          {String(active + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}
         </span>
-        <span className="nav-link">{items[active].title}</span>
+        <span className="nav-link text-[10px] truncate">{items[active].title}</span>
       </div>
     </div>
   );
