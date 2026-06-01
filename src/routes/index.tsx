@@ -67,7 +67,7 @@ function Hero() {
   return (
     <section
       ref={ref}
-      className="relative h-[100svh] min-h-[640px] w-full overflow-hidden bg-[#0a0a0a] text-on-image"
+      className="relative h-[100svh] min-h-[600px] w-full overflow-hidden bg-[#0a0a0a] text-on-image"
     >
       <motion.div style={{ y: imageY }} className="absolute inset-0 -top-[10%] h-[120%]">
         <img
@@ -78,12 +78,13 @@ function Hero() {
           height={1280}
         />
         <Grain />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/20 to-black/85" />
+        {/* Stronger scrim on mobile for legibility */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/30 to-black/90 md:from-black/55 md:via-black/20 md:to-black/85" />
       </motion.div>
 
       <motion.div
         style={{ opacity }}
-        className="relative z-10 flex h-full flex-col justify-between px-5 pt-24 pb-16 sm:px-10 sm:pb-24"
+        className="relative z-10 flex h-full flex-col justify-between px-5 pt-20 pb-16 sm:px-10 sm:pt-28 sm:pb-24"
       >
         <div>
           <motion.p
@@ -97,7 +98,7 @@ function Hero() {
         </div>
 
         <div>
-          <h1 className="font-display text-[13vw] leading-[0.92] tracking-[-0.035em] sm:text-[10vw] md:text-[8vw]">
+          <h1 className="font-display text-[15vw] leading-[0.94] tracking-[-0.035em] sm:text-[10vw] md:text-[8vw]">
             <Word delay={0.1}>Reading</Word>{" "}
             <Word delay={0.22}>the</Word>{" "}
             <Word delay={0.34} italic>machines</Word>
@@ -110,7 +111,7 @@ function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-6 max-w-md text-sm leading-relaxed opacity-80 md:text-base"
+            className="mt-5 max-w-md text-[13px] leading-relaxed opacity-85 sm:mt-6 sm:text-sm md:text-base"
           >
             Dr. Fazal Ibrahim Ali — Cambridge-trained, Trinidad-born. Writing on
             critical theory in AI, the founding of Omeros AI, and a small book
@@ -123,7 +124,7 @@ function Hero() {
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 0.7, y: 0 }}
         transition={{ delay: 1.6, duration: 0.8 }}
-        className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 text-[10px] uppercase tracking-[0.32em] text-on-image"
+        className="absolute bottom-5 left-1/2 z-10 -translate-x-1/2 text-[10px] uppercase tracking-[0.32em] text-on-image"
       >
         ↓ Scroll
       </motion.div>
