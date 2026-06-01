@@ -494,38 +494,63 @@ const rangeImages = [practiceEssays, practiceBook, practiceOmeros, featuredWriti
 function Range() {
   return (
     <section className="mx-auto max-w-[1700px] px-5 py-20 sm:px-8 md:py-24">
-      <div className="mb-12 max-w-3xl">
-        <BlurReveal as="p" className="eyebrow text-muted-foreground">Range</BlurReveal>
-        <BlurReveal as="h2" delay={0.08} className="mt-5 font-display text-5xl leading-[1.02] md:text-7xl">
-          Four threads, <em className="italic">one practice.</em>
+      <div className="mb-14 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-6">
+        <div className="max-w-3xl">
+          <BlurReveal as="p" className="eyebrow text-muted-foreground">Range</BlurReveal>
+          <BlurReveal as="h2" delay={0.08} className="mt-4 font-display text-5xl leading-[1.02] md:text-7xl">
+            Four threads, <em className="italic">one practice.</em>
+          </BlurReveal>
+        </div>
+        <BlurReveal delay={0.16} className="eyebrow text-muted-foreground">
+          Selected · 2024 — 2026
         </BlurReveal>
       </div>
 
-      <div className="grid grid-cols-1 gap-px bg-foreground/15 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:gap-8">
         {range.map((r, i) => (
-          <SlideIn key={r.n} delay={i * 0.08}>
-            <div className="group relative flex h-full min-h-[320px] cursor-default flex-col justify-between gap-10 overflow-hidden bg-background p-7 md:p-8">
-              <img
-                src={rangeImages[i]}
-                alt=""
-                className="card-image absolute inset-0 size-full object-cover opacity-0 transition-all duration-700 ease-out group-hover:opacity-30"
-                loading="lazy"
-              />
-              <div className="relative flex items-center justify-between">
-                <r.icon className="size-5 opacity-70 transition-opacity group-hover:opacity-100" />
-                <span className="nav-link opacity-60 transition-opacity duration-500 group-hover:opacity-100">
-                  ({r.n})
-                </span>
+          <SlideIn key={r.n} delay={i * 0.08} from={i % 2 === 0 ? "left" : "right"}>
+            <article className="group relative flex h-full flex-col overflow-hidden bg-card">
+              {/* Always-visible colored image */}
+              <div className="relative aspect-[16/9] w-full overflow-hidden bg-foreground/5">
+                <img
+                  src={rangeImages[i]}
+                  alt={r.title}
+                  className="card-image absolute inset-0 size-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.06]"
+                  loading="lazy"
+                />
+                <Grain />
+                {/* Floating index + icon */}
+                <div className="absolute inset-x-0 top-0 flex items-center justify-between p-5 text-white md:p-6">
+                  <span className="inline-flex size-10 items-center justify-center rounded-full bg-white/15 backdrop-blur-md transition-colors group-hover:bg-white/25">
+                    <r.icon className="size-4" />
+                  </span>
+                  <span className="nav-link rounded-full bg-black/40 px-3 py-1.5 backdrop-blur-md">
+                    ({r.n})
+                  </span>
+                </div>
+                {/* Title overlay at bottom of image */}
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent p-5 md:p-7">
+                  <h4 className="font-display text-3xl leading-[1.02] text-white transition-transform duration-700 group-hover:-translate-y-1 md:text-5xl">
+                    {r.title}<span className="italic">.</span>
+                  </h4>
+                </div>
               </div>
-              <div className="relative">
-                <h4 className="font-display text-3xl leading-[1.05] transition-transform duration-700 group-hover:-translate-y-2 md:text-4xl">
-                  {r.title}<span className="italic">.</span>
-                </h4>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground transition-colors duration-500 group-hover:text-foreground">
+
+              {/* Body */}
+              <div className="flex flex-1 flex-col justify-between gap-6 border-t hairline p-6 md:p-8">
+                <p className="max-w-md text-base leading-relaxed text-muted-foreground">
                   {r.body}
                 </p>
+                <div className="flex items-center justify-between border-t hairline pt-4">
+                  <span className="eyebrow text-muted-foreground">
+                    Thread {r.n}
+                  </span>
+                  <span className="inline-flex items-center gap-2 text-sm transition-transform duration-500 group-hover:translate-x-1">
+                    Read the thread <ArrowUpRight className="size-4" />
+                  </span>
+                </div>
               </div>
-            </div>
+            </article>
           </SlideIn>
         ))}
       </div>
