@@ -136,13 +136,22 @@
     background-size: 220px 220px;
   }
 
-  /* Dark editorial section — inverts to black with off-white text */
+  /* Dark editorial section — always inverted (black bg / off-white text)
+     regardless of light/dark theme. */
   .section-dark {
     background-color: #0a0a0a;
     color: #f6f4ef;
   }
-  .section-dark .text-muted-foreground { color: rgba(246, 244, 239, 0.55) !important; }
+  .section-dark .text-muted-foreground { color: rgba(246, 244, 239, 0.6) !important; }
   .section-dark .hairline { border-color: rgba(246, 244, 239, 0.2) !important; }
+  /* Force any text using the themed background token to stay readable on dark. */
+  .section-dark .text-background,
+  .section-dark [class*="text-background/"] { color: #f6f4ef !important; }
+
+  /* Overlay text — content sitting on top of imagery/video must always be
+     light, never invert with the theme. */
+  .text-on-image { color: #ffffff !important; }
+  .text-on-image .text-muted-foreground { color: rgba(255,255,255,0.7) !important; }
 
   /* Editorial card — hover expand */
   .card-expand {
