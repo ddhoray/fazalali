@@ -218,7 +218,7 @@ function FeaturedSticky() {
             <BlurReveal as="p" className="eyebrow text-muted-foreground">
               Featured Work
             </BlurReveal>
-            <BlurReveal as="h2" delay={0.08} className="mt-3 font-display text-4xl md:text-6xl">
+            <BlurReveal as="h2" delay={0.08} className="mt-3 font-display text-[11vw] leading-[1] sm:text-5xl md:text-6xl">
               Three things, <em className="italic">in order.</em>
             </BlurReveal>
           </div>
