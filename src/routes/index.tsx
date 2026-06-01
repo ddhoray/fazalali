@@ -8,6 +8,7 @@ import { ParallaxImage } from "@/components/site/ParallaxImage";
 import { HoverImage } from "@/components/site/HoverImage";
 import { CirclePill } from "@/components/site/CirclePill";
 import { Grain } from "@/components/site/Grain";
+import { BookSection } from "@/components/site/BookSection";
 import { articles } from "@/content/articles";
 import portrait from "@/assets/fazal-portrait.jpg";
 import heroImage from "@/assets/hero-book.jpg";
@@ -47,6 +48,7 @@ function Home() {
       <Manifesto />
       <ParallaxBreak />
       <Portrait />
+      <BookSection />
       <Range />
       <LatestWriting />
     </>
@@ -67,19 +69,19 @@ function Hero() {
   return (
     <section
       ref={ref}
-      className="relative h-[100svh] min-h-[600px] w-full overflow-hidden bg-[#0a0a0a] text-on-image"
+      className="relative h-[100svh] min-h-[600px] w-full overflow-hidden bg-background text-foreground"
     >
       <motion.div style={{ y: imageY }} className="absolute inset-0 -top-[10%] h-[120%]">
         <img
           src={heroImage}
-          alt="An open book, a fountain pen, and the Caribbean horizon"
+          alt="An open book and a fountain pen at a window overlooking the Caribbean sea"
           className="size-full object-cover"
           width={1920}
           height={1280}
         />
-        <Grain />
-        {/* Stronger scrim on mobile for legibility */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/30 to-black/90 md:from-black/55 md:via-black/20 md:to-black/85" />
+        {/* Soft cool scrim — let the colour through, keep text legible */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/10 to-background/80" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/50 via-transparent to-transparent" />
       </motion.div>
 
       <motion.div
@@ -124,7 +126,7 @@ function Hero() {
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 0.7, y: 0 }}
         transition={{ delay: 1.6, duration: 0.8 }}
-        className="absolute bottom-5 left-1/2 z-10 -translate-x-1/2 text-[10px] uppercase tracking-[0.32em] text-on-image"
+        className="absolute bottom-5 left-1/2 z-10 -translate-x-1/2 text-[10px] uppercase tracking-[0.32em] text-foreground/70"
       >
         ↓ Scroll
       </motion.div>
