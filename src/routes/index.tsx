@@ -368,9 +368,40 @@ function Portrait() {
           </BlurReveal>
         </div>
 
-        {/* Compact composition: portrait + name interlocked, no big vertical gap */}
+        {/* Compact composition: name on top on mobile, side-by-side on desktop */}
         <div className="grid grid-cols-12 items-end gap-6 md:gap-10">
-          <SlideIn from="left" className="col-span-12 md:col-span-5">
+          {/* Name first on mobile (order-1), image right column on desktop */}
+          <div className="order-1 col-span-12 md:order-2 md:col-span-7">
+            <BlurReveal
+              as="h2"
+              className="font-display font-medium leading-[0.84] tracking-[-0.04em]"
+              y={28}
+            >
+              <span
+                className="block text-[26vw] sm:text-[20vw] md:text-[11vw]"
+                style={{ color: "#ffffff" }}
+              >
+                Fazal
+              </span>
+              <span
+                className="block italic text-[26vw] sm:text-[20vw] md:text-[11vw]"
+                style={{ color: "#ffffff" }}
+              >
+                Ali<span className="not-italic">.</span>
+              </span>
+            </BlurReveal>
+
+            <BlurReveal delay={0.16} className="mt-4 max-w-xl md:mt-5">
+              <p
+                className="font-display text-lg italic sm:text-xl md:text-2xl"
+                style={{ color: "rgba(246,244,239,0.85)" }}
+              >
+                Writer · Scholar · Founder of <span className="not-italic">Omeros AI</span>
+              </p>
+            </BlurReveal>
+          </div>
+
+          <SlideIn from="left" className="order-2 col-span-12 md:order-1 md:col-span-5">
             <div className="grain relative aspect-[4/5] w-full overflow-hidden">
               <img
                 src={portrait}
@@ -383,36 +414,6 @@ function Portrait() {
               <Grain />
             </div>
           </SlideIn>
-
-          <div className="col-span-12 md:col-span-7">
-            <BlurReveal
-              as="h2"
-              className="font-display font-medium leading-[0.84] tracking-[-0.04em]"
-              y={28}
-            >
-              <span
-                className="block text-[18vw] md:text-[11vw]"
-                style={{ color: "#ffffff" }}
-              >
-                Fazal
-              </span>
-              <span
-                className="block italic text-[18vw] md:text-[11vw]"
-                style={{ color: "#ffffff" }}
-              >
-                Ali<span className="not-italic">.</span>
-              </span>
-            </BlurReveal>
-
-            <BlurReveal delay={0.16} className="mt-5 max-w-xl">
-              <p
-                className="font-display text-xl italic md:text-2xl"
-                style={{ color: "rgba(246,244,239,0.85)" }}
-              >
-                Writer · Scholar · Founder of <span className="not-italic">Omeros AI</span>
-              </p>
-            </BlurReveal>
-          </div>
         </div>
 
         {/* Bio + quote row */}
