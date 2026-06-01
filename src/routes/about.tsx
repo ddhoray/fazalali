@@ -49,7 +49,7 @@ function AboutPage() {
             <img
               src="https://fazalali.com/wp-content/uploads/2025/10/Fazal-Ali-Profile-2025.jpeg"
               alt="Dr. Fazal Ibrahim Ali"
-              className="aspect-[4/5] w-full rounded-2xl object-cover"
+              className="aspect-[4/5] w-full rounded-none object-cover"
               loading="lazy"
             />
           </GlassPanel>

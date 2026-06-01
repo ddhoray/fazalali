@@ -13,7 +13,7 @@ export const GlassPanel = forwardRef<HTMLDivElement, Props>(
         ref={ref as never}
         className={cn(
           strong ? "glass-strong" : "glass",
-          "rounded-3xl",
+          "rounded-none",
           className,
         )}
         {...rest}

@@ -33,17 +33,17 @@ export function SiteNav() {
         <Link
           to="/"
           className={cn(
-            "group inline-flex items-center gap-2 rounded-full px-4 py-2 font-display text-lg tracking-tight transition-all",
+            "group inline-flex items-center gap-2 rounded-none px-4 py-2 font-display text-lg tracking-tight transition-all",
             scrolled && "glass",
           )}
         >
-          <span className="size-2 rounded-full bg-foreground" />
+          <span className="size-2 rounded-none bg-foreground" />
           <span>Fazal Ali</span>
         </Link>
 
         <nav
           className={cn(
-            "hidden items-center gap-1 rounded-full px-2 py-2 text-sm md:flex",
+            "hidden items-center gap-1 rounded-none px-2 py-2 text-sm md:flex",
             scrolled && "glass",
           )}
         >
@@ -51,7 +51,7 @@ export function SiteNav() {
             <Link
               key={l.to}
               to={l.to}
-              className="rounded-full px-4 py-1.5 text-foreground/70 transition-colors hover:text-foreground"
+              className="rounded-none px-4 py-1.5 text-foreground/70 transition-colors hover:text-foreground"
               activeProps={{ className: "text-foreground bg-foreground/5" }}
             >
               {l.label}
@@ -62,7 +62,7 @@ export function SiteNav() {
         <button
           aria-label="Menu"
           onClick={() => setOpen((v) => !v)}
-          className="glass inline-flex size-11 items-center justify-center rounded-full md:hidden"
+          className="glass inline-flex size-11 items-center justify-center rounded-none md:hidden"
         >
           {open ? <X className="size-5" /> : <Menu className="size-5" />}
         </button>
@@ -70,13 +70,13 @@ export function SiteNav() {
 
       {open && (
         <div className="mx-5 mt-3 md:hidden">
-          <nav className="glass flex flex-col rounded-3xl p-3">
+          <nav className="glass flex flex-col rounded-none p-3">
             {links.map((l) => (
               <Link
                 key={l.to}
                 to={l.to}
                 onClick={() => setOpen(false)}
-                className="rounded-2xl px-4 py-3 text-foreground/80 transition-colors hover:bg-foreground/5"
+                className="rounded-none px-4 py-3 text-foreground/80 transition-colors hover:bg-foreground/5"
                 activeProps={{ className: "text-foreground bg-foreground/5" }}
               >
                 {l.label}

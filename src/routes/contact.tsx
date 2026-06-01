@@ -60,7 +60,7 @@ function ContactPage() {
         <GlassPanel strong className="mt-14 p-8 md:p-12">
           {state === "sent" ? (
             <div className="flex flex-col items-center gap-4 py-12 text-center">
-              <div className="glass flex size-14 items-center justify-center rounded-full">
+              <div className="glass flex size-14 items-center justify-center rounded-none">
                 <Check className="size-6" />
               </div>
               <p className="font-display text-3xl">Note received.</p>
@@ -87,7 +87,7 @@ function ContactPage() {
                 <button
                   type="submit"
                   disabled={state === "sending"}
-                  className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm text-background transition-opacity hover:opacity-90 disabled:opacity-60"
+                  className="inline-flex items-center gap-2 rounded-none bg-foreground px-6 py-3 text-sm text-background transition-opacity hover:opacity-90 disabled:opacity-60"
                 >
                   {state === "sending" ? "Sending…" : "Send note"}
                   <ArrowRight className="size-4" />
@@ -102,7 +102,7 @@ function ContactPage() {
 }
 
 const inputCls =
-  "w-full rounded-2xl border border-foreground/15 bg-background/60 px-4 py-3 text-base text-foreground placeholder:text-muted-foreground/70 focus:border-foreground/40 focus:outline-none";
+  "w-full rounded-none border border-foreground/15 bg-background/60 px-4 py-3 text-base text-foreground placeholder:text-muted-foreground/70 focus:border-foreground/40 focus:outline-none";
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (

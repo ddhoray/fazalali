@@ -90,9 +90,9 @@ function Hero() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="glass mb-8 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs uppercase tracking-[0.22em] text-muted-foreground"
+          className="glass mb-8 inline-flex items-center gap-2 rounded-none px-4 py-1.5 text-xs uppercase tracking-[0.22em] text-muted-foreground"
         >
-          <span className="size-1.5 rounded-full bg-foreground/70" />
+          <span className="size-1.5 rounded-none bg-foreground/70" />
           Omeros AI · Est. Trinidad
         </motion.span>
 
@@ -122,14 +122,14 @@ function Hero() {
         >
           <Link
             to="/writing"
-            className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm text-background transition-opacity hover:opacity-90"
+            className="inline-flex items-center gap-2 rounded-none bg-foreground px-6 py-3 text-sm text-background transition-opacity hover:opacity-90"
           >
             Read the writing
             <ArrowRight className="size-4" />
           </Link>
           <Link
             to="/about"
-            className="glass inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm"
+            className="glass inline-flex items-center gap-2 rounded-none px-6 py-3 text-sm"
           >
             About Fazal
           </Link>
@@ -248,7 +248,7 @@ function ClosingCTA() {
           <div className="mt-10">
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3.5 text-sm text-background transition-opacity hover:opacity-90"
+              className="inline-flex items-center gap-2 rounded-none bg-foreground px-7 py-3.5 text-sm text-background transition-opacity hover:opacity-90"
             >
               Start a letter <ArrowRight className="size-4" />
             </Link>

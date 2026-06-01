@@ -78,7 +78,7 @@ function OmerosPage() {
         <div className="mt-24 text-center">
           <Link
             to="/writing"
-            className="inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3.5 text-sm text-background"
+            className="inline-flex items-center gap-2 rounded-none bg-foreground px-7 py-3.5 text-sm text-background"
           >
             Read the essays
           </Link>

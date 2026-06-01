@@ -56,7 +56,7 @@ function ArticlePage() {
       <Reveal delay={0.05}>
         <div className="mt-10 flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-muted-foreground">
           <span>{article.topic}</span>
-          <span className="size-1 rounded-full bg-muted-foreground/60" />
+          <span className="size-1 rounded-none bg-muted-foreground/60" />
           <time>
             {new Date(article.date).toLocaleDateString("en-GB", { day: "2-digit", month: "long", year: "numeric" })}
           </time>

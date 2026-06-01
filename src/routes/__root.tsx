@@ -18,7 +18,7 @@ import { Aurora } from "../components/site/Aurora";
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center px-4">
-      <div className="glass max-w-md rounded-3xl p-10 text-center">
+      <div className="glass max-w-md rounded-none p-10 text-center">
         <p className="font-display text-7xl">404</p>
         <h2 className="mt-3 font-display text-2xl">Page not found</h2>
         <p className="mt-2 text-sm text-muted-foreground">
@@ -27,7 +27,7 @@ function NotFoundComponent() {
         <div className="mt-6">
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-full bg-foreground px-5 py-2.5 text-sm text-background transition-opacity hover:opacity-90"
+            className="inline-flex items-center justify-center rounded-none bg-foreground px-5 py-2.5 text-sm text-background transition-opacity hover:opacity-90"
           >
             Go home
           </Link>
@@ -46,7 +46,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 
   return (
     <div className="flex min-h-screen items-center justify-center px-4">
-      <div className="glass max-w-md rounded-3xl p-10 text-center">
+      <div className="glass max-w-md rounded-none p-10 text-center">
         <h1 className="font-display text-2xl">This page didn't load</h1>
         <p className="mt-2 text-sm text-muted-foreground">
           Something went wrong on our end.
@@ -57,13 +57,13 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-full bg-foreground px-5 py-2.5 text-sm text-background"
+            className="inline-flex items-center justify-center rounded-none bg-foreground px-5 py-2.5 text-sm text-background"
           >
             Try again
           </button>
           <a
             href="/"
-            className="inline-flex items-center justify-center rounded-full border border-foreground/20 px-5 py-2.5 text-sm"
+            className="inline-flex items-center justify-center rounded-none border border-foreground/20 px-5 py-2.5 text-sm"
           >
             Go home
           </a>
