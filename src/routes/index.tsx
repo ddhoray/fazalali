@@ -637,7 +637,7 @@ function LatestWriting() {
                     year: "numeric",
                   })}
                 </span>
-                <h3 className="font-display text-3xl leading-[1.05] transition-transform duration-700 group-hover:translate-x-3 md:text-5xl">
+                <h3 className="font-display text-[7vw] leading-[1.05] transition-transform duration-700 group-hover:translate-x-3 sm:text-3xl md:text-5xl">
                   {a.title}
                 </h3>
                 <span className="nav-link text-muted-foreground transition-colors group-hover:text-foreground">
