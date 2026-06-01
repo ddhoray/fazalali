@@ -544,7 +544,7 @@ function RangeCard({
             opacity: isHover ? 1 : 0.85,
           }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="pointer-events-none absolute -bottom-2 left-4 font-display text-[110px] leading-none text-white/85 md:left-6 md:text-[160px]"
+          className="pointer-events-none absolute -bottom-1 left-3 font-display text-[80px] leading-none text-white/85 sm:text-[110px] md:left-6 md:text-[160px]"
           style={{ textShadow: "0 2px 24px rgba(0,0,0,0.35)" }}
         >
           {r.n}
