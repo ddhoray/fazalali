@@ -169,6 +169,20 @@
   .section-dark .text-background,
   .section-dark [class*="text-background/"] { color: #f1f3f9 !important; }
 
+  /* Pure black inverted band — alternates with white sections. */
+  .section-invert {
+    background-color: #000 !important;
+    color: #ffffff;
+  }
+  .section-invert .text-muted-foreground { color: rgba(255,255,255,0.62) !important; }
+  .section-invert .hairline { border-color: rgba(255,255,255,0.18) !important; }
+  .section-invert .bg-background { background-color: #000 !important; }
+  .section-invert .bg-card { background-color: #000 !important; }
+  .section-invert .bg-foreground { background-color: #ffffff !important; }
+  .section-invert .text-background { color: #000 !important; }
+  .section-invert .bg-foreground\/5 { background-color: rgba(255,255,255,0.06) !important; }
+  .section-invert .bg-foreground\/15 { background-color: rgba(255,255,255,0.18) !important; }
+
   /* Overlay text — content over imagery stays light regardless of theme. */
   .text-on-image { color: #ffffff !important; }
   .text-on-image .text-muted-foreground { color: rgba(255,255,255,0.72) !important; }
