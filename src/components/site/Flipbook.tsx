@@ -38,17 +38,24 @@ export function Flipbook({ file = PDF_FILE_DEFAULT }: FlipbookProps) {
     });
   }, []);
 
-  // Responsive sizing — keep a portrait page ratio (~1:1.36 like A-format paperback).
+  // Responsive sizing — fit within viewport so the entire book + controls show without scrolling.
   useEffect(() => {
     const recompute = () => {
       const el = containerRef.current;
       if (!el) return;
       const cw = el.clientWidth;
-      // Two pages side by side on desktop; single page on small screens.
+      const vh = window.innerHeight;
       const isSingle = cw < 720;
-      const pageW = isSingle ? Math.min(cw - 16, 520) : Math.min((cw - 24) / 2, 560);
-      const pageH = Math.round(pageW * 1.36);
-      setSize({ w: Math.round(pageW), h: pageH });
+      // Reserve vertical space for surrounding header + controls.
+      const reserved = isSingle ? 260 : 200;
+      const maxH = Math.max(360, vh - reserved);
+      let pageW = isSingle ? Math.min(cw - 16, 520) : Math.min((cw - 24) / 2, 560);
+      let pageH = Math.round(pageW * 1.36);
+      if (pageH > maxH) {
+        pageH = maxH;
+        pageW = Math.round(pageH / 1.36);
+      }
+      setSize({ w: Math.round(pageW), h: Math.round(pageH) });
     };
     recompute();
     window.addEventListener("resize", recompute);
@@ -141,7 +148,7 @@ export function Flipbook({ file = PDF_FILE_DEFAULT }: FlipbookProps) {
         )}
       </Document>
 
-      <div className="mt-8 flex items-center justify-center gap-6">
+      <div className="mt-4 flex items-center justify-center gap-6">
         <button
           type="button"
           aria-label="Previous page"
