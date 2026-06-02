@@ -38,7 +38,7 @@ export function Flipbook({ file = PDF_FILE_DEFAULT }: FlipbookProps) {
       // Reserve space for the compact section header, action buttons, and controls.
       const reserved = isSingle ? 360 : 300;
       const maxH = Math.max(isSingle ? 330 : 420, vh - reserved);
-      let pageW = isSingle ? Math.min(cw - 20, 430) : Math.min((cw - 40) / 2, 540);
+      let pageW = Math.max(130, Math.min((cw - 28) / 2, isSingle ? 220 : 540));
       let pageH = Math.round(pageW * 1.36);
       if (pageH > maxH) {
         pageH = maxH;
@@ -71,71 +71,39 @@ export function Flipbook({ file = PDF_FILE_DEFAULT }: FlipbookProps) {
           </div>
         }
       >
-        {mounted && HTMLFlipBook && numPages > 0 && (
-          <div className="flex items-center justify-center">
-            <HTMLFlipBook
-              key={`${size.w}x${size.h}-${numPages}`}
-              width={size.w}
-              height={size.h}
-              minWidth={280}
-              maxWidth={620}
-              minHeight={400}
-              maxHeight={900}
-              size="fixed"
-              maxShadowOpacity={0.4}
-              showCover={false}
-              mobileScrollSupport
-              drawShadow
-              flippingTime={650}
-              className="!mx-auto"
-              style={{}}
-              startPage={0}
-              usePortrait
-              startZIndex={0}
-              autoSize={false}
-              clickEventForward
-              useMouseEvents
-              swipeDistance={30}
-              showPageCorners
-              disableFlipByClick={false}
-              ref={(el: unknown) => {
-                bookRef.current = el as typeof bookRef.current;
-              }}
-              onFlip={(e: { data: number }) => setPage(e.data)}
-            >
-              {Array.from({ length: numPages }, (_, i) => {
-                const visible = Math.abs(i - page) <= RENDER_RADIUS;
-                return (
-                  <div
-                    key={i}
-                    className="relative flex h-full w-full items-center justify-center overflow-hidden bg-[#fafaf6]"
-                    style={{ width: size.w, height: size.h }}
-                  >
-                    {visible ? (
-                      <Page
-                        pageNumber={i + 1}
-                        width={size.w}
-                        renderAnnotationLayer={false}
-                        renderTextLayer={false}
-                        loading={
-                          <div className="flex h-full w-full items-center justify-center text-neutral-400">
-                            <Loader2 className="size-5 animate-spin" />
-                          </div>
-                        }
-                      />
-                    ) : (
-                      <div className="flex h-full w-full items-center justify-center text-[10px] uppercase tracking-[0.3em] text-neutral-400">
-                        {i + 1}
-                      </div>
-                    )}
-                    <span className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 font-mono text-[10px] uppercase tracking-[0.3em] text-neutral-400">
-                      {i + 1}
-                    </span>
-                  </div>
-                );
-              })}
-            </HTMLFlipBook>
-          </div>
+        {numPages > 0 && (
+          <motion.div
+            key={`${page}-${size.w}x${size.h}`}
+            initial={reduceMotion ? false : { opacity: 0, rotateY: page === 0 ? 0 : -8 }}
+            animate={{ opacity: 1, rotateY: 0 }}
+            transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+            className="mx-auto grid justify-center overflow-hidden shadow-[0_24px_70px_-26px_rgba(255,255,255,0.35)] sm:grid-cols-2"
+            style={{ width: size.w * 2, maxWidth: "100%", perspective: 1200 }}
+          >
+            {visiblePages.map((pageNumber, index) => (
+              <div
+                key={pageNumber}
+                className="relative flex items-center justify-center overflow-hidden bg-[#fafaf6]"
+                style={{ width: size.w, height: size.h }}
+              >
+                <Page
+                  pageNumber={pageNumber}
+                  width={size.w}
+                  renderAnnotationLayer={false}
+                  renderTextLayer={false}
+                  loading={
+                    <div className="flex h-full w-full items-center justify-center text-neutral-400">
+                      <Loader2 className="size-5 animate-spin" />
+                    </div>
+                  }
+                />
+                <span className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 font-mono text-[9px] uppercase tracking-[0.25em] text-neutral-400">
+                  {pageNumber}
+                </span>
+                {index === 0 && <span className="pointer-events-none absolute inset-y-0 right-0 w-px bg-black/15" />}
+              </div>
+            ))}
+          </motion.div>
         )}
       </Document>
 
@@ -143,18 +111,20 @@ export function Flipbook({ file = PDF_FILE_DEFAULT }: FlipbookProps) {
         <button
           type="button"
           aria-label="Previous page"
-          onClick={() => bookRef.current?.pageFlip().flipPrev()}
+          onClick={() => setPage((current) => Math.max(0, current - 2))}
+          disabled={page === 0}
           className="inline-flex size-10 items-center justify-center border border-white/30 text-white/80 transition-colors hover:bg-white/10"
         >
           <ChevronLeft className="size-4" />
         </button>
         <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-white/60">
-          {String(page + 1).padStart(3, "0")} / {String(Math.max(numPages, 1)).padStart(3, "0")}
+          {String(page + 1).padStart(3, "0")}–{String(Math.min(page + 2, Math.max(numPages, 1))).padStart(3, "0")} / {String(Math.max(numPages, 1)).padStart(3, "0")}
         </p>
         <button
           type="button"
           aria-label="Next page"
-          onClick={() => bookRef.current?.pageFlip().flipNext()}
+          onClick={() => setPage((current) => Math.min(maxStart, current + 2))}
+          disabled={page >= maxStart}
           className="inline-flex size-10 items-center justify-center border border-white/30 text-white/80 transition-colors hover:bg-white/10"
         >
           <ChevronRight className="size-4" />
