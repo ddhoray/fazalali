@@ -88,7 +88,7 @@ export function Flipbook({ file = PDF_FILE_DEFAULT }: FlipbookProps) {
               maxHeight={1400}
               showCover
               flippingTime={650}
-              usePortrait={size.w < 300}
+              usePortrait={size.isSingle}
               mobileScrollSupport
               maxShadowOpacity={0.4}
               drawShadow
