@@ -91,7 +91,7 @@ function OmerosPage() {
           <div className="mt-16 grid gap-px bg-white/15 md:grid-cols-2 lg:grid-cols-3">
             {tenets.map((t, i) => (
               <Reveal key={t.k} delay={i * 0.04}>
-                <div className="bg-black p-8 md:p-10">
+                <div className="bg-background p-8 md:p-10">
                   <p className="font-display text-5xl text-white/30">{t.k}</p>
                   <p className="mt-6 font-display text-2xl leading-tight">{t.t}</p>
                   <p className="mt-4 text-sm leading-relaxed text-white/60">{t.b}</p>
