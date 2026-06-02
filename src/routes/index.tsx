@@ -190,10 +190,9 @@ function FeaturedSticky() {
   const [active, setActive] = useState(0);
   useEffect(() => {
     return scrollYProgress.on("change", (p) => {
-      const idx = Math.min(
-        featured.length - 1,
-        Math.max(0, Math.floor(p * featured.length * 0.999)),
-      );
+      // Equal scroll window per slide; clamp p just under 1 to avoid overflow.
+      const clamped = Math.min(0.9999, Math.max(0, p));
+      const idx = Math.min(featured.length - 1, Math.floor(clamped * featured.length));
       setActive(idx);
     });
   }, [scrollYProgress]);
@@ -205,7 +204,7 @@ function FeaturedSticky() {
     <section
       ref={ref}
       className="relative bg-background"
-      style={{ height: `${featured.length * 100}vh` }}
+      style={{ height: `${featured.length * 110}vh` }}
     >
       <div className="sticky top-0 flex h-screen flex-col overflow-hidden bg-background">
         {/* Mobile-only progress bar at the top */}
@@ -219,10 +218,16 @@ function FeaturedSticky() {
         <div className="mx-auto w-full max-w-[1700px] flex-1 px-5 pt-24 pb-6 sm:px-8 sm:pt-28 sm:pb-8 lg:pt-32">
           <div className="mb-5 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-3">
             <div>
-              <p className="eyebrow text-muted-foreground">Featured Work</p>
-              <h2 className="mt-2 font-display text-2xl leading-[1] sm:text-3xl md:text-4xl">
+              <BlurReveal as="p" className="eyebrow text-muted-foreground">
+                Featured Work
+              </BlurReveal>
+              <BlurReveal
+                as="h2"
+                delay={0.08}
+                className="mt-2 font-display text-2xl leading-[1] sm:text-3xl md:text-4xl"
+              >
                 Three things, <em className="italic">in order.</em>
-              </h2>
+              </BlurReveal>
             </div>
             <span className="nav-link text-muted-foreground">
               {String(active + 1).padStart(2, "0")} / {String(featured.length).padStart(2, "0")}
@@ -269,7 +274,7 @@ function FeaturedSticky() {
                 />
               </div>
 
-              <ul className="flex h-full flex-col justify-center gap-4 pl-8 pr-2">
+              <ul className="flex h-full flex-col justify-center gap-10 pl-8 pr-2 lg:gap-14">
                 {featured.map((item, i) => {
                   const isActive = i === active;
                   return (
