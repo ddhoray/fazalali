@@ -102,18 +102,7 @@ function BookPage() {
           </Reveal>
 
           <div className="mt-14">
-            <Flipbook
-              pages={bookPages}
-              cover={{
-                title: (
-                  <>
-                    Education<br />for<br /><em className="italic">Liberty</em>
-                  </>
-                ),
-                subtitle: "After Sen. After Rawls. From Trinidad.",
-                author: "Fazal Ibrahim Ali",
-              }}
-            />
+            <Flipbook />
           </div>
 
           <Reveal>
