@@ -46,7 +46,6 @@ function Home() {
       <Quietline />
       <FeaturedSticky />
       <Manifesto />
-      <ParallaxBreak />
       <Portrait />
       <BookSection />
       <Range />
@@ -54,6 +53,7 @@ function Home() {
     </>
   );
 }
+
 
 /* ───────────────────────── Hero ───────────────────────── */
 
