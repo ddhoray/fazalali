@@ -1,6 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { openContactDrawer } from "@/components/site/ContactDrawer";
 import fiaLogo from "@/assets/brand-fia.png";
@@ -71,16 +71,16 @@ export function SiteNav() {
           ? "bg-transparent text-white"
           : overDark
             ? "bg-black/55 backdrop-blur-xl border-b border-white/10 text-white"
-            : "bg-background/85 backdrop-blur-2xl border-b hairline text-foreground shadow-[0_1px_0_rgba(0,0,0,0.03)]",
+            : "bg-background/85 backdrop-blur-2xl border-b hairline text-foreground",
       )}
     >
-      <div className="mx-auto flex max-w-[1700px] items-center justify-between px-5 py-4 sm:px-8 sm:py-5">
+      <div className="mx-auto flex max-w-[1700px] items-center justify-between px-5 py-3 sm:px-8 sm:py-3.5">
         <Link to="/" aria-label="Fazal Ali — Home" className="inline-flex items-center">
           <img
             src={fiaLogo}
             alt="Fazal Ali"
             className={cn(
-              "h-7 w-auto sm:h-8 transition-[filter] duration-500",
+              "h-5 w-auto sm:h-6 transition-[filter] duration-500",
               lightOnDark
                 ? "brightness-0 invert"
                 : "brightness-0 dark:brightness-0 dark:invert",
@@ -88,7 +88,7 @@ export function SiteNav() {
           />
         </Link>
 
-        <nav className="hidden items-center gap-7 lg:flex">
+        <nav className="hidden items-center gap-6 lg:flex">
           {links.map((l) =>
             "children" in l && l.children ? (
               <div
@@ -99,17 +99,16 @@ export function SiteNav() {
               >
                 <Link
                   to={l.to}
-                  className="nav-link inline-flex items-center gap-1 opacity-70 transition-opacity hover:opacity-100"
+                  className="nav-link-minimal opacity-65 transition-opacity hover:opacity-100"
                   activeProps={{ className: "opacity-100" }}
                 >
                   {l.label}
-                  <ChevronDown className="size-3 opacity-60" />
                 </Link>
                 {eflOpen && (
                   <div className="absolute left-1/2 top-full -translate-x-1/2 pt-3">
                     <div
                       className={cn(
-                        "min-w-[200px] border hairline shadow-lg",
+                        "min-w-[180px] border hairline",
                         lightOnDark ? "bg-black text-white" : "bg-background text-foreground",
                       )}
                     >
@@ -117,7 +116,7 @@ export function SiteNav() {
                         <Link
                           key={c.to}
                           to={c.to}
-                          className="block px-5 py-3 text-xs uppercase tracking-[0.2em] opacity-75 transition-opacity hover:opacity-100"
+                          className="block px-4 py-2.5 nav-link-minimal opacity-70 transition-opacity hover:opacity-100"
                         >
                           {c.label}
                         </Link>
@@ -130,7 +129,7 @@ export function SiteNav() {
               <Link
                 key={l.to}
                 to={l.to}
-                className="nav-link opacity-70 transition-opacity hover:opacity-100"
+                className="nav-link-minimal opacity-65 transition-opacity hover:opacity-100"
                 activeProps={{ className: "opacity-100" }}
               >
                 {l.label}
@@ -140,7 +139,7 @@ export function SiteNav() {
           <button
             type="button"
             onClick={() => openContactDrawer()}
-            className="nav-link opacity-70 transition-opacity hover:opacity-100"
+            className="nav-link-minimal opacity-65 transition-opacity hover:opacity-100"
           >
             Write Me
           </button>
@@ -159,29 +158,24 @@ export function SiteNav() {
 
       {open && (
         <div className="border-t hairline bg-background text-foreground lg:hidden">
-          <nav className="flex flex-col px-5 py-4">
+          <nav className="flex flex-col px-5 py-3">
             {links.map((l) =>
               "children" in l && l.children ? (
                 <div key={l.to}>
                   <button
                     type="button"
                     onClick={() => setEflOpenMobile((v) => !v)}
-                    className="nav-link flex w-full items-center justify-between py-4 text-left text-foreground/80"
+                    className="nav-link-minimal flex w-full items-center justify-between py-3.5 text-left text-foreground/75"
                   >
-                    {l.label}
-                    <ChevronDown
-                      className={cn(
-                        "size-4 transition-transform",
-                        eflOpenMobile && "rotate-180",
-                      )}
-                    />
+                    <span>{l.label}</span>
+                    <span className={cn("text-[10px] transition-transform", eflOpenMobile && "rotate-45")}>+</span>
                   </button>
                   {eflOpenMobile && (
                     <div className="flex flex-col border-l hairline pl-4">
                       <Link
                         to={l.to}
                         onClick={() => setOpen(false)}
-                        className="nav-link py-3 text-foreground/70"
+                        className="nav-link-minimal py-2.5 text-foreground/65"
                       >
                         Overview
                       </Link>
@@ -190,7 +184,7 @@ export function SiteNav() {
                           key={c.to}
                           to={c.to}
                           onClick={() => setOpen(false)}
-                          className="nav-link py-3 text-foreground/70"
+                          className="nav-link-minimal py-2.5 text-foreground/65"
                         >
                           {c.label}
                         </Link>
@@ -203,7 +197,7 @@ export function SiteNav() {
                   key={l.to}
                   to={l.to}
                   onClick={() => setOpen(false)}
-                  className="nav-link py-4 text-foreground/80"
+                  className="nav-link-minimal py-3.5 text-foreground/75"
                 >
                   {l.label}
                 </Link>
@@ -215,7 +209,7 @@ export function SiteNav() {
                 setOpen(false);
                 openContactDrawer();
               }}
-              className="nav-link py-4 text-left text-foreground/80"
+              className="nav-link-minimal py-3.5 text-left text-foreground/75"
             >
               Write Me
             </button>

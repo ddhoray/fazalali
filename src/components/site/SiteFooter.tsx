@@ -1,52 +1,48 @@
 import { Link } from "@tanstack/react-router";
-import { Mail, Instagram, MapPin } from "lucide-react";
 import { JustifiedWordmark } from "./JustifiedWordmark";
 
 export function SiteFooter() {
   return (
     <footer className="relative mt-20 overflow-hidden border-t hairline bg-background">
-      <div className="mx-auto max-w-[1700px] px-5 pt-16 pb-10 sm:px-8">
-        <div className="grid gap-12 md:grid-cols-3">
+      <div className="mx-auto max-w-[1700px] px-5 pt-14 pb-10 sm:px-8">
+        <div className="grid gap-10 md:grid-cols-3">
           <div>
             <p className="eyebrow text-muted-foreground">Correspondence</p>
             <a
               href="mailto:writeme@fazalali.com"
-              className="mt-4 inline-flex items-center gap-2 font-display text-2xl tracking-tight hover:underline"
+              className="mt-4 inline-block font-display text-xl tracking-tight hover:underline underline-offset-4"
             >
-              <Mail className="size-4 opacity-60" />
               writeme@fazalali.com
             </a>
-            <p className="mt-3 inline-flex items-center gap-2 text-sm text-muted-foreground">
-              <MapPin className="size-3.5 opacity-60" />
+            <p className="mt-2 text-[13px] text-muted-foreground">
               Trinidad &amp; Tobago, West Indies
             </p>
           </div>
           <div>
             <p className="eyebrow text-muted-foreground">Index</p>
-            <ul className="mt-4 space-y-2 text-sm">
-              <li><Link to="/writing" className="hover:underline">Articles</Link></li>
-              <li><Link to="/education-for-liberty" className="hover:underline">Education for Liberty</Link></li>
-              <li><Link to="/podcast" className="hover:underline">Podcast</Link></li>
-              <li><Link to="/ecology" className="hover:underline">Ecology</Link></li>
-              <li><Link to="/inequality" className="hover:underline">Inequality</Link></li>
-              <li><Link to="/palimpsest" className="hover:underline">Palimpsest</Link></li>
-              <li><Link to="/omeros-ai" className="hover:underline">Omeros AI</Link></li>
-              <li><Link to="/gallery" className="hover:underline">Gallery</Link></li>
-              <li><Link to="/about" className="hover:underline">About</Link></li>
+            <ul className="mt-4 space-y-1.5 text-[13px]">
+              <li><Link to="/writing" className="text-foreground/75 hover:text-foreground transition-colors">Articles</Link></li>
+              <li><Link to="/education-for-liberty" className="text-foreground/75 hover:text-foreground transition-colors">Education for Liberty</Link></li>
+              <li><Link to="/podcast" className="text-foreground/75 hover:text-foreground transition-colors">Podcast</Link></li>
+              <li><Link to="/ecology" className="text-foreground/75 hover:text-foreground transition-colors">Ecology</Link></li>
+              <li><Link to="/inequality" className="text-foreground/75 hover:text-foreground transition-colors">Inequality</Link></li>
+              <li><Link to="/palimpsest" className="text-foreground/75 hover:text-foreground transition-colors">Palimpsest</Link></li>
+              <li><Link to="/omeros-ai" className="text-foreground/75 hover:text-foreground transition-colors">Omeros</Link></li>
+              <li><Link to="/gallery" className="text-foreground/75 hover:text-foreground transition-colors">Gallery</Link></li>
+              <li><Link to="/about" className="text-foreground/75 hover:text-foreground transition-colors">About</Link></li>
             </ul>
           </div>
           <div>
             <p className="eyebrow text-muted-foreground">Elsewhere</p>
-            <ul className="mt-4 space-y-2 text-sm">
+            <ul className="mt-4 space-y-1.5 text-[13px]">
               <li>
                 <a
                   href="https://www.instagram.com/thefazalali/"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 hover:underline"
+                  className="text-foreground/75 hover:text-foreground transition-colors"
                 >
-                  <Instagram className="size-4 opacity-60" />
-                  @thefazalali
+                  Instagram — @thefazalali
                 </a>
               </li>
             </ul>
@@ -60,15 +56,15 @@ export function SiteFooter() {
       </div>
 
       <div className="border-t hairline">
-        <div className="mx-auto flex max-w-[1700px] flex-col items-center justify-between gap-3 px-5 py-5 text-[10px] uppercase tracking-[0.22em] text-muted-foreground sm:flex-row sm:px-8">
-          <p>© {new Date().getFullYear()} Fazal Ibrahim Ali — All work, all writing</p>
+        <div className="mx-auto flex max-w-[1700px] flex-col items-center justify-between gap-3 px-5 py-5 text-[10px] uppercase tracking-[0.18em] text-muted-foreground sm:flex-row sm:px-8">
+          <p>© {new Date().getFullYear()} Fazal Ibrahim Ali</p>
           <p>
             Designed &amp; developed by{" "}
             <a
               href="https://hyperevamp.com"
               target="_blank"
               rel="noreferrer"
-              className="text-foreground hover:underline"
+              className="text-foreground hover:underline underline-offset-4"
             >
               Hyperevamp
             </a>
