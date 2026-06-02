@@ -11,7 +11,7 @@ import { Grain } from "@/components/site/Grain";
 import { BookSection } from "@/components/site/BookSection";
 import { Newsletter } from "@/components/site/Newsletter";
 import { articles } from "@/content/articles";
-import portrait from "@/assets/fazal-portrait-aesthetic.jpg";
+import portrait from "@/assets/fazal-cutout.png";
 import heroImage from "@/assets/hero-statue.jpg";
 import featuredEducation from "@/assets/featured-education.jpg";
 import featuredOmeros from "@/assets/featured-omeros.jpg";
