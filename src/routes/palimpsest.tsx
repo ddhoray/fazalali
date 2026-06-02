@@ -17,7 +17,7 @@ export const Route = createFileRoute("/palimpsest")({
       {
         property: "og:description",
         content: "Periods of West Indian education set inside a frame of world events.",
-      },,
+      },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/palimpsest" },
     ],
     links: [

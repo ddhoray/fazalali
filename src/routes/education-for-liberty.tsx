@@ -20,7 +20,7 @@ export const Route = createFileRoute("/education-for-liberty")({
         property: "og:description",
         content:
           "Building on Amartya Sen and John Rawls — education as the substrate of freedom. Flip through a preview or download the PDF.",
-      },,
+      },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/education-for-liberty" },
     ],
     links: [

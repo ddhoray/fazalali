@@ -18,7 +18,7 @@ export const Route = createFileRoute("/inequality")({
       {
         property: "og:description",
         content: "A capability reading of inequality from a West Indian classroom.",
-      },,
+      },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/inequality" },
     ],
     links: [

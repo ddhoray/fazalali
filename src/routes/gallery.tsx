@@ -17,7 +17,7 @@ export const Route = createFileRoute("/gallery")({
       {
         property: "og:description",
         content: "Visual field notes from Trinidad and elsewhere.",
-      },,
+      },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/gallery" },
     ],
     links: [
