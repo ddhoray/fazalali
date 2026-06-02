@@ -24,7 +24,7 @@ const RENDER_RADIUS = 3;
 export function Flipbook({ file = PDF_FILE_DEFAULT }: FlipbookProps) {
   const [numPages, setNumPages] = useState<number>(0);
   const [current, setCurrent] = useState(0);
-  const [size, setSize] = useState({ w: 380, h: 520 });
+  const [size, setSize] = useState({ w: 380, h: 520, isSingle: true });
   const containerRef = useRef<HTMLDivElement | null>(null);
   // react-pageflip's ref typing is loose; using any for the imperative API.
   const bookRef = useRef<any>(null);
@@ -36,7 +36,7 @@ export function Flipbook({ file = PDF_FILE_DEFAULT }: FlipbookProps) {
       const cw = el.clientWidth;
       const vh = window.innerHeight;
       const isSingle = cw < 760;
-      const reserved = isSingle ? 360 : 290;
+      const reserved = isSingle ? 320 : 290;
       const maxH = Math.max(isSingle ? 340 : 420, vh - reserved);
       const horizontalBudget = isSingle ? cw - 24 : (cw - 40) / 2;
       let pageW = Math.max(150, Math.min(horizontalBudget, isSingle ? 360 : 540));
@@ -45,7 +45,7 @@ export function Flipbook({ file = PDF_FILE_DEFAULT }: FlipbookProps) {
         pageH = maxH;
         pageW = Math.round(pageH / 1.36);
       }
-      setSize({ w: Math.round(pageW), h: Math.round(pageH) });
+      setSize({ w: Math.round(pageW), h: Math.round(pageH), isSingle });
     };
     recompute();
     window.addEventListener("resize", recompute);
