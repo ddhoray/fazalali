@@ -83,7 +83,7 @@ function Hero() {
       {/* Scrolling content frame — sits over the pinned image */}
       <motion.div
         style={{ opacity }}
-        className="text-on-image pointer-events-none absolute inset-x-0 top-0 z-10 flex h-screen flex-col justify-between px-5 pt-20 pb-16 sm:px-10 sm:pt-28 sm:pb-24"
+        className="text-on-image pointer-events-none absolute inset-x-0 top-0 z-10 flex h-screen flex-col justify-between px-5 pt-28 pb-16 sm:px-10 sm:pt-32 sm:pb-24"
       >
         <div className="pointer-events-auto">
           <motion.p
@@ -97,19 +97,20 @@ function Hero() {
         </div>
 
         <div className="pointer-events-auto">
-          <h1 className="font-display text-[15vw] leading-[0.94] tracking-[-0.035em] sm:text-[10vw] md:text-[8vw]">
-            <Word delay={0.1}>Reading</Word>{" "}
-            <Word delay={0.22}>the</Word>{" "}
-            <Word delay={0.34} italic>machines</Word>
-            <br />
-            <Word delay={0.5}>slowly,</Word>{" "}
-            <Word delay={0.66} italic>by hand.</Word>
-          </h1>
+          <motion.h1
+            initial={{ opacity: 0, y: 24, filter: "blur(14px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 1.2, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="font-display text-[14vw] leading-[1.02] tracking-[-0.035em] text-balance sm:text-[10vw] md:text-[8vw] md:leading-[0.96]"
+          >
+            Reading the <span className="italic">machines</span> slowly,{" "}
+            <span className="italic">by hand.</span>
+          </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.0, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 1.0, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
             className="mt-5 max-w-md text-[13px] leading-relaxed opacity-85 sm:mt-6 sm:text-sm md:text-base"
           >
             Dr. Fazal Ibrahim Ali — Cambridge-trained, Trinidad-born. Writing on
@@ -122,28 +123,6 @@ function Hero() {
   );
 }
 
-function Word({
-  children,
-  delay = 0,
-  italic = false,
-}: {
-  children: React.ReactNode;
-  delay?: number;
-  italic?: boolean;
-}) {
-  return (
-    <span className="inline-block overflow-hidden align-bottom">
-      <motion.span
-        initial={{ y: "110%", filter: "blur(12px)" }}
-        animate={{ y: "0%", filter: "blur(0px)" }}
-        transition={{ duration: 1.2, delay, ease: [0.22, 1, 0.36, 1] }}
-        className={`inline-block ${italic ? "italic" : ""}`}
-      >
-        {children}
-      </motion.span>
-    </span>
-  );
-}
 
 /* ───────────────── Quiet editorial divider ──────────────── */
 
@@ -221,11 +200,19 @@ function FeaturedSticky() {
   return (
     <section
       ref={ref}
-      className="relative"
+      className="relative bg-background"
       style={{ height: `${featured.length * 100}vh` }}
     >
       <div className="sticky top-0 flex h-screen flex-col overflow-hidden bg-background">
-        <div className="mx-auto w-full max-w-[1700px] flex-1 px-5 pt-20 pb-6 sm:px-8 sm:pt-24 sm:pb-8">
+        {/* Mobile-only progress bar at the top */}
+        <div className="block h-px w-full bg-foreground/15 lg:hidden">
+          <motion.span
+            style={{ scaleX: progressScale, transformOrigin: "left" }}
+            className="block h-px w-full bg-foreground"
+          />
+        </div>
+
+        <div className="mx-auto w-full max-w-[1700px] flex-1 px-5 pt-24 pb-6 sm:px-8 sm:pt-28 sm:pb-8 lg:pt-32">
           <div className="mb-5 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-3">
             <div>
               <p className="eyebrow text-muted-foreground">Featured Work</p>
@@ -239,9 +226,9 @@ function FeaturedSticky() {
           </div>
 
           <div className="grid h-[calc(100%-110px)] grid-cols-1 items-stretch gap-6 lg:grid-cols-12 lg:gap-10">
-            {/* Big pinned image (col-span-8 → much larger) */}
-            <div className="lg:col-span-8">
-              <div className="relative h-full min-h-[300px] w-full overflow-hidden bg-foreground/5">
+            {/* Pinned image */}
+            <div className="lg:col-span-7">
+              <div className="relative h-full min-h-[260px] w-full overflow-hidden bg-foreground/5">
                 {featured.map((item, i) => (
                   <motion.div
                     key={item.title}
@@ -269,26 +256,23 @@ function FeaturedSticky() {
               </div>
             </div>
 
-            {/* Right column — progress line + stacked items (active large, others small) */}
-            <div className="relative lg:col-span-4">
-              {/* Vertical progress track */}
-              <div className="absolute left-0 top-0 hidden h-full w-px bg-foreground/15 lg:block">
+            {/* Desktop right column — progress + stacked items */}
+            <div className="relative hidden lg:col-span-5 lg:block">
+              <div className="absolute left-0 top-0 h-full w-px bg-foreground/15">
                 <motion.span
                   style={{ scaleY: progressScale, transformOrigin: "top" }}
                   className="absolute inset-0 block w-px bg-foreground"
                 />
               </div>
 
-              <ul className="flex h-full flex-col justify-center gap-4 lg:pl-8">
+              <ul className="flex h-full flex-col justify-center gap-4 pl-8 pr-2">
                 {featured.map((item, i) => {
                   const isActive = i === active;
                   return (
                     <motion.li
                       key={item.title}
                       initial={false}
-                      animate={{
-                        opacity: isActive ? 1 : 0.35,
-                      }}
+                      animate={{ opacity: isActive ? 1 : 0.35 }}
                       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                       className="block"
                     >
@@ -300,11 +284,11 @@ function FeaturedSticky() {
                       <motion.h3
                         animate={{
                           fontSize: isActive
-                            ? "clamp(2.2rem, 4.2vw, 3.6rem)"
-                            : "clamp(1.1rem, 1.6vw, 1.5rem)",
+                            ? "clamp(1.9rem, 3.2vw, 2.8rem)"
+                            : "clamp(1rem, 1.4vw, 1.35rem)",
                         }}
                         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                        className="font-display leading-[0.98] tracking-[-0.02em]"
+                        className="font-display leading-[1.02] tracking-[-0.02em] break-words"
                       >
                         {item.title}<span className="italic">.</span>
                       </motion.h3>
@@ -335,15 +319,38 @@ function FeaturedSticky() {
                 })}
               </ul>
             </div>
-          </div>
-        </div>
 
-        {/* Mobile-only progress bar at the bottom */}
-        <div className="block h-px w-full bg-foreground/15 lg:hidden">
-          <motion.span
-            style={{ scaleX: progressScale, transformOrigin: "left" }}
-            className="block h-px w-full bg-foreground"
-          />
+            {/* Mobile — only the active item shown beneath the image */}
+            <div className="lg:hidden">
+              <motion.div
+                key={featured[active].title}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <div className="mb-1 flex items-center gap-3 text-muted-foreground">
+                  {(() => {
+                    const Icon = featured[active].icon;
+                    return <Icon className="size-4 shrink-0" />;
+                  })()}
+                  <span className="nav-link text-[10px]">{featured[active].eyebrow}</span>
+                </div>
+                <h3 className="font-display text-3xl leading-[1.02] tracking-[-0.02em]">
+                  {featured[active].title}<span className="italic">.</span>
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  {featured[active].note}
+                </p>
+                <Link
+                  to={featured[active].to as never}
+                  className="group mt-3 inline-flex items-center gap-2 text-sm"
+                >
+                  Read more
+                  <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                </Link>
+              </motion.div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -365,7 +372,7 @@ function Manifesto() {
         <Compass className="size-4" /> A note before reading
       </BlurReveal>
       <WordScrollReveal
-        className="font-display text-[8vw] leading-[1.08] tracking-[-0.025em] text-balance sm:text-[5vw] md:text-[3.4vw]"
+        className="font-display text-[8vw] leading-[1.04] tracking-[-0.025em] text-balance sm:text-[5vw] sm:leading-[1.08] md:text-[3.4vw]"
         text="I am not building AI. I am not selling chips. I am thinking with the machines, against them, around them — from a small island that has always read the world more carefully than the world has read it."
       />
       <BlurReveal as="p" delay={0.1} className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground">
@@ -381,6 +388,7 @@ function Manifesto() {
 function Portrait() {
   return (
     <section
+      data-nav="dark"
       className="relative overflow-hidden py-16 md:py-20"
       style={{ backgroundColor: "#000000", color: "#ffffff" }}
     >
@@ -402,20 +410,20 @@ function Portrait() {
         {/* Compact composition: name on top on mobile, side-by-side on desktop */}
         <div className="grid grid-cols-12 items-end gap-6 md:gap-10">
           {/* Name first on mobile (order-1), image right column on desktop */}
-          <div className="order-1 col-span-12 md:order-2 md:col-span-7">
+          <div className="order-1 col-span-12 md:order-2 md:col-span-6 lg:col-span-7">
             <BlurReveal
               as="h2"
               className="font-display font-medium leading-[0.84] tracking-[-0.04em]"
               y={28}
             >
               <span
-                className="block text-[26vw] sm:text-[20vw] md:text-[11vw]"
+                className="block text-[26vw] sm:text-[20vw] md:text-[9.5vw] lg:text-[11vw]"
                 style={{ color: "#ffffff" }}
               >
                 Fazal
               </span>
               <span
-                className="block italic text-[26vw] sm:text-[20vw] md:text-[11vw]"
+                className="block italic text-[26vw] sm:text-[20vw] md:text-[9.5vw] lg:text-[11vw]"
                 style={{ color: "#ffffff" }}
               >
                 Ali<span className="not-italic">.</span>
@@ -432,7 +440,7 @@ function Portrait() {
             </BlurReveal>
           </div>
 
-          <SlideIn from="left" className="order-2 col-span-12 md:order-1 md:col-span-5">
+          <SlideIn from="left" className="order-2 col-span-12 md:order-1 md:col-span-6 lg:col-span-5">
             <div className="grain relative aspect-[4/5] w-full overflow-hidden">
               <img
                 src={portrait}
@@ -634,7 +642,7 @@ const writingImages = [practiceEssays, practiceBook, practiceOmeros];
 function LatestWriting() {
   const latest = articles.slice(0, 3);
   return (
-    <section className="mx-auto max-w-[1700px] px-5 py-16 sm:px-8 md:py-20">
+    <section className="mx-auto max-w-[1700px] scroll-mt-24 px-5 py-16 sm:px-8 md:py-20">
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4 border-b hairline pb-5">
         <div>
           <BlurReveal as="p" className="eyebrow text-muted-foreground">From the Journal</BlurReveal>
