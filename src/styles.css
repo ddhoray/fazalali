@@ -61,7 +61,7 @@
   --foreground: oklch(0.97 0.005 240);
   --muted: oklch(0.20 0.022 250);
   --muted-foreground: oklch(0.74 0.012 240);
-  --card: oklch(0.18 0.022 250);
+  --card: var(--background);
   --card-foreground: var(--foreground);
   --border: color-mix(in oklab, var(--foreground) 16%, transparent);
   --accent-cool: oklch(0.72 0.12 230);
