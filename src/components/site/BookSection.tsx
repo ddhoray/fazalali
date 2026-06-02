@@ -36,7 +36,7 @@ export function BookSection() {
               <img
                 src={bookCover}
                 alt="Education for Liberty — a monograph by Fazal Ali"
-                className="size-full object-cover"
+                className="size-full object-contain"
                 width={920}
                 height={1227}
                 loading="lazy"
