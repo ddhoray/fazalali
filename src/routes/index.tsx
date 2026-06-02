@@ -400,9 +400,9 @@ function Portrait() {
   return (
     <section
       data-nav="dark"
-      className="relative overflow-hidden py-16 md:py-20"
-      style={{ backgroundColor: "#000000", color: "#ffffff" }}
+      className="section-invert relative overflow-hidden py-14 md:py-16"
     >
+
       <Grain />
 
       <div className="relative z-10 mx-auto max-w-[1500px] px-5 sm:px-8">
