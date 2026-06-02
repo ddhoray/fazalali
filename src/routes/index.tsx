@@ -429,13 +429,14 @@ function Portrait() {
             <h2
               className="font-display font-medium leading-[0.82] tracking-[-0.05em]"
               style={{
-                color: "rgba(246,244,239,0.10)",
+                color: "rgba(255,255,255,0.22)",
                 fontSize: "clamp(96px, 22vw, 360px)",
                 whiteSpace: "nowrap",
               }}
             >
               FAZAL ALI
             </h2>
+
           </BlurReveal>
 
           {/* 3-column row with flanking text and centered cutout */}
@@ -466,22 +467,31 @@ function Portrait() {
               </BlurReveal>
             </div>
 
-            {/* Cutout — centered hero */}
+            {/* Cutout — centered hero with hold-to-open */}
             <SlideIn
               from="bottom"
               className="order-1 col-span-12 md:order-2 md:col-span-6"
             >
-              <div className="relative mx-auto aspect-[3/4] w-full max-w-[460px]">
-                <img
-                  src={portrait}
-                  alt="Dr. Fazal Ibrahim Ali"
-                  className="absolute inset-0 size-full object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.55)]"
-                  loading="lazy"
-                  width={1024}
-                  height={1365}
-                />
-              </div>
+              <HoverImage
+                src={portrait}
+                alt="Dr. Fazal Ibrahim Ali"
+                imageless
+                holdMs={6000}
+                onHoldComplete={() => navigateRoot({ to: "/about" })}
+              >
+                <div className="relative mx-auto aspect-[3/4] w-full max-w-[460px] cursor-pointer">
+                  <img
+                    src={portrait}
+                    alt="Dr. Fazal Ibrahim Ali"
+                    className="absolute inset-0 size-full object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.55)]"
+                    loading="lazy"
+                    width={1024}
+                    height={1365}
+                  />
+                </div>
+              </HoverImage>
             </SlideIn>
+
 
             {/* Right text */}
             <div className="order-3 col-span-6 md:col-span-3">
