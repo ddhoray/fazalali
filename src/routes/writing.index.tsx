@@ -8,14 +8,14 @@ import heroBook from "@/assets/hero-writing.jpg";
 export const Route = createFileRoute("/writing/")({
   head: () => ({
     meta: [
-      { title: "Articles — Fazal Ali" },
+      { title: "Journal — Fazal Ali" },
       {
         name: "description",
         content:
-          "Essays and articles by Fazal Ali on critical theory in AI, education, infrastructure, and the West Indies.",
+          "The journal of Fazal Ali — entries on critical theory in AI, education, infrastructure, and the West Indies.",
       },
-      { property: "og:title", content: "Articles — Fazal Ali" },
-      { property: "og:description", content: "Essays on critical theory in AI from the West Indies." },
+      { property: "og:title", content: "Journal — Fazal Ali" },
+      { property: "og:description", content: "Journal entries on critical theory in AI from the West Indies." },
     ],
   }),
   component: WritingIndex,
@@ -35,10 +35,10 @@ function WritingIndex() {
   return (
     <div>
       <PageHero
-        eyebrow="Articles"
+        eyebrow="Journal"
         title={
           <>
-            Essays, slowly, <em className="italic">often.</em>
+            Entries, slowly, <em className="italic">often.</em>
           </>
         }
         standfirst={
@@ -49,7 +49,7 @@ function WritingIndex() {
         }
         meta={
           <>
-            <span>{articles.length} essays</span>
+            <span>{articles.length} entries</span>
             <span className="size-1 bg-white/40" />
             <span>Updated weekly</span>
             <span className="size-1 bg-white/40" />
@@ -87,7 +87,7 @@ function WritingIndex() {
                   {featured.excerpt}
                 </p>
                 <div className="mt-10 inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em]">
-                  <span>Read essay</span>
+                  <span>Read entry</span>
                   <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   <span className="ml-4 opacity-60">{fmtDate(featured.date)}</span>
                 </div>
@@ -128,7 +128,7 @@ function WritingIndex() {
                   {a.excerpt}
                 </p>
                 <div className="mt-6 inline-flex items-center gap-1 text-sm">
-                  Read essay{" "}
+                  Read entry{" "}
                   <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>
               </Link>

@@ -27,7 +27,7 @@ export const Route = createFileRoute("/omeros-ai")({
 const tenets = [
   { k: "01", t: "Critical, not technical", b: "The work is theory. It interrogates AI rather than ships it. There are enough builders." },
   { k: "02", t: "From the islands", b: "The West Indies has always read empires from below. AI is another empire. The reading transfers." },
-  { k: "03", t: "Slow writing", b: "Weekly essays, deliberately small, deliberately patient. The model is correspondence, not the feed." },
+  { k: "03", t: "Slow writing", b: "A weekly journal, deliberately small, deliberately patient. The model is correspondence, not the feed." },
   { k: "04", t: "Books over posts", b: "The argument that matters happens at book length. Education for Liberty is the first. There will be more." },
   { k: "05", t: "Art is part of it", b: "Carnival, drone footage, photography, music — all signal. AI doesn't get to draw the boundary." },
   { k: "06", t: "Braver, now", b: "The new identity is more adventurous. Less polite. Still careful. There is a tone shift, on purpose." },
@@ -103,7 +103,7 @@ function OmerosPage() {
         <div className="grid gap-px bg-foreground/15 md:grid-cols-2">
           <Link to="/writing" className="group flex flex-col gap-4 bg-background p-10 md:p-14">
             <p className="eyebrow text-muted-foreground">Begin reading</p>
-            <p className="font-display text-3xl md:text-5xl">The essays.</p>
+            <p className="font-display text-3xl md:text-5xl">The journal.</p>
             <p className="mt-2 text-sm text-muted-foreground">
               Weekly notes on AI, education, and Caribbean futures.
             </p>
