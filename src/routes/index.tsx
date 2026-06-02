@@ -222,11 +222,19 @@ function FeaturedSticky() {
   return (
     <section
       ref={ref}
-      className="relative"
+      className="relative bg-background"
       style={{ height: `${featured.length * 100}vh` }}
     >
       <div className="sticky top-0 flex h-screen flex-col overflow-hidden bg-background">
-        <div className="mx-auto w-full max-w-[1700px] flex-1 px-5 pt-20 pb-6 sm:px-8 sm:pt-24 sm:pb-8">
+        {/* Mobile-only progress bar at the top */}
+        <div className="block h-px w-full bg-foreground/15 lg:hidden">
+          <motion.span
+            style={{ scaleX: progressScale, transformOrigin: "left" }}
+            className="block h-px w-full bg-foreground"
+          />
+        </div>
+
+        <div className="mx-auto w-full max-w-[1700px] flex-1 px-5 pt-24 pb-6 sm:px-8 sm:pt-28 sm:pb-8 lg:pt-32">
           <div className="mb-5 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-3">
             <div>
               <p className="eyebrow text-muted-foreground">Featured Work</p>
@@ -240,9 +248,9 @@ function FeaturedSticky() {
           </div>
 
           <div className="grid h-[calc(100%-110px)] grid-cols-1 items-stretch gap-6 lg:grid-cols-12 lg:gap-10">
-            {/* Big pinned image (col-span-8 → much larger) */}
-            <div className="lg:col-span-8">
-              <div className="relative h-full min-h-[300px] w-full overflow-hidden bg-foreground/5">
+            {/* Pinned image */}
+            <div className="lg:col-span-7">
+              <div className="relative h-full min-h-[260px] w-full overflow-hidden bg-foreground/5">
                 {featured.map((item, i) => (
                   <motion.div
                     key={item.title}
@@ -270,26 +278,23 @@ function FeaturedSticky() {
               </div>
             </div>
 
-            {/* Right column — progress line + stacked items (active large, others small) */}
-            <div className="relative lg:col-span-4">
-              {/* Vertical progress track */}
-              <div className="absolute left-0 top-0 hidden h-full w-px bg-foreground/15 lg:block">
+            {/* Desktop right column — progress + stacked items */}
+            <div className="relative hidden lg:col-span-5 lg:block">
+              <div className="absolute left-0 top-0 h-full w-px bg-foreground/15">
                 <motion.span
                   style={{ scaleY: progressScale, transformOrigin: "top" }}
                   className="absolute inset-0 block w-px bg-foreground"
                 />
               </div>
 
-              <ul className="flex h-full flex-col justify-center gap-4 lg:pl-8">
+              <ul className="flex h-full flex-col justify-center gap-4 pl-8 pr-2">
                 {featured.map((item, i) => {
                   const isActive = i === active;
                   return (
                     <motion.li
                       key={item.title}
                       initial={false}
-                      animate={{
-                        opacity: isActive ? 1 : 0.35,
-                      }}
+                      animate={{ opacity: isActive ? 1 : 0.35 }}
                       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                       className="block"
                     >
@@ -301,11 +306,11 @@ function FeaturedSticky() {
                       <motion.h3
                         animate={{
                           fontSize: isActive
-                            ? "clamp(2.2rem, 4.2vw, 3.6rem)"
-                            : "clamp(1.1rem, 1.6vw, 1.5rem)",
+                            ? "clamp(1.9rem, 3.2vw, 2.8rem)"
+                            : "clamp(1rem, 1.4vw, 1.35rem)",
                         }}
                         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                        className="font-display leading-[0.98] tracking-[-0.02em]"
+                        className="font-display leading-[1.02] tracking-[-0.02em] break-words"
                       >
                         {item.title}<span className="italic">.</span>
                       </motion.h3>
@@ -336,15 +341,38 @@ function FeaturedSticky() {
                 })}
               </ul>
             </div>
-          </div>
-        </div>
 
-        {/* Mobile-only progress bar at the bottom */}
-        <div className="block h-px w-full bg-foreground/15 lg:hidden">
-          <motion.span
-            style={{ scaleX: progressScale, transformOrigin: "left" }}
-            className="block h-px w-full bg-foreground"
-          />
+            {/* Mobile — only the active item shown beneath the image */}
+            <div className="lg:hidden">
+              <motion.div
+                key={featured[active].title}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <div className="mb-1 flex items-center gap-3 text-muted-foreground">
+                  {(() => {
+                    const Icon = featured[active].icon;
+                    return <Icon className="size-4 shrink-0" />;
+                  })()}
+                  <span className="nav-link text-[10px]">{featured[active].eyebrow}</span>
+                </div>
+                <h3 className="font-display text-3xl leading-[1.02] tracking-[-0.02em]">
+                  {featured[active].title}<span className="italic">.</span>
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  {featured[active].note}
+                </p>
+                <Link
+                  to={featured[active].to as never}
+                  className="group mt-3 inline-flex items-center gap-2 text-sm"
+                >
+                  Read more
+                  <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                </Link>
+              </motion.div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
