@@ -19,10 +19,31 @@ export const Route = createFileRoute("/inequality")({
         property: "og:description",
         content: "A capability reading of inequality from a West Indian classroom.",
       },
+      { property: "og:type", content: "article" },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/inequality" },
     ],
     links: [
       { rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/inequality" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: "Inequality — Education for Liberty",
+          description:
+            "The capability gap, the inherited geometry of the colonial economy, and what the West Indian classroom owes the child who arrived hungry.",
+          datePublished: "2026-01-15",
+          author: {
+            "@type": "Person",
+            name: "Fazal Ibrahim Ali",
+            url: "https://omeros-cipher-glass.lovable.app/about",
+          },
+          publisher: { "@type": "Person", name: "Fazal Ibrahim Ali" },
+          mainEntityOfPage: "https://omeros-cipher-glass.lovable.app/inequality",
+        }),
+      },
     ],
   }),
   component: InequalityPage,

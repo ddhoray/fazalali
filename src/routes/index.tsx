@@ -334,8 +334,9 @@ function FeaturedSticky() {
                         <Link
                           to={item.to as never}
                           className="group mt-3 inline-flex items-center gap-2 text-sm"
+                          aria-label={`Explore ${item.title}`}
                         >
-                          Read more
+                          Explore {item.title}
                           <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                         </Link>
                       </motion.div>
@@ -369,8 +370,9 @@ function FeaturedSticky() {
                 <Link
                   to={featured[active].to as never}
                   className="group mt-3 inline-flex items-center gap-2 text-sm"
+                  aria-label={`Explore ${featured[active].title}`}
                 >
-                  Read more
+                  Explore {featured[active].title}
                   <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                 </Link>
               </motion.div>
@@ -692,13 +694,13 @@ function RangeCard({
         />
 
         <div>
-          <motion.h4
+          <motion.h3
             animate={{ x: isHover ? 4 : 0 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="font-display text-3xl leading-[1.02] md:text-4xl"
           >
             {r.title}<span className="italic">.</span>
-          </motion.h4>
+          </motion.h3>
           <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground md:text-base">
             {r.body}
           </p>
