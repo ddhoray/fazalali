@@ -1,5 +1,6 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
 import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
@@ -15,28 +16,16 @@ interface FlipbookProps {
 
 const PDF_FILE_DEFAULT = pdfAsset.url;
 
-/** Render distance: how many pages around the current spread should fully render. */
-const RENDER_RADIUS = 4;
-
 /**
  * Client-only flippable book that renders an actual PDF page-by-page.
- * Uses react-pageflip for the flip animation and react-pdf for rendering.
+ * Renders a deterministic two-page spread so the complete book is visible in one viewport.
  */
 export function Flipbook({ file = PDF_FILE_DEFAULT }: FlipbookProps) {
-  const [mounted, setMounted] = useState(false);
-  const [HTMLFlipBook, setHTMLFlipBook] = useState<React.ComponentType<Record<string, unknown>> | null>(null);
   const [numPages, setNumPages] = useState<number>(0);
   const [page, setPage] = useState(0);
   const [size, setSize] = useState({ w: 420, h: 570 });
-  const bookRef = useRef<{ pageFlip: () => { flipPrev: () => void; flipNext: () => void; getPageCount: () => number } } | null>(null);
+  const reduceMotion = useReducedMotion();
   const containerRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    setMounted(true);
-    import("react-pageflip").then((mod) => {
-      setHTMLFlipBook(() => mod.default as unknown as React.ComponentType<Record<string, unknown>>);
-    });
-  }, []);
 
   // Responsive sizing — fit within viewport so the entire book + controls show without scrolling.
   useEffect(() => {
