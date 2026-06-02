@@ -340,18 +340,19 @@ function ParallaxBreak() {
 
 function Manifesto() {
   return (
-    <section className="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 md:py-20">
-      <BlurReveal as="p" className="eyebrow mb-6 flex items-center gap-3 text-muted-foreground">
+    <section className="mx-auto max-w-[1400px] px-5 py-10 sm:px-8 md:py-14">
+      <BlurReveal as="p" className="eyebrow mb-5 flex items-center gap-3 text-muted-foreground">
         <Compass className="size-4" /> A note before reading
       </BlurReveal>
       <WordScrollReveal
-        className="font-display text-[7vw] leading-[1.08] tracking-[-0.025em] text-balance sm:text-[3.4vw]"
+        className="font-display text-[8vw] leading-[1.08] tracking-[-0.025em] text-balance sm:text-[5vw] md:text-[3.4vw]"
         text="I am not building AI. I am not selling chips. I am thinking with the machines, against them, around them — from a small island that has always read the world more carefully than the world has read it."
       />
-      <BlurReveal as="p" delay={0.1} className="mt-8 max-w-md text-sm leading-relaxed text-muted-foreground">
+      <BlurReveal as="p" delay={0.1} className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground">
         — Fazal Ali, on opening the new site, 2026.
       </BlurReveal>
     </section>
+
   );
 }
 
