@@ -63,33 +63,29 @@ function Hero() {
     target: ref,
     offset: ["start start", "end start"],
   });
-  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.85], [1, 0]);
 
   return (
-    <section
-      ref={ref}
-      className="relative h-[100svh] min-h-[600px] w-full overflow-hidden bg-neutral-200 text-white"
-    >
-      <motion.div style={{ y: imageY }} className="absolute inset-0 -top-[10%] h-[120%]">
+    // Tall track — image is pinned, the content frame scrolls past it.
+    <section ref={ref} className="relative h-[180svh] w-full bg-neutral-200 text-white">
+      {/* Pinned image — stays in place while the frame scrolls */}
+      <div className="sticky top-0 h-screen w-full overflow-hidden">
         <img
           src={heroImage}
           alt="A writer's desk in soft daylight with an open book and fountain pen"
-          className="size-full object-cover"
+          className="absolute inset-0 size-full object-cover"
           width={1920}
           height={1280}
         />
-        {/* Stronger overlay so headline stays legible on any image tone */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/30" />
+      </div>
 
-      </motion.div>
-
-
+      {/* Scrolling content frame — sits over the pinned image */}
       <motion.div
         style={{ opacity }}
-        className="text-on-image relative z-10 flex h-full flex-col justify-between px-5 pt-20 pb-16 sm:px-10 sm:pt-28 sm:pb-24"
+        className="text-on-image pointer-events-none absolute inset-x-0 top-0 z-10 flex h-screen flex-col justify-between px-5 pt-20 pb-16 sm:px-10 sm:pt-28 sm:pb-24"
       >
-        <div>
+        <div className="pointer-events-auto">
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -100,7 +96,7 @@ function Hero() {
           </motion.p>
         </div>
 
-        <div>
+        <div className="pointer-events-auto">
           <h1 className="font-display text-[15vw] leading-[0.94] tracking-[-0.035em] sm:text-[10vw] md:text-[8vw]">
             <Word delay={0.1}>Reading</Word>{" "}
             <Word delay={0.22}>the</Word>{" "}
@@ -121,15 +117,6 @@ function Hero() {
             called <em className="italic">Education for Liberty.</em>
           </motion.p>
         </div>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 0.7, y: 0 }}
-        transition={{ delay: 1.6, duration: 0.8 }}
-        className="absolute bottom-5 left-1/2 z-10 -translate-x-1/2 text-[10px] uppercase tracking-[0.32em] text-white/70"
-      >
-        ↓ Scroll
       </motion.div>
     </section>
   );
