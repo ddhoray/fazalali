@@ -52,11 +52,11 @@ function PodcastPage() {
         imageAlt="Studio microphone in low-key light"
       />
 
-      <section className="mx-auto max-w-[1300px] px-5 py-24 sm:px-8 sm:py-32">
+      <section className="mx-auto max-w-[1300px] px-5 py-12 sm:px-8 sm:py-10">
         <div className="space-y-px border-y hairline">
           {episodes.map((ep, i) => (
             <Reveal key={ep.slug} delay={i * 0.05}>
-              <article className="group grid gap-8 border-b hairline py-12 last:border-b-0 md:grid-cols-[auto_1fr] md:gap-14 md:py-16">
+              <article className="group grid gap-8 border-b hairline py-12 last:border-b-0 md:grid-cols-[auto_1fr] md:gap-14 md:py-10">
                 <div className="font-display text-7xl leading-none text-foreground/15 md:text-[9rem]">
                   {ep.number}
                 </div>

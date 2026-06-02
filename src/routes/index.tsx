@@ -95,7 +95,7 @@ function Hero() {
       <Grain />
 
       {/* Content frame */}
-      <div className="text-on-image relative z-10 flex min-h-svh flex-col justify-between px-5 pt-28 pb-16 sm:px-10 sm:pt-32 sm:pb-24">
+      <div className="text-on-image relative z-10 flex min-h-svh flex-col justify-between px-5 pt-28 pb-16 sm:px-10 sm:pt-24 sm:pb-12">
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -219,7 +219,7 @@ function FeaturedSticky() {
           />
         </div>
 
-        <div className="mx-auto w-full max-w-[1700px] flex-1 px-5 pt-24 pb-6 sm:px-8 sm:pt-28 sm:pb-8 lg:pt-32">
+        <div className="mx-auto w-full max-w-[1700px] flex-1 px-5 pt-24 pb-6 sm:px-8 sm:pt-28 sm:pb-8 lg:pt-24">
           <div className="mb-5 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-3">
             <div>
               <BlurReveal as="p" className="eyebrow text-muted-foreground">
@@ -380,7 +380,7 @@ function FeaturedSticky() {
 
 function Manifesto() {
   return (
-    <section className="mx-auto max-w-[1400px] bg-background px-5 py-12 sm:px-8 md:py-16">
+    <section className="mx-auto max-w-[1400px] bg-background px-5 py-12 sm:px-8 md:py-10">
       <BlurReveal as="p" className="eyebrow mb-5 flex items-center gap-3 text-muted-foreground">
         <Compass className="size-4" /> A note before reading
       </BlurReveal>
@@ -404,7 +404,7 @@ function Portrait() {
     <section
 
       data-nav="dark"
-      className="section-invert relative overflow-hidden py-16 md:py-24"
+      className="section-invert relative overflow-hidden py-10 md:py-12"
     >
       <Grain />
 
@@ -566,7 +566,7 @@ function Range() {
   const navigate = useNavigate();
 
   return (
-    <section data-nav="dark" className="section-invert relative px-5 py-14 sm:px-8 md:py-16">
+    <section data-nav="dark" className="section-invert relative px-5 py-14 sm:px-8 md:py-10">
       <div className="mx-auto max-w-[1700px]">
       <div className="mb-10 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-5">
         <div className="max-w-3xl">
@@ -715,7 +715,7 @@ function LatestWriting() {
   const latest = articles.slice(0, 3);
   const navigate = useNavigate();
   return (
-    <section className="mx-auto max-w-[1700px] scroll-mt-24 bg-background px-5 py-14 sm:px-8 md:py-16">
+    <section className="mx-auto max-w-[1700px] scroll-mt-24 bg-background px-5 py-14 sm:px-8 md:py-10">
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4 border-b hairline pb-5">
         <div>
           <BlurReveal as="p" className="eyebrow text-muted-foreground">From the Journal</BlurReveal>

@@ -62,7 +62,7 @@ function AboutPage() {
       />
 
       {/* Portrait + bio */}
-      <section className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 sm:py-32">
+      <section className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8 sm:py-10">
         <div className="grid gap-12 md:grid-cols-[1fr_1.3fr] md:gap-20">
           <Reveal>
             <div className="relative">
@@ -105,7 +105,7 @@ function AboutPage() {
 
       {/* Pull-quote band */}
       <section data-nav="dark" className="section-invert">
-        <div className="mx-auto max-w-[1300px] px-5 py-24 sm:px-8 sm:py-32">
+        <div className="mx-auto max-w-[1300px] px-5 py-12 sm:px-8 sm:py-10">
           <Reveal>
             <p className="font-display text-3xl leading-[1.15] text-balance md:text-6xl">
               <em className="text-white/40">"</em>The site is about me — my
@@ -118,7 +118,7 @@ function AboutPage() {
       </section>
 
       {/* Working life timeline */}
-      <section className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 sm:py-32">
+      <section className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8 sm:py-10">
         <Reveal>
           <p className="eyebrow text-muted-foreground">A working life</p>
           <h2 className="mt-5 font-display text-4xl md:text-7xl">

@@ -50,7 +50,7 @@ export function PageHero({
 
       <div
         className={cn(
-          "relative mx-auto grid max-w-[1500px] items-center gap-12 px-5 pb-20 pt-32 sm:px-8 sm:pb-24 sm:pt-36 md:gap-16 md:py-32",
+          "relative mx-auto grid max-w-[1500px] items-center gap-12 px-5 pb-12 pt-24 sm:px-8 sm:pb-12 sm:pt-24 md:gap-16 md:py-10",
           image ? "md:grid-cols-2" : "md:grid-cols-1",
           align === "center" && !image && "text-center",
         )}
