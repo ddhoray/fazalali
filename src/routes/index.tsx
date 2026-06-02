@@ -45,15 +45,19 @@ function Home() {
   return (
     <>
       <Hero />
-      <Quietline />
-      <FeaturedSticky />
-      <Manifesto />
-      <Portrait />
-      <BookSection />
-      <Range />
-      <LatestWriting />
-      <InstagramGrid limit={10} />
-      <Newsletter />
+      {/* Spacer that reserves the hero's viewport so subsequent sections scroll over it */}
+      <div aria-hidden className="h-svh w-full" />
+      <div className="relative z-10 bg-background">
+        <Quietline />
+        <FeaturedSticky />
+        <Manifesto />
+        <Portrait />
+        <BookSection />
+        <Range />
+        <LatestWriting />
+        <InstagramGrid limit={10} />
+        <Newsletter />
+      </div>
     </>
   );
 }
