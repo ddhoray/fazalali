@@ -1,68 +1,68 @@
-## Goals
 
-1. Replace the Fazal Ali portrait with a new image in the same sculptural / classical-marble register as the hero statue, so the Portrait section feels unified with the rest of the site.
-2. Fix the hover-preview image in the "Recent pieces" list being clipped/overlapped by the Newsletter section below.
-3. Pass through every section as a UI/UX designer and tighten anything that still feels off (spacing, alignment, immersion, motion).
+## Goal
 
----
+Bring every page on the nav to the same hero-grade black/white editorial language as the homepage, add the two missing sections from the old site (Podcast + Palimpsest), and make every journal click open a full long-form reading view.
 
-## 1. New portrait — sculptural aesthetic
+## Scope (page by page)
 
-- Generate `src/assets/fazal-portrait-statue.jpg` (premium quality, 4:5) in the same visual language as `hero-statue.jpg`: warm museum light, classical bust / sculpted figure, dramatic chiaroscuro, neutral stone palette, fine grain. Not a literal photo of a person — an evocative, artistic, statue-like portrait that reads as "the writer" in the same gallery the hero lives in.
-- Swap the import in `src/routes/index.tsx` (`Portrait` section) from `fazal-portrait.jpg` → the new asset. Keep alt text descriptive ("Sculpted portrait evoking the writer").
-- Add a subtle Ken-Burns / parallax on the portrait frame (gentle `scale` + `y` via `useScroll`) to match the immersion of the hero and Featured sticky section.
-- Keep the existing dark `section-invert` background — the marble tones will pop against it.
+### 1. Global design language
+- Lock a strict black/white editorial system across all non-home routes: full-bleed black hero band at the top of each page (so the fixed nav reads in light-on-dark like the homepage), then a white reading surface below with hairline rules, oversized display type, and asymmetric grids.
+- Each page gets: dark hero (eyebrow + huge display headline + standfirst + meta strip), one signature visual moment (cutout portrait, justified wordmark, parallax image, or marquee), then content sections.
+- Remove the current "centered max-w container on white" look. Replace with magazine-style alternating sections (wide image / narrow text, full-bleed quote bands, numbered chapter rails).
 
-## 2. Fix HoverImage overlap with Newsletter
+### 2. Nav additions
+Update `SiteNav` links to mirror the old site + new sections:
+- Articles → `/writing`
+- Education for Liberty → `/education-for-liberty` (with hover mega-menu listing: The Book, Podcast, Palimpsest)
+- Omeros → `/omeros-ai`
+- About → `/about`
+- Write Me → opens contact drawer (keep)
 
-Symptom: cursor-following preview on "Recent pieces" gets visually covered by the next (Newsletter) section as the cursor moves down.
+Mega-menu opens on hover for desktop; on mobile the three children appear as indented links under Education for Liberty.
 
-Root cause: `HoverImage` renders inside the article row; even with `z-[60]`, the Newsletter section establishes a new stacking context (transforms / `isolate` / `section-invert`) that sits above it.
+### 3. Articles index (`/writing`)
+- Replace the uniform 3-up card grid with an editorial layout: 1 large featured essay (full-width image, big headline, dek), then a 2-column stagger of remaining essays with alternating image alignment and a thin meta rail (topic · date · reading time).
+- Black hero band at top: "Essays, slowly, often." with running count.
 
-Fix in `src/components/site/HoverImage.tsx`:
-- Render the floating preview into a `document.body` portal (`createPortal`) so it escapes every parent stacking context.
-- Bump z-index to `z-[100]` and keep `position: fixed`.
-- Guard with a mounted check for SSR (only portal after `useEffect` sets `mounted = true`).
+### 4. Article reading page (`/writing/$slug`)
+- Already routes correctly. Upgrade visual: black hero band with cover image as backdrop (dimmed), title in serif display, meta strip; white reading column below with drop cap, pull-quotes, hairline section breaks, "Next essay" + "Back to all" footer band in black.
+- Ensure every article in `src/content/articles.ts` has full body content (expand any thin ones to multi-paragraph long-form so clicking a journal lands on real text).
 
-No change needed in `LatestWriting` itself.
+### 5. Education for Liberty (`/education-for-liberty`)
+- Keep premise / chapters content, restyle to match: black hero, then a flipbook-style book mockup section, then chapters as a numbered rail, then CTA bands for **Podcast** and **Palimpsest** at the bottom (cross-links).
+- Embed the real PDF from old site (`https://fazalali.com/wp-content/uploads/2026/02/EducationforLiberty.pdf`) using a simple `<iframe>` viewer + "Download PDF" + "Buy on Amazon" links.
 
-## 3. Section-by-section polish
+### 6. Podcast (`/podcast`) — NEW
+- Black hero: "Education for Liberty — The Podcast".
+- Episode list (2 episodes from old site):
+  - Episode One — Preface
+  - Episode Two — Prolegomenon
+- Each episode = large card with episode number in oversized display numeral, title, description, custom HTML5 `<audio>` player with black/white styling (play, scrubber, time). Audio source URLs from the old site episode pages (will scrape during build).
+- Add a compact podcast player on the homepage: a sticky black band ("Latest episode · Prolegomenon") with mini play button that expands inline.
 
-- **Hero**: verify parallax still feels subtle on the 1054px viewport; nudge bottom padding so the headline doesn't crowd the fold on shorter screens.
-- **Quietline**: confirm the 3-column divider stays single-line at md; tighten vertical padding by 2px if needed.
-- **Featured sticky (3 pointers)**: confirm progress bar reaches 100% exactly at the last slide; verify mobile progress bar visibility under sticky header.
-- **Manifesto**: re-check word-reveal trigger offset so the first words aren't already revealed on entry.
-- **Portrait (new)**: composition described in §1.
-- **BookSection**: ensure cover drop-shadow still reads on white; verify "Request a copy" button contrast.
-- **Range** (`section-invert`): confirm card body text uses muted token, not hardcoded color; verify hover dim doesn't double-apply with image scale.
-- **LatestWriting**: with portal fix above, verify hover preview tracks cursor across the full row without jump.
-- **Newsletter**: confirm input caret + placeholder color on black; verify submit button focus ring.
-- **Footer**: re-verify Hyperevamp spelling + link target `https://hyperevamp.com` (rel="noreferrer").
+### 7. Palimpsest (`/palimpsest`) — NEW
+- Black hero: "A palimpsest of periods in West Indian education".
+- Long-form timeline rendered as a vertical chronology rail with section headers (Prelude: The Old World, Los Reyes Católicos, etc.) and bullet entries with bold dates/keywords (porting the content from the old page).
+- Sticky section index on the left at desktop widths.
 
-No layout restructuring — only spacing/contrast/motion micro-fixes where a real issue is found during the pass.
+### 8. About (`/about`)
+- Black hero with portrait cutout on the right, name + role on the left.
+- Bio body in two columns with a justified pull-quote band, then a "Work" timeline strip, then CTA to Write Me.
 
----
+### 9. Omeros (`/omeros-ai`)
+- Same hero/editorial treatment, keep existing content but reflow into the new black/white grid with one signature visual.
 
-## Technical details
+## Technical notes
 
-**Files touched**
-- `src/assets/fazal-portrait-statue.jpg` (new — generated, premium tier, 4:5)
-- `src/routes/index.tsx` — swap portrait import, add parallax wrapper on portrait frame, apply any spacing nudges found during the section pass
-- `src/components/site/HoverImage.tsx` — portal the floating preview to `document.body`, bump z-index to 100, SSR-safe mount guard
+- Add routes: `src/routes/podcast.tsx`, `src/routes/palimpsest.tsx`. Update `SiteNav` mega-menu component.
+- Reuse `Reveal`, `GlassPanel`, `HoverImage`, `JustifiedWordmark`, `ParallaxImage`, `Grain` for consistency.
+- Introduce a shared `<PageHero variant="dark" eyebrow title standfirst meta />` component so every internal page starts with the same black band that pairs with the fixed nav's `data-nav="dark"` light-on-dark behavior.
+- Audio player: lightweight custom component using `<audio>` + framer-motion progress bar. No new deps.
+- PDF embed: native `<iframe src={pdfUrl}>` with `aspect-[3/4]` wrapper; "Download" + "Buy" buttons.
+- Articles content: expand `src/content/articles.ts` bodies where they are thin so the reading page is meaningful for all 10 essays.
+- No backend changes. No new packages required.
 
-**HoverImage portal sketch**
-
-```tsx
-const [mounted, setMounted] = useState(false);
-useEffect(() => setMounted(true), []);
-// ...
-{mounted && createPortal(
-  <AnimatePresence>{visible && (<motion.div .../>)}</AnimatePresence>,
-  document.body
-)}
-```
-
-**Out of scope**
-- No backend changes.
-- No new sections.
-- Existing `fazal-portrait.jpg` is left in the repo (other routes like `/about` may reference it); only the home Portrait section swaps to the sculptural version.
+## Out of scope (confirm if you want these too)
+- Scraping every old article body verbatim (legal/voice). I'll keep the current rewritten bodies but expand to full long-form length and tone-match.
+- Instagram feed embed from old site footer.
+- Real podcast hosting — I'll link to the audio files from the old site if reachable; otherwise stub with a "Coming soon" state on each episode.
