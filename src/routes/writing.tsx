@@ -3,7 +3,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
 import { articles } from "@/content/articles";
 import { ArrowUpRight } from "lucide-react";
-import heroBook from "@/assets/hero-book.jpg";
+import heroBook from "@/assets/hero-writing.jpg";
 
 export const Route = createFileRoute("/writing")({
   head: () => ({
