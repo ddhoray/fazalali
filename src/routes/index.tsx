@@ -69,19 +69,20 @@ function Hero() {
   return (
     <section
       ref={ref}
-      className="relative h-[100svh] min-h-[600px] w-full overflow-hidden bg-black text-white"
+      className="relative h-[100svh] min-h-[600px] w-full overflow-hidden bg-neutral-200 text-white"
     >
       <motion.div style={{ y: imageY }} className="absolute inset-0 -top-[10%] h-[120%]">
         <img
           src={heroImage}
-          alt="A lamplit writing desk at twilight with an open book and fountain pen"
+          alt="A writer's desk in soft daylight with an open book and fountain pen"
           className="size-full object-cover"
           width={1920}
           height={1280}
         />
-        {/* subtle vignette only — keep the image's natural mood */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/25" />
+        {/* gentle bottom vignette so the headline stays legible without washing the image */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
       </motion.div>
+
 
       <motion.div
         style={{ opacity }}
@@ -282,22 +283,28 @@ function ActiveImageStack({
 }) {
   return (
     <div className="relative aspect-[16/11] w-full overflow-hidden bg-foreground/5 sm:aspect-[4/3] lg:aspect-[4/5]">
-      {items.map((item, i) => (
-        <motion.img
-          key={item.title}
-          src={item.image}
-          alt={item.title}
-          initial={false}
-          animate={{
-            opacity: i === active ? 1 : 0,
-            scale: i === active ? 1.02 : 1.08,
-            filter: i === active ? "blur(0px)" : "blur(8px)",
-          }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute inset-0 size-full object-cover"
-          loading="lazy"
-        />
-      ))}
+      {items.map((item, i) => {
+        const offset = i - active;
+        return (
+          <motion.div
+            key={item.title}
+            initial={false}
+            animate={{
+              x: `${offset * 100}%`,
+              opacity: offset === 0 ? 1 : 0.4,
+            }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute inset-0"
+          >
+            <img
+              src={item.image}
+              alt={item.title}
+              className="size-full object-cover"
+              loading="lazy"
+            />
+          </motion.div>
+        );
+      })}
       <Grain />
       <div className="absolute inset-x-0 bottom-0 z-10 flex flex-wrap items-center justify-between gap-3 bg-gradient-to-t from-black/70 to-transparent p-4 text-on-image md:p-7">
         <span className="nav-link text-[10px]">
@@ -308,6 +315,7 @@ function ActiveImageStack({
     </div>
   );
 }
+
 
 /* ─────────────────── Parallax Break ─────────────────── */
 
