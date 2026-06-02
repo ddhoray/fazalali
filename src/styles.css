@@ -167,29 +167,29 @@
     background-size: 220px 220px;
   }
 
-  /* Dark editorial section — deep navy / off-white text, regardless of theme. */
+  /* Dark editorial section — iron-ore band, milk-white text */
   .section-dark {
-    background-color: #0f1b3d;
-    color: #f1f3f9;
+    background-color: oklch(0.24 0.032 40);
+    color: oklch(0.96 0.008 85);
   }
-  .section-dark .text-muted-foreground { color: rgba(241, 243, 249, 0.66) !important; }
-  .section-dark .hairline { border-color: rgba(241, 243, 249, 0.22) !important; }
+  .section-dark .text-muted-foreground { color: color-mix(in oklab, oklch(0.96 0.008 85) 68%, transparent) !important; }
+  .section-dark .hairline { border-color: color-mix(in oklab, oklch(0.96 0.008 85) 22%, transparent) !important; }
   .section-dark .text-background,
-  .section-dark [class*="text-background/"] { color: #f1f3f9 !important; }
+  .section-dark [class*="text-background/"] { color: oklch(0.96 0.008 85) !important; }
 
-  /* Pure black inverted band — alternates with white sections. */
+  /* Iron-ore inverted band — replaces pure black; alternates with milk-white sections. */
   .section-invert {
-    background-color: #000 !important;
-    color: #ffffff;
+    background-color: oklch(0.22 0.030 40) !important;
+    color: oklch(0.96 0.008 85);
   }
-  .section-invert .text-muted-foreground { color: rgba(255,255,255,0.62) !important; }
-  .section-invert .hairline { border-color: rgba(255,255,255,0.18) !important; }
-  .section-invert .bg-background { background-color: #000 !important; }
-  .section-invert .bg-card { background-color: #000 !important; }
-  .section-invert .bg-foreground { background-color: #ffffff !important; }
-  .section-invert .text-background { color: #000 !important; }
-  .section-invert .bg-foreground\/5 { background-color: rgba(255,255,255,0.06) !important; }
-  .section-invert .bg-foreground\/15 { background-color: rgba(255,255,255,0.18) !important; }
+  .section-invert .text-muted-foreground { color: color-mix(in oklab, oklch(0.96 0.008 85) 64%, transparent) !important; }
+  .section-invert .hairline { border-color: color-mix(in oklab, oklch(0.96 0.008 85) 20%, transparent) !important; }
+  .section-invert .bg-background { background-color: oklch(0.22 0.030 40) !important; }
+  .section-invert .bg-card { background-color: oklch(0.22 0.030 40) !important; }
+  .section-invert .bg-foreground { background-color: oklch(0.96 0.008 85) !important; }
+  .section-invert .text-background { color: oklch(0.22 0.030 40) !important; }
+  .section-invert .bg-foreground\/5 { background-color: color-mix(in oklab, oklch(0.96 0.008 85) 6%, transparent) !important; }
+  .section-invert .bg-foreground\/15 { background-color: color-mix(in oklab, oklch(0.96 0.008 85) 18%, transparent) !important; }
 
   /* Overlay text — content over imagery stays light regardless of theme. */
   .text-on-image { color: #ffffff !important; }
