@@ -40,31 +40,31 @@
 :root {
   --radius: 0;
 
-  /* Cool neutral editorial palette — off-white + FIA navy ink */
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.14 0 0);
+  /* Omeros AI palette — milk-white + iron-ore (warm dark, never pure black) */
+  --background: oklch(0.972 0.006 85);   /* milk-white, slight warm cream */
+  --foreground: oklch(0.28 0.038 40);    /* iron-ore — warm dark brown/rust */
 
-  --muted: oklch(0.94 0.008 235);
-  --muted-foreground: oklch(0.42 0.02 250);
+  --muted: oklch(0.92 0.012 75);
+  --muted-foreground: oklch(0.44 0.035 45);
 
   --card: var(--background);
   --card-foreground: var(--foreground);
 
-  --border: color-mix(in oklab, var(--foreground) 14%, transparent);
+  --border: color-mix(in oklab, var(--foreground) 16%, transparent);
 
-  /* Accent — pale sky */
-  --accent-cool: oklch(0.55 0.10 235);
+  /* Accent — burnished iron highlight */
+  --accent-cool: oklch(0.48 0.09 45);
 }
 
 .dark {
-  --background: oklch(0.08 0 0);
-  --foreground: oklch(0.98 0 0);
-  --muted: oklch(0.20 0.022 250);
-  --muted-foreground: oklch(0.74 0.012 240);
+  --background: oklch(0.20 0.025 40);    /* deep iron-ore */
+  --foreground: oklch(0.96 0.008 85);    /* milk-white */
+  --muted: oklch(0.28 0.028 45);
+  --muted-foreground: oklch(0.78 0.012 80);
   --card: var(--background);
   --card-foreground: var(--foreground);
-  --border: color-mix(in oklab, var(--foreground) 16%, transparent);
-  --accent-cool: oklch(0.72 0.12 230);
+  --border: color-mix(in oklab, var(--foreground) 18%, transparent);
+  --accent-cool: oklch(0.72 0.10 55);
 }
 
 @layer base {
