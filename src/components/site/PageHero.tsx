@@ -31,6 +31,7 @@ export function PageHero({
   children,
   image,
   imageAlt = "",
+  imageFit = "cover",
 }: PageHeroProps) {
   return (
     <section
