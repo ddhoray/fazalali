@@ -13,6 +13,8 @@ interface PageHeroProps {
   /** Right-side colored image. */
   image?: string;
   imageAlt?: string;
+  /** How the image should fit. Use 'contain' for book covers to avoid cropping. */
+  imageFit?: "cover" | "contain";
 }
 
 /**
