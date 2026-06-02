@@ -33,7 +33,7 @@ function EcologyPage() {
         standfirst={ecology.standfirst}
         meta={
           <>
-            <span>Essay</span>
+            <span>Journal</span>
             <span className="size-1 bg-white/40" />
             <span>{ecology.sections.length} parts</span>
             <span className="size-1 bg-white/40" />

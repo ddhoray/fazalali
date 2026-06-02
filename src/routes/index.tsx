@@ -175,7 +175,7 @@ const featured = [
     eyebrow: "(III) The Journal",
     title: "Selected Writing",
     year: "2024 — 2026",
-    note: "Essays on critical theory, AI as social substrate, and the West Indies as a place that reads the world.",
+    note: "Journal entries on critical theory, AI as social substrate, and the West Indies as a place that reads the world.",
     image: featuredWriting,
     icon: PenLine,
     to: "/writing",
@@ -555,7 +555,7 @@ const range = [
   { n: "01", title: "Critical Theory in AI", body: "Frontier models read as social substrate — not products, not miracles.", icon: Sparkles, tag: "Theory", to: "/writing" as const },
   { n: "02", title: "Education for Liberty", body: "What a child needs to learn so the next machine is a freedom, not a fence.", icon: BookOpen, tag: "Book", to: "/education-for-liberty" as const },
   { n: "03", title: "Omeros AI", body: "A Caribbean reading of intelligence — named for Walcott, kept close to the sea.", icon: Compass, tag: "Studio", to: "/omeros-ai" as const },
-  { n: "04", title: "From the West Indies", body: "A contribution from Trinidad to a conversation rarely written from here.", icon: PenLine, tag: "Essays", to: "/writing" as const },
+  { n: "04", title: "From the West Indies", body: "A contribution from Trinidad to a conversation rarely written from here.", icon: PenLine, tag: "Journal", to: "/writing" as const },
 ];
 
 
@@ -724,7 +724,7 @@ function LatestWriting() {
           </BlurReveal>
         </div>
         <BlurReveal delay={0.16}>
-          <Link to="/writing" className="nav-link">All essays →</Link>
+          <Link to="/writing" className="nav-link">All entries →</Link>
         </BlurReveal>
       </div>
 

@@ -33,7 +33,7 @@ function InequalityPage() {
         standfirst={inequality.standfirst}
         meta={
           <>
-            <span>Essay</span>
+            <span>Journal</span>
             <span className="size-1 bg-white/40" />
             <span>{inequality.sections.length} parts</span>
             <span className="size-1 bg-white/40" />

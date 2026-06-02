@@ -13,7 +13,7 @@ const eflChildren = [
 ] as const;
 
 const links = [
-  { to: "/writing", label: "Articles" },
+  { to: "/writing", label: "Journal" },
   { to: "/education-for-liberty", label: "Education for Liberty", children: eflChildren },
   { to: "/palimpsest", label: "Palimpsest" },
   { to: "/omeros-ai", label: "Omeros" },

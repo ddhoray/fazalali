@@ -156,7 +156,7 @@ function AboutPage() {
                 to="/writing"
                 className="inline-flex items-center gap-2 border-b border-foreground pb-1 text-sm uppercase tracking-[0.2em]"
               >
-                Read essays
+                Read the journal
               </Link>
             </div>
           </div>

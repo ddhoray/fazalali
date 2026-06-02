@@ -21,18 +21,18 @@ export const Route = createFileRoute("/writing/$slug")({
             { property: "og:image", content: loaderData.article.image },
           ],
         }
-      : { meta: [{ title: "Essay — Fazal Ali" }] },
+      : { meta: [{ title: "Journal — Fazal Ali" }] },
   notFoundComponent: () => (
     <div className="mx-auto max-w-3xl px-5 py-10 text-center">
-      <h1 className="font-display text-4xl">Essay not found</h1>
-      <Link to="/writing" className="mt-6 inline-block underline">All articles</Link>
+      <h1 className="font-display text-4xl">Entry not found</h1>
+      <Link to="/writing" className="mt-6 inline-block underline">All entries</Link>
     </div>
   ),
   errorComponent: ({ error, reset }) => {
     console.error(error);
     return (
       <div className="mx-auto max-w-3xl px-5 py-10 text-center">
-        <h1 className="font-display text-4xl">This essay didn't load</h1>
+        <h1 className="font-display text-4xl">This entry didn't load</h1>
         <button onClick={reset} className="mt-6 underline">Try again</button>
       </div>
     );
@@ -77,7 +77,7 @@ function ArticlePage() {
             to="/writing"
             className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-white/70 transition-colors hover:text-white"
           >
-            <ArrowLeft className="size-3" /> All articles
+            <ArrowLeft className="size-3" /> All entries
           </Link>
           <p className="eyebrow mt-12 text-white/60">{article.topic}</p>
           <h1 className="mt-6 font-display text-5xl leading-[0.98] text-balance md:text-8xl">
@@ -137,7 +137,7 @@ function ArticlePage() {
         </Reveal>
       </section>
 
-      {/* Next essay dark band */}
+      {/* Next entry dark band */}
       <section data-nav="dark" className="section-invert">
         <Link
           to="/writing/$slug"
@@ -146,7 +146,7 @@ function ArticlePage() {
         >
           <div className="mx-auto grid max-w-[1500px] gap-10 px-5 py-12 sm:px-8 sm:py-14 md:grid-cols-[1fr_auto] md:items-end">
             <div>
-              <p className="eyebrow text-white/55">Next essay · {next.topic}</p>
+              <p className="eyebrow text-white/55">Next entry · {next.topic}</p>
               <h2 className="mt-5 font-display text-4xl leading-tight text-white md:text-6xl">
                 {next.title}
               </h2>
