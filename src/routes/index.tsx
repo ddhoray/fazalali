@@ -123,28 +123,6 @@ function Hero() {
   );
 }
 
-function Word({
-  children,
-  delay = 0,
-  italic = false,
-}: {
-  children: React.ReactNode;
-  delay?: number;
-  italic?: boolean;
-}) {
-  return (
-    <span className="inline-block overflow-hidden align-bottom">
-      <motion.span
-        initial={{ y: "110%", filter: "blur(12px)" }}
-        animate={{ y: "0%", filter: "blur(0px)" }}
-        transition={{ duration: 1.2, delay, ease: [0.22, 1, 0.36, 1] }}
-        className={`inline-block ${italic ? "italic" : ""}`}
-      >
-        {children}
-      </motion.span>
-    </span>
-  );
-}
 
 /* ───────────────── Quiet editorial divider ──────────────── */
 
