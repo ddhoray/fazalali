@@ -77,7 +77,7 @@ export function Flipbook({ file = PDF_FILE_DEFAULT }: FlipbookProps) {
             initial={reduceMotion ? false : { opacity: 0, rotateY: page === 0 ? 0 : -8 }}
             animate={{ opacity: 1, rotateY: 0 }}
             transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
-            className="mx-auto grid justify-center overflow-hidden shadow-[0_24px_70px_-26px_rgba(255,255,255,0.35)] sm:grid-cols-2"
+            className="mx-auto grid grid-cols-2 justify-center overflow-hidden shadow-[0_24px_70px_-26px_rgba(255,255,255,0.35)]"
             style={{ width: size.w * 2, maxWidth: "100%", perspective: 1200 }}
           >
             {visiblePages.map((pageNumber, index) => (
