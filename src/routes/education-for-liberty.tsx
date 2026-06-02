@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
 import { Flipbook } from "@/components/site/Flipbook";
-import { bookPages } from "@/content/book";
+
 import { ArrowUpRight, Download, ShoppingCart } from "lucide-react";
 import heroBook from "@/assets/hero-book.jpg";
 
