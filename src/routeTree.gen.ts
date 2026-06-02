@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as PodcastRouteImport } from './routes/podcast'
 import { Route as PalimpsestRouteImport } from './routes/palimpsest'
 import { Route as OmerosAiRouteImport } from './routes/omeros-ai'
@@ -22,6 +23,11 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as WritingIndexRouteImport } from './routes/writing.index'
 import { Route as WritingSlugRouteImport } from './routes/writing.$slug'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PodcastRoute = PodcastRouteImport.update({
   id: '/podcast',
   path: '/podcast',
@@ -94,6 +100,7 @@ export interface FileRoutesByFullPath {
   '/omeros-ai': typeof OmerosAiRoute
   '/palimpsest': typeof PalimpsestRoute
   '/podcast': typeof PodcastRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/writing/$slug': typeof WritingSlugRoute
   '/writing/': typeof WritingIndexRoute
 }
@@ -108,6 +115,7 @@ export interface FileRoutesByTo {
   '/omeros-ai': typeof OmerosAiRoute
   '/palimpsest': typeof PalimpsestRoute
   '/podcast': typeof PodcastRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/writing/$slug': typeof WritingSlugRoute
   '/writing': typeof WritingIndexRoute
 }
@@ -123,6 +131,7 @@ export interface FileRoutesById {
   '/omeros-ai': typeof OmerosAiRoute
   '/palimpsest': typeof PalimpsestRoute
   '/podcast': typeof PodcastRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/writing/$slug': typeof WritingSlugRoute
   '/writing/': typeof WritingIndexRoute
 }
@@ -139,6 +148,7 @@ export interface FileRouteTypes {
     | '/omeros-ai'
     | '/palimpsest'
     | '/podcast'
+    | '/sitemap.xml'
     | '/writing/$slug'
     | '/writing/'
   fileRoutesByTo: FileRoutesByTo
@@ -153,6 +163,7 @@ export interface FileRouteTypes {
     | '/omeros-ai'
     | '/palimpsest'
     | '/podcast'
+    | '/sitemap.xml'
     | '/writing/$slug'
     | '/writing'
   id:
@@ -167,6 +178,7 @@ export interface FileRouteTypes {
     | '/omeros-ai'
     | '/palimpsest'
     | '/podcast'
+    | '/sitemap.xml'
     | '/writing/$slug'
     | '/writing/'
   fileRoutesById: FileRoutesById
@@ -182,12 +194,20 @@ export interface RootRouteChildren {
   OmerosAiRoute: typeof OmerosAiRoute
   PalimpsestRoute: typeof PalimpsestRoute
   PodcastRoute: typeof PodcastRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   WritingSlugRoute: typeof WritingSlugRoute
   WritingIndexRoute: typeof WritingIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/podcast': {
       id: '/podcast'
       path: '/podcast'
@@ -286,9 +306,20 @@ const rootRouteChildren: RootRouteChildren = {
   OmerosAiRoute: OmerosAiRoute,
   PalimpsestRoute: PalimpsestRoute,
   PodcastRoute: PodcastRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   WritingSlugRoute: WritingSlugRoute,
   WritingIndexRoute: WritingIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
