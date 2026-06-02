@@ -100,7 +100,7 @@ function ArticlePage() {
       <section className="mx-auto max-w-3xl px-5 py-24 sm:px-8 sm:py-32">
         <Reveal>
           <div className="prose-essay space-y-7 text-lg leading-[1.8] text-foreground/85">
-            {article.body.map((p, idx) => (
+            {article.body.map((p: string, idx: number) => (
               <p
                 key={idx}
                 className={
