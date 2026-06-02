@@ -21,6 +21,12 @@ const links = [
   { to: "/about", label: "About" },
 ] as const;
 
+// Animated swipe underline on hover (current color, left-origin).
+const navUnderline =
+  "relative after:pointer-events-none after:absolute after:left-0 after:-bottom-1 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100 focus-visible:after:scale-x-100";
+const dropdownUnderline =
+  "relative after:pointer-events-none after:absolute after:left-4 after:right-4 after:bottom-1.5 after:h-px after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100 focus-visible:after:scale-x-100";
+
 export function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
