@@ -47,7 +47,7 @@
   --muted: oklch(0.94 0.008 235);
   --muted-foreground: oklch(0.42 0.02 250);
 
-  --card: oklch(1 0 0);
+  --card: var(--background);
   --card-foreground: var(--foreground);
 
   --border: color-mix(in oklab, var(--foreground) 14%, transparent);
