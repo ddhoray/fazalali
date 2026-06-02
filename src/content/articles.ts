@@ -1,3 +1,14 @@
+import imgCarnival from "@/assets/article-carnival.jpg";
+import imgFailure from "@/assets/article-failure.jpg";
+import imgFabric from "@/assets/article-fabric.jpg";
+import imgShield from "@/assets/article-shield.jpg";
+import imgGravity from "@/assets/article-gravity.jpg";
+import imgDatacenter from "@/assets/article-datacenter.jpg";
+import imgShelf from "@/assets/article-shelf.jpg";
+import img100Model from "@/assets/article-100model.jpg";
+import imgCern from "@/assets/article-cern.jpg";
+import imgDivine from "@/assets/article-divine.jpg";
+
 export interface Article {
   slug: string;
   title: string;
@@ -5,6 +16,7 @@ export interface Article {
   body: string[];
   date: string;
   topic: string;
+  image: string;
 }
 
 export const articles: Article[] = [
