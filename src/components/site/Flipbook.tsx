@@ -148,7 +148,7 @@ export function Flipbook({ file = PDF_FILE_DEFAULT }: FlipbookProps) {
         )}
       </Document>
 
-      <div className="mt-8 flex items-center justify-center gap-6">
+      <div className="mt-4 flex items-center justify-center gap-6">
         <button
           type="button"
           aria-label="Previous page"
