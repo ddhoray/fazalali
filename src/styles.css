@@ -136,6 +136,14 @@
     font-weight: 500;
   }
 
+  .nav-link-minimal {
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+
   .hairline { border-color: color-mix(in oklab, var(--foreground) 18%, transparent); }
 
   .text-balance { text-wrap: balance; }
