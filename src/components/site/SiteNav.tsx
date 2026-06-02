@@ -2,7 +2,6 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { ThemeToggle } from "./ThemeToggle";
 import fiaLogo from "@/assets/brand-fia.png";
 
 const links = [
@@ -95,11 +94,10 @@ export function SiteNav() {
               {l.label}
             </Link>
           ))}
-          <ThemeToggle />
         </nav>
 
         <div className="flex items-center gap-3 md:hidden">
-          <ThemeToggle />
+
           <button
             aria-label="Menu"
             onClick={() => setOpen((v) => !v)}

@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef, useState, useEffect } from "react";
 import { BookOpen, Sparkles, PenLine, Compass, ArrowUpRight } from "lucide-react";
@@ -688,6 +688,7 @@ const writingImages = [featuredWriting, practiceEssays, featuredOmeros];
 
 function LatestWriting() {
   const latest = articles.slice(0, 3);
+  const navigate = useNavigate();
   return (
     <section className="mx-auto max-w-[1700px] scroll-mt-24 bg-background px-5 py-14 sm:px-8 md:py-16">
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4 border-b hairline pb-5">
@@ -706,7 +707,14 @@ function LatestWriting() {
         {latest.map((a, i) => (
           <div key={a.slug} className="overflow-visible">
             <SlideIn delay={i * 0.06} from="bottom" className="overflow-visible">
-              <HoverImage src={writingImages[i % writingImages.length]} alt={a.title}>
+              <HoverImage
+                src={writingImages[i % writingImages.length]}
+                alt={a.title}
+                holdMs={6000}
+                onHoldComplete={() =>
+                  navigate({ to: "/writing/$slug", params: { slug: a.slug } })
+                }
+              >
                 <Link
                   to="/writing/$slug"
                   params={{ slug: a.slug }}
@@ -734,3 +742,4 @@ function LatestWriting() {
     </section>
   );
 }
+
