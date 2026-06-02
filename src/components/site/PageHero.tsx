@@ -108,12 +108,20 @@ export function PageHero({
             initial={{ opacity: 0, scale: 1.03 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.0, delay: 0.1 }}
-            className="relative aspect-[4/5] w-full overflow-hidden border border-foreground/10 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.25)]"
+            className={cn(
+              "relative aspect-[4/5] w-full overflow-hidden",
+              imageFit === "contain"
+                ? "flex items-center justify-center bg-[oklch(0.92_0.01_240)] p-6 sm:p-8"
+                : "border border-foreground/10 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.25)]",
+            )}
           >
             <img
               src={image}
               alt={imageAlt}
-              className="size-full object-cover"
+              className={cn(
+                "size-full",
+                imageFit === "contain" ? "object-contain" : "object-cover",
+              )}
               loading="eager"
               width={1152}
               height={1440}
