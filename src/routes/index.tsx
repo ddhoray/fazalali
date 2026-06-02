@@ -69,24 +69,23 @@ function Hero() {
   return (
     <section
       ref={ref}
-      className="relative h-[100svh] min-h-[600px] w-full overflow-hidden bg-background text-foreground"
+      className="relative h-[100svh] min-h-[600px] w-full overflow-hidden bg-black text-white"
     >
       <motion.div style={{ y: imageY }} className="absolute inset-0 -top-[10%] h-[120%]">
         <img
           src={heroImage}
-          alt="An open book and a fountain pen at a window overlooking the Caribbean sea"
+          alt="A lamplit writing desk at twilight with an open book and fountain pen"
           className="size-full object-cover"
           width={1920}
           height={1280}
         />
-        {/* Soft cool scrim — let the colour through, keep text legible */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/10 to-background/80" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/50 via-transparent to-transparent" />
+        {/* subtle vignette only — keep the image's natural mood */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/25" />
       </motion.div>
 
       <motion.div
         style={{ opacity }}
-        className="relative z-10 flex h-full flex-col justify-between px-5 pt-20 pb-16 sm:px-10 sm:pt-28 sm:pb-24"
+        className="text-on-image relative z-10 flex h-full flex-col justify-between px-5 pt-20 pb-16 sm:px-10 sm:pt-28 sm:pb-24"
       >
         <div>
           <motion.p
@@ -126,7 +125,7 @@ function Hero() {
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 0.7, y: 0 }}
         transition={{ delay: 1.6, duration: 0.8 }}
-        className="absolute bottom-5 left-1/2 z-10 -translate-x-1/2 text-[10px] uppercase tracking-[0.32em] text-foreground/70"
+        className="absolute bottom-5 left-1/2 z-10 -translate-x-1/2 text-[10px] uppercase tracking-[0.32em] text-white/70"
       >
         ↓ Scroll
       </motion.div>
