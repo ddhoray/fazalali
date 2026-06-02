@@ -24,11 +24,15 @@ export function SiteFooter() {
           <div>
             <p className="eyebrow text-muted-foreground">Index</p>
             <ul className="mt-4 space-y-2 text-sm">
-              <li><Link to="/writing" className="hover:underline">Writing</Link></li>
-              <li><Link to="/education-for-liberty" className="hover:underline">The Book</Link></li>
+              <li><Link to="/writing" className="hover:underline">Articles</Link></li>
+              <li><Link to="/education-for-liberty" className="hover:underline">Education for Liberty</Link></li>
+              <li><Link to="/podcast" className="hover:underline">Podcast</Link></li>
+              <li><Link to="/ecology" className="hover:underline">Ecology</Link></li>
+              <li><Link to="/inequality" className="hover:underline">Inequality</Link></li>
+              <li><Link to="/palimpsest" className="hover:underline">Palimpsest</Link></li>
               <li><Link to="/omeros-ai" className="hover:underline">Omeros AI</Link></li>
+              <li><Link to="/gallery" className="hover:underline">Gallery</Link></li>
               <li><Link to="/about" className="hover:underline">About</Link></li>
-              <li><Link to="/contact" className="hover:underline">Contact</Link></li>
             </ul>
           </div>
           <div>

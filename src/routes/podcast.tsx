@@ -4,6 +4,7 @@ import { PageHero } from "@/components/site/PageHero";
 import { AudioPlayer } from "@/components/site/AudioPlayer";
 import { episodes } from "@/content/podcast";
 import { ArrowUpRight } from "lucide-react";
+import heroPodcast from "@/assets/hero-podcast.jpg";
 
 export const Route = createFileRoute("/podcast")({
   head: () => ({
@@ -47,6 +48,8 @@ function PodcastPage() {
             </Link>
           </>
         }
+        image={heroPodcast}
+        imageAlt="Studio microphone in low-key light"
       />
 
       <section className="mx-auto max-w-[1300px] px-5 py-24 sm:px-8 sm:py-32">
