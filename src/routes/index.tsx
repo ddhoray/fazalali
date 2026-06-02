@@ -83,7 +83,7 @@ function Hero() {
       {/* Scrolling content frame — sits over the pinned image */}
       <motion.div
         style={{ opacity }}
-        className="text-on-image pointer-events-none absolute inset-x-0 top-0 z-10 flex h-screen flex-col justify-between px-5 pt-20 pb-16 sm:px-10 sm:pt-28 sm:pb-24"
+        className="text-on-image pointer-events-none absolute inset-x-0 top-0 z-10 flex h-screen flex-col justify-between px-5 pt-28 pb-16 sm:px-10 sm:pt-32 sm:pb-24"
       >
         <div className="pointer-events-auto">
           <motion.p
@@ -97,19 +97,20 @@ function Hero() {
         </div>
 
         <div className="pointer-events-auto">
-          <h1 className="font-display text-[15vw] leading-[0.94] tracking-[-0.035em] sm:text-[10vw] md:text-[8vw]">
-            <Word delay={0.1}>Reading</Word>{" "}
-            <Word delay={0.22}>the</Word>{" "}
-            <Word delay={0.34} italic>machines</Word>
-            <br />
-            <Word delay={0.5}>slowly,</Word>{" "}
-            <Word delay={0.66} italic>by hand.</Word>
-          </h1>
+          <motion.h1
+            initial={{ opacity: 0, y: 24, filter: "blur(14px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 1.2, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="font-display text-[14vw] leading-[1.02] tracking-[-0.035em] text-balance sm:text-[10vw] md:text-[8vw] md:leading-[0.96]"
+          >
+            Reading the <span className="italic">machines</span> slowly,{" "}
+            <span className="italic">by hand.</span>
+          </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.0, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 1.0, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
             className="mt-5 max-w-md text-[13px] leading-relaxed opacity-85 sm:mt-6 sm:text-sm md:text-base"
           >
             Dr. Fazal Ibrahim Ali — Cambridge-trained, Trinidad-born. Writing on
