@@ -204,11 +204,9 @@ function FeaturedSticky() {
     offset: ["start start", "end end"],
   });
 
-  // Map continuous scroll progress to a discrete active index across the items.
   const [active, setActive] = useState(0);
   useEffect(() => {
     return scrollYProgress.on("change", (p) => {
-      // 3 items → buckets of 1/3
       const idx = Math.min(
         featured.length - 1,
         Math.max(0, Math.floor(p * featured.length * 0.999)),
@@ -217,20 +215,21 @@ function FeaturedSticky() {
     });
   }, [scrollYProgress]);
 
+  // Progress bar scaleY follows scroll (0 → 1)
+  const progressScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
   return (
     <section
       ref={ref}
       className="relative"
-      // Tall track: ~one screen per item. Section moves up only after the
-      // last item has scrolled into view.
       style={{ height: `${featured.length * 100}vh` }}
     >
-      <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-        <div className="mx-auto w-full max-w-[1700px] px-5 sm:px-8">
-          <div className="mb-6 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-4">
+      <div className="sticky top-0 flex h-screen flex-col overflow-hidden bg-background">
+        <div className="mx-auto w-full max-w-[1700px] flex-1 px-5 pt-20 pb-6 sm:px-8 sm:pt-24 sm:pb-8">
+          <div className="mb-5 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-3">
             <div>
               <p className="eyebrow text-muted-foreground">Featured Work</p>
-              <h2 className="mt-2 font-display text-3xl leading-[1] sm:text-4xl md:text-5xl">
+              <h2 className="mt-2 font-display text-2xl leading-[1] sm:text-3xl md:text-4xl">
                 Three things, <em className="italic">in order.</em>
               </h2>
             </div>
@@ -239,17 +238,17 @@ function FeaturedSticky() {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-12 lg:gap-14">
-            {/* Pinned image — fixed at its place, content changes as you scroll */}
-            <div className="lg:col-span-7">
-              <div className="relative aspect-[16/10] w-full overflow-hidden bg-foreground/5 sm:aspect-[4/3]">
+          <div className="grid h-[calc(100%-110px)] grid-cols-1 items-stretch gap-6 lg:grid-cols-12 lg:gap-10">
+            {/* Big pinned image (col-span-8 → much larger) */}
+            <div className="lg:col-span-8">
+              <div className="relative h-full min-h-[300px] w-full overflow-hidden bg-foreground/5">
                 {featured.map((item, i) => (
                   <motion.div
                     key={item.title}
                     initial={false}
                     animate={{
                       opacity: i === active ? 1 : 0,
-                      scale: i === active ? 1 : 1.06,
+                      scale: i === active ? 1 : 1.08,
                     }}
                     transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
                     className="absolute inset-0"
@@ -263,54 +262,94 @@ function FeaturedSticky() {
                   </motion.div>
                 ))}
                 <Grain />
-                <div className="absolute inset-x-0 bottom-0 z-10 flex items-center justify-between gap-3 bg-gradient-to-t from-black/70 to-transparent p-4 text-on-image md:p-7">
+                <div className="absolute inset-x-0 bottom-0 z-10 flex items-center justify-between gap-3 bg-gradient-to-t from-black/70 to-transparent p-4 text-on-image md:p-6">
                   <span className="nav-link text-[10px]">{featured[active].eyebrow}</span>
-                  <span className="nav-link text-[10px] truncate">{featured[active].title}</span>
+                  <span className="nav-link text-[10px] truncate">{featured[active].year}</span>
                 </div>
               </div>
             </div>
 
-            {/* Side text — cross-fades per active item */}
-            <div className="relative min-h-[260px] lg:col-span-5">
-              {featured.map((item, i) => (
-                <motion.div
-                  key={item.title}
-                  initial={false}
-                  animate={{
-                    opacity: i === active ? 1 : 0,
-                    y: i === active ? 0 : 24,
-                    filter: i === active ? "blur(0px)" : "blur(8px)",
-                  }}
-                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                  className={`absolute inset-0 ${i === active ? "pointer-events-auto" : "pointer-events-none"}`}
-                >
-                  <div className="mb-3 flex flex-wrap items-center gap-3 text-muted-foreground">
-                    <item.icon className="size-4 shrink-0" />
-                    <span className="nav-link">{item.eyebrow}</span>
-                    <span className="ml-auto nav-link">{item.year}</span>
-                  </div>
-                  <h3 className="font-display text-4xl leading-[0.98] tracking-[-0.02em] sm:text-5xl md:text-6xl">
-                    {item.title}<span className="italic">.</span>
-                  </h3>
-                  <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-muted-foreground md:text-base">
-                    {item.note}
-                  </p>
-                  <Link
-                    to={item.to as never}
-                    className="group mt-5 inline-flex items-center gap-2 text-sm"
-                  >
-                    Read more
-                    <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                  </Link>
-                </motion.div>
-              ))}
+            {/* Right column — progress line + stacked items (active large, others small) */}
+            <div className="relative lg:col-span-4">
+              {/* Vertical progress track */}
+              <div className="absolute left-0 top-0 hidden h-full w-px bg-foreground/15 lg:block">
+                <motion.span
+                  style={{ scaleY: progressScale, transformOrigin: "top" }}
+                  className="absolute inset-0 block w-px bg-foreground"
+                />
+              </div>
+
+              <ul className="flex h-full flex-col justify-center gap-4 lg:pl-8">
+                {featured.map((item, i) => {
+                  const isActive = i === active;
+                  return (
+                    <motion.li
+                      key={item.title}
+                      initial={false}
+                      animate={{
+                        opacity: isActive ? 1 : 0.35,
+                      }}
+                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                      className="block"
+                    >
+                      <div className="mb-1 flex items-center gap-3 text-muted-foreground">
+                        <item.icon className="size-4 shrink-0" />
+                        <span className="nav-link text-[10px]">{item.eyebrow}</span>
+                      </div>
+
+                      <motion.h3
+                        animate={{
+                          fontSize: isActive
+                            ? "clamp(2.2rem, 4.2vw, 3.6rem)"
+                            : "clamp(1.1rem, 1.6vw, 1.5rem)",
+                        }}
+                        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                        className="font-display leading-[0.98] tracking-[-0.02em]"
+                      >
+                        {item.title}<span className="italic">.</span>
+                      </motion.h3>
+
+                      <motion.div
+                        initial={false}
+                        animate={{
+                          height: isActive ? "auto" : 0,
+                          opacity: isActive ? 1 : 0,
+                          marginTop: isActive ? 12 : 0,
+                        }}
+                        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                        className="overflow-hidden"
+                      >
+                        <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
+                          {item.note}
+                        </p>
+                        <Link
+                          to={item.to as never}
+                          className="group mt-3 inline-flex items-center gap-2 text-sm"
+                        >
+                          Read more
+                          <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                        </Link>
+                      </motion.div>
+                    </motion.li>
+                  );
+                })}
+              </ul>
             </div>
           </div>
+        </div>
+
+        {/* Mobile-only progress bar at the bottom */}
+        <div className="block h-px w-full bg-foreground/15 lg:hidden">
+          <motion.span
+            style={{ scaleX: progressScale, transformOrigin: "left" }}
+            className="block h-px w-full bg-foreground"
+          />
         </div>
       </div>
     </section>
   );
 }
+
 
 
 
