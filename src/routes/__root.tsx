@@ -97,6 +97,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Fazal Ali — Writer, Scholar, Omeros AI" },
+      { name: "description", content: "Omeros AI: The Writer's Lens is a digital portfolio showcasing the work and ideas of writer Fazal Ali." },
+      { property: "og:description", content: "Omeros AI: The Writer's Lens is a digital portfolio showcasing the work and ideas of writer Fazal Ali." },
+      { name: "twitter:description", content: "Omeros AI: The Writer's Lens is a digital portfolio showcasing the work and ideas of writer Fazal Ali." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/8fca2751-a469-46c3-86db-6ecdb36c2f15/id-preview-98cec9f9--f2c14ca3-2688-40aa-b5b6-bad71b7708c7.lovable.app-1780423648773.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/8fca2751-a469-46c3-86db-6ecdb36c2f15/id-preview-98cec9f9--f2c14ca3-2688-40aa-b5b6-bad71b7708c7.lovable.app-1780423648773.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
