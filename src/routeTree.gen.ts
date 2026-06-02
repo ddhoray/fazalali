@@ -10,6 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WritingRouteImport } from './routes/writing'
+import { Route as PodcastRouteImport } from './routes/podcast'
+import { Route as PalimpsestRouteImport } from './routes/palimpsest'
 import { Route as OmerosAiRouteImport } from './routes/omeros-ai'
 import { Route as EducationForLibertyRouteImport } from './routes/education-for-liberty'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -20,6 +22,16 @@ import { Route as WritingSlugRouteImport } from './routes/writing.$slug'
 const WritingRoute = WritingRouteImport.update({
   id: '/writing',
   path: '/writing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PodcastRoute = PodcastRouteImport.update({
+  id: '/podcast',
+  path: '/podcast',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PalimpsestRoute = PalimpsestRouteImport.update({
+  id: '/palimpsest',
+  path: '/palimpsest',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OmerosAiRoute = OmerosAiRouteImport.update({
@@ -59,6 +71,8 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/education-for-liberty': typeof EducationForLibertyRoute
   '/omeros-ai': typeof OmerosAiRoute
+  '/palimpsest': typeof PalimpsestRoute
+  '/podcast': typeof PodcastRoute
   '/writing': typeof WritingRouteWithChildren
   '/writing/$slug': typeof WritingSlugRoute
 }
@@ -68,6 +82,8 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/education-for-liberty': typeof EducationForLibertyRoute
   '/omeros-ai': typeof OmerosAiRoute
+  '/palimpsest': typeof PalimpsestRoute
+  '/podcast': typeof PodcastRoute
   '/writing': typeof WritingRouteWithChildren
   '/writing/$slug': typeof WritingSlugRoute
 }
@@ -78,6 +94,8 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/education-for-liberty': typeof EducationForLibertyRoute
   '/omeros-ai': typeof OmerosAiRoute
+  '/palimpsest': typeof PalimpsestRoute
+  '/podcast': typeof PodcastRoute
   '/writing': typeof WritingRouteWithChildren
   '/writing/$slug': typeof WritingSlugRoute
 }
@@ -89,6 +107,8 @@ export interface FileRouteTypes {
     | '/contact'
     | '/education-for-liberty'
     | '/omeros-ai'
+    | '/palimpsest'
+    | '/podcast'
     | '/writing'
     | '/writing/$slug'
   fileRoutesByTo: FileRoutesByTo
@@ -98,6 +118,8 @@ export interface FileRouteTypes {
     | '/contact'
     | '/education-for-liberty'
     | '/omeros-ai'
+    | '/palimpsest'
+    | '/podcast'
     | '/writing'
     | '/writing/$slug'
   id:
@@ -107,6 +129,8 @@ export interface FileRouteTypes {
     | '/contact'
     | '/education-for-liberty'
     | '/omeros-ai'
+    | '/palimpsest'
+    | '/podcast'
     | '/writing'
     | '/writing/$slug'
   fileRoutesById: FileRoutesById
@@ -117,6 +141,8 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   EducationForLibertyRoute: typeof EducationForLibertyRoute
   OmerosAiRoute: typeof OmerosAiRoute
+  PalimpsestRoute: typeof PalimpsestRoute
+  PodcastRoute: typeof PodcastRoute
   WritingRoute: typeof WritingRouteWithChildren
 }
 
@@ -127,6 +153,20 @@ declare module '@tanstack/react-router' {
       path: '/writing'
       fullPath: '/writing'
       preLoaderRoute: typeof WritingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/podcast': {
+      id: '/podcast'
+      path: '/podcast'
+      fullPath: '/podcast'
+      preLoaderRoute: typeof PodcastRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/palimpsest': {
+      id: '/palimpsest'
+      path: '/palimpsest'
+      fullPath: '/palimpsest'
+      preLoaderRoute: typeof PalimpsestRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/omeros-ai': {
@@ -191,18 +231,10 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   EducationForLibertyRoute: EducationForLibertyRoute,
   OmerosAiRoute: OmerosAiRoute,
+  PalimpsestRoute: PalimpsestRoute,
+  PodcastRoute: PodcastRoute,
   WritingRoute: WritingRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

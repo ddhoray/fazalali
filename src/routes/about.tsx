@@ -1,6 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
-import { GlassPanel } from "@/components/site/GlassPanel";
+import { PageHero } from "@/components/site/PageHero";
+import { ArrowUpRight } from "lucide-react";
+import { openContactDrawer } from "@/components/site/ContactDrawer";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -9,7 +11,7 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "Dr. Fazal Ibrahim Ali: Cambridge Commonwealth Scholar, former Provost of UTT, chairman, and writer on critical theory in AI from the West Indies.",
+          "Dr. Fazal Ibrahim Ali — Cambridge Commonwealth Scholar, former Provost of UTT, chairman of the Teaching Service Commission, and writer on critical theory in AI from the West Indies.",
       },
       { property: "og:title", content: "About — Fazal Ibrahim Ali" },
       {
@@ -33,68 +35,132 @@ const milestones = [
 
 function AboutPage() {
   return (
-    <article className="mx-auto max-w-7xl px-5 pt-32 pb-24 sm:px-8 sm:pt-40">
-      <Reveal>
-        <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
-          About
-        </p>
-        <h1 className="mt-4 font-display text-6xl leading-[0.95] text-balance md:text-8xl">
-          A writer, schooled in <em className="italic">freedom.</em>
-        </h1>
-      </Reveal>
+    <div>
+      <PageHero
+        eyebrow="About"
+        title={
+          <>
+            A writer, schooled in <em className="italic">freedom.</em>
+          </>
+        }
+        standfirst={
+          <>
+            Dr. Fazal Ibrahim Ali — Cambridge Commonwealth Scholar, former
+            Provost of the University of Trinidad and Tobago, and the author of
+            <em> Education for Liberty.</em>
+          </>
+        }
+        meta={
+          <>
+            <span>Trinidad &amp; Tobago</span>
+            <span className="size-1 bg-white/40" />
+            <span>Cambridge · UWI · UTT</span>
+            <span className="size-1 bg-white/40" />
+            <span>Omeros AI</span>
+          </>
+        }
+      />
 
-      <div className="mt-16 grid gap-10 md:grid-cols-[1fr_1.2fr] md:gap-16">
+      {/* Portrait + bio */}
+      <section className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 sm:py-32">
+        <div className="grid gap-12 md:grid-cols-[1fr_1.3fr] md:gap-20">
+          <Reveal>
+            <div className="relative">
+              <div className="absolute -inset-3 border hairline" />
+              <img
+                src="https://fazalali.com/wp-content/uploads/2025/10/Fazal-Ali-Profile-2025.jpeg"
+                alt="Dr. Fazal Ibrahim Ali"
+                className="relative aspect-[4/5] w-full object-cover"
+                loading="lazy"
+              />
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <div className="space-y-7">
+              <p className="font-display text-4xl leading-tight md:text-5xl">
+                <em>Fazal Ibrahim Ali</em> is best known for his persuasive work,
+                Education for Liberty, which builds on Amartya Sen's Development
+                as Freedom and John Rawls' A Theory of Justice.
+              </p>
+              <p className="text-lg leading-relaxed text-foreground/80">
+                His writing now sits under the identity{" "}
+                <span className="font-display italic">Omeros AI</span> — a body
+                of critical theory on artificial intelligence, written from the
+                West Indies, for a reader anywhere who suspects the conversation
+                has been too narrow for too long.
+              </p>
+              <p className="text-base leading-relaxed text-muted-foreground">
+                At Cambridge he planned and implemented the launch of The
+                Institute of Critical Thinking at UWI — a regional think tank
+                modelled on Hebrew University's innovation engine. He has led
+                the Office of Graduate Studies and Research, the DBA programme
+                at Arthur Lok Jack, and served as Provost of the University of
+                Trinidad and Tobago.
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Pull-quote band */}
+      <section data-nav="dark" className="section-invert">
+        <div className="mx-auto max-w-[1300px] px-5 py-24 sm:px-8 sm:py-32">
+          <Reveal>
+            <p className="font-display text-3xl leading-[1.15] text-balance md:text-6xl">
+              <em className="text-white/40">"</em>The site is about me — my
+              books, my ideas, my writing, my art. My contribution to the West
+              Indies.<em className="text-white/40">"</em>
+            </p>
+            <p className="mt-10 eyebrow text-white/55">Fazal Ali · 2026</p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Working life timeline */}
+      <section className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 sm:py-32">
         <Reveal>
-          <GlassPanel className="overflow-hidden p-3">
-            <img
-              src="https://fazalali.com/wp-content/uploads/2025/10/Fazal-Ali-Profile-2025.jpeg"
-              alt="Dr. Fazal Ibrahim Ali"
-              className="aspect-[4/5] w-full rounded-none object-cover"
-              loading="lazy"
-            />
-          </GlassPanel>
+          <p className="eyebrow text-muted-foreground">A working life</p>
+          <h2 className="mt-5 font-display text-4xl md:text-7xl">
+            Five decades, one <em className="italic">thesis.</em>
+          </h2>
         </Reveal>
-
-        <Reveal delay={0.1}>
-          <div className="space-y-6 text-lg leading-relaxed text-foreground/85 md:text-xl">
-            <p>
-              <strong className="font-display text-2xl">Fazal Ibrahim Ali</strong> is best known
-              for his persuasive work, <em>Education for Liberty</em>, which builds on
-              Amartya Sen's <em>Development as Freedom</em> and John Rawls'
-              {" "}<em>A Theory of Justice</em>.
-            </p>
-            <p className="text-base text-muted-foreground">
-              His writing now sits under the identity <span className="font-display italic">Omeros AI</span> —
-              a body of critical theory on artificial intelligence, written from the West Indies,
-              for a reader anywhere who suspects the conversation has been
-              too narrow for too long.
-            </p>
-            <p className="text-base text-muted-foreground">
-              At Cambridge he planned and implemented the launch of The Institute of Critical
-              Thinking at UWI — a regional think tank modelled on Hebrew University's
-              innovation engine. He has led the Office of Graduate Studies and Research,
-              the DBA programme at Arthur Lok Jack, and served as Provost of the
-              University of Trinidad and Tobago.
-            </p>
-          </div>
-        </Reveal>
-      </div>
-
-      <section className="mt-32">
-        <Reveal>
-          <h2 className="font-display text-4xl md:text-6xl">A working life.</h2>
-        </Reveal>
-        <div className="mt-12 grid gap-4 md:grid-cols-2">
+        <div className="mt-16 border-t hairline">
           {milestones.map((m, i) => (
             <Reveal key={m.year} delay={i * 0.04}>
-              <GlassPanel className="p-7">
-                <p className="font-display text-3xl">{m.year}</p>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{m.text}</p>
-              </GlassPanel>
+              <div className="grid gap-6 border-b hairline py-10 md:grid-cols-[160px_1fr] md:gap-16 md:py-12">
+                <p className="font-display text-4xl md:text-5xl">{m.year}</p>
+                <p className="max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
+                  {m.text}
+                </p>
+              </div>
             </Reveal>
           ))}
         </div>
+
+        <Reveal>
+          <div className="mt-20 flex flex-wrap items-end justify-between gap-6">
+            <p className="font-display text-3xl md:text-5xl">
+              Write to him.
+            </p>
+            <div className="flex items-center gap-4">
+              <button
+                type="button"
+                onClick={() => openContactDrawer()}
+                className="inline-flex items-center gap-2 bg-foreground px-6 py-3 text-sm uppercase tracking-[0.2em] text-background"
+              >
+                Write Me <ArrowUpRight className="size-4" />
+              </button>
+              <Link
+                to="/writing"
+                className="inline-flex items-center gap-2 border-b border-foreground pb-1 text-sm uppercase tracking-[0.2em]"
+              >
+                Read essays
+              </Link>
+            </div>
+          </div>
+        </Reveal>
       </section>
-    </article>
+    </div>
   );
 }

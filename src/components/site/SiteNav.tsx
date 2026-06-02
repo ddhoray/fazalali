@@ -1,22 +1,29 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { openContactDrawer } from "@/components/site/ContactDrawer";
 import fiaLogo from "@/assets/brand-fia.png";
 
+const eflChildren = [
+  { to: "/education-for-liberty", label: "The Book" },
+  { to: "/podcast", label: "Podcast" },
+  { to: "/palimpsest", label: "Palimpsest" },
+] as const;
+
 const links = [
   { to: "/writing", label: "Articles" },
-  { to: "/education-for-liberty", label: "Education for Liberty" },
+  { to: "/education-for-liberty", label: "Education for Liberty", children: eflChildren },
   { to: "/omeros-ai", label: "Omeros" },
   { to: "/about", label: "About" },
 ] as const;
-
 
 export function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [overDark, setOverDark] = useState(false);
+  const [eflOpen, setEflOpen] = useState(false);
+  const [eflOpenMobile, setEflOpenMobile] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const isHome = pathname === "/";
 
@@ -27,7 +34,6 @@ export function SiteNav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Watch for sections tagged data-nav="dark" — flip nav to light text.
   useEffect(() => {
     const sections = Array.from(
       document.querySelectorAll<HTMLElement>('[data-nav="dark"]'),
@@ -38,9 +44,7 @@ export function SiteNav() {
     }
     const io = new IntersectionObserver(
       (entries) => {
-        // If any dark section intersects the top band of the viewport, treat as dark.
         const anyDark = entries.some((e) => e.isIntersecting);
-        // Fallback recompute against all (because IO only reports changed entries).
         const dark = sections.some((s) => {
           const r = s.getBoundingClientRect();
           return r.top <= 80 && r.bottom >= 80;
@@ -53,8 +57,6 @@ export function SiteNav() {
     return () => io.disconnect();
   }, [pathname]);
 
-  // Over the hero (home + top of page) → transparent, white text.
-  // Otherwise → glass-white blur, or glass-dark when over a dark section.
   const overHero = isHome && !scrolled && !open;
   const lightOnDark = overHero || overDark;
 
@@ -83,18 +85,55 @@ export function SiteNav() {
           />
         </Link>
 
-
         <nav className="hidden items-center gap-8 md:flex">
-          {links.map((l) => (
-            <Link
-              key={l.to}
-              to={l.to}
-              className="nav-link opacity-70 transition-opacity hover:opacity-100"
-              activeProps={{ className: "opacity-100" }}
-            >
-              {l.label}
-            </Link>
-          ))}
+          {links.map((l) =>
+            "children" in l && l.children ? (
+              <div
+                key={l.to}
+                className="relative"
+                onMouseEnter={() => setEflOpen(true)}
+                onMouseLeave={() => setEflOpen(false)}
+              >
+                <Link
+                  to={l.to}
+                  className="nav-link inline-flex items-center gap-1 opacity-70 transition-opacity hover:opacity-100"
+                  activeProps={{ className: "opacity-100" }}
+                >
+                  {l.label}
+                  <ChevronDown className="size-3 opacity-60" />
+                </Link>
+                {eflOpen && (
+                  <div className="absolute left-1/2 top-full -translate-x-1/2 pt-3">
+                    <div
+                      className={cn(
+                        "min-w-[200px] border hairline shadow-lg",
+                        lightOnDark ? "bg-black text-white" : "bg-background text-foreground",
+                      )}
+                    >
+                      {l.children.map((c) => (
+                        <Link
+                          key={c.to}
+                          to={c.to}
+                          className="block px-5 py-3 text-xs uppercase tracking-[0.2em] opacity-75 transition-opacity hover:opacity-100"
+                        >
+                          {c.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link
+                key={l.to}
+                to={l.to}
+                className="nav-link opacity-70 transition-opacity hover:opacity-100"
+                activeProps={{ className: "opacity-100" }}
+              >
+                {l.label}
+              </Link>
+            ),
+          )}
           <button
             type="button"
             onClick={() => openContactDrawer()}
@@ -104,9 +143,7 @@ export function SiteNav() {
           </button>
         </nav>
 
-
         <div className="flex items-center gap-3 md:hidden">
-
           <button
             aria-label="Menu"
             onClick={() => setOpen((v) => !v)}
@@ -120,16 +157,48 @@ export function SiteNav() {
       {open && (
         <div className="border-t hairline bg-background text-foreground md:hidden">
           <nav className="flex flex-col px-5 py-4">
-            {links.map((l) => (
-              <Link
-                key={l.to}
-                to={l.to}
-                onClick={() => setOpen(false)}
-                className="nav-link py-4 text-foreground/80"
-              >
-                {l.label}
-              </Link>
-            ))}
+            {links.map((l) =>
+              "children" in l && l.children ? (
+                <div key={l.to}>
+                  <button
+                    type="button"
+                    onClick={() => setEflOpenMobile((v) => !v)}
+                    className="nav-link flex w-full items-center justify-between py-4 text-left text-foreground/80"
+                  >
+                    {l.label}
+                    <ChevronDown
+                      className={cn(
+                        "size-4 transition-transform",
+                        eflOpenMobile && "rotate-180",
+                      )}
+                    />
+                  </button>
+                  {eflOpenMobile && (
+                    <div className="flex flex-col border-l hairline pl-4">
+                      {l.children.map((c) => (
+                        <Link
+                          key={c.to}
+                          to={c.to}
+                          onClick={() => setOpen(false)}
+                          className="nav-link py-3 text-foreground/70"
+                        >
+                          {c.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <Link
+                  key={l.to}
+                  to={l.to}
+                  onClick={() => setOpen(false)}
+                  className="nav-link py-4 text-foreground/80"
+                >
+                  {l.label}
+                </Link>
+              ),
+            )}
             <button
               type="button"
               onClick={() => {
@@ -141,7 +210,6 @@ export function SiteNav() {
               Write Me
             </button>
           </nav>
-
         </div>
       )}
     </header>
