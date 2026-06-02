@@ -11,7 +11,7 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "Dr. Fazal Ibrahim Ali — Cambridge Commonwealth Scholar, former Provost of UTT, chairman of the Teaching Service Commission, and writer on critical theory in AI from the West Indies.",
+          "Dr. Fazal Ibrahim Ali — Cambridge Commonwealth Scholar, former Provost of UTT, and writer on critical theory in AI from the West Indies.",
       },
       { property: "og:title", content: "About — Fazal Ibrahim Ali" },
       {
