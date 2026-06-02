@@ -1,28 +1,35 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
+import { Document, Page, pdfjs } from "react-pdf";
+import "react-pdf/dist/Page/AnnotationLayer.css";
+import "react-pdf/dist/Page/TextLayer.css";
+import pdfWorker from "pdfjs-dist/build/pdf.worker.min.mjs?url";
+import pdfAsset from "@/assets/EducationforLiberty.pdf.asset.json";
 
-interface BookPage {
-  eyebrow?: string;
-  title?: string;
-  body?: string;
-  pageNumber?: string | number;
-}
+pdfjs.GlobalWorkerOptions.workerSrc = pdfWorker;
 
 interface FlipbookProps {
-  pages: BookPage[];
-  /** Author / book name shown on the cover. */
-  cover: { title: ReactNode; subtitle?: string; author?: string };
+  /** Optional file override. Defaults to the bundled Education for Liberty PDF. */
+  file?: string;
 }
 
+const PDF_FILE_DEFAULT = pdfAsset.url;
+
+/** Render distance: how many pages around the current spread should fully render. */
+const RENDER_RADIUS = 4;
+
 /**
- * Client-only flippable book. Uses react-pageflip which touches `window`,
- * so we dynamically import after mount.
+ * Client-only flippable book that renders an actual PDF page-by-page.
+ * Uses react-pageflip for the flip animation and react-pdf for rendering.
  */
-export function Flipbook({ pages, cover }: FlipbookProps) {
+export function Flipbook({ file = PDF_FILE_DEFAULT }: FlipbookProps) {
   const [mounted, setMounted] = useState(false);
   const [HTMLFlipBook, setHTMLFlipBook] = useState<React.ComponentType<Record<string, unknown>> | null>(null);
+  const [numPages, setNumPages] = useState<number>(0);
   const [page, setPage] = useState(0);
+  const [size, setSize] = useState({ w: 500, h: 680 });
   const bookRef = useRef<{ pageFlip: () => { flipPrev: () => void; flipNext: () => void; getPageCount: () => number } } | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -31,105 +38,108 @@ export function Flipbook({ pages, cover }: FlipbookProps) {
     });
   }, []);
 
-  // total pages = cover + content + back cover
-  const total = pages.length + 2;
+  // Responsive sizing — keep a portrait page ratio (~1:1.36 like A-format paperback).
+  useEffect(() => {
+    const recompute = () => {
+      const el = containerRef.current;
+      if (!el) return;
+      const cw = el.clientWidth;
+      // Two pages side by side on desktop; single page on small screens.
+      const isSingle = cw < 720;
+      const pageW = isSingle ? Math.min(cw - 16, 520) : Math.min((cw - 24) / 2, 560);
+      const pageH = Math.round(pageW * 1.36);
+      setSize({ w: Math.round(pageW), h: pageH });
+    };
+    recompute();
+    window.addEventListener("resize", recompute);
+    return () => window.removeEventListener("resize", recompute);
+  }, [mounted, numPages]);
 
-  if (!mounted || !HTMLFlipBook) {
-    return (
-      <div className="mx-auto flex aspect-[3/2] w-full max-w-[1000px] items-center justify-center border border-white/15 bg-white/5 text-sm uppercase tracking-[0.2em] text-white/60">
-        Loading the book…
-      </div>
-    );
-  }
+  const fileOption = useMemo(() => ({ url: file }), [file]);
 
   return (
-    <div className="relative mx-auto w-full max-w-[1100px]">
-      <div className="flex items-center justify-center">
-        <HTMLFlipBook
-          width={500}
-          height={680}
-          minWidth={280}
-          maxWidth={600}
-          minHeight={400}
-          maxHeight={820}
-          size="stretch"
-          maxShadowOpacity={0.4}
-          showCover
-          mobileScrollSupport
-          drawShadow
-          flippingTime={700}
-          className="!mx-auto"
-          style={{}}
-          startPage={0}
-          usePortrait
-          startZIndex={0}
-          autoSize
-          clickEventForward
-          useMouseEvents
-          swipeDistance={30}
-          showPageCorners
-          disableFlipByClick={false}
-          ref={(el: unknown) => {
-            bookRef.current = el as typeof bookRef.current;
-          }}
-          onFlip={(e: { data: number }) => setPage(e.data)}
-        >
-          {/* Front cover */}
-          <div className="flex h-full w-full flex-col items-center justify-between bg-neutral-900 p-10 text-white">
-            <p className="text-[10px] uppercase tracking-[0.3em] text-white/50">
-              {cover.author ?? "Fazal Ibrahim Ali"}
-            </p>
-            <div className="text-center">
-              <p className="font-display text-5xl leading-[0.95] md:text-6xl">
-                {cover.title}
-              </p>
-              {cover.subtitle && (
-                <p className="mt-6 text-xs uppercase tracking-[0.3em] text-white/60">
-                  {cover.subtitle}
-                </p>
-              )}
-            </div>
-            <p className="text-[10px] uppercase tracking-[0.3em] text-white/50">
-              Omeros AI · First Edition
-            </p>
+    <div ref={containerRef} className="relative mx-auto w-full max-w-[1200px]">
+      <Document
+        file={fileOption}
+        onLoadSuccess={({ numPages }) => setNumPages(numPages)}
+        loading={
+          <div className="mx-auto flex aspect-[3/2] w-full max-w-[1000px] items-center justify-center border border-white/15 bg-white/5 text-sm uppercase tracking-[0.2em] text-white/60">
+            <Loader2 className="mr-3 size-4 animate-spin" /> Loading the book…
           </div>
-
-          {/* Content pages */}
-          {pages.map((p, i) => (
-            <div
-              key={i}
-              className="flex h-full w-full flex-col bg-[#fafaf6] p-8 text-neutral-900 md:p-12"
+        }
+        error={
+          <div className="mx-auto flex aspect-[3/2] w-full max-w-[1000px] items-center justify-center border border-red-400/30 bg-red-500/10 text-sm uppercase tracking-[0.2em] text-red-200">
+            Could not load the PDF.
+          </div>
+        }
+      >
+        {mounted && HTMLFlipBook && numPages > 0 && (
+          <div className="flex items-center justify-center">
+            <HTMLFlipBook
+              key={`${size.w}x${size.h}-${numPages}`}
+              width={size.w}
+              height={size.h}
+              minWidth={280}
+              maxWidth={620}
+              minHeight={400}
+              maxHeight={900}
+              size="fixed"
+              maxShadowOpacity={0.4}
+              showCover
+              mobileScrollSupport
+              drawShadow
+              flippingTime={650}
+              className="!mx-auto"
+              style={{}}
+              startPage={0}
+              usePortrait
+              startZIndex={0}
+              autoSize={false}
+              clickEventForward
+              useMouseEvents
+              swipeDistance={30}
+              showPageCorners
+              disableFlipByClick={false}
+              ref={(el: unknown) => {
+                bookRef.current = el as typeof bookRef.current;
+              }}
+              onFlip={(e: { data: number }) => setPage(e.data)}
             >
-              {p.eyebrow && (
-                <p className="text-[10px] uppercase tracking-[0.3em] text-neutral-500">
-                  {p.eyebrow}
-                </p>
-              )}
-              {p.title && (
-                <p className="mt-3 font-display text-2xl leading-tight md:text-3xl">
-                  {p.title}
-                </p>
-              )}
-              {p.body && (
-                <p className="mt-6 text-sm leading-relaxed text-neutral-700 md:text-base">
-                  {p.body}
-                </p>
-              )}
-              <p className="mt-auto pt-6 text-[10px] uppercase tracking-[0.3em] text-neutral-400">
-                {p.pageNumber ?? i + 1}
-              </p>
-            </div>
-          ))}
-
-          {/* Back cover */}
-          <div className="flex h-full w-full flex-col items-center justify-center gap-6 bg-neutral-900 p-10 text-white">
-            <p className="font-display text-3xl">Fin.</p>
-            <p className="max-w-xs text-center text-xs uppercase tracking-[0.25em] text-white/60">
-              Download the full monograph below.
-            </p>
+              {Array.from({ length: numPages }, (_, i) => {
+                const visible = Math.abs(i - page) <= RENDER_RADIUS;
+                return (
+                  <div
+                    key={i}
+                    className="relative flex h-full w-full items-center justify-center overflow-hidden bg-[#fafaf6]"
+                    style={{ width: size.w, height: size.h }}
+                  >
+                    {visible ? (
+                      <Page
+                        pageNumber={i + 1}
+                        width={size.w}
+                        renderAnnotationLayer={false}
+                        renderTextLayer={false}
+                        loading={
+                          <div className="flex h-full w-full items-center justify-center text-neutral-400">
+                            <Loader2 className="size-5 animate-spin" />
+                          </div>
+                        }
+                      />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center text-[10px] uppercase tracking-[0.3em] text-neutral-400">
+                        {i + 1}
+                      </div>
+                    )}
+                    <span className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 font-mono text-[10px] uppercase tracking-[0.3em] text-neutral-400">
+                      {i + 1}
+                    </span>
+                  </div>
+                );
+              })}
+            </HTMLFlipBook>
           </div>
-        </HTMLFlipBook>
-      </div>
+        )}
+      </Document>
 
       <div className="mt-8 flex items-center justify-center gap-6">
         <button
@@ -141,7 +151,7 @@ export function Flipbook({ pages, cover }: FlipbookProps) {
           <ChevronLeft className="size-4" />
         </button>
         <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-white/60">
-          {String(page + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+          {String(page + 1).padStart(3, "0")} / {String(Math.max(numPages, 1)).padStart(3, "0")}
         </p>
         <button
           type="button"
