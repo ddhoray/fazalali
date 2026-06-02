@@ -67,18 +67,17 @@ function Home() {
 
 function Hero() {
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-  // Subtle parallax — image drifts upward as the section scrolls past.
-  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "-12%"]);
-  const imageScale = useTransform(scrollYProgress, [0, 1], [1.05, 1.12]);
+  // Drive parallax from window scroll since the hero is fixed
+  const { scrollY } = useScroll();
+  const imageY = useTransform(scrollY, [0, 800], ["0%", "-12%"]);
+  const imageScale = useTransform(scrollY, [0, 800], [1.05, 1.12]);
+  const overlayOpacity = useTransform(scrollY, [0, 600], [1, 0.85]);
 
   return (
     <section
       ref={ref}
-      className="relative min-h-svh w-full overflow-hidden bg-neutral-100 text-white"
+      aria-label="Introduction"
+      className="fixed inset-x-0 top-0 z-0 h-svh w-full overflow-hidden bg-neutral-100 text-white"
     >
       {/* Parallax background image */}
       <motion.div
@@ -87,19 +86,23 @@ function Hero() {
       >
         <img
           src={heroImage}
-          alt="A classical marble bust in warm museum light"
+          alt="A classical marble bust in warm museum light — symbolizing critical theory and humanist reading of AI"
           className="size-full object-cover"
           width={1920}
           height={1280}
+          fetchPriority="high"
         />
       </motion.div>
       {/* Soft cinematic overlay — keeps the statue readable while text stays legible */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-black/10" />
+      <motion.div
+        style={{ opacity: overlayOpacity }}
+        className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-black/10"
+      />
       <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent" />
       <Grain />
 
       {/* Content frame */}
-      <div className="text-on-image relative z-10 flex min-h-svh flex-col justify-between px-5 pt-28 pb-16 sm:px-10 sm:pt-24 sm:pb-12">
+      <div className="text-on-image relative z-10 flex h-full flex-col justify-between px-5 pt-28 pb-16 sm:px-10 sm:pt-24 sm:pb-12">
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
