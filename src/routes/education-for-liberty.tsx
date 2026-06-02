@@ -66,7 +66,7 @@ function BookPage() {
 
       {/* Flippable book preview */}
       <section data-nav="dark" className="section-invert">
-        <div className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8 sm:py-14">
+        <div className="mx-auto max-w-[1500px] px-5 py-8 sm:px-8 sm:py-10">
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-6">
               <div>
