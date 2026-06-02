@@ -88,7 +88,12 @@ export function SiteNav() {
           />
         </Link>
 
-        <nav className="hidden items-center gap-6 lg:flex">
+        <nav
+          className={cn(
+            "hidden items-center gap-6 lg:flex",
+            lightOnDark && "[text-shadow:0_1px_2px_rgba(0,0,0,0.45)]",
+          )}
+        >
           {links.map((l) =>
             "children" in l && l.children ? (
               <div
@@ -99,7 +104,7 @@ export function SiteNav() {
               >
                 <Link
                   to={l.to}
-                  className="nav-link-minimal opacity-65 transition-opacity hover:opacity-100"
+                  className="nav-link-minimal opacity-100 transition-opacity"
                   activeProps={{ className: "opacity-100" }}
                 >
                   {l.label}
@@ -116,7 +121,7 @@ export function SiteNav() {
                         <Link
                           key={c.to}
                           to={c.to}
-                          className="block px-4 py-2.5 nav-link-minimal opacity-70 transition-opacity hover:opacity-100"
+                          className="block px-4 py-2.5 nav-link-minimal opacity-100 transition-opacity"
                         >
                           {c.label}
                         </Link>
@@ -129,7 +134,7 @@ export function SiteNav() {
               <Link
                 key={l.to}
                 to={l.to}
-                className="nav-link-minimal opacity-65 transition-opacity hover:opacity-100"
+                className="nav-link-minimal opacity-100 transition-opacity"
                 activeProps={{ className: "opacity-100" }}
               >
                 {l.label}
@@ -139,7 +144,7 @@ export function SiteNav() {
           <button
             type="button"
             onClick={() => openContactDrawer()}
-            className="nav-link-minimal opacity-65 transition-opacity hover:opacity-100"
+            className="nav-link-minimal opacity-100 transition-opacity"
           >
             Write Me
           </button>
