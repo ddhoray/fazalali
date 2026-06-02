@@ -55,7 +55,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
             times: [0, 0.45, 1],
             ease: [0.83, 0, 0.17, 1],
           }}
-          className="pointer-events-none fixed inset-0 z-[90] bg-[#0f1b3d]"
+          className="pointer-events-none fixed inset-0 z-[90] bg-background"
           style={{ willChange: "transform" }}
         />
       </AnimatePresence>
