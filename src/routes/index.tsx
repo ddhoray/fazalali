@@ -352,7 +352,7 @@ function Portrait() {
   return (
     <section
       className="relative overflow-hidden py-16 md:py-20"
-      style={{ backgroundColor: "#0f1b3d", color: "#f1f3f9" }}
+      style={{ backgroundColor: "#000000", color: "#ffffff" }}
     >
       <Grain />
 
