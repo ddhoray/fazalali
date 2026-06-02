@@ -13,7 +13,7 @@ export const Route = createFileRoute("/education-for-liberty")({
       {
         name: "description",
         content:
-          "Fazal Ali's persuasive monograph that builds on Amartya Sen's Development as Freedom and John Rawls' A Theory of Justice. Read a flippable preview, download the full PDF, or buy on Amazon.",
+          "Fazal Ali's monograph after Sen and Rawls — read a flippable preview, download the PDF, or buy on Amazon.",
       },
       { property: "og:title", content: "Education for Liberty — Fazal Ali" },
       {
