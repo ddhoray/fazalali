@@ -96,6 +96,20 @@ function ArticlePage() {
         </div>
       </section>
 
+      {/* Cover image */}
+      <section className="mx-auto max-w-5xl px-5 pt-12 sm:px-8">
+        <Reveal>
+          <figure className="relative aspect-[16/9] w-full overflow-hidden border border-foreground/10 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.25)]">
+            <img
+              src={article.image}
+              alt={article.title}
+              className="size-full object-cover"
+              loading="eager"
+            />
+          </figure>
+        </Reveal>
+      </section>
+
       {/* Body */}
       <section className="mx-auto max-w-3xl px-5 py-12 sm:px-8 sm:py-10">
         <Reveal>
