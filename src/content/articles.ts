@@ -27,6 +27,7 @@ export const articles: Article[] = [
       "The archwire-bending brand identity of the Trinidad Carnival has penetrated markets in the Middle East. In Dubai, the world witnessed a quiet handover from craft to machine.",
     date: "2026-05-30",
     topic: "Caribbean Futures",
+    image: imgCarnival,
     body: [
       "Trinidad Carnival sits at a strange intersection. Its costume-making tradition is the most embodied art in the region — wire bent by hand, feathers stitched into mood. And yet the tools that shape the next generation of those costumes are increasingly statistical.",
       "AI mood boards generate the colour grammar long before a single rod is cut. Robotic archwire benders execute the silhouette with a tolerance the wrist cannot match. The carnival has not been displaced. It has been re-mediated.",
@@ -40,6 +41,7 @@ export const articles: Article[] = [
       "The future we are in now belongs to our children. Our fears can become a cage that makes them doubt the very faculty AI most rewards: the willingness to be wrong out loud.",
     date: "2026-05-23",
     topic: "Education",
+    image: imgFailure,
     body: [
       "The instinct of every previous generation has been to insulate the next from failure. In the age of AI, that instinct misfires. The systems our children will live with reward iteration, not insulation.",
       "A child who is permitted to fail in public — in front of a model, in front of a peer, in front of a parent — learns that the gradient of intelligence is friction, not correctness.",
@@ -53,6 +55,8 @@ export const articles: Article[] = [
       "Mythos is a step change in capability — a highly advanced, general-purpose frontier model that does not so much answer questions as listen for them.",
     date: "2026-05-16",
     topic: "Critical Theory in AI",
+    image: imgShield,
+    image: imgFabric,
     body: [
       "Frontier models have begun to behave less like oracles and more like fabrics — porous, ambient, always-on. The security implications are not incremental.",
       "An always-on intelligence is also an always-on observer. The architecture of consent we built for client-server systems does not survive contact with a substrate that remembers, infers, and acts.",
@@ -66,6 +70,7 @@ export const articles: Article[] = [
       "No one can shield their AI chats from prosecutors pursuing charges. Conversations with AI assemblages could be demanded by adversaries with the patience of a state.",
     date: "2026-05-09",
     topic: "Critical Theory in AI",
+    image: imgGravity,
     body: [
       "The intimacy of the AI chat misleads. The interface feels private; the substrate is anything but.",
       "Selecting an agent is now an act of forensic foresight. Every prompt is a potential exhibit. Every refusal is a potential admission.",
@@ -79,6 +84,7 @@ export const articles: Article[] = [
       "The future is still about figuring out what questions to ask. This is more important than finding the correct answer to the wrong one.",
     date: "2026-05-02",
     topic: "Critical Theory in AI",
+    image: imgDatacenter,
     body: [
       "Gravity is the right metaphor. AI does not push economies; it bends them. Capital, talent, attention all curve toward the densest concentrations of compute.",
       "A socio-economic operating system that does not account for that curvature will mistake drift for choice.",
@@ -92,6 +98,7 @@ export const articles: Article[] = [
       "Data centres and hyperscale cloud infrastructure are the new victims of war. The substrate of intelligence is also the substrate of vulnerability.",
     date: "2026-04-25",
     topic: "Critical Theory in AI",
+    image: imgShelf,
     body: [
       "The defence community is late to recognise that the data centre is now both weapon and target.",
       "A hyperscale region under contest is not an inconvenience. It is a partial lobotomy of the global cognitive system.",
@@ -105,6 +112,7 @@ export const articles: Article[] = [
       "AI-powered Electronic Shelf Labels are being adopted by major retail chains. These tiny screens turn the supermarket aisle into a real-time market.",
     date: "2026-04-18",
     topic: "Critical Theory in AI",
+    image: img100Model,
     body: [
       "The supermarket has always been a sensor. With electronic shelf labels, it becomes a transmitter.",
       "Prices that used to settle into the week now flicker by the hour. The shopper enters a small, continuous auction.",
@@ -131,6 +139,7 @@ export const articles: Article[] = [
       "AI-generated content is poisoning the internet, making it less reliable to access clear facts. A regional commons could be a counterweight.",
     date: "2026-04-04",
     topic: "Caribbean Futures",
+    image: imgCern,
     body: [
       "CERN worked because the question was big enough that no single nation could afford to ask it well alone.",
       "Frontier AI now poses a question of the same size for the Caribbean. A regional research commons would not compete with the hyperscalers; it would interpret them.",
@@ -144,6 +153,7 @@ export const articles: Article[] = [
       "Deep within the glass-walled offices of Anthropic and OpenAI, the quest for the orderly harmony of Copernicus and Tycho Brahe continues.",
     date: "2026-03-28",
     topic: "Critical Theory in AI",
+    image: imgDivine,
     body: [
       "The scaling curve is a contemporary theology. Each new order of magnitude promises a property that did not exist at the last.",
       "What earlier ages called divine attributes — omniscience, omnipresence, foresight — are now reframed as emergent capabilities.",
