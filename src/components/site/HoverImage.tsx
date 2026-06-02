@@ -1,10 +1,12 @@
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence, useMotionValue, useSpring } from "motion/react";
 
 /**
  * Cursor-following image preview (desktop only).
- * The image is rendered in a fixed-position portal-like layer
- * so it follows the actual cursor across the viewport.
+ * The floating preview is rendered into a document.body portal so it
+ * escapes any parent stacking contexts (e.g. sibling sections with
+ * transforms, isolate, or inverted backgrounds).
  */
 export function HoverImage({
   src,
@@ -18,21 +20,47 @@ export function HoverImage({
   className?: string;
 }) {
   const [visible, setVisible] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const mx = useMotionValue(-9999);
   const my = useMotionValue(-9999);
   const x = useSpring(mx, { stiffness: 350, damping: 28, mass: 0.4 });
   const y = useSpring(my, { stiffness: 350, damping: 28, mass: 0.4 });
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   function setFromEvent(e: React.PointerEvent) {
     mx.set(e.clientX);
     my.set(e.clientY);
   }
 
+  const preview = (
+    <AnimatePresence>
+      {visible && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.94 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.96 }}
+          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          style={{ x, y, translateX: "-50%", translateY: "-50%" }}
+          className="pointer-events-none fixed left-0 top-0 z-[100] hidden h-[380px] w-[280px] overflow-hidden shadow-2xl md:block"
+        >
+          <img
+            src={src}
+            alt={alt}
+            className="size-full object-cover"
+            loading="lazy"
+          />
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+
   return (
     <div
       onPointerEnter={(e) => {
         if (e.pointerType !== "mouse") return;
-        // Jump (no spring) to cursor before showing to avoid a flash from 0,0
         mx.jump(e.clientX);
         my.jump(e.clientY);
         setVisible(true);
@@ -48,25 +76,7 @@ export function HoverImage({
       className={`relative ${className}`}
     >
       {children}
-      <AnimatePresence>
-        {visible && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.94 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.96 }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            style={{ x, y, translateX: "-50%", translateY: "-50%" }}
-            className="pointer-events-none fixed left-0 top-0 z-[60] hidden h-[380px] w-[280px] overflow-hidden shadow-2xl md:block"
-          >
-            <img
-              src={src}
-              alt={alt}
-              className="size-full object-cover"
-              loading="lazy"
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {mounted && createPortal(preview, document.body)}
     </div>
   );
 }
