@@ -128,12 +128,13 @@ function AboutPage() {
         <div className="mt-16 border-t hairline">
           {milestones.map((m, i) => (
             <Reveal key={m.year} delay={i * 0.04}>
-              <div className="grid gap-6 border-b hairline py-10 md:grid-cols-[160px_1fr] md:gap-16 md:py-12">
-                <p className="font-display text-4xl md:text-5xl">{m.year}</p>
-                <p className="max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
+              <div className="grid gap-3 border-b hairline py-8 md:grid-cols-[240px_1fr] md:gap-12 md:py-10">
+                <p className="font-display text-2xl leading-none md:text-3xl">{m.year}</p>
+                <p className="max-w-2xl text-base leading-relaxed text-muted-foreground md:text-[17px]">
                   {m.text}
                 </p>
               </div>
+
             </Reveal>
           ))}
         </div>
