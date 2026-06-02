@@ -65,7 +65,8 @@ function BookPage() {
           </>
         }
         image={heroBook}
-        imageAlt="Open monograph on a dark desk"
+        imageAlt="Education for Liberty — monograph cover by Fazal Ibrahim Ali"
+        imageFit="contain"
       />
 
       {/* Flippable book preview */}
