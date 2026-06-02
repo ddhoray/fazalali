@@ -516,7 +516,8 @@ function Range() {
   const [hover, setHover] = useState<number | null>(null);
 
   return (
-    <section className="mx-auto max-w-[1700px] px-5 py-16 sm:px-8 md:py-20">
+    <section data-nav="dark" className="section-invert relative px-5 py-14 sm:px-8 md:py-16">
+      <div className="mx-auto max-w-[1700px]">
       <div className="mb-10 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-5">
         <div className="max-w-3xl">
           <BlurReveal as="p" className="eyebrow text-muted-foreground">Range</BlurReveal>
