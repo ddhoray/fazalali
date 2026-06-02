@@ -646,7 +646,7 @@ function RangeCard({
 
 /* ─────────────────────── Writing ──────────────────────── */
 
-const writingImages = [practiceEssays, practiceBook, practiceOmeros];
+const writingImages = [featuredWriting, practiceEssays, featuredOmeros];
 
 function LatestWriting() {
   const latest = articles.slice(0, 3);
@@ -664,31 +664,33 @@ function LatestWriting() {
         </BlurReveal>
       </div>
 
-      <div className="divide-y hairline">
+      <div className="divide-y hairline overflow-visible">
         {latest.map((a, i) => (
-          <SlideIn key={a.slug} delay={i * 0.06} from="bottom">
-            <HoverImage src={writingImages[i % writingImages.length]} alt={a.title}>
-              <Link
-                to="/writing/$slug"
-                params={{ slug: a.slug }}
-                className="group grid grid-cols-1 gap-3 py-6 md:grid-cols-[160px_1fr_auto] md:items-baseline md:gap-12 md:py-8"
-              >
-                <span className="eyebrow text-muted-foreground">
-                  {new Date(a.date).toLocaleDateString("en-GB", {
-                    day: "2-digit",
-                    month: "short",
-                    year: "numeric",
-                  })}
-                </span>
-                <h3 className="font-display text-[7vw] leading-[1.05] transition-transform duration-700 group-hover:translate-x-3 sm:text-3xl md:text-5xl">
-                  {a.title}
-                </h3>
-                <span className="nav-link text-muted-foreground transition-colors group-hover:text-foreground">
-                  {a.topic} →
-                </span>
-              </Link>
-            </HoverImage>
-          </SlideIn>
+          <div key={a.slug} className="overflow-visible">
+            <SlideIn delay={i * 0.06} from="bottom" className="overflow-visible">
+              <HoverImage src={writingImages[i % writingImages.length]} alt={a.title}>
+                <Link
+                  to="/writing/$slug"
+                  params={{ slug: a.slug }}
+                  className="group grid grid-cols-1 gap-3 py-6 md:grid-cols-[160px_1fr_auto] md:items-baseline md:gap-12 md:py-8"
+                >
+                  <span className="eyebrow text-muted-foreground">
+                    {new Date(a.date).toLocaleDateString("en-GB", {
+                      day: "2-digit",
+                      month: "short",
+                      year: "numeric",
+                    })}
+                  </span>
+                  <h3 className="font-display text-[7vw] leading-[1.05] transition-transform duration-700 group-hover:translate-x-3 sm:text-3xl md:text-5xl">
+                    {a.title}
+                  </h3>
+                  <span className="nav-link text-muted-foreground transition-colors group-hover:text-foreground">
+                    {a.topic} →
+                  </span>
+                </Link>
+              </HoverImage>
+            </SlideIn>
+          </div>
         ))}
       </div>
     </section>
