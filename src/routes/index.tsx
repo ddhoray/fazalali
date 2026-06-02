@@ -561,6 +561,7 @@ const rangeImages = [practiceEssays, practiceBook, practiceOmeros, featuredWriti
 
 function Range() {
   const [hover, setHover] = useState<number | null>(null);
+  const navigate = useNavigate();
 
   return (
     <section data-nav="dark" className="section-invert relative px-5 py-14 sm:px-8 md:py-16">
@@ -583,13 +584,21 @@ function Range() {
       >
         {range.map((r, i) => (
           <SlideIn key={r.n} delay={i * 0.06} from={i % 2 === 0 ? "left" : "right"}>
-            <RangeCard
-              r={r}
-              image={rangeImages[i]}
-              isHover={hover === i}
-              isDim={hover !== null && hover !== i}
-              onEnter={() => setHover(i)}
-            />
+            <HoverImage
+              src={rangeImages[i]}
+              alt={r.title}
+              imageless
+              holdMs={6000}
+              onHoldComplete={() => navigate({ to: r.to })}
+            >
+              <RangeCard
+                r={r}
+                image={rangeImages[i]}
+                isHover={hover === i}
+                isDim={hover !== null && hover !== i}
+                onEnter={() => setHover(i)}
+              />
+            </HoverImage>
           </SlideIn>
         ))}
       </div>
@@ -597,6 +606,7 @@ function Range() {
     </section>
   );
 }
+
 
 function RangeCard({
   r,
