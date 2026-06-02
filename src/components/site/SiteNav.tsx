@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -16,6 +16,8 @@ const links = [
 export function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const isHome = pathname === "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 32);
@@ -24,21 +26,29 @@ export function SiteNav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Over the hero (home + top of page) → transparent, white text.
+  // Otherwise → glass-white blur.
+  const overHero = isHome && !scrolled && !open;
+
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-500 text-foreground",
-        scrolled
-          ? "bg-background/85 backdrop-blur-md border-b hairline"
-          : "bg-background/40 backdrop-blur-sm",
+        "fixed inset-x-0 top-0 z-50 transition-all duration-500",
+        overHero
+          ? "bg-transparent text-white"
+          : "bg-background/70 backdrop-blur-xl border-b hairline text-foreground",
       )}
     >
       <div className="mx-auto flex max-w-[1700px] items-center justify-between px-5 py-4 sm:px-8 sm:py-5">
-        <Link to="/" aria-label="Fazal Ali — Home" className="inline-flex items-center gap-2">
-          <img src={fiaLogo} alt="" className="h-7 w-auto sm:h-8" />
-          <span className="hidden text-[10px] uppercase tracking-[0.28em] opacity-70 sm:inline">
-            Fazal Ali
-          </span>
+        <Link to="/" aria-label="Fazal Ali — Home" className="inline-flex items-center">
+          <img
+            src={fiaLogo}
+            alt="Fazal Ali"
+            className={cn(
+              "h-7 w-auto sm:h-8 transition-[filter] duration-500",
+              overHero ? "brightness-0 invert" : "",
+            )}
+          />
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
@@ -46,7 +56,7 @@ export function SiteNav() {
             <Link
               key={l.to}
               to={l.to}
-              className="nav-link opacity-60 transition-opacity hover:opacity-100"
+              className="nav-link opacity-70 transition-opacity hover:opacity-100"
               activeProps={{ className: "opacity-100" }}
             >
               {l.label}
@@ -68,7 +78,7 @@ export function SiteNav() {
       </div>
 
       {open && (
-        <div className="border-t hairline bg-background md:hidden">
+        <div className="border-t hairline bg-background text-foreground md:hidden">
           <nav className="flex flex-col px-5 py-4">
             {links.map((l) => (
               <Link
