@@ -9,16 +9,48 @@ export const Route = createFileRoute("/writing/$slug")({
     if (!article) throw notFound();
     return { article };
   },
-  head: ({ loaderData }) =>
+  head: ({ loaderData, params }) =>
     loaderData
       ? {
           meta: [
             { title: `${loaderData.article.title} — Fazal Ali` },
             { name: "description", content: loaderData.article.excerpt },
+            { name: "author", content: "Fazal Ibrahim Ali" },
+            { name: "article:published_time", content: loaderData.article.date },
+            { name: "article:section", content: loaderData.article.topic },
             { property: "og:title", content: loaderData.article.title },
             { property: "og:description", content: loaderData.article.excerpt },
             { property: "og:type", content: "article" },
             { property: "og:image", content: loaderData.article.image },
+            { property: "og:url", content: `https://omeros-cipher-glass.lovable.app/writing/${params.slug}` },
+            { name: "twitter:image", content: loaderData.article.image },
+          ],
+          links: [
+            { rel: "canonical", href: `https://omeros-cipher-glass.lovable.app/writing/${params.slug}` },
+          ],
+          scripts: [
+            {
+              type: "application/ld+json",
+              children: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Article",
+                headline: loaderData.article.title,
+                description: loaderData.article.excerpt,
+                image: loaderData.article.image,
+                datePublished: loaderData.article.date,
+                articleSection: loaderData.article.topic,
+                author: {
+                  "@type": "Person",
+                  name: "Fazal Ibrahim Ali",
+                  url: "https://omeros-cipher-glass.lovable.app/about",
+                },
+                publisher: {
+                  "@type": "Person",
+                  name: "Fazal Ibrahim Ali",
+                },
+                mainEntityOfPage: `https://omeros-cipher-glass.lovable.app/writing/${params.slug}`,
+              }),
+            },
           ],
         }
       : { meta: [{ title: "Journal — Fazal Ali" }] },
