@@ -16,6 +16,8 @@ import { SiteFooter } from "../components/site/SiteFooter";
 import { SmoothScroll } from "../components/site/SmoothScroll";
 import { IntroReveal } from "../components/site/IntroReveal";
 import { PageTransition } from "../components/site/PageTransition";
+import { ContactDrawer } from "../components/site/ContactDrawer";
+
 
 function NotFoundComponent() {
   return (
@@ -146,6 +148,8 @@ function RootComponent() {
         </PageTransition>
       </main>
       <SiteFooter />
+      <ContactDrawer />
     </QueryClientProvider>
+
   );
 }

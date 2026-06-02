@@ -2,6 +2,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { openContactDrawer } from "@/components/site/ContactDrawer";
 import fiaLogo from "@/assets/brand-fia.png";
 
 const links = [
@@ -9,8 +10,8 @@ const links = [
   { to: "/education-for-liberty", label: "Education for Liberty" },
   { to: "/omeros-ai", label: "Omeros" },
   { to: "/about", label: "About" },
-  { to: "/contact", label: "Write Me" },
 ] as const;
+
 
 export function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
@@ -94,7 +95,15 @@ export function SiteNav() {
               {l.label}
             </Link>
           ))}
+          <button
+            type="button"
+            onClick={() => openContactDrawer()}
+            className="nav-link opacity-70 transition-opacity hover:opacity-100"
+          >
+            Write Me
+          </button>
         </nav>
+
 
         <div className="flex items-center gap-3 md:hidden">
 
@@ -121,7 +130,18 @@ export function SiteNav() {
                 {l.label}
               </Link>
             ))}
+            <button
+              type="button"
+              onClick={() => {
+                setOpen(false);
+                openContactDrawer();
+              }}
+              className="nav-link py-4 text-left text-foreground/80"
+            >
+              Write Me
+            </button>
           </nav>
+
         </div>
       )}
     </header>
