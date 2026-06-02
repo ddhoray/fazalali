@@ -417,13 +417,13 @@ function Portrait() {
               y={28}
             >
               <span
-                className="block text-[26vw] sm:text-[20vw] md:text-[11vw]"
+                className="block text-[26vw] sm:text-[20vw] md:text-[9.5vw] lg:text-[11vw]"
                 style={{ color: "#ffffff" }}
               >
                 Fazal
               </span>
               <span
-                className="block italic text-[26vw] sm:text-[20vw] md:text-[11vw]"
+                className="block italic text-[26vw] sm:text-[20vw] md:text-[9.5vw] lg:text-[11vw]"
                 style={{ color: "#ffffff" }}
               >
                 Ali<span className="not-italic">.</span>
@@ -440,7 +440,7 @@ function Portrait() {
             </BlurReveal>
           </div>
 
-          <SlideIn from="left" className="order-2 col-span-12 md:order-1 md:col-span-5">
+          <SlideIn from="left" className="order-2 col-span-12 md:order-1 md:col-span-6 lg:col-span-5">
             <div className="grain relative aspect-[4/5] w-full overflow-hidden">
               <img
                 src={portrait}
