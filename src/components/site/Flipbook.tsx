@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { Document, Page, pdfjs } from "react-pdf";
@@ -49,9 +49,11 @@ export function Flipbook({ file = PDF_FILE_DEFAULT }: FlipbookProps) {
     recompute();
     window.addEventListener("resize", recompute);
     return () => window.removeEventListener("resize", recompute);
-  }, [mounted, numPages]);
+  }, [numPages]);
 
   const fileOption = useMemo(() => ({ url: file }), [file]);
+  const maxStart = Math.max(0, numPages - 2);
+  const visiblePages = [page + 1, page + 2].filter((pageNumber) => pageNumber <= numPages);
 
   return (
     <div ref={containerRef} className="relative mx-auto w-full max-w-[1120px]">
