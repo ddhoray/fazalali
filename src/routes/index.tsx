@@ -24,18 +24,23 @@ import practiceOmeros from "@/assets/practice-omeros.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Fazal Ali — Writer, Scholar, Omeros AI" },
+      { title: "Fazal Ali — Writer, Scholar, Founder of Omeros AI" },
       {
         name: "description",
         content:
-          "Dr. Fazal Ibrahim Ali — a writer from Trinidad reading the world's largest machines, slowly, by hand.",
+          "Dr. Fazal Ibrahim Ali — a Cambridge-trained, Trinidad-born writer on critical theory in AI, founder of Omeros AI, and author of Education for Liberty.",
       },
-      { property: "og:title", content: "Fazal Ali — Writer, Scholar, Omeros AI" },
+      { property: "og:title", content: "Fazal Ali — Writer, Scholar, Founder of Omeros AI" },
       {
         property: "og:description",
         content:
           "Critical theory in AI, from the West Indies. The Omeros AI identity and the book Education for Liberty.",
       },
+      { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/" },
+      { property: "og:type", content: "website" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/" },
     ],
   }),
   component: Home,
