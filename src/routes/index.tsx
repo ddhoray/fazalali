@@ -372,7 +372,7 @@ function Manifesto() {
         <Compass className="size-4" /> A note before reading
       </BlurReveal>
       <WordScrollReveal
-        className="font-display text-[8vw] leading-[1.08] tracking-[-0.025em] text-balance sm:text-[5vw] md:text-[3.4vw]"
+        className="font-display text-[8vw] leading-[1.04] tracking-[-0.025em] text-balance sm:text-[5vw] sm:leading-[1.08] md:text-[3.4vw]"
         text="I am not building AI. I am not selling chips. I am thinking with the machines, against them, around them — from a small island that has always read the world more carefully than the world has read it."
       />
       <BlurReveal as="p" delay={0.1} className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground">
@@ -388,6 +388,7 @@ function Manifesto() {
 function Portrait() {
   return (
     <section
+      data-nav="dark"
       className="relative overflow-hidden py-16 md:py-20"
       style={{ backgroundColor: "#000000", color: "#ffffff" }}
     >
@@ -409,7 +410,7 @@ function Portrait() {
         {/* Compact composition: name on top on mobile, side-by-side on desktop */}
         <div className="grid grid-cols-12 items-end gap-6 md:gap-10">
           {/* Name first on mobile (order-1), image right column on desktop */}
-          <div className="order-1 col-span-12 md:order-2 md:col-span-7">
+          <div className="order-1 col-span-12 md:order-2 md:col-span-6 lg:col-span-7">
             <BlurReveal
               as="h2"
               className="font-display font-medium leading-[0.84] tracking-[-0.04em]"
