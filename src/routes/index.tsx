@@ -550,11 +550,12 @@ function Portrait() {
 /* ───────────────────────── Range ──────────────────────── */
 
 const range = [
-  { n: "01", title: "Critical Theory in AI", body: "Frontier models read as social substrate — not products, not miracles.", icon: Sparkles, tag: "Theory" },
-  { n: "02", title: "Education for Liberty", body: "What a child needs to learn so the next machine is a freedom, not a fence.", icon: BookOpen, tag: "Book" },
-  { n: "03", title: "Omeros AI", body: "A Caribbean reading of intelligence — named for Walcott, kept close to the sea.", icon: Compass, tag: "Studio" },
-  { n: "04", title: "From the West Indies", body: "A contribution from Trinidad to a conversation rarely written from here.", icon: PenLine, tag: "Essays" },
+  { n: "01", title: "Critical Theory in AI", body: "Frontier models read as social substrate — not products, not miracles.", icon: Sparkles, tag: "Theory", to: "/writing" as const },
+  { n: "02", title: "Education for Liberty", body: "What a child needs to learn so the next machine is a freedom, not a fence.", icon: BookOpen, tag: "Book", to: "/education-for-liberty" as const },
+  { n: "03", title: "Omeros AI", body: "A Caribbean reading of intelligence — named for Walcott, kept close to the sea.", icon: Compass, tag: "Studio", to: "/omeros-ai" as const },
+  { n: "04", title: "From the West Indies", body: "A contribution from Trinidad to a conversation rarely written from here.", icon: PenLine, tag: "Essays", to: "/writing" as const },
 ];
+
 
 const rangeImages = [practiceEssays, practiceBook, practiceOmeros, featuredWriting];
 
