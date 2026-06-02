@@ -79,8 +79,9 @@ function Hero() {
           width={1920}
           height={1280}
         />
-        {/* gentle bottom vignette so the headline stays legible without washing the image */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+        {/* Stronger overlay so headline stays legible on any image tone */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/30" />
+
       </motion.div>
 
 
