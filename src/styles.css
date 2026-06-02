@@ -41,8 +41,8 @@
   --radius: 0;
 
   /* Cool neutral editorial palette — off-white + FIA navy ink */
-  --background: oklch(0.985 0.004 240);
-  --foreground: oklch(0.18 0.04 260);
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.14 0 0);
 
   --muted: oklch(0.94 0.008 235);
   --muted-foreground: oklch(0.42 0.02 250);
