@@ -27,7 +27,7 @@ export function Flipbook({ file = PDF_FILE_DEFAULT }: FlipbookProps) {
   const [HTMLFlipBook, setHTMLFlipBook] = useState<React.ComponentType<Record<string, unknown>> | null>(null);
   const [numPages, setNumPages] = useState<number>(0);
   const [page, setPage] = useState(0);
-  const [size, setSize] = useState({ w: 500, h: 680 });
+  const [size, setSize] = useState({ w: 420, h: 570 });
   const bookRef = useRef<{ pageFlip: () => { flipPrev: () => void; flipNext: () => void; getPageCount: () => number } } | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -46,10 +46,10 @@ export function Flipbook({ file = PDF_FILE_DEFAULT }: FlipbookProps) {
       const cw = el.clientWidth;
       const vh = window.innerHeight;
       const isSingle = cw < 720;
-      // Reserve vertical space for surrounding header + controls.
-      const reserved = isSingle ? 260 : 200;
-      const maxH = Math.max(360, vh - reserved);
-      let pageW = isSingle ? Math.min(cw - 16, 520) : Math.min((cw - 24) / 2, 560);
+      // Reserve space for the compact section header, action buttons, and controls.
+      const reserved = isSingle ? 360 : 300;
+      const maxH = Math.max(isSingle ? 330 : 420, vh - reserved);
+      let pageW = isSingle ? Math.min(cw - 20, 430) : Math.min((cw - 40) / 2, 540);
       let pageH = Math.round(pageW * 1.36);
       if (pageH > maxH) {
         pageH = maxH;
@@ -65,7 +65,7 @@ export function Flipbook({ file = PDF_FILE_DEFAULT }: FlipbookProps) {
   const fileOption = useMemo(() => ({ url: file }), [file]);
 
   return (
-    <div ref={containerRef} className="relative mx-auto w-full max-w-[1200px]">
+    <div ref={containerRef} className="relative mx-auto w-full max-w-[1120px]">
       <Document
         file={fileOption}
         onLoadSuccess={({ numPages }) => setNumPages(numPages)}
@@ -92,7 +92,7 @@ export function Flipbook({ file = PDF_FILE_DEFAULT }: FlipbookProps) {
               maxHeight={900}
               size="fixed"
               maxShadowOpacity={0.4}
-              showCover
+              showCover={false}
               mobileScrollSupport
               drawShadow
               flippingTime={650}
@@ -148,7 +148,7 @@ export function Flipbook({ file = PDF_FILE_DEFAULT }: FlipbookProps) {
         )}
       </Document>
 
-      <div className="mt-4 flex items-center justify-center gap-6">
+      <div className="mt-3 flex items-center justify-center gap-5">
         <button
           type="button"
           aria-label="Previous page"
