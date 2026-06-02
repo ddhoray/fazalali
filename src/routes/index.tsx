@@ -398,8 +398,9 @@ function Manifesto() {
 
 function Portrait() {
   const navigateRoot = useNavigate();
-
+  return (
     <section
+
       data-nav="dark"
       className="section-invert relative overflow-hidden py-16 md:py-24"
     >
