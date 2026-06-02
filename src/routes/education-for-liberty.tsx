@@ -65,27 +65,23 @@ function BookPage() {
       />
 
       {/* Flippable book preview */}
-      <section data-nav="dark" className="section-invert">
-        <div className="mx-auto max-w-[1500px] px-5 py-8 sm:px-8 sm:py-10">
+      <section data-nav="dark" className="section-invert min-h-[calc(100svh-72px)] overflow-hidden">
+        <div className="mx-auto flex min-h-[calc(100svh-72px)] max-w-[1500px] flex-col justify-center px-5 py-4 sm:px-8 sm:py-5">
           <Reveal>
-            <div className="flex flex-wrap items-end justify-between gap-6">
+            <div className="grid items-end gap-4 lg:grid-cols-[1fr_auto]">
               <div>
                 <p className="eyebrow text-white/55">Preview</p>
-                <p className="mt-4 font-display text-3xl md:text-5xl">
+                <p className="mt-2 font-display text-3xl leading-none md:text-4xl">
                   Flip <em className="italic">through</em> the book.
                 </p>
-                <p className="mt-4 max-w-md text-sm text-white/65">
-                  A preview of the Preface, Prolegomenon, and chapter openings.
-                  Use the arrows, swipe, or grab a corner.
-                </p>
               </div>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-2">
                 <a
                   href={PDF_URL}
                   target="_blank"
                   rel="noreferrer"
                   download
-                  className="inline-flex items-center gap-2 bg-white px-6 py-3 text-sm uppercase tracking-[0.2em] text-black transition-opacity hover:opacity-90"
+                  className="inline-flex items-center gap-2 bg-white px-4 py-2 text-[11px] uppercase tracking-[0.18em] text-black transition-opacity hover:opacity-90"
                 >
                   <Download className="size-4" /> Download PDF
                 </a>
@@ -93,7 +89,7 @@ function BookPage() {
                   href={AMAZON_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 border border-white/40 px-6 py-3 text-sm uppercase tracking-[0.2em] text-white transition-colors hover:bg-white/10"
+                  className="inline-flex items-center gap-2 border border-white/40 px-4 py-2 text-[11px] uppercase tracking-[0.18em] text-white transition-colors hover:bg-white/10"
                 >
                   <ShoppingCart className="size-4" /> Buy on Amazon
                 </a>
@@ -101,12 +97,12 @@ function BookPage() {
             </div>
           </Reveal>
 
-          <div className="mt-6">
+          <div className="mt-4">
             <Flipbook />
           </div>
 
           <Reveal>
-            <p className="mx-auto mt-12 max-w-xl text-center text-xs uppercase tracking-[0.25em] text-white/45">
+            <p className="mx-auto mt-3 max-w-xl text-center text-[10px] uppercase tracking-[0.22em] text-white/45">
               Prefer to read offline?{" "}
               <a href={PDF_URL} target="_blank" rel="noreferrer" download className="text-white underline-offset-4 hover:underline">
                 Download the full 142-page PDF
