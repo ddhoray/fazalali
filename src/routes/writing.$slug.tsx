@@ -46,7 +46,7 @@ function ArticlePage() {
   const next = articles[(i + 1) % articles.length];
 
   return (
-    <article className="mx-auto max-w-3xl px-5 sm:px-8">
+    <article className="mx-auto max-w-3xl px-5 pt-32 pb-24 sm:px-8 sm:pt-40">
       <Reveal>
         <Link to="/writing" className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-muted-foreground hover:text-foreground">
           <ArrowLeft className="size-3" /> All writing
