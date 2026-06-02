@@ -56,7 +56,7 @@ export function HoverImage({
             exit={{ opacity: 0, scale: 0.96 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             style={{ x, y, translateX: "-50%", translateY: "-50%" }}
-            className="pointer-events-none fixed left-0 top-0 z-50 hidden h-[320px] w-[240px] overflow-hidden shadow-2xl md:block"
+            className="pointer-events-none fixed left-0 top-0 z-[60] hidden h-[380px] w-[280px] overflow-hidden shadow-2xl md:block"
           >
             <img
               src={src}

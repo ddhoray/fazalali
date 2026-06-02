@@ -9,9 +9,10 @@ import { HoverImage } from "@/components/site/HoverImage";
 import { CirclePill } from "@/components/site/CirclePill";
 import { Grain } from "@/components/site/Grain";
 import { BookSection } from "@/components/site/BookSection";
+import { Newsletter } from "@/components/site/Newsletter";
 import { articles } from "@/content/articles";
 import portrait from "@/assets/fazal-portrait.jpg";
-import heroImage from "@/assets/hero-book.jpg";
+import heroImage from "@/assets/hero-statue.jpg";
 import featuredEducation from "@/assets/featured-education.jpg";
 import featuredOmeros from "@/assets/featured-omeros.jpg";
 import featuredWriting from "@/assets/featured-writing.jpg";
@@ -50,6 +51,7 @@ function Home() {
       <BookSection />
       <Range />
       <LatestWriting />
+      <Newsletter />
     </>
   );
 }
@@ -63,62 +65,64 @@ function Hero() {
     target: ref,
     offset: ["start start", "end start"],
   });
-  const opacity = useTransform(scrollYProgress, [0, 0.85], [1, 0]);
+  // Subtle parallax — image drifts upward as the section scrolls past.
+  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "-12%"]);
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1.05, 1.12]);
 
   return (
-    // Tall track — image is pinned, the content frame scrolls past it.
-    <section ref={ref} className="relative h-[180svh] w-full bg-neutral-200 text-white">
-      {/* Pinned image — stays in place while the frame scrolls */}
-      <div className="sticky top-0 h-screen w-full overflow-hidden">
+    <section
+      ref={ref}
+      className="relative min-h-svh w-full overflow-hidden bg-neutral-100 text-white"
+    >
+      {/* Parallax background image */}
+      <motion.div
+        style={{ y: imageY, scale: imageScale }}
+        className="absolute inset-0 will-change-transform"
+      >
         <img
           src={heroImage}
-          alt="A writer's desk in soft daylight with an open book and fountain pen"
-          className="absolute inset-0 size-full object-cover"
+          alt="A classical marble bust in warm museum light"
+          className="size-full object-cover"
           width={1920}
           height={1280}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/30" />
-      </div>
+      </motion.div>
+      {/* Soft cinematic overlay — keeps the statue readable while text stays legible */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-black/10" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent" />
+      <Grain />
 
-      {/* Scrolling content frame — sits over the pinned image */}
-      <motion.div
-        style={{ opacity }}
-        className="text-on-image pointer-events-none absolute inset-x-0 top-0 z-10 flex h-screen flex-col justify-between px-5 pt-28 pb-16 sm:px-10 sm:pt-32 sm:pb-24"
-      >
-        <div className="pointer-events-auto">
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.0, delay: 0.05 }}
-            className="eyebrow opacity-80"
-          >
-            Folio I · Trinidad &amp; the Machines
-          </motion.p>
-        </div>
+      {/* Content frame */}
+      <div className="text-on-image relative z-10 flex min-h-svh flex-col justify-between px-5 pt-28 pb-16 sm:px-10 sm:pt-32 sm:pb-24">
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.0, delay: 0.05 }}
+          className="eyebrow opacity-85"
+        >
+          Folio I · Trinidad &amp; the Machines
+        </motion.p>
 
-        <div className="pointer-events-auto">
-          <motion.h1
-            initial={{ opacity: 0, y: 24, filter: "blur(14px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ duration: 1.2, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+        <div>
+          <BlurReveal
+            as="h1"
             className="font-display text-[14vw] leading-[1.02] tracking-[-0.035em] text-balance sm:text-[10vw] md:text-[8vw] md:leading-[0.96]"
           >
             Reading the <span className="italic">machines</span> slowly,{" "}
             <span className="italic">by hand.</span>
-          </motion.h1>
+          </BlurReveal>
 
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.0, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-5 max-w-md text-[13px] leading-relaxed opacity-85 sm:mt-6 sm:text-sm md:text-base"
+          <BlurReveal
+            as="p"
+            delay={0.25}
+            className="mt-5 max-w-md text-[13px] leading-relaxed opacity-90 sm:mt-6 sm:text-sm md:text-base"
           >
             Dr. Fazal Ibrahim Ali — Cambridge-trained, Trinidad-born. Writing on
             critical theory in AI, the founding of Omeros AI, and a small book
             called <em className="italic">Education for Liberty.</em>
-          </motion.p>
+          </BlurReveal>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
@@ -186,10 +190,9 @@ function FeaturedSticky() {
   const [active, setActive] = useState(0);
   useEffect(() => {
     return scrollYProgress.on("change", (p) => {
-      const idx = Math.min(
-        featured.length - 1,
-        Math.max(0, Math.floor(p * featured.length * 0.999)),
-      );
+      // Equal scroll window per slide; clamp p just under 1 to avoid overflow.
+      const clamped = Math.min(0.9999, Math.max(0, p));
+      const idx = Math.min(featured.length - 1, Math.floor(clamped * featured.length));
       setActive(idx);
     });
   }, [scrollYProgress]);
@@ -201,7 +204,7 @@ function FeaturedSticky() {
     <section
       ref={ref}
       className="relative bg-background"
-      style={{ height: `${featured.length * 100}vh` }}
+      style={{ height: `${featured.length * 110}vh` }}
     >
       <div className="sticky top-0 flex h-screen flex-col overflow-hidden bg-background">
         {/* Mobile-only progress bar at the top */}
@@ -215,10 +218,16 @@ function FeaturedSticky() {
         <div className="mx-auto w-full max-w-[1700px] flex-1 px-5 pt-24 pb-6 sm:px-8 sm:pt-28 sm:pb-8 lg:pt-32">
           <div className="mb-5 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-3">
             <div>
-              <p className="eyebrow text-muted-foreground">Featured Work</p>
-              <h2 className="mt-2 font-display text-2xl leading-[1] sm:text-3xl md:text-4xl">
+              <BlurReveal as="p" className="eyebrow text-muted-foreground">
+                Featured Work
+              </BlurReveal>
+              <BlurReveal
+                as="h2"
+                delay={0.08}
+                className="mt-2 font-display text-2xl leading-[1] sm:text-3xl md:text-4xl"
+              >
                 Three things, <em className="italic">in order.</em>
-              </h2>
+              </BlurReveal>
             </div>
             <span className="nav-link text-muted-foreground">
               {String(active + 1).padStart(2, "0")} / {String(featured.length).padStart(2, "0")}
@@ -265,7 +274,7 @@ function FeaturedSticky() {
                 />
               </div>
 
-              <ul className="flex h-full flex-col justify-center gap-4 pl-8 pr-2">
+              <ul className="flex h-full flex-col justify-center gap-10 pl-8 pr-2 lg:gap-14">
                 {featured.map((item, i) => {
                   const isActive = i === active;
                   return (
@@ -637,7 +646,7 @@ function RangeCard({
 
 /* ─────────────────────── Writing ──────────────────────── */
 
-const writingImages = [practiceEssays, practiceBook, practiceOmeros];
+const writingImages = [featuredWriting, practiceEssays, featuredOmeros];
 
 function LatestWriting() {
   const latest = articles.slice(0, 3);
@@ -655,31 +664,33 @@ function LatestWriting() {
         </BlurReveal>
       </div>
 
-      <div className="divide-y hairline">
+      <div className="divide-y hairline overflow-visible">
         {latest.map((a, i) => (
-          <SlideIn key={a.slug} delay={i * 0.06} from="bottom">
-            <HoverImage src={writingImages[i % writingImages.length]} alt={a.title}>
-              <Link
-                to="/writing/$slug"
-                params={{ slug: a.slug }}
-                className="group grid grid-cols-1 gap-3 py-6 md:grid-cols-[160px_1fr_auto] md:items-baseline md:gap-12 md:py-8"
-              >
-                <span className="eyebrow text-muted-foreground">
-                  {new Date(a.date).toLocaleDateString("en-GB", {
-                    day: "2-digit",
-                    month: "short",
-                    year: "numeric",
-                  })}
-                </span>
-                <h3 className="font-display text-[7vw] leading-[1.05] transition-transform duration-700 group-hover:translate-x-3 sm:text-3xl md:text-5xl">
-                  {a.title}
-                </h3>
-                <span className="nav-link text-muted-foreground transition-colors group-hover:text-foreground">
-                  {a.topic} →
-                </span>
-              </Link>
-            </HoverImage>
-          </SlideIn>
+          <div key={a.slug} className="overflow-visible">
+            <SlideIn delay={i * 0.06} from="bottom" className="overflow-visible">
+              <HoverImage src={writingImages[i % writingImages.length]} alt={a.title}>
+                <Link
+                  to="/writing/$slug"
+                  params={{ slug: a.slug }}
+                  className="group grid grid-cols-1 gap-3 py-6 md:grid-cols-[160px_1fr_auto] md:items-baseline md:gap-12 md:py-8"
+                >
+                  <span className="eyebrow text-muted-foreground">
+                    {new Date(a.date).toLocaleDateString("en-GB", {
+                      day: "2-digit",
+                      month: "short",
+                      year: "numeric",
+                    })}
+                  </span>
+                  <h3 className="font-display text-[7vw] leading-[1.05] transition-transform duration-700 group-hover:translate-x-3 sm:text-3xl md:text-5xl">
+                    {a.title}
+                  </h3>
+                  <span className="nav-link text-muted-foreground transition-colors group-hover:text-foreground">
+                    {a.topic} →
+                  </span>
+                </Link>
+              </HoverImage>
+            </SlideIn>
+          </div>
         ))}
       </div>
     </section>

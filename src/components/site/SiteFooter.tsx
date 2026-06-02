@@ -61,12 +61,12 @@ export function SiteFooter() {
           <p>
             Designed &amp; developed by{" "}
             <a
-              href="https://hyperium.com"
+              href="https://hyperevamp.com"
               target="_blank"
               rel="noreferrer"
               className="text-foreground hover:underline"
             >
-              Hyperium
+              Hyperevamp
             </a>
           </p>
         </div>
