@@ -370,8 +370,9 @@ function FeaturedSticky() {
                 <Link
                   to={featured[active].to as never}
                   className="group mt-3 inline-flex items-center gap-2 text-sm"
+                  aria-label={`Explore ${featured[active].title}`}
                 >
-                  Read more
+                  Explore {featured[active].title}
                   <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                 </Link>
               </motion.div>
