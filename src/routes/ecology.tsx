@@ -19,10 +19,31 @@ export const Route = createFileRoute("/ecology")({
         property: "og:description",
         content: "Climate literacy as the substrate of citizenship in the West Indian classroom.",
       },
+      { property: "og:type", content: "article" },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/ecology" },
     ],
     links: [
       { rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/ecology" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: "Ecology — Education for Liberty",
+          description:
+            "An island is the right scale at which to learn ecology. A West Indian reading of climate, coast, and curriculum.",
+          datePublished: "2026-01-15",
+          author: {
+            "@type": "Person",
+            name: "Fazal Ibrahim Ali",
+            url: "https://omeros-cipher-glass.lovable.app/about",
+          },
+          publisher: { "@type": "Person", name: "Fazal Ibrahim Ali" },
+          mainEntityOfPage: "https://omeros-cipher-glass.lovable.app/ecology",
+        }),
+      },
     ],
   }),
   component: EcologyPage,
