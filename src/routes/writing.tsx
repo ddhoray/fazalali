@@ -25,7 +25,7 @@ export const Route = createFileRoute("/writing")({
 
 function WritingIndex() {
   return (
-    <div className="mx-auto max-w-7xl px-5 sm:px-8">
+    <div className="mx-auto max-w-7xl px-5 pt-32 pb-24 sm:px-8 sm:pt-40">
       <Reveal>
         <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">Writing</p>
         <h1 className="mt-4 font-display text-6xl leading-[0.95] text-balance md:text-8xl">
@@ -40,15 +40,25 @@ function WritingIndex() {
         {articles.map((a, i) => (
           <Reveal key={a.slug} delay={i * 0.05}>
             <Link to="/writing/$slug" params={{ slug: a.slug }} className="group block h-full">
-              <GlassPanel className="flex h-full flex-col p-7 transition-transform duration-500 group-hover:-translate-y-1">
-                <div className="flex items-center justify-between text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                  <span>{a.topic}</span>
-                  <span>{new Date(a.date).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" })}</span>
+              <GlassPanel className="flex h-full flex-col overflow-hidden p-0 transition-transform duration-500 group-hover:-translate-y-1">
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <img
+                    src={a.image}
+                    alt=""
+                    loading="lazy"
+                    className="size-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]"
+                  />
                 </div>
-                <h2 className="mt-6 font-display text-2xl leading-tight text-balance">{a.title}</h2>
-                <p className="mt-4 text-sm text-muted-foreground text-pretty">{a.excerpt}</p>
-                <div className="mt-8 inline-flex items-center gap-1 text-sm">
-                  Read essay <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <div className="flex flex-1 flex-col p-7">
+                  <div className="flex items-center justify-between text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                    <span>{a.topic}</span>
+                    <span>{new Date(a.date).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" })}</span>
+                  </div>
+                  <h2 className="mt-6 font-display text-2xl leading-tight text-balance">{a.title}</h2>
+                  <p className="mt-4 text-sm text-muted-foreground text-pretty">{a.excerpt}</p>
+                  <div className="mt-8 inline-flex items-center gap-1 text-sm">
+                    Read essay <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </div>
                 </div>
               </GlassPanel>
             </Link>
