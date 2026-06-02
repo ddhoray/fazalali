@@ -16,6 +16,7 @@ const links = [
 export function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [overDark, setOverDark] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const isHome = pathname === "/";
 
@@ -26,9 +27,36 @@ export function SiteNav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Watch for sections tagged data-nav="dark" — flip nav to light text.
+  useEffect(() => {
+    const sections = Array.from(
+      document.querySelectorAll<HTMLElement>('[data-nav="dark"]'),
+    );
+    if (sections.length === 0) {
+      setOverDark(false);
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        // If any dark section intersects the top band of the viewport, treat as dark.
+        const anyDark = entries.some((e) => e.isIntersecting);
+        // Fallback recompute against all (because IO only reports changed entries).
+        const dark = sections.some((s) => {
+          const r = s.getBoundingClientRect();
+          return r.top <= 80 && r.bottom >= 80;
+        });
+        setOverDark(dark || anyDark === false ? dark : true);
+      },
+      { rootMargin: "-64px 0px -85% 0px", threshold: 0 },
+    );
+    sections.forEach((s) => io.observe(s));
+    return () => io.disconnect();
+  }, [pathname]);
+
   // Over the hero (home + top of page) → transparent, white text.
-  // Otherwise → glass-white blur.
+  // Otherwise → glass-white blur, or glass-dark when over a dark section.
   const overHero = isHome && !scrolled && !open;
+  const lightOnDark = overHero || overDark;
 
   return (
     <header
@@ -36,7 +64,9 @@ export function SiteNav() {
         "fixed inset-x-0 top-0 z-50 transition-all duration-500",
         overHero
           ? "bg-transparent text-white"
-          : "bg-background/70 backdrop-blur-xl border-b hairline text-foreground",
+          : overDark
+            ? "bg-black/55 backdrop-blur-xl border-b border-white/10 text-white"
+            : "bg-background/85 backdrop-blur-2xl border-b hairline text-foreground shadow-[0_1px_0_rgba(0,0,0,0.03)]",
       )}
     >
       <div className="mx-auto flex max-w-[1700px] items-center justify-between px-5 py-4 sm:px-8 sm:py-5">
@@ -46,8 +76,7 @@ export function SiteNav() {
             alt="Fazal Ali"
             className={cn(
               "h-7 w-auto sm:h-8 transition-[filter] duration-500",
-              // Over hero: always white. Otherwise: black in light mode, white in dark mode.
-              overHero
+              lightOnDark
                 ? "brightness-0 invert"
                 : "brightness-0 dark:brightness-0 dark:invert",
             )}
