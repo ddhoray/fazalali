@@ -5,7 +5,7 @@ import { articles } from "@/content/articles";
 import { ArrowUpRight } from "lucide-react";
 import heroBook from "@/assets/hero-writing.jpg";
 
-export const Route = createFileRoute("/writing")({
+export const Route = createFileRoute("/writing/")({
   head: () => ({
     meta: [
       { title: "Articles — Fazal Ali" },
