@@ -78,9 +78,9 @@ const WritingIndexRoute = WritingIndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const WritingSlugRoute = WritingSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => WritingRoute,
+  id: '/writing/$slug',
+  path: '/writing/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -182,6 +182,7 @@ export interface RootRouteChildren {
   OmerosAiRoute: typeof OmerosAiRoute
   PalimpsestRoute: typeof PalimpsestRoute
   PodcastRoute: typeof PodcastRoute
+  WritingSlugRoute: typeof WritingSlugRoute
   WritingIndexRoute: typeof WritingIndexRoute
 }
 
@@ -266,10 +267,10 @@ declare module '@tanstack/react-router' {
     }
     '/writing/$slug': {
       id: '/writing/$slug'
-      path: '/$slug'
+      path: '/writing/$slug'
       fullPath: '/writing/$slug'
       preLoaderRoute: typeof WritingSlugRouteImport
-      parentRoute: typeof WritingRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
@@ -285,18 +286,9 @@ const rootRouteChildren: RootRouteChildren = {
   OmerosAiRoute: OmerosAiRoute,
   PalimpsestRoute: PalimpsestRoute,
   PodcastRoute: PodcastRoute,
+  WritingSlugRoute: WritingSlugRoute,
   WritingIndexRoute: WritingIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
