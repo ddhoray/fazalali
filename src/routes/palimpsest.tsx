@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
 import { palimpsest } from "@/content/palimpsest";
-import heroBook from "@/assets/hero-book.jpg";
+import heroPalimpsest from "@/assets/hero-palimpsest.jpg";
 
 export const Route = createFileRoute("/palimpsest")({
   head: () => ({
@@ -49,7 +49,7 @@ function PalimpsestPage() {
             <span>Sources: Williams · Campbell · PNM</span>
           </>
         }
-        image={heroBook}
+        image={heroPalimpsest}
         imageAlt="An open manuscript on a dark desk"
       />
 

@@ -10,14 +10,14 @@ interface PageHeroProps {
   align?: "left" | "center";
   className?: string;
   children?: ReactNode;
-  /** Optional right-side image (desktop) / soft backdrop (mobile). */
+  /** Right-side colored image. */
   image?: string;
   imageAlt?: string;
 }
 
 /**
- * Full-bleed black editorial hero band. Sets data-nav="dark" so the
- * fixed nav flips to light-on-dark over it.
+ * Light editorial hero. Cream background, colored image on the right,
+ * vertically centered text on the left. Nav stays in its default light mode.
  */
 export function PageHero({
   eyebrow,
@@ -32,51 +32,37 @@ export function PageHero({
 }: PageHeroProps) {
   return (
     <section
-      data-nav="dark"
       className={cn(
-        "section-invert relative isolate w-full overflow-hidden",
+        "relative isolate w-full overflow-hidden bg-[oklch(0.985_0.005_85)]",
         className,
       )}
     >
-      {/* Mobile backdrop image (fades into black) */}
-      {image && (
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 md:hidden"
-        >
-          <img
-            src={image}
-            alt=""
-            className="size-full object-cover opacity-30"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/30" />
-        </div>
-      )}
-
       {/* faint vertical hairlines for editorial texture */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.06]"
+        className="pointer-events-none absolute inset-0 opacity-[0.05]"
         style={{
           backgroundImage:
-            "linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
+            "linear-gradient(90deg, rgba(0,0,0,0.5) 1px, transparent 1px)",
           backgroundSize: "12.5% 100%",
         }}
       />
+
       <div
         className={cn(
-          "relative mx-auto grid max-w-[1700px] items-end gap-12 px-5 pb-20 pt-40 sm:px-8 sm:pb-28 sm:pt-48",
-          image ? "md:grid-cols-[1.2fr_1fr] md:gap-16" : "md:grid-cols-1",
+          "relative mx-auto grid max-w-[1500px] items-center gap-12 px-5 pb-20 pt-32 sm:px-8 sm:pb-24 sm:pt-36 md:gap-16 md:py-32",
+          image ? "md:grid-cols-2" : "md:grid-cols-1",
           align === "center" && !image && "text-center",
         )}
       >
-        <div className="min-w-0">
+        {/* Text column */}
+        <div className="min-w-0 text-foreground">
           {eyebrow && (
             <motion.p
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="eyebrow text-white/60"
+              className="eyebrow text-muted-foreground"
             >
               {eyebrow}
             </motion.p>
@@ -86,8 +72,8 @@ export function PageHero({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.05 }}
             className={cn(
-              "mt-6 font-display leading-[0.95] text-balance text-5xl sm:text-7xl",
-              image ? "md:text-[6.5rem]" : "md:text-[8.5rem]",
+              "mt-5 font-display leading-[0.95] text-balance text-5xl sm:text-6xl",
+              image ? "md:text-7xl lg:text-[5.5rem]" : "md:text-[7rem] lg:text-[8.5rem]",
             )}
           >
             {title}
@@ -98,7 +84,7 @@ export function PageHero({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.18 }}
               className={cn(
-                "mt-8 max-w-2xl text-lg leading-relaxed text-white/75 sm:text-xl",
+                "mt-6 max-w-xl text-base leading-relaxed text-foreground/75 sm:text-lg",
                 align === "center" && !image && "mx-auto",
               )}
             >
@@ -106,28 +92,29 @@ export function PageHero({
             </motion.div>
           )}
           {meta && (
-            <div className="mt-12 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-white/15 pt-6 text-xs uppercase tracking-[0.22em] text-white/55">
+            <div className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-2 border-t hairline pt-5 text-xs uppercase tracking-[0.22em] text-muted-foreground">
               {meta}
             </div>
           )}
           {children}
         </div>
 
-        {/* Desktop side image */}
+        {/* Image column */}
         {image && (
           <motion.div
-            initial={{ opacity: 0, scale: 1.04 }}
+            initial={{ opacity: 0, scale: 1.03 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.1, delay: 0.1 }}
-            className="relative hidden aspect-[4/5] w-full overflow-hidden border border-white/15 md:block"
+            transition={{ duration: 1.0, delay: 0.1 }}
+            className="relative aspect-[4/5] w-full overflow-hidden border border-foreground/10 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.25)]"
           >
             <img
               src={image}
               alt={imageAlt}
               className="size-full object-cover"
               loading="eager"
+              width={1152}
+              height={1440}
             />
-            <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-transparent" />
           </motion.div>
         )}
       </div>
