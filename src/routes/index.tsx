@@ -211,111 +211,120 @@ const featured = [
 ];
 
 function FeaturedSticky() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end end"],
+  });
+
+  // Map continuous scroll progress to a discrete active index across the items.
   const [active, setActive] = useState(0);
+  useEffect(() => {
+    return scrollYProgress.on("change", (p) => {
+      // 3 items → buckets of 1/3
+      const idx = Math.min(
+        featured.length - 1,
+        Math.max(0, Math.floor(p * featured.length * 0.999)),
+      );
+      setActive(idx);
+    });
+  }, [scrollYProgress]);
 
   return (
-    <section className="relative py-14 md:py-18">
-      <div className="mx-auto max-w-[1700px] px-5 sm:px-8">
-        <div className="mb-8 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-5">
-          <div>
-            <BlurReveal as="p" className="eyebrow text-muted-foreground">
-              Featured Work
-            </BlurReveal>
-            <BlurReveal as="h2" delay={0.08} className="mt-3 font-display text-[11vw] leading-[1] sm:text-5xl md:text-6xl">
-              Three things, <em className="italic">in order.</em>
-            </BlurReveal>
+    <section
+      ref={ref}
+      className="relative"
+      // Tall track: ~one screen per item. Section moves up only after the
+      // last item has scrolled into view.
+      style={{ height: `${featured.length * 100}vh` }}
+    >
+      <div className="sticky top-0 flex h-screen items-center overflow-hidden">
+        <div className="mx-auto w-full max-w-[1700px] px-5 sm:px-8">
+          <div className="mb-6 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-4">
+            <div>
+              <p className="eyebrow text-muted-foreground">Featured Work</p>
+              <h2 className="mt-2 font-display text-3xl leading-[1] sm:text-4xl md:text-5xl">
+                Three things, <em className="italic">in order.</em>
+              </h2>
+            </div>
+            <span className="nav-link text-muted-foreground">
+              {String(active + 1).padStart(2, "0")} / {String(featured.length).padStart(2, "0")}
+            </span>
           </div>
-          <BlurReveal delay={0.2}>
-            <Link to="/writing" className="nav-link opacity-70 hover:opacity-100">
-              All work →
-            </Link>
-          </BlurReveal>
-        </div>
 
-        {/* Sticky image (works on mobile too), scrolling frames right */}
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-14">
-          <div className="lg:col-span-6">
-            <div className="sticky top-20 lg:top-24">
-              <ActiveImageStack items={featured} active={active} />
+          <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-12 lg:gap-14">
+            {/* Pinned image — fixed at its place, content changes as you scroll */}
+            <div className="lg:col-span-7">
+              <div className="relative aspect-[16/10] w-full overflow-hidden bg-foreground/5 sm:aspect-[4/3]">
+                {featured.map((item, i) => (
+                  <motion.div
+                    key={item.title}
+                    initial={false}
+                    animate={{
+                      opacity: i === active ? 1 : 0,
+                      scale: i === active ? 1 : 1.06,
+                    }}
+                    transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute inset-0"
+                  >
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="size-full object-cover"
+                      loading="lazy"
+                    />
+                  </motion.div>
+                ))}
+                <Grain />
+                <div className="absolute inset-x-0 bottom-0 z-10 flex items-center justify-between gap-3 bg-gradient-to-t from-black/70 to-transparent p-4 text-on-image md:p-7">
+                  <span className="nav-link text-[10px]">{featured[active].eyebrow}</span>
+                  <span className="nav-link text-[10px] truncate">{featured[active].title}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Side text — cross-fades per active item */}
+            <div className="relative min-h-[260px] lg:col-span-5">
+              {featured.map((item, i) => (
+                <motion.div
+                  key={item.title}
+                  initial={false}
+                  animate={{
+                    opacity: i === active ? 1 : 0,
+                    y: i === active ? 0 : 24,
+                    filter: i === active ? "blur(0px)" : "blur(8px)",
+                  }}
+                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                  className={`absolute inset-0 ${i === active ? "pointer-events-auto" : "pointer-events-none"}`}
+                >
+                  <div className="mb-3 flex flex-wrap items-center gap-3 text-muted-foreground">
+                    <item.icon className="size-4 shrink-0" />
+                    <span className="nav-link">{item.eyebrow}</span>
+                    <span className="ml-auto nav-link">{item.year}</span>
+                  </div>
+                  <h3 className="font-display text-4xl leading-[0.98] tracking-[-0.02em] sm:text-5xl md:text-6xl">
+                    {item.title}<span className="italic">.</span>
+                  </h3>
+                  <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-muted-foreground md:text-base">
+                    {item.note}
+                  </p>
+                  <Link
+                    to={item.to as never}
+                    className="group mt-5 inline-flex items-center gap-2 text-sm"
+                  >
+                    Read more
+                    <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  </Link>
+                </motion.div>
+              ))}
             </div>
           </div>
-
-          <ol className="lg:col-span-6">
-            {featured.map((item, i) => (
-              <motion.li
-                key={item.title}
-                onViewportEnter={() => setActive(i)}
-                viewport={{ amount: 0.4, margin: "-25% 0px -40% 0px" }}
-                className="border-b hairline py-8 first:pt-0 last:border-b-0 md:py-14"
-              >
-                <SlideIn from="right" delay={0.04}>
-                  <Link to={item.to as never} className="group block">
-                    <div className="mb-3 flex flex-wrap items-center gap-3 text-muted-foreground">
-                      <item.icon className="size-4 shrink-0" />
-                      <span className="nav-link">{item.eyebrow}</span>
-                      <span className="ml-auto nav-link">{item.year}</span>
-                    </div>
-                    <h3 className="font-display text-[10vw] leading-[0.98] tracking-[-0.02em] transition-transform duration-700 group-hover:translate-x-2 sm:text-5xl md:text-6xl">
-                      {item.title}<span className="italic">.</span>
-                    </h3>
-                    <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-muted-foreground md:mt-4 md:text-base">
-                      {item.note}
-                    </p>
-                    <span className="mt-4 inline-flex items-center gap-2 text-xs transition-opacity opacity-70 group-hover:opacity-100 md:mt-5 md:text-sm">
-                      Read more <ArrowUpRight className="size-4" />
-                    </span>
-                  </Link>
-                </SlideIn>
-              </motion.li>
-            ))}
-          </ol>
         </div>
       </div>
     </section>
   );
 }
 
-function ActiveImageStack({
-  items,
-  active,
-}: {
-  items: typeof featured;
-  active: number;
-}) {
-  return (
-    <div className="relative aspect-[16/11] w-full overflow-hidden bg-foreground/5 sm:aspect-[4/3] lg:aspect-[4/5]">
-      {items.map((item, i) => {
-        const offset = i - active;
-        return (
-          <motion.div
-            key={item.title}
-            initial={false}
-            animate={{
-              x: `${offset * 100}%`,
-              opacity: offset === 0 ? 1 : 0.4,
-            }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute inset-0"
-          >
-            <img
-              src={item.image}
-              alt={item.title}
-              className="size-full object-cover"
-              loading="lazy"
-            />
-          </motion.div>
-        );
-      })}
-      <Grain />
-      <div className="absolute inset-x-0 bottom-0 z-10 flex flex-wrap items-center justify-between gap-3 bg-gradient-to-t from-black/70 to-transparent p-4 text-on-image md:p-7">
-        <span className="nav-link text-[10px]">
-          {String(active + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}
-        </span>
-        <span className="nav-link text-[10px] truncate">{items[active].title}</span>
-      </div>
-    </div>
-  );
-}
 
 
 /* ─────────────────── Parallax Break ─────────────────── */
