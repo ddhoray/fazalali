@@ -55,7 +55,6 @@ export const articles: Article[] = [
       "Mythos is a step change in capability — a highly advanced, general-purpose frontier model that does not so much answer questions as listen for them.",
     date: "2026-05-16",
     topic: "Critical Theory in AI",
-    image: imgShield,
     image: imgFabric,
     body: [
       "Frontier models have begun to behave less like oracles and more like fabrics — porous, ambient, always-on. The security implications are not incremental.",
@@ -70,7 +69,7 @@ export const articles: Article[] = [
       "No one can shield their AI chats from prosecutors pursuing charges. Conversations with AI assemblages could be demanded by adversaries with the patience of a state.",
     date: "2026-05-09",
     topic: "Critical Theory in AI",
-    image: imgGravity,
+    image: imgShield,
     body: [
       "The intimacy of the AI chat misleads. The interface feels private; the substrate is anything but.",
       "Selecting an agent is now an act of forensic foresight. Every prompt is a potential exhibit. Every refusal is a potential admission.",
@@ -84,7 +83,7 @@ export const articles: Article[] = [
       "The future is still about figuring out what questions to ask. This is more important than finding the correct answer to the wrong one.",
     date: "2026-05-02",
     topic: "Critical Theory in AI",
-    image: imgDatacenter,
+    image: imgGravity,
     body: [
       "Gravity is the right metaphor. AI does not push economies; it bends them. Capital, talent, attention all curve toward the densest concentrations of compute.",
       "A socio-economic operating system that does not account for that curvature will mistake drift for choice.",
@@ -98,7 +97,7 @@ export const articles: Article[] = [
       "Data centres and hyperscale cloud infrastructure are the new victims of war. The substrate of intelligence is also the substrate of vulnerability.",
     date: "2026-04-25",
     topic: "Critical Theory in AI",
-    image: imgShelf,
+    image: imgDatacenter,
     body: [
       "The defence community is late to recognise that the data centre is now both weapon and target.",
       "A hyperscale region under contest is not an inconvenience. It is a partial lobotomy of the global cognitive system.",
@@ -112,7 +111,7 @@ export const articles: Article[] = [
       "AI-powered Electronic Shelf Labels are being adopted by major retail chains. These tiny screens turn the supermarket aisle into a real-time market.",
     date: "2026-04-18",
     topic: "Critical Theory in AI",
-    image: img100Model,
+    image: imgShelf,
     body: [
       "The supermarket has always been a sensor. With electronic shelf labels, it becomes a transmitter.",
       "Prices that used to settle into the week now flicker by the hour. The shopper enters a small, continuous auction.",
@@ -126,6 +125,7 @@ export const articles: Article[] = [
       "The Hundred Model War started in 2023. From Beijing to Shenzhen, China is implementing its frontier strategy at industrial scale.",
     date: "2026-04-12",
     topic: "Critical Theory in AI",
+    image: img100Model,
     body: [
       "A hundred models is not a market. It is a strategy. Variety is the cover under which a single state intent moves.",
       "Shadow AI is the workplace name for the same pattern at smaller scale — capable systems running outside the policies meant to govern them.",
