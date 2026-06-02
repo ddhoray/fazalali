@@ -41,13 +41,13 @@
   --radius: 0;
 
   /* Cool neutral editorial palette — off-white + FIA navy ink */
-  --background: oklch(0.985 0.004 240);
-  --foreground: oklch(0.18 0.04 260);
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.14 0 0);
 
   --muted: oklch(0.94 0.008 235);
   --muted-foreground: oklch(0.42 0.02 250);
 
-  --card: oklch(1 0 0);
+  --card: var(--background);
   --card-foreground: var(--foreground);
 
   --border: color-mix(in oklab, var(--foreground) 14%, transparent);
@@ -57,11 +57,11 @@
 }
 
 .dark {
-  --background: oklch(0.14 0.02 250);
-  --foreground: oklch(0.97 0.005 240);
+  --background: oklch(0.08 0 0);
+  --foreground: oklch(0.98 0 0);
   --muted: oklch(0.20 0.022 250);
   --muted-foreground: oklch(0.74 0.012 240);
-  --card: oklch(0.18 0.022 250);
+  --card: var(--background);
   --card-foreground: var(--foreground);
   --border: color-mix(in oklab, var(--foreground) 16%, transparent);
   --accent-cool: oklch(0.72 0.12 230);
