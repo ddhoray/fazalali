@@ -546,6 +546,7 @@ function Range() {
           </SlideIn>
         ))}
       </div>
+      </div>
     </section>
   );
 }
