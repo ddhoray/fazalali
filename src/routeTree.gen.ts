@@ -13,7 +13,10 @@ import { Route as WritingRouteImport } from './routes/writing'
 import { Route as PodcastRouteImport } from './routes/podcast'
 import { Route as PalimpsestRouteImport } from './routes/palimpsest'
 import { Route as OmerosAiRouteImport } from './routes/omeros-ai'
+import { Route as InequalityRouteImport } from './routes/inequality'
+import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as EducationForLibertyRouteImport } from './routes/education-for-liberty'
+import { Route as EcologyRouteImport } from './routes/ecology'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -39,9 +42,24 @@ const OmerosAiRoute = OmerosAiRouteImport.update({
   path: '/omeros-ai',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InequalityRoute = InequalityRouteImport.update({
+  id: '/inequality',
+  path: '/inequality',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GalleryRoute = GalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EducationForLibertyRoute = EducationForLibertyRouteImport.update({
   id: '/education-for-liberty',
   path: '/education-for-liberty',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EcologyRoute = EcologyRouteImport.update({
+  id: '/ecology',
+  path: '/ecology',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -69,7 +87,10 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/ecology': typeof EcologyRoute
   '/education-for-liberty': typeof EducationForLibertyRoute
+  '/gallery': typeof GalleryRoute
+  '/inequality': typeof InequalityRoute
   '/omeros-ai': typeof OmerosAiRoute
   '/palimpsest': typeof PalimpsestRoute
   '/podcast': typeof PodcastRoute
@@ -80,7 +101,10 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/ecology': typeof EcologyRoute
   '/education-for-liberty': typeof EducationForLibertyRoute
+  '/gallery': typeof GalleryRoute
+  '/inequality': typeof InequalityRoute
   '/omeros-ai': typeof OmerosAiRoute
   '/palimpsest': typeof PalimpsestRoute
   '/podcast': typeof PodcastRoute
@@ -92,7 +116,10 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/ecology': typeof EcologyRoute
   '/education-for-liberty': typeof EducationForLibertyRoute
+  '/gallery': typeof GalleryRoute
+  '/inequality': typeof InequalityRoute
   '/omeros-ai': typeof OmerosAiRoute
   '/palimpsest': typeof PalimpsestRoute
   '/podcast': typeof PodcastRoute
@@ -105,7 +132,10 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/ecology'
     | '/education-for-liberty'
+    | '/gallery'
+    | '/inequality'
     | '/omeros-ai'
     | '/palimpsest'
     | '/podcast'
@@ -116,7 +146,10 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/ecology'
     | '/education-for-liberty'
+    | '/gallery'
+    | '/inequality'
     | '/omeros-ai'
     | '/palimpsest'
     | '/podcast'
@@ -127,7 +160,10 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/ecology'
     | '/education-for-liberty'
+    | '/gallery'
+    | '/inequality'
     | '/omeros-ai'
     | '/palimpsest'
     | '/podcast'
@@ -139,7 +175,10 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
+  EcologyRoute: typeof EcologyRoute
   EducationForLibertyRoute: typeof EducationForLibertyRoute
+  GalleryRoute: typeof GalleryRoute
+  InequalityRoute: typeof InequalityRoute
   OmerosAiRoute: typeof OmerosAiRoute
   PalimpsestRoute: typeof PalimpsestRoute
   PodcastRoute: typeof PodcastRoute
@@ -176,11 +215,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OmerosAiRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/inequality': {
+      id: '/inequality'
+      path: '/inequality'
+      fullPath: '/inequality'
+      preLoaderRoute: typeof InequalityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gallery': {
+      id: '/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof GalleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/education-for-liberty': {
       id: '/education-for-liberty'
       path: '/education-for-liberty'
       fullPath: '/education-for-liberty'
       preLoaderRoute: typeof EducationForLibertyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ecology': {
+      id: '/ecology'
+      path: '/ecology'
+      fullPath: '/ecology'
+      preLoaderRoute: typeof EcologyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -229,7 +289,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
+  EcologyRoute: EcologyRoute,
   EducationForLibertyRoute: EducationForLibertyRoute,
+  GalleryRoute: GalleryRoute,
+  InequalityRoute: InequalityRoute,
   OmerosAiRoute: OmerosAiRoute,
   PalimpsestRoute: PalimpsestRoute,
   PodcastRoute: PodcastRoute,
