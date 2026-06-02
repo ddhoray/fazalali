@@ -32,7 +32,7 @@ const chapters = [
 
 function BookPage() {
   return (
-    <div className="mx-auto max-w-7xl px-5 sm:px-8">
+    <div className="mx-auto max-w-7xl px-5 pt-32 pb-24 sm:px-8 sm:pt-40">
       <Reveal>
         <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">The Book</p>
         <h1 className="mt-4 font-display text-6xl leading-[0.92] text-balance md:text-[7.5rem]">

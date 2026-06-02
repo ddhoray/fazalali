@@ -397,8 +397,10 @@ function Manifesto() {
 /* ─────────────────────── Portrait ─────────────────────── */
 
 function Portrait() {
+  const navigateRoot = useNavigate();
   return (
     <section
+
       data-nav="dark"
       className="section-invert relative overflow-hidden py-16 md:py-24"
     >
@@ -429,13 +431,14 @@ function Portrait() {
             <h2
               className="font-display font-medium leading-[0.82] tracking-[-0.05em]"
               style={{
-                color: "rgba(246,244,239,0.10)",
+                color: "rgba(255,255,255,0.22)",
                 fontSize: "clamp(96px, 22vw, 360px)",
                 whiteSpace: "nowrap",
               }}
             >
               FAZAL ALI
             </h2>
+
           </BlurReveal>
 
           {/* 3-column row with flanking text and centered cutout */}
@@ -466,22 +469,31 @@ function Portrait() {
               </BlurReveal>
             </div>
 
-            {/* Cutout — centered hero */}
+            {/* Cutout — centered hero with hold-to-open */}
             <SlideIn
               from="bottom"
               className="order-1 col-span-12 md:order-2 md:col-span-6"
             >
-              <div className="relative mx-auto aspect-[3/4] w-full max-w-[460px]">
-                <img
-                  src={portrait}
-                  alt="Dr. Fazal Ibrahim Ali"
-                  className="absolute inset-0 size-full object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.55)]"
-                  loading="lazy"
-                  width={1024}
-                  height={1365}
-                />
-              </div>
+              <HoverImage
+                src={portrait}
+                alt="Dr. Fazal Ibrahim Ali"
+                imageless
+                holdMs={6000}
+                onHoldComplete={() => navigateRoot({ to: "/about" })}
+              >
+                <div className="relative mx-auto aspect-[3/4] w-full max-w-[460px] cursor-pointer">
+                  <img
+                    src={portrait}
+                    alt="Dr. Fazal Ibrahim Ali"
+                    className="absolute inset-0 size-full object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.55)]"
+                    loading="lazy"
+                    width={1024}
+                    height={1365}
+                  />
+                </div>
+              </HoverImage>
             </SlideIn>
+
 
             {/* Right text */}
             <div className="order-3 col-span-6 md:col-span-3">
@@ -538,16 +550,18 @@ function Portrait() {
 /* ───────────────────────── Range ──────────────────────── */
 
 const range = [
-  { n: "01", title: "Critical Theory in AI", body: "Frontier models read as social substrate — not products, not miracles.", icon: Sparkles, tag: "Theory" },
-  { n: "02", title: "Education for Liberty", body: "What a child needs to learn so the next machine is a freedom, not a fence.", icon: BookOpen, tag: "Book" },
-  { n: "03", title: "Omeros AI", body: "A Caribbean reading of intelligence — named for Walcott, kept close to the sea.", icon: Compass, tag: "Studio" },
-  { n: "04", title: "From the West Indies", body: "A contribution from Trinidad to a conversation rarely written from here.", icon: PenLine, tag: "Essays" },
+  { n: "01", title: "Critical Theory in AI", body: "Frontier models read as social substrate — not products, not miracles.", icon: Sparkles, tag: "Theory", to: "/writing" as const },
+  { n: "02", title: "Education for Liberty", body: "What a child needs to learn so the next machine is a freedom, not a fence.", icon: BookOpen, tag: "Book", to: "/education-for-liberty" as const },
+  { n: "03", title: "Omeros AI", body: "A Caribbean reading of intelligence — named for Walcott, kept close to the sea.", icon: Compass, tag: "Studio", to: "/omeros-ai" as const },
+  { n: "04", title: "From the West Indies", body: "A contribution from Trinidad to a conversation rarely written from here.", icon: PenLine, tag: "Essays", to: "/writing" as const },
 ];
+
 
 const rangeImages = [practiceEssays, practiceBook, practiceOmeros, featuredWriting];
 
 function Range() {
   const [hover, setHover] = useState<number | null>(null);
+  const navigate = useNavigate();
 
   return (
     <section data-nav="dark" className="section-invert relative px-5 py-14 sm:px-8 md:py-16">
@@ -570,13 +584,21 @@ function Range() {
       >
         {range.map((r, i) => (
           <SlideIn key={r.n} delay={i * 0.06} from={i % 2 === 0 ? "left" : "right"}>
-            <RangeCard
-              r={r}
-              image={rangeImages[i]}
-              isHover={hover === i}
-              isDim={hover !== null && hover !== i}
-              onEnter={() => setHover(i)}
-            />
+            <HoverImage
+              src={rangeImages[i]}
+              alt={r.title}
+              imageless
+              holdMs={6000}
+              onHoldComplete={() => navigate({ to: r.to })}
+            >
+              <RangeCard
+                r={r}
+                image={rangeImages[i]}
+                isHover={hover === i}
+                isDim={hover !== null && hover !== i}
+                onEnter={() => setHover(i)}
+              />
+            </HoverImage>
           </SlideIn>
         ))}
       </div>
@@ -584,6 +606,7 @@ function Range() {
     </section>
   );
 }
+
 
 function RangeCard({
   r,

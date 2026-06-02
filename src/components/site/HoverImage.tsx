@@ -14,6 +14,7 @@ export function HoverImage({
   className = "",
   holdMs,
   onHoldComplete,
+  imageless = false,
 }: {
   src: string;
   alt: string;
@@ -21,7 +22,10 @@ export function HoverImage({
   className?: string;
   holdMs?: number;
   onHoldComplete?: () => void;
+  /** When true, hide the floating image preview and show only the circular loader at the cursor. */
+  imageless?: boolean;
 }) {
+
   const [visible, setVisible] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [progress, setProgress] = useState(0); // 0 → 1
@@ -80,14 +84,21 @@ export function HoverImage({
           exit={{ opacity: 0, scale: 0.96 }}
           transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
           style={{ x, y, translateX: "-50%", translateY: "-50%" }}
-          className="pointer-events-none fixed left-0 top-0 z-[100] hidden h-[380px] w-[280px] overflow-hidden shadow-2xl md:block"
+          className={
+            imageless
+              ? "pointer-events-none fixed left-0 top-0 z-[100] hidden size-[96px] md:block"
+              : "pointer-events-none fixed left-0 top-0 z-[100] hidden h-[380px] w-[280px] overflow-hidden shadow-2xl md:block"
+          }
         >
-          <img
-            src={src}
-            alt={alt}
-            className="size-full object-cover"
-            loading="lazy"
-          />
+          {!imageless && (
+            <img
+              src={src}
+              alt={alt}
+              className="size-full object-cover"
+              loading="lazy"
+            />
+          )}
+
           {holdMs && onHoldComplete && (
             <div className="absolute inset-0 flex items-center justify-center">
               <svg width="72" height="72" viewBox="0 0 72 72" className="drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
