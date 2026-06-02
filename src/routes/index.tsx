@@ -11,7 +11,7 @@ import { Grain } from "@/components/site/Grain";
 import { BookSection } from "@/components/site/BookSection";
 import { Newsletter } from "@/components/site/Newsletter";
 import { articles } from "@/content/articles";
-import portrait from "@/assets/fazal-portrait-aesthetic.jpg";
+import portrait from "@/assets/fazal-cutout.png";
 import heroImage from "@/assets/hero-statue.jpg";
 import featuredEducation from "@/assets/featured-education.jpg";
 import featuredOmeros from "@/assets/featured-omeros.jpg";
@@ -400,14 +400,14 @@ function Portrait() {
   return (
     <section
       data-nav="dark"
-      className="section-invert relative overflow-hidden py-14 md:py-16"
+      className="section-invert relative overflow-hidden py-16 md:py-24"
     >
-
       <Grain />
 
       <div className="relative z-10 mx-auto max-w-[1500px] px-5 sm:px-8">
+        {/* Top meta bar */}
         <div
-          className="mb-8 flex items-center justify-between border-b pb-4"
+          className="mb-10 flex items-center justify-between border-b pb-4"
           style={{ borderColor: "rgba(246,244,239,0.2)" }}
         >
           <BlurReveal as="p" className="eyebrow">
@@ -418,74 +418,108 @@ function Portrait() {
           </BlurReveal>
         </div>
 
-        {/* Compact composition: name on top on mobile, side-by-side on desktop */}
-        <div className="grid grid-cols-12 items-end gap-6 md:gap-10">
-          {/* Name first on mobile (order-1), image right column on desktop */}
-          <div className="order-1 col-span-12 md:order-2 md:col-span-6 lg:col-span-7">
-            <BlurReveal
-              as="h2"
-              className="font-display font-medium leading-[0.84] tracking-[-0.04em]"
-              y={28}
-            >
-              <span
-                className="block text-[26vw] sm:text-[20vw] md:text-[9.5vw] lg:text-[11vw]"
-                style={{ color: "#ffffff" }}
-              >
-                Fazal
-              </span>
-              <span
-                className="block italic text-[26vw] sm:text-[20vw] md:text-[9.5vw] lg:text-[11vw]"
-                style={{ color: "#ffffff" }}
-              >
-                Ali<span className="not-italic">.</span>
-              </span>
-            </BlurReveal>
-
-            <BlurReveal delay={0.16} className="mt-4 max-w-xl md:mt-5">
-              <p
-                className="font-display text-lg italic sm:text-xl md:text-2xl"
-                style={{ color: "rgba(246,244,239,0.85)" }}
-              >
-                Writer · Scholar · Founder of <span className="not-italic">Omeros AI</span>
-              </p>
-            </BlurReveal>
-          </div>
-
-          <SlideIn from="left" className="order-2 col-span-12 md:order-1 md:col-span-6 lg:col-span-5">
-            <div className="grain relative aspect-[4/5] w-full overflow-hidden">
-              <img
-                src={portrait}
-                alt="Dr. Fazal Ibrahim Ali"
-                className="absolute inset-0 size-full object-cover"
-                loading="lazy"
-                width={1024}
-                height={1280}
-              />
-              <Grain />
-            </div>
-          </SlideIn>
-        </div>
-
-        {/* Bio + quote row */}
-        <div className="mt-12 grid grid-cols-12 gap-8 md:mt-14 md:gap-12">
-          <div className="col-span-12 md:col-span-7">
-            <WordScrollReveal
-              className="text-base leading-relaxed md:text-lg"
-              wordClassName="[color:rgba(246,244,239,0.82)]"
-              text="Cambridge-trained, mentored by Amartya Sen, Lord Martin Rees and Sir Leszek Borysiewicz. For twenty years the work stayed inside lecture rooms. This site is the first time I have stepped out from behind the lectern — the books, the ideas, the art, and a contribution from Trinidad to a conversation usually written elsewhere."
-            />
-          </div>
-
-
+        {/* Hero composition: huge name behind, cutout center, flanking text */}
+        <div className="relative">
+          {/* Massive wordmark behind */}
           <BlurReveal
-            delay={0.18}
-            className="col-span-12 font-display text-2xl italic leading-[1.2] md:col-span-5 md:text-3xl"
+            as="div"
+            className="pointer-events-none absolute inset-x-0 top-1/2 z-0 -translate-y-1/2 select-none text-center"
+            y={20}
           >
-            <span style={{ color: "rgba(246,244,239,0.95)" }}>
-              &ldquo;I have grown braver. A little more adventurous.&rdquo;
-            </span>
+            <h2
+              className="font-display font-medium leading-[0.82] tracking-[-0.05em]"
+              style={{
+                color: "rgba(246,244,239,0.10)",
+                fontSize: "clamp(96px, 22vw, 360px)",
+                whiteSpace: "nowrap",
+              }}
+            >
+              FAZAL ALI
+            </h2>
           </BlurReveal>
+
+          {/* 3-column row with flanking text and centered cutout */}
+          <div className="relative z-10 grid grid-cols-12 items-center gap-6 md:gap-10">
+            {/* Left text */}
+            <div className="order-2 col-span-6 md:order-1 md:col-span-3">
+              <BlurReveal delay={0.1} className="space-y-4 text-left">
+                <p
+                  className="eyebrow"
+                  style={{ color: "rgba(246,244,239,0.55)" }}
+                >
+                  Origin
+                </p>
+                <p
+                  className="font-display text-lg italic leading-snug md:text-xl"
+                  style={{ color: "rgba(246,244,239,0.9)" }}
+                >
+                  Born in Trinidad. Read at Cambridge. Mentored by Sen, Rees and
+                  Borysiewicz.
+                </p>
+                <p
+                  className="text-sm leading-relaxed"
+                  style={{ color: "rgba(246,244,239,0.6)" }}
+                >
+                  Twenty years of work that lived inside lecture rooms — now
+                  stepping out from behind the lectern.
+                </p>
+              </BlurReveal>
+            </div>
+
+            {/* Cutout — centered hero */}
+            <SlideIn
+              from="bottom"
+              className="order-1 col-span-12 md:order-2 md:col-span-6"
+            >
+              <div className="relative mx-auto aspect-[3/4] w-full max-w-[460px]">
+                <img
+                  src={portrait}
+                  alt="Dr. Fazal Ibrahim Ali"
+                  className="absolute inset-0 size-full object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.55)]"
+                  loading="lazy"
+                  width={1024}
+                  height={1365}
+                />
+              </div>
+            </SlideIn>
+
+            {/* Right text */}
+            <div className="order-3 col-span-6 md:col-span-3">
+              <BlurReveal delay={0.18} className="space-y-4 text-right">
+                <p
+                  className="eyebrow"
+                  style={{ color: "rgba(246,244,239,0.55)" }}
+                >
+                  Today
+                </p>
+                <p
+                  className="font-display text-lg italic leading-snug md:text-xl"
+                  style={{ color: "rgba(246,244,239,0.9)" }}
+                >
+                  Writer · Scholar · Founder of{" "}
+                  <span className="not-italic">Omeros AI</span>.
+                </p>
+                <p
+                  className="text-sm leading-relaxed"
+                  style={{ color: "rgba(246,244,239,0.6)" }}
+                >
+                  A Caribbean reading of intelligence — and a contribution from
+                  Trinidad to a conversation usually written elsewhere.
+                </p>
+              </BlurReveal>
+            </div>
+          </div>
         </div>
+
+        {/* Quote row */}
+        <BlurReveal
+          delay={0.22}
+          className="mx-auto mt-14 max-w-3xl text-center font-display text-2xl italic leading-[1.25] md:mt-20 md:text-4xl"
+        >
+          <span style={{ color: "rgba(246,244,239,0.95)" }}>
+            &ldquo;I have grown braver. A little more adventurous.&rdquo;
+          </span>
+        </BlurReveal>
 
         <div
           className="mt-10 flex flex-wrap items-center justify-between gap-6 border-t pt-5"
