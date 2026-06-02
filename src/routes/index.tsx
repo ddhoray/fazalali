@@ -203,10 +203,12 @@ function FeaturedSticky() {
   return (
     <section
       ref={ref}
-      className="relative bg-background"
+      data-nav="dark"
+      className="section-invert relative"
       style={{ height: `${featured.length * 110}vh` }}
     >
-      <div className="sticky top-0 flex h-screen flex-col overflow-hidden bg-background">
+      <div className="section-invert sticky top-0 flex h-screen flex-col overflow-hidden">
+
         {/* Mobile-only progress bar at the top */}
         <div className="block h-px w-full bg-foreground/15 lg:hidden">
           <motion.span
