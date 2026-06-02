@@ -94,11 +94,10 @@ export function SiteNav() {
               {l.label}
             </Link>
           ))}
-          <ThemeToggle />
         </nav>
 
         <div className="flex items-center gap-3 md:hidden">
-          <ThemeToggle />
+
           <button
             aria-label="Menu"
             onClick={() => setOpen((v) => !v)}
