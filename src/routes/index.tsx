@@ -203,10 +203,12 @@ function FeaturedSticky() {
   return (
     <section
       ref={ref}
-      className="relative bg-background"
+      data-nav="dark"
+      className="section-invert relative"
       style={{ height: `${featured.length * 110}vh` }}
     >
-      <div className="sticky top-0 flex h-screen flex-col overflow-hidden bg-background">
+      <div className="section-invert sticky top-0 flex h-screen flex-col overflow-hidden">
+
         {/* Mobile-only progress bar at the top */}
         <div className="block h-px w-full bg-foreground/15 lg:hidden">
           <motion.span
@@ -376,7 +378,7 @@ function FeaturedSticky() {
 
 function Manifesto() {
   return (
-    <section className="mx-auto max-w-[1400px] px-5 py-10 sm:px-8 md:py-14">
+    <section className="mx-auto max-w-[1400px] bg-background px-5 py-12 sm:px-8 md:py-16">
       <BlurReveal as="p" className="eyebrow mb-5 flex items-center gap-3 text-muted-foreground">
         <Compass className="size-4" /> A note before reading
       </BlurReveal>
@@ -398,9 +400,9 @@ function Portrait() {
   return (
     <section
       data-nav="dark"
-      className="relative overflow-hidden py-16 md:py-20"
-      style={{ backgroundColor: "#000000", color: "#ffffff" }}
+      className="section-invert relative overflow-hidden py-14 md:py-16"
     >
+
       <Grain />
 
       <div className="relative z-10 mx-auto max-w-[1500px] px-5 sm:px-8">
@@ -514,7 +516,8 @@ function Range() {
   const [hover, setHover] = useState<number | null>(null);
 
   return (
-    <section className="mx-auto max-w-[1700px] px-5 py-16 sm:px-8 md:py-20">
+    <section data-nav="dark" className="section-invert relative px-5 py-14 sm:px-8 md:py-16">
+      <div className="mx-auto max-w-[1700px]">
       <div className="mb-10 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-5">
         <div className="max-w-3xl">
           <BlurReveal as="p" className="eyebrow text-muted-foreground">Range</BlurReveal>
@@ -542,6 +545,7 @@ function Range() {
             />
           </SlideIn>
         ))}
+      </div>
       </div>
     </section>
   );
@@ -651,7 +655,7 @@ const writingImages = [featuredWriting, practiceEssays, featuredOmeros];
 function LatestWriting() {
   const latest = articles.slice(0, 3);
   return (
-    <section className="mx-auto max-w-[1700px] scroll-mt-24 px-5 py-16 sm:px-8 md:py-20">
+    <section className="mx-auto max-w-[1700px] scroll-mt-24 bg-background px-5 py-14 sm:px-8 md:py-16">
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4 border-b hairline pb-5">
         <div>
           <BlurReveal as="p" className="eyebrow text-muted-foreground">From the Journal</BlurReveal>
