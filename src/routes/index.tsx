@@ -327,23 +327,8 @@ function FeaturedSticky() {
 
 
 
-/* ─────────────────── Parallax Break ─────────────────── */
 
-function ParallaxBreak() {
-  return (
-    <section className="relative h-[55svh] min-h-[380px] w-full overflow-hidden">
-      <ParallaxImage src={featuredWriting} alt="" className="absolute inset-0" strength={22} />
-      <div className="relative z-10 flex h-full items-center justify-center px-6 text-center text-on-image">
-        <BlurReveal
-          as="p"
-          className="max-w-3xl font-display text-3xl italic leading-[1.1] md:text-5xl"
-        >
-          &ldquo;The machine is a sentence. Read it slowly.&rdquo;
-        </BlurReveal>
-      </div>
-    </section>
-  );
-}
+
 
 /* ─────────────────────── Manifesto (word-by-word scroll reveal) ────────────────────── */
 
