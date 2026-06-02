@@ -46,10 +46,14 @@ export function SiteNav() {
             alt="Fazal Ali"
             className={cn(
               "h-7 w-auto sm:h-8 transition-[filter] duration-500",
-              overHero ? "brightness-0 invert" : "",
+              // Over hero: always white. Otherwise: black in light mode, white in dark mode.
+              overHero
+                ? "brightness-0 invert"
+                : "brightness-0 dark:brightness-0 dark:invert",
             )}
           />
         </Link>
+
 
         <nav className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
