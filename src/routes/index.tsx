@@ -9,9 +9,10 @@ import { HoverImage } from "@/components/site/HoverImage";
 import { CirclePill } from "@/components/site/CirclePill";
 import { Grain } from "@/components/site/Grain";
 import { BookSection } from "@/components/site/BookSection";
+import { Newsletter } from "@/components/site/Newsletter";
 import { articles } from "@/content/articles";
 import portrait from "@/assets/fazal-portrait.jpg";
-import heroImage from "@/assets/hero-book.jpg";
+import heroImage from "@/assets/hero-statue.jpg";
 import featuredEducation from "@/assets/featured-education.jpg";
 import featuredOmeros from "@/assets/featured-omeros.jpg";
 import featuredWriting from "@/assets/featured-writing.jpg";
@@ -50,6 +51,7 @@ function Home() {
       <BookSection />
       <Range />
       <LatestWriting />
+      <Newsletter />
     </>
   );
 }
@@ -63,62 +65,64 @@ function Hero() {
     target: ref,
     offset: ["start start", "end start"],
   });
-  const opacity = useTransform(scrollYProgress, [0, 0.85], [1, 0]);
+  // Subtle parallax — image drifts upward as the section scrolls past.
+  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "-12%"]);
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1.05, 1.12]);
 
   return (
-    // Tall track — image is pinned, the content frame scrolls past it.
-    <section ref={ref} className="relative h-[180svh] w-full bg-neutral-200 text-white">
-      {/* Pinned image — stays in place while the frame scrolls */}
-      <div className="sticky top-0 h-screen w-full overflow-hidden">
+    <section
+      ref={ref}
+      className="relative min-h-svh w-full overflow-hidden bg-neutral-100 text-white"
+    >
+      {/* Parallax background image */}
+      <motion.div
+        style={{ y: imageY, scale: imageScale }}
+        className="absolute inset-0 will-change-transform"
+      >
         <img
           src={heroImage}
-          alt="A writer's desk in soft daylight with an open book and fountain pen"
-          className="absolute inset-0 size-full object-cover"
+          alt="A classical marble bust in warm museum light"
+          className="size-full object-cover"
           width={1920}
           height={1280}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/30" />
-      </div>
+      </motion.div>
+      {/* Soft cinematic overlay — keeps the statue readable while text stays legible */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-black/10" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent" />
+      <Grain />
 
-      {/* Scrolling content frame — sits over the pinned image */}
-      <motion.div
-        style={{ opacity }}
-        className="text-on-image pointer-events-none absolute inset-x-0 top-0 z-10 flex h-screen flex-col justify-between px-5 pt-28 pb-16 sm:px-10 sm:pt-32 sm:pb-24"
-      >
-        <div className="pointer-events-auto">
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.0, delay: 0.05 }}
-            className="eyebrow opacity-80"
-          >
-            Folio I · Trinidad &amp; the Machines
-          </motion.p>
-        </div>
+      {/* Content frame */}
+      <div className="text-on-image relative z-10 flex min-h-svh flex-col justify-between px-5 pt-28 pb-16 sm:px-10 sm:pt-32 sm:pb-24">
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.0, delay: 0.05 }}
+          className="eyebrow opacity-85"
+        >
+          Folio I · Trinidad &amp; the Machines
+        </motion.p>
 
-        <div className="pointer-events-auto">
-          <motion.h1
-            initial={{ opacity: 0, y: 24, filter: "blur(14px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ duration: 1.2, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+        <div>
+          <BlurReveal
+            as="h1"
             className="font-display text-[14vw] leading-[1.02] tracking-[-0.035em] text-balance sm:text-[10vw] md:text-[8vw] md:leading-[0.96]"
           >
             Reading the <span className="italic">machines</span> slowly,{" "}
             <span className="italic">by hand.</span>
-          </motion.h1>
+          </BlurReveal>
 
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.0, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-5 max-w-md text-[13px] leading-relaxed opacity-85 sm:mt-6 sm:text-sm md:text-base"
+          <BlurReveal
+            as="p"
+            delay={0.25}
+            className="mt-5 max-w-md text-[13px] leading-relaxed opacity-90 sm:mt-6 sm:text-sm md:text-base"
           >
             Dr. Fazal Ibrahim Ali — Cambridge-trained, Trinidad-born. Writing on
             critical theory in AI, the founding of Omeros AI, and a small book
             called <em className="italic">Education for Liberty.</em>
-          </motion.p>
+          </BlurReveal>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
