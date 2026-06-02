@@ -1,7 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
+import { Flipbook } from "@/components/site/Flipbook";
+import { bookPages } from "@/content/book";
 import { ArrowUpRight, Download, ShoppingCart } from "lucide-react";
+import heroBook from "@/assets/hero-book.jpg";
 
 export const Route = createFileRoute("/education-for-liberty")({
   head: () => ({
@@ -10,13 +13,13 @@ export const Route = createFileRoute("/education-for-liberty")({
       {
         name: "description",
         content:
-          "Fazal Ali's persuasive work that builds on Amartya Sen's Development as Freedom and John Rawls' A Theory of Justice.",
+          "Fazal Ali's persuasive monograph that builds on Amartya Sen's Development as Freedom and John Rawls' A Theory of Justice. Read a flippable preview, download the full PDF, or buy on Amazon.",
       },
       { property: "og:title", content: "Education for Liberty — Fazal Ali" },
       {
         property: "og:description",
         content:
-          "Building on Amartya Sen and John Rawls — education as the substrate of freedom.",
+          "Building on Amartya Sen and John Rawls — education as the substrate of freedom. Flip through a preview or download the PDF.",
       },
     ],
   }),
@@ -57,99 +60,69 @@ function BookPage() {
             <span>Available on Amazon</span>
           </>
         }
+        image={heroBook}
+        imageAlt="Open monograph on a dark desk"
       />
 
-      {/* Book cover + premise */}
-      <section className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 sm:py-32">
-        <div className="grid gap-12 md:grid-cols-[1fr_1.1fr] md:gap-20">
-          <Reveal>
-            <div className="relative bg-foreground/5 p-8 md:p-14">
-              <div className="flex aspect-[3/4] w-full flex-col justify-between border border-foreground/25 bg-background p-8 shadow-2xl">
-                <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-                  Fazal Ibrahim Ali
-                </p>
-                <div>
-                  <p className="font-display text-5xl leading-[0.95]">
-                    Education<br />for<br /><em className="italic">Liberty</em>
-                  </p>
-                  <p className="mt-6 text-xs text-muted-foreground">
-                    After Sen. After Rawls. From Trinidad.
-                  </p>
-                </div>
-                <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-                  Omeros AI · First Edition
-                </p>
-              </div>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.08}>
-            <div className="flex h-full flex-col justify-center gap-8">
-              <div>
-                <p className="eyebrow text-muted-foreground">Premise</p>
-                <p className="mt-5 font-display text-3xl leading-tight md:text-5xl">
-                  Liberty is not the absence of constraint. It is the cultivated
-                  capacity to <em className="italic">choose well.</em>
-                </p>
-              </div>
-              <p className="text-lg leading-relaxed text-muted-foreground">
-                Education, properly understood, is the manufacture of that
-                capacity at scale. This monograph traces the lineage from Sen
-                and Rawls through West Indian thinkers — Lloyd Best, C. L. R.
-                James, Walter Rodney — and asks what freedom can mean in an age
-                of artificial intelligence.
-              </p>
-              <div className="flex flex-wrap gap-3 pt-2">
-                <a
-                  href={AMAZON_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 bg-foreground px-6 py-3 text-sm uppercase tracking-[0.2em] text-background"
-                >
-                  <ShoppingCart className="size-4" /> Buy on Amazon
-                </a>
-                <a
-                  href={PDF_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 border border-foreground px-6 py-3 text-sm uppercase tracking-[0.2em]"
-                >
-                  <Download className="size-4" /> Download PDF
-                </a>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Embedded PDF reader */}
+      {/* Flippable book preview */}
       <section data-nav="dark" className="section-invert">
         <div className="mx-auto max-w-[1500px] px-5 py-20 sm:px-8 sm:py-28">
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-6">
               <div>
-                <p className="eyebrow text-white/55">Read it here</p>
+                <p className="eyebrow text-white/55">Preview</p>
                 <p className="mt-4 font-display text-3xl md:text-5xl">
-                  The full monograph, in your browser.
+                  Flip <em className="italic">through</em> the book.
+                </p>
+                <p className="mt-4 max-w-md text-sm text-white/65">
+                  A preview of the Preface, Prolegomenon, and chapter openings.
+                  Use the arrows, swipe, or grab a corner.
                 </p>
               </div>
-              <a
-                href={PDF_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 border-b border-white pb-1 text-sm uppercase tracking-[0.2em] text-white"
-              >
-                Open in new tab <ArrowUpRight className="size-4" />
+              <div className="flex flex-wrap gap-3">
+                <a
+                  href={PDF_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  download
+                  className="inline-flex items-center gap-2 bg-white px-6 py-3 text-sm uppercase tracking-[0.2em] text-black transition-opacity hover:opacity-90"
+                >
+                  <Download className="size-4" /> Download PDF
+                </a>
+                <a
+                  href={AMAZON_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 border border-white/40 px-6 py-3 text-sm uppercase tracking-[0.2em] text-white transition-colors hover:bg-white/10"
+                >
+                  <ShoppingCart className="size-4" /> Buy on Amazon
+                </a>
+              </div>
+            </div>
+          </Reveal>
+
+          <div className="mt-14">
+            <Flipbook
+              pages={bookPages}
+              cover={{
+                title: (
+                  <>
+                    Education<br />for<br /><em className="italic">Liberty</em>
+                  </>
+                ),
+                subtitle: "After Sen. After Rawls. From Trinidad.",
+                author: "Fazal Ibrahim Ali",
+              }}
+            />
+          </div>
+
+          <Reveal>
+            <p className="mx-auto mt-12 max-w-xl text-center text-xs uppercase tracking-[0.25em] text-white/45">
+              Prefer to read offline?{" "}
+              <a href={PDF_URL} target="_blank" rel="noreferrer" download className="text-white underline-offset-4 hover:underline">
+                Download the full 142-page PDF
               </a>
-            </div>
-            <div className="mt-10 aspect-[4/5] w-full border border-white/15 bg-white/5 md:aspect-[16/10]">
-              <iframe
-                src={PDF_URL}
-                title="Education for Liberty — PDF"
-                className="size-full"
-                loading="lazy"
-              />
-            </div>
+            </p>
           </Reveal>
         </div>
       </section>
@@ -179,7 +152,7 @@ function BookPage() {
         </div>
       </section>
 
-      {/* Cross-links to Podcast + Palimpsest */}
+      {/* Cross-links */}
       <section className="border-t hairline">
         <div className="mx-auto grid max-w-[1700px] gap-px bg-foreground/15 md:grid-cols-2">
           <Link to="/podcast" className="group flex flex-col gap-4 bg-background p-10 md:p-16">

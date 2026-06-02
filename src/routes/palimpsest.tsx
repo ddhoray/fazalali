@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
 import { palimpsest } from "@/content/palimpsest";
+import heroBook from "@/assets/hero-book.jpg";
 
 export const Route = createFileRoute("/palimpsest")({
   head: () => ({
@@ -48,6 +49,8 @@ function PalimpsestPage() {
             <span>Sources: Williams · Campbell · PNM</span>
           </>
         }
+        image={heroBook}
+        imageAlt="An open manuscript on a dark desk"
       />
 
       <section className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 sm:py-32">

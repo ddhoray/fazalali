@@ -8,13 +8,16 @@ import fiaLogo from "@/assets/brand-fia.png";
 const eflChildren = [
   { to: "/education-for-liberty", label: "The Book" },
   { to: "/podcast", label: "Podcast" },
-  { to: "/palimpsest", label: "Palimpsest" },
+  { to: "/ecology", label: "Ecology" },
+  { to: "/inequality", label: "Inequality" },
 ] as const;
 
 const links = [
   { to: "/writing", label: "Articles" },
   { to: "/education-for-liberty", label: "Education for Liberty", children: eflChildren },
+  { to: "/palimpsest", label: "Palimpsest" },
   { to: "/omeros-ai", label: "Omeros" },
+  { to: "/gallery", label: "Gallery" },
   { to: "/about", label: "About" },
 ] as const;
 
@@ -85,7 +88,7 @@ export function SiteNav() {
           />
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-7 lg:flex">
           {links.map((l) =>
             "children" in l && l.children ? (
               <div
@@ -143,7 +146,7 @@ export function SiteNav() {
           </button>
         </nav>
 
-        <div className="flex items-center gap-3 md:hidden">
+        <div className="flex items-center gap-3 lg:hidden">
           <button
             aria-label="Menu"
             onClick={() => setOpen((v) => !v)}
@@ -155,7 +158,7 @@ export function SiteNav() {
       </div>
 
       {open && (
-        <div className="border-t hairline bg-background text-foreground md:hidden">
+        <div className="border-t hairline bg-background text-foreground lg:hidden">
           <nav className="flex flex-col px-5 py-4">
             {links.map((l) =>
               "children" in l && l.children ? (
@@ -175,6 +178,13 @@ export function SiteNav() {
                   </button>
                   {eflOpenMobile && (
                     <div className="flex flex-col border-l hairline pl-4">
+                      <Link
+                        to={l.to}
+                        onClick={() => setOpen(false)}
+                        className="nav-link py-3 text-foreground/70"
+                      >
+                        Overview
+                      </Link>
                       {l.children.map((c) => (
                         <Link
                           key={c.to}

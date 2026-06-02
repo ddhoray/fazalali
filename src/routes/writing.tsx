@@ -3,6 +3,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
 import { articles } from "@/content/articles";
 import { ArrowUpRight } from "lucide-react";
+import heroBook from "@/assets/hero-book.jpg";
 
 export const Route = createFileRoute("/writing")({
   head: () => ({
@@ -55,6 +56,8 @@ function WritingIndex() {
             <span>Critical theory · AI · Caribbean futures</span>
           </>
         }
+        image={heroBook}
+        imageAlt="A stack of books on a dark surface"
       />
 
       {/* Featured */}

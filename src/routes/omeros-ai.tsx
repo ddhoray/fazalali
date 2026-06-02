@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
 import { ArrowUpRight } from "lucide-react";
+import heroEcology from "@/assets/hero-ecology.jpg";
 
 export const Route = createFileRoute("/omeros-ai")({
   head: () => ({
@@ -55,6 +56,8 @@ function OmerosPage() {
             <span>Est. Trinidad</span>
           </>
         }
+        image={heroEcology}
+        imageAlt="Light shafts through a Caribbean canopy"
       />
 
       {/* Manifesto quote */}
