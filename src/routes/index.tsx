@@ -423,19 +423,14 @@ function Portrait() {
 
         {/* Bio + quote row */}
         <div className="mt-12 grid grid-cols-12 gap-8 md:mt-14 md:gap-12">
-          <BlurReveal
-            delay={0.1}
-            className="col-span-12 md:col-span-7 text-base leading-relaxed md:text-lg"
-          >
-            <span style={{ color: "rgba(246,244,239,0.82)" }}>
-              Cambridge-trained, mentored by Amartya Sen, Lord Martin Rees and
-              Sir Leszek Borysiewicz. For twenty years the work stayed inside
-              lecture rooms. This site is the first time I have stepped out
-              from behind the lectern — the books, the ideas, the art, and a
-              contribution from Trinidad to a conversation usually written
-              elsewhere.
-            </span>
-          </BlurReveal>
+          <div className="col-span-12 md:col-span-7">
+            <WordScrollReveal
+              className="text-base leading-relaxed md:text-lg"
+              wordClassName="[color:rgba(246,244,239,0.82)]"
+              text="Cambridge-trained, mentored by Amartya Sen, Lord Martin Rees and Sir Leszek Borysiewicz. For twenty years the work stayed inside lecture rooms. This site is the first time I have stepped out from behind the lectern — the books, the ideas, the art, and a contribution from Trinidad to a conversation usually written elsewhere."
+            />
+          </div>
+
 
           <BlurReveal
             delay={0.18}
