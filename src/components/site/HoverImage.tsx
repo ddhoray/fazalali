@@ -14,6 +14,7 @@ export function HoverImage({
   className = "",
   holdMs,
   onHoldComplete,
+  imageless = false,
 }: {
   src: string;
   alt: string;
@@ -21,7 +22,10 @@ export function HoverImage({
   className?: string;
   holdMs?: number;
   onHoldComplete?: () => void;
+  /** When true, hide the floating image preview and show only the circular loader at the cursor. */
+  imageless?: boolean;
 }) {
+
   const [visible, setVisible] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [progress, setProgress] = useState(0); // 0 → 1
