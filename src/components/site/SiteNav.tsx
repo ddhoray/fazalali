@@ -110,7 +110,7 @@ export function SiteNav() {
               >
                 <Link
                   to={l.to}
-                  className="nav-link-minimal opacity-100 transition-opacity"
+                  className={cn("nav-link-minimal opacity-100", navUnderline)}
                   activeProps={{ className: "opacity-100" }}
                 >
                   {l.label}
@@ -127,7 +127,7 @@ export function SiteNav() {
                         <Link
                           key={c.to}
                           to={c.to}
-                          className="block px-4 py-2.5 nav-link-minimal opacity-100 transition-opacity"
+                          className={cn("block px-4 py-2.5 nav-link-minimal opacity-100", dropdownUnderline)}
                         >
                           {c.label}
                         </Link>
@@ -140,7 +140,7 @@ export function SiteNav() {
               <Link
                 key={l.to}
                 to={l.to}
-                className="nav-link-minimal opacity-100 transition-opacity"
+                className={cn("nav-link-minimal opacity-100", navUnderline)}
                 activeProps={{ className: "opacity-100" }}
               >
                 {l.label}
@@ -150,7 +150,7 @@ export function SiteNav() {
           <button
             type="button"
             onClick={() => openContactDrawer()}
-            className="nav-link-minimal opacity-100 transition-opacity"
+            className={cn("nav-link-minimal opacity-100", navUnderline)}
           >
             Write Me
           </button>
