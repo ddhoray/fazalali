@@ -642,7 +642,7 @@ const writingImages = [practiceEssays, practiceBook, practiceOmeros];
 function LatestWriting() {
   const latest = articles.slice(0, 3);
   return (
-    <section className="mx-auto max-w-[1700px] px-5 py-16 sm:px-8 md:py-20">
+    <section className="mx-auto max-w-[1700px] scroll-mt-24 px-5 py-16 sm:px-8 md:py-20">
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4 border-b hairline pb-5">
         <div>
           <BlurReveal as="p" className="eyebrow text-muted-foreground">From the Journal</BlurReveal>
