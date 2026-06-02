@@ -10,7 +10,7 @@ import bookCover from "@/assets/book-education-for-liberty.jpg";
  */
 export function BookSection() {
   return (
-    <section className="relative overflow-hidden bg-background py-14 md:py-20">
+    <section className="relative overflow-hidden bg-background py-14 md:py-12">
       <div className="mx-auto max-w-[1500px] px-5 sm:px-8">
         <div className="mb-10 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-5">
           <BlurReveal as="p" className="eyebrow text-muted-foreground">

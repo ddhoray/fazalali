@@ -67,7 +67,7 @@ function WritingIndex() {
           params={{ slug: featured.slug }}
           className="group block"
         >
-          <div className="mx-auto grid max-w-[1700px] gap-10 px-5 py-20 sm:px-8 md:grid-cols-2 md:gap-16 md:py-28">
+          <div className="mx-auto grid max-w-[1700px] gap-10 px-5 py-12 sm:px-8 md:grid-cols-2 md:gap-16 md:py-14">
             <Reveal>
               <div className="relative aspect-[5/4] overflow-hidden bg-foreground/5">
                 <img
@@ -98,7 +98,7 @@ function WritingIndex() {
       </section>
 
       {/* Editorial grid — alternating */}
-      <section className="mx-auto max-w-[1700px] px-5 py-20 sm:px-8 sm:py-28">
+      <section className="mx-auto max-w-[1700px] px-5 py-12 sm:px-8 sm:py-14">
         <div className="grid gap-x-10 gap-y-20 md:grid-cols-2 md:gap-y-28">
           {rest.map((a, i) => (
             <Reveal key={a.slug} delay={(i % 2) * 0.06}>

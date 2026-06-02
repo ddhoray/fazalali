@@ -10,7 +10,7 @@ interface InstagramGridProps {
 export function InstagramGrid({ limit, showHeader = true }: InstagramGridProps) {
   const items = limit ? posts.slice(0, limit) : posts;
   return (
-    <section className="mx-auto max-w-[1700px] px-5 py-20 sm:px-8 sm:py-28">
+    <section className="mx-auto max-w-[1700px] px-5 py-12 sm:px-8 sm:py-14">
       {showHeader && (
         <Reveal>
           <div className="mb-14 flex flex-wrap items-end justify-between gap-6">

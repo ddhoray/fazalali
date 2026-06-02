@@ -66,7 +66,7 @@ function BookPage() {
 
       {/* Flippable book preview */}
       <section data-nav="dark" className="section-invert">
-        <div className="mx-auto max-w-[1500px] px-5 py-20 sm:px-8 sm:py-28">
+        <div className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8 sm:py-14">
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-6">
               <div>
@@ -128,7 +128,7 @@ function BookPage() {
       </section>
 
       {/* Chapters */}
-      <section className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 sm:py-32">
+      <section className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8 sm:py-10">
         <Reveal>
           <p className="eyebrow text-muted-foreground">Contents</p>
           <h2 className="mt-5 font-display text-4xl md:text-7xl">

@@ -61,9 +61,9 @@ function OmerosPage() {
       />
 
       {/* Manifesto quote */}
-      <section className="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 sm:py-32">
+      <section className="mx-auto max-w-[1400px] px-5 py-12 sm:px-8 sm:py-10">
         <Reveal>
-          <div className="border-y hairline py-16 md:py-24">
+          <div className="border-y hairline py-10 md:py-12">
             <p className="font-display text-3xl leading-[1.18] text-balance md:text-6xl">
               <em>"Someone may say it doesn't look like technology.</em> But my
               writing is about critical theory in AI. I am not building AI or
@@ -77,7 +77,7 @@ function OmerosPage() {
 
       {/* Tenets — numbered editorial list */}
       <section data-nav="dark" className="section-invert">
-        <div className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 sm:py-32">
+        <div className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8 sm:py-10">
           <Reveal>
             <p className="eyebrow text-white/55">Tenets</p>
             <h2 className="mt-5 font-display text-4xl md:text-7xl">
@@ -99,7 +99,7 @@ function OmerosPage() {
       </section>
 
       {/* CTAs */}
-      <section className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 sm:py-32">
+      <section className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8 sm:py-10">
         <div className="grid gap-px bg-foreground/15 md:grid-cols-2">
           <Link to="/writing" className="group flex flex-col gap-4 bg-background p-10 md:p-14">
             <p className="eyebrow text-muted-foreground">Begin reading</p>

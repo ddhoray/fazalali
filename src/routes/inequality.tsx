@@ -44,7 +44,7 @@ function InequalityPage() {
         imageAlt="High-contrast Caribbean colonial stairwell"
       />
 
-      <article className="mx-auto max-w-[820px] px-5 py-24 sm:px-8 sm:py-32">
+      <article className="mx-auto max-w-[820px] px-5 py-12 sm:px-8 sm:py-10">
         {inequality.sections.map((s, i) => (
           <Reveal key={s.h} delay={i * 0.04}>
             <section className="mb-16 last:mb-0">
@@ -65,7 +65,7 @@ function InequalityPage() {
       </article>
 
       <section className="border-t hairline">
-        <div className="mx-auto flex max-w-[1500px] flex-wrap items-end justify-between gap-6 px-5 py-16 sm:px-8">
+        <div className="mx-auto flex max-w-[1500px] flex-wrap items-end justify-between gap-6 px-5 py-10 sm:px-8">
           <p className="font-display text-3xl md:text-5xl">Read on.</p>
           <div className="flex flex-wrap gap-4 text-sm uppercase tracking-[0.2em]">
             <Link to="/ecology" className="inline-flex items-center gap-2 border-b border-foreground pb-1">

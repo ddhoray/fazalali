@@ -23,7 +23,7 @@ export const Route = createFileRoute("/writing/$slug")({
         }
       : { meta: [{ title: "Essay — Fazal Ali" }] },
   notFoundComponent: () => (
-    <div className="mx-auto max-w-3xl px-5 py-32 text-center">
+    <div className="mx-auto max-w-3xl px-5 py-10 text-center">
       <h1 className="font-display text-4xl">Essay not found</h1>
       <Link to="/writing" className="mt-6 inline-block underline">All articles</Link>
     </div>
@@ -31,7 +31,7 @@ export const Route = createFileRoute("/writing/$slug")({
   errorComponent: ({ error, reset }) => {
     console.error(error);
     return (
-      <div className="mx-auto max-w-3xl px-5 py-32 text-center">
+      <div className="mx-auto max-w-3xl px-5 py-10 text-center">
         <h1 className="font-display text-4xl">This essay didn't load</h1>
         <button onClick={reset} className="mt-6 underline">Try again</button>
       </div>
@@ -72,7 +72,7 @@ function ArticlePage() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/30" />
         </div>
-        <div className="relative mx-auto max-w-5xl px-5 pb-24 pt-40 sm:px-8 sm:pb-32 sm:pt-48">
+        <div className="relative mx-auto max-w-5xl px-5 pb-12 pt-24 sm:px-8 sm:pb-16 sm:pt-28">
           <Link
             to="/writing"
             className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-white/70 transition-colors hover:text-white"
@@ -97,7 +97,7 @@ function ArticlePage() {
       </section>
 
       {/* Body */}
-      <section className="mx-auto max-w-3xl px-5 py-24 sm:px-8 sm:py-32">
+      <section className="mx-auto max-w-3xl px-5 py-12 sm:px-8 sm:py-10">
         <Reveal>
           <div className="prose-essay space-y-7 text-lg leading-[1.8] text-foreground/85">
             {article.body.map((p: string, idx: number) => (
@@ -130,7 +130,7 @@ function ArticlePage() {
           params={{ slug: next.slug }}
           className="group block"
         >
-          <div className="mx-auto grid max-w-[1500px] gap-10 px-5 py-20 sm:px-8 sm:py-28 md:grid-cols-[1fr_auto] md:items-end">
+          <div className="mx-auto grid max-w-[1500px] gap-10 px-5 py-12 sm:px-8 sm:py-14 md:grid-cols-[1fr_auto] md:items-end">
             <div>
               <p className="eyebrow text-white/55">Next essay · {next.topic}</p>
               <h2 className="mt-5 font-display text-4xl leading-tight text-white md:text-6xl">

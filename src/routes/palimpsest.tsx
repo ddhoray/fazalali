@@ -53,7 +53,7 @@ function PalimpsestPage() {
         imageAlt="An open manuscript on a dark desk"
       />
 
-      <section className="mx-auto max-w-[1500px] px-5 py-24 sm:px-8 sm:py-32">
+      <section className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8 sm:py-10">
         <div className="grid gap-16 lg:grid-cols-[260px_1fr] lg:gap-24">
           {/* Sticky section index */}
           <aside className="lg:sticky lg:top-32 lg:self-start">

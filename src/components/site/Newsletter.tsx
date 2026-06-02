@@ -18,7 +18,7 @@ export function Newsletter() {
 
   return (
     <section data-nav="dark" className="section-invert relative border-t hairline">
-      <div className="mx-auto grid max-w-[1700px] grid-cols-1 gap-10 px-5 py-16 sm:px-8 md:grid-cols-12 md:gap-14 md:py-20">
+      <div className="mx-auto grid max-w-[1700px] grid-cols-1 gap-10 px-5 py-10 sm:px-8 md:grid-cols-12 md:gap-14 md:py-12">
         <div className="md:col-span-6">
           <BlurReveal as="p" className="eyebrow text-muted-foreground">
             <span className="inline-flex items-center gap-2">
