@@ -19,6 +19,10 @@ export const Route = createFileRoute("/ecology")({
         property: "og:description",
         content: "Climate literacy as the substrate of citizenship in the West Indian classroom.",
       },
+      { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/ecology" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/ecology" },
     ],
   }),
   component: EcologyPage,
