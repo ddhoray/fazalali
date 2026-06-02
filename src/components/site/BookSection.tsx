@@ -2,7 +2,8 @@ import { Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import { BlurReveal, SlideIn } from "@/components/site/BlurReveal";
-import bookCover from "@/assets/book-education-for-liberty.jpg";
+import bookCoverAsset from "@/assets/book-education-for-liberty-cover.png.asset.json";
+const bookCover = bookCoverAsset.url;
 
 /**
  * Dedicated book section — appears on the home page above the journal block.
@@ -35,7 +36,7 @@ export function BookSection() {
               <img
                 src={bookCover}
                 alt="Education for Liberty — a monograph by Fazal Ali"
-                className="size-full object-cover"
+                className="size-full object-contain"
                 width={920}
                 height={1227}
                 loading="lazy"
