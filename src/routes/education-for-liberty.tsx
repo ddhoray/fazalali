@@ -21,10 +21,38 @@ export const Route = createFileRoute("/education-for-liberty")({
         content:
           "Building on Amartya Sen and John Rawls — education as the substrate of freedom. Flip through a preview or download the PDF.",
       },
+      { property: "og:type", content: "book" },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/education-for-liberty" },
     ],
     links: [
       { rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/education-for-liberty" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Book",
+          name: "Education for Liberty",
+          author: {
+            "@type": "Person",
+            name: "Fazal Ibrahim Ali",
+            url: "https://omeros-cipher-glass.lovable.app/about",
+          },
+          inLanguage: "en",
+          bookFormat: "https://schema.org/EBook",
+          url: "https://omeros-cipher-glass.lovable.app/education-for-liberty",
+          workExample: {
+            "@type": "Book",
+            isbn: "",
+            bookFormat: "https://schema.org/EBook",
+            potentialAction: {
+              "@type": "ReadAction",
+              target: "https://www.amazon.com/Education-Liberty-future-open-suggestions-ebook/dp/B072KJSQ6P/",
+            },
+          },
+        }),
+      },
     ],
   }),
   component: BookPage,
