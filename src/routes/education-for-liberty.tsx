@@ -101,7 +101,7 @@ function BookPage() {
             </div>
           </Reveal>
 
-          <div className="mt-14">
+          <div className="mt-6">
             <Flipbook />
           </div>
 
