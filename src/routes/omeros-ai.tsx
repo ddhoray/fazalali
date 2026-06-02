@@ -18,7 +18,11 @@ export const Route = createFileRoute("/omeros-ai")({
         property: "og:description",
         content:
           "Critical theory in AI. Not building AI. Not selling chips. Writing, ideas, art — from Trinidad.",
-      },
+      },,
+      { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/omeros-ai" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/omeros-ai" },
     ],
   }),
   component: OmerosPage,

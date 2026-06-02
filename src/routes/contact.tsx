@@ -12,7 +12,11 @@ export const Route = createFileRoute("/contact")({
       { title: "Write Me — Fazal Ali" },
       { name: "description", content: "Press, residencies, conversations on AI and the Caribbean — write Fazal Ali." },
       { property: "og:title", content: "Write Me — Fazal Ali" },
-      { property: "og:description", content: "Send a note to Fazal Ali." },
+      { property: "og:description", content: "Send a note to Fazal Ali." },,
+      { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/contact" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/contact" },
     ],
   }),
   component: ContactPage,

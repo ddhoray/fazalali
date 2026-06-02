@@ -19,7 +19,11 @@ export const Route = createFileRoute("/podcast")({
       {
         property: "og:description",
         content: "A monograph by Fazal Ali, read aloud. Listen to the Preface and Prolegomenon.",
-      },
+      },,
+      { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/podcast" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/podcast" },
     ],
   }),
   component: PodcastPage,

@@ -15,7 +15,11 @@ export const Route = createFileRoute("/writing/")({
           "The journal of Fazal Ali — entries on critical theory in AI, education, infrastructure, and the West Indies.",
       },
       { property: "og:title", content: "Journal — Fazal Ali" },
-      { property: "og:description", content: "Journal entries on critical theory in AI from the West Indies." },
+      { property: "og:description", content: "Journal entries on critical theory in AI from the West Indies." },,
+      { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/writing" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/writing" },
     ],
   }),
   component: WritingIndex,
