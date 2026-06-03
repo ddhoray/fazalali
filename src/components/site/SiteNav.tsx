@@ -76,20 +76,20 @@ export function SiteNav() {
         overHero
           ? "bg-transparent text-white"
           : overDark
-            ? "bg-black/40 backdrop-blur-2xl backdrop-saturate-150 border-b border-white/10 text-white shadow-[0_1px_0_0_rgba(255,255,255,0.04),0_8px_24px_-12px_rgba(0,0,0,0.5)]"
-            : "bg-background/70 backdrop-blur-2xl backdrop-saturate-150 border-b hairline text-foreground shadow-[0_1px_0_0_rgba(0,0,0,0.02),0_8px_24px_-16px_rgba(0,0,0,0.18)]",
+            ? "bg-black border-b border-white/10 text-white shadow-[0_8px_24px_-12px_rgba(0,0,0,0.5)]"
+            : "bg-white border-b hairline text-black shadow-[0_8px_24px_-16px_rgba(0,0,0,0.18)]",
       )}
     >
-      <div className="mx-auto flex max-w-[1700px] items-center justify-between px-5 py-3 sm:px-8 sm:py-3.5">
+      <div className="mx-auto flex max-w-[1700px] items-center justify-between px-5 py-5 sm:px-8 sm:py-6">
         <Link to="/" aria-label="Fazal Ali — Home" className="inline-flex items-center">
           <img
             src={fiaLogo}
             alt="Fazal Ali"
             className={cn(
-              "h-5 w-auto sm:h-6 transition-[filter] duration-500",
+              "h-7 w-auto sm:h-8 transition-[filter] duration-500",
               lightOnDark
                 ? "brightness-0 invert"
-                : "brightness-0 dark:brightness-0 dark:invert",
+                : "brightness-0",
             )}
           />
         </Link>
