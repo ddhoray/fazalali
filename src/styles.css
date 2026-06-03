@@ -181,20 +181,48 @@
   /* Cold iron inverted band — alternates with milk-white sections. */
   .section-invert {
     background-color: oklch(0.18 0.018 55) !important;
-    color: oklch(0.96 0.006 85);
+    color: #ffffff !important;
   }
-  .section-invert .text-muted-foreground { color: color-mix(in oklab, oklch(0.96 0.006 85) 64%, transparent) !important; }
-  .section-invert .hairline { border-color: color-mix(in oklab, oklch(0.96 0.006 85) 20%, transparent) !important; }
+  .section-invert *,
+  .section-invert p,
+  .section-invert span,
+  .section-invert h1,
+  .section-invert h2,
+  .section-invert h3,
+  .section-invert h4,
+  .section-invert h5,
+  .section-invert h6,
+  .section-invert a,
+  .section-invert li,
+  .section-invert blockquote { color: #ffffff !important; opacity: 1 !important; }
+  .section-invert .text-muted-foreground { color: #ffffff !important; opacity: 1 !important; }
+  .section-invert .hairline { border-color: rgba(255,255,255,0.22) !important; }
   .section-invert .bg-background { background-color: oklch(0.18 0.018 55) !important; }
   .section-invert .bg-card { background-color: oklch(0.18 0.018 55) !important; }
-  .section-invert .bg-foreground { background-color: oklch(0.96 0.006 85) !important; }
+  .section-invert .bg-foreground { background-color: #ffffff !important; }
   .section-invert .text-background { color: oklch(0.18 0.018 55) !important; }
-  .section-invert .bg-foreground\/5 { background-color: color-mix(in oklab, oklch(0.96 0.008 85) 6%, transparent) !important; }
-  .section-invert .bg-foreground\/15 { background-color: color-mix(in oklab, oklch(0.96 0.008 85) 18%, transparent) !important; }
+  .section-invert .bg-foreground\/5 { background-color: rgba(255,255,255,0.06) !important; }
+  .section-invert .bg-foreground\/15 { background-color: rgba(255,255,255,0.18) !important; }
 
-  /* Overlay text — content over imagery stays light regardless of theme. */
-  .text-on-image { color: #ffffff !important; }
-  .text-on-image .text-muted-foreground { color: rgba(255,255,255,0.72) !important; }
+  /* Same rule for .section-dark — all text fully opaque white. */
+  .section-dark *,
+  .section-dark p,
+  .section-dark span,
+  .section-dark h1,
+  .section-dark h2,
+  .section-dark h3,
+  .section-dark h4,
+  .section-dark h5,
+  .section-dark h6,
+  .section-dark a,
+  .section-dark li,
+  .section-dark blockquote { color: #ffffff !important; opacity: 1 !important; }
+  .section-dark .text-muted-foreground { color: #ffffff !important; opacity: 1 !important; }
+
+  /* Overlay text — content over imagery stays fully opaque white. */
+  .text-on-image,
+  .text-on-image * { color: #ffffff !important; opacity: 1 !important; }
+  .text-on-image .text-muted-foreground { color: #ffffff !important; opacity: 1 !important; }
 
   .card-expand {
     transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
