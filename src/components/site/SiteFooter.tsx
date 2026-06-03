@@ -3,7 +3,7 @@ import { JustifiedWordmark } from "./JustifiedWordmark";
 
 export function SiteFooter() {
   return (
-    <footer className="relative mt-20 overflow-hidden border-t hairline bg-background">
+    <footer className="relative overflow-hidden border-t hairline bg-background">
       <div className="mx-auto max-w-[1700px] px-5 pt-8 pb-6 sm:px-8">
         <div className="grid gap-6 md:grid-cols-12 md:gap-10">
           <div className="md:col-span-3">
