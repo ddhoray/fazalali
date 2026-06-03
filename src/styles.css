@@ -40,31 +40,32 @@
 :root {
   --radius: 0;
 
-  /* Omeros AI palette — milk-white + iron-ore (warm dark, never pure black) */
-  --background: oklch(0.972 0.006 85);   /* milk-white, slight warm cream */
-  --foreground: oklch(0.28 0.038 40);    /* iron-ore — warm dark brown/rust */
+  /* Omeros AI palette — milk-white + iron-ore, calibrated */
+  --background: oklch(0.972 0.006 85);   /* milk-white, warm cream */
+  --foreground: oklch(0.20 0.022 55);    /* deep iron — cold, near-neutral */
 
-  --muted: oklch(0.92 0.012 75);
-  --muted-foreground: oklch(0.44 0.035 45);
+  --muted: oklch(0.92 0.010 75);
+  --muted-foreground: oklch(0.40 0.020 55);
 
   --card: var(--background);
   --card-foreground: var(--foreground);
 
-  --border: color-mix(in oklab, var(--foreground) 16%, transparent);
+  /* Hairlines — near neutral, no sepia */
+  --border: color-mix(in oklab, oklch(0.20 0.010 60) 16%, transparent);
 
-  /* Accent — burnished iron highlight */
-  --accent-cool: oklch(0.48 0.09 45);
+  /* Accent — burnished brass, used sparingly for links/CTAs */
+  --accent-cool: oklch(0.58 0.11 70);
 }
 
 .dark {
-  --background: oklch(0.20 0.025 40);    /* deep iron-ore */
-  --foreground: oklch(0.96 0.008 85);    /* milk-white */
-  --muted: oklch(0.28 0.028 45);
-  --muted-foreground: oklch(0.78 0.012 80);
+  --background: oklch(0.18 0.018 55);    /* deep cold iron */
+  --foreground: oklch(0.96 0.006 85);    /* milk-white */
+  --muted: oklch(0.26 0.018 55);
+  --muted-foreground: oklch(0.78 0.010 80);
   --card: var(--background);
   --card-foreground: var(--foreground);
   --border: color-mix(in oklab, var(--foreground) 18%, transparent);
-  --accent-cool: oklch(0.72 0.10 55);
+  --accent-cool: oklch(0.74 0.11 75);
 }
 
 @layer base {
@@ -144,7 +145,7 @@
   }
 
 
-  .hairline { border-color: color-mix(in oklab, var(--foreground) 18%, transparent); }
+  .hairline { border-color: color-mix(in oklab, oklch(0.20 0.010 60) 16%, transparent); }
 
   .text-balance { text-wrap: balance; }
   .text-pretty { text-wrap: pretty; }
@@ -167,27 +168,27 @@
     background-size: 220px 220px;
   }
 
-  /* Dark editorial section — iron-ore band, milk-white text */
+  /* Dark editorial section — cold iron, milk-white text */
   .section-dark {
-    background-color: oklch(0.24 0.032 40);
-    color: oklch(0.96 0.008 85);
+    background-color: oklch(0.20 0.020 55);
+    color: oklch(0.96 0.006 85);
   }
-  .section-dark .text-muted-foreground { color: color-mix(in oklab, oklch(0.96 0.008 85) 68%, transparent) !important; }
-  .section-dark .hairline { border-color: color-mix(in oklab, oklch(0.96 0.008 85) 22%, transparent) !important; }
+  .section-dark .text-muted-foreground { color: color-mix(in oklab, oklch(0.96 0.006 85) 68%, transparent) !important; }
+  .section-dark .hairline { border-color: color-mix(in oklab, oklch(0.96 0.006 85) 22%, transparent) !important; }
   .section-dark .text-background,
-  .section-dark [class*="text-background/"] { color: oklch(0.96 0.008 85) !important; }
+  .section-dark [class*="text-background/"] { color: oklch(0.96 0.006 85) !important; }
 
-  /* Iron-ore inverted band — replaces pure black; alternates with milk-white sections. */
+  /* Cold iron inverted band — alternates with milk-white sections. */
   .section-invert {
-    background-color: oklch(0.22 0.030 40) !important;
-    color: oklch(0.96 0.008 85);
+    background-color: oklch(0.18 0.018 55) !important;
+    color: oklch(0.96 0.006 85);
   }
-  .section-invert .text-muted-foreground { color: color-mix(in oklab, oklch(0.96 0.008 85) 64%, transparent) !important; }
-  .section-invert .hairline { border-color: color-mix(in oklab, oklch(0.96 0.008 85) 20%, transparent) !important; }
-  .section-invert .bg-background { background-color: oklch(0.22 0.030 40) !important; }
-  .section-invert .bg-card { background-color: oklch(0.22 0.030 40) !important; }
-  .section-invert .bg-foreground { background-color: oklch(0.96 0.008 85) !important; }
-  .section-invert .text-background { color: oklch(0.22 0.030 40) !important; }
+  .section-invert .text-muted-foreground { color: color-mix(in oklab, oklch(0.96 0.006 85) 64%, transparent) !important; }
+  .section-invert .hairline { border-color: color-mix(in oklab, oklch(0.96 0.006 85) 20%, transparent) !important; }
+  .section-invert .bg-background { background-color: oklch(0.18 0.018 55) !important; }
+  .section-invert .bg-card { background-color: oklch(0.18 0.018 55) !important; }
+  .section-invert .bg-foreground { background-color: oklch(0.96 0.006 85) !important; }
+  .section-invert .text-background { color: oklch(0.18 0.018 55) !important; }
   .section-invert .bg-foreground\/5 { background-color: color-mix(in oklab, oklch(0.96 0.008 85) 6%, transparent) !important; }
   .section-invert .bg-foreground\/15 { background-color: color-mix(in oklab, oklch(0.96 0.008 85) 18%, transparent) !important; }
 
