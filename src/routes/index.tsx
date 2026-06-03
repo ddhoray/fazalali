@@ -441,7 +441,7 @@ function Portrait() {
           {/* Massive wordmark behind */}
           <BlurReveal
             as="div"
-            className="pointer-events-none absolute inset-x-0 top-1/2 z-0 -translate-y-1/2 select-none text-center"
+            className="pointer-events-none absolute inset-x-0 top-0 z-0 -translate-y-[18%] select-none text-center md:-translate-y-[22%]"
             y={20}
           >
             <h2
