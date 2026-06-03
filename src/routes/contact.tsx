@@ -106,7 +106,7 @@ function ContactPage() {
 }
 
 const inputCls =
-  "w-full rounded-none border border-foreground/15 bg-background/60 px-4 py-3 text-base text-foreground placeholder:text-muted-foreground/70 focus:border-foreground/40 focus:outline-none";
+  "w-full rounded-none border border-foreground/15 bg-background/55 backdrop-blur-sm px-4 py-3 text-base text-foreground placeholder:text-muted-foreground/70 focus:border-foreground/40 focus:outline-none transition-colors";
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (

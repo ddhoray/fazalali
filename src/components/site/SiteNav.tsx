@@ -76,8 +76,8 @@ export function SiteNav() {
         overHero
           ? "bg-transparent text-white"
           : overDark
-            ? "bg-black/55 backdrop-blur-xl border-b border-white/10 text-white"
-            : "bg-background/85 backdrop-blur-2xl border-b hairline text-foreground",
+            ? "bg-black/40 backdrop-blur-2xl backdrop-saturate-150 border-b border-white/10 text-white shadow-[0_1px_0_0_rgba(255,255,255,0.04),0_8px_24px_-12px_rgba(0,0,0,0.5)]"
+            : "bg-background/70 backdrop-blur-2xl backdrop-saturate-150 border-b hairline text-foreground shadow-[0_1px_0_0_rgba(0,0,0,0.02),0_8px_24px_-16px_rgba(0,0,0,0.18)]",
       )}
     >
       <div className="mx-auto flex max-w-[1700px] items-center justify-between px-5 py-3 sm:px-8 sm:py-3.5">
