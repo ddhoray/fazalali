@@ -111,7 +111,7 @@ export function PageHero({
             className={cn(
               "relative aspect-[4/5] w-full overflow-hidden",
               imageFit === "contain"
-                ? "flex items-center justify-center bg-[oklch(0.92_0.01_240)] p-6 sm:p-8"
+                ? "flex items-center justify-center bg-[oklch(0.94_0.008_75)] p-6 sm:p-8"
                 : "border border-foreground/10 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.25)]",
             )}
           >
