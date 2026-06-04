@@ -450,7 +450,7 @@ function Portrait() {
     <section
 
       data-nav="dark"
-      className="section-invert relative overflow-hidden py-14 md:py-20"
+      className="section-invert relative overflow-hidden py-10 md:py-14"
     >
       <Grain />
 
