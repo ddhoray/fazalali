@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import { BookOpen, Sparkles, PenLine, Compass, ArrowUpRight } from "lucide-react";
 import { BlurReveal, SlideIn } from "@/components/site/BlurReveal";
 import { WordScrollReveal } from "@/components/site/WordScrollReveal";
+import { ImageExpand } from "@/components/site/ImageExpand";
 
 import { HoverImage } from "@/components/site/HoverImage";
 import { CirclePill } from "@/components/site/CirclePill";
@@ -56,6 +57,18 @@ function Home() {
         <Quietline />
         <FeaturedSticky />
         <Manifesto />
+        <ImageExpand
+          src={featuredOmeros}
+          alt="An immersive frame from the Omeros AI identity"
+          caption="Scroll · the frame expands"
+        >
+          <div className="max-w-xl">
+            <p className="eyebrow opacity-85">An interlude</p>
+            <h3 className="mt-3 font-display text-4xl leading-[1.02] sm:text-5xl md:text-6xl">
+              The frame widens <em className="italic">as you read.</em>
+            </h3>
+          </div>
+        </ImageExpand>
         <Portrait />
         <BookSection />
         <Range />
