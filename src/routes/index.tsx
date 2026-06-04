@@ -102,14 +102,19 @@ function Hero() {
     offset: ["start start", "end start"],
   });
 
-  // Phase 1 (0 → 0.5): frame expands from inset to full bleed.
-  // Image stays fixed — only the frame grows around it.
-  // Phase 2 (0.5 → 1): title fades out as you scroll past.
-  const width = useTransform(scrollYProgress, [0, 0.5], ["84%", "100%"]);
-  const height = useTransform(scrollYProgress, [0, 0.5], ["86svh", "100svh"]);
-  const titleOpacity = useTransform(scrollYProgress, [0.5, 0.8], [1, 0]);
-  const logoOpacity = useTransform(scrollYProgress, [0, 0.35], [1, 0]);
-  const logoY = useTransform(scrollYProgress, [0, 0.5], ["0%", "-40%"]);
+  // Cinematic reveal sequence driven by scroll:
+  // 0   → 0.35 : image expands from inset to full bleed (only image visible).
+  // 0.4 → 0.6  : hero text reveals.
+  // 0.6 → 0.8  : FIA logo reveals.
+  const width = useTransform(scrollYProgress, [0, 0.35], ["72%", "100%"]);
+  const height = useTransform(scrollYProgress, [0, 0.35], ["78svh", "100svh"]);
+  const radius = useTransform(scrollYProgress, [0, 0.35], ["2px", "0px"]);
+  const titleOpacity = useTransform(scrollYProgress, [0.4, 0.6, 0.92, 1], [0, 1, 1, 0]);
+  const titleY = useTransform(scrollYProgress, [0.4, 0.6], ["24px", "0px"]);
+  const titleBlur = useTransform(scrollYProgress, [0.4, 0.6], ["10px", "0px"]);
+  const titleFilter = useTransform(titleBlur, (b) => `blur(${b})`);
+  const logoOpacity = useTransform(scrollYProgress, [0.6, 0.8, 0.92, 1], [0, 1, 1, 0]);
+  const logoY = useTransform(scrollYProgress, [0.6, 0.8], ["-12px", "0px"]);
 
   return (
     <section
