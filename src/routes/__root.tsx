@@ -17,6 +17,7 @@ import { SmoothScroll } from "../components/site/SmoothScroll";
 import { IntroReveal } from "../components/site/IntroReveal";
 import { PageTransition } from "../components/site/PageTransition";
 import { ContactDrawer } from "../components/site/ContactDrawer";
+import { FloatingBottomNav } from "../components/site/FloatingBottomNav";
 
 
 function NotFoundComponent() {
@@ -188,6 +189,7 @@ function RootComponent() {
         </PageTransition>
       </main>
       <SiteFooter />
+      <FloatingBottomNav />
       <ContactDrawer />
     </QueryClientProvider>
 
