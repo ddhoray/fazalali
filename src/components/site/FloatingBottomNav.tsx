@@ -41,23 +41,28 @@ export function FloatingBottomNav() {
           <nav
             aria-label="Floating navigation"
             className={cn(
-              "pointer-events-auto flex items-center gap-1 rounded-full border border-white/15",
-              "bg-black/55 px-2 py-1.5 text-white backdrop-blur-2xl backdrop-saturate-150",
+              "pointer-events-auto flex items-center gap-0.5 rounded-full border border-white/15",
+              "bg-black/60 px-1.5 py-1 text-white backdrop-blur-2xl backdrop-saturate-150",
               "shadow-[0_1px_0_0_rgba(255,255,255,0.08)_inset,0_20px_60px_-20px_rgba(0,0,0,0.55)]",
             )}
           >
-            {links.map((l) => {
+            <Link
+              to="/"
+              aria-label="Home"
+              className="mr-1 inline-flex size-7 items-center justify-center rounded-full bg-white/10 text-[10px] font-display tracking-tight"
+            >
+              FA
+            </Link>
+            {links.slice(1).map((l) => {
               const active =
-                l.to === "/"
-                  ? pathname === "/"
-                  : pathname === l.to || pathname.startsWith(l.to + "/");
+                pathname === l.to || pathname.startsWith(l.to + "/");
               return (
                 <Link
                   key={l.to}
                   to={l.to}
                   className={cn(
-                    "relative rounded-full px-3.5 py-2 text-[11px] font-medium uppercase tracking-[0.14em] transition-colors sm:px-4",
-                    active ? "text-white" : "text-white/70 hover:text-white",
+                    "relative rounded-full px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.16em] transition-colors",
+                    active ? "text-white" : "text-white/65 hover:text-white",
                   )}
                 >
                   {active && (
@@ -71,11 +76,11 @@ export function FloatingBottomNav() {
                 </Link>
               );
             })}
-            <span className="mx-1 h-5 w-px bg-white/15" />
+            <span className="mx-1 h-4 w-px bg-white/15" />
             <button
               type="button"
               onClick={() => openContactDrawer()}
-              className="rounded-full bg-white px-4 py-2 text-[11px] font-medium uppercase tracking-[0.14em] text-black transition-opacity hover:opacity-90"
+              className="rounded-full bg-white px-3.5 py-1.5 text-[10px] font-medium uppercase tracking-[0.16em] text-black transition-opacity hover:opacity-90"
             >
               Write Me
             </button>
