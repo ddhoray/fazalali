@@ -52,17 +52,18 @@ export const Route = createFileRoute("/")({
 function Home() {
   return (
     <>
-      <HomeTopBar />
       <Hero />
       <div className="relative z-10 bg-background">
         <Quietline />
+        <FeaturedSticky />
+        <Manifesto />
 
-        {/* Parallax band #1 — slow-moving photographic break */}
+        {/* Single full-bleed parallax photographic break */}
         <ParallaxImage
           src={heroDesk}
           alt="A scholar's desk in soft light"
           strength={22}
-          className="h-[80vh] sm:h-[95vh]"
+          className="h-[70vh] sm:h-[85vh]"
         >
           <div className="text-on-image flex h-full w-full items-end p-6 sm:p-12">
             <div className="max-w-xl">
@@ -74,41 +75,7 @@ function Home() {
           </div>
         </ParallaxImage>
 
-        <FeaturedSticky />
-        <Manifesto />
-
-        <ImageExpand
-          src={featuredOmeros}
-          alt="An immersive frame from the Omeros AI identity"
-          caption="Scroll · the frame expands"
-        >
-          <div className="max-w-xl">
-            <p className="eyebrow opacity-85">An interlude</p>
-            <h3 className="mt-3 font-display text-4xl leading-[1.02] sm:text-5xl md:text-6xl">
-              The frame widens <em className="italic">as you read.</em>
-            </h3>
-          </div>
-        </ImageExpand>
-
         <Portrait />
-
-        {/* Parallax band #2 — second photographic break before the book */}
-        <ParallaxImage
-          src={heroOmeros}
-          alt="Sea light — the Caribbean as a way of reading"
-          strength={22}
-          className="h-[80vh] sm:h-[95vh]"
-        >
-          <div className="text-on-image flex h-full w-full items-end p-6 sm:p-12">
-            <div className="ml-auto max-w-xl text-right">
-              <p className="eyebrow opacity-85">From the West Indies</p>
-              <h3 className="mt-3 font-display text-3xl leading-[1.04] sm:text-5xl">
-                A small island, <em className="italic">a long sentence.</em>
-              </h3>
-            </div>
-          </div>
-        </ParallaxImage>
-
         <BookSection />
         <Range />
         <LatestWriting />
