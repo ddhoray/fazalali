@@ -159,7 +159,7 @@ function Hero() {
           <motion.div
             style={{ opacity: logoOpacity, y: logoY }}
             initial={{ opacity: 0 }}
-            className="pointer-events-none absolute inset-x-0 top-6 z-20 flex justify-center sm:top-10"
+            className="pointer-events-none absolute inset-x-0 top-6 z-20 hidden justify-center sm:top-10 lg:flex"
           >
             <img
               src={fiaLogo}
