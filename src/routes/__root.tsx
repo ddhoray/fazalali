@@ -182,6 +182,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <SplashScreen />
       <SmoothScroll />
       
       <main>
