@@ -21,21 +21,22 @@ const links = [
 export function FloatingBottomNav() {
   const [visible, setVisible] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const isHome = pathname === "/";
 
   useEffect(() => {
     const onScroll = () => {
       // Reveal only after the hero's scroll-driven sequence completes.
-      const threshold = Math.max(640, window.innerHeight * 1.1);
+      const threshold = window.innerHeight * 1.72;
       setVisible(window.scrollY > threshold);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [isHome]);
 
   return (
     <AnimatePresence>
-      {visible && (
+      {(!isHome || visible) && (
         <motion.div
           initial={{ opacity: 0, y: 24, filter: "blur(8px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
