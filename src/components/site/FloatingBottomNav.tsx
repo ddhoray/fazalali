@@ -46,7 +46,7 @@ export function FloatingBottomNav() {
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           exit={{ opacity: 0, y: 24, filter: "blur(8px)" }}
           transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-          className="pointer-events-none fixed inset-x-0 bottom-5 z-[60] flex justify-center px-4 sm:bottom-7"
+          className="pointer-events-none fixed inset-x-0 bottom-5 z-[60] hidden justify-center px-4 sm:bottom-7 lg:flex"
         >
           <div className="pointer-events-auto relative flex flex-col items-center">
             {/* Single container that grows when expanded */}

@@ -17,6 +17,7 @@ import { SmoothScroll } from "../components/site/SmoothScroll";
 import { PageTransition } from "../components/site/PageTransition";
 import { ContactDrawer } from "../components/site/ContactDrawer";
 import { FloatingBottomNav } from "../components/site/FloatingBottomNav";
+import { MobileTopBar } from "../components/site/MobileTopBar";
 
 
 
@@ -190,6 +191,7 @@ function RootComponent() {
       <SiteFooter />
       <div aria-hidden className="h-28 sm:h-32" />
       <FloatingBottomNav />
+      <MobileTopBar />
       <ContactDrawer />
     </QueryClientProvider>
 
