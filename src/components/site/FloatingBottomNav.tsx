@@ -23,7 +23,11 @@ export function FloatingBottomNav() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 160);
+    const onScroll = () => {
+      // Reveal only after the hero's scroll-driven sequence completes.
+      const threshold = Math.max(640, window.innerHeight * 1.1);
+      setVisible(window.scrollY > threshold);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
