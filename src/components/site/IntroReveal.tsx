@@ -10,10 +10,6 @@ export function IntroReveal() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    const reduced =
-      typeof window !== "undefined" &&
-      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) return;
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     setShow(true);
     document.documentElement.style.overflow = "hidden";
@@ -33,7 +29,10 @@ export function IntroReveal() {
         <motion.div
           key="intro"
           aria-hidden
-          onClick={() => setShow(false)}
+          onClick={() => {
+            setShow(false);
+            document.documentElement.style.overflow = "";
+          }}
           initial={{ y: 0 }}
           exit={{ y: "-100%" }}
           transition={{ duration: 0.9, ease: [0.83, 0, 0.17, 1] }}
