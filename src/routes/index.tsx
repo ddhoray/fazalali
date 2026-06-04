@@ -1,5 +1,5 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { useRef, useState, useEffect } from "react";
 import { BookOpen, Sparkles, PenLine, Compass, ArrowUpRight } from "lucide-react";
 import { BlurReveal, SlideIn } from "@/components/site/BlurReveal";
@@ -96,7 +96,6 @@ function Home() {
 
 function Hero() {
   const ref = useRef<HTMLDivElement>(null);
-  const reduce = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end end"],
@@ -123,7 +122,7 @@ function Hero() {
     >
       <div className="sticky top-0 flex h-svh w-full items-center justify-center overflow-hidden">
         <motion.div
-          style={reduce ? undefined : { width, height, borderRadius: radius }}
+          style={{ width, height, borderRadius: radius }}
           className="relative overflow-hidden bg-neutral-900"
         >
           {/* Fixed image — does NOT scale or move with scroll */}
@@ -136,21 +135,21 @@ function Hero() {
             fetchPriority="high"
           />
           <motion.div
-            style={reduce ? undefined : { opacity: heroOverlayOpacity }}
+            style={{ opacity: heroOverlayOpacity }}
             className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-black/10"
           />
           <motion.div
-            style={reduce ? undefined : { opacity: heroOverlayOpacity }}
+            style={{ opacity: heroOverlayOpacity }}
             className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent"
           />
-          <motion.div style={reduce ? undefined : { opacity: heroOverlayOpacity }}>
+          <motion.div style={{ opacity: heroOverlayOpacity }}>
             <Grain />
           </motion.div>
 
           {/* FIA logo — revealed last in the scroll sequence */}
           <motion.div
-            style={reduce ? undefined : { opacity: logoOpacity, y: logoY }}
-            initial={reduce ? undefined : { opacity: 0 }}
+            style={{ opacity: logoOpacity, y: logoY }}
+            initial={{ opacity: 0 }}
             className="pointer-events-none absolute inset-x-0 top-6 z-20 flex justify-center sm:top-10"
           >
             <img
@@ -162,8 +161,8 @@ function Hero() {
           </motion.div>
 
           <motion.div
-            style={reduce ? undefined : { opacity: titleOpacity, y: titleY }}
-            initial={reduce ? undefined : { opacity: 0 }}
+            style={{ opacity: titleOpacity, y: titleY }}
+            initial={{ opacity: 0 }}
             className="text-on-image absolute inset-0 z-10 flex flex-col justify-between px-6 pt-28 pb-12 sm:px-12 sm:pt-32 sm:pb-16"
           >
             <p className="eyebrow opacity-85">
