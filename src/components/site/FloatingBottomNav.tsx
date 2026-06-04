@@ -128,8 +128,18 @@ export function FloatingBottomNav() {
             {/* Compact pill */}
             <nav
               aria-label="Floating navigation"
+              role="button"
+              tabIndex={0}
+              aria-expanded={expanded}
+              onClick={() => setExpanded((v) => !v)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setExpanded((v) => !v);
+                }
+              }}
               className={cn(
-                "relative isolate flex items-center gap-1 overflow-hidden rounded-full border border-black/10",
+                "relative isolate flex cursor-pointer items-center gap-1 overflow-hidden rounded-full border border-black/10",
                 "bg-white px-2.5 py-2 text-black",
                 "shadow-[0_1px_0_0_rgba(0,0,0,0.04)_inset,0_36px_110px_-16px_rgba(0,0,0,0.35)]",
               )}
