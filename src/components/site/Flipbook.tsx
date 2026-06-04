@@ -106,7 +106,7 @@ export function Flipbook({ file = PDF_FILE_DEFAULT }: FlipbookProps) {
     <div ref={containerRef} className="relative mx-auto w-full max-w-[1180px]">
       <Document
         file={fileOption}
-        onLoadSuccess={({ numPages }) => setNumPages(numPages)}
+        onLoadSuccess={({ numPages }: { numPages: number }) => setNumPages(numPages)}
         loading={
           <div className="mx-auto flex aspect-[3/2] w-full max-w-[1000px] items-center justify-center border border-white/15 bg-white/5 text-sm uppercase tracking-[0.2em] text-white/60">
             <Loader2 className="mr-3 size-4 animate-spin" /> Loading the book…
@@ -120,7 +120,6 @@ export function Flipbook({ file = PDF_FILE_DEFAULT }: FlipbookProps) {
       >
         {numPages > 0 && (
           <div className="flex justify-center">
-            {/* @ts-expect-error react-pageflip's children typing is loose */}
             <HTMLFlipBook
               ref={bookRef}
               width={size.w}
