@@ -305,16 +305,17 @@ function FeaturedSticky() {
                     initial={false}
                     animate={{
                       opacity: i === active ? 1 : 0,
-                      scale: i === active ? 1 : 1.08,
+                      scale: i === active ? 1 : 1.04,
                     }}
-                    transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                    style={{ zIndex: i === active ? 2 : 1 }}
                     className="absolute inset-0"
                   >
                     <img
                       src={item.image}
                       alt={item.title}
                       className="size-full object-cover"
-                      loading="lazy"
+                      loading={i === 0 ? "eager" : "lazy"}
                     />
                   </motion.div>
                 ))}
