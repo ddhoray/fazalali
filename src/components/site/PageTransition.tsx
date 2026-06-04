@@ -43,22 +43,6 @@ export function PageTransition({ children }: { children: ReactNode }) {
         </motion.div>
       </AnimatePresence>
 
-      {/* Curtain swipe overlay — keyed on pathname so it replays each navigation */}
-      <AnimatePresence>
-        <motion.div
-          key={`curtain-${pathname}`}
-          aria-hidden
-          initial={{ y: "-100%" }}
-          animate={{ y: ["-100%", "0%", "100%"] }}
-          transition={{
-            duration: 0.9,
-            times: [0, 0.45, 1],
-            ease: [0.83, 0, 0.17, 1],
-          }}
-          className="pointer-events-none fixed inset-0 z-[90] bg-background"
-          style={{ willChange: "transform" }}
-        />
-      </AnimatePresence>
     </>
   );
 }
