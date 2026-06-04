@@ -101,25 +101,25 @@ function Hero() {
     offset: ["start start", "end end"],
   });
 
-  // Cinematic reveal — strictly sequential, no overlap, no blur:
-  // 0    → 0.42 : image frame expands from inset to full bleed (nothing else visible).
-  // 0.54 → 0.70 : hero content reveals (opacity + subtle lift, no blur).
-  // 0.76 → 0.88 : FIA logo reveals at top, followed by the floating nav threshold.
-  const width = useTransform(scrollYProgress, [0, 0.42], ["64%", "100%"]);
-  const height = useTransform(scrollYProgress, [0, 0.42], ["70svh", "100svh"]);
-  const radius = useTransform(scrollYProgress, [0, 0.42], ["3px", "0px"]);
-  const heroOverlayOpacity = useTransform(scrollYProgress, [0.42, 0.5], [0, 1]);
-  const titleOpacity = useTransform(scrollYProgress, [0.54, 0.7], [0, 1]);
-  const titleY = useTransform(scrollYProgress, [0.54, 0.7], ["22px", "0px"]);
-  const logoOpacity = useTransform(scrollYProgress, [0.76, 0.88], [0, 1]);
-  const logoY = useTransform(scrollYProgress, [0.76, 0.88], ["-10px", "0px"]);
+  // Cinematic reveal — strictly sequential, no overlap, no blur.
+  // Reveal completes by ~0.75 so the fully-composed hero stays visible
+  // for the remaining sticky scroll (prevents content hiding on scroll).
+  const width = useTransform(scrollYProgress, [0, 0.3], ["64%", "100%"]);
+  const height = useTransform(scrollYProgress, [0, 0.3], ["70svh", "100svh"]);
+  const radius = useTransform(scrollYProgress, [0, 0.3], ["3px", "0px"]);
+  const heroOverlayOpacity = useTransform(scrollYProgress, [0.3, 0.4], [0, 1]);
+  const titleOpacity = useTransform(scrollYProgress, [0.42, 0.58], [0, 1]);
+  const titleY = useTransform(scrollYProgress, [0.42, 0.58], ["22px", "0px"]);
+  const logoOpacity = useTransform(scrollYProgress, [0.6, 0.74], [0, 1]);
+  const logoY = useTransform(scrollYProgress, [0.6, 0.74], ["-10px", "0px"]);
 
   return (
     <section
       ref={ref}
       aria-label="Introduction"
-      className="relative h-[300svh] w-full bg-background"
+      className="relative h-[220svh] w-full bg-background"
     >
+
       <div className="sticky top-0 flex h-svh w-full items-center justify-center overflow-hidden">
         <motion.div
           style={{ width, height, borderRadius: radius }}
