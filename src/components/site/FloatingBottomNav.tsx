@@ -42,15 +42,15 @@ export function FloatingBottomNav() {
           <nav
             aria-label="Floating navigation"
             className={cn(
-              "pointer-events-auto flex items-center gap-1 rounded-full border border-white/25",
-              "bg-black/35 px-2.5 py-2 text-white backdrop-blur-[28px] backdrop-saturate-200",
-              "shadow-[0_1px_0_0_rgba(255,255,255,0.22)_inset,0_30px_80px_-20px_rgba(0,0,0,0.7)]",
+              "pointer-events-auto flex items-center gap-1 rounded-full border border-white/30",
+              "bg-black/55 px-2.5 py-2 text-white backdrop-blur-[40px] backdrop-saturate-200",
+              "shadow-[0_1px_0_0_rgba(255,255,255,0.28)_inset,0_30px_90px_-20px_rgba(0,0,0,0.85)]",
             )}
           >
             <Link
               to="/"
               aria-label="Fazal Ali — Home"
-              className="mr-1 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/15 ring-1 ring-white/25 backdrop-blur-md transition-colors hover:bg-white/25"
+              className="mr-1 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white ring-1 ring-white/60 shadow-sm transition-colors hover:bg-white/90"
             >
               <img
                 src={fiaLogo}
