@@ -99,26 +99,27 @@ function Hero() {
   const reduce = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start start", "end start"],
+    offset: ["start start", "end end"],
   });
 
   // Cinematic reveal — strictly sequential, no overlap, no blur:
-  // 0    → 0.40 : image frame expands from inset to full bleed (nothing else visible).
-  // 0.50 → 0.68 : hero text reveals (opacity + subtle lift, no blur).
-  // 0.70 → 0.86 : FIA logo reveals at top.
-  const width = useTransform(scrollYProgress, [0, 0.4], ["68%", "100%"]);
-  const height = useTransform(scrollYProgress, [0, 0.4], ["74svh", "100svh"]);
-  const radius = useTransform(scrollYProgress, [0, 0.4], ["2px", "0px"]);
-  const titleOpacity = useTransform(scrollYProgress, [0.5, 0.68], [0, 1]);
-  const titleY = useTransform(scrollYProgress, [0.5, 0.68], ["20px", "0px"]);
-  const logoOpacity = useTransform(scrollYProgress, [0.7, 0.86], [0, 1]);
-  const logoY = useTransform(scrollYProgress, [0.7, 0.86], ["-10px", "0px"]);
+  // 0    → 0.42 : image frame expands from inset to full bleed (nothing else visible).
+  // 0.54 → 0.70 : hero content reveals (opacity + subtle lift, no blur).
+  // 0.76 → 0.88 : FIA logo reveals at top, followed by the floating nav threshold.
+  const width = useTransform(scrollYProgress, [0, 0.42], ["64%", "100%"]);
+  const height = useTransform(scrollYProgress, [0, 0.42], ["70svh", "100svh"]);
+  const radius = useTransform(scrollYProgress, [0, 0.42], ["3px", "0px"]);
+  const heroOverlayOpacity = useTransform(scrollYProgress, [0.42, 0.5], [0, 1]);
+  const titleOpacity = useTransform(scrollYProgress, [0.54, 0.7], [0, 1]);
+  const titleY = useTransform(scrollYProgress, [0.54, 0.7], ["22px", "0px"]);
+  const logoOpacity = useTransform(scrollYProgress, [0.76, 0.88], [0, 1]);
+  const logoY = useTransform(scrollYProgress, [0.76, 0.88], ["-10px", "0px"]);
 
   return (
     <section
       ref={ref}
       aria-label="Introduction"
-      className="relative h-[260svh] w-full bg-background"
+      className="relative h-[300svh] w-full bg-background"
     >
       <div className="sticky top-0 flex h-svh w-full items-center justify-center overflow-hidden">
         <motion.div
@@ -134,9 +135,17 @@ function Hero() {
             height={1280}
             fetchPriority="high"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-black/10" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent" />
-          <Grain />
+          <motion.div
+            style={reduce ? undefined : { opacity: heroOverlayOpacity }}
+            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-black/10"
+          />
+          <motion.div
+            style={reduce ? undefined : { opacity: heroOverlayOpacity }}
+            className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent"
+          />
+          <motion.div style={reduce ? undefined : { opacity: heroOverlayOpacity }}>
+            <Grain />
+          </motion.div>
 
           {/* FIA logo — revealed last in the scroll sequence */}
           <motion.div
