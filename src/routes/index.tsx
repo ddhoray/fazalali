@@ -426,7 +426,7 @@ function FeaturedSticky() {
 
 function Manifesto() {
   return (
-    <section className="mx-auto max-w-[1400px] bg-background px-5 py-12 sm:px-8 md:py-10">
+    <section className="mx-auto max-w-[1400px] bg-background px-5 py-10 sm:px-8 md:py-14">
       <BlurReveal as="p" className="eyebrow mb-5 flex items-center gap-3 text-muted-foreground">
         <Compass className="size-4" /> A note before reading
       </BlurReveal>
