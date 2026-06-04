@@ -130,7 +130,7 @@ function Hero() {
           <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent" />
           <Grain />
 
-          {/* FIA logo — top center of the hero banner */}
+          {/* FIA logo — top center, white, no shadow */}
           <motion.div
             style={reduce ? undefined : { opacity: logoOpacity, y: logoY }}
             className="pointer-events-none absolute inset-x-0 top-6 z-20 flex justify-center sm:top-10"
@@ -138,7 +138,7 @@ function Hero() {
             <img
               src={fiaLogo}
               alt="FIA — Fazal Ibrahim Ali"
-              className="h-12 w-auto drop-shadow-[0_2px_12px_rgba(0,0,0,0.55)] sm:h-16"
+              className="h-12 w-auto brightness-0 invert sm:h-16"
               draggable={false}
             />
           </motion.div>
