@@ -25,8 +25,8 @@ export function FloatingBottomNav() {
 
   useEffect(() => {
     const onScroll = () => {
-      // Reveal only after the hero's scroll-driven sequence completes.
-      const threshold = window.innerHeight * 1.72;
+      // On home, reveal only after the hero's scroll-driven sequence completes.
+      const threshold = isHome ? window.innerHeight * 1.72 : 160;
       setVisible(window.scrollY > threshold);
     };
     onScroll();
@@ -36,7 +36,7 @@ export function FloatingBottomNav() {
 
   return (
     <AnimatePresence>
-      {(!isHome || visible) && (
+      {visible && (
         <motion.div
           initial={{ opacity: 0, y: 24, filter: "blur(8px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
