@@ -58,14 +58,19 @@ function Home() {
         <FeaturedSticky />
         <Manifesto />
 
-        {/* Single full-bleed parallax photographic break */}
-        <ParallaxImage
-          src={heroDesk}
-          alt="A scholar's desk in soft light"
-          strength={22}
-          className="h-[70vh] sm:h-[85vh]"
+        {/* Fixed-background photographic break — image stays anchored while content scrolls */}
+        <section
+          aria-label="A quiet desk"
+          className="relative h-[70vh] w-full overflow-hidden sm:h-[85vh]"
+          style={{
+            backgroundImage: `url(${heroDesk})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundAttachment: "fixed",
+          }}
         >
-          <div className="text-on-image flex h-full w-full items-end p-6 sm:p-12">
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/55" />
+          <div className="text-on-image relative flex h-full w-full items-end p-6 sm:p-12">
             <div className="max-w-xl">
               <p className="eyebrow opacity-85">A quiet desk</p>
               <h3 className="mt-3 font-display text-3xl leading-[1.04] sm:text-5xl">
@@ -73,7 +78,7 @@ function Home() {
               </h3>
             </div>
           </div>
-        </ParallaxImage>
+        </section>
 
         <Portrait />
         <BookSection />
