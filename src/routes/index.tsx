@@ -644,7 +644,7 @@ function Range() {
           </BlurReveal>
         </div>
 
-        <div className="flex flex-col gap-16 md:gap-28">
+        <div className="flex flex-col gap-6 md:gap-10">
           {range.map((r, i) => (
             <ZigzagRow
               key={r.n}
@@ -716,7 +716,7 @@ function ZigzagRow({
 
       {/* Text — scrolls past the pinned image */}
       <div
-        className={`md:col-span-5 md:min-h-[80vh] md:py-10 ${
+        className={`md:col-span-5 md:min-h-[50vh] md:py-4 ${
           reverse ? "md:col-start-1 md:row-start-1" : ""
         }`}
       >
