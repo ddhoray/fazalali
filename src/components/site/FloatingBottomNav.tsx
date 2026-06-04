@@ -29,20 +29,9 @@ const extraLinks = [
  * Expandable: a "+" toggle reveals the full index (synced with footer).
  */
 export function FloatingBottomNav() {
-  const [visible, setVisible] = useState(false);
+  const [visible] = useState(true);
   const [expanded, setExpanded] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const isHome = pathname === "/";
-
-  useEffect(() => {
-    const onScroll = () => {
-      const threshold = isHome ? window.innerHeight * 1.75 : 160;
-      setVisible(window.scrollY > threshold);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [isHome]);
 
   // Collapse the expanded panel on route change.
   useEffect(() => {
