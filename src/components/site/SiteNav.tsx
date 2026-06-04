@@ -36,6 +36,9 @@ export function SiteNav() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const isHome = pathname === "/";
 
+  // Homepage uses HomeTopBar (a minimal fluid.glass-style bar). Hide the full nav there.
+  if (isHome) return null;
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 32);
     onScroll();

@@ -1,10 +1,12 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
 import { useRef, useState, useEffect } from "react";
 import { BookOpen, Sparkles, PenLine, Compass, ArrowUpRight } from "lucide-react";
 import { BlurReveal, SlideIn } from "@/components/site/BlurReveal";
 import { WordScrollReveal } from "@/components/site/WordScrollReveal";
 import { ImageExpand } from "@/components/site/ImageExpand";
+import { ParallaxImage } from "@/components/site/ParallaxImage";
+import { HomeTopBar } from "@/components/site/HomeTopBar";
 
 import { HoverImage } from "@/components/site/HoverImage";
 import { CirclePill } from "@/components/site/CirclePill";
@@ -21,6 +23,8 @@ import featuredWriting from "@/assets/featured-writing.jpg";
 import practiceEssays from "@/assets/practice-essays.jpg";
 import practiceBook from "@/assets/practice-book.jpg";
 import practiceOmeros from "@/assets/practice-omeros.jpg";
+import heroDesk from "@/assets/hero-desk.jpg";
+import heroOmeros from "@/assets/hero-omeros.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -50,13 +54,31 @@ export const Route = createFileRoute("/")({
 function Home() {
   return (
     <>
+      <HomeTopBar />
       <Hero />
-      {/* Spacer that reserves the hero's viewport so subsequent sections scroll over it */}
-      <div aria-hidden className="h-svh w-full" />
       <div className="relative z-10 bg-background">
         <Quietline />
+
+        {/* Parallax band #1 — slow-moving photographic break */}
+        <ParallaxImage
+          src={heroDesk}
+          alt="A scholar's desk in soft light"
+          strength={22}
+          className="h-[80vh] sm:h-[95vh]"
+        >
+          <div className="text-on-image flex h-full w-full items-end p-6 sm:p-12">
+            <div className="max-w-xl">
+              <p className="eyebrow opacity-85">A quiet desk</p>
+              <h3 className="mt-3 font-display text-3xl leading-[1.04] sm:text-5xl">
+                Slow reading, <em className="italic">long sentences.</em>
+              </h3>
+            </div>
+          </div>
+        </ParallaxImage>
+
         <FeaturedSticky />
         <Manifesto />
+
         <ImageExpand
           src={featuredOmeros}
           alt="An immersive frame from the Omeros AI identity"
@@ -69,7 +91,26 @@ function Home() {
             </h3>
           </div>
         </ImageExpand>
+
         <Portrait />
+
+        {/* Parallax band #2 — second photographic break before the book */}
+        <ParallaxImage
+          src={heroOmeros}
+          alt="Sea light — the Caribbean as a way of reading"
+          strength={22}
+          className="h-[80vh] sm:h-[95vh]"
+        >
+          <div className="text-on-image flex h-full w-full items-end p-6 sm:p-12">
+            <div className="ml-auto max-w-xl text-right">
+              <p className="eyebrow opacity-85">From the West Indies</p>
+              <h3 className="mt-3 font-display text-3xl leading-[1.04] sm:text-5xl">
+                A small island, <em className="italic">a long sentence.</em>
+              </h3>
+            </div>
+          </div>
+        </ParallaxImage>
+
         <BookSection />
         <Range />
         <LatestWriting />
@@ -85,70 +126,82 @@ function Home() {
 
 function Hero() {
   const ref = useRef<HTMLDivElement>(null);
-  // Drive parallax from window scroll since the hero is fixed
-  const { scrollY } = useScroll();
-  const imageY = useTransform(scrollY, [0, 800], ["0%", "-12%"]);
-  const imageScale = useTransform(scrollY, [0, 800], [1.05, 1.12]);
-  const overlayOpacity = useTransform(scrollY, [0, 600], [1, 0.85]);
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+
+  // Image starts inset (88% wide, 24px radius) → expands to full-bleed.
+  const width = useTransform(scrollYProgress, [0, 0.6], ["88%", "100%"]);
+  const radius = useTransform(scrollYProgress, [0, 0.6], [24, 0]);
+  const imgScale = useTransform(scrollYProgress, [0, 1], [1.06, 1.18]);
+  const imgY = useTransform(scrollYProgress, [0, 1], ["0%", "-12%"]);
+  const titleOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  const titleY = useTransform(scrollYProgress, [0, 1], ["0%", "-10%"]);
 
   return (
     <section
       ref={ref}
       aria-label="Introduction"
-      className="fixed inset-x-0 top-0 z-0 h-svh w-full overflow-hidden bg-neutral-100 text-white"
+      className="relative h-[170svh] w-full bg-background"
     >
-      {/* Parallax background image */}
-      <motion.div
-        style={{ y: imageY, scale: imageScale }}
-        className="absolute inset-0 will-change-transform"
-      >
-        <img
-          src={heroImage}
-          alt="A classical marble bust in warm museum light — symbolizing critical theory and humanist reading of AI"
-          className="size-full object-cover"
-          width={1920}
-          height={1280}
-          fetchPriority="high"
-        />
-      </motion.div>
-      {/* Soft cinematic overlay — keeps the statue readable while text stays legible */}
-      <motion.div
-        style={{ opacity: overlayOpacity }}
-        className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-black/10"
-      />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent" />
-      <Grain />
-
-      {/* Content frame */}
-      <div className="text-on-image relative z-10 flex h-full flex-col justify-between px-5 pt-28 pb-16 sm:px-10 sm:pt-24 sm:pb-12">
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.0, delay: 0.05 }}
-          className="eyebrow opacity-85"
+      <div className="sticky top-0 flex h-svh w-full items-center justify-center overflow-hidden">
+        <motion.div
+          style={reduce ? undefined : { width, borderRadius: radius }}
+          className="relative h-[92svh] overflow-hidden bg-neutral-200 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.5)]"
         >
-          Folio I · Trinidad &amp; the Machines
-        </motion.p>
+          <motion.img
+            src={heroImage}
+            alt="A classical marble bust in warm museum light — symbolizing critical theory and humanist reading of AI"
+            style={reduce ? undefined : { scale: imgScale, y: imgY }}
+            className="absolute inset-0 size-full object-cover will-change-transform"
+            width={1920}
+            height={1280}
+            fetchPriority="high"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-black/10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent" />
+          <Grain />
 
-        <div>
-          <BlurReveal
-            as="h1"
-            className="font-display text-[14vw] leading-[1.02] tracking-[-0.035em] text-balance sm:text-[10vw] md:text-[8vw] md:leading-[0.96]"
+          <motion.div
+            style={reduce ? undefined : { opacity: titleOpacity, y: titleY }}
+            className="text-on-image absolute inset-0 z-10 flex flex-col justify-between px-6 pt-24 pb-12 sm:px-12 sm:pt-28 sm:pb-16"
           >
-            Reading the <span className="italic">machines</span> slowly,{" "}
-            <span className="italic">by hand.</span>
-          </BlurReveal>
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.0, delay: 0.05 }}
+              className="eyebrow opacity-85"
+            >
+              Folio I · Trinidad &amp; the Machines
+            </motion.p>
 
-          <BlurReveal
-            as="p"
-            delay={0.25}
-            className="mt-5 max-w-md text-[13px] leading-relaxed opacity-90 sm:mt-6 sm:text-sm md:text-base"
-          >
-            Dr. Fazal Ibrahim Ali — Cambridge-trained, Trinidad-born. Writing on
-            critical theory in AI, the founding of Omeros AI, and a small book
-            called <em className="italic">Education for Liberty.</em>
-          </BlurReveal>
-        </div>
+            <div>
+              <BlurReveal
+                as="h1"
+                className="font-display text-[12vw] leading-[1.02] tracking-[-0.035em] text-balance sm:text-[9vw] md:text-[7vw] md:leading-[0.96]"
+              >
+                Reading the <span className="italic">machines</span> slowly,{" "}
+                <span className="italic">by hand.</span>
+              </BlurReveal>
+
+              <BlurReveal
+                as="p"
+                delay={0.25}
+                className="mt-5 max-w-md text-[13px] leading-relaxed opacity-90 sm:mt-6 sm:text-sm md:text-base"
+              >
+                Dr. Fazal Ibrahim Ali — Cambridge-trained, Trinidad-born. Writing
+                on critical theory in AI, the founding of Omeros AI, and a small
+                book called <em className="italic">Education for Liberty.</em>
+              </BlurReveal>
+
+              <p className="mt-8 text-[10px] uppercase tracking-[0.3em] opacity-70">
+                Scroll to explore
+              </p>
+            </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

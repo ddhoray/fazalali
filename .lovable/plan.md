@@ -1,76 +1,54 @@
+## Goal
 
-# Final polish: match fazalali.com + minimal header/footer
+Homepage `/` mirrors fluid.glass's cadence: tiny top chrome, a centered floating glass pill at the bottom, a hero whose image expands inset → full bleed, large full-bleed parallax photo bands between text sections, and tall image-card grids — all on the existing Fazal Ali content (Hero, Featured, Manifesto, Portrait, BookSection, Range, LatestWriting, InstagramGrid, Newsletter). Existing red/iron palette and Bodoni display stay.
 
-Goal: bring the new site to production parity with fazalali.com on contact info and article content, while keeping the expanded section structure (Palimpsest, Omeros, Podcast, Ecology, Inequality, Gallery). Tighten the header and footer for a cleaner, more minimal feel.
+## Navigation
 
-## 1. Contact / social parity (whole site)
+- On `/` only, hide the full top `SiteNav` (Journal, EFL, etc.). Replace it with a minimal top bar: small centered wordmark + single top-right `Write Me` link.
+- All other routes keep the current solid-white top nav untouched.
+- Globally mount `FloatingBottomNav` (already exists from last pass) — small glass pill, centered bottom, slides in after scroll. Refine it to read more like fluid.glass: tighter padding, smaller type, brand mark on the left, links in the middle, single accent CTA on the right.
 
-Source of truth from fazalali.com:
-- Email: `writeme@fazalali.com`
-- Instagram: `https://www.instagram.com/thefazalali/` (handle `@thefazalali`)
-- Location: Trinidad & Tobago, West Indies
-- No phone number on old site → remove any phone references from new site
-- No Twitter/LinkedIn on old site → remove any social icons not present there
+## Hero — image expansion
 
-Audit & fix in: `SiteFooter.tsx`, `ContactDrawer.tsx`, `contact.tsx`, `about.tsx`, `Newsletter.tsx`, `InstagramGrid.tsx`, hero CTAs. Replace any stale email/handle with the values above.
+Rebuild `Hero` so the marble-bust image starts inset with soft rounded corners and ~80% width, then expands to full-bleed with radius 0 as the user scrolls down the first viewport. Title and eyebrow stay overlaid; both fade as the frame widens. Drop the current fixed-position spacer trick — use a normal sticky section instead so the expansion reads cleanly.
 
-## 2. Articles — import real content from fazalali.com/blog
+## Section cadence (top to bottom)
 
-- Scrape `fazalali.com/blog` and the first ~3 pagination pages via `lov-fetch-website` to get: title, slug, date, excerpt, full body, cover image URL.
-- For each article, download the cover image, upload via `lovable-assets` CLI, and reference the `.asset.json`.
-- Rebuild `src/content/articles.ts` so the array contains the real articles (newest first). Keep the existing `Article` interface.
-- `writing.index.tsx` and `writing.$slug.tsx` already read from this content file — no route changes needed.
-- Cover image continues to render at the top of `writing.$slug.tsx` (already implemented in prior turn).
+1. **Hero (image-expand)** — new behavior above.
+2. **Quietline** — keep, minor type tightening.
+3. **Parallax band #1** — full-bleed photographic break, image scrolls slower than the page (uses existing `ParallaxImage`). Caption-only overlay.
+4. **FeaturedSticky** — keep the existing sticky 3-slide section.
+5. **Manifesto** — keep.
+6. **ImageExpand interlude** — already added; keep.
+7. **Portrait** — keep.
+8. **Parallax band #2** — second full-bleed parallax break with a different image and a quiet pull-quote.
+9. **BookSection** — keep.
+10. **Range (cards)** — restyle as a fluid.glass-style 4-up tall image card grid (portrait aspect ~3:4, hairline border, title + chip labels, subtle hover lift). Reuse existing `Range` data, no new content.
+11. **LatestWriting** — keep.
+12. **InstagramGrid** — keep.
+13. **Newsletter** — keep.
 
-Scope cap: import ~20 most recent articles (covers the visible homepage list + a buffer). More can be added later.
+## Motion details
 
-## 3. Header — keep logo, tighten everything (`SiteNav.tsx`)
+- Parallax bands use `ParallaxImage` with `strength={22}` and a longer `h-[120vh]` outer so the speed differential is obvious.
+- Card grid uses `SlideIn` from the bottom with staggered delays (0, 0.06, 0.12, 0.18).
+- Honor `prefers-reduced-motion` everywhere (existing components already do).
 
-- Reduce logo height: `h-7 sm:h-8` → `h-5 sm:h-6`.
-- Lighter nav type: tracking `0.22em` → `0.16em`, font-size `0.72rem` → `0.68rem`, weight 500 → 400.
-- Tighter spacing: `gap-7` → `gap-5`.
-- Remove the `ChevronDown` icon on the EFL dropdown (hover-only, no visual chevron).
-- Remove the standalone "Write Me" nav button; move it into the EFL dropdown? → No: keep "Write Me" reachable as a small link at the far right but styled identically to other nav links (no button treatment).
-- Remove `shadow-[0_1px_0_...]` under header; keep only the hairline border.
-- Mobile: same trims (smaller logo, lighter type).
+## Files
 
-## 4. Footer — keep "FAZAL ALI" wordmark, minimalize the nav links
+New / changed:
 
-User clarification: keep `JustifiedWordmark` as-is. Make the three footer columns more minimal:
+- `src/components/site/FloatingBottomNav.tsx` — tighten styling (smaller pill, brand mark, condensed links).
+- `src/components/site/SiteNav.tsx` — early-return `null` when `pathname === "/"` so it is hidden only on the homepage.
+- `src/components/site/HomeTopBar.tsx` *(new)* — minimal centered wordmark + `Write Me` link, mounted only on `/`.
+- `src/components/site/ImageExpand.tsx` — already exists, reuse.
+- `src/routes/index.tsx` — restructure `Home()` per the cadence above; rewrite `Hero` to use image-expand; add two `ParallaxImage` break bands; restyle `Range` cards into the tall 4-up image grid; mount `HomeTopBar` at the top of `Home`.
 
-- Reduce link list font-size from `text-sm` → `text-[13px]`, weight 400.
-- Switch link list to a single condensed column layout per section, tighter `space-y-2` → `space-y-1.5`.
-- Smaller eyebrow labels (already eyebrow class — fine).
-- Reduce footer top padding `pt-16` → `pt-12`, gap `gap-12` → `gap-10`.
-- Remove the email icon + map pin icon — text-only is more minimal. Keep the Instagram icon only on the @thefazalali line.
-- Bottom bar: lighter tracking, same content.
-
-## 5. Cross-page consistency pass (UI/UX review)
-
-After the above, walk each route and fix any inconsistencies:
-
-- `index.tsx` — hero, featured, BookSection, InstagramGrid, Newsletter spacing rhythm.
-- `writing.index.tsx` / `writing.$slug.tsx` — confirm cover image + meta consistent.
-- `education-for-liberty.tsx` — flipbook section already single-viewport; just verify spacing matches new header height.
-- `palimpsest.tsx`, `omeros-ai.tsx`, `ecology.tsx`, `inequality.tsx`, `podcast.tsx`, `gallery.tsx`, `about.tsx`, `contact.tsx` — verify PageHero usage, consistent section padding (`py-20 sm:py-24` standard), consistent eyebrow/h1/lede pattern.
-- Ensure every page sets distinct `head()` metadata (title + description + og:title + og:description).
-
-## 6. Quality bar
-
-- No layout shift; no horizontal scroll on mobile (viewport 1054 reported, also check 375).
-- Lighthouse-style mental check: single H1 per route, alt text on images, semantic sections.
-- Reduced-motion respected (already handled in styles.css).
-- Build/typecheck clean.
+No content/copy changes, no palette changes, no new dependencies, no other routes touched.
 
 ## Out of scope
 
-- Backend/CMS for articles (static import file is fine for now).
-- Twitter feed reproduction (old site had a Twitter widget — modern site has no equivalent and Twitter API isn't connected).
-- reCAPTCHA on contact form (old site had it — not requested explicitly).
-
-## Technical notes
-
-- Use `lov-fetch-website` to scrape blog list + individual article pages. Parse markdown output.
-- For each cover image: `curl -o /tmp/img.jpg <url>` → `lovable-assets create --file /tmp/img.jpg --filename article-<slug>.jpg > src/assets/article-<slug>.jpg.asset.json` → reference `imgX.url` in `articles.ts`.
-- Delete unused old article asset JSON files after replacement.
-- All edits stay frontend-only; no DB, no server functions touched.
+- Top nav on non-home routes (untouched).
+- Footer (untouched).
+- Color system / typography tokens (untouched).
+- Any backend / data work.
