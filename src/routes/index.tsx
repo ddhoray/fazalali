@@ -15,6 +15,7 @@ import { Newsletter } from "@/components/site/Newsletter";
 import { articles } from "@/content/articles";
 import portrait from "@/assets/fazal-cutout.png";
 import heroImage from "@/assets/hero-statue.jpg";
+import fiaLogo from "@/assets/brand-fia.png";
 import featuredEducation from "@/assets/featured-education.jpg";
 import featuredOmeros from "@/assets/featured-omeros.jpg";
 import featuredWriting from "@/assets/featured-writing.jpg";
@@ -22,7 +23,6 @@ import practiceEssays from "@/assets/practice-essays.jpg";
 import practiceBook from "@/assets/practice-book.jpg";
 import practiceOmeros from "@/assets/practice-omeros.jpg";
 import heroDesk from "@/assets/hero-desk.jpg";
-import heroOmeros from "@/assets/hero-omeros.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -97,14 +97,14 @@ function Hero() {
     offset: ["start start", "end start"],
   });
 
-  // Phase 1 (0 → 0.35): image expands from inset to full-bleed with sharp edges.
-  // Phase 2 (0.35 → 1): continues into a slow parallax + scale-up.
-  const width = useTransform(scrollYProgress, [0, 0.35], ["86%", "100%"]);
-  const height = useTransform(scrollYProgress, [0, 0.35], ["88svh", "100svh"]);
-  const imgScale = useTransform(scrollYProgress, [0, 0.35, 1], [1.04, 1.06, 1.22]);
-  const imgY = useTransform(scrollYProgress, [0.35, 1], ["0%", "-14%"]);
-  const titleOpacity = useTransform(scrollYProgress, [0.4, 0.75], [1, 0]);
-  const titleY = useTransform(scrollYProgress, [0, 1], ["0%", "-10%"]);
+  // Phase 1 (0 → 0.5): frame expands from inset to full bleed.
+  // Image stays fixed — only the frame grows around it.
+  // Phase 2 (0.5 → 1): title fades out as you scroll past.
+  const width = useTransform(scrollYProgress, [0, 0.5], ["84%", "100%"]);
+  const height = useTransform(scrollYProgress, [0, 0.5], ["86svh", "100svh"]);
+  const titleOpacity = useTransform(scrollYProgress, [0.5, 0.8], [1, 0]);
+  const logoOpacity = useTransform(scrollYProgress, [0, 0.35], [1, 0]);
+  const logoY = useTransform(scrollYProgress, [0, 0.5], ["0%", "-40%"]);
 
   return (
     <section
@@ -115,13 +115,13 @@ function Hero() {
       <div className="sticky top-0 flex h-svh w-full items-center justify-center overflow-hidden">
         <motion.div
           style={reduce ? undefined : { width, height }}
-          className="relative overflow-hidden bg-neutral-200"
+          className="relative overflow-hidden bg-neutral-900"
         >
-          <motion.img
+          {/* Fixed image — does NOT scale or move with scroll */}
+          <img
             src={heroImage}
             alt="A classical marble bust in warm museum light — symbolizing critical theory and humanist reading of AI"
-            style={reduce ? undefined : { scale: imgScale, y: imgY }}
-            className="absolute inset-0 size-full object-cover will-change-transform"
+            className="absolute inset-0 size-full object-cover"
             width={1920}
             height={1280}
             fetchPriority="high"
@@ -130,9 +130,22 @@ function Hero() {
           <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent" />
           <Grain />
 
+          {/* FIA logo — top center of the hero banner */}
           <motion.div
-            style={reduce ? undefined : { opacity: titleOpacity, y: titleY }}
-            className="text-on-image absolute inset-0 z-10 flex flex-col justify-between px-6 pt-16 pb-12 sm:px-12 sm:pt-20 sm:pb-16"
+            style={reduce ? undefined : { opacity: logoOpacity, y: logoY }}
+            className="pointer-events-none absolute inset-x-0 top-6 z-20 flex justify-center sm:top-10"
+          >
+            <img
+              src={fiaLogo}
+              alt="FIA — Fazal Ibrahim Ali"
+              className="h-12 w-auto drop-shadow-[0_2px_12px_rgba(0,0,0,0.55)] sm:h-16"
+              draggable={false}
+            />
+          </motion.div>
+
+          <motion.div
+            style={reduce ? undefined : { opacity: titleOpacity }}
+            className="text-on-image absolute inset-0 z-10 flex flex-col justify-between px-6 pt-28 pb-12 sm:px-12 sm:pt-32 sm:pb-16"
           >
             <motion.p
               initial={{ opacity: 0, y: 10 }}
@@ -292,16 +305,17 @@ function FeaturedSticky() {
                     initial={false}
                     animate={{
                       opacity: i === active ? 1 : 0,
-                      scale: i === active ? 1 : 1.08,
+                      scale: i === active ? 1 : 1.04,
                     }}
-                    transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                    style={{ zIndex: i === active ? 2 : 1 }}
                     className="absolute inset-0"
                   >
                     <img
                       src={item.image}
                       alt={item.title}
                       className="size-full object-cover"
-                      loading="lazy"
+                      loading={i === 0 ? "eager" : "lazy"}
                     />
                   </motion.div>
                 ))}
@@ -608,148 +622,132 @@ const range = [
 const rangeImages = [practiceEssays, practiceBook, practiceOmeros, featuredWriting];
 
 function Range() {
-  const [hover, setHover] = useState<number | null>(null);
   const navigate = useNavigate();
 
   return (
     <section data-nav="dark" className="section-invert relative px-5 py-10 sm:px-8 md:py-14">
-      <div className="mx-auto max-w-[1700px]">
-      <div className="mb-10 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-5">
-        <div className="max-w-3xl">
-          <BlurReveal as="p" className="eyebrow text-muted-foreground">Range</BlurReveal>
-          <BlurReveal as="h2" delay={0.08} className="mt-3 font-display text-[12vw] leading-[1.02] sm:text-5xl md:text-7xl">
-            Four threads, <em className="italic">one practice.</em>
+      <div className="mx-auto max-w-[1500px]">
+        <div className="mb-12 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-5">
+          <div className="max-w-3xl">
+            <BlurReveal as="p" className="eyebrow text-muted-foreground">Range</BlurReveal>
+            <BlurReveal as="h2" delay={0.08} className="mt-3 font-display text-[12vw] leading-[1.02] sm:text-5xl md:text-7xl">
+              Four threads, <em className="italic">one practice.</em>
+            </BlurReveal>
+          </div>
+          <BlurReveal delay={0.16} className="eyebrow text-muted-foreground">
+            Selected · 2024 — 2026
           </BlurReveal>
         </div>
-        <BlurReveal delay={0.16} className="eyebrow text-muted-foreground">
-          Selected · 2024 — 2026
-        </BlurReveal>
-      </div>
 
-      <div
-        className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:gap-6"
-        onMouseLeave={() => setHover(null)}
-      >
-        {range.map((r, i) => (
-          <SlideIn key={r.n} delay={i * 0.06} from={i % 2 === 0 ? "left" : "right"}>
-            <HoverImage
-              src={rangeImages[i]}
-              alt={r.title}
-              imageless
-              holdMs={6000}
-              onHoldComplete={() => navigate({ to: r.to })}
-            >
-              <RangeCard
-                r={r}
-                image={rangeImages[i]}
-                isHover={hover === i}
-                isDim={hover !== null && hover !== i}
-                onEnter={() => setHover(i)}
-              />
-            </HoverImage>
-          </SlideIn>
-        ))}
-      </div>
+        <div className="flex flex-col gap-16 md:gap-28">
+          {range.map((r, i) => (
+            <ZigzagRow
+              key={r.n}
+              r={r}
+              image={rangeImages[i]}
+              reverse={i % 2 === 1}
+              onOpen={() => navigate({ to: r.to })}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
 }
 
-
-function RangeCard({
+function ZigzagRow({
   r,
   image,
-  isHover,
-  isDim,
-  onEnter,
+  reverse,
+  onOpen,
 }: {
   r: (typeof range)[number];
   image: string;
-  isHover: boolean;
-  isDim: boolean;
-  onEnter: () => void;
+  reverse: boolean;
+  onOpen: () => void;
 }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  // Image moves faster than text — fluid.glass-style layered parallax.
+  const imgY = useTransform(scrollYProgress, [0, 1], ["12%", "-18%"]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["4%", "-6%"]);
+  const numberY = useTransform(scrollYProgress, [0, 1], ["20%", "-30%"]);
+
   return (
-    <motion.article
-      onMouseEnter={onEnter}
-      animate={{ opacity: isDim ? 0.5 : 1 }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      className="group relative isolate flex h-full flex-col overflow-hidden bg-card"
+    <div
+      ref={ref}
+      className={`grid grid-cols-1 items-center gap-8 md:grid-cols-12 md:gap-12 ${
+        reverse ? "md:[&>*:first-child]:order-2" : ""
+      }`}
     >
-      {/* Image area */}
-      <div className="relative aspect-[16/10] w-full overflow-hidden bg-foreground/5">
-        <motion.img
-          src={image}
-          alt={r.title}
-          animate={{ scale: isHover ? 1.08 : 1.0 }}
-          transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
-          className="card-image absolute inset-0 size-full object-cover"
-          loading="lazy"
-        />
-        <Grain />
-
-        {/* Floating large number — animates up on hover */}
-        <motion.span
-          aria-hidden
-          animate={{
-            y: isHover ? -8 : 0,
-            opacity: isHover ? 1 : 0.85,
-          }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="pointer-events-none absolute -bottom-1 left-3 font-display text-[80px] leading-none text-white/85 sm:text-[110px] md:left-6 md:text-[160px]"
-          style={{ textShadow: "0 2px 24px rgba(0,0,0,0.35)" }}
+      {/* Image — parallax */}
+      <SlideIn
+        from={reverse ? "right" : "left"}
+        className={`md:col-span-7 ${reverse ? "md:col-start-6" : ""}`}
+      >
+        <button
+          type="button"
+          onClick={onOpen}
+          aria-label={`Open ${r.title}`}
+          className="group relative block aspect-[4/3] w-full overflow-hidden bg-foreground/5 md:aspect-[5/4]"
         >
-          {r.n}
-        </motion.span>
-
-        {/* Top row */}
-        <div className="absolute inset-x-0 top-0 flex items-center justify-between p-4 text-white md:p-5">
-          <span className="inline-flex size-9 items-center justify-center rounded-full bg-white/15 backdrop-blur-md transition-colors group-hover:bg-white/25">
-            <r.icon className="size-4" />
-          </span>
-          <span className="nav-link rounded-full bg-black/45 px-3 py-1.5 backdrop-blur-md">
-            {r.tag}
-          </span>
-        </div>
-      </div>
-
-      {/* Body */}
-      <div className="relative flex flex-1 flex-col justify-between gap-5 border-t hairline p-5 md:p-7">
-        {/* sliding underline accent */}
-        <motion.span
-          aria-hidden
-          initial={false}
-          animate={{ scaleX: isHover ? 1 : 0 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          style={{ transformOrigin: "left" }}
-          className="absolute left-0 top-0 h-px w-full bg-foreground"
-        />
-
-        <div>
-          <motion.h3
-            animate={{ x: isHover ? 4 : 0 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="font-display text-3xl leading-[1.02] md:text-4xl"
+          <motion.img
+            src={image}
+            alt={r.title}
+            style={reduce ? undefined : { y: imgY }}
+            className="absolute inset-0 size-full scale-[1.18] object-cover transition-transform duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.24]"
+            loading="lazy"
+          />
+          <Grain />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
+          <motion.span
+            aria-hidden
+            style={reduce ? undefined : { y: numberY }}
+            className={`pointer-events-none absolute top-4 font-display text-[80px] leading-none text-white/85 sm:text-[120px] md:text-[160px] ${
+              reverse ? "right-4 md:right-8" : "left-4 md:left-8"
+            }`}
           >
+            {r.n}
+          </motion.span>
+          <div className="absolute inset-x-0 bottom-0 flex items-center justify-between p-4 text-white md:p-5">
+            <span className="inline-flex size-9 items-center justify-center rounded-full bg-white/15 backdrop-blur-md">
+              <r.icon className="size-4" />
+            </span>
+            <span className="nav-link rounded-full bg-black/45 px-3 py-1.5 backdrop-blur-md">
+              {r.tag}
+            </span>
+          </div>
+        </button>
+      </SlideIn>
+
+      {/* Text — slower parallax */}
+      <motion.div
+        style={reduce ? undefined : { y: textY }}
+        className={`md:col-span-5 ${reverse ? "md:col-start-1 md:row-start-1" : ""}`}
+      >
+        <BlurReveal>
+          <p className="eyebrow text-muted-foreground">Thread {r.n}</p>
+          <h3 className="mt-3 font-display text-4xl leading-[1.02] md:text-6xl">
             {r.title}<span className="italic">.</span>
-          </motion.h3>
-          <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground md:text-base">
+          </h3>
+          <p className="mt-5 max-w-md text-base leading-relaxed text-muted-foreground">
             {r.body}
           </p>
-        </div>
-
-        <div className="flex items-center justify-between border-t hairline pt-3">
-          <span className="eyebrow text-muted-foreground">Thread {r.n}</span>
-          <motion.span
-            animate={{ x: isHover ? 4 : 0 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-flex items-center gap-2 text-sm"
+          <button
+            type="button"
+            onClick={onOpen}
+            className="group mt-6 inline-flex items-center gap-2 text-sm"
           >
-            Read the thread <ArrowUpRight className="size-4" />
-          </motion.span>
-        </div>
-      </div>
-    </motion.article>
+            Read the thread
+            <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
+          </button>
+        </BlurReveal>
+      </motion.div>
+    </div>
   );
 }
 

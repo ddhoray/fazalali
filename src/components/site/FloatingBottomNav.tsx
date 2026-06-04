@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { cn } from "@/lib/utils";
 import { openContactDrawer } from "@/components/site/ContactDrawer";
+import fiaLogo from "@/assets/brand-fia.png";
 
 const links = [
   { to: "/", label: "Home" },
@@ -15,7 +16,7 @@ const links = [
 
 /**
  * fluid.glass-style floating pill nav, anchored bottom-center.
- * Glassmorphism with backdrop blur, reveals after a small scroll.
+ * Transparent glassmorphism, reveals after a small scroll.
  */
 export function FloatingBottomNav() {
   const [visible, setVisible] = useState(false);
@@ -41,21 +42,22 @@ export function FloatingBottomNav() {
           <nav
             aria-label="Floating navigation"
             className={cn(
-              "pointer-events-auto flex items-center gap-1 rounded-full border border-white/15",
-              "bg-black/65 px-2 py-1.5 text-white backdrop-blur-2xl backdrop-saturate-150",
-              "shadow-[0_1px_0_0_rgba(255,255,255,0.08)_inset,0_24px_70px_-24px_rgba(0,0,0,0.6)]",
+              "pointer-events-auto flex items-center gap-1 rounded-full border border-white/20",
+              "bg-white/10 px-2.5 py-2 text-white backdrop-blur-2xl backdrop-saturate-150",
+              "shadow-[0_1px_0_0_rgba(255,255,255,0.18)_inset,0_24px_70px_-24px_rgba(0,0,0,0.55)]",
             )}
           >
             <Link
               to="/"
               aria-label="Fazal Ali — Home"
-              className="mr-1.5 inline-flex h-10 items-center gap-1.5 rounded-full bg-white/10 px-3 font-display text-[15px] leading-none tracking-tight"
+              className="mr-1 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/15 ring-1 ring-white/25 backdrop-blur-md transition-colors hover:bg-white/25"
             >
-              <span className="text-white">FA</span>
-              <span className="hidden text-white/55 sm:inline">·</span>
-              <span className="hidden text-[10px] uppercase tracking-[0.18em] text-white/70 sm:inline">
-                Fazal Ali
-              </span>
+              <img
+                src={fiaLogo}
+                alt="FIA"
+                className="h-6 w-6 object-contain"
+                draggable={false}
+              />
             </Link>
             {links.slice(1).map((l) => {
               const active =
@@ -66,13 +68,13 @@ export function FloatingBottomNav() {
                   to={l.to}
                   className={cn(
                     "relative rounded-full px-4 py-2.5 text-[11px] font-medium uppercase tracking-[0.16em] transition-colors",
-                    active ? "text-white" : "text-white/65 hover:text-white",
+                    active ? "text-white" : "text-white/70 hover:text-white",
                   )}
                 >
                   {active && (
                     <motion.span
                       layoutId="floating-nav-pill"
-                      className="absolute inset-0 rounded-full bg-white/15"
+                      className="absolute inset-0 rounded-full bg-white/20"
                       transition={{ type: "spring", stiffness: 380, damping: 32 }}
                     />
                   )}
@@ -80,7 +82,7 @@ export function FloatingBottomNav() {
                 </Link>
               );
             })}
-            <span className="mx-1 h-5 w-px bg-white/15" />
+            <span className="mx-1 h-5 w-px bg-white/20" />
             <button
               type="button"
               onClick={() => openContactDrawer()}
