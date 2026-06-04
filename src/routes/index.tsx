@@ -118,7 +118,7 @@ function Hero() {
     <section
       ref={ref}
       aria-label="Introduction"
-      className="relative h-[180svh] w-full bg-background"
+      className="relative h-[260svh] w-full bg-background"
     >
       <div className="sticky top-0 flex h-svh w-full items-center justify-center overflow-hidden">
         <motion.div
