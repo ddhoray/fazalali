@@ -9,7 +9,7 @@ import fiaLogo from "@/assets/brand-fia.png";
 // Primary links shown inline (compact pill).
 const primaryLinks = [
   { to: "/writing", label: "Journal" },
-  { to: "/education-for-liberty", label: "Book" },
+  { to: "/podcast", label: "Podcast" },
   { to: "/omeros-ai", label: "Omeros" },
   { to: "/gallery", label: "Gallery" },
   { to: "/about", label: "About" },
