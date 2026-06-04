@@ -42,14 +42,16 @@ export function FloatingBottomNav() {
           <nav
             aria-label="Floating navigation"
             style={{
-              backdropFilter: "blur(72px) saturate(230%) contrast(112%)",
-              WebkitBackdropFilter: "blur(72px) saturate(230%) contrast(112%)",
+              backdropFilter: "blur(110px) saturate(260%) contrast(118%) brightness(0.92)",
+              WebkitBackdropFilter:
+                "blur(110px) saturate(260%) contrast(118%) brightness(0.92)",
             }}
             className={cn(
-              "pointer-events-auto relative isolate flex items-center gap-1 overflow-hidden rounded-full border border-white/40",
-              "bg-black/45 px-2.5 py-2 text-white backdrop-blur-[72px] backdrop-saturate-[230%]",
-              "shadow-[0_1px_0_0_rgba(255,255,255,0.34)_inset,0_34px_100px_-18px_rgba(0,0,0,0.9)]",
-              "before:pointer-events-none before:absolute before:inset-0 before:-z-10 before:rounded-full before:bg-white/[0.08] before:content-['']",
+              "pointer-events-auto relative isolate flex items-center gap-1 overflow-hidden rounded-full border border-white/45",
+              "bg-black/70 px-2.5 py-2 text-white backdrop-blur-[110px] backdrop-saturate-[260%]",
+              "shadow-[0_1px_0_0_rgba(255,255,255,0.42)_inset,0_36px_110px_-16px_rgba(0,0,0,0.96)]",
+              "before:pointer-events-none before:absolute before:inset-0 before:-z-10 before:rounded-full before:bg-white/[0.12] before:content-['']",
+              "after:pointer-events-none after:absolute after:inset-px after:-z-10 after:rounded-full after:bg-gradient-to-b after:from-white/[0.18] after:to-transparent after:content-['']",
             )}
           >
             <Link
