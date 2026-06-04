@@ -102,25 +102,23 @@ function Hero() {
     offset: ["start start", "end start"],
   });
 
-  // Cinematic reveal sequence driven by scroll:
-  // 0   → 0.35 : image expands from inset to full bleed (only image visible).
-  // 0.4 → 0.6  : hero text reveals.
-  // 0.6 → 0.8  : FIA logo reveals.
-  const width = useTransform(scrollYProgress, [0, 0.35], ["72%", "100%"]);
-  const height = useTransform(scrollYProgress, [0, 0.35], ["78svh", "100svh"]);
-  const radius = useTransform(scrollYProgress, [0, 0.35], ["2px", "0px"]);
-  const titleOpacity = useTransform(scrollYProgress, [0.4, 0.6, 0.92, 1], [0, 1, 1, 0]);
-  const titleY = useTransform(scrollYProgress, [0.4, 0.6], ["24px", "0px"]);
-  const titleBlur = useTransform(scrollYProgress, [0.4, 0.6], ["10px", "0px"]);
-  const titleFilter = useTransform(titleBlur, (b) => `blur(${b})`);
-  const logoOpacity = useTransform(scrollYProgress, [0.6, 0.8, 0.92, 1], [0, 1, 1, 0]);
-  const logoY = useTransform(scrollYProgress, [0.6, 0.8], ["-12px", "0px"]);
+  // Cinematic reveal — strictly sequential, no overlap, no blur:
+  // 0    → 0.40 : image frame expands from inset to full bleed (nothing else visible).
+  // 0.50 → 0.68 : hero text reveals (opacity + subtle lift, no blur).
+  // 0.70 → 0.86 : FIA logo reveals at top.
+  const width = useTransform(scrollYProgress, [0, 0.4], ["68%", "100%"]);
+  const height = useTransform(scrollYProgress, [0, 0.4], ["74svh", "100svh"]);
+  const radius = useTransform(scrollYProgress, [0, 0.4], ["2px", "0px"]);
+  const titleOpacity = useTransform(scrollYProgress, [0.5, 0.68], [0, 1]);
+  const titleY = useTransform(scrollYProgress, [0.5, 0.68], ["20px", "0px"]);
+  const logoOpacity = useTransform(scrollYProgress, [0.7, 0.86], [0, 1]);
+  const logoY = useTransform(scrollYProgress, [0.7, 0.86], ["-10px", "0px"]);
 
   return (
     <section
       ref={ref}
       aria-label="Introduction"
-      className="relative h-[180svh] w-full bg-background"
+      className="relative h-[260svh] w-full bg-background"
     >
       <div className="sticky top-0 flex h-svh w-full items-center justify-center overflow-hidden">
         <motion.div
@@ -155,7 +153,7 @@ function Hero() {
           </motion.div>
 
           <motion.div
-            style={reduce ? undefined : { opacity: titleOpacity, y: titleY, filter: titleFilter }}
+            style={reduce ? undefined : { opacity: titleOpacity, y: titleY }}
             initial={reduce ? undefined : { opacity: 0 }}
             className="text-on-image absolute inset-0 z-10 flex flex-col justify-between px-6 pt-28 pb-12 sm:px-12 sm:pt-32 sm:pb-16"
           >
