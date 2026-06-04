@@ -1,7 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Plus } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { openContactDrawer } from "@/components/site/ContactDrawer";
 import fiaLogo from "@/assets/brand-fia.png";
@@ -122,12 +122,11 @@ export function FloatingBottomNav() {
                     expanded && "bg-black/10 text-black",
                   )}
                 >
-                  <Plus
-                    className={cn(
-                      "h-4 w-4 transition-transform duration-300",
-                      expanded && "rotate-45",
-                    )}
-                  />
+                  {expanded ? (
+                    <X className="h-4 w-4 transition-transform duration-300" />
+                  ) : (
+                    <Menu className="h-4 w-4 transition-transform duration-300" />
+                  )}
                 </button>
                 <button
                   type="button"
