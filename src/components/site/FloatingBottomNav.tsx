@@ -73,18 +73,12 @@ export function FloatingBottomNav() {
                   animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                   exit={{ opacity: 0, y: 12, filter: "blur(10px)" }}
                   transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                  style={{
-                    backdropFilter: "blur(110px) saturate(260%) contrast(118%) brightness(0.92)",
-                    WebkitBackdropFilter:
-                      "blur(110px) saturate(260%) contrast(118%) brightness(0.92)",
-                  }}
                   className={cn(
-                    "relative isolate w-[min(560px,92vw)] overflow-hidden rounded-3xl border border-white/45 bg-black/70 p-4 text-white",
-                    "shadow-[0_1px_0_0_rgba(255,255,255,0.42)_inset,0_36px_110px_-16px_rgba(0,0,0,0.96)]",
-                    "before:pointer-events-none before:absolute before:inset-0 before:-z-10 before:rounded-3xl before:bg-white/[0.12] before:content-['']",
+                    "relative isolate w-[min(560px,92vw)] overflow-hidden rounded-3xl border border-black/10 bg-white p-4 text-black",
+                    "shadow-[0_1px_0_0_rgba(0,0,0,0.04)_inset,0_36px_110px_-16px_rgba(0,0,0,0.35)]",
                   )}
                 >
-                  <p className="px-2 pb-2 text-[10px] uppercase tracking-[0.18em] text-white/55">
+                  <p className="px-2 pb-2 text-[10px] uppercase tracking-[0.18em] text-black/55">
                     Index
                   </p>
                   <ul className="grid grid-cols-2 gap-x-2 gap-y-1 sm:grid-cols-3">
