@@ -153,7 +153,7 @@ function Hero() {
           </motion.div>
 
           <motion.div
-            style={reduce ? undefined : { opacity: titleOpacity, y: titleY, filter: titleFilter }}
+            style={reduce ? undefined : { opacity: titleOpacity, y: titleY }}
             initial={reduce ? undefined : { opacity: 0 }}
             className="text-on-image absolute inset-0 z-10 flex flex-col justify-between px-6 pt-28 pb-12 sm:px-12 sm:pt-32 sm:pb-16"
           >
