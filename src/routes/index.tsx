@@ -24,6 +24,16 @@ import practiceBook from "@/assets/practice-book.jpg";
 import practiceOmeros from "@/assets/practice-omeros.jpg";
 import heroDesk from "@/assets/hero-desk.jpg";
 
+function formatArticleDate(date: string) {
+  const [year, month, day] = date.split("-").map(Number);
+  return new Intl.DateTimeFormat("en-GB", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(Date.UTC(year, month - 1, day)));
+}
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -781,11 +791,7 @@ function LatestWriting() {
                   className="group grid grid-cols-1 gap-3 py-6 md:grid-cols-[160px_1fr_auto] md:items-baseline md:gap-12 md:py-8"
                 >
                   <span className="eyebrow text-muted-foreground">
-                    {new Date(a.date).toLocaleDateString("en-GB", {
-                      day: "2-digit",
-                      month: "short",
-                      year: "numeric",
-                    })}
+                    {formatArticleDate(a.date)}
                   </span>
                   <h3 className="font-display text-[7vw] leading-[1.05] transition-transform duration-700 group-hover:translate-x-3 sm:text-3xl md:text-5xl">
                     {a.title}
