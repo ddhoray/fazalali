@@ -7,10 +7,11 @@ import fiaLogo from "@/assets/brand-fia.png";
  * Fades out after a short delay; uses sessionStorage so it only appears once.
  */
 export function SplashScreen() {
-  const [show, setShow] = useState(() => {
-    if (typeof window === "undefined") return false;
-    return !sessionStorage.getItem("fia-splash-seen");
-  });
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    setShow(!sessionStorage.getItem("fia-splash-seen"));
+  }, []);
 
   useEffect(() => {
     if (!show) return;
