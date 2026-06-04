@@ -97,24 +97,25 @@ function Hero() {
     offset: ["start start", "end start"],
   });
 
-  // Image starts inset (88% wide, 24px radius) → expands to full-bleed.
-  const width = useTransform(scrollYProgress, [0, 0.6], ["88%", "100%"]);
-  const radius = useTransform(scrollYProgress, [0, 0.6], [24, 0]);
-  const imgScale = useTransform(scrollYProgress, [0, 1], [1.06, 1.18]);
-  const imgY = useTransform(scrollYProgress, [0, 1], ["0%", "-12%"]);
-  const titleOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  // Phase 1 (0 → 0.35): image expands from inset to full-bleed with sharp edges.
+  // Phase 2 (0.35 → 1): continues into a slow parallax + scale-up.
+  const width = useTransform(scrollYProgress, [0, 0.35], ["86%", "100%"]);
+  const height = useTransform(scrollYProgress, [0, 0.35], ["88svh", "100svh"]);
+  const imgScale = useTransform(scrollYProgress, [0, 0.35, 1], [1.04, 1.06, 1.22]);
+  const imgY = useTransform(scrollYProgress, [0.35, 1], ["0%", "-14%"]);
+  const titleOpacity = useTransform(scrollYProgress, [0.4, 0.75], [1, 0]);
   const titleY = useTransform(scrollYProgress, [0, 1], ["0%", "-10%"]);
 
   return (
     <section
       ref={ref}
       aria-label="Introduction"
-      className="relative h-[170svh] w-full bg-background"
+      className="relative h-[180svh] w-full bg-background"
     >
       <div className="sticky top-0 flex h-svh w-full items-center justify-center overflow-hidden">
         <motion.div
-          style={reduce ? undefined : { width, borderRadius: radius }}
-          className="relative h-[92svh] overflow-hidden bg-neutral-200 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.5)]"
+          style={reduce ? undefined : { width, height }}
+          className="relative overflow-hidden bg-neutral-200"
         >
           <motion.img
             src={heroImage}
@@ -131,7 +132,7 @@ function Hero() {
 
           <motion.div
             style={reduce ? undefined : { opacity: titleOpacity, y: titleY }}
-            className="text-on-image absolute inset-0 z-10 flex flex-col justify-between px-6 pt-24 pb-12 sm:px-12 sm:pt-28 sm:pb-16"
+            className="text-on-image absolute inset-0 z-10 flex flex-col justify-between px-6 pt-16 pb-12 sm:px-12 sm:pt-20 sm:pb-16"
           >
             <motion.p
               initial={{ opacity: 0, y: 10 }}
