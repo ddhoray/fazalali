@@ -124,7 +124,7 @@ function Hero() {
     >
       <div className="sticky top-0 flex h-svh w-full items-center justify-center overflow-hidden">
         <motion.div
-          style={reduce ? undefined : { width, height }}
+          style={reduce ? undefined : { width, height, borderRadius: radius }}
           className="relative overflow-hidden bg-neutral-900"
         >
           {/* Fixed image — does NOT scale or move with scroll */}
@@ -140,9 +140,10 @@ function Hero() {
           <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent" />
           <Grain />
 
-          {/* FIA logo — top center, white, no shadow */}
+          {/* FIA logo — revealed last in the scroll sequence */}
           <motion.div
             style={reduce ? undefined : { opacity: logoOpacity, y: logoY }}
+            initial={reduce ? undefined : { opacity: 0 }}
             className="pointer-events-none absolute inset-x-0 top-6 z-20 flex justify-center sm:top-10"
           >
             <img
@@ -154,36 +155,25 @@ function Hero() {
           </motion.div>
 
           <motion.div
-            style={reduce ? undefined : { opacity: titleOpacity }}
+            style={reduce ? undefined : { opacity: titleOpacity, y: titleY, filter: titleFilter }}
+            initial={reduce ? undefined : { opacity: 0 }}
             className="text-on-image absolute inset-0 z-10 flex flex-col justify-between px-6 pt-28 pb-12 sm:px-12 sm:pt-32 sm:pb-16"
           >
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.0, delay: 0.05 }}
-              className="eyebrow opacity-85"
-            >
+            <p className="eyebrow opacity-85">
               Folio I · Trinidad &amp; the Machines
-            </motion.p>
+            </p>
 
             <div>
-              <BlurReveal
-                as="h1"
-                className="font-display text-[12vw] leading-[1.02] tracking-[-0.035em] text-balance sm:text-[9vw] md:text-[7vw] md:leading-[0.96]"
-              >
+              <h1 className="font-display text-[12vw] leading-[1.02] tracking-[-0.035em] text-balance sm:text-[9vw] md:text-[7vw] md:leading-[0.96]">
                 Reading the <span className="italic">machines</span> slowly,{" "}
                 <span className="italic">by hand.</span>
-              </BlurReveal>
+              </h1>
 
-              <BlurReveal
-                as="p"
-                delay={0.25}
-                className="mt-5 max-w-md text-[13px] leading-relaxed opacity-90 sm:mt-6 sm:text-sm md:text-base"
-              >
+              <p className="mt-5 max-w-md text-[13px] leading-relaxed opacity-90 sm:mt-6 sm:text-sm md:text-base">
                 Dr. Fazal Ibrahim Ali — Cambridge-trained, Trinidad-born. Writing
                 on critical theory in AI, the founding of Omeros AI, and a small
                 book called <em className="italic">Education for Liberty.</em>
-              </BlurReveal>
+              </p>
 
               <p className="mt-8 text-[10px] uppercase tracking-[0.3em] opacity-70">
                 Scroll to explore
