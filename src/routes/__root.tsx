@@ -11,7 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { SiteNav } from "../components/site/SiteNav";
+
 import { SiteFooter } from "../components/site/SiteFooter";
 import { SmoothScroll } from "../components/site/SmoothScroll";
 import { IntroReveal } from "../components/site/IntroReveal";
