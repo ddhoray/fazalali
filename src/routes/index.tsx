@@ -4,7 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import { BookOpen, Sparkles, PenLine, Compass, ArrowUpRight } from "lucide-react";
 import { BlurReveal, SlideIn } from "@/components/site/BlurReveal";
 import { WordScrollReveal } from "@/components/site/WordScrollReveal";
-import { ParallaxImage } from "@/components/site/ParallaxImage";
+
 
 import { HoverImage } from "@/components/site/HoverImage";
 import { CirclePill } from "@/components/site/CirclePill";
@@ -58,14 +58,19 @@ function Home() {
         <FeaturedSticky />
         <Manifesto />
 
-        {/* Single full-bleed parallax photographic break */}
-        <ParallaxImage
-          src={heroDesk}
-          alt="A scholar's desk in soft light"
-          strength={22}
-          className="h-[70vh] sm:h-[85vh]"
+        {/* Fixed-background photographic break — image stays anchored while content scrolls */}
+        <section
+          aria-label="A quiet desk"
+          className="relative h-[70vh] w-full overflow-hidden sm:h-[85vh]"
+          style={{
+            backgroundImage: `url(${heroDesk})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundAttachment: "fixed",
+          }}
         >
-          <div className="text-on-image flex h-full w-full items-end p-6 sm:p-12">
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/55" />
+          <div className="text-on-image relative flex h-full w-full items-end p-6 sm:p-12">
             <div className="max-w-xl">
               <p className="eyebrow opacity-85">A quiet desk</p>
               <h3 className="mt-3 font-display text-3xl leading-[1.04] sm:text-5xl">
@@ -73,7 +78,7 @@ function Home() {
               </h3>
             </div>
           </div>
-        </ParallaxImage>
+        </section>
 
         <Portrait />
         <BookSection />
@@ -130,7 +135,7 @@ function Hero() {
           <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent" />
           <Grain />
 
-          {/* FIA logo — top center of the hero banner */}
+          {/* FIA logo — top center, white, no shadow */}
           <motion.div
             style={reduce ? undefined : { opacity: logoOpacity, y: logoY }}
             className="pointer-events-none absolute inset-x-0 top-6 z-20 flex justify-center sm:top-10"
@@ -138,7 +143,7 @@ function Hero() {
             <img
               src={fiaLogo}
               alt="FIA — Fazal Ibrahim Ali"
-              className="h-12 w-auto drop-shadow-[0_2px_12px_rgba(0,0,0,0.55)] sm:h-16"
+              className="h-12 w-auto brightness-0 invert sm:h-16"
               draggable={false}
             />
           </motion.div>
@@ -666,68 +671,54 @@ function ZigzagRow({
   reverse: boolean;
   onOpen: () => void;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const reduce = useReducedMotion();
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  // Image moves faster than text — fluid.glass-style layered parallax.
-  const imgY = useTransform(scrollYProgress, [0, 1], ["12%", "-18%"]);
-  const textY = useTransform(scrollYProgress, [0, 1], ["4%", "-6%"]);
-  const numberY = useTransform(scrollYProgress, [0, 1], ["20%", "-30%"]);
-
   return (
     <div
-      ref={ref}
-      className={`grid grid-cols-1 items-center gap-8 md:grid-cols-12 md:gap-12 ${
+      className={`grid grid-cols-1 items-start gap-8 md:grid-cols-12 md:gap-12 ${
         reverse ? "md:[&>*:first-child]:order-2" : ""
       }`}
     >
-      {/* Image — parallax */}
-      <SlideIn
-        from={reverse ? "right" : "left"}
-        className={`md:col-span-7 ${reverse ? "md:col-start-6" : ""}`}
-      >
-        <button
-          type="button"
-          onClick={onOpen}
-          aria-label={`Open ${r.title}`}
-          className="group relative block aspect-[4/3] w-full overflow-hidden bg-foreground/5 md:aspect-[5/4]"
-        >
-          <motion.img
-            src={image}
-            alt={r.title}
-            style={reduce ? undefined : { y: imgY }}
-            className="absolute inset-0 size-full scale-[1.18] object-cover transition-transform duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.24]"
-            loading="lazy"
-          />
-          <Grain />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
-          <motion.span
-            aria-hidden
-            style={reduce ? undefined : { y: numberY }}
-            className={`pointer-events-none absolute top-4 font-display text-[80px] leading-none text-white/85 sm:text-[120px] md:text-[160px] ${
-              reverse ? "right-4 md:right-8" : "left-4 md:left-8"
-            }`}
+      {/* Image — sticky, stays pinned while content scrolls past */}
+      <div className={`md:col-span-7 ${reverse ? "md:col-start-6" : ""}`}>
+        <div className="md:sticky md:top-24">
+          <button
+            type="button"
+            onClick={onOpen}
+            aria-label={`Open ${r.title}`}
+            className="group relative block aspect-[4/3] w-full overflow-hidden bg-foreground/5 md:aspect-[5/4]"
           >
-            {r.n}
-          </motion.span>
-          <div className="absolute inset-x-0 bottom-0 flex items-center justify-between p-4 text-white md:p-5">
-            <span className="inline-flex size-9 items-center justify-center rounded-full bg-white/15 backdrop-blur-md">
-              <r.icon className="size-4" />
+            <img
+              src={image}
+              alt={r.title}
+              className="absolute inset-0 size-full object-cover transition-transform duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
+              loading="lazy"
+            />
+            <Grain />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
+            <span
+              aria-hidden
+              className={`pointer-events-none absolute top-4 font-display text-[80px] leading-none text-white/85 sm:text-[120px] md:text-[160px] ${
+                reverse ? "right-4 md:right-8" : "left-4 md:left-8"
+              }`}
+            >
+              {r.n}
             </span>
-            <span className="nav-link rounded-full bg-black/45 px-3 py-1.5 backdrop-blur-md">
-              {r.tag}
-            </span>
-          </div>
-        </button>
-      </SlideIn>
+            <div className="absolute inset-x-0 bottom-0 flex items-center justify-between p-4 text-white md:p-5">
+              <span className="inline-flex size-9 items-center justify-center rounded-full bg-white/15 backdrop-blur-md">
+                <r.icon className="size-4" />
+              </span>
+              <span className="nav-link rounded-full bg-black/45 px-3 py-1.5 backdrop-blur-md">
+                {r.tag}
+              </span>
+            </div>
+          </button>
+        </div>
+      </div>
 
-      {/* Text — slower parallax */}
-      <motion.div
-        style={reduce ? undefined : { y: textY }}
-        className={`md:col-span-5 ${reverse ? "md:col-start-1 md:row-start-1" : ""}`}
+      {/* Text — scrolls past the pinned image */}
+      <div
+        className={`md:col-span-5 md:min-h-[80vh] md:py-10 ${
+          reverse ? "md:col-start-1 md:row-start-1" : ""
+        }`}
       >
         <BlurReveal>
           <p className="eyebrow text-muted-foreground">Thread {r.n}</p>
@@ -746,7 +737,7 @@ function ZigzagRow({
             <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
           </button>
         </BlurReveal>
-      </motion.div>
+      </div>
     </div>
   );
 }
