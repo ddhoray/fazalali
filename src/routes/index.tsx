@@ -101,23 +101,22 @@ function Hero() {
     offset: ["start start", "end end"],
   });
 
-  // Cinematic reveal — strictly sequential, no overlap, no blur.
-  // Reveal completes by ~0.75 so the fully-composed hero stays visible
-  // for the remaining sticky scroll (prevents content hiding on scroll).
-  const width = useTransform(scrollYProgress, [0, 0.3], ["64%", "100%"]);
-  const height = useTransform(scrollYProgress, [0, 0.3], ["70svh", "100svh"]);
-  const radius = useTransform(scrollYProgress, [0, 0.3], ["3px", "0px"]);
-  const heroOverlayOpacity = useTransform(scrollYProgress, [0.3, 0.4], [0, 1]);
-  const titleOpacity = useTransform(scrollYProgress, [0.42, 0.58], [0, 1]);
-  const titleY = useTransform(scrollYProgress, [0.42, 0.58], ["22px", "0px"]);
-  const logoOpacity = useTransform(scrollYProgress, [0.6, 0.74], [0, 1]);
-  const logoY = useTransform(scrollYProgress, [0.6, 0.74], ["-10px", "0px"]);
+  // Cinematic reveal — strictly sequential, with an explicit hold once revealed.
+  // The longer scroll track prevents the hero copy/logo from disappearing too soon.
+  const width = useTransform(scrollYProgress, [0, 0.25, 1], ["64%", "100%", "100%"]);
+  const height = useTransform(scrollYProgress, [0, 0.25, 1], ["70svh", "100svh", "100svh"]);
+  const radius = useTransform(scrollYProgress, [0, 0.25, 1], ["3px", "0px", "0px"]);
+  const heroOverlayOpacity = useTransform(scrollYProgress, [0.25, 0.32, 1], [0, 1, 1]);
+  const titleOpacity = useTransform(scrollYProgress, [0.35, 0.48, 1], [0, 1, 1]);
+  const titleY = useTransform(scrollYProgress, [0.35, 0.48, 1], ["22px", "0px", "0px"]);
+  const logoOpacity = useTransform(scrollYProgress, [0.52, 0.64, 1], [0, 1, 1]);
+  const logoY = useTransform(scrollYProgress, [0.52, 0.64, 1], ["-10px", "0px", "0px"]);
 
   return (
     <section
       ref={ref}
       aria-label="Introduction"
-      className="relative h-[220svh] w-full bg-background"
+      className="relative h-[360svh] w-full bg-background"
     >
 
       <div className="sticky top-0 flex h-svh w-full items-center justify-center overflow-hidden">
