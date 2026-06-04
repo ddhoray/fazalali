@@ -41,10 +41,15 @@ export function FloatingBottomNav() {
         >
           <nav
             aria-label="Floating navigation"
+            style={{
+              backdropFilter: "blur(72px) saturate(230%) contrast(112%)",
+              WebkitBackdropFilter: "blur(72px) saturate(230%) contrast(112%)",
+            }}
             className={cn(
-              "pointer-events-auto flex items-center gap-1 rounded-full border border-white/30",
-              "bg-black/55 px-2.5 py-2 text-white backdrop-blur-[40px] backdrop-saturate-200",
-              "shadow-[0_1px_0_0_rgba(255,255,255,0.28)_inset,0_30px_90px_-20px_rgba(0,0,0,0.85)]",
+              "pointer-events-auto relative isolate flex items-center gap-1 overflow-hidden rounded-full border border-white/40",
+              "bg-black/45 px-2.5 py-2 text-white backdrop-blur-[72px] backdrop-saturate-[230%]",
+              "shadow-[0_1px_0_0_rgba(255,255,255,0.34)_inset,0_34px_100px_-18px_rgba(0,0,0,0.9)]",
+              "before:pointer-events-none before:absolute before:inset-0 before:-z-10 before:rounded-full before:bg-white/[0.08] before:content-['']",
             )}
           >
             <Link
