@@ -4,9 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import { BookOpen, Sparkles, PenLine, Compass, ArrowUpRight } from "lucide-react";
 import { BlurReveal, SlideIn } from "@/components/site/BlurReveal";
 import { WordScrollReveal } from "@/components/site/WordScrollReveal";
-import { ImageExpand } from "@/components/site/ImageExpand";
 import { ParallaxImage } from "@/components/site/ParallaxImage";
-import { HomeTopBar } from "@/components/site/HomeTopBar";
 
 import { HoverImage } from "@/components/site/HoverImage";
 import { CirclePill } from "@/components/site/CirclePill";
@@ -54,17 +52,18 @@ export const Route = createFileRoute("/")({
 function Home() {
   return (
     <>
-      <HomeTopBar />
       <Hero />
       <div className="relative z-10 bg-background">
         <Quietline />
+        <FeaturedSticky />
+        <Manifesto />
 
-        {/* Parallax band #1 — slow-moving photographic break */}
+        {/* Single full-bleed parallax photographic break */}
         <ParallaxImage
           src={heroDesk}
           alt="A scholar's desk in soft light"
           strength={22}
-          className="h-[80vh] sm:h-[95vh]"
+          className="h-[70vh] sm:h-[85vh]"
         >
           <div className="text-on-image flex h-full w-full items-end p-6 sm:p-12">
             <div className="max-w-xl">
@@ -76,41 +75,7 @@ function Home() {
           </div>
         </ParallaxImage>
 
-        <FeaturedSticky />
-        <Manifesto />
-
-        <ImageExpand
-          src={featuredOmeros}
-          alt="An immersive frame from the Omeros AI identity"
-          caption="Scroll · the frame expands"
-        >
-          <div className="max-w-xl">
-            <p className="eyebrow opacity-85">An interlude</p>
-            <h3 className="mt-3 font-display text-4xl leading-[1.02] sm:text-5xl md:text-6xl">
-              The frame widens <em className="italic">as you read.</em>
-            </h3>
-          </div>
-        </ImageExpand>
-
         <Portrait />
-
-        {/* Parallax band #2 — second photographic break before the book */}
-        <ParallaxImage
-          src={heroOmeros}
-          alt="Sea light — the Caribbean as a way of reading"
-          strength={22}
-          className="h-[80vh] sm:h-[95vh]"
-        >
-          <div className="text-on-image flex h-full w-full items-end p-6 sm:p-12">
-            <div className="ml-auto max-w-xl text-right">
-              <p className="eyebrow opacity-85">From the West Indies</p>
-              <h3 className="mt-3 font-display text-3xl leading-[1.04] sm:text-5xl">
-                A small island, <em className="italic">a long sentence.</em>
-              </h3>
-            </div>
-          </div>
-        </ParallaxImage>
-
         <BookSection />
         <Range />
         <LatestWriting />
@@ -132,24 +97,25 @@ function Hero() {
     offset: ["start start", "end start"],
   });
 
-  // Image starts inset (88% wide, 24px radius) → expands to full-bleed.
-  const width = useTransform(scrollYProgress, [0, 0.6], ["88%", "100%"]);
-  const radius = useTransform(scrollYProgress, [0, 0.6], [24, 0]);
-  const imgScale = useTransform(scrollYProgress, [0, 1], [1.06, 1.18]);
-  const imgY = useTransform(scrollYProgress, [0, 1], ["0%", "-12%"]);
-  const titleOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  // Phase 1 (0 → 0.35): image expands from inset to full-bleed with sharp edges.
+  // Phase 2 (0.35 → 1): continues into a slow parallax + scale-up.
+  const width = useTransform(scrollYProgress, [0, 0.35], ["86%", "100%"]);
+  const height = useTransform(scrollYProgress, [0, 0.35], ["88svh", "100svh"]);
+  const imgScale = useTransform(scrollYProgress, [0, 0.35, 1], [1.04, 1.06, 1.22]);
+  const imgY = useTransform(scrollYProgress, [0.35, 1], ["0%", "-14%"]);
+  const titleOpacity = useTransform(scrollYProgress, [0.4, 0.75], [1, 0]);
   const titleY = useTransform(scrollYProgress, [0, 1], ["0%", "-10%"]);
 
   return (
     <section
       ref={ref}
       aria-label="Introduction"
-      className="relative h-[170svh] w-full bg-background"
+      className="relative h-[180svh] w-full bg-background"
     >
       <div className="sticky top-0 flex h-svh w-full items-center justify-center overflow-hidden">
         <motion.div
-          style={reduce ? undefined : { width, borderRadius: radius }}
-          className="relative h-[92svh] overflow-hidden bg-neutral-200 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.5)]"
+          style={reduce ? undefined : { width, height }}
+          className="relative overflow-hidden bg-neutral-200"
         >
           <motion.img
             src={heroImage}
@@ -166,7 +132,7 @@ function Hero() {
 
           <motion.div
             style={reduce ? undefined : { opacity: titleOpacity, y: titleY }}
-            className="text-on-image absolute inset-0 z-10 flex flex-col justify-between px-6 pt-24 pb-12 sm:px-12 sm:pt-28 sm:pb-16"
+            className="text-on-image absolute inset-0 z-10 flex flex-col justify-between px-6 pt-16 pb-12 sm:px-12 sm:pt-20 sm:pb-16"
           >
             <motion.p
               initial={{ opacity: 0, y: 10 }}
@@ -460,7 +426,7 @@ function FeaturedSticky() {
 
 function Manifesto() {
   return (
-    <section className="mx-auto max-w-[1400px] bg-background px-5 py-12 sm:px-8 md:py-10">
+    <section className="mx-auto max-w-[1400px] bg-background px-5 py-8 sm:px-8 md:py-12">
       <BlurReveal as="p" className="eyebrow mb-5 flex items-center gap-3 text-muted-foreground">
         <Compass className="size-4" /> A note before reading
       </BlurReveal>
@@ -484,7 +450,7 @@ function Portrait() {
     <section
 
       data-nav="dark"
-      className="section-invert relative overflow-hidden py-10 md:py-12"
+      className="section-invert relative overflow-hidden py-10 md:py-14"
     >
       <Grain />
 
@@ -646,7 +612,7 @@ function Range() {
   const navigate = useNavigate();
 
   return (
-    <section data-nav="dark" className="section-invert relative px-5 py-14 sm:px-8 md:py-10">
+    <section data-nav="dark" className="section-invert relative px-5 py-10 sm:px-8 md:py-14">
       <div className="mx-auto max-w-[1700px]">
       <div className="mb-10 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-5">
         <div className="max-w-3xl">
@@ -795,7 +761,7 @@ function LatestWriting() {
   const latest = articles.slice(0, 3);
   const navigate = useNavigate();
   return (
-    <section className="mx-auto max-w-[1700px] scroll-mt-24 bg-background px-5 py-14 sm:px-8 md:py-10">
+    <section className="mx-auto max-w-[1700px] scroll-mt-24 bg-background px-5 py-10 sm:px-8 md:py-14">
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4 border-b hairline pb-5">
         <div>
           <BlurReveal as="p" className="eyebrow text-muted-foreground">From the Journal</BlurReveal>

@@ -20,6 +20,7 @@ import { ContactDrawer } from "../components/site/ContactDrawer";
 import { FloatingBottomNav } from "../components/site/FloatingBottomNav";
 
 
+
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center px-4">
