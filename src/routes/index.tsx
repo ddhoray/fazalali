@@ -4,9 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import { BookOpen, Sparkles, PenLine, Compass, ArrowUpRight } from "lucide-react";
 import { BlurReveal, SlideIn } from "@/components/site/BlurReveal";
 import { WordScrollReveal } from "@/components/site/WordScrollReveal";
-import { ImageExpand } from "@/components/site/ImageExpand";
 import { ParallaxImage } from "@/components/site/ParallaxImage";
-import { HomeTopBar } from "@/components/site/HomeTopBar";
 
 import { HoverImage } from "@/components/site/HoverImage";
 import { CirclePill } from "@/components/site/CirclePill";
