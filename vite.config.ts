@@ -6,6 +6,11 @@ export default defineConfig({
   nitro: isVercelBuild
     ? {
         preset: "vercel",
+        output: {
+          dir: ".vercel/output",
+          serverDir: ".vercel/output/functions/__server.func",
+          publicDir: ".vercel/output/static",
+        },
       }
     : undefined,
   tanstackStart: {
