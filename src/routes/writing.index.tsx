@@ -26,11 +26,13 @@ export const Route = createFileRoute("/writing/")({
 });
 
 function fmtDate(d: string) {
-  return new Date(d).toLocaleDateString("en-GB", {
+  const [year, month, day] = d.split("-").map(Number);
+  return new Intl.DateTimeFormat("en-GB", {
     day: "2-digit",
     month: "short",
     year: "numeric",
-  });
+    timeZone: "UTC",
+  }).format(new Date(Date.UTC(year, month - 1, day)));
 }
 
 function WritingIndex() {
