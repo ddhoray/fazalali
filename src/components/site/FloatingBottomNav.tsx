@@ -73,18 +73,12 @@ export function FloatingBottomNav() {
                   animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                   exit={{ opacity: 0, y: 12, filter: "blur(10px)" }}
                   transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                  style={{
-                    backdropFilter: "blur(110px) saturate(260%) contrast(118%) brightness(0.92)",
-                    WebkitBackdropFilter:
-                      "blur(110px) saturate(260%) contrast(118%) brightness(0.92)",
-                  }}
                   className={cn(
-                    "relative isolate w-[min(560px,92vw)] overflow-hidden rounded-3xl border border-white/45 bg-black/70 p-4 text-white",
-                    "shadow-[0_1px_0_0_rgba(255,255,255,0.42)_inset,0_36px_110px_-16px_rgba(0,0,0,0.96)]",
-                    "before:pointer-events-none before:absolute before:inset-0 before:-z-10 before:rounded-3xl before:bg-white/[0.12] before:content-['']",
+                    "relative isolate w-[min(560px,92vw)] overflow-hidden rounded-3xl border border-black/10 bg-white p-4 text-black",
+                    "shadow-[0_1px_0_0_rgba(0,0,0,0.04)_inset,0_36px_110px_-16px_rgba(0,0,0,0.35)]",
                   )}
                 >
-                  <p className="px-2 pb-2 text-[10px] uppercase tracking-[0.18em] text-white/55">
+                  <p className="px-2 pb-2 text-[10px] uppercase tracking-[0.18em] text-black/55">
                     Index
                   </p>
                   <ul className="grid grid-cols-2 gap-x-2 gap-y-1 sm:grid-cols-3">
@@ -99,8 +93,8 @@ export function FloatingBottomNav() {
                             className={cn(
                               "block rounded-xl px-3 py-2.5 text-[12px] tracking-wide transition-colors",
                               active
-                                ? "bg-white/15 text-white"
-                                : "text-white/75 hover:bg-white/10 hover:text-white",
+                                ? "bg-black/10 text-black"
+                                : "text-black/70 hover:bg-black/5 hover:text-black",
                             )}
                           >
                             {l.label}
@@ -109,10 +103,10 @@ export function FloatingBottomNav() {
                       );
                     })}
                   </ul>
-                  <div className="mt-3 flex items-center justify-between border-t border-white/10 pt-3">
+                  <div className="mt-3 flex items-center justify-between border-t border-black/10 pt-3">
                     <a
                       href="mailto:writeme@fazalali.com"
-                      className="px-2 text-[11px] text-white/65 hover:text-white"
+                      className="px-2 text-[11px] text-black/65 hover:text-black"
                     >
                       writeme@fazalali.com
                     </a>
@@ -122,7 +116,7 @@ export function FloatingBottomNav() {
                         setExpanded(false);
                         openContactDrawer();
                       }}
-                      className="rounded-full bg-white px-3.5 py-2 text-[10px] font-medium uppercase tracking-[0.16em] text-black hover:opacity-90"
+                      className="rounded-full bg-black px-3.5 py-2 text-[10px] font-medium uppercase tracking-[0.16em] text-white hover:opacity-90"
                     >
                       Write Me
                     </button>
@@ -134,28 +128,21 @@ export function FloatingBottomNav() {
             {/* Compact pill */}
             <nav
               aria-label="Floating navigation"
-              style={{
-                backdropFilter: "blur(110px) saturate(260%) contrast(118%) brightness(0.92)",
-                WebkitBackdropFilter:
-                  "blur(110px) saturate(260%) contrast(118%) brightness(0.92)",
-              }}
               className={cn(
-                "relative isolate flex items-center gap-1 overflow-hidden rounded-full border border-white/45",
-                "bg-black/70 px-2.5 py-2 text-white",
-                "shadow-[0_1px_0_0_rgba(255,255,255,0.42)_inset,0_36px_110px_-16px_rgba(0,0,0,0.96)]",
-                "before:pointer-events-none before:absolute before:inset-0 before:-z-10 before:rounded-full before:bg-white/[0.12] before:content-['']",
-                "after:pointer-events-none after:absolute after:inset-px after:-z-10 after:rounded-full after:bg-gradient-to-b after:from-white/[0.18] after:to-transparent after:content-['']",
+                "relative isolate flex items-center gap-1 overflow-hidden rounded-full border border-black/10",
+                "bg-white px-2.5 py-2 text-black",
+                "shadow-[0_1px_0_0_rgba(0,0,0,0.04)_inset,0_36px_110px_-16px_rgba(0,0,0,0.35)]",
               )}
             >
               <Link
                 to="/"
                 aria-label="Fazal Ali — Home"
-                className="mr-1 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white ring-1 ring-white/60 shadow-sm transition-colors hover:bg-white/90"
+                className="mr-1 inline-flex h-11 w-11 items-center justify-center rounded-full bg-black ring-1 ring-black/10 shadow-sm transition-colors hover:bg-black/90"
               >
                 <img
                   src={fiaLogo}
                   alt="FIA"
-                  className="h-6 w-6 object-contain"
+                  className="h-6 w-6 object-contain invert"
                   draggable={false}
                 />
               </Link>
@@ -168,13 +155,13 @@ export function FloatingBottomNav() {
                     to={l.to}
                     className={cn(
                       "relative rounded-full px-4 py-2.5 text-[11px] font-medium uppercase tracking-[0.16em] transition-colors",
-                      active ? "text-white" : "text-white/70 hover:text-white",
+                      active ? "text-black" : "text-black/65 hover:text-black",
                     )}
                   >
                     {active && (
                       <motion.span
                         layoutId="floating-nav-pill"
-                        className="absolute inset-0 rounded-full bg-white/20"
+                        className="absolute inset-0 rounded-full bg-black/10"
                         transition={{ type: "spring", stiffness: 380, damping: 32 }}
                       />
                     )}
@@ -182,15 +169,15 @@ export function FloatingBottomNav() {
                   </Link>
                 );
               })}
-              <span className="mx-1 h-5 w-px bg-white/20" />
+              <span className="mx-1 h-5 w-px bg-black/15" />
               <button
                 type="button"
                 onClick={() => setExpanded((v) => !v)}
                 aria-expanded={expanded}
                 aria-label={expanded ? "Close index" : "Open index"}
                 className={cn(
-                  "inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/30 text-white/85 transition-all hover:bg-white/15 hover:text-white",
-                  expanded && "bg-white/20 text-white",
+                  "inline-flex h-9 w-9 items-center justify-center rounded-full border border-black/15 text-black/75 transition-all hover:bg-black/5 hover:text-black",
+                  expanded && "bg-black/10 text-black",
                 )}
               >
                 <Plus
@@ -203,7 +190,7 @@ export function FloatingBottomNav() {
               <button
                 type="button"
                 onClick={() => openContactDrawer()}
-                className="ml-1 rounded-full bg-white px-4 py-2.5 text-[11px] font-medium uppercase tracking-[0.16em] text-black transition-opacity hover:opacity-90"
+                className="ml-1 rounded-full bg-black px-4 py-2.5 text-[11px] font-medium uppercase tracking-[0.16em] text-white transition-opacity hover:opacity-90"
               >
                 Write Me
               </button>
