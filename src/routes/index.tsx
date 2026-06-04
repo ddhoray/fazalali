@@ -716,7 +716,7 @@ function ZigzagRow({
 
       {/* Text — scrolls past the pinned image */}
       <div
-        className={`md:col-span-5 md:min-h-[80vh] md:py-10 ${
+        className={`md:col-span-5 md:min-h-[50vh] md:py-4 ${
           reverse ? "md:col-start-1 md:row-start-1" : ""
         }`}
       >
