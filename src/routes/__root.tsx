@@ -18,6 +18,7 @@ import { PageTransition } from "../components/site/PageTransition";
 import { ContactDrawer } from "../components/site/ContactDrawer";
 import { FloatingBottomNav } from "../components/site/FloatingBottomNav";
 import { MobileTopBar } from "../components/site/MobileTopBar";
+import { SplashScreen } from "../components/site/SplashScreen";
 
 
 
