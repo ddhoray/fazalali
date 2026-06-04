@@ -188,6 +188,7 @@ function RootComponent() {
         </PageTransition>
       </main>
       <SiteFooter />
+      <div aria-hidden className="h-28 sm:h-32" />
       <FloatingBottomNav />
       <ContactDrawer />
     </QueryClientProvider>
