@@ -201,7 +201,10 @@ export function FloatingBottomNav() {
               </button>
               <button
                 type="button"
-                onClick={() => openContactDrawer()}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  openContactDrawer();
+                }}
                 className="ml-1 rounded-full bg-black px-4 py-2.5 text-[11px] font-medium uppercase tracking-[0.16em] text-white transition-opacity hover:opacity-90"
               >
                 Write Me
