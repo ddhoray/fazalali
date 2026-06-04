@@ -103,10 +103,10 @@ export function FloatingBottomNav() {
                       );
                     })}
                   </ul>
-                  <div className="mt-3 flex items-center justify-between border-t border-white/10 pt-3">
+                  <div className="mt-3 flex items-center justify-between border-t border-black/10 pt-3">
                     <a
                       href="mailto:writeme@fazalali.com"
-                      className="px-2 text-[11px] text-white/65 hover:text-white"
+                      className="px-2 text-[11px] text-black/65 hover:text-black"
                     >
                       writeme@fazalali.com
                     </a>
@@ -116,7 +116,7 @@ export function FloatingBottomNav() {
                         setExpanded(false);
                         openContactDrawer();
                       }}
-                      className="rounded-full bg-white px-3.5 py-2 text-[10px] font-medium uppercase tracking-[0.16em] text-black hover:opacity-90"
+                      className="rounded-full bg-black px-3.5 py-2 text-[10px] font-medium uppercase tracking-[0.16em] text-white hover:opacity-90"
                     >
                       Write Me
                     </button>
