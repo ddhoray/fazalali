@@ -62,7 +62,7 @@ export function SiteFooter() {
               rel="noreferrer"
               className="text-foreground hover:underline underline-offset-4"
             >
-              Hyperevamp
+              HyperRevamp
             </a>
           </p>
         </div>
