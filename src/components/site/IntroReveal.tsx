@@ -10,7 +10,10 @@ export function IntroReveal() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    const hasPlayed = sessionStorage.getItem("intro-reveal-played") === "true";
+    if (hasPlayed) return;
+
+    sessionStorage.setItem("intro-reveal-played", "true");
     setShow(true);
     document.documentElement.style.overflow = "hidden";
     const t = setTimeout(() => {
