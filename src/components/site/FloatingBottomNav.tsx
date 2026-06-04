@@ -147,6 +147,7 @@ export function FloatingBottomNav() {
               <Link
                 to="/"
                 aria-label="Fazal Ali — Home"
+                onClick={(e) => e.stopPropagation()}
                 className="mr-1 inline-flex h-11 w-11 items-center justify-center rounded-full bg-black ring-1 ring-black/10 shadow-sm transition-colors hover:bg-black/90"
               >
                 <img
@@ -163,6 +164,7 @@ export function FloatingBottomNav() {
                   <Link
                     key={l.to}
                     to={l.to}
+                    onClick={(e) => e.stopPropagation()}
                     className={cn(
                       "relative rounded-full px-4 py-2.5 text-[11px] font-medium uppercase tracking-[0.16em] transition-colors",
                       active ? "text-black" : "text-black/65 hover:text-black",
