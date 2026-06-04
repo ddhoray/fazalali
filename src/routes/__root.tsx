@@ -183,7 +183,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <SmoothScroll />
       <IntroReveal />
-      <SiteNav />
+      
       <main>
         <PageTransition>
           <Outlet />
