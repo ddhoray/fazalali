@@ -97,14 +97,14 @@ function Hero() {
     offset: ["start start", "end start"],
   });
 
-  // Phase 1 (0 → 0.35): image expands from inset to full-bleed with sharp edges.
-  // Phase 2 (0.35 → 1): continues into a slow parallax + scale-up.
-  const width = useTransform(scrollYProgress, [0, 0.35], ["86%", "100%"]);
-  const height = useTransform(scrollYProgress, [0, 0.35], ["88svh", "100svh"]);
-  const imgScale = useTransform(scrollYProgress, [0, 0.35, 1], [1.04, 1.06, 1.22]);
-  const imgY = useTransform(scrollYProgress, [0.35, 1], ["0%", "-14%"]);
-  const titleOpacity = useTransform(scrollYProgress, [0.4, 0.75], [1, 0]);
-  const titleY = useTransform(scrollYProgress, [0, 1], ["0%", "-10%"]);
+  // Phase 1 (0 → 0.5): frame expands from inset to full bleed.
+  // Image stays fixed — only the frame grows around it.
+  // Phase 2 (0.5 → 1): title fades out as you scroll past.
+  const width = useTransform(scrollYProgress, [0, 0.5], ["84%", "100%"]);
+  const height = useTransform(scrollYProgress, [0, 0.5], ["86svh", "100svh"]);
+  const titleOpacity = useTransform(scrollYProgress, [0.5, 0.8], [1, 0]);
+  const logoOpacity = useTransform(scrollYProgress, [0, 0.35], [1, 0]);
+  const logoY = useTransform(scrollYProgress, [0, 0.5], ["0%", "-40%"]);
 
   return (
     <section
@@ -115,13 +115,13 @@ function Hero() {
       <div className="sticky top-0 flex h-svh w-full items-center justify-center overflow-hidden">
         <motion.div
           style={reduce ? undefined : { width, height }}
-          className="relative overflow-hidden bg-neutral-200"
+          className="relative overflow-hidden bg-neutral-900"
         >
-          <motion.img
+          {/* Fixed image — does NOT scale or move with scroll */}
+          <img
             src={heroImage}
             alt="A classical marble bust in warm museum light — symbolizing critical theory and humanist reading of AI"
-            style={reduce ? undefined : { scale: imgScale, y: imgY }}
-            className="absolute inset-0 size-full object-cover will-change-transform"
+            className="absolute inset-0 size-full object-cover"
             width={1920}
             height={1280}
             fetchPriority="high"
@@ -130,9 +130,22 @@ function Hero() {
           <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent" />
           <Grain />
 
+          {/* FIA logo — top center of the hero banner */}
           <motion.div
-            style={reduce ? undefined : { opacity: titleOpacity, y: titleY }}
-            className="text-on-image absolute inset-0 z-10 flex flex-col justify-between px-6 pt-16 pb-12 sm:px-12 sm:pt-20 sm:pb-16"
+            style={reduce ? undefined : { opacity: logoOpacity, y: logoY }}
+            className="pointer-events-none absolute inset-x-0 top-6 z-20 flex justify-center sm:top-10"
+          >
+            <img
+              src={fiaLogo}
+              alt="FIA — Fazal Ibrahim Ali"
+              className="h-12 w-auto drop-shadow-[0_2px_12px_rgba(0,0,0,0.55)] sm:h-16"
+              draggable={false}
+            />
+          </motion.div>
+
+          <motion.div
+            style={reduce ? undefined : { opacity: titleOpacity }}
+            className="text-on-image absolute inset-0 z-10 flex flex-col justify-between px-6 pt-28 pb-12 sm:px-12 sm:pt-32 sm:pb-16"
           >
             <motion.p
               initial={{ opacity: 0, y: 10 }}
