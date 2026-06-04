@@ -15,17 +15,12 @@ const primaryLinks = [
   { to: "/about", label: "About" },
 ] as const;
 
-// Full index — mirrors SiteFooter "Index" list.
-const allLinks = [
-  { to: "/writing", label: "Journal" },
+// Secondary links shown only when expanded (excludes primary ones to avoid repeats).
+const extraLinks = [
   { to: "/education-for-liberty", label: "Education for Liberty" },
-  { to: "/podcast", label: "Podcast" },
   { to: "/ecology", label: "Ecology" },
   { to: "/inequality", label: "Inequality" },
   { to: "/palimpsest", label: "Palimpsest" },
-  { to: "/omeros-ai", label: "Omeros" },
-  { to: "/gallery", label: "Gallery" },
-  { to: "/about", label: "About" },
 ] as const;
 
 /**
