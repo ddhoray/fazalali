@@ -15,6 +15,7 @@ import { Newsletter } from "@/components/site/Newsletter";
 import { articles } from "@/content/articles";
 import portrait from "@/assets/fazal-cutout.png";
 import heroImage from "@/assets/hero-statue.jpg";
+import fiaLogo from "@/assets/brand-fia.png";
 import featuredEducation from "@/assets/featured-education.jpg";
 import featuredOmeros from "@/assets/featured-omeros.jpg";
 import featuredWriting from "@/assets/featured-writing.jpg";
@@ -22,7 +23,6 @@ import practiceEssays from "@/assets/practice-essays.jpg";
 import practiceBook from "@/assets/practice-book.jpg";
 import practiceOmeros from "@/assets/practice-omeros.jpg";
 import heroDesk from "@/assets/hero-desk.jpg";
-import heroOmeros from "@/assets/hero-omeros.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
