@@ -191,6 +191,7 @@ function RootComponent() {
       <SiteFooter />
       <div aria-hidden className="h-28 sm:h-32" />
       <FloatingBottomNav />
+      <MobileTopBar />
       <ContactDrawer />
     </QueryClientProvider>
 
