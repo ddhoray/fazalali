@@ -1,10 +1,12 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
 import { useRef, useState, useEffect } from "react";
 import { BookOpen, Sparkles, PenLine, Compass, ArrowUpRight } from "lucide-react";
 import { BlurReveal, SlideIn } from "@/components/site/BlurReveal";
 import { WordScrollReveal } from "@/components/site/WordScrollReveal";
 import { ImageExpand } from "@/components/site/ImageExpand";
+import { ParallaxImage } from "@/components/site/ParallaxImage";
+import { HomeTopBar } from "@/components/site/HomeTopBar";
 
 import { HoverImage } from "@/components/site/HoverImage";
 import { CirclePill } from "@/components/site/CirclePill";
@@ -21,6 +23,8 @@ import featuredWriting from "@/assets/featured-writing.jpg";
 import practiceEssays from "@/assets/practice-essays.jpg";
 import practiceBook from "@/assets/practice-book.jpg";
 import practiceOmeros from "@/assets/practice-omeros.jpg";
+import heroDesk from "@/assets/hero-desk.jpg";
+import heroOmeros from "@/assets/hero-omeros.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
