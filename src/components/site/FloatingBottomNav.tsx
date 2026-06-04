@@ -21,17 +21,18 @@ const links = [
 export function FloatingBottomNav() {
   const [visible, setVisible] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const isHome = pathname === "/";
 
   useEffect(() => {
     const onScroll = () => {
-      // Reveal only after the hero's scroll-driven sequence completes.
-      const threshold = Math.max(640, window.innerHeight * 1.1);
+      // On home, reveal only after the hero's scroll-driven sequence completes.
+      const threshold = isHome ? window.innerHeight * 1.72 : 160;
       setVisible(window.scrollY > threshold);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [isHome]);
 
   return (
     <AnimatePresence>
