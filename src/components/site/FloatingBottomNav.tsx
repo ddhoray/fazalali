@@ -26,7 +26,7 @@ export function FloatingBottomNav() {
   useEffect(() => {
     const onScroll = () => {
       // On home, reveal only after the hero's scroll-driven sequence completes.
-      const threshold = isHome ? window.innerHeight * 1.72 : 160;
+      const threshold = isHome ? window.innerHeight * 1.5 : 160;
       setVisible(window.scrollY > threshold);
     };
     onScroll();
