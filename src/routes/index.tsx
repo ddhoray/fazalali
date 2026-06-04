@@ -644,7 +644,7 @@ function Range() {
           </BlurReveal>
         </div>
 
-        <div className="flex flex-col gap-16 md:gap-28">
+        <div className="flex flex-col gap-6 md:gap-10">
           {range.map((r, i) => (
             <ZigzagRow
               key={r.n}
