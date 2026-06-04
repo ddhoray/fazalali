@@ -1,17 +1,16 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type ComponentType } from "react";
 import { ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
-import HTMLFlipBook from "react-pageflip";
-import { Document, Page, pdfjs } from "react-pdf";
-import "react-pdf/dist/Page/AnnotationLayer.css";
-import "react-pdf/dist/Page/TextLayer.css";
-import pdfWorker from "pdfjs-dist/build/pdf.worker.min.mjs?url";
 import pdfAsset from "@/assets/EducationforLiberty.pdf.asset.json";
-
-pdfjs.GlobalWorkerOptions.workerSrc = pdfWorker;
 
 interface FlipbookProps {
   file?: string;
 }
+
+type PdfViewerModules = {
+  Document: ComponentType<any>;
+  Page: ComponentType<any>;
+  HTMLFlipBook: ComponentType<any>;
+};
 
 const PDF_FILE_DEFAULT = pdfAsset.url;
 const RENDER_RADIUS = 3;
@@ -25,9 +24,42 @@ export function Flipbook({ file = PDF_FILE_DEFAULT }: FlipbookProps) {
   const [numPages, setNumPages] = useState<number>(0);
   const [current, setCurrent] = useState(0);
   const [size, setSize] = useState({ w: 380, h: 520, isSingle: true });
+  const [modules, setModules] = useState<PdfViewerModules | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   // react-pageflip's ref typing is loose; using any for the imperative API.
   const bookRef = useRef<any>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadPdfViewer() {
+      const [{ Document, Page, pdfjs }, pageflip, worker] = await Promise.all([
+        import("react-pdf"),
+        import("react-pageflip"),
+        import("pdfjs-dist/build/pdf.worker.min.mjs?url"),
+        import("react-pdf/dist/Page/AnnotationLayer.css"),
+        import("react-pdf/dist/Page/TextLayer.css"),
+      ]);
+
+      pdfjs.GlobalWorkerOptions.workerSrc = worker.default;
+
+      if (!cancelled) {
+        setModules({
+          Document,
+          Page,
+          HTMLFlipBook: pageflip.default,
+        });
+      }
+    }
+
+    loadPdfViewer().catch((error) => {
+      console.error(error);
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   useEffect(() => {
     const recompute = () => {
@@ -57,6 +89,18 @@ export function Flipbook({ file = PDF_FILE_DEFAULT }: FlipbookProps) {
     () => Array.from({ length: numPages }, (_, i) => i + 1),
     [numPages],
   );
+
+  if (!modules) {
+    return (
+      <div ref={containerRef} className="relative mx-auto w-full max-w-[1180px]">
+        <div className="mx-auto flex aspect-[3/2] w-full max-w-[1000px] items-center justify-center border border-white/15 bg-white/5 text-sm uppercase tracking-[0.2em] text-white/60">
+          <Loader2 className="mr-3 size-4 animate-spin" /> Loading the book…
+        </div>
+      </div>
+    );
+  }
+
+  const { Document, Page, HTMLFlipBook } = modules;
 
   return (
     <div ref={containerRef} className="relative mx-auto w-full max-w-[1180px]">
