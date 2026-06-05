@@ -34,7 +34,7 @@
   --color-ring: var(--foreground);
 
   --font-display: "Bodoni Moda", "Times New Roman", serif;
-  --font-sans: "Geist", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Coco Gothic", "Geist", "Inter", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
