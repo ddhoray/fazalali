@@ -39,7 +39,7 @@ export function MobileTopBar() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-[60] flex items-center justify-between border-b border-black/10 bg-white/80 px-4 py-3 backdrop-blur-xl lg:hidden">
+      <header className="fixed inset-x-0 top-0 z-[60] flex items-center justify-between border-b border-black/10 bg-white px-4 py-3 lg:hidden">
         <Link
           to="/"
           aria-label="Fazal Ali — Home"
