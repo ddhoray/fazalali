@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import fiaLogo from "@/assets/brand-fia.png";
+import fiaLogo from "@/assets/brand-omeros-lockup.png";
 
 /**
  * Splash screen shown on first load of the session.
@@ -43,13 +43,10 @@ export function SplashScreen() {
           >
             <img
               src={fiaLogo}
-              alt="Fazal Ali"
-              className="h-16 w-16 object-contain invert"
+              alt="Omeros AI"
+              className="h-16 w-auto object-contain brightness-0 invert sm:h-20"
               draggable={false}
             />
-            <span className="text-[11px] font-medium uppercase tracking-[0.32em] text-white/70">
-              Fazal Ali
-            </span>
           </motion.div>
         </motion.div>
       )}
