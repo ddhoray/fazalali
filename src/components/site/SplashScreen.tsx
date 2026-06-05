@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import fiaLogo from "@/assets/brand-fia.png";
+import fiaLogo from "@/assets/brand-omeros-lockup.png";
 
 /**
  * Splash screen shown on first load of the session.
