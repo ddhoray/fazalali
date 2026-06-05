@@ -43,9 +43,9 @@ export function MobileTopBar() {
         <Link
           to="/"
           aria-label="Fazal Ali — Home"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-black"
+          className="inline-flex h-10 w-10 items-center justify-center"
         >
-          <img src={fiaLogo} alt="FIA" className="h-5 w-5 object-contain invert" draggable={false} />
+          <img src={fiaLogo} alt="FIA" className="h-8 w-8 object-contain" draggable={false} />
         </Link>
         <button
           type="button"
