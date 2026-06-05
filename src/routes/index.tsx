@@ -163,7 +163,7 @@ function Hero() {
           >
             <img
               src={fiaLogo}
-              alt="FIA — Fazal Ibrahim Ali"
+              alt="Omeros AI — Fazal Ibrahim Ali"
               className="h-12 w-auto brightness-0 invert sm:h-16"
               draggable={false}
             />
