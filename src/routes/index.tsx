@@ -164,7 +164,7 @@ function Hero() {
             <img
               src={fiaLogo}
               alt="Omeros AI — Fazal Ibrahim Ali"
-              className="h-12 w-auto brightness-0 invert sm:h-16"
+              className="h-14 w-auto object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)] sm:h-20"
               draggable={false}
             />
           </motion.div>

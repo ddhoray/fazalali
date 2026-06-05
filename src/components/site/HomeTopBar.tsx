@@ -21,11 +21,10 @@ export function HomeTopBar() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-500",
-        scrolled
-          ? "bg-white/70 text-black backdrop-blur-xl border-b hairline"
-          : "bg-transparent text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.45)]",
+        "fixed inset-x-0 top-0 z-50 border-b hairline bg-white transition-all duration-500",
+        scrolled ? "shadow-sm" : "",
       )}
+      style={{ color: "var(--accent-cool)" }}
     >
       <div className="relative mx-auto flex max-w-[1700px] items-center justify-between px-5 py-4 sm:px-8 sm:py-5">
         <span className="text-[11px] font-medium uppercase tracking-[0.22em] opacity-80">
@@ -41,7 +40,8 @@ export function HomeTopBar() {
         <button
           type="button"
           onClick={() => openContactDrawer()}
-          className="inline-flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-[0.22em] opacity-90 hover:opacity-100"
+          className="inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-[11px] font-medium uppercase tracking-[0.22em] text-white transition-opacity hover:opacity-90"
+          style={{ backgroundColor: "var(--accent-cool)" }}
         >
           <span aria-hidden>↳</span> Write Me
         </button>
