@@ -54,7 +54,7 @@
   --border: color-mix(in oklab, oklch(0.20 0.010 60) 16%, transparent);
 
   /* Accent — Omeros sand-dollar blue, used for links/CTAs */
-  --accent-cool: oklch(0.52 0.19 265);
+  --accent-cool: #024bcc;
 }
 
 .dark {
