@@ -1,54 +1,52 @@
+
 ## Goal
+Make every image's color tone match the section it sits in, and enforce a consistent color/text/CTA system everywhere.
 
-Homepage `/` mirrors fluid.glass's cadence: tiny top chrome, a centered floating glass pill at the bottom, a hero whose image expands inset → full bleed, large full-bleed parallax photo bands between text sections, and tall image-card grids — all on the existing Fazal Ali content (Hero, Featured, Manifesto, Portrait, BookSection, Range, LatestWriting, InstagramGrid, Newsletter). Existing red/iron palette and Bodoni display stay.
+## Color system (locked)
+- Blue sections (`.section-invert`, bg `#024bcc`): all text, headings, eyebrows, dividers, icons → pure white. Images shift toward cool/blue duotone. CTAs: white pill with blue text.
+- Dark sections (`.section-dark`, bg `#17100b`): warm sepia/amber image tone, white text, hairlines at white/22%.
+- Light sections (cream `--background`): black text, hairlines neutral, accents in `#024bcc` (links, eyebrows on chosen accents, underline color). CTAs: blue pill with white text, or white pill with blue text + blue border.
+- "Text on image" overlays keep white text.
 
-## Navigation
+## Image regeneration plan (AI, gpt-image-2)
+Each image regenerated at 1536×1024 (landscape) or 1024×1536 (portrait) to match current aspect, then saved over the same filename so all imports keep working. Prompts include locked palette + grain + 35mm editorial style for consistency.
 
-- On `/` only, hide the full top `SiteNav` (Journal, EFL, etc.). Replace it with a minimal top bar: small centered wordmark + single top-right `Write Me` link.
-- All other routes keep the current solid-white top nav untouched.
-- Globally mount `FloatingBottomNav` (already exists from last pass) — small glass pill, centered bottom, slides in after scroll. Refine it to read more like fluid.glass: tighter padding, smaller type, brand mark on the left, links in the middle, single accent CTA on the right.
+Grouped by destination tone:
 
-## Hero — image expansion
+**Cool-blue duotone (lands on blue sections)**
+- `featured-omeros.jpg`, `practice-omeros.jpg`, `hero-omeros.jpg` — Omeros AI sections
+- `featured-writing.jpg`, `practice-essays.jpg`, `hero-writing.jpg`, `article-*.jpg` (10 article thumbs) — writing index uses invert grid
+- `hero-palimpsest.jpg`, `hero-inequality.jpg`, `hero-ecology.jpg` — topical pages
 
-Rebuild `Hero` so the marble-bust image starts inset with soft rounded corners and ~80% width, then expands to full-bleed with radius 0 as the user scrolls down the first viewport. Title and eyebrow stay overlaid; both fade as the frame widens. Drop the current fixed-position spacer trick — use a normal sticky section instead so the expansion reads cleanly.
+**Warm dark/sepia (lands on `.section-dark` and the desk parallax)**
+- `hero-desk.jpg`, `hero-statue.jpg` — home dark breaks
+- `practice-book.jpg`, `hero-book.jpg`, `featured-education.jpg` — Education for Liberty
+- `hero-podcast.jpg`
 
-## Section cadence (top to bottom)
+**Natural warm cream (light sections)**
+- `fazal-portrait.jpg`, `fazal-portrait-aesthetic.jpg`, `fazal-portrait-statue.jpg`, `fazal-cutout.png`
+- `hero-gallery.jpg`
 
-1. **Hero (image-expand)** — new behavior above.
-2. **Quietline** — keep, minor type tightening.
-3. **Parallax band #1** — full-bleed photographic break, image scrolls slower than the page (uses existing `ParallaxImage`). Caption-only overlay.
-4. **FeaturedSticky** — keep the existing sticky 3-slide section.
-5. **Manifesto** — keep.
-6. **ImageExpand interlude** — already added; keep.
-7. **Portrait** — keep.
-8. **Parallax band #2** — second full-bleed parallax break with a different image and a quiet pull-quote.
-9. **BookSection** — keep.
-10. **Range (cards)** — restyle as a fluid.glass-style 4-up tall image card grid (portrait aspect ~3:4, hairline border, title + chip labels, subtle hover lift). Reuse existing `Range` data, no new content.
-11. **LatestWriting** — keep.
-12. **InstagramGrid** — keep.
-13. **Newsletter** — keep.
+Total: ~28 images. Run sequentially via the AI gateway script with consistent style anchors per group, save into `src/assets/` overwriting originals. No code changes needed for image imports.
 
-## Motion details
+## Global text/CTA pass
+1. `src/styles.css`
+   - Add utility `.text-accent { color: var(--accent-cool); }` and `.accent-underline` (blue underline on hover for inline links in light sections).
+   - Add `.btn-primary` (blue bg, white text), `.btn-on-blue` (white bg, blue text), `.btn-on-light` (blue border, blue text, hover invert).
+   - Tighten `.section-invert`: also force `.text-muted-foreground` and any `border-*` utility to white/22%.
+2. Sweep all routes + `src/components/site/*`:
+   - Replace hard-coded `text-white`, `text-black`, `text-foreground`, `text-muted-foreground` inside blue sections with reliance on `.section-invert` cascade (remove conflicting `text-*` classes).
+   - In light sections, add `.text-accent` to: eyebrows on key feature blocks, inline links, hover state of headlines/CTAs, key emphasized words (italics in manifesto/quietline).
+   - Normalize all CTAs (`Link`/`button` styled as pill/arrow) to the 3 button utilities above. Remove ad-hoc `bg-foreground text-background` button styles.
+3. Hairlines/dividers inside blue sections → white/22%; in dark sections already handled; in light sections → keep neutral but switch decorative accent rules to blue.
 
-- Parallax bands use `ParallaxImage` with `strength={22}` and a longer `h-[120vh]` outer so the speed differential is obvious.
-- Card grid uses `SlideIn` from the bottom with staggered delays (0, 0.06, 0.12, 0.18).
-- Honor `prefers-reduced-motion` everywhere (existing components already do).
+## Pages touched
+`index.tsx`, `about.tsx`, `omeros-ai.tsx`, `education-for-liberty.tsx`, `writing.index.tsx`, `writing.$slug.tsx`, `gallery.tsx`, `podcast.tsx`, `ecology.tsx`, `inequality.tsx`, `palimpsest.tsx`, `contact.tsx`, plus shared `SiteNav`, `FloatingBottomNav`, `MobileTopBar`, `SiteFooter`, `Newsletter`, `BookSection`, `FeaturedStack`, `InstagramGrid`, `PageHero`, `ContactDrawer`.
 
-## Files
+## Verification
+- TypeScript check after edits.
+- Walk each route in preview at 1075px and full-page screenshot, visually confirm: (a) image tone matches its section, (b) no grey/black text inside blue sections, (c) CTAs follow the 3-variant system, (d) inline accents are present where called for.
 
-New / changed:
-
-- `src/components/site/FloatingBottomNav.tsx` — tighten styling (smaller pill, brand mark, condensed links).
-- `src/components/site/SiteNav.tsx` — early-return `null` when `pathname === "/"` so it is hidden only on the homepage.
-- `src/components/site/HomeTopBar.tsx` *(new)* — minimal centered wordmark + `Write Me` link, mounted only on `/`.
-- `src/components/site/ImageExpand.tsx` — already exists, reuse.
-- `src/routes/index.tsx` — restructure `Home()` per the cadence above; rewrite `Hero` to use image-expand; add two `ParallaxImage` break bands; restyle `Range` cards into the tall 4-up image grid; mount `HomeTopBar` at the top of `Home`.
-
-No content/copy changes, no palette changes, no new dependencies, no other routes touched.
-
-## Out of scope
-
-- Top nav on non-home routes (untouched).
-- Footer (untouched).
-- Color system / typography tokens (untouched).
-- Any backend / data work.
+## Notes / trade-offs
+- AI regeneration of ~28 images will consume credits and take several minutes. If any prompt is rejected (e.g. likeness for portraits), I'll fall back to a CSS duotone overlay for those specific images and flag them.
+- Article thumb prompts will be derived from each article's title/slug for thematic relevance, not just palette.
