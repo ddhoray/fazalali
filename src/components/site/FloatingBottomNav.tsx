@@ -80,7 +80,7 @@ export function FloatingBottomNav() {
                   <img
                     src={fiaLogo}
                     alt="FIA"
-                    className="h-6 w-6 object-contain invert"
+                    className="h-6 w-6 object-contain brightness-0 invert"
                     draggable={false}
                   />
                 </Link>
