@@ -159,7 +159,7 @@ export function ContactDrawer() {
                     <button
                       type="submit"
                       disabled={state === "sending"}
-                      className="inline-flex items-center gap-2 rounded-none bg-foreground px-6 py-3 text-sm text-background transition-opacity hover:opacity-90 disabled:opacity-60"
+                      className="btn-cta btn-primary disabled:opacity-60"
                     >
                       {state === "sending" ? "Sending…" : "Send note"}
                       <ArrowRight className="size-4" />

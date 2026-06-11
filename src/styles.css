@@ -252,6 +252,62 @@
     opacity: 0;
   }
   .card-expand:hover .card-overlay { opacity: 1; }
+
+  /* ============= Color accent + CTA system ============= */
+  .text-accent { color: var(--accent-cool); }
+  .section-invert .text-accent { color: #ffffff !important; }
+  .section-dark .text-accent { color: #ffffff !important; }
+
+  .accent-underline {
+    background-image: linear-gradient(var(--accent-cool), var(--accent-cool));
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    transition: background-size 400ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .accent-underline:hover { background-size: 100% 1px; }
+  .section-invert .accent-underline,
+  .section-dark .accent-underline { background-image: linear-gradient(#ffffff, #ffffff); }
+
+  /* CTAs — three canonical variants */
+  .btn-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.4rem;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    transition: background-color 300ms ease, color 300ms ease, border-color 300ms ease;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .btn-primary {
+    background-color: var(--accent-cool);
+    color: #ffffff;
+    border-color: var(--accent-cool);
+  }
+  .btn-primary:hover { background-color: #ffffff; color: var(--accent-cool); }
+  .btn-on-light {
+    background-color: #ffffff;
+    color: var(--accent-cool);
+    border-color: var(--accent-cool);
+  }
+  .btn-on-light:hover { background-color: var(--accent-cool); color: #ffffff; }
+  .btn-on-blue {
+    background-color: #ffffff;
+    color: var(--accent-cool);
+    border-color: #ffffff;
+  }
+  .btn-on-blue:hover { background-color: transparent; color: #ffffff; border-color: #ffffff; }
+  .section-invert .btn-primary,
+  .section-invert .btn-on-light { background-color: #ffffff !important; color: var(--accent-cool) !important; border-color: #ffffff !important; }
+  .section-invert .btn-primary:hover,
+  .section-invert .btn-on-light:hover { background-color: transparent !important; color: #ffffff !important; }
 }
 
 /* Lenis */

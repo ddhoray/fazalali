@@ -90,14 +90,14 @@ export function BookSection() {
             <BlurReveal delay={0.34} className="mt-10 flex flex-wrap gap-3">
               <Link
                 to="/education-for-liberty"
-                className="group inline-flex items-center gap-2 bg-foreground px-6 py-3 text-sm text-background transition-opacity hover:opacity-90"
+                className="group btn-cta btn-primary"
               >
                 Read the monograph
                 <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 border border-foreground/20 px-6 py-3 text-sm transition-colors hover:bg-foreground/5"
+                className="btn-cta btn-on-light"
               >
                 Request a copy
               </Link>
