@@ -65,7 +65,7 @@
   --card: var(--background);
   --card-foreground: var(--foreground);
   --border: color-mix(in oklab, var(--foreground) 18%, transparent);
-  --accent-cool: oklch(0.68 0.17 265);
+  --accent-cool: #024bcc;
 }
 
 @layer base {
