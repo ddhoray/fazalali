@@ -197,10 +197,10 @@
   .section-invert blockquote { color: #ffffff !important; opacity: 1 !important; }
   .section-invert .text-muted-foreground { color: #ffffff !important; opacity: 1 !important; }
   .section-invert .hairline { border-color: rgba(255,255,255,0.22) !important; }
-  .section-invert .bg-background { background-color: #17100b !important; }
-  .section-invert .bg-card { background-color: #17100b !important; }
+  .section-invert .bg-background { background-color: #024bcc !important; }
+  .section-invert .bg-card { background-color: #024bcc !important; }
   .section-invert .bg-foreground { background-color: #ffffff !important; }
-  .section-invert .text-background { color: #17100b !important; }
+  .section-invert .text-background { color: #024bcc !important; }
   .section-invert .bg-foreground\/5 { background-color: rgba(255,255,255,0.06) !important; }
   .section-invert .bg-foreground\/15 { background-color: rgba(255,255,255,0.18) !important; }
   /* Light-background CTAs inside dark sections keep dark text for contrast. */
