@@ -44,7 +44,7 @@ function AboutPage() {
         eyebrow="About"
         title={
           <>
-            A writer, schooled in <em className="italic">freedom.</em>
+            A writer, schooled in <em className="italic text-accent">freedom.</em>
           </>
         }
         standfirst={
@@ -126,7 +126,7 @@ function AboutPage() {
         <Reveal>
           <p className="eyebrow text-muted-foreground">A working life</p>
           <h2 className="mt-5 font-display text-4xl md:text-7xl">
-            Five decades, one <em className="italic">thesis.</em>
+            Five decades, one <em className="italic text-accent">thesis.</em>
           </h2>
         </Reveal>
         <div className="mt-16 border-t hairline">

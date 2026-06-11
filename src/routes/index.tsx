@@ -84,7 +84,7 @@ function Home() {
             <div className="max-w-xl">
               <p className="eyebrow opacity-85">A quiet desk</p>
               <h3 className="mt-3 font-display text-3xl leading-[1.04] sm:text-5xl">
-                Slow reading, <em className="italic">long sentences.</em>
+                Slow reading, <em className="italic text-accent">long sentences.</em>
               </h3>
             </div>
           </div>
@@ -187,7 +187,7 @@ function Hero() {
               <p className="mt-5 max-w-md text-[13px] leading-relaxed opacity-90 sm:mt-6 sm:text-sm md:text-base">
                 Dr. Fazal Ibrahim Ali — Cambridge-trained, Trinidad-born. Writing
                 on critical theory in AI, the founding of Omeros AI, and a small
-                book called <em className="italic">Education for Liberty.</em>
+                book called <em className="italic text-accent">Education for Liberty.</em>
               </p>
 
               <p className="mt-8 text-[10px] uppercase tracking-[0.3em] opacity-70">
@@ -302,7 +302,7 @@ function FeaturedSticky() {
                 delay={0.08}
                 className="mt-2 font-display text-2xl leading-[1] sm:text-3xl md:text-4xl"
               >
-                Three things, <em className="italic">in order.</em>
+                Three things, <em className="italic text-accent">in order.</em>
               </BlurReveal>
             </div>
             <span className="nav-link text-muted-foreground">
@@ -646,7 +646,7 @@ function Range() {
           <div className="max-w-3xl">
             <BlurReveal as="p" className="eyebrow text-muted-foreground">Range</BlurReveal>
             <BlurReveal as="h2" delay={0.08} className="mt-3 font-display text-[12vw] leading-[1.02] sm:text-5xl md:text-7xl">
-              Four threads, <em className="italic">one practice.</em>
+              Four threads, <em className="italic text-accent">one practice.</em>
             </BlurReveal>
           </div>
           <BlurReveal delay={0.16} className="eyebrow text-muted-foreground">
