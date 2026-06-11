@@ -114,7 +114,7 @@ function BookPage() {
                   target="_blank"
                   rel="noreferrer"
                   download
-                  className="inline-flex items-center gap-2 bg-white px-4 py-2 text-[11px] uppercase tracking-[0.18em] text-black transition-opacity hover:opacity-90"
+                  className="btn-cta btn-on-blue"
                 >
                   <Download className="size-4" /> Download PDF
                 </a>
@@ -122,7 +122,7 @@ function BookPage() {
                   href={AMAZON_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 border border-white/40 px-4 py-2 text-[11px] uppercase tracking-[0.18em] text-white transition-colors hover:bg-white/10"
+                  className="btn-cta btn-on-blue"
                 >
                   <ShoppingCart className="size-4" /> Buy on Amazon
                 </a>

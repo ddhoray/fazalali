@@ -148,17 +148,17 @@ function AboutPage() {
             <p className="font-display text-3xl md:text-5xl">
               Write to him.
             </p>
-            <div className="flex items-center gap-4">
+            <div className="flex flex-wrap items-center gap-4">
               <button
                 type="button"
                 onClick={() => openContactDrawer()}
-                className="inline-flex items-center gap-2 bg-foreground px-6 py-3 text-sm uppercase tracking-[0.2em] text-background"
+                className="btn-cta btn-primary"
               >
                 Write Me <ArrowUpRight className="size-4" />
               </button>
               <Link
                 to="/writing"
-                className="inline-flex items-center gap-2 border-b border-foreground pb-1 text-sm uppercase tracking-[0.2em]"
+                className="btn-cta btn-on-light"
               >
                 Read the journal
               </Link>
