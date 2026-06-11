@@ -58,7 +58,7 @@
 }
 
 .dark {
-  --background: oklch(0.18 0.018 55);    /* deep cold iron */
+  --background: #17100b;                 /* deep editorial brown-black */
   --foreground: oklch(0.96 0.006 85);    /* milk-white */
   --muted: oklch(0.26 0.018 55);
   --muted-foreground: oklch(0.78 0.010 80);
@@ -170,7 +170,7 @@
 
   /* Dark editorial section — cold iron, milk-white text */
   .section-dark {
-    background-color: oklch(0.20 0.020 55);
+    background-color: #17100b;
     color: oklch(0.96 0.006 85);
   }
   .section-dark .text-muted-foreground { color: color-mix(in oklab, oklch(0.96 0.006 85) 68%, transparent) !important; }
@@ -180,7 +180,7 @@
 
   /* Cold iron inverted band — alternates with milk-white sections. */
   .section-invert {
-    background-color: oklch(0.18 0.018 55) !important;
+    background-color: #17100b !important;
     color: #ffffff !important;
   }
   .section-invert *,
@@ -197,10 +197,10 @@
   .section-invert blockquote { color: #ffffff !important; opacity: 1 !important; }
   .section-invert .text-muted-foreground { color: #ffffff !important; opacity: 1 !important; }
   .section-invert .hairline { border-color: rgba(255,255,255,0.22) !important; }
-  .section-invert .bg-background { background-color: oklch(0.18 0.018 55) !important; }
-  .section-invert .bg-card { background-color: oklch(0.18 0.018 55) !important; }
+  .section-invert .bg-background { background-color: #17100b !important; }
+  .section-invert .bg-card { background-color: #17100b !important; }
   .section-invert .bg-foreground { background-color: #ffffff !important; }
-  .section-invert .text-background { color: oklch(0.18 0.018 55) !important; }
+  .section-invert .text-background { color: #17100b !important; }
   .section-invert .bg-foreground\/5 { background-color: rgba(255,255,255,0.06) !important; }
   .section-invert .bg-foreground\/15 { background-color: rgba(255,255,255,0.18) !important; }
   /* Light-background CTAs inside dark sections keep dark text for contrast. */
