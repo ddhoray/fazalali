@@ -15,7 +15,7 @@ import { Newsletter } from "@/components/site/Newsletter";
 import { articles } from "@/content/articles";
 import portrait from "@/assets/fazal-cutout.png";
 import heroImage from "@/assets/hero-statue.jpg";
-import fiaLogo from "@/assets/brand-omeros-lockup.png";
+import fiaLogo from "@/assets/brand-omeros-lockup-transparent.png";
 import featuredEducation from "@/assets/featured-education.jpg";
 import featuredOmeros from "@/assets/featured-omeros.jpg";
 import featuredWriting from "@/assets/featured-writing.jpg";
@@ -164,7 +164,7 @@ function Hero() {
             <img
               src={fiaLogo}
               alt="Omeros AI — Fazal Ibrahim Ali"
-              className="h-14 w-auto object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)] sm:h-20"
+              className="h-14 w-auto object-contain brightness-0 invert drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)] sm:h-20"
               draggable={false}
             />
           </motion.div>
