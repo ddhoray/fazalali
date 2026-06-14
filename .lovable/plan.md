@@ -1,52 +1,70 @@
-
 ## Goal
-Make every image's color tone match the section it sits in, and enforce a consistent color/text/CTA system everywhere.
+Make every non-portrait, non-book image on the site feel like it came from one warm, sunlit, Caribbean-editorial photo essay. Soft natural light, cream/amber/ochre highlights, deep warm shadows, fine 35mm grain, no neon, no purple, no synthetic-AI sheen.
 
-## Color system (locked)
-- Blue sections (`.section-invert`, bg `#024bcc`): all text, headings, eyebrows, dividers, icons → pure white. Images shift toward cool/blue duotone. CTAs: white pill with blue text.
-- Dark sections (`.section-dark`, bg `#17100b`): warm sepia/amber image tone, white text, hairlines at white/22%.
-- Light sections (cream `--background`): black text, hairlines neutral, accents in `#024bcc` (links, eyebrows on chosen accents, underline color). CTAs: blue pill with white text, or white pill with blue text + blue border.
-- "Text on image" overlays keep white text.
+## Scope (locked by your answers)
+**Replacing 16 images:**
+- Featured + practice tiles (6): `featured-omeros.jpg`, `featured-writing.jpg`, `featured-education.jpg`, `practice-omeros.jpg`, `practice-essays.jpg`, `practice-book.jpg`
+- Article thumbnails (10): `article-100model`, `article-carnival`, `article-cern`, `article-datacenter`, `article-divine`, `article-fabric`, `article-failure`, `article-gravity`, `article-shelf`, `article-shield`
 
-## Image regeneration plan (AI, gpt-image-2)
-Each image regenerated at 1536×1024 (landscape) or 1024×1536 (portrait) to match current aspect, then saved over the same filename so all imports keep working. Prompts include locked palette + grain + 35mm editorial style for consistency.
+**Not touched (per your instruction):**
+- All hero images (heroes stay as-is — you only confirmed featured/practice + articles)
+- Book cover + `book-education-for-liberty.jpg`, `hero-book.jpg`, `practice-book.jpg` book scenes → wait: `practice-book.jpg` is in scope as a tile. I'll keep it book-themed (a real photo of an open book in warm window light) so it still reads as the Education-for-Liberty practice tile, just retoned.
+- Fazal portraits + cutout
+- Instagram gallery feed (real IG content stays)
+- Brand lockups + PDFs
 
-Grouped by destination tone:
+> If you actually want heroes in scope too, say so and I'll add them — current plan is conservative to your checklist.
 
-**Cool-blue duotone (lands on blue sections)**
-- `featured-omeros.jpg`, `practice-omeros.jpg`, `hero-omeros.jpg` — Omeros AI sections
-- `featured-writing.jpg`, `practice-essays.jpg`, `hero-writing.jpg`, `article-*.jpg` (10 article thumbs) — writing index uses invert grid
-- `hero-palimpsest.jpg`, `hero-inequality.jpg`, `hero-ecology.jpg` — topical pages
+## Visual contract (applied to every replaced image)
+- Palette: warm cream `#f3ead8`, sand `#d8b98a`, terracotta `#b86c43`, deep umber `#3a261b`, sea `#3f6f7a` as the only cool accent
+- Light: golden-hour or soft window light, never flat midday
+- Mood: literary magazine (think Aperture / Wallpaper / The Common), not stock-photo cliché
+- Format: 1600×1000 landscape JPG, ~75 quality, mild film grain
+- Subjects map 1:1 to each tile/article topic (see below)
 
-**Warm dark/sepia (lands on `.section-dark` and the desk parallax)**
-- `hero-desk.jpg`, `hero-statue.jpg` — home dark breaks
-- `practice-book.jpg`, `hero-book.jpg`, `featured-education.jpg` — Education for Liberty
-- `hero-podcast.jpg`
+## Sourcing strategy
+1. **Real photos first**: pull from Unsplash's public direct-image CDN (no API key needed — I use curated photo IDs by hand-selecting via web search for each topic, downloading the 1600w variant, then color-grading to the warm palette in a single ImageMagick pass for tonal consistency).
+2. **AI fallback**: if no real photo cleanly fits a topic (e.g. "Omeros AI" abstract, "datacenter as poetry"), generate via Lovable AI Gateway `openai/gpt-image-2` with a locked style prompt suffix that pins the palette + 35mm grain + editorial framing.
+3. Every image — stock or AI — goes through the same final grade pass so the set looks like one photographer shot it in one week.
 
-**Natural warm cream (light sections)**
-- `fazal-portrait.jpg`, `fazal-portrait-aesthetic.jpg`, `fazal-portrait-statue.jpg`, `fazal-cutout.png`
-- `hero-gallery.jpg`
+## Per-image subject map
 
-Total: ~28 images. Run sequentially via the AI gateway script with consistent style anchors per group, save into `src/assets/` overwriting originals. No code changes needed for image imports.
+**Featured / practice tiles**
+| File | Subject |
+|---|---|
+| `featured-omeros.jpg` | Hands on a warmly-lit keyboard, open notebook beside it, soft window light — "writing with the machine" |
+| `featured-writing.jpg` | Stack of marked-up manuscript pages on a wooden desk, fountain pen, morning light |
+| `featured-education.jpg` | Empty Caribbean classroom at golden hour, chalkboard, wooden desks |
+| `practice-omeros.jpg` | Close crop of a screen reflecting a face in shadow, warm desk lamp glow |
+| `practice-essays.jpg` | Open book + handwritten margin notes, coffee cup edge, natural light |
+| `practice-book.jpg` | Open hardcover book on a window sill, sea visible blurred behind |
 
-## Global text/CTA pass
-1. `src/styles.css`
-   - Add utility `.text-accent { color: var(--accent-cool); }` and `.accent-underline` (blue underline on hover for inline links in light sections).
-   - Add `.btn-primary` (blue bg, white text), `.btn-on-blue` (white bg, blue text), `.btn-on-light` (blue border, blue text, hover invert).
-   - Tighten `.section-invert`: also force `.text-muted-foreground` and any `border-*` utility to white/22%.
-2. Sweep all routes + `src/components/site/*`:
-   - Replace hard-coded `text-white`, `text-black`, `text-foreground`, `text-muted-foreground` inside blue sections with reliance on `.section-invert` cascade (remove conflicting `text-*` classes).
-   - In light sections, add `.text-accent` to: eyebrows on key feature blocks, inline links, hover state of headlines/CTAs, key emphasized words (italics in manifesto/quietline).
-   - Normalize all CTAs (`Link`/`button` styled as pill/arrow) to the 3 button utilities above. Remove ad-hoc `bg-foreground text-background` button styles.
-3. Hairlines/dividers inside blue sections → white/22%; in dark sections already handled; in light sections → keep neutral but switch decorative accent rules to blue.
+**Article thumbnails (subject inferred from slug)**
+| File | Subject |
+|---|---|
+| `article-100model` | Architectural model / scale models on a desk under warm lamp |
+| `article-carnival` | Trinidad carnival detail — costume feathers in soft light, not crowd shot |
+| `article-cern` | Long industrial corridor, warm sodium light (CERN-feel without logos) |
+| `article-datacenter` | Server-room aisle softened by warm grade, single figure silhouette |
+| `article-divine` | Sunlit cathedral interior or stained glass casting amber light |
+| `article-fabric` | Folded textile / loom detail in golden light |
+| `article-failure` | Cracked plaster wall or torn page, single shaft of light |
+| `article-gravity` | Long-exposure of falling water or pendulum, warm tone |
+| `article-shelf` | Wall of books, spines glowing in lamp light |
+| `article-shield` | Weathered metal / armor detail or barred window, warm rust tones |
 
-## Pages touched
-`index.tsx`, `about.tsx`, `omeros-ai.tsx`, `education-for-liberty.tsx`, `writing.index.tsx`, `writing.$slug.tsx`, `gallery.tsx`, `podcast.tsx`, `ecology.tsx`, `inequality.tsx`, `palimpsest.tsx`, `contact.tsx`, plus shared `SiteNav`, `FloatingBottomNav`, `MobileTopBar`, `SiteFooter`, `Newsletter`, `BookSection`, `FeaturedStack`, `InstagramGrid`, `PageHero`, `ContactDrawer`.
+(I'll confirm each slug against `src/content/articles.ts` before fetching so the image matches what the article actually argues.)
 
-## Verification
-- TypeScript check after edits.
-- Walk each route in preview at 1075px and full-page screenshot, visually confirm: (a) image tone matches its section, (b) no grey/black text inside blue sections, (c) CTAs follow the 3-variant system, (d) inline accents are present where called for.
+## Execution steps
+1. Read `src/content/articles.ts` to verify article topics match my subject map; adjust any mismatches.
+2. Fetch real candidates from Unsplash CDN for the ~10–12 images where stock works cleanly.
+3. AI-generate the remaining 4–6 with a single locked prompt suffix (palette + grain + framing).
+4. Run all 16 through one ImageMagick warm-grade + grain pass so they're tonally identical.
+5. Save over the existing filenames in `src/assets/` — no code changes needed since all imports stay the same.
+6. Spot-check three key pages in the preview (`/`, `/writing`, `/education-for-liberty`) and confirm tiles read cohesively.
 
-## Notes / trade-offs
-- AI regeneration of ~28 images will consume credits and take several minutes. If any prompt is rejected (e.g. likeness for portraits), I'll fall back to a CSS duotone overlay for those specific images and flag them.
-- Article thumb prompts will be derived from each article's title/slug for thematic relevance, not just palette.
+## Trade-offs / notes
+- Heroes are **not** in this pass per your scope checklist. If after the tiles+articles land the heroes look out-of-family, I'll come back and propose a second pass for them.
+- Without stock API keys I'm hand-picking Unsplash photo IDs rather than search-querying — that's slower per image but produces a more curated set than algorithmic search would.
+- AI generation will use Lovable AI credits (~4–6 images at `gpt-image-2` low quality).
+- The final grade pass makes stock and AI indistinguishable in tone, which is the whole point of the cohesion ask.
