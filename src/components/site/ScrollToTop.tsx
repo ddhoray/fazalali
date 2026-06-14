@@ -1,17 +1,20 @@
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import { useRouterState } from "@tanstack/react-router";
 
+/**
+ * Ensures each route renders starting at the top of the page.
+ * Uses useLayoutEffect so the reset happens before the browser paints
+ * the new route — no visible scroll animation, no flash at the previous
+ * scroll position.
+ */
 export function ScrollToTop() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
-  useEffect(() => {
-    // Defer to next frame so the new route has rendered.
-    const id = requestAnimationFrame(() => {
-      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
-    });
-    return () => cancelAnimationFrame(id);
+  useLayoutEffect(() => {
+    if (typeof window === "undefined") return;
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
   }, [pathname]);
 
   return null;
