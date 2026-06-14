@@ -138,7 +138,7 @@ function Hero() {
           {/* Fixed image — does NOT scale or move with scroll */}
           <img
             src={heroImage}
-            alt="A classical marble bust in warm museum light — symbolizing critical theory and humanist reading of AI"
+            alt="Trinidad shoreline — waves rolling onto a forested Caribbean beach"
             className="absolute inset-0 size-full object-cover"
             width={1920}
             height={1280}
