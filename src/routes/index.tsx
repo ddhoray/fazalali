@@ -14,7 +14,8 @@ import { InstagramGrid } from "@/components/site/InstagramGrid";
 import { Newsletter } from "@/components/site/Newsletter";
 import { articles } from "@/content/articles";
 import portrait from "@/assets/fazal-cutout.png";
-import heroImage from "@/assets/hero-statue.jpg";
+import heroBeachAsset from "@/assets/hero-beach.jpg.asset.json";
+const heroImage = heroBeachAsset.url;
 import fiaLogo from "@/assets/brand-omeros-lockup-transparent.png";
 import featuredEducation from "@/assets/featured-education.jpg";
 import featuredOmeros from "@/assets/featured-omeros.jpg";
@@ -137,7 +138,7 @@ function Hero() {
           {/* Fixed image — does NOT scale or move with scroll */}
           <img
             src={heroImage}
-            alt="A classical marble bust in warm museum light — symbolizing critical theory and humanist reading of AI"
+            alt="Trinidad shoreline — waves rolling onto a forested Caribbean beach"
             className="absolute inset-0 size-full object-cover"
             width={1920}
             height={1280}
