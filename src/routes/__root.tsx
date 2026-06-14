@@ -19,6 +19,7 @@ import { ContactDrawer } from "../components/site/ContactDrawer";
 import { FloatingBottomNav } from "../components/site/FloatingBottomNav";
 import { MobileTopBar } from "../components/site/MobileTopBar";
 import { SplashScreen } from "../components/site/SplashScreen";
+import { ScrollToTop } from "../components/site/ScrollToTop";
 
 
 
@@ -186,6 +187,8 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <SplashScreen />
       <SmoothScroll />
+      <ScrollToTop />
+      
       
       <main>
         <PageTransition>
