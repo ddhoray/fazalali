@@ -1,5 +1,6 @@
 import prefaceAudio from "@/assets/preface.mp3.asset.json";
 import prolegomenonAudio from "@/assets/prolegomenon.mp3.asset.json";
+import { assetUrl } from "@/lib/asset-url";
 
 export interface Episode {
   slug: string;
