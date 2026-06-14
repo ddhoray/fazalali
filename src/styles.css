@@ -34,39 +34,7 @@
   --color-ring: var(--foreground);
 
   --font-display: "Bodoni Moda", "Times New Roman", serif;
-  --font-sans: "Coco Gothic", "Inter", "Geist", ui-sans-serif, system-ui, sans-serif;
-}
-
-/* Coco Gothic trial webfont is missing digits, @, &, and many symbols — they
-   render as tofu boxes. Restrict the trial font to letters/spaces only via
-   unicode-range overrides so missing glyphs fall back to Inter cleanly. */
-@font-face {
-  font-family: "Coco Gothic";
-  font-style: normal;
-  font-weight: 400;
-  src: local("Coco Gothic"), url("https://fonts.cdnfonts.com/s/18222/Coco-Gothic-Regular-trial.woff") format("woff");
-  unicode-range: U+0041-005A, U+0061-007A, U+00C0-00FF, U+0020;
-}
-@font-face {
-  font-family: "Coco Gothic";
-  font-style: italic;
-  font-weight: 400;
-  src: local("Coco Gothic"), url("https://fonts.cdnfonts.com/s/18222/Coco-Gothic-Italic-trial.woff") format("woff");
-  unicode-range: U+0041-005A, U+0061-007A, U+00C0-00FF, U+0020;
-}
-@font-face {
-  font-family: "Coco Gothic";
-  font-style: normal;
-  font-weight: 500;
-  src: local("Coco Gothic"), url("https://fonts.cdnfonts.com/s/18222/Coco-Gothic-Bold-trial.woff") format("woff");
-  unicode-range: U+0041-005A, U+0061-007A, U+00C0-00FF, U+0020;
-}
-@font-face {
-  font-family: "Coco Gothic";
-  font-style: normal;
-  font-weight: 700;
-  src: local("Coco Gothic"), url("https://fonts.cdnfonts.com/s/18222/Coco-Gothic-Bold-trial.woff") format("woff");
-  unicode-range: U+0041-005A, U+0061-007A, U+00C0-00FF, U+0020;
+  --font-sans: "Inter", "Geist", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
