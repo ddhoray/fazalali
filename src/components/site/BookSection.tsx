@@ -3,7 +3,8 @@ import { motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import { BlurReveal, SlideIn } from "@/components/site/BlurReveal";
 import bookCoverAsset from "@/assets/book-education-for-liberty-cover.png.asset.json";
-const bookCover = bookCoverAsset.url;
+import { assetUrl } from "@/lib/asset-url";
+const bookCover = assetUrl(bookCoverAsset);
 
 /**
  * Dedicated book section — appears on the home page above the journal block.

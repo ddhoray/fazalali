@@ -5,7 +5,8 @@ import { Flipbook } from "@/components/site/Flipbook";
 
 import { ArrowUpRight, Download, ShoppingCart } from "lucide-react";
 import bookCoverAsset from "@/assets/book-education-for-liberty-cover.png.asset.json";
-const heroBook = bookCoverAsset.url;
+import { assetUrl } from "@/lib/asset-url";
+const heroBook = assetUrl(bookCoverAsset);
 
 export const Route = createFileRoute("/education-for-liberty")({
   head: () => ({

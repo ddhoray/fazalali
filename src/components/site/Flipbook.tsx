@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type ComponentType } from "react";
 import { ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 import pdfAsset from "@/assets/EducationforLiberty.pdf.asset.json";
+import { assetUrl } from "@/lib/asset-url";
 
 interface FlipbookProps {
   file?: string;
@@ -12,7 +13,7 @@ type PdfViewerModules = {
   HTMLFlipBook: ComponentType<any>;
 };
 
-const PDF_FILE_DEFAULT = pdfAsset.url;
+const PDF_FILE_DEFAULT = assetUrl(pdfAsset);
 const RENDER_RADIUS = 3;
 
 /**
