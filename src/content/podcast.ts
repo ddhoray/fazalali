@@ -21,7 +21,7 @@ export const episodes: Episode[] = [
     description:
       "A prolegomenon to a body of work that argues liberty is the medium of education, not its outcome. Fazal Ali sets out the West Indian conditions that make the case both urgent and original.",
     duration: "33:10",
-    audio: prolegomenonAudio.url,
+    audio: assetUrl(prolegomenonAudio),
   },
   {
     slug: "episode-one-preface",
