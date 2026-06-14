@@ -3,6 +3,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
 import { ArrowUpRight } from "lucide-react";
 import { openContactDrawer } from "@/components/site/ContactDrawer";
+import fazalPortrait from "@/assets/fazal-portrait.jpg";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
