@@ -13,7 +13,7 @@ type PdfViewerModules = {
   HTMLFlipBook: ComponentType<any>;
 };
 
-const PDF_FILE_DEFAULT = pdfAsset.url;
+const PDF_FILE_DEFAULT = assetUrl(pdfAsset);
 const RENDER_RADIUS = 3;
 
 /**
