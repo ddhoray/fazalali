@@ -15,7 +15,9 @@ import { Newsletter } from "@/components/site/Newsletter";
 import { articles } from "@/content/articles";
 import portrait from "@/assets/fazal-cutout.png";
 import heroBeachAsset from "@/assets/hero-beach.jpg.asset.json";
+import heroVideoAsset from "@/assets/hero-loop.mp4.asset.json";
 const heroImage = heroBeachAsset.url;
+const heroVideo = heroVideoAsset.url;
 import fiaLogo from "@/assets/brand-omeros-lockup-transparent.png";
 import featuredEducation from "@/assets/featured-education.jpg";
 import featuredOmeros from "@/assets/featured-omeros.jpg";
@@ -135,15 +137,18 @@ function Hero() {
           style={{ width, height, borderRadius: radius }}
           className="relative overflow-hidden bg-neutral-900"
         >
-          {/* Fixed image — does NOT scale or move with scroll */}
-          <img
-            src={heroImage}
-            alt="Trinidad shoreline — waves rolling onto a forested Caribbean beach"
+          {/* Fixed background video — does NOT scale or move with scroll */}
+          <video
+            src={heroVideo}
+            poster={heroImage}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
             className="absolute inset-0 size-full object-cover"
-            width={1920}
-            height={1280}
-            fetchPriority="high"
           />
+
           <motion.div
             style={{ opacity: heroOverlayOpacity }}
             className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-black/10"
