@@ -73,7 +73,7 @@ function AboutPage() {
             <div className="relative">
               <div className="absolute -inset-3 border hairline" />
               <img
-                src="https://fazalali.com/wp-content/uploads/2025/10/Fazal-Ali-Profile-2025.jpeg"
+                src={fazalPortrait}
                 alt="Dr. Fazal Ibrahim Ali"
                 className="relative aspect-[4/5] w-full object-cover"
                 loading="lazy"
