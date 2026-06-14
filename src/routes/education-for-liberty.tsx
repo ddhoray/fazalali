@@ -4,7 +4,8 @@ import { PageHero } from "@/components/site/PageHero";
 import { Flipbook } from "@/components/site/Flipbook";
 
 import { ArrowUpRight, Download, ShoppingCart } from "lucide-react";
-import heroBook from "@/assets/hero-book.jpg";
+import bookCoverAsset from "@/assets/book-education-for-liberty-cover.png.asset.json";
+const heroBook = bookCoverAsset.url;
 
 export const Route = createFileRoute("/education-for-liberty")({
   head: () => ({
