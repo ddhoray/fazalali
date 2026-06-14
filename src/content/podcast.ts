@@ -31,6 +31,6 @@ export const episodes: Episode[] = [
     description:
       "The opening note. Why this book exists, who it is for, and what it owes to Amartya Sen, John Rawls, and a Trinidad classroom that taught the author to keep asking.",
     duration: "33:58",
-    audio: prefaceAudio.url,
+    audio: assetUrl(prefaceAudio),
   },
 ];
