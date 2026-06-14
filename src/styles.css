@@ -305,9 +305,41 @@
   }
   .btn-on-blue:hover { background-color: transparent; color: #ffffff; border-color: #ffffff; }
   .section-invert .btn-primary,
-  .section-invert .btn-on-light { background-color: #ffffff !important; color: var(--accent-cool) !important; border-color: #ffffff !important; }
+  .section-invert .btn-on-light,
+  .section-invert .btn-on-blue { background-color: #ffffff !important; color: var(--accent-cool) !important; border-color: #ffffff !important; }
   .section-invert .btn-primary:hover,
-  .section-invert .btn-on-light:hover { background-color: transparent !important; color: #ffffff !important; }
+  .section-invert .btn-on-light:hover,
+  .section-invert .btn-on-blue:hover { background-color: transparent !important; color: #ffffff !important; border-color: #ffffff !important; }
+
+  /* Guarantee CTA text contrast regardless of parent context.
+     White-bg CTAs always render blue text; blue-bg CTAs always render white text.
+     These rules outrank the universal `.section-invert *` / `.section-dark *` color overrides. */
+  .btn-on-blue,
+  .btn-on-light,
+  .section-invert .btn-on-blue,
+  .section-invert .btn-on-light,
+  .section-dark .btn-on-blue,
+  .section-dark .btn-on-light {
+    color: var(--accent-cool) !important;
+  }
+  .btn-on-blue:hover,
+  .section-invert .btn-on-blue:hover,
+  .section-dark .btn-on-blue:hover {
+    color: #ffffff !important;
+  }
+  .btn-on-light:hover,
+  .section-invert .btn-on-light:hover,
+  .section-dark .btn-on-light:hover {
+    color: #ffffff !important;
+  }
+  .btn-primary {
+    color: #ffffff !important;
+  }
+  .btn-primary:hover {
+    color: var(--accent-cool) !important;
+  }
+  /* Children of CTAs (icons, spans) inherit the button's intended color */
+  .btn-cta * { color: inherit !important; }
 }
 
 /* Lenis */
