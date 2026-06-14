@@ -1,4 +1,5 @@
 import prefaceAudio from "@/assets/preface.mp3.asset.json";
+import prolegomenonAudio from "@/assets/prolegomenon.mp3.asset.json";
 
 export interface Episode {
   slug: string;
@@ -19,8 +20,7 @@ export const episodes: Episode[] = [
     description:
       "A prolegomenon to a body of work that argues liberty is the medium of education, not its outcome. Fazal Ali sets out the West Indian conditions that make the case both urgent and original.",
     duration: "33:10",
-    audio:
-      "https://fazalali.com/wp-content/uploads/2017/08/Education-for-Liberty_A-Monograph-by-Fazal-Ali_EPISODE-TWO-Prelogomenon.mp3",
+    audio: prolegomenonAudio.url,
   },
   {
     slug: "episode-one-preface",
