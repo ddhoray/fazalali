@@ -21,7 +21,6 @@ export const palimpsest: PalimpsestSection[] = [
     image: u("1532153975070-2e9ab71f1b14"),
     imageAlt: "An old illuminated manuscript open on a dark surface",
     imageCaption: "Manuscript culture — the medieval foundation of the university.",
-    title: "Prelude — The Old World",
     entries: [
       { text: "The University of Oxford. No clear date of foundation, but teaching commenced in some form in 1096 and developed rapidly from 1167 onwards when Henry II banned English students from attending the University of Paris." },
       { text: "The University of Cambridge was established in 1209 and given royal charter status by King Henry III in 1231." },
@@ -38,6 +37,9 @@ export const palimpsest: PalimpsestSection[] = [
   {
     id: "los-reyes",
     title: "Los Reyes Católicos",
+    image: u("1524661135-423995f22d0b"),
+    imageAlt: "An antique world map with a brass compass",
+    imageCaption: "The cartography of conquest — Spain looks west across the Atlantic.",
     entries: [
       { text: "1498 — First Peoples in Trinidad encounter the Italian Navigator Christopher Columbus on a voyage sponsored by Isabel I de Castilla and Ferdinand II of Aragon of Spain." },
       { text: "Leonardo da Vinci completes 'The Last Supper' in 1498. 1502 — University of Wittemberg established. 1504 — Raphael completes 'Marriage of the Virgin'. 1520 — Magellan circumnavigates the globe." },
@@ -57,6 +59,9 @@ export const palimpsest: PalimpsestSection[] = [
   {
     id: "george-victoria",
     title: "1797–1834 — George III & Queen Victoria",
+    image: u("1518604666860-9ed391f76460"),
+    imageAlt: "Sugar cane fields under tropical sun — the plantation economy",
+    imageCaption: "Plantation economy under British rule — cane, census, and Cabildo.",
     entries: [
       { text: "Governor Abercromby, 1797–1802." },
       { text: "Governor Picton, 1802–1813. The Spanish Cabildo form of Government remains intact. Population speaking French patois, Spanish and other languages. Pre-Dawn Slave Schools introduced." },
@@ -70,6 +75,9 @@ export const palimpsest: PalimpsestSection[] = [
   {
     id: "morton",
     title: "1845–1868 — Rev John Morton",
+    image: u("1503676260728-1c00da094a0b"),
+    imageAlt: "A row of empty wooden school desks in a quiet classroom",
+    imageCaption: "Mission schools open to children the state had not yet counted.",
     entries: [
       { text: "Rev John Morton intervenes to educate the newly arrived indentured labouring class from India." },
       { text: "1853 — Church of England Grammar School. 1859 — Queen's Collegiate School, founded on an Eton/Harrow/Winchester model — instruction described as 'classical education' with early, vigorous training in Latin and Greek. Religion forbidden from the curriculum." },
@@ -79,6 +87,9 @@ export const palimpsest: PalimpsestSection[] = [
   {
     id: "gordon-gladstone",
     title: "1870 — Gordon–Gladstone Dual System of Control",
+    image: u("1580582932707-520aed937b7b"),
+    imageAlt: "A dark chalkboard with faint chalk marks",
+    imageCaption: "Two systems, one chalkboard — church and state share the syllabus.",
     entries: [
       { text: "Governor Gordon, following William Gladstone and the findings of the Keenan Inquiry of 1869, introduced a system by which government-controlled and denominational schools would receive aid and compete on specific terms for government grants." },
       { text: "1875 — System adjusted to make it easier for denominational schools to get grants. 1890 — Government to establish schools only where the church could not or would not. 1901–1902 — Fees abolished, increasing government funding burden; building and apparatus grants to existing denominational schools discontinued." },
@@ -88,6 +99,9 @@ export const palimpsest: PalimpsestSection[] = [
   {
     id: "icta",
     title: "1921 — Sir Francis Watts and the ICTA",
+    image: u("1599898536248-1a8d2dca1f1a"),
+    imageAlt: "Cocoa pods on a cacao tree in a tropical plantation",
+    imageCaption: "Cacao on the wane — the agricultural college arrives in its place.",
     entries: [
       { text: "After cacao production declined in 1921, the Old Yaws Hospital was selected as the first site for the Imperial College of Tropical Agriculture (ICTA) in Trinidad — the first tertiary site of learning on the island." },
       { text: "ICTA was a school for the British Empire, not Trinidad and Tobago. It granted no degrees. It guarded its imperial character. It failed to be a university — a bastion of English civilisation in a colony tightly controlled from England, unlikely to be reformed into a University for the West Indies." },
@@ -97,6 +111,9 @@ export const palimpsest: PalimpsestSection[] = [
   {
     id: "ucwi",
     title: "1943 — University College of the West Indies",
+    image: u("1607237138185-eedd9c632b0b"),
+    imageAlt: "A grand university hall with arched windows",
+    imageCaption: "A wartime camp in Jamaica turned into the region's first university.",
     entries: [
       { text: "The Asquith Commission of Vice Chancellors was appointed to 'consider the principles which should guide the promotion of higher education, learning and research… in the colonies.'" },
       { text: "In 1943 there were about 20 East Indian students at McGill University in Canada. In 1945 eight Chinese boys departed to study in England. In 1948 it was reported that 77 graduates of Naparima College were at universities abroad." },
@@ -106,6 +123,9 @@ export const palimpsest: PalimpsestSection[] = [
   {
     id: "uwi-staug",
     title: "1960 — UWI, St. Augustine",
+    image: u("1562774053-701939374585"),
+    imageAlt: "A modern university campus quadrangle under blue sky",
+    imageCaption: "A college and an agricultural institute merge into a tropical campus.",
     entries: [
       { text: "St Augustine campus of the University of the West Indies was born out of a merger between the University College and the Imperial College of Tropical Agriculture (ICTA). Affiliated with the University of London until 1962, when it became the University of the West Indies." },
     ],
@@ -113,6 +133,9 @@ export const palimpsest: PalimpsestSection[] = [
   {
     id: "lewis-williams",
     title: "1962 — Lewis–Williams: Education for Industrialisation",
+    image: u("1518709268805-4e9042af2176"),
+    imageAlt: "Industrial refinery towers at dusk",
+    imageCaption: "Independence economics — schools recast as engines of industry.",
     entries: [
       { text: "Trinidad and Tobago becomes Independent. The West Indian Federation collapses. Drafting of the Gurr 1967–1983 Education Plan commences." },
       { text: "Under Williams, a multi-faculty university campus emerged in Trinidad between 1960 and 1963: agriculture, engineering, arts and sciences." },
@@ -122,6 +145,9 @@ export const palimpsest: PalimpsestSection[] = [
   {
     id: "jfk-mthope",
     title: "1969 / 1979 — Eric Williams, JFK Library and Mt Hope",
+    image: u("1568667256549-094345857637"),
+    imageAlt: "A modern academic library with rows of bookshelves",
+    imageCaption: "A library, a Nobel laureate, a medical complex — sovereignty in brick.",
     entries: [
       { text: "1969 — The JFK quadrangle, along with the JFK Library, was completed with funds from the government of the United States of America through the efforts of Prime Minister Eric Williams." },
       { text: "1979 — Sir Arthur Lewis receives the Nobel Prize in Economics. Dr Eric Williams devised the medical sciences complex at Mt Hope — medical, dental, veterinary, pharmacy and advanced nursing education on a single site." },
