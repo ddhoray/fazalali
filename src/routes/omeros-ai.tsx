@@ -106,15 +106,21 @@ function OmerosPage() {
         </Reveal>
       </section>
 
-      {/* Tenets — numbered editorial list */}
+      {/* Principles — what this site is, and is not */}
       <section data-nav="dark" className="section-invert">
         <div className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8 sm:py-10">
           <Reveal>
-            <p className="eyebrow text-white/55">Tenets</p>
+            <p className="eyebrow text-white/55">What Omeros is</p>
             <h2 className="mt-5 font-display text-4xl md:text-7xl">
-              Six rules of the <em className="italic">house.</em>
+              Six principles behind the writing.
             </h2>
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/65 md:text-lg">
+              A short guide to how Fazal works — what this site publishes, what
+              it doesn't, and the values that shape every essay, book and
+              episode you'll find here.
+            </p>
           </Reveal>
+
           <div className="mt-16 grid gap-px bg-white/15 md:grid-cols-2 lg:grid-cols-3">
             {tenets.map((t, i) => (
               <Reveal key={t.k} delay={i * 0.04}>
