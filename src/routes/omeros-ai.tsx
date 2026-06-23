@@ -29,40 +29,67 @@ export const Route = createFileRoute("/omeros-ai")({
 });
 
 const tenets = [
-  { k: "01", t: "Critical, not technical", b: "The work is theory. It interrogates AI rather than ships it. There are enough builders." },
-  { k: "02", t: "From the islands", b: "The West Indies has always read empires from below. AI is another empire. The reading transfers." },
-  { k: "03", t: "Slow writing", b: "A weekly journal, deliberately small, deliberately patient. The model is correspondence, not the feed." },
-  { k: "04", t: "Books over posts", b: "The argument that matters happens at book length. Education for Liberty is the first. There will be more." },
-  { k: "05", t: "Art is part of it", b: "Carnival, drone footage, photography, music — all signal. AI doesn't get to draw the boundary." },
-  { k: "06", t: "Braver, now", b: "The new identity is more adventurous. Less polite. Still careful. There is a tone shift, on purpose." },
+  {
+    k: "01",
+    t: "Writing, not building",
+    b: "This site publishes ideas about AI. It does not sell software, chips, or services. The work is to think clearly in public.",
+  },
+  {
+    k: "02",
+    t: "A Caribbean point of view",
+    b: "Fazal writes from Trinidad. The West Indies has long experience reading powerful systems from the outside — that lens is brought to AI.",
+  },
+  {
+    k: "03",
+    t: "Plain language",
+    b: "No jargon, no hype, no doom. Each essay aims to leave the reader more literate about AI than when they arrived.",
+  },
+  {
+    k: "04",
+    t: "Books matter most",
+    b: "Long-form arguments live in books. Education for Liberty is the first. Essays and the podcast lead readers toward them.",
+  },
+  {
+    k: "05",
+    t: "Art counts as thinking",
+    b: "Photography, music, carnival, film — culture is part of how we understand technology, not a decoration on the side.",
+  },
+  {
+    k: "06",
+    t: "Slow and steady",
+    b: "A weekly rhythm, not a daily feed. Fewer pieces, written with care, meant to be read more than once.",
+  },
 ];
 
 function OmerosPage() {
   return (
     <div>
       <PageHero
-        eyebrow="Brand identity"
-        title={<>Omeros <em className="italic">AI.</em></>}
+        eyebrow="The name"
+        title={<>Omeros<span className="italic">.</span></>}
         standfirst={
           <>
-            A name borrowed from Derek Walcott's epic. A practice of writing on
-            artificial intelligence that refuses the industry's two default
+            <em>Omeros</em> is the Greek name for Homer — the poet of the sea,
+            of journeys, of voices passed from one generation to the next. It
+            is the name Fazal Ali gives to his writing on artificial
+            intelligence: a practice that refuses the industry's two default
             registers — boosterism and panic — and tries for a third:{" "}
             <em>literacy.</em>
           </>
         }
         meta={
           <>
-            <span>Critical theory · AI</span>
+            <span>Writing on AI</span>
             <span className="size-1 bg-white/40" />
-            <span>Six tenets</span>
+            <span>Six principles</span>
             <span className="size-1 bg-white/40" />
-            <span>Est. Trinidad</span>
+            <span>From Trinidad</span>
           </>
         }
         image={heroOmeros}
-        imageAlt="Light shafts through a Caribbean canopy"
+        imageAlt="Open sea at first light — the world Homer sang"
       />
+
 
       {/* Manifesto quote */}
       <section className="mx-auto max-w-[1400px] px-5 py-12 sm:px-8 sm:py-10">
@@ -79,15 +106,21 @@ function OmerosPage() {
         </Reveal>
       </section>
 
-      {/* Tenets — numbered editorial list */}
+      {/* Principles — what this site is, and is not */}
       <section data-nav="dark" className="section-invert">
         <div className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8 sm:py-10">
           <Reveal>
-            <p className="eyebrow text-white/55">Tenets</p>
+            <p className="eyebrow text-white/55">What Omeros is</p>
             <h2 className="mt-5 font-display text-4xl md:text-7xl">
-              Six rules of the <em className="italic">house.</em>
+              Six principles behind the writing.
             </h2>
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/65 md:text-lg">
+              A short guide to how Fazal works — what this site publishes, what
+              it doesn't, and the values that shape every essay, book and
+              episode you'll find here.
+            </p>
           </Reveal>
+
           <div className="mt-16 grid gap-px bg-white/15 md:grid-cols-2 lg:grid-cols-3">
             {tenets.map((t, i) => (
               <Reveal key={t.k} delay={i * 0.04}>
