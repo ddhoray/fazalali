@@ -51,7 +51,7 @@
   --card-foreground: var(--foreground);
 
   /* Hairlines — near neutral, no sepia */
-  --border: color-mix(in oklab, oklch(0.20 0.010 60) 16%, transparent);
+  --border: color-mix(in oklab, oklch(0.20 0.010 250) 16%, transparent);
 
   /* Accent — Omeros sand-dollar blue, used for links/CTAs */
   --accent-cool: #024bcc;
