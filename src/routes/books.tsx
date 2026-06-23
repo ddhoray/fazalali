@@ -184,13 +184,15 @@ function BooksPage() {
                     <span className="eyebrow">{b.year}</span>
                   </div>
                   <div
-                    aria-hidden
-                    className="aspect-[3/4] w-full border hairline bg-[oklch(0.96_0.008_240)]"
-                    style={{
-                      backgroundImage:
-                        "linear-gradient(140deg, oklch(0.97 0.01 240) 0%, oklch(0.92 0.02 240) 100%)",
-                    }}
-                  />
+                    className="aspect-[3/4] w-full overflow-hidden border hairline bg-foreground/5"
+                  >
+                    <img
+                      src={b.image}
+                      alt={b.imageAlt}
+                      loading="lazy"
+                      className="size-full object-cover transition-transform duration-[1200ms] ease-out hover:scale-[1.04]"
+                    />
+                  </div>
                   <div>
                     <h3 className="font-display text-2xl leading-tight md:text-3xl">
                       {b.title}
