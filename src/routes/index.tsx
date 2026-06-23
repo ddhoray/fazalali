@@ -323,7 +323,7 @@ function Quietline() {
           Est. Trinidad, 1974
         </BlurReveal>
         <BlurReveal delay={0.1} className="text-center font-display text-xl italic md:text-2xl">
-          A small island, a long sentence, a slow machine.
+          This is the next world.
         </BlurReveal>
         <BlurReveal as="span" delay={0.2} className="eyebrow text-right text-muted-foreground">
           Issue 01 / Folio I
