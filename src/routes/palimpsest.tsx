@@ -91,6 +91,23 @@ function PalimpsestPage() {
                       {s.title}
                     </h2>
                   </div>
+
+                  <figure className="mt-10 overflow-hidden bg-foreground/5">
+                    <div className="relative aspect-[16/9] w-full overflow-hidden">
+                      <img
+                        src={s.image}
+                        alt={s.imageAlt}
+                        loading="lazy"
+                        className="size-full object-cover transition-transform duration-[1200ms] ease-out hover:scale-[1.03]"
+                      />
+                    </div>
+                    {s.imageCaption ? (
+                      <figcaption className="mt-3 text-xs italic text-muted-foreground">
+                        {s.imageCaption}
+                      </figcaption>
+                    ) : null}
+                  </figure>
+
                   <ol className="mt-10 space-y-8">
                     {s.entries.map((e, ei) => (
                       <li key={ei} className="grid gap-4 md:grid-cols-[40px_1fr]">
