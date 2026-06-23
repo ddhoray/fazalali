@@ -745,7 +745,7 @@ const range = [
 ];
 
 
-const rangeImages = [practiceEssays, practiceBook, practiceOmeros, featuredWriting];
+const rangeImages = [practiceEssays, practiceBook, practiceOmeros, practiceWestIndies];
 
 function Range() {
   const navigate = useNavigate();
