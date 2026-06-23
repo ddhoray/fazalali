@@ -36,7 +36,7 @@ export function PageHero({
   return (
     <section
       className={cn(
-        "relative isolate w-full overflow-hidden bg-[oklch(0.985_0.005_85)]",
+        "relative isolate w-full overflow-hidden bg-[oklch(0.98_0.004_250)]",
         className,
       )}
     >
