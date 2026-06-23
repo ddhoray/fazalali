@@ -5,8 +5,14 @@ export interface PalimpsestEntry {
 export interface PalimpsestSection {
   id: string;
   title: string;
+  image: string;
+  imageAlt: string;
+  imageCaption?: string;
   entries: PalimpsestEntry[];
 }
+
+const u = (id: string) =>
+  `https://images.unsplash.com/photo-${id}?w=1600&q=80&auto=format&fit=crop`;
 
 export const palimpsest: PalimpsestSection[] = [
   {
