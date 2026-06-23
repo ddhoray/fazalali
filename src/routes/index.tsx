@@ -270,7 +270,7 @@ function Hero() {
           <motion.div
             style={{ opacity: logoOpacity, y: logoY }}
             initial={{ opacity: 0 }}
-            className="pointer-events-none absolute inset-x-0 top-6 z-20 hidden justify-center sm:top-10 lg:flex"
+            className="pointer-events-none absolute inset-x-0 top-6 z-20 hidden justify-center opacity-0 sm:top-10 lg:flex"
           >
             <img
               src={fiaLogo}
@@ -283,7 +283,7 @@ function Hero() {
           <motion.div
             style={{ opacity: titleOpacity, y: titleY }}
             initial={{ opacity: 0 }}
-            className="text-on-image absolute inset-0 z-10 flex flex-col justify-between px-6 pt-28 pb-12 text-white sm:px-12 sm:pt-32 sm:pb-16"
+            className="text-on-image absolute inset-0 z-10 flex flex-col justify-between px-6 pt-28 pb-12 text-white opacity-0 sm:px-12 sm:pt-32 sm:pb-16"
           >
             <p className="eyebrow opacity-85">
               Omeros AI · Trinidad &amp; the World
