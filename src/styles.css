@@ -145,7 +145,7 @@
   }
 
 
-  .hairline { border-color: color-mix(in oklab, oklch(0.20 0.010 60) 16%, transparent); }
+  .hairline { border-color: color-mix(in oklab, oklch(0.20 0.010 250) 16%, transparent); }
 
   .text-balance { text-wrap: balance; }
   .text-pretty { text-wrap: pretty; }
