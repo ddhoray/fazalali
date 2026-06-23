@@ -23,6 +23,7 @@ import featuredWriting from "@/assets/featured-writing.jpg";
 import practiceEssays from "@/assets/practice-essays.jpg";
 import practiceBook from "@/assets/practice-book.jpg";
 import practiceOmeros from "@/assets/practice-omeros.jpg";
+import practiceWestIndies from "@/assets/practice-westindies.jpg";
 import heroDesk from "@/assets/hero-desk.jpg";
 
 function formatArticleDate(date: string) {
