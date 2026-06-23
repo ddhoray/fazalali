@@ -18,6 +18,10 @@ export const palimpsest: PalimpsestSection[] = [
   {
     id: "prelude",
     title: "Prelude — The Old World",
+    image: u("1532153975070-2e9ab71f1b14"),
+    imageAlt: "An old illuminated manuscript open on a dark surface",
+    imageCaption: "Manuscript culture — the medieval foundation of the university.",
+    title: "Prelude — The Old World",
     entries: [
       { text: "The University of Oxford. No clear date of foundation, but teaching commenced in some form in 1096 and developed rapidly from 1167 onwards when Henry II banned English students from attending the University of Paris." },
       { text: "The University of Cambridge was established in 1209 and given royal charter status by King Henry III in 1231." },
