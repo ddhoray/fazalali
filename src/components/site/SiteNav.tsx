@@ -21,8 +21,6 @@ export function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [overDark, setOverDark] = useState(false);
-  const [eflOpen, setEflOpen] = useState(false);
-  const [eflOpenMobile, setEflOpenMobile] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const isHome = pathname === "/";
 
