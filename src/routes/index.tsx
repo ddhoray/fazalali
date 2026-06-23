@@ -334,37 +334,7 @@ function Quietline() {
   );
 }
 
-/* ─────────────────────── Featured (sticky image, scrolling frames) ─────────────────────── */
-
-const featured = [
-  {
-    eyebrow: "(I) The Book",
-    title: "Education for Liberty",
-    year: "2026",
-    note: "A small book about what a child needs to learn so the next machine becomes a freedom, not a fence.",
-    image: featuredEducation,
-    icon: BookOpen,
-    to: "/education-for-liberty",
-  },
-  {
-    eyebrow: "(II) The Identity",
-    title: "Omeros AI",
-    year: "Ongoing",
-    note: "A Caribbean reading of intelligence — named for Walcott, kept close to the sea.",
-    image: featuredOmeros,
-    icon: Sparkles,
-    to: "/omeros-ai",
-  },
-  {
-    eyebrow: "(III) The Journal",
-    title: "Selected Writing",
-    year: "2024 — 2026",
-    note: "Journal entries on critical theory, AI as social substrate, and the West Indies as a place that reads the world.",
-    image: featuredWriting,
-    icon: PenLine,
-    to: "/writing",
-  },
-];
+/* ─────────────────────── Featured — Omeros AI (single focus, scroll-driven) ─────────────────────── */
 
 function FeaturedSticky() {
   const ref = useRef<HTMLDivElement>(null);
@@ -373,189 +343,121 @@ function FeaturedSticky() {
     offset: ["start start", "end end"],
   });
 
-  const [active, setActive] = useState(0);
-  useEffect(() => {
-    return scrollYProgress.on("change", (p) => {
-      // Equal scroll window per slide; clamp p just under 1 to avoid overflow.
-      const clamped = Math.min(0.9999, Math.max(0, p));
-      const idx = Math.min(featured.length - 1, Math.floor(clamped * featured.length));
-      setActive(idx);
-    });
-  }, [scrollYProgress]);
+  // Image: subtle parallax + scale down as user scrolls past
+  const imgY = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
+  const imgScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.08, 1, 1.02]);
+  const overlayOpacity = useTransform(scrollYProgress, [0, 0.4, 1], [0.35, 0.55, 0.7]);
 
-  // Progress bar scaleY follows scroll (0 → 1)
+  // Sequenced text reveals
+  const eyebrowOpacity = useTransform(scrollYProgress, [0.02, 0.12], [0, 1]);
+  const eyebrowY = useTransform(scrollYProgress, [0.02, 0.12], ["18px", "0px"]);
+
+  const titleOpacity = useTransform(scrollYProgress, [0.08, 0.28], [0, 1]);
+  const titleY = useTransform(scrollYProgress, [0.08, 0.28], ["32px", "0px"]);
+
+  const bodyOpacity = useTransform(scrollYProgress, [0.28, 0.48], [0, 1]);
+  const bodyY = useTransform(scrollYProgress, [0.28, 0.48], ["24px", "0px"]);
+
+  const ctaOpacity = useTransform(scrollYProgress, [0.48, 0.68], [0, 1]);
+  const ctaY = useTransform(scrollYProgress, [0.48, 0.68], ["18px", "0px"]);
+
   const progressScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
     <section
       ref={ref}
       data-nav="dark"
-      className="section-invert relative"
-      style={{ height: `${featured.length * 110}vh` }}
+      className="section-invert relative h-[260vh]"
     >
-      <div className="section-invert sticky top-0 flex h-screen flex-col overflow-hidden">
+      <div className="sticky top-0 flex h-svh w-full items-center justify-center overflow-hidden bg-background">
+        {/* Pinned image with parallax */}
+        <motion.div
+          style={{ y: imgY, scale: imgScale }}
+          className="absolute inset-0 -z-0"
+        >
+          <img
+            src={featuredOmeros}
+            alt="Omeros AI — a Caribbean reading of intelligence"
+            className="size-full object-cover"
+            loading="lazy"
+          />
+        </motion.div>
 
-        {/* Mobile-only progress bar at the top */}
-        <div className="block h-px w-full bg-foreground/15 lg:hidden">
+        {/* Gradient overlay (deepens as text reveals) */}
+        <motion.div
+          style={{ opacity: overlayOpacity }}
+          className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/80"
+        />
+        <Grain />
+
+        {/* Vertical progress rail (desktop) */}
+        <div className="pointer-events-none absolute left-6 top-1/2 hidden h-40 w-px -translate-y-1/2 bg-white/20 lg:block">
           <motion.span
-            style={{ scaleX: progressScale, transformOrigin: "left" }}
-            className="block h-px w-full bg-foreground"
+            style={{ scaleY: progressScale, transformOrigin: "top" }}
+            className="absolute inset-0 block w-px bg-white"
           />
         </div>
 
-        <div className="mx-auto w-full max-w-[1700px] flex-1 px-5 pt-24 pb-6 sm:px-8 sm:pt-28 sm:pb-8 lg:pt-24">
-          <div className="mb-5 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-3">
-            <div>
-              <BlurReveal as="p" className="eyebrow text-muted-foreground">
-                Featured Work
-              </BlurReveal>
-              <BlurReveal
-                as="h2"
-                delay={0.08}
-                className="mt-2 font-display text-2xl leading-[1] sm:text-3xl md:text-4xl"
+        {/* Content */}
+        <div className="relative z-10 mx-auto w-full max-w-[1400px] px-6 text-on-image sm:px-10 lg:px-16">
+          <div className="flex flex-col items-start">
+            <motion.div
+              style={{ opacity: eyebrowOpacity, y: eyebrowY }}
+              className="flex items-center gap-3 text-white/85"
+            >
+              <Sparkles className="size-4" />
+              <span className="eyebrow">(Featured) — Identity</span>
+            </motion.div>
+
+            <motion.h2
+              style={{ opacity: titleOpacity, y: titleY }}
+              className="mt-6 font-display text-[14vw] leading-[0.92] tracking-[-0.04em] text-white sm:text-[11vw] md:text-[8.5vw] lg:text-[7.5vw]"
+            >
+              Omeros<span className="italic text-white/90">.</span>
+            </motion.h2>
+
+            <motion.p
+              style={{ opacity: bodyOpacity, y: bodyY }}
+              className="mt-8 max-w-xl text-base leading-relaxed text-white/85 sm:text-lg"
+            >
+              The Greek name for Homer — poet of the sea, of journeys, of voices
+              passed down. <em className="italic">Omeros</em> is the name Fazal Ali
+              gives to his writing on artificial intelligence: a slow, Caribbean
+              reading of a conversation that has moved too quickly, in too few
+              languages, from too few rooms.
+            </motion.p>
+
+            <motion.div
+              style={{ opacity: ctaOpacity, y: ctaY }}
+              className="mt-10 flex flex-wrap items-center gap-6"
+            >
+              <Link
+                to="/omeros-ai"
+                className="group inline-flex items-center gap-3 rounded-full bg-white px-7 py-4 text-sm font-medium tracking-wide text-black transition-all hover:bg-white/90 hover:shadow-[0_8px_30px_rgba(255,255,255,0.18)]"
+                aria-label="Enter Omeros AI"
               >
-                Three things, <em className="italic text-accent">in order.</em>
-              </BlurReveal>
-            </div>
-            <span className="nav-link text-muted-foreground">
-              {String(active + 1).padStart(2, "0")} / {String(featured.length).padStart(2, "0")}
-            </span>
-          </div>
-
-          <div className="grid h-[calc(100%-110px)] grid-cols-1 items-stretch gap-6 lg:grid-cols-12 lg:gap-10">
-            {/* Pinned image */}
-            <div className="lg:col-span-7">
-              <div className="relative h-full min-h-[260px] w-full overflow-hidden bg-foreground/5">
-                {featured.map((item, i) => (
-                  <motion.div
-                    key={item.title}
-                    initial={false}
-                    animate={{
-                      opacity: i === active ? 1 : 0,
-                      scale: i === active ? 1 : 1.04,
-                    }}
-                    transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                    style={{ zIndex: i === active ? 2 : 1 }}
-                    className="absolute inset-0"
-                  >
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="size-full object-cover"
-                      loading={i === 0 ? "eager" : "lazy"}
-                    />
-                  </motion.div>
-                ))}
-                <Grain />
-                <div className="absolute inset-x-0 bottom-0 z-10 flex items-center justify-between gap-3 bg-gradient-to-t from-black/70 to-transparent p-4 text-on-image md:p-6">
-                  <span className="nav-link text-[10px]">{featured[active].eyebrow}</span>
-                  <span className="nav-link text-[10px] truncate">{featured[active].year}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Desktop right column — progress + stacked items */}
-            <div className="relative hidden lg:col-span-5 lg:block">
-              <div className="absolute left-0 top-0 h-full w-px bg-foreground/15">
-                <motion.span
-                  style={{ scaleY: progressScale, transformOrigin: "top" }}
-                  className="absolute inset-0 block w-px bg-foreground"
-                />
-              </div>
-
-              <ul className="flex h-full flex-col justify-center gap-10 pl-8 pr-2 lg:gap-14">
-                {featured.map((item, i) => {
-                  const isActive = i === active;
-                  return (
-                    <motion.li
-                      key={item.title}
-                      initial={false}
-                      animate={{ opacity: isActive ? 1 : 0.35 }}
-                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                      className="block"
-                    >
-                      <div className="mb-1 flex items-center gap-3 text-muted-foreground">
-                        <item.icon className="size-4 shrink-0" />
-                        <span className="nav-link text-[10px]">{item.eyebrow}</span>
-                      </div>
-
-                      <motion.h3
-                        animate={{
-                          fontSize: isActive
-                            ? "clamp(1.9rem, 3.2vw, 2.8rem)"
-                            : "clamp(1rem, 1.4vw, 1.35rem)",
-                        }}
-                        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                        className="font-display leading-[1.02] tracking-[-0.02em] break-words"
-                      >
-                        {item.title}<span className="italic">.</span>
-                      </motion.h3>
-
-                      <motion.div
-                        initial={false}
-                        animate={{
-                          height: isActive ? "auto" : 0,
-                          opacity: isActive ? 1 : 0,
-                          marginTop: isActive ? 12 : 0,
-                        }}
-                        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                        className="overflow-hidden"
-                      >
-                        <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
-                          {item.note}
-                        </p>
-                        <Link
-                          to={item.to as never}
-                          className="group mt-3 inline-flex items-center gap-2 text-sm"
-                          aria-label={`Explore ${item.title}`}
-                        >
-                          Explore {item.title}
-                          <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                        </Link>
-                      </motion.div>
-                    </motion.li>
-                  );
-                })}
-              </ul>
-            </div>
-
-            {/* Mobile — only the active item shown beneath the image */}
-            <div className="lg:hidden">
-              <motion.div
-                key={featured[active].title}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                Enter Omeros
+                <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
+              <Link
+                to="/omeros-ai"
+                className="nav-link text-[11px] text-white/70 underline-offset-[6px] hover:text-white hover:underline"
               >
-                <div className="mb-1 flex items-center gap-3 text-muted-foreground">
-                  {(() => {
-                    const Icon = featured[active].icon;
-                    return <Icon className="size-4 shrink-0" />;
-                  })()}
-                  <span className="nav-link text-[10px]">{featured[active].eyebrow}</span>
-                </div>
-                <h3 className="font-display text-3xl leading-[1.02] tracking-[-0.02em]">
-                  {featured[active].title}<span className="italic">.</span>
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  {featured[active].note}
-                </p>
-                <Link
-                  to={featured[active].to as never}
-                  className="group mt-3 inline-flex items-center gap-2 text-sm"
-                  aria-label={`Explore ${featured[active].title}`}
-                >
-                  Explore {featured[active].title}
-                  <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                </Link>
-              </motion.div>
-            </div>
+                Read the six principles
+              </Link>
+            </motion.div>
           </div>
+        </div>
+
+        {/* Bottom-right meta */}
+        <div className="pointer-events-none absolute bottom-6 right-6 flex items-center gap-3 text-on-image sm:bottom-8 sm:right-10">
+          <span className="nav-link text-[10px] text-white/70">Ongoing · Trinidad</span>
         </div>
       </div>
     </section>
   );
 }
+
 
 
 
