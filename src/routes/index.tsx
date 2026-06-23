@@ -23,6 +23,7 @@ import featuredWriting from "@/assets/featured-writing.jpg";
 import practiceEssays from "@/assets/practice-essays.jpg";
 import practiceBook from "@/assets/practice-book.jpg";
 import practiceOmeros from "@/assets/practice-omeros.jpg";
+import practiceWestIndies from "@/assets/practice-westindies.jpg";
 import heroDesk from "@/assets/hero-desk.jpg";
 
 function formatArticleDate(date: string) {
@@ -281,7 +282,7 @@ function Hero() {
           <motion.div
             style={{ opacity: titleOpacity, y: titleY }}
             initial={{ opacity: 0 }}
-            className="absolute inset-0 z-10 flex flex-col justify-between px-6 pt-28 pb-12 text-white sm:px-12 sm:pt-32 sm:pb-16"
+            className="text-on-image absolute inset-0 z-10 flex flex-col justify-between px-6 pt-28 pb-12 text-white sm:px-12 sm:pt-32 sm:pb-16"
           >
             <p className="eyebrow opacity-85">
               Omeros AI · Trinidad &amp; the World
@@ -744,7 +745,7 @@ const range = [
 ];
 
 
-const rangeImages = [practiceEssays, practiceBook, practiceOmeros, featuredWriting];
+const rangeImages = [practiceEssays, practiceBook, practiceOmeros, practiceWestIndies];
 
 function Range() {
   const navigate = useNavigate();
