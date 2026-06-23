@@ -41,16 +41,25 @@ const forthcoming = [
     title: "Freedom as a Medium",
     note: "A long essay on liberty not as a state to be reached, but as the substrate in which thought and policy take shape.",
     year: "Forthcoming",
+    image:
+      "https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?w=1200&q=80&auto=format&fit=crop",
+    imageAlt: "Open sky and sea horizon — freedom as an atmosphere",
   },
   {
     title: "Sen in the Islands",
     note: "Reading Amartya Sen's capability approach from a small state — where freedom is never abstract.",
     year: "Forthcoming",
+    image:
+      "https://images.unsplash.com/photo-1559666126-84f389727b9a?w=1200&q=80&auto=format&fit=crop",
+    imageAlt: "A small Caribbean island ringed by turquoise water",
   },
   {
     title: "Intergenerational Immobility",
     note: "On inherited inequality, the data fabric of state enterprises, and what the next century owes the last.",
     year: "In preparation",
+    image:
+      "https://images.unsplash.com/photo-1531253450048-2a0a965096ff?w=1200&q=80&auto=format&fit=crop",
+    imageAlt: "An elder's hand resting on a child's hand — generations in contact",
   },
 ];
 
@@ -175,13 +184,15 @@ function BooksPage() {
                     <span className="eyebrow">{b.year}</span>
                   </div>
                   <div
-                    aria-hidden
-                    className="aspect-[3/4] w-full border hairline bg-[oklch(0.96_0.008_240)]"
-                    style={{
-                      backgroundImage:
-                        "linear-gradient(140deg, oklch(0.97 0.01 240) 0%, oklch(0.92 0.02 240) 100%)",
-                    }}
-                  />
+                    className="aspect-[3/4] w-full overflow-hidden border hairline bg-foreground/5"
+                  >
+                    <img
+                      src={b.image}
+                      alt={b.imageAlt}
+                      loading="lazy"
+                      className="size-full object-cover transition-transform duration-[1200ms] ease-out hover:scale-[1.04]"
+                    />
+                  </div>
                   <div>
                     <h3 className="font-display text-2xl leading-tight md:text-3xl">
                       {b.title}
