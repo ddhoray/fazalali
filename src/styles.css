@@ -58,14 +58,14 @@
 }
 
 .dark {
-  --background: #17100b;                 /* deep editorial brown-black */
-  --foreground: oklch(0.96 0.006 85);    /* milk-white */
-  --muted: oklch(0.26 0.018 55);
-  --muted-foreground: oklch(0.78 0.010 80);
+  --background: oklch(0.16 0.020 250);    /* deep editorial ink — cool, not brown */
+  --foreground: oklch(0.97 0.005 250);    /* milk-white, neutral */
+  --muted: oklch(0.26 0.020 250);
+  --muted-foreground: oklch(0.78 0.010 250);
   --card: var(--background);
   --card-foreground: var(--foreground);
   --border: color-mix(in oklab, var(--foreground) 18%, transparent);
-  --accent-cool: #024bcc;
+  --accent-cool: #4f8cff;
 }
 
 @layer base {
@@ -168,15 +168,15 @@
     background-size: 220px 220px;
   }
 
-  /* Dark editorial section — cold iron, milk-white text */
+  /* Dark editorial section — deep ink, milk-white text (no sepia/brown) */
   .section-dark {
-    background-color: #17100b;
-    color: oklch(0.96 0.006 85);
+    background-color: oklch(0.16 0.020 250);
+    color: oklch(0.97 0.005 250);
   }
-  .section-dark .text-muted-foreground { color: color-mix(in oklab, oklch(0.96 0.006 85) 68%, transparent) !important; }
-  .section-dark .hairline { border-color: color-mix(in oklab, oklch(0.96 0.006 85) 22%, transparent) !important; }
+  .section-dark .text-muted-foreground { color: color-mix(in oklab, oklch(0.97 0.005 250) 68%, transparent) !important; }
+  .section-dark .hairline { border-color: color-mix(in oklab, oklch(0.97 0.005 250) 22%, transparent) !important; }
   .section-dark .text-background,
-  .section-dark [class*="text-background/"] { color: oklch(0.96 0.006 85) !important; }
+  .section-dark [class*="text-background/"] { color: oklch(0.97 0.005 250) !important; }
 
   /* Cold iron inverted band — alternates with milk-white sections. */
   .section-invert {

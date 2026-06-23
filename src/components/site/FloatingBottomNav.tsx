@@ -8,11 +8,11 @@ import fiaLogo from "@/assets/brand-fia.png";
 
 // Primary links shown inline (compact pill).
 const primaryLinks = [
-  { to: "/education-for-liberty", label: "Education for Liberty" },
+  { to: "/books", label: "Books" },
   { to: "/writing", label: "Journal" },
   { to: "/podcast", label: "Podcast" },
   { to: "/omeros-ai", label: "Omeros" },
-  { to: "/about", label: "About" },
+  { to: "/about", label: "Profile" },
 ] as const;
 
 // Secondary links shown only when expanded (excludes primary ones to avoid repeats).
@@ -21,6 +21,7 @@ const extraLinks = [
   { to: "/ecology", label: "Ecology" },
   { to: "/inequality", label: "Inequality" },
   { to: "/palimpsest", label: "Palimpsest" },
+  { to: "/education-for-liberty", label: "Education for Liberty" },
 ] as const;
 
 /**

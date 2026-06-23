@@ -66,6 +66,8 @@ function Home() {
       <Hero />
       <div className="relative z-10 bg-background">
         <Quietline />
+        <CoreStatement />
+        <IdeasAndThemes />
         <FeaturedSticky />
         <Manifesto />
 
@@ -99,6 +101,109 @@ function Home() {
         <Newsletter />
       </div>
     </>
+  );
+}
+
+/* ─────────────────── Core Statement ─────────────────── */
+
+function CoreStatement() {
+  return (
+    <section className="border-b hairline bg-background">
+      <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 sm:py-28">
+        <BlurReveal as="p" className="eyebrow text-muted-foreground">
+          A core statement
+        </BlurReveal>
+        <BlurReveal
+          as="h2"
+          delay={0.08}
+          className="mt-6 font-display text-[8vw] leading-[1.02] tracking-[-0.025em] text-balance sm:text-5xl md:text-6xl lg:text-7xl"
+        >
+          The ethics of AI must be the preserve of{" "}
+          <em className="italic text-accent">all cultures and continents.</em>
+        </BlurReveal>
+        <div className="mt-10 grid max-w-4xl gap-6 text-base leading-relaxed text-foreground/75 md:text-lg">
+          <BlurReveal as="p" delay={0.16}>
+            Every agency, company, institution and country designing,
+            developing and deploying AI architectures has an obligation to
+            incorporate a more geographically, culturally and socially diverse
+            array of perspectives.
+          </BlurReveal>
+          <BlurReveal as="p" delay={0.22}>
+            Only then do we begin to achieve algorithmic fairness, epistemic
+            justice, and the eradication of intergenerational immobility and
+            inherited inequality.
+          </BlurReveal>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────────── Ideas & Themes ─────────────────── */
+
+const ideas = [
+  { title: "Freedom as a Medium", note: "Liberty as the substrate of thought, not a destination.", to: "/writing" as const },
+  { title: "Sen in the Islands", note: "The capability approach, read from a small state.", to: "/writing" as const },
+  { title: "AI Ethics", note: "A globally distributed obligation, not a Silicon Valley deliverable.", to: "/writing" as const },
+  { title: "Algorithmic Fairness", note: "On the geography of training data and the politics of inference.", to: "/writing" as const },
+  { title: "Epistemic Justice", note: "Whose knowledge is held to be knowledge in the age of the model.", to: "/writing" as const },
+  { title: "Inequality", note: "The data fabric of state enterprises and what it reproduces.", to: "/inequality" as const },
+  { title: "Intergenerational Immobility", note: "Inherited inequality, and what the next century owes the last.", to: "/inequality" as const },
+  { title: "Education for Liberty", note: "What a child needs to learn so the next machine is a freedom.", to: "/education-for-liberty" as const },
+];
+
+function IdeasAndThemes() {
+  return (
+    <section className="border-b hairline bg-background">
+      <div className="mx-auto max-w-[1700px] px-5 py-16 sm:px-8 sm:py-20">
+        <div className="mb-10 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-5">
+          <div>
+            <BlurReveal as="p" className="eyebrow text-muted-foreground">
+              Ideas &amp; themes
+            </BlurReveal>
+            <BlurReveal
+              as="h2"
+              delay={0.08}
+              className="mt-3 font-display text-4xl leading-[1] md:text-6xl"
+            >
+              Areas of <em className="italic text-accent">inquiry.</em>
+            </BlurReveal>
+          </div>
+          <BlurReveal delay={0.16}>
+            <Link to="/writing" className="nav-link">
+              All entries →
+            </Link>
+          </BlurReveal>
+        </div>
+
+        <div className="grid grid-cols-1 gap-px bg-foreground/10 sm:grid-cols-2 lg:grid-cols-4">
+          {ideas.map((idea, i) => (
+            <SlideIn key={idea.title} from="bottom" delay={i * 0.04}>
+              <Link
+                to={idea.to}
+                className="group flex h-full flex-col justify-between gap-8 bg-background p-7 transition-colors hover:bg-foreground/[0.03] md:p-9"
+              >
+                <div>
+                  <p className="eyebrow text-muted-foreground">
+                    {String(i + 1).padStart(2, "0")}
+                  </p>
+                  <h3 className="mt-4 font-display text-2xl leading-tight md:text-3xl">
+                    {idea.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                    {idea.note}
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-muted-foreground transition-colors group-hover:text-foreground">
+                  Read
+                  <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </span>
+              </Link>
+            </SlideIn>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -179,19 +284,20 @@ function Hero() {
             className="absolute inset-0 z-10 flex flex-col justify-between px-6 pt-28 pb-12 text-white sm:px-12 sm:pt-32 sm:pb-16"
           >
             <p className="eyebrow opacity-85">
-              Folio I · Trinidad &amp; the Machines
+              Omeros AI · Trinidad &amp; the World
             </p>
 
             <div>
               <h1 className="font-display text-[12vw] leading-[1.02] tracking-[-0.035em] text-balance sm:text-[9vw] md:text-[7vw] md:leading-[0.96]">
-                Reading the <span className="italic">machines</span> slowly,{" "}
-                <span className="italic">by hand.</span>
+                A writer, schooled in <span className="italic">freedom.</span>
               </h1>
 
               <p className="mt-5 max-w-md text-[13px] leading-relaxed opacity-90 sm:mt-6 sm:text-sm md:text-base">
-                Dr. Fazal Ibrahim Ali — Cambridge-trained, Trinidad-born. Writing
-                on critical theory in AI, the founding of Omeros AI, and a small
-                book called <em className="italic text-accent">Education for Liberty.</em>
+                Dr. Fazal Ibrahim Ali — Cambridge-trained, Trinidad-born.
+                Critical theory on artificial intelligence, written from the
+                West Indies, for a reader anywhere who suspects the
+                conversation has been{" "}
+                <em className="italic text-accent">too narrow for too long.</em>
               </p>
 
               <p className="mt-8 text-[10px] uppercase tracking-[0.3em] opacity-70">
