@@ -40,18 +40,18 @@
 :root {
   --radius: 0;
 
-  /* Omeros AI palette — milk-white + iron-ore, calibrated */
-  --background: oklch(0.972 0.006 85);   /* milk-white, warm cream */
-  --foreground: oklch(0.20 0.022 55);    /* deep iron — cold, near-neutral */
+  /* Omeros AI palette — cool fog white + slate ink */
+  --background: oklch(0.975 0.004 250);  /* cool fog white */
+  --foreground: oklch(0.20 0.015 250);   /* slate ink, neutral cool */
 
-  --muted: oklch(0.92 0.010 75);
-  --muted-foreground: oklch(0.40 0.020 55);
+  --muted: oklch(0.93 0.006 250);
+  --muted-foreground: oklch(0.42 0.012 250);
 
   --card: var(--background);
   --card-foreground: var(--foreground);
 
   /* Hairlines — near neutral, no sepia */
-  --border: color-mix(in oklab, oklch(0.20 0.010 60) 16%, transparent);
+  --border: color-mix(in oklab, oklch(0.20 0.010 250) 16%, transparent);
 
   /* Accent — Omeros sand-dollar blue, used for links/CTAs */
   --accent-cool: #024bcc;
@@ -145,7 +145,7 @@
   }
 
 
-  .hairline { border-color: color-mix(in oklab, oklch(0.20 0.010 60) 16%, transparent); }
+  .hairline { border-color: color-mix(in oklab, oklch(0.20 0.010 250) 16%, transparent); }
 
   .text-balance { text-wrap: balance; }
   .text-pretty { text-wrap: pretty; }
