@@ -220,14 +220,15 @@ function Hero() {
 
   // Cinematic reveal — strictly sequential, with an explicit hold once revealed.
   // The longer scroll track prevents the hero copy/logo from disappearing too soon.
-  const width = useTransform(scrollYProgress, [0, 0.4, 1], ["64%", "100%", "100%"]);
-  const height = useTransform(scrollYProgress, [0, 0.4, 1], ["70svh", "100svh", "100svh"]);
-  const radius = useTransform(scrollYProgress, [0, 0.4, 1], ["3px", "0px", "0px"]);
-  const heroOverlayOpacity = useTransform(scrollYProgress, [0.4, 0.55, 1], [0, 1, 1]);
-  const titleOpacity = useTransform(scrollYProgress, [0.45, 0.7, 1], [0, 1, 1]);
-  const titleY = useTransform(scrollYProgress, [0.45, 0.7, 1], ["22px", "0px", "0px"]);
-  const logoOpacity = useTransform(scrollYProgress, [0.45, 0.7, 1], [0, 1, 1]);
-  const logoY = useTransform(scrollYProgress, [0.45, 0.7, 1], ["-10px", "0px", "0px"]);
+  // Image expands first (0 → 0.5), then text fades in only after full-bleed.
+  const width = useTransform(scrollYProgress, [0, 0.5, 1], ["64%", "100%", "100%"]);
+  const height = useTransform(scrollYProgress, [0, 0.5, 1], ["70svh", "100svh", "100svh"]);
+  const radius = useTransform(scrollYProgress, [0, 0.5, 1], ["3px", "0px", "0px"]);
+  const heroOverlayOpacity = useTransform(scrollYProgress, [0.55, 0.7, 1], [0, 1, 1]);
+  const titleOpacity = useTransform(scrollYProgress, [0.6, 0.8, 1], [0, 1, 1]);
+  const titleY = useTransform(scrollYProgress, [0.6, 0.8, 1], ["22px", "0px", "0px"]);
+  const logoOpacity = useTransform(scrollYProgress, [0.6, 0.8, 1], [0, 1, 1]);
+  const logoY = useTransform(scrollYProgress, [0.6, 0.8, 1], ["-10px", "0px", "0px"]);
 
   return (
     <section
