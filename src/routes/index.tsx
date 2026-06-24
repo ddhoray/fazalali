@@ -1,5 +1,5 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform, useMotionValueEvent } from "motion/react";
 import { useRef, useState, useEffect } from "react";
 import { BookOpen, Sparkles, PenLine, Compass, ArrowUpRight } from "lucide-react";
 import { BlurReveal, SlideIn } from "@/components/site/BlurReveal";
@@ -218,8 +218,6 @@ function Hero() {
     offset: ["start start", "end end"],
   });
 
-  // Cinematic reveal — strictly sequential, with an explicit hold once revealed.
-  // The longer scroll track prevents the hero copy/logo from disappearing too soon.
   // Image expands first (0 → 0.5), then text fades in only after full-bleed.
   const width = useTransform(scrollYProgress, [0, 0.5, 1], ["64%", "100%", "100%"]);
   const height = useTransform(scrollYProgress, [0, 0.5, 1], ["70svh", "100svh", "100svh"]);
@@ -230,19 +228,25 @@ function Hero() {
   const logoOpacity = useTransform(scrollYProgress, [0.6, 0.8, 1], [0, 1, 1]);
   const logoY = useTransform(scrollYProgress, [0.6, 0.8, 1], ["-10px", "0px", "0px"]);
 
+  // Hard gate: keep the text/logo fully hidden (not just transparent) until the
+  // image has reached full-bleed. This prevents any flash during SSR/hydration
+  // and any rendering inconsistencies from motion values resolving late.
+  const [revealed, setRevealed] = useState(false);
+  useMotionValueEvent(scrollYProgress, "change", (v) => {
+    setRevealed(v >= 0.5);
+  });
+
   return (
     <section
       ref={ref}
       aria-label="Introduction"
       className="relative h-[180svh] w-full bg-background"
     >
-
       <div className="sticky top-0 flex h-svh w-full items-center justify-center overflow-hidden">
         <motion.div
           style={{ width, height, borderRadius: radius }}
           className="relative overflow-hidden bg-neutral-900"
         >
-          {/* Fixed background video — does NOT scale or move with scroll */}
           <video
             src={heroVideo}
             poster={heroImage}
@@ -268,9 +272,10 @@ function Hero() {
 
           {/* FIA logo — revealed last in the scroll sequence */}
           <motion.div
-            style={{ opacity: logoOpacity, y: logoY }}
+            style={{ opacity: logoOpacity, y: logoY, visibility: revealed ? "visible" : "hidden" }}
             initial={{ opacity: 0 }}
-            className="pointer-events-none absolute inset-x-0 top-6 z-20 hidden justify-center opacity-0 sm:top-10 lg:flex"
+            aria-hidden={!revealed}
+            className="pointer-events-none absolute inset-x-0 top-6 z-20 hidden justify-center sm:top-10 lg:flex"
           >
             <img
               src={fiaLogo}
@@ -281,9 +286,10 @@ function Hero() {
           </motion.div>
 
           <motion.div
-            style={{ opacity: titleOpacity, y: titleY }}
+            style={{ opacity: titleOpacity, y: titleY, visibility: revealed ? "visible" : "hidden" }}
             initial={{ opacity: 0 }}
-            className="text-on-image absolute inset-0 z-10 flex flex-col justify-between px-6 pt-28 pb-12 text-white opacity-0 sm:px-12 sm:pt-32 sm:pb-16"
+            aria-hidden={!revealed}
+            className="text-on-image absolute inset-0 z-10 flex flex-col justify-between px-6 pt-28 pb-12 text-white sm:px-12 sm:pt-32 sm:pb-16"
           >
             <p className="eyebrow opacity-85">
               Omeros AI · Trinidad &amp; the World
