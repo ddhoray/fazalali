@@ -343,122 +343,67 @@ function Quietline() {
 /* ─────────────────────── Featured — Omeros AI (single focus, scroll-driven) ─────────────────────── */
 
 function FeaturedSticky() {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end end"],
-  });
-
-  // Image: subtle parallax + scale down as user scrolls past
-  const imgY = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
-  const imgScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.08, 1, 1.02]);
-  const overlayOpacity = useTransform(scrollYProgress, [0, 0.4, 1], [0.35, 0.55, 0.7]);
-
-  // Sequenced text reveals
-  const eyebrowOpacity = useTransform(scrollYProgress, [0.02, 0.12], [0, 1]);
-  const eyebrowY = useTransform(scrollYProgress, [0.02, 0.12], ["18px", "0px"]);
-
-  const titleOpacity = useTransform(scrollYProgress, [0.08, 0.28], [0, 1]);
-  const titleY = useTransform(scrollYProgress, [0.08, 0.28], ["32px", "0px"]);
-
-  const bodyOpacity = useTransform(scrollYProgress, [0.28, 0.48], [0, 1]);
-  const bodyY = useTransform(scrollYProgress, [0.28, 0.48], ["24px", "0px"]);
-
-  const ctaOpacity = useTransform(scrollYProgress, [0.48, 0.68], [0, 1]);
-  const ctaY = useTransform(scrollYProgress, [0.48, 0.68], ["18px", "0px"]);
-
-  const progressScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
-
   return (
     <section
-      ref={ref}
       data-nav="dark"
-      className="section-invert relative h-[260vh]"
+      className="section-invert relative bg-background"
     >
-      <div className="sticky top-0 flex h-svh w-full items-center justify-center overflow-hidden bg-background">
-        {/* Pinned image with parallax */}
-        <motion.div
-          style={{ y: imgY, scale: imgScale }}
-          className="absolute inset-0 -z-0"
-        >
-          <img
-            src={featuredOmeros}
-            alt="Omeros AI — a Caribbean reading of intelligence"
-            className="size-full object-cover"
-            loading="lazy"
-          />
-        </motion.div>
+      <div className="mx-auto grid max-w-[1500px] grid-cols-1 gap-10 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-12 lg:gap-16 lg:py-32">
+        {/* Left: text */}
+        <div className="lg:col-span-6 lg:sticky lg:top-24 lg:self-start">
+          <BlurReveal as="div" className="flex items-center gap-2 text-white/70">
+            <Sparkles className="size-4" />
+            <span className="eyebrow">Featured — Identity</span>
+          </BlurReveal>
 
-        {/* Gradient overlay (deepens as text reveals) */}
-        <motion.div
-          style={{ opacity: overlayOpacity }}
-          className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/80"
-        />
-        <Grain />
+          <BlurReveal
+            as="h2"
+            delay={0.08}
+            className="mt-6 font-display text-[18vw] leading-[0.9] tracking-[-0.04em] text-white sm:text-[12vw] lg:text-[8vw]"
+          >
+            Omeros<span className="italic text-white/80">.</span>
+          </BlurReveal>
 
-        {/* Vertical progress rail (desktop) */}
-        <div className="pointer-events-none absolute left-6 top-1/2 hidden h-40 w-px -translate-y-1/2 bg-white/20 lg:block">
-          <motion.span
-            style={{ scaleY: progressScale, transformOrigin: "top" }}
-            className="absolute inset-0 block w-px bg-white"
-          />
+          <BlurReveal as="p" delay={0.14} className="mt-8 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg">
+            The Greek name for Homer — poet of the sea, of journeys, of voices
+            passed down. <em className="italic">Omeros</em> is the name Fazal Ali
+            gives to his writing on artificial intelligence: a slow, Caribbean
+            reading of a conversation that has moved too quickly.
+          </BlurReveal>
+
+          <BlurReveal delay={0.2} className="mt-10 flex flex-wrap items-center gap-6">
+            <Link
+              to="/omeros-ai"
+              className="group inline-flex items-center gap-3 rounded-full bg-white px-7 py-4 text-sm font-medium tracking-wide text-black transition-all hover:bg-white/90"
+            >
+              Enter Omeros
+              <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
+            <Link
+              to="/omeros-ai"
+              className="nav-link text-[11px] text-white/70 underline-offset-[6px] hover:text-white hover:underline"
+            >
+              Read the six principles
+            </Link>
+          </BlurReveal>
         </div>
 
-        {/* Content */}
-        <div className="relative z-10 mx-auto w-full max-w-[1400px] px-6 text-on-image sm:px-10 lg:px-16">
-          <div className="flex flex-col items-start">
-            <motion.div
-              style={{ opacity: eyebrowOpacity, y: eyebrowY }}
-              className="flex items-center gap-3 text-white/85"
-            >
-              <Sparkles className="size-4" />
-              <span className="eyebrow">(Featured) — Identity</span>
-            </motion.div>
-
-            <motion.h2
-              style={{ opacity: titleOpacity, y: titleY }}
-              className="mt-6 font-display text-[14vw] leading-[0.92] tracking-[-0.04em] text-white sm:text-[11vw] md:text-[8.5vw] lg:text-[7.5vw]"
-            >
-              Omeros<span className="italic text-white/90">.</span>
-            </motion.h2>
-
-            <motion.p
-              style={{ opacity: bodyOpacity, y: bodyY }}
-              className="mt-8 max-w-xl text-base leading-relaxed text-white/85 sm:text-lg"
-            >
-              The Greek name for Homer — poet of the sea, of journeys, of voices
-              passed down. <em className="italic">Omeros</em> is the name Fazal Ali
-              gives to his writing on artificial intelligence: a slow, Caribbean
-              reading of a conversation that has moved too quickly, in too few
-              languages, from too few rooms.
-            </motion.p>
-
-            <motion.div
-              style={{ opacity: ctaOpacity, y: ctaY }}
-              className="mt-10 flex flex-wrap items-center gap-6"
-            >
-              <Link
-                to="/omeros-ai"
-                className="group inline-flex items-center gap-3 rounded-full bg-white px-7 py-4 text-sm font-medium tracking-wide text-black transition-all hover:bg-white/90 hover:shadow-[0_8px_30px_rgba(255,255,255,0.18)]"
-                aria-label="Enter Omeros AI"
-              >
-                Enter Omeros
-                <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </Link>
-              <Link
-                to="/omeros-ai"
-                className="nav-link text-[11px] text-white/70 underline-offset-[6px] hover:text-white hover:underline"
-              >
-                Read the six principles
-              </Link>
-            </motion.div>
+        {/* Right: image */}
+        <SlideIn from="right" className="lg:col-span-6">
+          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-sm">
+            <img
+              src={featuredOmeros}
+              alt="Omeros AI — a Caribbean reading of intelligence"
+              className="size-full object-cover transition-transform duration-[1200ms] ease-out hover:scale-[1.03]"
+              loading="lazy"
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+            <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between text-on-image">
+              <span className="nav-link text-[10px] text-white/80">Ongoing · Trinidad</span>
+              <span className="nav-link text-[10px] text-white/60">01 / 01</span>
+            </div>
           </div>
-        </div>
-
-        {/* Bottom-right meta */}
-        <div className="pointer-events-none absolute bottom-6 right-6 flex items-center gap-3 text-on-image sm:bottom-8 sm:right-10">
-          <span className="nav-link text-[10px] text-white/70">Ongoing · Trinidad</span>
-        </div>
+        </SlideIn>
       </div>
     </section>
   );
