@@ -613,7 +613,9 @@ function Range() {
     offset: ["start end", "end start"],
   });
   const ringRotate = useTransform(scrollYProgress, [0, 1], [-60, 60]);
+  const ringCounter = useTransform(ringRotate, (v) => -v);
   const ringScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.92, 1, 1.04]);
+  const bgRotate = useTransform(scrollYProgress, [0, 1], [0, 180]);
 
   // Auto-advance the active thread
   useEffect(() => {
