@@ -126,38 +126,38 @@ function GalleryPage() {
         imageAlt="Aerial view of a Trinidad coastline"
       />
 
-      <section className="mx-auto max-w-[1600px] px-6 md:px-10 py-16 md:py-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-16 md:gap-y-24">
-          {works.map((w, i) => (
-            <figure
-              key={w.src}
-              className={`group ${i % 3 === 0 ? "md:col-span-2" : ""}`}
-            >
-              <div className="relative overflow-hidden bg-muted">
-                <img
-                  src={w.src}
-                  alt={w.title}
-                  loading="lazy"
-                  className="w-full h-auto object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.03]"
-                />
-              </div>
-              <figcaption className="mt-4 flex items-baseline justify-between gap-6">
-                <div>
-                  <div className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                    {String(i + 1).padStart(2, "0")} — {w.medium}
-                  </div>
-                  <h3 className="mt-1 text-xl md:text-2xl font-serif italic">
+      <section className="mx-auto max-w-[1400px] px-4 md:px-8 py-12 md:py-20">
+        <div className="columns-2 md:columns-3 lg:columns-4 gap-4 md:gap-6 [column-fill:_balance]">
+          {works.map((w, i) => {
+            // irregular sizing: vary widths via margin offsets & varied aspect feel
+            const tilt = ["mt-0", "mt-6", "mt-12", "mt-2", "mt-8"][i % 5];
+            return (
+              <figure
+                key={w.src}
+                className={`group mb-4 md:mb-6 break-inside-avoid ${tilt}`}
+              >
+                <div className="relative overflow-hidden bg-muted">
+                  <img
+                    src={w.src}
+                    alt={w.title}
+                    loading="lazy"
+                    className="w-full h-auto object-cover transition-transform duration-[1000ms] ease-out group-hover:scale-[1.04]"
+                  />
+                </div>
+                <figcaption className="mt-2 flex items-baseline justify-between gap-3">
+                  <h3 className="text-xs md:text-sm font-serif italic truncate">
                     {w.title}
                   </h3>
-                </div>
-                <div className="text-xs uppercase tracking-[0.18em] text-muted-foreground shrink-0">
-                  {w.year}
-                </div>
-              </figcaption>
-            </figure>
-          ))}
+                  <span className="text-[10px] uppercase tracking-[0.16em] text-muted-foreground shrink-0">
+                    {w.year}
+                  </span>
+                </figcaption>
+              </figure>
+            );
+          })}
         </div>
       </section>
+
     </div>
   );
 }
