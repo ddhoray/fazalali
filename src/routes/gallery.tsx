@@ -13,6 +13,16 @@ import p6 from "@/assets/paintings/6.nofellingisfinal.jpg.asset.json";
 import p7 from "@/assets/paintings/7.givemeahandthb.jpg.asset.json";
 import p8 from "@/assets/paintings/8.throughtheemptybranches.jpg.asset.json";
 import p9 from "@/assets/paintings/9.itiswhatyouhave.jpg.asset.json";
+import p10 from "@/assets/paintings/10.leteverythinghappentoyouthb.jpg.asset.json";
+import p11 from "@/assets/paintings/11.givemeyourhand.jpg.asset.json";
+import p12 from "@/assets/paintings/12.sowearegraspedby.jpg.asset.json";
+import p13 from "@/assets/paintings/13.myeyestouchthehillthb.jpg.asset.json";
+import p14 from "@/assets/paintings/14.Ipromisetoholdyouforever.jpg.asset.json";
+import p15 from "@/assets/paintings/15.godspeakstoeachofus.jpg.asset.json";
+import p16 from "@/assets/paintings/16.makebigshadowsthb.jpg.asset.json";
+import p17 from "@/assets/paintings/17.betheground.jpg.asset.json";
+import p18 from "@/assets/paintings/18.youarethesun.jpg.asset.json";
+import p19 from "@/assets/paintings/19.hardlysenseinitthb.jpg.asset.json";
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
