@@ -64,6 +64,16 @@ const works: Work[] = [
   { src: p7.url, title: "Give Me a Hand", year: "2023", medium: "Oil on canvas" },
   { src: p8.url, title: "Through the Empty Branches", year: "2022", medium: "Acrylic on canvas" },
   { src: p9.url, title: "It Is What You Have", year: "2023", medium: "Oil on canvas" },
+  { src: p10.url, title: "Let Everything Happen to You", year: "2023", medium: "Oil on canvas" },
+  { src: p11.url, title: "Give Me Your Hand", year: "2023", medium: "Oil on canvas" },
+  { src: p12.url, title: "So We Are Grasped By", year: "2022", medium: "Acrylic on canvas" },
+  { src: p13.url, title: "My Eyes Touch the Hill", year: "2023", medium: "Oil on canvas" },
+  { src: p14.url, title: "I Promise to Hold You Forever", year: "2023", medium: "Oil on canvas" },
+  { src: p15.url, title: "God Speaks to Each of Us", year: "2022", medium: "Oil on canvas" },
+  { src: p16.url, title: "Make Big Shadows", year: "2023", medium: "Oil on canvas" },
+  { src: p17.url, title: "Be the Ground", year: "2022", medium: "Mixed media on canvas" },
+  { src: p18.url, title: "You Are the Sun", year: "2023", medium: "Oil on canvas" },
+  { src: p19.url, title: "Hardly Sense In It", year: "2023", medium: "Oil on canvas" },
 ];
 
 function GalleryPage() {
