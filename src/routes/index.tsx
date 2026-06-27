@@ -385,7 +385,7 @@ function FeaturedSticky() {
               to="/omeros-ai"
               className="nav-link text-[11px] text-white/70 underline-offset-[6px] hover:text-white hover:underline"
             >
-              Read the six principles
+              Read the eight pillars
             </Link>
           </BlurReveal>
         </div>
