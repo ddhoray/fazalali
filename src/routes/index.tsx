@@ -10,7 +10,7 @@ import { HoverImage } from "@/components/site/HoverImage";
 import { CirclePill } from "@/components/site/CirclePill";
 import { Grain } from "@/components/site/Grain";
 import { BookSection } from "@/components/site/BookSection";
-import { InstagramGrid } from "@/components/site/InstagramGrid";
+
 import { Newsletter } from "@/components/site/Newsletter";
 import { articles } from "@/content/articles";
 import portrait from "@/assets/fazal-cutout.png";
@@ -98,7 +98,7 @@ function Home() {
         <BookSection />
         <Range />
         <LatestWriting />
-        <InstagramGrid limit={10} />
+        
         <Newsletter />
       </div>
     </>
