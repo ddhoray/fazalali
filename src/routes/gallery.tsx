@@ -13,6 +13,16 @@ import p6 from "@/assets/paintings/6.nofellingisfinal.jpg.asset.json";
 import p7 from "@/assets/paintings/7.givemeahandthb.jpg.asset.json";
 import p8 from "@/assets/paintings/8.throughtheemptybranches.jpg.asset.json";
 import p9 from "@/assets/paintings/9.itiswhatyouhave.jpg.asset.json";
+import p10 from "@/assets/paintings/10.leteverythinghappentoyouthb.jpg.asset.json";
+import p11 from "@/assets/paintings/11.givemeyourhand.jpg.asset.json";
+import p12 from "@/assets/paintings/12.sowearegraspedby.jpg.asset.json";
+import p13 from "@/assets/paintings/13.myeyestouchthehillthb.jpg.asset.json";
+import p14 from "@/assets/paintings/14.Ipromisetoholdyouforever.jpg.asset.json";
+import p15 from "@/assets/paintings/15.godspeakstoeachofus.jpg.asset.json";
+import p16 from "@/assets/paintings/16.makebigshadowsthb.jpg.asset.json";
+import p17 from "@/assets/paintings/17.betheground.jpg.asset.json";
+import p18 from "@/assets/paintings/18.youarethesun.jpg.asset.json";
+import p19 from "@/assets/paintings/19.hardlysenseinitthb.jpg.asset.json";
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
@@ -54,6 +64,16 @@ const works: Work[] = [
   { src: p7.url, title: "Give Me a Hand", year: "2023", medium: "Oil on canvas" },
   { src: p8.url, title: "Through the Empty Branches", year: "2022", medium: "Acrylic on canvas" },
   { src: p9.url, title: "It Is What You Have", year: "2023", medium: "Oil on canvas" },
+  { src: p10.url, title: "Let Everything Happen to You", year: "2023", medium: "Oil on canvas" },
+  { src: p11.url, title: "Give Me Your Hand", year: "2023", medium: "Oil on canvas" },
+  { src: p12.url, title: "So We Are Grasped By", year: "2022", medium: "Acrylic on canvas" },
+  { src: p13.url, title: "My Eyes Touch the Hill", year: "2023", medium: "Oil on canvas" },
+  { src: p14.url, title: "I Promise to Hold You Forever", year: "2023", medium: "Oil on canvas" },
+  { src: p15.url, title: "God Speaks to Each of Us", year: "2022", medium: "Oil on canvas" },
+  { src: p16.url, title: "Make Big Shadows", year: "2023", medium: "Oil on canvas" },
+  { src: p17.url, title: "Be the Ground", year: "2022", medium: "Mixed media on canvas" },
+  { src: p18.url, title: "You Are the Sun", year: "2023", medium: "Oil on canvas" },
+  { src: p19.url, title: "Hardly Sense In It", year: "2023", medium: "Oil on canvas" },
 ];
 
 function GalleryPage() {
