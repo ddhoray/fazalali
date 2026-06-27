@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
-import { InstagramGrid } from "@/components/site/InstagramGrid";
+
 import heroGallery from "@/assets/hero-gallery.jpg";
 import { Instagram } from "lucide-react";
 
@@ -56,8 +56,6 @@ function GalleryPage() {
         image={heroGallery}
         imageAlt="Aerial view of a Trinidad coastline"
       />
-
-      <InstagramGrid showHeader={false} />
     </div>
   );
 }
