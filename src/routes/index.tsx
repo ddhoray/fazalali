@@ -710,7 +710,7 @@ function Range() {
                       style={{ left: `${x}%`, top: `${y}%` }}
                     >
                       <motion.span
-                        style={{ rotate: useTransform(ringRotate, (v) => -v) }}
+                        style={{ rotate: ringCounter }}
                         className="block"
                       >
                         <motion.span
