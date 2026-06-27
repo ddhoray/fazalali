@@ -1,14 +1,14 @@
 # Fazal Ali
 
-> Dr. Fazal Ibrahim Ali — writer, scholar, and founder of Omeros AI. Critical theory in artificial intelligence, written from Trinidad & Tobago.
+> Dr. Fazal Ibrahim Ali — writer, scholar, and founder of Omeros AI, a Caribbean initiative in artificial intelligence based in Trinidad & Tobago.
 
-Fazal Ali is a Cambridge Commonwealth Scholar and former Provost of the University of Trinidad and Tobago. His work bridges Caribbean philosophy, capability theory (after Amartya Sen and John Rawls), and the politics of large language models. Omeros AI is his studio and brand identity.
+Fazal Ali is a Cambridge Commonwealth Scholar and former Provost of the University of Trinidad and Tobago. Omeros AI is his initiative to stimulate deliberation about AI in the West Indies, support open-source AI adoption and AI security, convene global frontier labs in the Caribbean, drive industrial digitalisation and data infrastructure, address algorithmic and epistemic justice, and position the Caribbean as a strategic AI hub by 2030.
 
 ## Pages
 
 - [About](/about): Biography, mentors, and academic record of Dr. Fazal Ibrahim Ali.
 - [Education for Liberty](/education-for-liberty): The book — a monograph after Sen and Rawls, with a flippable preview, PDF, and Amazon link.
-- [Omeros AI](/omeros-ai): The studio and brand identity — a Caribbean reading of intelligence.
+- [Omeros AI](/omeros-ai): The Caribbean AI initiative — eight pillars and strategic horizons for 2026, 2029 and 2030.
 - [Journal](/writing): Long-form essays on AI, education, ecology, and inequality.
 - [Ecology](/ecology): A West Indian reading of climate, coast, and curriculum.
 - [Inequality](/inequality): A capability reading of inequality from a West Indian classroom.
