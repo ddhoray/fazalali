@@ -367,8 +367,10 @@ function FeaturedSticky() {
           <BlurReveal as="p" delay={0.14} className="mt-8 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg">
             The Greek name for Homer — poet of the sea, of journeys, of voices
             passed down. <em className="italic">Omeros</em> is the name Fazal Ali
-            gives to his writing on artificial intelligence: a slow, Caribbean
-            reading of a conversation that has moved too quickly.
+            gives to a Caribbean initiative in artificial intelligence: a
+            prophet provocateur for the West Indies, convening the world's
+            frontier labs and building regional capacity toward a strategic AI
+            hub by 2030.
           </BlurReveal>
 
           <BlurReveal delay={0.2} className="mt-10 flex flex-wrap items-center gap-6">
