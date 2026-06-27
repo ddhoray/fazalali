@@ -23,6 +23,16 @@ import p16 from "@/assets/paintings/16.makebigshadowsthb.jpg.asset.json";
 import p17 from "@/assets/paintings/17.betheground.jpg.asset.json";
 import p18 from "@/assets/paintings/18.youarethesun.jpg.asset.json";
 import p19 from "@/assets/paintings/19.hardlysenseinitthb.jpg.asset.json";
+import p20 from "@/assets/paintings/20.somehowwesurvive.jpg.asset.json";
+import p21 from "@/assets/paintings/21.beginagainandagain.jpg.asset.json";
+import p22 from "@/assets/paintings/22.youhavebeensentouthbt.jpg.asset.json";
+import p23 from "@/assets/paintings/23.aboveusonlysky.jpg.asset.json";
+import p24 from "@/assets/paintings/24.theinnerlightofallthings.jpg.asset.json";
+import p25 from "@/assets/paintings/25.thedarknessofeachendlessfathbl.jpg.asset.json";
+import p26 from "@/assets/paintings/26.wemoveaboutintheworld.jpg.asset.json";
+import p27 from "@/assets/paintings/27.itisnottoolate.jpg.asset.json";
+import pScarlet from "@/assets/paintings/scarletibisteaser.jpg.asset.json";
+import pSpiritual from "@/assets/paintings/spiritualbaptists.jpg.asset.json";
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
@@ -74,6 +84,16 @@ const works: Work[] = [
   { src: p17.url, title: "Be the Ground", year: "2022", medium: "Mixed media on canvas" },
   { src: p18.url, title: "You Are the Sun", year: "2023", medium: "Oil on canvas" },
   { src: p19.url, title: "Hardly Sense In It", year: "2023", medium: "Oil on canvas" },
+  { src: p20.url, title: "Somehow We Survive", year: "2022", medium: "Mixed media on canvas" },
+  { src: p21.url, title: "Begin Again and Again", year: "2023", medium: "Acrylic on canvas" },
+  { src: p22.url, title: "You Have Been Sent Out", year: "2023", medium: "Mixed media on board" },
+  { src: p23.url, title: "Above Us Only Sky", year: "2022", medium: "Oil on canvas" },
+  { src: p24.url, title: "The Inner Light of All Things", year: "2023", medium: "Oil on canvas" },
+  { src: p25.url, title: "The Darkness of Each Endless Fall", year: "2022", medium: "Oil on canvas" },
+  { src: p26.url, title: "We Move About in the World", year: "2023", medium: "Oil on canvas" },
+  { src: p27.url, title: "It Is Not Too Late", year: "2023", medium: "Acrylic on canvas" },
+  { src: pScarlet.url, title: "Scarlet Ibis", year: "2023", medium: "Oil on canvas" },
+  { src: pSpiritual.url, title: "Spiritual Baptists", year: "2022", medium: "Oil on canvas" },
 ];
 
 function GalleryPage() {
