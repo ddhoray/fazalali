@@ -84,6 +84,16 @@ const works: Work[] = [
   { src: p17.url, title: "Be the Ground", year: "2022", medium: "Mixed media on canvas" },
   { src: p18.url, title: "You Are the Sun", year: "2023", medium: "Oil on canvas" },
   { src: p19.url, title: "Hardly Sense In It", year: "2023", medium: "Oil on canvas" },
+  { src: p20.url, title: "Somehow We Survive", year: "2022", medium: "Mixed media on canvas" },
+  { src: p21.url, title: "Begin Again and Again", year: "2023", medium: "Acrylic on canvas" },
+  { src: p22.url, title: "You Have Been Sent Out", year: "2023", medium: "Mixed media on board" },
+  { src: p23.url, title: "Above Us Only Sky", year: "2022", medium: "Oil on canvas" },
+  { src: p24.url, title: "The Inner Light of All Things", year: "2023", medium: "Oil on canvas" },
+  { src: p25.url, title: "The Darkness of Each Endless Fall", year: "2022", medium: "Oil on canvas" },
+  { src: p26.url, title: "We Move About in the World", year: "2023", medium: "Oil on canvas" },
+  { src: p27.url, title: "It Is Not Too Late", year: "2023", medium: "Acrylic on canvas" },
+  { src: pScarlet.url, title: "Scarlet Ibis", year: "2023", medium: "Oil on canvas" },
+  { src: pSpiritual.url, title: "Spiritual Baptists", year: "2022", medium: "Oil on canvas" },
 ];
 
 function GalleryPage() {
