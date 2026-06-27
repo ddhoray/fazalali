@@ -7,17 +7,17 @@ import heroOmeros from "@/assets/hero-omeros.jpg";
 export const Route = createFileRoute("/omeros-ai")({
   head: () => ({
     meta: [
-      { title: "Omeros AI — Fazal Ali's brand identity" },
+      { title: "Omeros AI — A Caribbean voice in artificial intelligence" },
       {
         name: "description",
         content:
-          "Omeros AI is the brand identity for Fazal Ali's body of writing on critical theory in artificial intelligence — from the West Indies.",
+          "Omeros AI is a Caribbean initiative to stimulate deliberation, build capacity, and position the West Indies as a strategic AI hub by 2030.",
       },
-      { property: "og:title", content: "Omeros AI — A West Indian voice on AI" },
+      { property: "og:title", content: "Omeros AI — A Caribbean voice in artificial intelligence" },
       {
         property: "og:description",
         content:
-          "Critical theory in AI. Not building AI. Not selling chips. Writing, ideas, art — from Trinidad.",
+          "Prophet provocateur for AI in the West Indies — convening, capacity-building, and Global South leadership in AI governance.",
       },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/omeros-ai" },
     ],
@@ -28,36 +28,64 @@ export const Route = createFileRoute("/omeros-ai")({
   component: OmerosPage,
 });
 
-const tenets = [
+const pillars = [
   {
     k: "01",
-    t: "Writing, not building",
-    b: "This site publishes ideas about AI. It does not sell software, chips, or services. The work is to think clearly in public.",
+    t: "Prophet provocateur",
+    b: "Be a prophet provocateur for AI in the West Indies — stimulating deliberation and public discussion that refuses both boosterism and panic.",
   },
   {
     k: "02",
-    t: "A Caribbean point of view",
-    b: "Fazal writes from Trinidad. The West Indies has long experience reading powerful systems from the outside — that lens is brought to AI.",
+    t: "Open source & AI security",
+    b: "Support the adoption of open-source AI innovations across the Caribbean, alongside the AI security initiatives that make that adoption safe.",
   },
   {
     k: "03",
-    t: "Plain language",
-    b: "No jargon, no hype, no doom. Each essay aims to leave the reader more literate about AI than when they arrived.",
+    t: "Convene the frontier",
+    b: "Bring AI experts from Google, Apple, NVIDIA, Netflix, AWS, OpenAI, Anthropic, Google DeepMind, Hugging Face, Lovable, Cursor and leading OSS communities into Caribbean rooms.",
   },
   {
     k: "04",
-    t: "Books matter most",
-    b: "Long-form arguments live in books. Education for Liberty is the first. Essays and the podcast lead readers toward them.",
+    t: "Build capacity",
+    b: "Deliver workshops, fellowships and curricula that grow AI literacy and engineering depth across the region — from school benches to government cabinets.",
   },
   {
     k: "05",
-    t: "Art counts as thinking",
-    b: "Photography, music, carnival, film — culture is part of how we understand technology, not a decoration on the side.",
+    t: "Industrial digitalisation",
+    b: "Drive autonomous machines, robotics, accelerated computing, data centres, national data libraries and data embassies across the Caribbean.",
   },
   {
     k: "06",
-    t: "Slow and steady",
-    b: "A weekly rhythm, not a daily feed. Fewer pieces, written with care, meant to be read more than once.",
+    t: "Algorithmic & epistemic justice",
+    b: "Address algorithmic fairness and epistemic justice so that small island developing states are read, measured and represented on their own terms.",
+  },
+  {
+    k: "07",
+    t: "Global–local linkages",
+    b: "Link AI adoption in Brazil, Chile and Uruguay to SIDS in the West Indies — and nest regional initiatives inside global AI agendas and projects.",
+  },
+  {
+    k: "08",
+    t: "Energy-aware architectures",
+    b: "Accelerate AI-optimised architectures that augment performance while reducing energy cost — from cloud to edge — so high-performance AI is democratised, not gated.",
+  },
+];
+
+const goals = [
+  {
+    year: "2026",
+    title: "Caribbean Algorithmic Equity Framework",
+    body: "Launch a regional framework on algorithmic fairness and epistemic justice — designed in the Caribbean, calibrated for SIDS, exported outward.",
+  },
+  {
+    year: "2029",
+    title: "15 joint LATAM–Caribbean AI products",
+    body: "Formal partnerships with Brazil, Chile and Uruguay on shared datasets, talent exchange and joint ventures — yielding 15 cross-border products serving both markets.",
+  },
+  {
+    year: "2030",
+    title: "Caribbean as a strategic AI hub",
+    body: "Measured by regional AI startups scaled, government AI policies adopted, and Caribbean representation in global standards bodies — UN, G20, OECD and frontier-lab safety protocols.",
   },
 ];
 
@@ -65,66 +93,66 @@ function OmerosPage() {
   return (
     <div>
       <PageHero
-        eyebrow="The name"
+        eyebrow="The initiative"
         title={<>Omeros<span className="italic">.</span></>}
         standfirst={
           <>
-            <em>Omeros</em> is the Greek name for Homer — the poet of the sea,
-            of journeys, of voices passed from one generation to the next. It
-            is the name Fazal Ali gives to his writing on artificial
-            intelligence: a practice that refuses the industry's two default
-            registers — boosterism and panic — and tries for a third:{" "}
-            <em>literacy.</em>
+            <em>Omeros</em> is the Greek name for Homer — the poet of the sea, of
+            journeys, of voices passed from one generation to the next. It is the
+            name Fazal Ali gives to a Caribbean initiative in artificial
+            intelligence: a <em>prophet provocateur</em> for AI in the West
+            Indies — convening, building capacity, and positioning the region as
+            a strategic AI hub by 2030.
           </>
         }
         meta={
           <>
-            <span>Writing on AI</span>
+            <span>AI in the West Indies</span>
             <span className="size-1 bg-white/40" />
-            <span>Six principles</span>
+            <span>Eight pillars</span>
             <span className="size-1 bg-white/40" />
-            <span>From Trinidad</span>
+            <span>Hub by 2030</span>
           </>
         }
         image={heroOmeros}
         imageAlt="Open sea at first light — the world Homer sang"
       />
 
-
       {/* Manifesto quote */}
       <section className="mx-auto max-w-[1400px] px-5 py-12 sm:px-8 sm:py-10">
         <Reveal>
           <div className="border-y hairline py-10 md:py-12">
             <p className="font-display text-3xl leading-[1.18] text-balance md:text-6xl">
-              <em>"Someone may say it doesn't look like technology.</em> But my
-              writing is about critical theory in AI. I am not building AI or
-              selling chips. The site is about me — my books, my ideas, my
-              writing, my art. My contribution to the West Indies.<em>"</em>
+              <em>"</em>Omeros AI exists to stimulate deliberation about AI in
+              the West Indies, to build capacity across the region, and to nest
+              our small island futures inside the global conversation on
+              intelligence — on terms set, in part, from
+              here.<em>"</em>
             </p>
             <p className="mt-10 eyebrow text-muted-foreground">Fazal Ali · 2026</p>
           </div>
         </Reveal>
       </section>
 
-      {/* Principles — what this site is, and is not */}
+      {/* Pillars — what Omeros AI sets out to do */}
       <section data-nav="dark" className="section-invert">
         <div className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8 sm:py-10">
           <Reveal>
-            <p className="eyebrow text-white/55">What Omeros is</p>
+            <p className="eyebrow text-white/55">What Omeros AI sets out to do</p>
             <h2 className="mt-5 font-display text-4xl md:text-7xl">
-              Six principles behind the writing.
+              Eight pillars of the work.
             </h2>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/65 md:text-lg">
-              A short guide to how Fazal works — what this site publishes, what
-              it doesn't, and the values that shape every essay, book and
-              episode you'll find here.
+              From convening the world's frontier labs in the Caribbean to
+              driving open-source adoption, industrial digitalisation and
+              algorithmic fairness — the work is plural, and it is regional.
             </p>
           </Reveal>
 
-          <div className="mt-16 grid gap-px bg-white/15 md:grid-cols-2 lg:grid-cols-3">
-            {tenets.map((t, i) => (
+          <div className="mt-16 grid gap-px bg-white/15 md:grid-cols-2 lg:grid-cols-4">
+            {pillars.map((t, i) => (
               <Reveal key={t.k} delay={i * 0.04}>
-                <div className="bg-background p-8 md:p-10">
+                <div className="bg-background p-8 md:p-10 h-full">
                   <p className="font-display text-5xl text-white/30">{t.k}</p>
                   <p className="mt-6 font-display text-2xl leading-tight">{t.t}</p>
                   <p className="mt-4 text-sm leading-relaxed text-white/60">{t.b}</p>
@@ -135,6 +163,35 @@ function OmerosPage() {
         </div>
       </section>
 
+      {/* Strategic goals */}
+      <section className="mx-auto max-w-[1500px] px-5 py-16 sm:px-8 sm:py-24">
+        <Reveal>
+          <p className="eyebrow text-muted-foreground">Where we are headed</p>
+          <h2 className="mt-5 font-display text-4xl md:text-6xl">
+            Strategic horizons — 2026, 2029, 2030.
+          </h2>
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
+            Concrete commitments on a fixed timeline — a flagship summit series
+            connecting 500+ regional builders annually with teams from OpenAI,
+            Anthropic, Google DeepMind, NVIDIA, AWS, Hugging Face and key OSS
+            communities, with a target of 50+ cross-border collaborations a
+            year.
+          </p>
+        </Reveal>
+
+        <div className="mt-12 grid gap-px bg-foreground/15 md:grid-cols-3">
+          {goals.map((g, i) => (
+            <Reveal key={g.year} delay={i * 0.06}>
+              <div className="bg-background p-8 md:p-10 h-full">
+                <p className="font-display text-6xl text-accent">{g.year}</p>
+                <p className="mt-6 font-display text-2xl leading-tight">{g.title}</p>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{g.body}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
       {/* CTAs */}
       <section className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8 sm:py-10">
         <div className="grid gap-px bg-foreground/15 md:grid-cols-2">
@@ -142,7 +199,7 @@ function OmerosPage() {
             <p className="eyebrow text-muted-foreground">Begin reading</p>
             <p className="font-display text-3xl md:text-5xl">The journal.</p>
             <p className="mt-2 text-sm text-muted-foreground">
-              Weekly notes on AI, education, and Caribbean futures.
+              Notes on AI, education, and Caribbean futures.
             </p>
             <span className="mt-6 inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em]">
               Open <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
