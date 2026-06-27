@@ -636,7 +636,7 @@ function Range() {
       {/* Background spinning wordmark */}
       <motion.div
         aria-hidden
-        style={{ rotate: useTransform(scrollYProgress, [0, 1], [0, 180]) }}
+        style={{ rotate: bgRotate }}
         className="pointer-events-none absolute -right-40 -top-40 size-[600px] opacity-[0.06] md:size-[900px]"
       >
         <div className="font-display text-[120px] leading-none md:text-[200px]">
