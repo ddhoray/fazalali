@@ -605,11 +605,45 @@ const rangeImages = [practiceEssays, practiceBook, practiceOmeros, practiceWestI
 
 function Range() {
   const navigate = useNavigate();
+  const [active, setActive] = useState(0);
+  const [hover, setHover] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const ringRotate = useTransform(scrollYProgress, [0, 1], [-60, 60]);
+  const ringScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.92, 1, 1.04]);
+
+  // Auto-advance the active thread
+  useEffect(() => {
+    if (hover) return;
+    const id = setInterval(() => setActive((a) => (a + 1) % range.length), 4200);
+    return () => clearInterval(id);
+  }, [hover]);
+
+  const current = range[active];
+  const CurrentIcon = current.icon;
 
   return (
-    <section data-nav="dark" className="section-invert relative px-5 py-10 sm:px-8 md:py-14">
-      <div className="mx-auto max-w-[1500px]">
-        <div className="mb-12 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-5">
+    <section
+      ref={sectionRef}
+      data-nav="dark"
+      className="section-invert relative overflow-hidden px-5 py-20 sm:px-8 md:py-32"
+    >
+      {/* Background spinning wordmark */}
+      <motion.div
+        aria-hidden
+        style={{ rotate: useTransform(scrollYProgress, [0, 1], [0, 180]) }}
+        className="pointer-events-none absolute -right-40 -top-40 size-[600px] opacity-[0.06] md:size-[900px]"
+      >
+        <div className="font-display text-[120px] leading-none md:text-[200px]">
+          range · range · range ·
+        </div>
+      </motion.div>
+
+      <div className="relative mx-auto max-w-[1500px]">
+        <div className="mb-16 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-5">
           <div className="max-w-3xl">
             <BlurReveal as="p" className="eyebrow text-muted-foreground">Range</BlurReveal>
             <BlurReveal as="h2" delay={0.08} className="mt-3 font-display text-[12vw] leading-[1.02] sm:text-5xl md:text-7xl">
@@ -621,101 +655,169 @@ function Range() {
           </BlurReveal>
         </div>
 
-        <div className="flex flex-col gap-6 md:gap-10">
-          {range.map((r, i) => (
-            <ZigzagRow
-              key={r.n}
-              r={r}
-              image={rangeImages[i]}
-              reverse={i % 2 === 1}
-              onOpen={() => navigate({ to: r.to })}
-            />
-          ))}
+        <div
+          className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20"
+          onMouseEnter={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
+        >
+          {/* Orbital stage */}
+          <div className="relative mx-auto aspect-square w-full max-w-[560px]">
+            {/* Outer rotating ring (continuous) */}
+            <motion.div
+              aria-hidden
+              animate={{ rotate: 360 }}
+              transition={{ duration: 60, ease: "linear", repeat: Infinity }}
+              className="absolute inset-0"
+            >
+              <svg viewBox="0 0 200 200" className="size-full">
+                <defs>
+                  <path
+                    id="range-ring-text"
+                    d="M 100,100 m -92,0 a 92,92 0 1,1 184,0 a 92,92 0 1,1 -184,0"
+                  />
+                </defs>
+                <circle cx="100" cy="100" r="92" fill="none" stroke="currentColor" strokeOpacity="0.18" strokeWidth="0.4" />
+                <text className="fill-current text-[6px] uppercase tracking-[0.4em] opacity-70" style={{ letterSpacing: "0.3em" }}>
+                  <textPath href="#range-ring-text">
+                    Critical Theory · Education for Liberty · Omeros AI · From the West Indies ·
+                  </textPath>
+                </text>
+              </svg>
+            </motion.div>
+
+            {/* Inner scroll-driven ring with thread markers */}
+            <motion.div
+              style={{ rotate: ringRotate, scale: ringScale }}
+              className="absolute inset-[10%]"
+            >
+              <div className="relative size-full rounded-full border hairline">
+                {range.map((r, i) => {
+                  const angle = (i / range.length) * 360 - 90;
+                  const rad = (angle * Math.PI) / 180;
+                  const x = 50 + 50 * Math.cos(rad);
+                  const y = 50 + 50 * Math.sin(rad);
+                  const isActive = i === active;
+                  return (
+                    <button
+                      key={r.n}
+                      type="button"
+                      onClick={() => setActive(i)}
+                      onMouseEnter={() => setActive(i)}
+                      aria-label={r.title}
+                      className="absolute -translate-x-1/2 -translate-y-1/2"
+                      style={{ left: `${x}%`, top: `${y}%` }}
+                    >
+                      <motion.span
+                        style={{ rotate: useTransform(ringRotate, (v) => -v) }}
+                        className="block"
+                      >
+                        <motion.span
+                          animate={{
+                            scale: isActive ? 1.15 : 1,
+                            opacity: isActive ? 1 : 0.55,
+                          }}
+                          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                          className={`relative flex size-20 items-center justify-center overflow-hidden rounded-full border-2 md:size-24 ${
+                            isActive ? "border-accent" : "border-white/30"
+                          }`}
+                        >
+                          <img
+                            src={rangeImages[i]}
+                            alt=""
+                            className="absolute inset-0 size-full object-cover"
+                            loading="lazy"
+                          />
+                          <span className="relative z-10 font-display text-lg text-white drop-shadow">
+                            {r.n}
+                          </span>
+                        </motion.span>
+                      </motion.span>
+                    </button>
+                  );
+                })}
+              </div>
+            </motion.div>
+
+            {/* Center card */}
+            <div className="absolute inset-[24%] flex items-center justify-center">
+              <motion.button
+                key={current.n}
+                type="button"
+                onClick={() => navigate({ to: current.to })}
+                initial={{ opacity: 0, scale: 0.92, filter: "blur(8px)" }}
+                animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                className="group relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-full"
+              >
+                <img
+                  src={rangeImages[active]}
+                  alt={current.title}
+                  className="absolute inset-0 size-full object-cover transition-transform duration-[1400ms] group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black/45" />
+                <Grain />
+                <div className="relative z-10 flex flex-col items-center gap-2 text-center text-white">
+                  <CurrentIcon className="size-6" />
+                  <span className="nav-link">{current.tag}</span>
+                </div>
+              </motion.button>
+            </div>
+          </div>
+
+          {/* Text panel — crossfade per active thread */}
+          <div className="relative min-h-[320px]">
+            <motion.div
+              key={current.n}
+              initial={{ opacity: 0, y: 24, filter: "blur(10px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <p className="eyebrow text-muted-foreground">
+                Thread {current.n} <span className="mx-2 opacity-40">/</span> {String(range.length).padStart(2, "0")}
+              </p>
+              <h3 className="mt-4 font-display text-5xl leading-[1.02] md:text-7xl">
+                {current.title}<span className="italic text-accent">.</span>
+              </h3>
+              <p className="mt-6 max-w-md text-lg leading-relaxed text-muted-foreground">
+                {current.body}
+              </p>
+              <button
+                type="button"
+                onClick={() => navigate({ to: current.to })}
+                className="group mt-8 inline-flex items-center gap-3 text-sm uppercase tracking-[0.2em]"
+              >
+                <span className="relative">
+                  Read the thread
+                  <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-100 bg-current transition-transform duration-500 group-hover:scale-x-0" />
+                </span>
+                <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
+              </button>
+            </motion.div>
+
+            {/* Progress pills */}
+            <div className="mt-12 flex items-center gap-2">
+              {range.map((r, i) => (
+                <button
+                  key={r.n}
+                  type="button"
+                  onClick={() => setActive(i)}
+                  aria-label={`Show ${r.title}`}
+                  className="relative h-1 flex-1 overflow-hidden bg-white/15"
+                >
+                  <motion.span
+                    initial={false}
+                    animate={{ scaleX: i === active ? 1 : i < active ? 1 : 0 }}
+                    transition={{ duration: i === active && !hover ? 4.2 : 0.4, ease: "linear" }}
+                    style={{ originX: 0 }}
+                    className="absolute inset-0 bg-accent"
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
-  );
-}
-
-function ZigzagRow({
-  r,
-  image,
-  reverse,
-  onOpen,
-}: {
-  r: (typeof range)[number];
-  image: string;
-  reverse: boolean;
-  onOpen: () => void;
-}) {
-  return (
-    <div
-      className={`grid grid-cols-1 items-start gap-8 md:grid-cols-12 md:gap-12 ${
-        reverse ? "md:[&>*:first-child]:order-2" : ""
-      }`}
-    >
-      {/* Image — sticky, stays pinned while content scrolls past */}
-      <div className={`md:col-span-7 ${reverse ? "md:col-start-6" : ""}`}>
-        <div className="md:sticky md:top-24">
-          <button
-            type="button"
-            onClick={onOpen}
-            aria-label={`Open ${r.title}`}
-            className="group relative block aspect-[4/3] w-full overflow-hidden bg-foreground/5 md:aspect-[5/4]"
-          >
-            <img
-              src={image}
-              alt={r.title}
-              className="absolute inset-0 size-full object-cover transition-transform duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
-              loading="lazy"
-            />
-            <Grain />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
-            <span
-              aria-hidden
-              className={`pointer-events-none absolute top-4 font-display text-[80px] leading-none text-white/85 sm:text-[120px] md:text-[160px] ${
-                reverse ? "right-4 md:right-8" : "left-4 md:left-8"
-              }`}
-            >
-              {r.n}
-            </span>
-            <div className="absolute inset-x-0 bottom-0 flex items-center justify-between p-4 text-white md:p-5">
-              <span className="inline-flex size-9 items-center justify-center rounded-full bg-white/15 backdrop-blur-md">
-                <r.icon className="size-4" />
-              </span>
-              <span className="nav-link rounded-full bg-black/45 px-3 py-1.5 backdrop-blur-md">
-                {r.tag}
-              </span>
-            </div>
-          </button>
-        </div>
-      </div>
-
-      {/* Text — scrolls past the pinned image */}
-      <div
-        className={`md:col-span-5 md:min-h-[50vh] md:py-4 ${
-          reverse ? "md:col-start-1 md:row-start-1" : ""
-        }`}
-      >
-        <BlurReveal>
-          <p className="eyebrow text-muted-foreground">Thread {r.n}</p>
-          <h3 className="mt-3 font-display text-4xl leading-[1.02] md:text-6xl">
-            {r.title}<span className="italic">.</span>
-          </h3>
-          <p className="mt-5 max-w-md text-base leading-relaxed text-muted-foreground">
-            {r.body}
-          </p>
-          <button
-            type="button"
-            onClick={onOpen}
-            className="group mt-6 inline-flex items-center gap-2 text-sm"
-          >
-            Read the thread
-            <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
-          </button>
-        </BlurReveal>
-      </div>
-    </div>
   );
 }
 
