@@ -792,10 +792,10 @@ function Range() {
                   aria-label={`Show ${r.title}`}
                   className="relative h-1 flex-1 overflow-hidden bg-white/15"
                 >
-                  <motion.span
+                    <motion.span
                     initial={false}
                     animate={{ scaleX: i === active ? 1 : i < active ? 1 : 0 }}
-                    transition={{ duration: i === active && !hover ? 4.2 : 0.4, ease: "linear" }}
+                    transition={{ duration: i === active ? 4.2 : 0.4, ease: "linear" }}
                     style={{ originX: 0 }}
                     className="absolute inset-0 bg-accent"
                   />
