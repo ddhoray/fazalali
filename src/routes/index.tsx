@@ -646,11 +646,7 @@ function Range() {
           </BlurReveal>
         </div>
 
-        <div
-          className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20"
-          onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
-        >
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20">
           {/* Orbital stage */}
           <div className="relative mx-auto aspect-square w-full max-w-[560px]">
             {/* Outer rotating ring (continuous) */}
