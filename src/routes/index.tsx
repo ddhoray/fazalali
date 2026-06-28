@@ -606,15 +606,13 @@ const rangeImages = [practiceEssays, practiceBook, practiceOmeros, practiceWestI
 function Range() {
   const navigate = useNavigate();
   const [active, setActive] = useState(0);
-  const [hover, setHover] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   // Auto-advance the active thread
   useEffect(() => {
-    if (hover) return;
     const id = setInterval(() => setActive((a) => (a + 1) % range.length), 4200);
     return () => clearInterval(id);
-  }, [hover]);
+  }, []);
 
   const current = range[active];
   const CurrentIcon = current.icon;
