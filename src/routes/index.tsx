@@ -606,15 +606,13 @@ const rangeImages = [practiceEssays, practiceBook, practiceOmeros, practiceWestI
 function Range() {
   const navigate = useNavigate();
   const [active, setActive] = useState(0);
-  const [hover, setHover] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   // Auto-advance the active thread
   useEffect(() => {
-    if (hover) return;
     const id = setInterval(() => setActive((a) => (a + 1) % range.length), 4200);
     return () => clearInterval(id);
-  }, [hover]);
+  }, []);
 
   const current = range[active];
   const CurrentIcon = current.icon;
@@ -625,15 +623,6 @@ function Range() {
       data-nav="dark"
       className="section-invert relative overflow-hidden px-5 py-20 sm:px-8 md:py-32"
     >
-      {/* Background fixed wordmark */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute right-0 top-0 opacity-[0.08]"
-      >
-        <div className="font-display text-[18vw] leading-[0.9] md:text-[14vw]">
-          range
-        </div>
-      </div>
 
       <div className="relative mx-auto max-w-[1500px]">
         <div className="mb-16 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-5">
@@ -648,11 +637,7 @@ function Range() {
           </BlurReveal>
         </div>
 
-        <div
-          className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20"
-          onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
-        >
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20">
           {/* Orbital stage */}
           <div className="relative mx-auto aspect-square w-full max-w-[560px]">
             {/* Outer rotating ring (continuous) */}
@@ -696,7 +681,6 @@ function Range() {
                       key={r.n}
                       type="button"
                       onClick={() => setActive(i)}
-                      onMouseEnter={() => setActive(i)}
                       aria-label={r.title}
                       className="absolute -translate-x-1/2 -translate-y-1/2"
                       style={{ left: `${x}%`, top: `${y}%` }}
@@ -747,7 +731,7 @@ function Range() {
                 <img
                   src={rangeImages[active]}
                   alt={current.title}
-                  className="absolute inset-0 size-full object-cover transition-transform duration-[1400ms] group-hover:scale-110"
+                  className="absolute inset-0 size-full object-cover transition-transform duration-[1400ms]"
                 />
                 <div className="absolute inset-0 bg-black/45" />
                 <Grain />
@@ -799,10 +783,10 @@ function Range() {
                   aria-label={`Show ${r.title}`}
                   className="relative h-1 flex-1 overflow-hidden bg-white/15"
                 >
-                  <motion.span
+                    <motion.span
                     initial={false}
                     animate={{ scaleX: i === active ? 1 : i < active ? 1 : 0 }}
-                    transition={{ duration: i === active && !hover ? 4.2 : 0.4, ease: "linear" }}
+                    transition={{ duration: i === active ? 4.2 : 0.4, ease: "linear" }}
                     style={{ originX: 0 }}
                     className="absolute inset-0 bg-accent"
                   />
