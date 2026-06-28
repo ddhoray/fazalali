@@ -731,7 +731,7 @@ function Range() {
                 <img
                   src={rangeImages[active]}
                   alt={current.title}
-                  className="absolute inset-0 size-full object-cover transition-transform duration-[1400ms] group-hover:scale-110"
+                  className="absolute inset-0 size-full object-cover transition-transform duration-[1400ms]"
                 />
                 <div className="absolute inset-0 bg-black/45" />
                 <Grain />
