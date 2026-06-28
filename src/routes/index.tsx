@@ -633,16 +633,15 @@ function Range() {
       data-nav="dark"
       className="section-invert relative overflow-hidden px-5 py-20 sm:px-8 md:py-32"
     >
-      {/* Background spinning wordmark */}
-      <motion.div
+      {/* Background fixed wordmark */}
+      <div
         aria-hidden
-        style={{ rotate: bgRotate }}
-        className="pointer-events-none absolute -right-40 -top-40 size-[600px] opacity-[0.06] md:size-[900px]"
+        className="pointer-events-none absolute right-0 top-0 opacity-[0.08]"
       >
-        <div className="font-display text-[120px] leading-none md:text-[200px]">
-          range · range · range ·
+        <div className="font-display text-[18vw] leading-[0.9] md:text-[14vw]">
+          range
         </div>
-      </motion.div>
+      </div>
 
       <div className="relative mx-auto max-w-[1500px]">
         <div className="mb-16 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-5">
@@ -687,9 +686,10 @@ function Range() {
               </svg>
             </motion.div>
 
-            {/* Inner scroll-driven ring with thread markers */}
+            {/* Inner auto-rotating ring with thread markers — brings the active marker to top */}
             <motion.div
-              style={{ rotate: ringRotate, scale: ringScale }}
+              animate={{ rotate: -(active / range.length) * 360 }}
+              transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
               className="absolute inset-[10%]"
             >
               <div className="relative size-full rounded-full border hairline">
@@ -710,7 +710,8 @@ function Range() {
                       style={{ left: `${x}%`, top: `${y}%` }}
                     >
                       <motion.span
-                        style={{ rotate: ringCounter }}
+                        animate={{ rotate: (active / range.length) * 360 }}
+                        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                         className="block"
                       >
                         <motion.span
