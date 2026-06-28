@@ -623,15 +623,6 @@ function Range() {
       data-nav="dark"
       className="section-invert relative overflow-hidden px-5 py-20 sm:px-8 md:py-32"
     >
-      {/* Background fixed wordmark */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute right-0 top-0 opacity-[0.08]"
-      >
-        <div className="font-display text-[18vw] leading-[0.9] md:text-[14vw]">
-          range
-        </div>
-      </div>
 
       <div className="relative mx-auto max-w-[1500px]">
         <div className="mb-16 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-5">
