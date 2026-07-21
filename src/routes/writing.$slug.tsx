@@ -40,27 +40,45 @@ export const Route = createFileRoute("/writing/$slug")({
               type: "application/ld+json",
               children: JSON.stringify({
                 "@context": "https://schema.org",
-                "@type": "Article",
-                headline: loaderData.article.title,
-                description: loaderData.article.excerpt,
-                image: loaderData.article.image,
-                datePublished: loaderData.article.date,
-                articleSection: loaderData.article.topic,
-                author: {
-                  "@type": "Person",
-                  name: "Fazal Ibrahim Ali",
-                  url: "https://omeros-cipher-glass.lovable.app/about",
-                },
-                publisher: {
-                  "@type": "Person",
-                  name: "Fazal Ibrahim Ali",
-                },
-                mainEntityOfPage: `https://omeros-cipher-glass.lovable.app/writing/${params.slug}`,
+                "@graph": [
+                  {
+                    "@type": "Article",
+                    headline: loaderData.article.title,
+                    description: loaderData.article.excerpt,
+                    image: [loaderData.article.image],
+                    datePublished: loaderData.article.date,
+                    dateModified: loaderData.article.date,
+                    articleSection: loaderData.article.topic,
+                    keywords: (loaderData.article.tags ?? []).join(", "),
+                    wordCount: loaderData.article.body.join(" ").split(/\s+/).length,
+                    articleBody: loaderData.article.body.join("\n\n"),
+                    inLanguage: "en",
+                    author: {
+                      "@type": "Person",
+                      name: "Fazal Ibrahim Ali",
+                      url: "https://omeros-cipher-glass.lovable.app/about",
+                    },
+                    publisher: {
+                      "@type": "Person",
+                      name: "Fazal Ibrahim Ali",
+                    },
+                    mainEntityOfPage: `https://omeros-cipher-glass.lovable.app/writing/${params.slug}`,
+                  },
+                  {
+                    "@type": "BreadcrumbList",
+                    itemListElement: [
+                      { "@type": "ListItem", position: 1, name: "Home", item: "https://omeros-cipher-glass.lovable.app/" },
+                      { "@type": "ListItem", position: 2, name: "Journal", item: "https://omeros-cipher-glass.lovable.app/writing" },
+                      { "@type": "ListItem", position: 3, name: loaderData.article.title, item: `https://omeros-cipher-glass.lovable.app/writing/${params.slug}` },
+                    ],
+                  },
+                ],
               }),
             },
           ],
         }
       : { meta: [{ title: "Journal — Fazal Ali" }] },
+
   notFoundComponent: () => (
     <div className="mx-auto max-w-3xl px-5 py-10 text-center">
       <h1 className="font-display text-4xl">Entry not found</h1>
