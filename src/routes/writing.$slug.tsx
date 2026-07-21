@@ -15,9 +15,16 @@ export const Route = createFileRoute("/writing/$slug")({
           meta: [
             { title: `${loaderData.article.title} — Fazal Ali` },
             { name: "description", content: loaderData.article.excerpt },
+            ...(loaderData.article.tags && loaderData.article.tags.length
+              ? [{ name: "keywords", content: loaderData.article.tags.join(", ") }]
+              : []),
             { name: "author", content: "Fazal Ibrahim Ali" },
             { name: "article:published_time", content: loaderData.article.date },
             { name: "article:section", content: loaderData.article.topic },
+            ...((loaderData.article.tags ?? []).map((t: string) => ({
+              property: "article:tag",
+              content: t,
+            }))),
             { property: "og:title", content: loaderData.article.title },
             { property: "og:description", content: loaderData.article.excerpt },
             { property: "og:type", content: "article" },
