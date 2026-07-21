@@ -10,7 +10,6 @@ const links = [
   { to: "/education-for-liberty", label: "Education for Liberty" },
   { to: "/writing", label: "Journal" },
   { to: "/podcast", label: "Podcast" },
-  { to: "/omeros-ai", label: "Omeros" },
   { to: "/about", label: "About" },
   { to: "/gallery", label: "Gallery" },
   { to: "/ecology", label: "Ecology" },

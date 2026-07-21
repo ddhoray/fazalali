@@ -24,7 +24,6 @@ export function SiteFooter() {
               <li><Link to="/books" className="text-foreground/75 hover:text-foreground transition-colors">Books</Link></li>
               <li><Link to="/writing" className="text-foreground/75 hover:text-foreground transition-colors">Journal</Link></li>
               <li><Link to="/podcast" className="text-foreground/75 hover:text-foreground transition-colors">Podcast</Link></li>
-              <li><Link to="/omeros-ai" className="text-foreground/75 hover:text-foreground transition-colors">Omeros</Link></li>
               <li><Link to="/about" className="text-foreground/75 hover:text-foreground transition-colors">Profile</Link></li>
               <li><Link to="/education-for-liberty" className="text-foreground/75 hover:text-foreground transition-colors">Education for Liberty</Link></li>
               <li><Link to="/palimpsest" className="text-foreground/75 hover:text-foreground transition-colors">Palimpsest</Link></li>
