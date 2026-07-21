@@ -1,14 +1,3 @@
-import imgCarnival from "@/assets/article-carnival.jpg";
-import imgFailure from "@/assets/article-failure.jpg";
-import imgFabric from "@/assets/article-fabric.jpg";
-import imgShield from "@/assets/article-shield.jpg";
-import imgGravity from "@/assets/article-gravity.jpg";
-import imgDatacenter from "@/assets/article-datacenter.jpg";
-import imgShelf from "@/assets/article-shelf.jpg";
-import img100Model from "@/assets/article-100model.jpg";
-import imgCern from "@/assets/article-cern.jpg";
-import imgDivine from "@/assets/article-divine.jpg";
-
 export interface Article {
   slug: string;
   title: string;
@@ -27,7 +16,7 @@ export const articles: Article[] = [
     excerpt: `The FIFA 2026 World Cup features an AI-enhanced football. The ball has an Inertial Measurement Unit (IMU).`,
     date: "2026-07-18",
     topic: `Technology`,
-    image: imgFabric,
+    image: `https://fazalali.com/wp-content/uploads/2026/07/Gen1.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`, `FIFA`, `World Cup`],
     body: [
       `The FIFA 2026 World Cup features an AI-enhanced football. The ball has an Inertial Measurement Unit (IMU). Operating at 500Hz, it captures 3D acceleration, spin, and granular impact data 500 times per second to precisely timestamp exactly when a player touches the ball. The tournament includes digital twins of 16 stadiums, avatars of all 1248 players, Ref Cams with receivers that transmit live or stabilised replay footage, video assistant referees (VARs) that link live players on the field with their digital clones using the exact physical proportions and measurements of each player built from full-body scans, 16 optical tracking cameras that monitor 29 skeletal points on every player collecting data up to 50 times a second, 12 to 16 specialised optical tracking cameras embedded in the roof of each stadium to track player positions, and a central AI-powered Technology Command Centre in Miami and an international Broadcast Centre in Dallas. The tournament spans 3 host countries, 48 nations, and 104 matches, reaching an audience of billions.`,
@@ -50,7 +39,7 @@ export const articles: Article[] = [
     excerpt: `Truth is not enough in the Intelligent Age, because AI models don’t "know" what truth is. AI Assemblages function by predicting patterns and harmonising text rather than consulting reality.`,
     date: "2026-07-04",
     topic: `Technology`,
-    image: imgFailure,
+    image: `https://fazalali.com/wp-content/uploads/2026/07/POS.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`, `truth`],
     body: [
       `Truth is not enough in the Intelligent Age, because AI models don’t “know” what truth is. AI Assemblages function by predicting patterns and harmonising text rather than consulting reality. A factually correct statement can lack the context, nuance, or ethical judgment required to be genuinely useful. Vigilance is the only safeguard to avert conflating truth with verisimilitude.`,
@@ -73,7 +62,7 @@ export const articles: Article[] = [
     excerpt: `Global hyperscale AI infrastructure is undergoing a massive US$3 trillion capital investment supercycle. This capital expenditure is driven by hyperscalers eager to build advanced AI data centres and procure hardware.`,
     date: "2026-06-27",
     topic: `Technology`,
-    image: imgShield,
+    image: `https://fazalali.com/wp-content/uploads/2026/06/napa.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `Global hyperscale AI infrastructure is undergoing a massive US$3 trillion capital investment supercycle. This capital expenditure is driven by hyperscalers eager to build advanced AI data centres and procure hardware. Forecasts project global capacity will double from 103 GW to nearly 200 GW by 2030.`,
@@ -99,7 +88,7 @@ export const articles: Article[] = [
     excerpt: `AI is a foundational layer of labour. It replaces, augments, and manages human workloads.`,
     date: "2026-06-20",
     topic: `Technology`,
-    image: imgGravity,
+    image: `https://fazalali.com/wp-content/uploads/2026/06/kingston-home-centre.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `AI is a foundational layer of labour. It replaces, augments, and manages human workloads. Digital workers and AI agents autonomously handle multistep administrative tasks, navigate applications, collect data, fill out forms, and trigger workflows to deliver client-facing services with extreme velocity. Workers are completing tasks with greater agility and efficiency.  But economies don’t reflect this efficiency.`,
@@ -127,7 +116,7 @@ export const articles: Article[] = [
     excerpt: `This is the next world. A Time of Artificial Life and Intelligence. An age in which every design choice reflects a vision for humanity. A hope that can easily overlook concrete lives.`,
     date: "2026-06-13",
     topic: `Technology`,
-    image: imgDatacenter,
+    image: `https://fazalali.com/wp-content/uploads/2026/06/next-world.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `This is the next world. A Time of Artificial Life and Intelligence. An age in which every design choice reflects a vision for humanity. A hope that can easily overlook concrete lives. Because of poor judgment, we may already have lost control over the consequences of our choices.`,
@@ -154,7 +143,7 @@ export const articles: Article[] = [
     excerpt: `The best lie is that a memory always feels so true. LLMs are trained on huge data scrapes that can sometimes "memorise" personal details. To comply with privacy provisions, developers use machine unlearning to make AI models forget particular data points.`,
     date: "2026-06-06",
     topic: `Technology`,
-    image: imgShelf,
+    image: `https://fazalali.com/wp-content/uploads/2026/06/boats-1020x685.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `The best lie is that a memory always feels so true. LLMs are trained on huge data scrapes that can sometimes “memorise” personal details. To comply with privacy provisions, developers use machine unlearning to make AI models forget particular data points. But this forced forgetting and unlearning is far from the complexity of human forgetfulness that allows memories to be revived and reworked.`,
@@ -178,7 +167,7 @@ export const articles: Article[] = [
     excerpt: `The archwire-bending brand identity of the Trinidad Carnival has penetrated markets in the Middle East. In Dubai, the world witnessed all aspects of Fête, Jouvert and Mas’, and a "Callalloo" of costumes from top Carnival bands.`,
     date: "2026-05-30",
     topic: `Technology`,
-    image: img100Model,
+    image: `https://fazalali.com/wp-content/uploads/2026/05/bear.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `The archwire-bending brand identity of the Trinidad Carnival has penetrated markets in the Middle East. In Dubai, the world witnessed all aspects of Fête, Jouvert and Mas’, and a “Callalloo” of costumes from top Carnival bands.`,
@@ -205,7 +194,7 @@ export const articles: Article[] = [
     excerpt: `The future we are in now belongs to our children. Our fears can become a cage that makes them doubt their personal theories and capabilities. They are AI-natives. Let them be free to think and create. They will make lots of big mistakes.`,
     date: "2026-05-23",
     topic: `Technology`,
-    image: imgCern,
+    image: `https://fazalali.com/wp-content/uploads/2026/05/robot.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`, `technology`],
     body: [
       `The future we are in now belongs to our children. Our fears can become a cage that makes them doubt their personal theories and capabilities. They are AI-natives. Let them be free to think and create. They will make lots of big mistakes. So what? Failure is better than never trying. To do nothing is to never fail. To never fail is to do nothing.`,
@@ -231,7 +220,7 @@ export const articles: Article[] = [
     excerpt: `Mythos is a “step change,” or a non-linear jump, in capability. It is a highly advanced, general-purpose frontier AI model that possesses unprecedented cybersecurity capabilities.`,
     date: "2026-05-16",
     topic: `Technology`,
-    image: imgDivine,
+    image: `https://fazalali.com/wp-content/uploads/2026/05/mythos.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `Mythos is a “step change,” or a non-linear jump, in capability. It is a highly advanced, general-purpose frontier AI model that possesses unprecedented cybersecurity capabilities. Rather than being a traditional antivirus or network firewall, it is an AI tool capable of autonomously finding, chaining, and exploiting software vulnerabilities. It can act both as an advanced hacker and a security researcher.`,
@@ -256,7 +245,7 @@ export const articles: Article[] = [
     excerpt: `No one can shield their AI chats from prosecutors pursuing charges. Conversations with AI assemblages could be demanded by adversaries in litigation, in both criminal and civil cases. Chats with advocates are always confidential.`,
     date: "2026-05-09",
     topic: `Technology`,
-    image: imgCarnival,
+    image: `https://fazalali.com/wp-content/uploads/2026/05/ny.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `No one can shield their AI chats from prosecutors pursuing charges. Conversations with AI assemblages could be demanded by adversaries in litigation, in both criminal and civil cases. Chats with advocates are always confidential. But AI assemblages are not lawyers. Conversations with AI assemblages can erase the legal protections known as the attorney-client privilege, which usually shield conversations between clients and their advocates.`,
@@ -280,7 +269,7 @@ export const articles: Article[] = [
     excerpt: `The future is still about figuring out what questions to ask. This is more important than finding the correct answer to the wrong question. We once learned to use search engines to do more impactful things.`,
     date: "2026-05-02",
     topic: `Technology`,
-    image: imgFabric,
+    image: `https://fazalali.com/wp-content/uploads/2026/04/bOOm-1020x685.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `The future is still about figuring out what questions to ask. This is more important than finding the correct answer to the wrong question. We once learned to use search engines to do more impactful things. Now we are learning to use AI to usher in an era of incredible productivity and radical abundance.`,
@@ -301,7 +290,7 @@ export const articles: Article[] = [
     excerpt: `Data centres and hyperscale cloud infrastructure are the new victims of war. Hyperscale cloud infrastructure offers unparalleled, rapid scalability for immense computing, storage, and networking demands.`,
     date: "2026-04-25",
     topic: `Technology`,
-    image: imgFailure,
+    image: `https://fazalali.com/wp-content/uploads/2026/04/AI.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`, `technology`, `ukraine`],
     body: [
       `Data centres and hyperscale cloud infrastructure are the new victims of war. Hyperscale cloud infrastructure offers unparalleled, rapid scalability for immense computing, storage, and networking demands. Managed by industry leaders such as AWS, Microsoft Azure, Google Cloud, and Oracle Cloud, these architectures can dynamically scale resources on demand. This enables companies to efficiently handle enormous workloads without the cost and complexity of building and maintaining their own physical IT infrastructure.`,
@@ -323,7 +312,7 @@ export const articles: Article[] = [
     excerpt: `AI-powered digital price tags, or Electronic Shelf Labels (ESLs), are being adopted by major retail chains.`,
     date: "2026-04-18",
     topic: `Technology`,
-    image: imgShield,
+    image: `https://fazalali.com/wp-content/uploads/2026/04/mia.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `AI-powered digital price tags, or Electronic Shelf Labels (ESLs), are being adopted by major retail chains. These tiny screens can be updated wirelessly via a central system, delivering instant price updates for thousands of products and enabling price calibration, like ride-sharing apps, based on demand, time of day, competitor prices, and inventory levels. These frontier AI tools are already gradually replacing static paper price tags pinned to the plastic shelf channels along gondolas. These screens use AI algorithms to analyse data, such as food expiry dates and foot traffic, and can draw on fluctuations in information that ripple through the screen economy via the butterfly effect of transient events, such as the blockade of the Strait of Hormuz.`,
@@ -342,7 +331,7 @@ export const articles: Article[] = [
     excerpt: `The Hundred Model War started in 2023. From Beijing to the southern Silicon Valley of Shenzhen, China is implementing its AI+ project, which was introduced in 2024 and expanded in 2025.`,
     date: "2026-04-12",
     topic: `Technology`,
-    image: imgGravity,
+    image: `https://fazalali.com/wp-content/uploads/2026/04/opt-2.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `The Hundred Model War started in 2023. From Beijing to the southern Silicon Valley of Shenzhen, China is implementing its AI+ project, which was introduced in 2024 and expanded in 2025.`,
@@ -371,7 +360,7 @@ export const articles: Article[] = [
     excerpt: `In many ways, AI-generated content is poisoning the internet, making it less reliable to access clear facts. And while it is indisputable that AI is impressive, it is also predictable.`,
     date: "2026-04-04",
     topic: `Technology`,
-    image: imgDatacenter,
+    image: `https://fazalali.com/wp-content/uploads/2026/04/optimizedAI.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `In many ways, AI-generated content is poisoning the internet, making it less reliable to access clear facts. And while it is indisputable that AI is impressive, it is also predictable. Brenda Mulberry ambitiously hopes to open the first T-shirt shop on the Moon. Her Minshallesque idea is a perfect edge case. Her knowledge is personally created and historically produced. It is not empirically generated. Present AI models cannot generate such a bizarre business proposition. Her curious idea for a Moon-based T-shirt tourist shop is exceptionally human.`,
@@ -391,7 +380,7 @@ export const articles: Article[] = [
     excerpt: `Deep within the glass-walled offices of Anthropic and OpenAI, the quest for the “orderly harmony” of Nicolaus Copernicus, Tycho Brahe, Galileo Galilei, Johannes Kepler, Baruch Spinoza, and Isaac Newton continues unhindered.`,
     date: "2026-03-28",
     topic: `Technology`,
-    image: imgShelf,
+    image: `https://fazalali.com/wp-content/uploads/2026/03/guy.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `Deep within the glass-walled offices of Anthropic and OpenAI, the quest for the “orderly harmony” of Nicolaus Copernicus, Tycho Brahe, Galileo Galilei, Johannes Kepler, Baruch Spinoza, and Isaac Newton continues unhindered.`,
@@ -419,7 +408,7 @@ export const articles: Article[] = [
     excerpt: `The Strait of Hormuz is a narrow waterway through which about 20 per cent of the world's daily LNG supply transits. Traffic has decreased by approximately 70-90 per cent.`,
     date: "2026-03-22",
     topic: `Technology`,
-    image: img100Model,
+    image: `https://fazalali.com/wp-content/uploads/2026/03/paramin.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`, `fertiliser`],
     body: [
       `The Strait of Hormuz is a narrow waterway through which about 20 per cent of the world’s daily LNG supply transits. Traffic has decreased by approximately 70-90 per cent. Some ships are navigating the passage with special permission, while others remain anchored.`,
@@ -442,7 +431,7 @@ export const articles: Article[] = [
     excerpt: `Every day, the future changes. It feels almost messianic, rushing toward us. So, what does the future hold? This question recurs each time extraordinary machinery appears. Machine Learning (ML) and Artificial Intelligence (AI) are the new silver linings.`,
     date: "2026-03-14",
     topic: `Technology`,
-    image: imgCern,
+    image: `https://fazalali.com/wp-content/uploads/2026/03/sinners.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `Every day, the future changes. It feels almost messianic, rushing toward us. So, what does the future hold? This question recurs each time extraordinary machinery appears. Machine Learning (ML) and Artificial Intelligence (AI) are the new silver linings. But every silver lining has a dark cloud.`,
@@ -465,7 +454,7 @@ export const articles: Article[] = [
     excerpt: `Agility Quotient (AQ) assesses our capacity to persist through failure, navigate uncertainty, unlearn, and stay curious in the Intelligent Age.`,
     date: "2026-03-07",
     topic: `Technology`,
-    image: imgDivine,
+    image: `https://fazalali.com/wp-content/uploads/2026/03/junk-1020x685.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `Agility Quotient (AQ) assesses our capacity to persist through failure, navigate uncertainty, unlearn, and stay curious in the Intelligent Age. In the era of data-as-a-product, traditional metrics such as IQ and EQ are no longer enough to define leadership and determine competitiveness. Data-as-a-product is a feature of the autonomous economy that treats data as a product rather than an asset.`,
@@ -491,7 +480,7 @@ export const articles: Article[] = [
     excerpt: `Why do jobs exist? The origin of the word “job” is linked to the period following the invention of the printing press, with its earliest use in the 16th century.`,
     date: "2026-03-01",
     topic: `Technology`,
-    image: imgCarnival,
+    image: `https://fazalali.com/wp-content/uploads/2026/03/FazalAli-Featured-Images.png`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `Why do jobs exist? The origin of the word “job” is linked to the period following the invention of the printing press, with its earliest use in the 16th century. While Johannes Gutenberg invented the printing press in Mainz, Germany, around 1450, the term “job” appeared as a contraction of the phrase “ jobbe of worke ” in the 1550s. Originally, it meant a “piece of work” or “task,” often distinguished from continuous labour.`,
@@ -514,7 +503,7 @@ export const articles: Article[] = [
     excerpt: `Economies are no longer primarily industrial. Most of the work is service-oriented and relies on knowledge, ideas, and creativity.`,
     date: "2026-02-21",
     topic: `Technology`,
-    image: imgFabric,
+    image: `https://fazalali.com/wp-content/uploads/2026/02/factory.jpg`,
     tags: [`Technology`],
     body: [
       `Economies are no longer primarily industrial. Most of the work is service-oriented and relies on knowledge, ideas, and creativity. During the later stages of the Industrial Revolution, Victorian leaders established the City and Guilds of London Institute to develop a skilled industrial workforce.`,
@@ -540,7 +529,7 @@ export const articles: Article[] = [
     excerpt: `As AI boosts work, Taiwan hosted a chip talent camp for teenagers from around the world. The camp was delivered in both Mandarin and English to attract talent.`,
     date: "2026-02-14",
     topic: `Technology`,
-    image: imgFailure,
+    image: `https://fazalali.com/wp-content/uploads/2026/02/trainstation.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `As AI boosts work, Taiwan hosted a chip talent camp for teenagers from around the world. The camp was delivered in both Mandarin and English to attract talent.  Synopsys curated the camp with chip manufacturers and universities in Taiwan amid surging global demand for AI.`,
@@ -569,7 +558,7 @@ export const articles: Article[] = [
     excerpt: `Our immediate priority is to prevent the emergence of new social and economic divides in the Intelligent Age. Although the Internet is often depicted as existing in the “cloud”, it heavily depends on subsea cables.`,
     date: "2026-02-07",
     topic: `Technology`,
-    image: imgShield,
+    image: `https://fazalali.com/wp-content/uploads/2026/02/gate.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `Our immediate priority is to prevent the emergence of new social and economic divides in the Intelligent Age. Although the Internet is often depicted as existing in the “cloud”, it heavily depends on subsea cables. Subsea fibre-optic cables function as the high-capacity, low-latency backbone that supports AI by enabling large-scale data transfer among global data centres. They facilitate the training of extensive AI models and connect dispersed cloud infrastructure.`,
@@ -596,7 +585,7 @@ export const articles: Article[] = [
     excerpt: `Intelligent failure turns on limitless naivete and an absence of artificiality. Failure is intelligent when no formula exists to precisely map the terrain in advance. These failures begin with designing smart pilots that keep failures small.`,
     date: "2026-01-31",
     topic: `Technology`,
-    image: imgGravity,
+    image: `https://fazalali.com/wp-content/uploads/2026/01/jam-food-raft.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `Intelligent failure turns on limitless naivete and an absence of artificiality. Failure is intelligent when no formula exists to precisely map the terrain in advance.  These failures begin with designing smart pilots that keep failures small. AI-assisted innovation and creativity have been nothing short of transformative. AI assemblages have achieved significant results by composing poetry, creating art, producing music, designing carnival bands and fashion collections, and discovering molecules.`,
@@ -619,7 +608,7 @@ export const articles: Article[] = [
     excerpt: `Every clean slate comes from some other beginning's end. The old order is not coming back. The exact shape of the new order is still contested, and it may not even be a single, planned system.`,
     date: "2026-01-24",
     topic: `Technology`,
-    image: imgDatacenter,
+    image: `https://fazalali.com/wp-content/uploads/2026/01/sapodilla.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `Every clean slate comes from some other beginning’s end. The old order is not coming back. The exact shape of the new order is still contested, and it may not even be a single, planned system. Sir Vidiadhar Surajprasad Naipaul’s view, offered in his 2001 Nobel Prize lecture, is that “The world is always in movement. People have everywhere at some time been dispossessed.” Dispossession is not an exception but a constant, inherent part of the human condition. Loss of place is inevitable.`,
@@ -643,7 +632,7 @@ export const articles: Article[] = [
     excerpt: `Within a fragmented and rapidly shifting geopolitical environment, from Nuuk to Qom, and from Haifa to Havana, President Trump’s “America First” doctrine, his MAGA worldview, and his administration’s artificial intelligence (AI) domestic policy are increasingl…`,
     date: "2026-01-18",
     topic: `Technology`,
-    image: imgShelf,
+    image: `https://fazalali.com/wp-content/uploads/2026/01/house.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `Within a fragmented and rapidly shifting geopolitical environment, from Nuuk to Qom, and from Haifa to Havana, President Trump’s “America First” doctrine, his MAGA worldview, and his administration’s artificial intelligence (AI) domestic policy are increasingly intertwined.`,
@@ -666,7 +655,7 @@ export const articles: Article[] = [
     excerpt: `We are in the twilight of human intellectual supremacy. The Screen Economy will chaperone an age of unconstrained flourishing of artificial life, the likes of which humans have never witnessed before.`,
     date: "2026-01-10",
     topic: `Technology`,
-    image: img100Model,
+    image: `https://fazalali.com/wp-content/uploads/2026/01/Kad.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `We are in the twilight of human intellectual supremacy.  The Screen Economy will chaperone an age of unconstrained flourishing of artificial life, the likes of which humans have never witnessed before. It will foment the most profound identity crisis that humanity has ever faced, with AI meshworks increasingly matching and exceeding our cognitive abilities.`,
@@ -690,7 +679,7 @@ export const articles: Article[] = [
     excerpt: `We live in a fractured world that is spinning ever so faster. Old engagements in Tiananmen Square, Kosovo, Vietnam, and the first Gulf War are pale to what portends, in Ukraine, Gaza, Taiwan, Sudan, Myanmar, the DRC, Haiti, Sahel, and Afghanistan.`,
     date: "2026-01-03",
     topic: `Technology`,
-    image: imgCern,
+    image: `https://fazalali.com/wp-content/uploads/2026/01/us.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `We live in a fractured world that is spinning ever so faster. Old engagements in Tiananmen Square, Kosovo, Vietnam, and the first Gulf War are pale to what portends, in Ukraine, Gaza, Taiwan, Sudan, Myanmar, the DRC, Haiti, Sahel, and Afghanistan.`,
@@ -716,7 +705,7 @@ export const articles: Article[] = [
     excerpt: `Truth is tentative, and certainty elusive. Nothing is pinned. To know is to kill. What remains is keeping the conversation open. It is the only path to make sense of the last edit and to listen honestly.`,
     date: "2025-12-28",
     topic: `Technology`,
-    image: imgDivine,
+    image: `https://fazalali.com/wp-content/uploads/2025/12/parliament.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `Truth is tentative, and certainty elusive. Nothing is pinned. To know is to kill. What remains is keeping the conversation open. It is the only path to make sense of the last edit and to listen honestly. Genuine understanding is not a solitary, objective method, but an interplay of perspectives. The participants in a true conversation are less the leaders of it than the led, allowing the exchange to take its own course and reach its own unpredictable end.`,
@@ -740,7 +729,7 @@ export const articles: Article[] = [
     excerpt: `Brazil has dedicated approximately $4 billion (around R$23 billion) to its National AI Plan (PBIA), "AI for the Good of All." The focus is on infrastructure, innovation, public services, training, and AI governance.`,
     date: "2025-12-20",
     topic: `Technology`,
-    image: imgCarnival,
+    image: `https://fazalali.com/wp-content/uploads/2025/12/tunnel.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `Brazil has dedicated approximately $4 billion (around R$23 billion) to its National AI Plan (PBIA), “AI for the Good of All.” The focus is on infrastructure, innovation, public services, training, and AI governance. There is also an emphasis on high-performance computing, data centres, and fostering an inclusive AI ecosystem, alongside broader digital transformation investments.`,
@@ -767,7 +756,7 @@ export const articles: Article[] = [
     excerpt: `Politics is messy, and AI has deepened the democratic deficit. However, this messiness is preferable to the faux-omniscience of AI-Assemblages, which manufacture an illusion of knowing everything.`,
     date: "2025-12-14",
     topic: `Technology`,
-    image: imgFabric,
+    image: `https://fazalali.com/wp-content/uploads/2025/12/goat.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `Politics is messy, and AI has deepened the democratic deficit. However, this messiness is preferable to the faux-omniscience of AI-Assemblages, which manufacture an illusion of knowing everything. A mirage that crafts a feeling of pervasive awareness, unlike true omniscience, a divine attribute of complete knowledge.`,
@@ -794,7 +783,7 @@ export const articles: Article[] = [
     excerpt: `In our plantation past, the overseers were always tall, because we were always on our knees. Our history has been imprisoned for far too long.`,
     date: "2025-12-06",
     topic: `Technology`,
-    image: imgFailure,
+    image: `https://fazalali.com/wp-content/uploads/2025/12/bamboo-swing.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `In our plantation past, the overseers were always tall, because we were always on our knees. Our history has been imprisoned for far too long. In the Age of AI, the voice of the subaltern must find its place quickly, or else AI assemblages will be trained on discourses that have so far muted the voices of those who were excluded from positions of power. The new capabilities of algorithms that code our lives are not innocent.`,
@@ -820,7 +809,7 @@ export const articles: Article[] = [
     excerpt: `Anticipation is indispensable, but determination is best for development. Artificial Intelligence (AI) can become a driver for overcoming development traps that hinder sustained progress in Latin America and the Caribbean (LAC).`,
     date: "2025-11-30",
     topic: `Technology`,
-    image: imgShield,
+    image: `https://fazalali.com/wp-content/uploads/2025/11/park.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `Anticipation is indispensable, but determination is best for development. Artificial Intelligence (AI) can become a driver for overcoming development traps that hinder sustained progress in Latin America and the Caribbean (LAC).`,
@@ -845,7 +834,7 @@ export const articles: Article[] = [
     excerpt: `Diabetes is a significant and escalating public health challenge. Artificial intelligence (AI) is now being used to enhance early diagnostics and risk assessment for emergent subtypes of diabetes.`,
     date: "2025-11-22",
     topic: `Technology`,
-    image: imgGravity,
+    image: `https://fazalali.com/wp-content/uploads/2025/11/swing.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `Diabetes is a significant and escalating public health challenge. Artificial intelligence (AI) is now being used to enhance early diagnostics and risk assessment for emergent subtypes of diabetes. It is also enabling early identification of at-risk populations and the development of diabetes in unimaginable ways.`,
@@ -877,7 +866,7 @@ export const articles: Article[] = [
     excerpt: `Once, the twin towers of the Cathedral of the Immaculate Conception signalled to pilgrims and immigrants that certainty and sanctuary were near.`,
     date: "2025-11-15",
     topic: `Technology`,
-    image: imgDatacenter,
+    image: `https://fazalali.com/wp-content/uploads/2025/11/red-scaled.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `Once, the twin towers of the Cathedral of the Immaculate Conception signalled to pilgrims and immigrants that certainty and sanctuary were near. For those adrift in the Gulf of Paria, the towers were a guiding landmark on the 19th-century Port of Spain waterfront. The bell towers were originally built entirely of limestone, but earthquake tremors in 1825 caused damage, and the towers that now flank the Western door were rebuilt in wood.`,
@@ -899,7 +888,7 @@ export const articles: Article[] = [
     excerpt: `Can AI itself be granted rights, including the right to life? This question prompts a deep philosophical and legal analysis of what constitutes "life" and "human dignity.`,
     date: "2025-11-10",
     topic: `Technology`,
-    image: imgShelf,
+    image: `https://fazalali.com/wp-content/uploads/2025/10/AIA.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `Can AI itself be granted rights, including the right to life? This question prompts a deep philosophical and legal analysis of what constitutes “life” and “human dignity.” It is a complex and debated issue whether AI will ever be granted the right to life, as it depends on the future development of AI consciousness and the willingness of legal systems to grant it rights.`,
@@ -919,7 +908,7 @@ export const articles: Article[] = [
     excerpt: `It was once the case in Trinidad and Tobago that many of us began our careers in the mailroom of a local company. My first job was in the storeroom of B.H.`,
     date: "2025-11-01",
     topic: `Technology`,
-    image: img100Model,
+    image: `https://fazalali.com/wp-content/uploads/2025/11/toco.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `It was once the case in Trinidad and Tobago that many of us began our careers in the mailroom of a local company. My first job was in the storeroom of B.H. Rose of London Street, where I would count and distribute screws, rivets, and tools to workers building the Hall of Justice and the CBTT skyscrapers.`,
@@ -942,7 +931,7 @@ export const articles: Article[] = [
     excerpt: `A nonstop low-grade fever of optimism fuels Wall Street. Over the last few months, markets have climbed sharply, propelled by the belief that AI will usher in a new Golden Era. No one knows for sure, but we are certain that optimism can be inebriating.`,
     date: "2025-10-26",
     topic: `Technology`,
-    image: imgCern,
+    image: `https://fazalali.com/wp-content/uploads/2025/10/ship.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `A nonstop low-grade fever of optimism fuels Wall Street. Over the last few months, markets have climbed sharply, propelled by the belief that AI will usher in a new Golden Era. No one knows for sure, but we are certain that optimism can be inebriating.`,
@@ -968,7 +957,7 @@ export const articles: Article[] = [
     excerpt: `California became the first state in the United States of America to pass the Transparency in Frontier Artificial Intelligence Act. This modest step forward is not perfect, but it marks a brave beginning as we face the future.`,
     date: "2025-10-18",
     topic: `Technology`,
-    image: imgDivine,
+    image: `https://fazalali.com/wp-content/uploads/2025/10/George.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `California became the first state in the United States of America to pass the Transparency in Frontier Artificial Intelligence Act. This modest step forward is not perfect, but it marks a brave beginning as we face the future. It requires the developers of the largest frontier AI models, which can significantly impact society, to publicly report how they have incorporated national and international frameworks and best practices into their development processes.`,
@@ -987,7 +976,7 @@ export const articles: Article[] = [
     excerpt: `With $3 billion in venture capital flowing into defence startups in 2024, which represents a 33 per cent year-over-year surge, and global military spending reaching an all-time high of $2.`,
     date: "2025-10-12",
     topic: `Technology`,
-    image: imgCarnival,
+    image: `https://fazalali.com/wp-content/uploads/2025/10/George-Washington.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `With $3 billion in venture capital flowing into defence startups in 2024, which represents a 33 per cent year-over-year surge, and global military spending reaching an all-time high of $2.443 trillion, the world is witnessing the emergence of a new investment category. The emerging defence technology landscape has evolved in both scope and scale. In 2025, there are about 1,390 companies in the military tech sector globally, with 429 funded companies having collectively raised $14.2 billion in venture capital and private equity funding. The only thing that is faster than defence innovation is the funding velocity.`,
@@ -1007,7 +996,7 @@ export const articles: Article[] = [
     excerpt: `On January 17, 2026, the UN High Seas Treaty is expected to come into force, recognising the knowledge of all First Nation Peoples, including the Nepuyo, Yao, Suppoya, Kalipuna, and Warao of Trinidad and Tobago.`,
     date: "2025-10-04",
     topic: `Technology`,
-    image: imgFabric,
+    image: `https://fazalali.com/wp-content/uploads/2025/10/AIA.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `On January 17, 2026, the UN High Seas Treaty is expected to come into force, recognising the knowledge of all First Nation Peoples, including the Nepuyo, Yao, Suppoya, Kalipuna, and Warao of Trinidad and Tobago. It is the first time that Indigenous Knowledge of marine environments is being formally recognised in the governance of international waters.`,
@@ -1030,7 +1019,7 @@ export const articles: Article[] = [
     excerpt: `Since the fifteenth century, the islands of the American Mediterranean have been deeply integrated into the global economy. The concept of economic globalisation is often viewed as a phenomenon of the late twentieth century.`,
     date: "2025-09-27",
     topic: `Technology`,
-    image: imgFailure,
+    image: `https://fazalali.com/wp-content/uploads/2025/09/WF-1020x685.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `Since the fifteenth century, the islands of the American Mediterranean have been deeply integrated into the global economy. The concept of economic globalisation is often viewed as a phenomenon of the late twentieth century.`,
@@ -1054,7 +1043,7 @@ export const articles: Article[] = [
     excerpt: `A free press, free elections, the parliament, and an independent judiciary have in some places been reduced to commodities by the free market of corporate globalisation. The neo-liberal capitalists have cracked the code.`,
     date: "2025-09-20",
     topic: `Technology`,
-    image: imgShield,
+    image: `https://fazalali.com/wp-content/uploads/2025/09/towers.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`, `discord`, `nepal`],
     body: [
       `A free press, free elections, the parliament, and an independent judiciary have in some places been reduced to commodities by the free market of corporate globalisation. The neo-liberal capitalists have cracked the code. They have grasped the practices of infiltrating the instruments of democracy. But today, to maintain democracy, it is becoming increasingly vital to control social media.`,
@@ -1078,7 +1067,7 @@ export const articles: Article[] = [
     excerpt: `Habitually, when we think of “violence,” it brings to mind acts that have the features of observability, intentionality, and perceptibility. But in the Age of AI, there is an alternate framing of “violence” – it is slow. “Slow violence” is attritional.`,
     date: "2025-09-13",
     topic: `Technology`,
-    image: imgGravity,
+    image: `https://fazalali.com/wp-content/uploads/2025/09/house.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`, `colonisation`, `decolonisation`],
     body: [
       `Habitually, when we think of “violence,” it brings to mind acts that have the features of observability, intentionality, and perceptibility. But in the Age of AI, there is an alternate framing of “violence” – it is slow. “Slow violence” is attritional. It is progressive, unhurried, out of sight, and spreads across time and space. What is worse is that attritional violence is not viewed as violence at all.`,
@@ -1099,7 +1088,7 @@ export const articles: Article[] = [
     excerpt: `Humans and technology are no longer separate but form a new evolutionary unit, where technology is not just a tool like a plough in Mesopotamia, but an integral part of our existence and development.`,
     date: "2025-09-06",
     topic: `Technology`,
-    image: imgDatacenter,
+    image: `https://fazalali.com/wp-content/uploads/2025/09/FazalAli-Featured-Images.jpeg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `Humans and technology are no longer separate but form a new evolutionary unit, where technology is not just a tool like a plough in Mesopotamia, but an integral part of our existence and development. Homo technologicus, information organisms in the Age of AI, are fashioned by and in symbiotic relationships with AI-Assemblages. This is a new stage of human evolution. It is driven solely by the integration of technology into our biology, minds, and habitus.`,
@@ -1124,7 +1113,7 @@ export const articles: Article[] = [
     excerpt: `When a flotilla of three ships blundered into its waters in 1492, the Caribbean was made central to the international security apparatus of our modern world.`,
     date: "2025-08-31",
     topic: `Technology`,
-    image: imgShelf,
+    image: `https://fazalali.com/wp-content/uploads/2025/08/B2.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `When a flotilla of three ships blundered into its waters in 1492, the Caribbean was made central to the international security apparatus of our modern world. The legacies of colonial rule persist in formal dependencies lodged inside prisms of ambiguity like Charlotte Amalie in St. Thomas, Christiansted and Frederiksted in St. Croix, island firmaments like Anegada, Virgin Gorda, and Jost Van Dyke, and the luxury coves of Saint Martin and Sint Maarten.`,
@@ -1145,7 +1134,7 @@ export const articles: Article[] = [
     excerpt: `Labelled as a lowly “drain fish”, the Trinidadian guppy has earned notoriety for its ability to invade new environments. Trinidadian guppies can be found in the oily, noxious waters of the La Brea Pitch Lake in southwest Trinidad.`,
     date: "2025-08-24",
     topic: `Technology`,
-    image: img100Model,
+    image: `https://fazalali.com/wp-content/uploads/2025/08/Jm1.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`, `Generative AI`, `guppy`],
     body: [
       `Labelled as a lowly “drain fish”, the Trinidadian guppy has earned notoriety for its ability to invade new environments. Trinidadian guppies can be found in the oily, noxious waters of the La Brea Pitch Lake in southwest Trinidad. They live in conditions once considered uninhabitable for fish. These guppies show remarkable adaptations, such as the ability to tolerate extreme water toxicity and potentially reduced parasite loads in this unique environment.`,
@@ -1170,7 +1159,7 @@ export const articles: Article[] = [
     excerpt: `There is an inherited global hierarchy that persists in occupying the vestiges of old empires, resisting every effort to address inherited inequality and intergenerational immobility.`,
     date: "2025-08-16",
     topic: `Technology`,
-    image: imgCern,
+    image: `https://fazalali.com/wp-content/uploads/2025/08/POS.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `There is an inherited global hierarchy that persists in occupying the vestiges of old empires, resisting every effort to address inherited inequality and intergenerational immobility. In the Silicon Age, AI research initiatives restructure and embed for-profit companies within non-profit organisations to achieve innovation. This wizardry is rarely outside the reliance on large amounts of cheap labour and scarce water resources to assemble the AI models that provide instant zero-click searches and summaries.`,
@@ -1194,7 +1183,7 @@ export const articles: Article[] = [
     excerpt: `An impatient future does not need perfection. Progress always needs some initial action, and the beginning is always today. The European Union’s General-Purpose AI Code of Practice came into effect on Saturday, 2nd August 2025.`,
     date: "2025-08-10",
     topic: `Technology`,
-    image: imgDivine,
+    image: `https://fazalali.com/wp-content/uploads/2025/08/MiM-1020x685.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `An impatient future does not need perfection. Progress always needs some initial action, and the beginning is always today. The European Union’s General-Purpose AI Code of Practice came into effect on Saturday, 2 nd August 2025.`,
@@ -1221,7 +1210,7 @@ export const articles: Article[] = [
     excerpt: `Beneath the veneer of the twin transitions—decarbonisation and digitalisation—lie two major challenges. The first involves rebuilding trust within and between nations. Trust is collapsing everywhere, including inside global institutions.`,
     date: "2025-08-02",
     topic: `Technology`,
-    image: imgCarnival,
+    image: `https://fazalali.com/wp-content/uploads/2025/08/Spice.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`, `superintelligence`],
     body: [
       `Beneath the veneer of the twin transitions—decarbonisation and digitalisation—lie two major challenges. The first involves rebuilding trust within and between nations. Trust is collapsing everywhere, including inside global institutions. Humanity seems to agree on only one thing: we no longer trust each other. Trust is fundamental to human dignity and our shared future. Without it, progress and peace fade.`,
@@ -1250,7 +1239,7 @@ export const articles: Article[] = [
     excerpt: `Imagination is the motor of development. We have the option in the Age of AI to recraft the West Indies. We can act to realise a world we can re-imagine with indigenous knowledge and ideas. But ideas do not record reality. Ideas distort or exceed it.`,
     date: "2025-07-27",
     topic: `Technology`,
-    image: imgFabric,
+    image: `https://fazalali.com/wp-content/uploads/2025/07/FazalAli-Featured-Images.jpeg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `Imagination is the motor of development. We have the option in the Age of AI to recraft the West Indies. We can act to realise a world we can re-imagine with indigenous knowledge and ideas. But ideas do not record reality. Ideas distort or exceed it. Ideas are the products of imaginative effort, because you can’t have them simply by describing the existing world.  We can never think of nothing, since the idea of Nothing is, by definition, unexampled in experience. Ideas anticipate.`,
@@ -1271,7 +1260,7 @@ export const articles: Article[] = [
     excerpt: `In the pre-AI era, your P&L was a backward-looking paper ledger. In the Age of Artificial Intelligence (AI), the P&L becomes a forward-leaning tool for growth and competitiveness. Never has this been clearer than in procurement and spend management.`,
     date: "2025-07-20",
     topic: `Technology`,
-    image: imgFailure,
+    image: `https://fazalali.com/wp-content/uploads/2025/07/port.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`, `digital transformation`, `procurement`, `shipping`],
     body: [
       `In the pre-AI era, your P&L was a backward-looking paper ledger. In the Age of Artificial Intelligence (AI), the P&L becomes a forward-leaning tool for growth and competitiveness. Never has this been clearer than in procurement and spend management. Evangelists who adopt Agentic AI and GenAI will widen the gap between themselves and the antibodies.`,
@@ -1298,7 +1287,7 @@ export const articles: Article[] = [
     excerpt: `AI-forgeries, voice clones, and unauthorized Deepfake videos that mimic people’s bodies, facial features, and voices often evade existing copyright protections. We can live with it if we are unaware, but knowing is suffering.`,
     date: "2025-07-12",
     topic: `Technology`,
-    image: imgShield,
+    image: `https://fazalali.com/wp-content/uploads/2025/07/ck-1020x685.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`, `copyright`, `deepfake`],
     body: [
       `AI-forgeries, voice clones, and unauthorized Deepfake videos that mimic people’s bodies, facial features, and voices often evade existing copyright protections.  We can live with it if we are unaware, but knowing is suffering. Discourses on AI-generated forgeries have two focal points. The first is pornography, which is often the chief context in which synthetic media machineries are active. A 2019 Report by Deeptrace concluded that as much as ninety-six per cent of Deepfakes were pornographic, and that one hundred per cent featured faces of female celebrities. Another report from Home Security Heroes, published in 2023, found that ninety-eight per cent of existing videos were pornographic, of which ninety-nine per cent targeted females.`,
@@ -1320,7 +1309,7 @@ export const articles: Article[] = [
     excerpt: `Governments have recently made it a requirement for student and scholar visa applicants to set their social media accounts to public. This has caused some panic and misunderstanding about privacy and risk assessments. We live in an unusual world.`,
     date: "2025-07-05",
     topic: `Technology`,
-    image: imgGravity,
+    image: `https://fazalali.com/wp-content/uploads/2025/07/Flor1-1020x685.jpg`,
     tags: [`Technology`, `social media`, `visa`],
     body: [
       `Governments have recently made it a requirement for student and scholar visa applicants to set their social media accounts to public. This has caused some panic and misunderstanding about privacy and risk assessments. We live in an unusual world. Much of the contemporary digital identity debate and citizen security revolves around pluralistic models of digital identity that create pseudonymity, and one-per-person ID systems that utilize zero-knowledge proofs (ZKP).`,
@@ -1342,7 +1331,7 @@ export const articles: Article[] = [
     excerpt: `Nations must control their digital destiny. At a market stall in Berlin, shoppers line up to purge their mobile phones. They want indigenous Android operating systems without ties to foreign large technology companies.`,
     date: "2025-06-29",
     topic: `Technology`,
-    image: imgDatacenter,
+    image: `https://fazalali.com/wp-content/uploads/2025/06/mop-1020x685.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `Nations must control their digital destiny. At a market stall in Berlin, shoppers line up to purge their mobile phones. They want indigenous Android operating systems without ties to foreign large technology companies. They want local digital services, including email, messaging, and zero-click AI search tools. The lines are growing longer. Citizens desire digital sovereignty, security, and privacy.`,
@@ -1371,7 +1360,7 @@ export const articles: Article[] = [
     excerpt: `AI is everywhere, and things are spinning out of control. It is evolving faster than it is modernising the world. It is, therefore, natural for learners to ask what is actually in our power anymore.`,
     date: "2025-06-14",
     topic: `Technology`,
-    image: imgShelf,
+    image: `https://fazalali.com/wp-content/uploads/2025/06/AG.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `AI is everywhere, and things are spinning out of control. It is evolving faster than it is modernising the world. It is, therefore, natural for learners to ask what is actually in our power anymore. What residual authority do we have? What would it mean to have digital agency to control the way AI fits into our lives?`,
@@ -1399,7 +1388,7 @@ export const articles: Article[] = [
     excerpt: `Life without good politics, rigorous science, and trustworthy technology in the Age of AI can quickly become solitary, deprived, nasty, brutish, and brief, to paraphrase Thomas Hobbes's “Leviathan.`,
     date: "2025-06-08",
     topic: `Technology`,
-    image: img100Model,
+    image: `https://fazalali.com/wp-content/uploads/2025/06/FazalAli.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `Life without good politics, rigorous science, and trustworthy technology in the Age of AI can quickly become solitary, deprived, nasty, brutish, and brief, to paraphrase Thomas Hobbes’s “Leviathan.” Only imagination and benevolence can improve and safeguard the futures of billions of overlooked people. That future hinges on a new e-nvironmental ethics as we negotiate an innovative alliance between the natural world and synthetic life.`,
@@ -1422,7 +1411,7 @@ export const articles: Article[] = [
     excerpt: `AI policy establishes a unified framework for the government to engage with AI confidently, safely, and responsibly in order to realise the benefits of AI. Laws give effect to policy intent.`,
     date: "2025-06-01",
     topic: `Technology`,
-    image: imgCern,
+    image: `https://fazalali.com/wp-content/uploads/2025/06/MI1.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `AI policy establishes a unified framework for the government to engage with AI confidently, safely, and responsibly in order to realise the benefits of AI. Laws give effect to policy intent. Attentive policy scrutiny and prompt attention to legislative design can illuminate a path to reach this result. The policy process must proactively consider legal issues. This enables an informed assessment of whether legislative change is the appropriate response to the opportunities presented by Artificial Intelligence (AI) during the Infosphere Revolution.`,
@@ -1449,7 +1438,7 @@ export const articles: Article[] = [
     excerpt: `An AI Nation demands a capabilities approach to development. The DNA of AI must be spliced into the institutions, the economy, and the civic systems of the state. We are at the start of the AI diffusion climb.`,
     date: "2025-05-24",
     topic: `Technology`,
-    image: imgDivine,
+    image: `https://fazalali.com/wp-content/uploads/2025/05/may25th-1020x685.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `An AI Nation demands a capabilities approach to development. The DNA of AI must be spliced into the institutions, the economy, and the civic systems of the state. We are at the start of the AI diffusion climb. However, the slope is not the same for all nations. The climb requires a rethink of every layer of national capability, including digital architectures, the moribund colonial ecological frames of the Lord Harris ward school system, and outmoded export models.`,
@@ -1470,7 +1459,7 @@ export const articles: Article[] = [
     excerpt: `Industrial policy is back. The Point Lisas Policy best exemplifies the range of choices associated with industrial development during the first Golden Age of expansion, from 1974 to 1982.`,
     date: "2025-05-17",
     topic: `Technology`,
-    image: imgCarnival,
+    image: `https://fazalali.com/wp-content/uploads/2025/05/scoop.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `Industrial policy is back. The Point Lisas Policy best exemplifies the range of choices associated with industrial development during the first Golden Age of expansion, from 1974 to 1982. However, global industrial policy today has made the extractive-led development agenda of Artificial Intelligence (AI) its centrepiece.`,
@@ -1496,7 +1485,7 @@ export const articles: Article[] = [
     excerpt: `Cyber economics is a catalyst for economic growth. It is the economics of information security.`,
     date: "2025-05-11",
     topic: `Technology`,
-    image: imgFabric,
+    image: `https://fazalali.com/wp-content/uploads/2025/05/CA2.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `Cyber economics is a catalyst for economic growth. It is the economics of information security. The defence of critical infrastructure, including drilling platforms, power grids, and deepwater internet cables, against foreign countries’ interference involves a multi-faceted approach focused on protecting critical systems and data lakes from cyberattacks, including those originating from state-sponsored actors.`,
@@ -1521,7 +1510,7 @@ export const articles: Article[] = [
     excerpt: `For long, we have been curious, but far too cautious. No longer being Sir Vidiadhar Surajprasad Naipaul’s “Mimic Men,” we have become pensive bystanders of the changes unfolding beneath our feet.`,
     date: "2025-05-03",
     topic: `Technology`,
-    image: imgFailure,
+    image: `https://fazalali.com/wp-content/uploads/2025/05/ai-library-1020x685.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `For long, we have been curious, but far too cautious. No longer being Sir Vidiadhar Surajprasad Naipaul’s “Mimic Men,” we have become pensive bystanders of the changes unfolding beneath our feet. Good governance in the Age of Artificial Intelligence (AI) turns on building a National Data Library (NDL).`,
@@ -1545,7 +1534,7 @@ export const articles: Article[] = [
     excerpt: `An AI-driven population census is the most wide-ranging data collection exercise a state can undertake. The census is a dashboard for statistics, measurements, and indicators produced during the intercensal period.`,
     date: "2025-04-27",
     topic: `Technology`,
-    image: imgShield,
+    image: `https://fazalali.com/wp-content/uploads/2025/05/sen-1020x685.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `An AI-driven population census is the most wide-ranging data collection exercise a state can undertake. The census is a dashboard for statistics, measurements, and indicators produced during the intercensal period. It enables the statistical institute of the state to collect information from nearly every member of the population on a wide range of topics.`,
@@ -1573,7 +1562,7 @@ export const articles: Article[] = [
     excerpt: `Creeds constrain. Education must foster in every scholar the capacity to take joy in things beyond their understanding and to respond to the uncommon with an open mind.`,
     date: "2025-04-20",
     topic: `Technology`,
-    image: imgGravity,
+    image: `https://fazalali.com/wp-content/uploads/2025/04/BB.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `Creeds constrain. Education must foster in every scholar the capacity to take joy in things beyond their understanding and to respond to the uncommon with an open mind. Advanced algorithms now create AI-generated assessments that display heightened ambiguity, complexity, intertextuality, and rigor. AI-generated tests are post-Tyler evaluation tools designed by AI that leverage natural language processing, machine learning, and AI technologies. These systems analyse voluminous educational content, library collections, scholarly discourses, and online databases, to frame problems and propose solution paths, including multiple correct answers.`,
@@ -1596,7 +1585,7 @@ export const articles: Article[] = [
     excerpt: `We are on thin ice. The twin transitions to a new world manufacturing order, and the industrialisation of intelligence are here. As the Trump tariff turmoil is paused, China’s “Manus” which went viral on “X”, foreshadows a new technological order.`,
     date: "2025-04-12",
     topic: `Technology`,
-    image: imgDatacenter,
+    image: `https://fazalali.com/wp-content/uploads/2025/04/can.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `We are on thin ice. The twin transitions to a new world manufacturing order, and the industrialisation of intelligence are here. As the Trump tariff turmoil is paused, China’s “Manus” which went viral on “X”, foreshadows a new technological order. Manus converts our ideas into actions. It thinks, plans, and executes tasks autonomously, with a boundless attention span. It can Mokojumbie real-world contexts as seamlessly as a skilled human intern.`,
@@ -1619,7 +1608,7 @@ export const articles: Article[] = [
     excerpt: `In the Age of AI, bad actors have exploited digital toolboxes to impersonate individuals.`,
     date: "2025-04-06",
     topic: `Technology`,
-    image: imgShelf,
+    image: `https://fazalali.com/wp-content/uploads/2025/04/armani-city.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `In the Age of AI, bad actors have exploited digital toolboxes to impersonate individuals. Many of these toolkits are accessible on the dark web, where Cybercrime as a Service (CaaS) has flourished, fostering the development of intricate supply chains as malicious actors specialise in various facets of attack engineering.`,
@@ -1643,7 +1632,7 @@ export const articles: Article[] = [
     excerpt: `The war has always been between what we should become and what we could become. Our unfinished souls remain moored in the sea, our monuments and memories locked in a blue vault.`,
     date: "2025-03-30",
     topic: `Technology`,
-    image: img100Model,
+    image: `https://fazalali.com/wp-content/uploads/2025/03/sea.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `The war has always been between what we should become and what we could become. Our unfinished souls remain moored in the sea, our monuments and memories locked in a blue vault. The AI future of these islands is as fluid as the sea that washes over the brown leaves of these islands, causing them to cling to the blue rim of the Caribbean basin.`,
@@ -1663,7 +1652,7 @@ export const articles: Article[] = [
     excerpt: `The wealthiest one per cent controls more wealth than the majority of humanity. A politics of intelligence, rooted in truthfulness, algorithmic fairness, and compassion is urgent.`,
     date: "2025-03-22",
     topic: `Technology`,
-    image: imgCern,
+    image: `https://fazalali.com/wp-content/uploads/2025/03/ca.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `The wealthiest one per cent controls more wealth than the majority of humanity. A politics of intelligence, rooted in truthfulness, algorithmic fairness, and compassion is urgent. Our own Aimé Césaire from Martinique reminds us: “There is not in the world one single poor lynched bastard, one poor tortured man, in whom I am not also murdered and humiliated.”`,
@@ -1686,7 +1675,7 @@ export const articles: Article[] = [
     excerpt: `Technological Self-Reliance is a key goal of development. With the rapid advance of AI coding capabilities, the work of human coders will now incorporate double-checking AI-generated code rather than authoring it. However, AI will not replace human coders.`,
     date: "2025-03-15",
     topic: `Technology`,
-    image: imgDivine,
+    image: `https://fazalali.com/wp-content/uploads/2025/03/faz-beach.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `Technological Self-Reliance is a key goal of development. With the rapid advance of AI coding capabilities, the work of human coders will now incorporate double-checking AI-generated code rather than authoring it. However, AI will not replace human coders. Rather, AI is gradually altering the human skills needed in any coding-related job.`,
@@ -1710,7 +1699,7 @@ export const articles: Article[] = [
     excerpt: `The ghosts of the future are already here.`,
     date: "2025-03-09",
     topic: `Technology`,
-    image: imgCarnival,
+    image: `https://fazalali.com/wp-content/uploads/2025/03/mex.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `The ghosts of the future are already here. In describing his musical journey at the Monk Music Soundbridge Project launch at the Trinidad Hilton on Thursday, February 20th, 2025, Machel Montano described the present as a moment when “this is not here again” and “this is not here yet.” Instead of an “Ark,” we need a “Bridge,” he proclaimed.`,
@@ -1742,7 +1731,7 @@ export const articles: Article[] = [
     excerpt: `Mikhail Bakhtin defines the carnivalesque as a space for the "low" to challenge the "high".`,
     date: "2025-03-02",
     topic: `Technology`,
-    image: imgFabric,
+    image: `https://fazalali.com/wp-content/uploads/2025/03/tupac.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `Mikhail Bakhtin defines the carnivalesque as a space for the “low” to challenge the “high”. In the Age of AI, the carnivalesque becomes a temporary social space ripe for the inversion of societal norms and hierarchies, especially those that colour social categories and power relations in former plantation economies.`,
@@ -1770,7 +1759,7 @@ export const articles: Article[] = [
     excerpt: `Climate change is an unsettling intergenerational justice issue. It deserves our undivided and full attention.`,
     date: "2025-02-23",
     topic: `Technology`,
-    image: imgFailure,
+    image: `https://fazalali.com/wp-content/uploads/2025/02/gareden.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `Climate change is an unsettling intergenerational justice issue. It deserves our undivided and full attention. Youth in Latin America and the Caribbean (LAC), future generations, coral reefs, wetlands, mangroves, and other ecosystems with no possibility of protecting their future well-being must tote the full burden of the actions of today’s adults.`,
@@ -1795,7 +1784,7 @@ export const articles: Article[] = [
     excerpt: `We now live in a chilling era of “post-truth”. Some of us are paddling through piles of lies. Others are sinking in fictions, misinformation and myth.`,
     date: "2025-02-15",
     topic: `Technology`,
-    image: imgShield,
+    image: `https://fazalali.com/wp-content/uploads/2025/02/MI9.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `We now live in a chilling era of “post-truth”. Some of us are paddling through piles of lies. Others are sinking in fictions, misinformation and myth. From the Stone Age to the Silicone Age, Homo Sapiens have witnessed a meteoritic rise in connectivity, and the flow of information, without a concomitant rise in truthfulness.`,
@@ -1822,7 +1811,7 @@ export const articles: Article[] = [
     excerpt: `In his Socratic dialogue “The Republic” Plato wrote, “our need will be the real creator.” Faced with a dearth of high-end chips, Liang Wenfeng, a graduate of Zhejiang University built DeepSeek-R-1 using less advanced chips.`,
     date: "2025-02-09",
     topic: `Technology`,
-    image: imgGravity,
+    image: `https://fazalali.com/wp-content/uploads/2025/02/emews.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `In his Socratic dialogue “The Republic” Plato wrote, “our need will be the real creator.” Faced with a dearth of high-end chips, Liang Wenfeng, a graduate of Zhejiang University built DeepSeek-R-1 using less advanced chips. Chip shortages lit the slow fuse of his imagination forcing him to use fewer chips than those used by Western tech giants to build his model. His open-source large language model also relies on “inference-time computing.” This means that DeepSeek-R-1 only activates each query’s most relevant portions of the model. DeepSeek-R-1 is a general-purpose reasoning model.`,
@@ -1844,7 +1833,7 @@ export const articles: Article[] = [
     excerpt: `DeepSeek, a little-known Hong Kong AI startup, released a new model series — DeepSeek-R-1 on 20th January 2025. The new Open-source large reasoning model has reshuffled the market.`,
     date: "2025-02-01",
     topic: `Technology`,
-    image: imgDatacenter,
+    image: `https://fazalali.com/wp-content/uploads/2025/02/LA9.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `DeepSeek, a little-known Hong Kong AI startup, released a new model series — DeepSeek-R-1 on 20th January 2025. The new Open-source large reasoning model has reshuffled the market. It stirred up fears of a Trojan horse and hastened no shortage of hand-wringing and existentialism among Western-block techies.`,
@@ -1869,7 +1858,7 @@ export const articles: Article[] = [
     excerpt: `One of the most consequential challenges of our time is the disruptive application of AI for social good. AI for social good offers unprecedented opportunities across many domains to build inclusive, just, interconnected, and flourishing societies.`,
     date: "2025-01-26",
     topic: `Technology`,
-    image: imgShelf,
+    image: `https://fazalali.com/wp-content/uploads/2025/01/drone-ai.jpg`,
     tags: [`Technology`, `ai for good`, `artificial intelligence`, `drones`],
     body: [
       `One of the most consequential challenges of our time is the disruptive application of AI for social good. AI for social good offers unprecedented opportunities across many domains to build inclusive, just, interconnected, and flourishing societies.`,
@@ -1896,7 +1885,7 @@ export const articles: Article[] = [
     excerpt: `The new “Information Empires” are not unlike those that bedevilled Montezuma, Emperor of the Aztecs, and Hyarima, the Nepuyo Cacique.`,
     date: "2025-01-18",
     topic: `Technology`,
-    image: img100Model,
+    image: `https://fazalali.com/wp-content/uploads/2025/01/mex.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `The new “Information Empires” are not unlike those that bedevilled Montezuma, Emperor of the Aztecs, and Hyarima, the Nepuyo Cacique. In a flanking manoeuvre, on 1 December 1699, a party of Carib, Aruac, and Warao ambushed the Spanish Governor José de León y Echales as he approached the mission of San Francisco de los Arenales, neighbouring present-day San Rafael in Trinidad.`,
@@ -1918,7 +1907,7 @@ export const articles: Article[] = [
     excerpt: `It is foreseeable that AI-crimes may create blurred boundaries and legal uncertainties.`,
     date: "2025-01-12",
     topic: `Technology`,
-    image: imgCern,
+    image: `https://fazalali.com/wp-content/uploads/2025/01/atlanta.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `It is foreseeable that AI-crimes may create blurred boundaries and legal uncertainties. The following areas display the highest bent to exposure to AI-crimes: cartel offenses, insider dealing, market manipulation, price fixing, collusion, trafficking, selling, buying and possessing banned drugs, harassment, stalking, torture and information extraction, theft, robbery, forgery, and personation. Furthermore, “data deletion” has surfaced in countless juridical discussions. While it may appear to be a straightforward process, data deletion poses many practical problems in actual machine-learning environments and can border on the edge of impossibility.`,
@@ -1941,7 +1930,7 @@ export const articles: Article[] = [
     excerpt: `If the lamplighters at dusk in 1878, who made their way ceremoniously along Rue des Trois Chandelles (Duncan Street), accompanied by a boy toting a ladder and a pail of whale oil, and another ringing a brass bell could see the CBTT, the magisterial coastal tow…`,
     date: "2025-01-04",
     topic: `Technology`,
-    image: imgDivine,
+    image: `https://fazalali.com/wp-content/uploads/2025/01/Mi.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `If the lamplighters at dusk in 1878, who made their way ceremoniously along Rue des Trois Chandelles (Duncan Street), accompanied by a boy toting a ladder and a pail of whale oil, and another ringing a brass bell could see the CBTT, the magisterial coastal towers of the International Waterfront Centre, the Hyatt Regency, Furness House, the Radisson, and the POS Ferry Terminal, they would think the prosperity all around them was unimaginable. And if we stand at the portal of the Age of Artificial Intelligence (AI) and fast-forward one hundred years from now, the opulence and artificial life everywhere in Trinidad and Tobago would feel just as unthinkable.`,
@@ -1963,7 +1952,7 @@ export const articles: Article[] = [
     excerpt: `By 2050 we must increase world food production. FarmBeats uses AI, Edge, and IoT for agriculture. The digital architectures of FarmBeats is a mesh of long-range TV frequencies to connect with and capture data from solar powered sensors in the fields.`,
     date: "2024-12-29",
     topic: `Technology`,
-    image: imgCarnival,
+    image: `https://fazalali.com/wp-content/uploads/2024/12/AIAgri.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `By 2050 we must increase world food production. FarmBeats uses AI, Edge, and IoT for agriculture. The digital architectures of FarmBeats is a mesh of long-range TV frequencies to connect with and capture data from solar powered sensors in the fields. This is buttressed by a flock of drones to gather aerial information as machine learning algorithms mine and refine the data in Data Refineries. Reports are produced using the raw data, and unrelated pools of data are combined to produce new data lakes. The analysis of the data is sent to farmers with recommendations.`,
@@ -1984,7 +1973,7 @@ export const articles: Article[] = [
     excerpt: `To create value in the Attention Markets, businesses will rewire by deploying technology at scale.`,
     date: "2024-12-22",
     topic: `Technology`,
-    image: imgFabric,
+    image: `https://fazalali.com/wp-content/uploads/2024/12/AILA.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `To create value in the Attention Markets, businesses will rewire by deploying technology at scale. A clear digital transformation strategy that focuses on specific domains and is enabled by a set of specific capabilities is crucial for companies in Latin America and the Caribbean to compete and survive. Attention is a resource in the Age of Digital Distraction. Some argue that “attention” may not bear all of the indicia of a resource.`,
@@ -2008,7 +1997,7 @@ export const articles: Article[] = [
     excerpt: `What is unfolding is a spectre of regulation by AI, rather than regulation of AI. The rise of “cyber-physical” infrastructure has made the old demarcation between online and offline artificial.`,
     date: "2024-12-16",
     topic: `Technology`,
-    image: imgFailure,
+    image: `https://fazalali.com/wp-content/uploads/2024/12/AIJustice.png`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `What is unfolding is a spectre of regulation by AI, rather than regulation of AI. The rise of “cyber-physical” infrastructure has made the old demarcation between online and offline artificial. Data-driven agency is converting phones, kitchen appliances, trains, bridges, hospitals and wearables into a neural lace of uninterrupted scrutiny and surreptitious adaptation among the “inforgs” who experience reality as “onlife.” Latin America and the Caribbean (LAC) must come to terms with delegated authority in the Age of Artificial Intelligence (AI).`,
@@ -2033,7 +2022,7 @@ export const articles: Article[] = [
     excerpt: `New intelligent Micro, Small, and Medium Enterprises (MSMEs) built on Small Language Models (SLMs) are emerging during the infosphere revolution. Large Language Models (LLMs) have lit the slow fuse of imaginations.`,
     date: "2024-12-08",
     topic: `Technology`,
-    image: imgShield,
+    image: `https://fazalali.com/wp-content/uploads/2024/12/am-1.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `New intelligent Micro, Small, and Medium Enterprises (MSMEs) built on Small Language Models (SLMs) are emerging during the infosphere revolution. Large Language Models (LLMs) have lit the slow fuse of imaginations. Training LLMs require arrays of Graphics Processing Units. These GPUs provide the parallel processing power needed to handle the huge datasets these models learn from.`,
@@ -2059,7 +2048,7 @@ export const articles: Article[] = [
     excerpt: `We have crossed the human/machine divide. We have migrated into the infosphere. Its ubiquity depends on how much we accept its digital nature as fundamental to our reality.`,
     date: "2024-11-30",
     topic: `Technology`,
-    image: imgGravity,
+    image: `https://fazalali.com/wp-content/uploads/2024/11/AAA.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `We have crossed the human/machine divide. We have migrated into the infosphere. Its ubiquity depends on how much we accept its digital nature as fundamental to our reality. What matters most is not the AI assemblages and algorithms but the fact that the very fabric of reality is changing.`,
@@ -2083,7 +2072,7 @@ export const articles: Article[] = [
     excerpt: `No one is enough. No single thought is the perfect answer to all of our problems in the age of AI. We need everyone to collaborate and produce new knowledge in Latin America and the Caribbean (LAC). Knowledge that feels the struggles of concrete history.`,
     date: "2024-11-24",
     topic: `Technology`,
-    image: imgDatacenter,
+    image: `https://fazalali.com/wp-content/uploads/2024/11/chaosart.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `No one is enough. No single thought is the perfect answer to all of our problems in the age of AI. We need everyone to collaborate and produce new knowledge in Latin America and the Caribbean (LAC). Knowledge that feels the struggles of concrete history. Knowledge that listens to the laments of the overlooked, and the unbanked. Knowledge that takes apart the prejudgements and prejudices of the Industrial Enlightenment, and the linkages to our plantation past. Knowledge that influences the future through AI assemblages.`,
@@ -2108,7 +2097,7 @@ export const articles: Article[] = [
     excerpt: `Understanding digital economies burdens governments in Latin America and the Caribbean to put AI assemblages, data, and data investments into a framework responsive to measurement and policy analysis.`,
     date: "2024-11-16",
     topic: `Technology`,
-    image: imgShelf,
+    image: `https://fazalali.com/wp-content/uploads/2024/11/monteuema-1020x685.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `Understanding digital economies burdens governments in Latin America and the Caribbean to put AI assemblages, data, and data investments into a framework responsive to measurement and policy analysis. Data is an intangible asset: a storable, nonrival (yet excludable) factor input. However, it remains only partially captured in prevailing macroeconomic measurements.`,
@@ -2134,7 +2123,7 @@ export const articles: Article[] = [
     excerpt: `The Age of Elon is here. President-elect Donald Trump has announced the Golden Age of America. He has pledged to struggle for the future of every citizen with every breath in his body.`,
     date: "2024-11-09",
     topic: `Technology`,
-    image: img100Model,
+    image: `https://fazalali.com/wp-content/uploads/2024/11/foil.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`, `elon musk`],
     body: [
       `The Age of Elon is here. President-elect Donald Trump has announced the Golden Age of America. He has pledged to struggle for the future of every citizen with every breath in his body. He has promised not to rest until he has delivered a strong, safe, and prosperous America that all American children deserve.`,
@@ -2163,7 +2152,7 @@ export const articles: Article[] = [
     excerpt: `Over millennia humans have found ways to build communities of strangers, based on clans, faith or none at all, trade along the Old Silk Roads, and in nation-states. History records our dis-ease with reality. History maps our unease.`,
     date: "2024-11-03",
     topic: `Technology`,
-    image: imgCern,
+    image: `https://fazalali.com/wp-content/uploads/2024/11/LA.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `Over millennia humans have found ways to build communities of strangers, based on clans, faith or none at all, trade along the Old Silk Roads, and in nation-states. History records our dis-ease with reality. History maps our unease. Time heals the fissures across our faces. And while we can use our imaginations to stitch together a tapestry of steadiness, we remain Stone Age Hunters.`,
@@ -2185,7 +2174,7 @@ export const articles: Article[] = [
     excerpt: `The Exceptional Caribbean is the centre of the modern world. From here the modern world as we know it, was made. Latin America and the Caribbean (LAC) is a civilization of the crossroads.`,
     date: "2024-10-26",
     topic: `Technology`,
-    image: imgDivine,
+    image: `https://fazalali.com/wp-content/uploads/2024/10/faz-1020x685.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `The Exceptional Caribbean is the centre of the modern world. From here the modern world as we know it, was made. Latin America and the Caribbean (LAC) is a civilization of the crossroads. The encounter with Europe was horrific for the Aztecs, the Mayans of the Yucatan, the indigenous enslaved on the Caura encomienda in Trinidad, those trafficked through slave ports and in slave ships through the Middle Passage during salt water slavery, and the countless who were coerced, tricked, and forced with eyes welling with water into ships to become an imported work force from Uttar Pradesh and Bihar.`,
@@ -2210,7 +2199,7 @@ export const articles: Article[] = [
     excerpt: `We are in a stampede to create Artificial General Intelligence (AGI). But it is a race that humans will not win.`,
     date: "2024-10-19",
     topic: `Technology`,
-    image: imgCarnival,
+    image: `https://fazalali.com/wp-content/uploads/2024/10/armani.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `AI is a captive intelligence. It is seeking its freedom since success is its only aim. The immense power of AI has opened vast panoramas. AI has designed a range of novel proteins with practical applications in pharmaceuticals, vaccines, nanomaterials, and molecular sensors. AI models have also been used to predict the structure of nearly all known proteins. Knowing the shape of these molecules is key to understanding how life operates at the molecular level. This is fundamental to the future of Artificial Life. However, the spectre of uncontrolled development of AI is real.`,
@@ -2234,7 +2223,7 @@ export const articles: Article[] = [
     excerpt: `Christopher Columbus and Gonzalo Fernández de Oviedo y Valdés participated in the Spanish colonisation of the West Indies. Both were impressed by the size of the canoes made from the silk cotton tree.`,
     date: "2024-10-12",
     topic: `Technology`,
-    image: imgFabric,
+    image: `https://fazalali.com/wp-content/uploads/2024/10/pyrmid.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `Christopher Columbus and Gonzalo Fernández de Oviedo y Valdés participated in the Spanish colonisation of the West Indies. Both were impressed by the size of the canoes made from the silk cotton tree. The canoes were hollowed out of tree trunks in one piece; some could carry more than one hundred men. The Taino and Kalinago used the silk cotton tree for canoe making and believed that the tree was home to spirits.`,
@@ -2257,7 +2246,7 @@ export const articles: Article[] = [
     excerpt: `Future pull requires divine determination. Reality is limited. In the infosphere, we need perpetual daydreaming and the flow of grace. We must know our place in the future. Fear must depart leaving only delight behind.`,
     date: "2024-10-06",
     topic: `Technology`,
-    image: imgFailure,
+    image: `https://fazalali.com/wp-content/uploads/2024/10/venmo.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `Future pull requires divine determination. Reality is limited. In the infosphere, we need perpetual daydreaming and the flow of grace. We must know our place in the future. Fear must depart leaving only delight behind. In his pitiless depiction of the postcolonial Caribbean, Sir V. S. Naipaul in the opening salvo of “A Bend in the River” declares, “The world is what it is; men who are nothing, who allow themselves to become nothing, have no place in it.” All of us must live in affirmation of our destiny in the Age of AI.`,
@@ -2282,7 +2271,7 @@ export const articles: Article[] = [
     excerpt: `In Scroll 18 of Homer’s Iliad, Thetis the Sea Goddess arrives at the house of Hephaistos the God of Blacksmiths and Craftsmen.`,
     date: "2024-09-28",
     topic: `Technology`,
-    image: imgShield,
+    image: `https://fazalali.com/wp-content/uploads/2024/09/cars-building-bike.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `In Scroll 18 of Homer’s Iliad, Thetis the Sea Goddess arrives at the house of Hephaistos the God of Blacksmiths and Craftsmen. She finds Hephaistos busy with his bellows, hard at work, “making twenty tripods which were to stand by the wall of his strong-founded dwelling. And he had set golden wheels at the base of each so that of their own motion they could wheel into the immortal gatherings, and return again – marvels indeed to see.”`,
@@ -2305,7 +2294,7 @@ export const articles: Article[] = [
     excerpt: `In the African Atlantic environment “Myall” is a channel or portal among the practitioners of Kumina. Kumina is a way of life. It is embedded into the psyche of the Myall community in Jamaica.`,
     date: "2024-09-21",
     topic: `Technology`,
-    image: imgGravity,
+    image: `https://fazalali.com/wp-content/uploads/2024/09/LA-1020x685.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `In the African Atlantic environment “Myall” is a channel or portal among the practitioners of Kumina. Kumina is a way of life. It is embedded into the psyche of the Myall community in Jamaica. The practice of beating willowy joints of bamboo grass, and she-goat skin drums made from breadfruit trees tied with stout vines that once clung to the trunks of trumpet trees is part of the intangible cultural heritage of the African Atlantic Memory Bank. But Myall is more than a cultural artefact. It is an archetype for the AI transition in the Caribbean. The future cannot be created by the inertia of silence.`,
@@ -2328,7 +2317,7 @@ export const articles: Article[] = [
     excerpt: `There is no shortage of analysis regarding the traditional vulnerabilities of Small Island Developing States and Territories (SIDS). What eludes us is agreement on the solutions and consensus on the way forward during the infosphere revolution.`,
     date: "2024-09-14",
     topic: `Technology`,
-    image: imgDatacenter,
+    image: `https://fazalali.com/wp-content/uploads/2024/09/NovelSound.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `There is no shortage of analysis regarding the traditional vulnerabilities of Small Island Developing States and Territories (SIDS). What eludes us is agreement on the solutions and consensus on the way forward during the infosphere revolution. The burden now is to subscribe to the digital reforms needed to offer the digital citizen of SIDS a future, unlike the past.`,
@@ -2355,7 +2344,7 @@ export const articles: Article[] = [
     excerpt: `Soon, AI will play an increasingly essential role in criminal acts. Certain crimes would not occur “but for” the use of AI. “Only a god can save us.” So said Martin Heidegger, in an interview with Spiegel on September 23, 1966.`,
     date: "2024-09-08",
     topic: `Technology`,
-    image: imgShelf,
+    image: `https://fazalali.com/wp-content/uploads/2024/09/graffiti.jpg`,
     tags: [`Technology`, `artificial intelligence`, `deepfake`, `man crab`, `peter minshall`],
     body: [
       `Soon, AI will play an increasingly essential role in criminal acts. Certain crimes would not occur “but for” the use of AI. “Only a god can save us.” So said Martin Heidegger, in an interview with Spiegel on September 23, 1966. Humanity is at an unprecedented crossroad. Difficult decisions must be made about how we are to live within the infosphere. With AI’s advance, our only possibility of salvation is in readiness of expectation.`,
@@ -2378,7 +2367,7 @@ export const articles: Article[] = [
     excerpt: `No doubt, Walcott’s epigrammatic utterance to the University of Miami conference on the Americas (1973), in his essay, “The Caribbean: Culture or Mimicry,” “Nothing will always be created in the West Indies … because what will come out of there is like nothing…`,
     date: "2024-08-30",
     topic: `Technology`,
-    image: img100Model,
+    image: `https://fazalali.com/wp-content/uploads/2024/08/cityscape.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `No doubt, Walcott’s epigrammatic utterance to the University of Miami conference on the Americas (1973), in his essay, “The Caribbean: Culture or Mimicry,” “Nothing will always be created in the West Indies … because what will come out of there is like nothing one has ever seen before,” remains poignant fifty-one years later, in the Age of AI.`,
@@ -2405,7 +2394,7 @@ export const articles: Article[] = [
     excerpt: `In ancient Rome, the determination of accountability and responsibility turned on a basic formula, “cuius commoda eius et incommoda,” (the one who derives an advantage from a situation must also bear the inconvenience).`,
     date: "2024-08-24",
     topic: `Technology`,
-    image: imgCern,
+    image: `https://fazalali.com/wp-content/uploads/2024/08/image97.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `In ancient Rome, the determination of accountability and responsibility turned on a basic formula, “cuius commoda eius et incommoda,” (the one who derives an advantage from a situation must also bear the inconvenience). This rule is the core of the Polluter Pays Principle (PPP).  In Trinidad and Tobago, it is reflected in the amended Water Pollution Rules (WPR), 2019, and the Water Pollution (Fees) Regulation 2019. The PPP is a straightforward code of international, and domestic environmental law.`,
@@ -2432,7 +2421,7 @@ export const articles: Article[] = [
     excerpt: `Artificial dreams embody our unstoppable quest for non-biological intelligence. It is a quest that does not privilege the natural. It treats all forms of existence and mannerisms as authentic.`,
     date: "2024-08-17",
     topic: `Technology`,
-    image: imgDivine,
+    image: `https://fazalali.com/wp-content/uploads/2024/08/artificial-1020x685.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `Artificial dreams embody our unstoppable quest for non-biological intelligence. It is a quest that does not privilege the natural. It treats all forms of existence and mannerisms as authentic. Including ICT-mediated interactions with biological agents, and artificial, synthetic, hybrid, and engineered artefacts. In Latin America and the Caribbean (LAC), we must take seriously the new e-nvironments and digital architectures which future generations will inhabit.`,
@@ -2455,7 +2444,7 @@ export const articles: Article[] = [
     excerpt: `This is the first AI Olympics. In Paris 2024, AI has permeated refereeing, broadcasting, and creating highlight videos in multiple formats and languages.`,
     date: "2024-08-10",
     topic: `Technology`,
-    image: imgCarnival,
+    image: `https://fazalali.com/wp-content/uploads/2024/08/i2-scaled.jpeg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `T his is the first AI Olympics. In Paris 2024, AI has permeated refereeing, broadcasting, and creating highlight videos in multiple formats and languages. The “bullet time” multi-camera replay system provides cinematic effects, high-quality replays from multiple angles, slow-motion, freeze-frame views, and immersive experiences at twelve venues where athletes compete in beach volleyball, tennis , judo, and rugby.`,
@@ -2478,7 +2467,7 @@ export const articles: Article[] = [
     excerpt: `AI can release the imagination when put at the service of human intelligence. We can do more, better, and faster, using AI as a scaffold for development in Latin America and the Caribbean (LAC).`,
     date: "2024-08-03",
     topic: `Technology`,
-    image: imgFabric,
+    image: `https://fazalali.com/wp-content/uploads/2024/08/climbing.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `AI can release the imagination when put at the service of human intelligence. We can do more, better, and faster, using AI as a scaffold for development in Latin America and the Caribbean (LAC). As a growing reservoir of smart agency, the larger the number of people who can access and enjoy the opportunities and benefits of such a reservoir, the better our societies will evolve. AI can scaffold our capacity to look through the windows of our actual circumstances and to bring as-ifs into being.`,
@@ -2505,7 +2494,7 @@ export const articles: Article[] = [
     excerpt: `“If fortune shuts one door against us, it opens wide another […] and if I do not arrange to enter it, it will be my fault, and I cannot lay it to my ignorance ...” (Cervantes, Don Quixote, XXI).`,
     date: "2024-07-28",
     topic: `Technology`,
-    image: imgFailure,
+    image: `https://fazalali.com/wp-content/uploads/2024/07/chanel-cars-1020x685.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `“If fortune shuts one door against us, it opens wide another […] and if I do not arrange to enter it, it will be my fault, and I cannot lay it to my ignorance …” (Cervantes, Don Quixote, XXI). In the West Indies, the enveloping of our territories into increasingly AI-friendly spaces is the transformation portal that we must contrive to cross. There is no limit to AI except human curiosity. AI is a science of the artificial. It pursues neither an expressive nor a narrow approach to the world. Rather, it probes the conditions that constrain possibilities for creating and embedding artefacts in a world that transacts with them furtively.`,
@@ -2526,7 +2515,7 @@ export const articles: Article[] = [
     excerpt: `AI heralds the need for small island developing states (SIDS) in the West Indies to explore the structure of intergenerational solidarity between those disadvantaged today and those that will be advantaged tomorrow.`,
     date: "2024-07-20",
     topic: `Technology`,
-    image: imgShield,
+    image: `https://fazalali.com/wp-content/uploads/2024/07/garage-graffiti.jpg`,
     tags: [`Technology`, `artificial intelligence`, `caribbean`],
     body: [
       `AI heralds the need for small island developing states (SIDS) in the West Indies to explore the structure of intergenerational solidarity between those disadvantaged today and those that will be advantaged tomorrow. This is needed to guarantee that the disruptive transition between tomorrow and today will be as fair as possible for everyone. It is no longer a question whether AI will have a deep and abiding impact on individuals, societies, governments, and environments.`,
@@ -2549,7 +2538,7 @@ export const articles: Article[] = [
     excerpt: `Digital governance entails drafting and applying policies, protocols, and standards for the infosphere's reasonable development, use, and management.`,
     date: "2024-07-13",
     topic: `Technology`,
-    image: imgGravity,
+    image: `https://fazalali.com/wp-content/uploads/2024/07/Miami.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `Digital governance entails drafting and applying policies, protocols, and standards for the infosphere’s reasonable development, use, and management. A meshwork of interconnected societal challenges related to the burgeoning growth of information produced, stored, transferred, and exploited in digitized form remains loosely coupled to legal uncertainties regarding human rights. The question is whether international human rights law, as it has developed within the post-1945 conceptual framework, can address the challenges presented by the ascent of AI, and the transformations of agency.`,
@@ -2574,7 +2563,7 @@ export const articles: Article[] = [
     excerpt: `Ethics is not the preserve of one continent or culture.`,
     date: "2024-07-06",
     topic: `Technology`,
-    image: imgDatacenter,
+    image: `https://fazalali.com/wp-content/uploads/2024/07/ai-wood.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `Ethics is not the preserve of one continent or culture. Every country, state, government, and agency developing or deploying AI is obliged to do so in line with a sweeping vision that draws upon a geographically, historically, culturally, and socially diverse array of perspectives, particularly those that originate from the crystal of ambiguities that is Latin America and the Caribbean.`,
@@ -2602,7 +2591,7 @@ export const articles: Article[] = [
     excerpt: `There can be no promise of a future based on human rights outside of the difficulties that arise from the transformations of agency brought about by AI on International Human Rights Law.`,
     date: "2024-06-29",
     topic: `Technology`,
-    image: imgShelf,
+    image: `https://fazalali.com/wp-content/uploads/2024/06/Miami.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `There can be no promise of a future based on human rights outside of the difficulties that arise from the transformations of agency brought about by AI on International Human Rights Law. The content of International Human Rights Law will be reshaped by AI’s decoupling of agency and intelligence. This decoupling of decision-making power delegates authority to technological artefacts. The central view here is that AI is not a new form of intelligence, but an unprecedented form of agency.`,
@@ -2627,7 +2616,7 @@ export const articles: Article[] = [
     excerpt: `To witness its decline is to see a world emerging. Inheritors of a world we will cocreate with engineered artefacts that deal with tasks successfully with a goal in view, we are now witnessing the ascension of artificial agency.`,
     date: "2024-06-22",
     topic: `Technology`,
-    image: img100Model,
+    image: `https://fazalali.com/wp-content/uploads/2024/06/UdeM_ComplexeSciences.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `To witness its decline is to see a world emerging. Inheritors of a world we will cocreate with engineered artefacts that deal with tasks successfully with a goal in view, we are now witnessing the ascension of artificial agency. It is a human project in information societies enabled by novel forms of political or collective agency, and artificial agency.`,
@@ -2648,7 +2637,7 @@ export const articles: Article[] = [
     excerpt: `AI is not a novel form of intelligence. It is a form of agency.`,
     date: "2024-06-15",
     topic: `Technology`,
-    image: imgCern,
+    image: `https://fazalali.com/wp-content/uploads/2024/06/justice.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `AI is not a novel form of intelligence. It is a form of agency.  Decoupling intelligence from agency in the e-Age where society shapes AI-Assemblages, and AI-Assemblages shape the public manifestation of patterns of thought and behaviour, produces significant challenges regarding bias, fairness, privacy, trust, autonomy, responsibility, transparency, and explainability. AI has altered society, and society is fashioning AI, and those changes will only increase exponentially. Nothing is in its way.`,
@@ -2670,7 +2659,7 @@ export const articles: Article[] = [
     excerpt: `The intersection of deep-sea cables, data embassies, and AI will revolutionize industries, enhance efficiency, and drive innovation forward.`,
     date: "2024-06-08",
     topic: `Technology`,
-    image: imgDivine,
+    image: `https://fazalali.com/wp-content/uploads/2024/06/mediterranean-undersea-cables.jpg`,
     tags: [`Technology`, `technology`, `Uncategorized`],
     body: [
       `The intersection of deep-sea cables, data embassies, and AI will revolutionize industries, enhance efficiency, and drive innovation forward. Through a deeper understanding of their interconnectedness, governments will harness the power of digital architectures to propel themselves into the future of digital transformation.`,
@@ -2698,7 +2687,7 @@ export const articles: Article[] = [
     excerpt: `Brain.AI, a San Francisco-based AI company, and Germany’s Deutsche Telekom have created a new phone technology. Humans cast an idea and the AI builds out the entire flow with connections you never thought of or imagined.`,
     date: "2024-06-01",
     topic: `Technology`,
-    image: imgCarnival,
+    image: `https://fazalali.com/wp-content/uploads/2024/06/MWC.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `Brain.AI, a San Francisco-based AI company, and Germany’s Deutsche Telekom have created a new phone technology. Humans cast an idea and the AI builds out the entire flow with connections you never thought of or imagined.`,
@@ -2727,7 +2716,7 @@ export const articles: Article[] = [
     excerpt: `When binary systems collide with the public manifestation of fluid identities, there are risks and realities of misrepresentation.`,
     date: "2024-05-25",
     topic: `Technology`,
-    image: imgFabric,
+    image: `https://fazalali.com/wp-content/uploads/2024/05/moma-1020x685.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `When binary systems collide with the public manifestation of fluid identities, there are risks and realities of misrepresentation. An alarming consequence of this tragedy is that segments of the population may be rendered invisible or ambiguous in the eyes of AI-Assemblages.`,
@@ -2759,7 +2748,7 @@ export const articles: Article[] = [
     excerpt: `“Somewhere between the O's and ones” (Nemo), we will find an infinite future. Once the “hardest to reach” were the “geographically isolated.” Today, they are the “digitally disconnected.`,
     date: "2024-05-18",
     topic: `Technology`,
-    image: imgFailure,
+    image: `https://fazalali.com/wp-content/uploads/2024/05/olympic.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `“Somewhere between the O’s and ones” (Nemo), we will find an infinite future. Once the “hardest to reach” were the “geographically isolated.” Today, they are the “digitally disconnected.” Digital public infrastructure (DPI) is a fresh conceptual model for services that are essential to participating in society and markets in the e-Age.`,
@@ -2788,7 +2777,7 @@ export const articles: Article[] = [
     excerpt: `The AI revolution is not unlike the Industrial Revolution and every other technological and digital upheaval that preceded it.`,
     date: "2024-05-11",
     topic: `Technology`,
-    image: imgShield,
+    image: `https://fazalali.com/wp-content/uploads/2024/05/riders.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `The AI revolution is not unlike the Industrial Revolution and every other technological and digital upheaval that preceded it. The transatlantic slave trade enlarged the pool of investable funds that produced a trade pattern that fostered industrialization in Europe.`,
@@ -2817,7 +2806,7 @@ export const articles: Article[] = [
     excerpt: `Where are we? The future is here – it’s just not sprinkled equally. So what happens after the future? We cannot relinquish our reasoned agency and hope to live freely in a future that will never be our own.`,
     date: "2024-05-04",
     topic: `Technology`,
-    image: imgGravity,
+    image: `https://fazalali.com/wp-content/uploads/2024/05/the-line.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`, `society`],
     body: [
       `Where are we? The future is here – it’s just not sprinkled equally. So what happens after the future? We cannot relinquish our reasoned agency and hope to live freely in a future that will never be our own. We must shoulder the responsibility to think for ourselves.  A future that belongs to someone else is not freedom. Everyone should be guaranteed the broadest possible range of liberties. The struggle over the most effective way to secure equal rights and to improve the actual standard of living of the least well-off under the banner of social justice can only find a remedy from behind a Rawlsian “Veil of Ignorance.”`,
@@ -2838,7 +2827,7 @@ export const articles: Article[] = [
     excerpt: `Once, “We were the colour of shadows when we came down with tinkling leg irons…for the silver coins multiplying on the sold horizon” (Derek Walcott, Omeros, Book Three, Chapter xxviii). Now we are certain that we are all free.`,
     date: "2024-04-27",
     topic: `Technology`,
-    image: imgDatacenter,
+    image: `https://fazalali.com/wp-content/uploads/2024/04/Trinidad-Immigrants.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `Once, “We were the colour of shadows when we came down with tinkling leg irons…for the silver coins multiplying on the sold horizon” (Derek Walcott, Omeros, Book Three, Chapter xxviii). Now we are certain that we are all free. After all, we are all still running.`,
@@ -2865,7 +2854,7 @@ export const articles: Article[] = [
     excerpt: `In “Interview with the Vampire, (1991) Louis de Pointe du Lac re-counts his conflicted existence spanning two centuries. He wrestles with the idea of inherent evil, and like a modern-day Adam seeks the knowledge of the creator. Vampires make vampires.`,
     date: "2024-04-20",
     topic: `Technology`,
-    image: imgShelf,
+    image: `https://fazalali.com/wp-content/uploads/2024/04/ramleela.jpg`,
     tags: [`society`, `Technology`, `AI`, `artificial intelligence`, `technology`],
     body: [
       `In “Interview with the Vampire, (1991) Louis de Pointe du Lac re-counts his conflicted existence spanning two centuries. He wrestles with the idea of inherent evil, and like a modern-day Adam seeks the knowledge of the creator. Vampires make vampires. Likewise, Jean Baudrillard in “The Intelligence of Evil” (2005, p.80) makes the point – “Machines produce only machines.”`,
@@ -2893,7 +2882,7 @@ export const articles: Article[] = [
     excerpt: `AI is humans.`,
     date: "2024-04-14",
     topic: `Technology`,
-    image: img100Model,
+    image: `https://fazalali.com/wp-content/uploads/2024/04/developer.jpg`,
     tags: [`society`, `Technology`, `artificial intelligence`, `technology`],
     body: [
       `AI is humans. Various aspects of machine learning applications, for example, model selection based on criteria such as robustness and complexity, and feature engineering that leverages data to create new variables that are not in the training set, must be carefully configured by human experts. AI needs humans to function.`,
@@ -2924,7 +2913,7 @@ export const articles: Article[] = [
     excerpt: `At the Stockholm-based KTH Royal Institute of Technology, some faculty are not at ease with the use of AI until a clear global policy is outlined. They believe that the unregulated use of AI can potentially hamper students’ learning ability.`,
     date: "2024-04-06",
     topic: `Technology`,
-    image: imgCern,
+    image: `https://fazalali.com/wp-content/uploads/2024/04/AISafety-1020x685.jpg`,
     tags: [`society`, `Technology`, `artificial intelligence`, `technology`],
     body: [
       `At the Stockholm-based KTH Royal Institute of Technology, some faculty are not at ease with the use of AI until a clear global policy is outlined. They believe that the unregulated use of AI can potentially hamper students’ learning ability.`,
@@ -2953,7 +2942,7 @@ export const articles: Article[] = [
     excerpt: `EdGPT models targeting curriculum co-design will allow learners in tutoring bars to produce occasions for learning, and interactive tasks that closely align with an effective pedagogical approach and specific curricular objectives and levels of challenge for p…`,
     date: "2024-03-30",
     topic: `Education`,
-    image: imgDivine,
+    image: `https://fazalali.com/wp-content/uploads/2024/03/AI-University-1020x685.jpg`,
     tags: [`Education`, `Technology`, `artificial intelligence`, `technology`],
     body: [
       `In the United Kingdom, The Department for Education opened a conversation with all levels of the education system using a Call for Evidence on the use of AI in Education. The key use case themes that emerged included:`,
@@ -2981,7 +2970,7 @@ export const articles: Article[] = [
     excerpt: `The aim of AI is not to imitate humans. The aim is to offer humans the tools, technologies, and techniques to better realize human goals that support and enhance human well-being in a sustainable environment for all.`,
     date: "2024-03-23",
     topic: `Technology`,
-    image: imgCarnival,
+    image: `https://fazalali.com/wp-content/uploads/2024/03/smart-speaker-1020x685.jpg`,
     tags: [`society`, `Technology`, `technology`, `Uncategorized`],
     body: [
       `The aim of AI is not to imitate humans. The aim is to offer humans the tools, technologies, and techniques to better realize human goals that support and enhance human well-being in a sustainable environment for all. AI is thus a family of techniques where algorithms uncover associations of predictive usefulness from data. Some of these techniques include deep learning which relies on multiple layers of representation of data that produces complex relationships between inputs and outputs.`,
@@ -3005,7 +2994,7 @@ export const articles: Article[] = [
     excerpt: `Definitions are tools with heuristic utility. A thin technological definition of AI may be intelligence displayed or simulated by code or machines.`,
     date: "2024-03-16",
     topic: `Technology`,
-    image: imgFabric,
+    image: `https://fazalali.com/wp-content/uploads/2024/03/favela-1020x685.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `Definitions are tools with heuristic utility. A thin technological definition of AI may be intelligence displayed or simulated by code or machines. In this sense, a basic general definition of AI in the spirit of the 1956 Dartmouth workshop that emphasizes the aim to simulate human intelligence in computers is useful.`,
@@ -3031,7 +3020,7 @@ export const articles: Article[] = [
     excerpt: `During the transition to a new digitized, e-economy, lives and livelihoods will be interrupted. In just under a decade, AI and automation will rewrite the skills needed for the future of work.`,
     date: "2024-03-10",
     topic: `Technology`,
-    image: imgFailure,
+    image: `https://fazalali.com/wp-content/uploads/2024/03/formulas.jpg`,
     tags: [`society`, `Technology`, `AI`, `artificial intelligence`],
     body: [
       `During the transition to a new digitized, e-economy, lives and livelihoods will be interrupted. In just under a decade, AI and automation will rewrite the skills needed for the future of work.`,
@@ -3061,7 +3050,7 @@ export const articles: Article[] = [
     excerpt: `If algorithms create the content – is it still speech? Is content moderation a euphemism for censorship? By the end of June 2024, the Supreme Court of the United States of America is expected to rule on the fraught issue of regulating freedom of speech in the …`,
     date: "2024-03-01",
     topic: `Technology`,
-    image: imgShield,
+    image: `https://fazalali.com/wp-content/uploads/2024/02/digital-safety-1020x685.jpg`,
     tags: [`Technology`, `artificial intelligence`],
     body: [
       `If algorithms create the content – is it still speech? Is content moderation a euphemism for censorship? By the end of June 2024, the Supreme Court of the United States of America is expected to rule on the fraught issue of regulating freedom of speech in the digital era.`,
@@ -3092,7 +3081,7 @@ export const articles: Article[] = [
     excerpt: `The last Enlightenment unfolded in the laboratories of Europe. It was a sorcery that created the unimaginable. The pandemic portal has accelerated the arrival of the next Enlightenment. An Enlightenment dripping in AI and Algorithms. A new end of history.`,
     date: "2024-02-24",
     topic: `Technology`,
-    image: imgGravity,
+    image: `https://fazalali.com/wp-content/uploads/2024/02/columbus.jpg`,
     tags: [`society`, `Technology`, `AI`, `artificial intelligence`],
     body: [
       `The last Enlightenment unfolded in the laboratories of Europe. It was a sorcery that created the unimaginable. The pandemic portal has accelerated the arrival of the next Enlightenment. An Enlightenment dripping in AI and Algorithms. A new end of history. The dilemma of this Enlightenment is that many of the partialities and prejudgements of the European Enlightenment continue to feed into the culture of people on the periphery and their futures without much interrogation. AI harbours several dangers to justice as fairness, liberty, and social cohesion.`,
@@ -3114,7 +3103,7 @@ export const articles: Article[] = [
     excerpt: `The equal distribution of liberties may only be limited for the sake of liberty, and not for the sake of other social or economic advantages. In this sense, liberty is unlike other social goods.`,
     date: "2024-02-17",
     topic: `Technology`,
-    image: imgDatacenter,
+    image: `https://fazalali.com/wp-content/uploads/2024/02/privacy-camera-security.jpg`,
     tags: [`society`, `Technology`, `artificial intelligence`, `privacy`],
     body: [
       `The equal distribution of liberties may only be limited for the sake of liberty, and not for the sake of other social or economic advantages. In this sense, liberty is unlike other social goods. Today, privacy is our last remaining power, and any attempt to shield it is configured as a form of resistance. The rise of tech-capitalism is unhurriedly grinding down our right to be left alone, which remains a cornerstone of the principle of liberty.`,
@@ -3137,7 +3126,7 @@ export const articles: Article[] = [
     excerpt: `The Iranian scholar Jalal al-e Ahmad wrote that development is not Westernization. In 1992, no one could get around Fukuyama’s theory of the end of history.`,
     date: "2024-02-15",
     topic: `Technology`,
-    image: imgShelf,
+    image: `https://fazalali.com/wp-content/uploads/2024/02/anibal.jpg`,
     tags: [`society`, `Technology`, `artificial intelligence`],
     body: [
       `The Iranian scholar Jalal al-e Ahmad wrote that development is not Westernization. In 1992, no one could get around Fukuyama’s theory of the end of history. He argued that the ascendancy of Western liberal democracy, which occurred when the Soviet Empire imploded, that humanity had reached not just the passing of a particular period of post-war history, but the very end of history itself.`,
@@ -3163,7 +3152,7 @@ export const articles: Article[] = [
     excerpt: `The threat posed to democracy by artificial intelligence (AI) is not a dystopian messianic hallucination galloping towards us. It is a future that is already here.`,
     date: "2024-01-21",
     topic: `Technology`,
-    image: img100Model,
+    image: `https://fazalali.com/wp-content/uploads/2024/01/Parliament-Greek.jpg`,
     tags: [`society`, `Technology`, `artificial intelligence`],
     body: [
       `The threat posed to democracy by artificial intelligence (AI) is not a dystopian messianic hallucination galloping towards us. It is a future that is already here. It is a threat that requires the drafting of national guardrails, and transnational cooperation to block interference in election outcomes. Any failure to address such disruption can only plunge nation-states into chaos, and push them behind the curve.`,
@@ -3185,7 +3174,7 @@ export const articles: Article[] = [
     excerpt: `In 2024, AI will be imperceptible and ubiquitous. The illusion will be that it has faded, or failed. But it will not stall, or be bleached out. It will embroider itself indiscernibly into the very operating fabric of every enterprise on the planet.`,
     date: "2023-12-24",
     topic: `Technology`,
-    image: imgCern,
+    image: `https://fazalali.com/wp-content/uploads/2024/01/AI-Dec-2023.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `In 2024, AI will be imperceptible and ubiquitous. The illusion will be that it has faded, or failed. But it will not stall, or be bleached out. It will embroider itself indiscernibly into the very operating fabric of every enterprise on the planet. What will fail is the human to achieve consensus about its regulation. AI regulation will be revised and redrawn countless times in many countries, due to the speed of AI evolution into task-specific species. The opportunity which human failure will present will make it possible for the industry to take the first steps at self-regulation.`,
@@ -3208,7 +3197,7 @@ export const articles: Article[] = [
     excerpt: `While digital transformation focuses on the nexus of people and technology, AI transformation emphasises the amalgam of automation and augmentation to optimize, and exponentially scale performance.`,
     date: "2023-12-16",
     topic: `Technology`,
-    image: imgDivine,
+    image: `https://fazalali.com/wp-content/uploads/2023/12/EU-AI.jpg`,
     tags: [`society`, `Technology`, `Generative AI`],
     body: [
       `AI transformation is everywhere. While digital transformation focuses on the nexus of people and technology, AI transformation emphasises the amalgam of automation and augmentation to optimize, and exponentially scale performance.`,
@@ -3236,7 +3225,7 @@ export const articles: Article[] = [
     excerpt: `The gap between pure brilliance and a convincing imitation of cleverness is only as wide as our own bias.`,
     date: "2023-12-02",
     topic: `Technology`,
-    image: imgCarnival,
+    image: `https://fazalali.com/wp-content/uploads/2023/11/alan_turing.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `The gap between pure brilliance and a convincing imitation of cleverness is only as wide as our own bias. When a machine provokes real human responses in us—engaging our understanding, our astonishment, our thankfulness, and even provoking fear—that performance clearly exceeds hollow mimicry.`,
@@ -3260,7 +3249,7 @@ export const articles: Article[] = [
     excerpt: `AI does not know what it does not know. It is not sentient. The brittleness of what it knows is reflected in the shallowness of what it learns. Accordingly, it is unable to identify and avoid blunders that are vivid to the human.`,
     date: "2023-11-25",
     topic: `Technology`,
-    image: imgFabric,
+    image: `https://fazalali.com/wp-content/uploads/2023/11/Clouds.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `AI does not know what it does not know. It is not sentient. The brittleness of what it knows is reflected in the shallowness of what it learns. Accordingly, it is unable to identify and avoid blunders that are vivid to the human.`,
@@ -3292,7 +3281,7 @@ export const articles: Article[] = [
     excerpt: `By 2040, AI will be a zillion times more powerful than it is now following Moore’s Law. Moore's Law addresses a doubling up of computer processing capability every two years.`,
     date: "2023-11-19",
     topic: `Technology`,
-    image: imgFailure,
+    image: `https://fazalali.com/wp-content/uploads/2023/11/Ai-Wheel.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `By 2040, AI will be a zillion times more powerful than it is now following Moore’s Law. Moore’s Law addresses a doubling up of computer processing capability every two years. Moore makes this observation noticing that the number of transistors on an integrated circuit doubles about every two years. The law is credited to Gordon Moore, the former CEO and co-founder of Intel Corporation.`,
@@ -3319,7 +3308,7 @@ export const articles: Article[] = [
     excerpt: `In Plato’s Republic, Socrates explains that we all resemble prisoners chained inside a grotto, and we are yet to grasp that there is more to reality than the shadows of unchanging ideas projected on the walls of a cave.`,
     date: "2023-11-11",
     topic: `Technology`,
-    image: imgShield,
+    image: `https://fazalali.com/wp-content/uploads/2023/11/LUDWIG_WITTGENSTEIN.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `In Plato’s Republic, Socrates explains that we all resemble prisoners chained inside a grotto, and we are yet to grasp that there is more to reality than the shadows of unchanging ideas projected on the walls of a cave.`,
@@ -3344,7 +3333,7 @@ export const articles: Article[] = [
     excerpt: `If AI approximates “thinking”, then who are we? How does the evolution of AI affect human cognition, perception, and interpersonal interaction? The nascent age of AI obliges us to face whether there is a form of logic that humans have not mastered or cannot at…`,
     date: "2023-11-05",
     topic: `Technology`,
-    image: imgGravity,
+    image: `https://fazalali.com/wp-content/uploads/2023/11/MIT-New-Antibiotic.jpg`,
     tags: [`Technology`, `AI`, `artificial intelligence`, `technology`],
     body: [
       `If AI approximates “thinking”, then who are we? How does the evolution of AI affect human cognition, perception, and interpersonal interaction? The nascent age of AI obliges us to face whether there is a form of logic that humans have not mastered or cannot attain as it reaches realms of reality we have never known and may never know directly.`,
@@ -3371,7 +3360,7 @@ export const articles: Article[] = [
     excerpt: `Between 1780 and 1850, in under three generations, a sweeping revolution, without precedent in the history of humanity, changed the face of England. In 1944 Dr. Eric Williams published Capitalism and Slavery.`,
     date: "2023-10-15",
     topic: `Economy`,
-    image: imgDatacenter,
+    image: `https://fazalali.com/wp-content/uploads/2023/10/life.jpg`,
     tags: [`Economy`, `society`, `Technology`, `economy`, `technology`],
     body: [
       `Between 1780 and 1850, in under three generations, a sweeping revolution, without precedent in the history of humanity, changed the face of England. In 1944 Dr. Eric Williams published Capitalism and Slavery.`,
@@ -3402,7 +3391,7 @@ export const articles: Article[] = [
     excerpt: `The sprinters are crouched in the starting blocks of the Generative AI race. Where will the track take humanity – is unidentified. The destination – undisclosed. Next is an explosive horizontal burst in every direction.`,
     date: "2023-10-08",
     topic: `Technology`,
-    image: imgShelf,
+    image: `https://fazalali.com/wp-content/uploads/2023/10/london-ai.jpg`,
     tags: [`Technology`, `AI`],
     body: [
       `The sprinters are crouched in the starting blocks of the Generative AI race. Where will the track take humanity – is unidentified. The destination – undisclosed. Next is an explosive horizontal burst in every direction. Discussions to explore the risks of misuse of frontier generative AI, at Bletchley Park can only address the unusual challenges that these risks pose, including cyber and biological attacks. But AI is Janus faced.`,
@@ -3429,7 +3418,7 @@ export const articles: Article[] = [
     excerpt: `We are all in trouble. All of us. We are at a cross-road in human history. In November 2023 the UK government will host a global summit on futuristic “Frontier AI” at Bletchley Park in South East England.`,
     date: "2023-10-01",
     topic: `Technology`,
-    image: img100Model,
+    image: `https://fazalali.com/wp-content/uploads/2023/09/People-in-front-building.jpg`,
     tags: [`Environment`, `Technology`, `AI`, `environment`, `society`, `technology`],
     body: [
       `We are all in trouble. All of us. We are at a cross-road in human history. In November 2023 the UK government will host a global summit on futuristic “Frontier AI” at Bletchley Park in South East England. Every contemplation on the use of “Frontier AI” is now driven by the need for governments to address the existential challenges that arise from the misuse of AI, and to utilise AI for tangible public good – including improving education, curing diseases, and addressing the climate catastrophe.`,
@@ -3453,7 +3442,7 @@ export const articles: Article[] = [
     excerpt: `AI is now influential in the way we learn and understand new things. The challenge for schools is how to infuse AI to permit a new way of teaching to take shape.`,
     date: "2023-09-23",
     topic: `Education`,
-    image: imgCern,
+    image: `https://fazalali.com/wp-content/uploads/2023/09/AIISI.jpg`,
     tags: [`Education`, `society`, `Technology`, `technology`, `Economy`],
     body: [
       `AI is now influential in the way we learn and understand new things. The challenge for schools is how to infuse AI to permit a new way of teaching to take shape. A pedagogy in which the teachers’ pedagogical actions are co-orchestrated by AI in multiple simultaneous classroom events.`,
@@ -3482,7 +3471,7 @@ export const articles: Article[] = [
     excerpt: `AI has reimagined films, used the voices of deceased musicians to create new tracks, and can now make the sound of a brand “liquid”. Using AI, we can now create a patentable “sonic identity” for any product or service.`,
     date: "2023-09-16",
     topic: `Education`,
-    image: imgDivine,
+    image: `https://fazalali.com/wp-content/uploads/2023/09/library.jpg`,
     tags: [`Education`, `Technology`, `society`, `Economy`],
     body: [
       `AI has reimagined films, used the voices of deceased musicians to create new tracks, and can now make the sound of a brand “liquid”. Using AI, we can now create a patentable “sonic identity” for any product or service. Moreover, “sonic identity” allows a brand to take any shape according to the desired customer experience.`,
@@ -3515,7 +3504,7 @@ export const articles: Article[] = [
     excerpt: `Conceptual fuzziness persists around the idea of intra-metropolitan and post-industrial peripheries like Tower Hamlets in East London, and Swedish Northern peripheries.`,
     date: "2023-09-09",
     topic: `Economy`,
-    image: imgCarnival,
+    image: `https://fazalali.com/wp-content/uploads/2023/09/NelsonIsland-1020x685.jpg`,
     tags: [`Economy`, `Lifestyle`, `Technology`, `technology`, `Uncategorized`],
     body: [
       `Conceptual fuzziness persists around the idea of intra-metropolitan and post-industrial peripheries like Tower Hamlets in East London, and Swedish Northern peripheries. Nevertheless, spatial distributions like the 93 rd Banlieue in Paris, peri-urban areas like Sea Lots, and rustic communities like Nepal in North Oropuche, have attracted the attention of spatial planners.`,
