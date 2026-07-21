@@ -251,7 +251,6 @@ function Hero() {
         >
           <video
             src={heroVideo}
-            poster={heroImage}
             autoPlay
             muted
             loop
@@ -261,6 +260,7 @@ function Hero() {
             disableRemotePlayback
             className="absolute inset-0 size-full object-cover"
           />
+
 
           <motion.div
             style={{ opacity: heroOverlayOpacity }}
