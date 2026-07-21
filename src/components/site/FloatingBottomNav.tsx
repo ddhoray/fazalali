@@ -11,7 +11,6 @@ const primaryLinks = [
   { to: "/books", label: "Books" },
   { to: "/writing", label: "Journal" },
   { to: "/podcast", label: "Podcast" },
-  { to: "/omeros-ai", label: "Omeros" },
   { to: "/about", label: "Profile" },
 ] as const;
 

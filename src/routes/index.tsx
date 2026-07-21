@@ -71,8 +71,6 @@ function Home() {
         <Quietline />
         <CoreStatement />
         <IdeasAndThemes />
-        <FeaturedSticky />
-        <Manifesto />
 
         {/* Fixed-background photographic break — image stays anchored while content scrolls */}
         <section
@@ -96,6 +94,7 @@ function Home() {
           </div>
         </section>
 
+        <Manifesto />
         <Portrait />
         <BookSection />
         <Range />
@@ -343,84 +342,6 @@ function Quietline() {
     </section>
   );
 }
-
-/* ─────────────────────── Featured — Omeros AI (single focus, scroll-driven) ─────────────────────── */
-
-function FeaturedSticky() {
-  return (
-    <section
-      data-nav="dark"
-      className="section-invert relative bg-background"
-    >
-      <div className="mx-auto grid max-w-[1500px] grid-cols-1 gap-10 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-12 lg:gap-16 lg:py-32">
-        {/* Left: text */}
-        <div className="lg:col-span-6 lg:sticky lg:top-24 lg:self-start">
-          <BlurReveal as="div" className="flex items-center gap-2 text-white/70">
-            <Sparkles className="size-4" />
-            <span className="eyebrow">Featured — Identity</span>
-          </BlurReveal>
-
-          <BlurReveal
-            as="h2"
-            delay={0.08}
-            className="mt-6 font-display text-[18vw] leading-[0.9] tracking-[-0.04em] text-white sm:text-[12vw] lg:text-[8vw]"
-          >
-            Omeros<span className="italic text-white/80">.</span>
-          </BlurReveal>
-
-          <BlurReveal as="p" delay={0.14} className="mt-8 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg">
-            The Greek name for Homer — poet of the sea, of journeys, of voices
-            passed down. <em className="italic">Omeros</em> is the name Fazal Ali
-            gives to a Caribbean initiative in artificial intelligence: a
-            prophet provocateur for the West Indies, convening the world's
-            frontier labs and building regional capacity toward a strategic AI
-            hub by 2030.
-          </BlurReveal>
-
-          <BlurReveal delay={0.2} className="mt-10 flex flex-wrap items-center gap-6">
-            <Link
-              to="/omeros-ai"
-              className="group inline-flex items-center gap-3 rounded-full bg-white px-7 py-4 text-sm font-medium tracking-wide text-black transition-all hover:bg-white/90"
-            >
-              Enter Omeros
-              <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
-            <Link
-              to="/omeros-ai"
-              className="nav-link text-[11px] text-white/70 underline-offset-[6px] hover:text-white hover:underline"
-            >
-              Read the eight pillars
-            </Link>
-          </BlurReveal>
-        </div>
-
-        {/* Right: image */}
-        <SlideIn from="right" className="lg:col-span-6">
-          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-sm">
-            <img
-              src={featuredOmeros}
-              alt="Omeros AI — a Caribbean reading of intelligence"
-              className="size-full object-cover transition-transform duration-[1200ms] ease-out hover:scale-[1.03]"
-              loading="lazy"
-            />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-            <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between text-on-image">
-              <span className="nav-link text-[10px] text-white/80">Ongoing · Trinidad</span>
-              <span className="nav-link text-[10px] text-white/60">01 / 01</span>
-            </div>
-          </div>
-        </SlideIn>
-      </div>
-    </section>
-  );
-}
-
-
-
-
-
-
-
 
 /* ─────────────────────── Manifesto (word-by-word scroll reveal) ────────────────────── */
 
