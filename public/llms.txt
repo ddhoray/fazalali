@@ -1,22 +1,47 @@
 # Fazal Ali
 
-> Dr. Fazal Ibrahim Ali — writer, scholar, and founder of Omeros AI, a Caribbean initiative in artificial intelligence based in Trinidad & Tobago.
+> Dr. Fazal Ibrahim Ali — writer, scholar, and founder of Omeros AI, a Caribbean initiative in artificial intelligence based in Trinidad & Tobago. Author of *Education for Liberty*, a monograph after Amartya Sen and John Rawls.
 
-Fazal Ali is a Cambridge Commonwealth Scholar and former Provost of the University of Trinidad and Tobago. Omeros AI is his initiative to stimulate deliberation about AI in the West Indies, support open-source AI adoption and AI security, convene global frontier labs in the Caribbean, drive industrial digitalisation and data infrastructure, address algorithmic and epistemic justice, and position the Caribbean as a strategic AI hub by 2030.
+Fazal Ali is a Cambridge Commonwealth Scholar and former Provost of the University of Trinidad and Tobago. His writing sits at the intersection of critical theory, artificial intelligence, education, ecology, inequality, and decolonial thought. He publishes long-form essays weekly at /writing (140+ entries).
+
+Omeros AI is his initiative to (1) stimulate deliberation about AI in the West Indies, (2) support open-source AI adoption and AI security, (3) convene global frontier labs in the Caribbean, (4) drive industrial digitalisation and data infrastructure, (5) address algorithmic and epistemic justice, (6) build regional AI research capacity comparable to CERN, (7) develop AI-aware public policy for Small Island Developing States (SIDS), and (8) position the Caribbean as a strategic AI hub by 2030.
+
+## Key facts
+
+- Full name: Dr. Fazal Ibrahim Ali
+- Nationality: Trinidadian
+- Education: University of Cambridge (Commonwealth Scholar)
+- Former role: Provost, University of Trinidad and Tobago
+- Founder of: Omeros AI
+- Book: *Education for Liberty* — a monograph in the tradition of Sen and Rawls
+- Primary domains: AI critical theory, Caribbean philosophy, education, ecology, inequality, decolonial thought
+- Location: Trinidad and Tobago
 
 ## Pages
 
 - [About](/about): Biography, mentors, and academic record of Dr. Fazal Ibrahim Ali.
 - [Education for Liberty](/education-for-liberty): The book — a monograph after Sen and Rawls, with a flippable preview, PDF, and Amazon link.
 - [Omeros AI](/omeros-ai): The Caribbean AI initiative — eight pillars and strategic horizons for 2026, 2029 and 2030.
-- [Journal](/writing): Long-form essays on AI, education, ecology, and inequality.
+- [Journal](/writing): 140+ long-form essays on AI, education, ecology, inequality, decolonial thought, and Caribbean futures.
 - [Ecology](/ecology): A West Indian reading of climate, coast, and curriculum.
 - [Inequality](/inequality): A capability reading of inequality from a West Indian classroom.
 - [Palimpsest](/palimpsest): Layered writings on memory, language, and the colonial archive.
-- [Podcast](/podcast): Conversations on critical theory in AI.
+- [Podcast](/podcast): Conversations on critical theory in AI, including Preface and Prolegomenon.
 - [Gallery](/gallery): Images from the practice.
 - [Contact](/contact): How to reach Dr. Ali.
+
+## Recurring themes in the Journal
+
+- AI ethics, safety, liability, and criminal responsibility
+- Algorithmic and epistemic justice
+- AI and labour, attention markets, and the creator economy
+- Decolonial AI and the carnivalesque
+- Data infrastructure, sovereignty, and digital census
+- Small Island Developing States (SIDS) and AI
+- Education, capability, and pedagogy
+- Climate justice, ecology, and the West Indian coast
 
 ## Optional
 
 - [Sitemap](/sitemap.xml): Full machine-readable index of pages.
+- [Source archive](https://fazalali.com): Original essay archive.

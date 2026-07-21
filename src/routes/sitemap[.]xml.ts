@@ -6,6 +6,7 @@ const BASE_URL = "https://omeros-cipher-glass.lovable.app";
 
 interface SitemapEntry {
   path: string;
+  lastmod?: string;
   changefreq?: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never";
   priority?: string;
 }
@@ -14,21 +15,28 @@ export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
+        const today = new Date().toISOString().slice(0, 10);
+        const latestArticleDate = articles
+          .map((a) => a.date)
+          .sort()
+          .reverse()[0] ?? today;
+
         const staticEntries: SitemapEntry[] = [
-          { path: "/", changefreq: "weekly", priority: "1.0" },
-          { path: "/about", changefreq: "monthly", priority: "0.8" },
-          { path: "/education-for-liberty", changefreq: "monthly", priority: "0.9" },
-          { path: "/writing", changefreq: "weekly", priority: "0.9" },
-          { path: "/ecology", changefreq: "monthly", priority: "0.7" },
-          { path: "/inequality", changefreq: "monthly", priority: "0.7" },
-          { path: "/palimpsest", changefreq: "monthly", priority: "0.7" },
-          { path: "/podcast", changefreq: "monthly", priority: "0.7" },
-          { path: "/gallery", changefreq: "monthly", priority: "0.6" },
-          { path: "/contact", changefreq: "yearly", priority: "0.5" },
+          { path: "/", lastmod: today, changefreq: "weekly", priority: "1.0" },
+          { path: "/about", lastmod: today, changefreq: "monthly", priority: "0.8" },
+          { path: "/education-for-liberty", lastmod: today, changefreq: "monthly", priority: "0.9" },
+          { path: "/writing", lastmod: latestArticleDate, changefreq: "weekly", priority: "0.9" },
+          { path: "/ecology", lastmod: today, changefreq: "monthly", priority: "0.7" },
+          { path: "/inequality", lastmod: today, changefreq: "monthly", priority: "0.7" },
+          { path: "/palimpsest", lastmod: today, changefreq: "monthly", priority: "0.7" },
+          { path: "/podcast", lastmod: today, changefreq: "monthly", priority: "0.7" },
+          { path: "/gallery", lastmod: today, changefreq: "monthly", priority: "0.6" },
+          { path: "/contact", lastmod: today, changefreq: "yearly", priority: "0.5" },
         ];
 
         const articleEntries: SitemapEntry[] = articles.map((a) => ({
           path: `/writing/${a.slug}`,
+          lastmod: a.date,
           changefreq: "monthly",
           priority: "0.7",
         }));
@@ -39,6 +47,7 @@ export const Route = createFileRoute("/sitemap.xml")({
           [
             `  <url>`,
             `    <loc>${BASE_URL}${e.path}</loc>`,
+            e.lastmod ? `    <lastmod>${e.lastmod}</lastmod>` : null,
             e.changefreq ? `    <changefreq>${e.changefreq}</changefreq>` : null,
             e.priority ? `    <priority>${e.priority}</priority>` : null,
             `  </url>`,
@@ -46,6 +55,7 @@ export const Route = createFileRoute("/sitemap.xml")({
             .filter(Boolean)
             .join("\n"),
         );
+
 
         const xml = [
           `<?xml version="1.0" encoding="UTF-8"?>`,

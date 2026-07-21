@@ -8,22 +8,58 @@ import heroBook from "@/assets/hero-writing.jpg";
 export const Route = createFileRoute("/writing/")({
   head: () => ({
     meta: [
-      { title: "Journal — Fazal Ali" },
+      { title: "Journal — Essays on AI, Education & the West Indies by Fazal Ali" },
       {
         name: "description",
         content:
-          "The journal of Fazal Ali — entries on critical theory in AI, education, infrastructure, and the West Indies.",
+          "The journal of Fazal Ali — 140+ essays on critical theory in AI, education, ecology, inequality, decolonial thought, and the West Indian future.",
+      },
+      {
+        name: "keywords",
+        content:
+          "Fazal Ali journal, critical theory AI, Caribbean AI, West Indies philosophy, decolonial AI, Omeros AI essays, Trinidad writing, AI ethics essays, education philosophy, algorithmic justice, Global South AI",
       },
       { property: "og:title", content: "Journal — Fazal Ali" },
-      { property: "og:description", content: "Journal entries on critical theory in AI from the West Indies." },
+      { property: "og:description", content: "140+ essays on critical theory in AI, education, and Caribbean futures." },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/writing" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Journal — Fazal Ali" },
+      { name: "twitter:description", content: "140+ essays on critical theory in AI, education, and Caribbean futures." },
     ],
     links: [
       { rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/writing" },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Blog",
+          name: "The Fazal Ali Journal",
+          description: "Essays on critical theory in AI, education, and the West Indies.",
+          url: "https://omeros-cipher-glass.lovable.app/writing",
+          author: {
+            "@type": "Person",
+            name: "Fazal Ibrahim Ali",
+            url: "https://omeros-cipher-glass.lovable.app/about",
+          },
+          inLanguage: "en",
+          blogPost: articles.slice(0, 20).map((a) => ({
+            "@type": "BlogPosting",
+            headline: a.title,
+            url: `https://omeros-cipher-glass.lovable.app/writing/${a.slug}`,
+            datePublished: a.date,
+            image: a.image,
+            keywords: (a.tags ?? []).join(", "),
+          })),
+        }),
+      },
+    ],
   }),
   component: WritingIndex,
 });
+
 
 function fmtDate(d: string) {
   const [year, month, day] = d.split("-").map(Number);
