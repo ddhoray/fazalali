@@ -71,8 +71,6 @@ function Home() {
         <Quietline />
         <CoreStatement />
         <IdeasAndThemes />
-        <FeaturedSticky />
-        <Manifesto />
 
         {/* Fixed-background photographic break — image stays anchored while content scrolls */}
         <section
@@ -96,6 +94,7 @@ function Home() {
           </div>
         </section>
 
+        <Manifesto />
         <Portrait />
         <BookSection />
         <Range />
