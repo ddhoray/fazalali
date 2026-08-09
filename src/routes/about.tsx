@@ -125,12 +125,19 @@ function AboutPage() {
                 <em>A Theory of Justice.</em>
               </p>
               <p className="text-base leading-relaxed text-muted-foreground">
-                Fazal was awarded a Commonwealth Scholarship to read for his
-                doctorate at the University of Cambridge as a split-site
-                candidate, where Nobel laureate Amartya Sen, Sir Leszek
-                Borysiewicz, C. W. R. D. Moseley and Lord Martin Rees shaped his
-                thinking.
+                Dr. Fazal Ali completed his Masters in Philosophy at the
+                University of the West Indies. He was a Commonwealth Scholar who
+                attended the University of Cambridge, Hughes Hall; the Provost of
+                the University of Trinidad and Tobago; the acting President of
+                UTT; and the Chairman of the Teaching Service Commission. He is
+                the President of NIHERST and an external services consultant with
+                the IDB. He can be reached at{" "}
+                <a href="mailto:fazalalitsc@gmail.com" className="underline">
+                  fazalalitsc@gmail.com
+                </a>
+                .
               </p>
+
               <p className="text-base leading-relaxed text-muted-foreground">
                 His writing now sits under the identity{" "}
                 <span className="font-display italic">Omeros AI</span> — a
