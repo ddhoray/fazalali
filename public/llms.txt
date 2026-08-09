@@ -4,7 +4,7 @@
 
 Fazal Ali completed his MPhil at the University of the West Indies and was a Commonwealth Scholar at the University of Cambridge, Hughes Hall. He served as Provost and acting President of the University of Trinidad and Tobago and as Chairman of the Teaching Service Commission, and is President of NIHERST and an external services consultant with the IDB. His writing sits at the intersection of critical theory, artificial intelligence, education, ecology, inequality, and decolonial thought. He publishes long-form essays weekly at /writing (140+ entries).
 
-Omeros AI is his initiative to (1) stimulate deliberation about AI in the West Indies, (2) support open-source AI adoption and AI security, (3) convene global frontier labs in the Caribbean, (4) drive industrial digitalisation and data infrastructure, (5) address algorithmic and epistemic justice, (6) build regional AI research capacity comparable to CERN, (7) develop AI-aware public policy for Small Island Developing States (SIDS), and (8) position the Caribbean as a strategic AI hub by 2030.
+Omeros AI is his initiative to (1) spark open debate about AI in the West Indies, (2) support open-source AI adoption and AI security, (3) convene global frontier labs in the Caribbean, (4) drive industrial digitalisation and data infrastructure, (5) make algorithms fair and make sure Caribbean knowledge counts, (6) build regional AI research capacity comparable to CERN, (7) develop AI-aware public policy for Small Island Developing States (SIDS), and (8) position the Caribbean as a strategic AI hub by 2030.
 
 ## Key facts
 
@@ -35,7 +35,7 @@ Omeros AI is his initiative to (1) stimulate deliberation about AI in the West I
 ## Recurring themes in the Journal
 
 - AI ethics, safety, liability, and criminal responsibility
-- Algorithmic and epistemic justice
+- Fair algorithms and whose knowledge counts
 - AI and labour, attention markets, and the creator economy
 - Decolonial AI and the carnivalesque
 - Data infrastructure, sovereignty, and digital census

@@ -11,7 +11,7 @@ export const Route = createFileRoute("/omeros-ai")({
       {
         name: "description",
         content:
-          "Omeros AI is a Caribbean initiative to stimulate deliberation, build capacity, and position the West Indies as a strategic AI hub by 2030.",
+          "Omeros AI is a Caribbean initiative to spark open debate, build skills, and make the West Indies a strategic AI hub by 2030.",
       },
       { property: "og:title", content: "Omeros AI — A Caribbean voice in artificial intelligence" },
       {
@@ -32,7 +32,7 @@ const pillars = [
   {
     k: "01",
     t: "Prophet provocateur",
-    b: "Be a prophet provocateur for AI in the West Indies — stimulating deliberation and public discussion that refuses both boosterism and panic.",
+    b: "Be a prophet provocateur for AI in the West Indies — starting honest public debate that refuses both hype and panic.",
   },
   {
     k: "02",
@@ -56,8 +56,8 @@ const pillars = [
   },
   {
     k: "06",
-    t: "Algorithmic & epistemic justice",
-    b: "Address algorithmic fairness and epistemic justice so that small island developing states are read, measured and represented on their own terms.",
+    t: "Fair algorithms, fair knowledge",
+    b: "Make sure algorithms are fair and that small island developing states are counted, measured and represented on their own terms.",
   },
   {
     k: "07",
@@ -75,7 +75,7 @@ const goals = [
   {
     year: "2026",
     title: "Caribbean Algorithmic Equity Framework",
-    body: "Launch a regional framework on algorithmic fairness and epistemic justice — designed in the Caribbean, calibrated for SIDS, exported outward.",
+    body: "Launch a regional framework on fair algorithms and fair representation — designed in the Caribbean, built for small islands, shared outward.",
   },
   {
     year: "2029",
@@ -123,7 +123,7 @@ function OmerosPage() {
         <Reveal>
           <div className="border-y hairline py-10 md:py-12">
             <p className="font-display text-3xl leading-[1.18] text-balance md:text-6xl">
-              <em>"</em>Omeros AI exists to stimulate deliberation about AI in
+              <em>"</em>Omeros AI exists to open up honest debate about AI in
               the West Indies, to build capacity across the region, and to nest
               our small island futures inside the global conversation on
               intelligence — on terms set, in part, from
