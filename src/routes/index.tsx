@@ -132,9 +132,9 @@ function CoreStatement() {
             array of perspectives.
           </BlurReveal>
           <BlurReveal as="p" delay={0.22}>
-            Only then do we begin to achieve algorithmic fairness, epistemic
-            justice, and the eradication of intergenerational immobility and
-            inherited inequality.
+            Only then do we begin to achieve fair algorithms, fairness in whose
+            knowledge counts, and an end to inequality passed down from one
+            generation to the next.
           </BlurReveal>
         </div>
       </div>
