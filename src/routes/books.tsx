@@ -126,9 +126,10 @@ function BooksPage() {
               has been too narrow for too long."
             </p>
             <p className="mt-8 max-w-xl text-base leading-relaxed text-foreground/75 md:text-lg">
-              A small book about what a child needs to learn so that the next
-              machine becomes a freedom, not a fence. With a foreword by Sir
-              George Alleyne and an epilogue by Archbishop Joseph Everard Harris.
+              A foundation text in critical pedagogy. Unlike Paulo Freire's
+              "Pedagogy of the Oppressed" the focus is on releasing the
+              imagination and cultivating reasoned agency from behind a veil of
+              ignorance and within a new ecology of schooling.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
               <Link to="/education-for-liberty" className="group btn-cta btn-primary">

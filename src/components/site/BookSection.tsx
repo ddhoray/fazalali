@@ -63,10 +63,10 @@ export function BookSection() {
               delay={0.18}
               className="mt-6 max-w-xl text-base leading-relaxed text-foreground/80 md:text-lg"
             >
-              A small book about what a child needs to learn so that the next
-              machine becomes a freedom, not a fence. Written from Trinidad,
-              read against the global conversation on AI and the future of the
-              human curriculum.
+              A foundation text in critical pedagogy. Unlike Paulo Freire's
+              "Pedagogy of the Oppressed" the focus is on releasing the
+              imagination and cultivating reasoned agency from behind a veil of
+              ignorance and within a new ecology of schooling.
             </BlurReveal>
 
             <BlurReveal delay={0.26} className="mt-10 grid gap-4 sm:grid-cols-2">
