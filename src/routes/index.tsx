@@ -300,7 +300,7 @@ function Hero() {
 
             <div>
               <h1 className="font-display text-[12vw] leading-[1.02] tracking-[-0.035em] text-balance sm:text-[9vw] md:text-[7vw] md:leading-[0.96]">
-                A writer, schooled in <span className="italic">freedom.</span>
+                A prophet provocateur, schooled in <span className="italic">freedom.</span>
               </h1>
 
               <p className="mt-5 max-w-md text-[13px] leading-relaxed opacity-90 sm:mt-6 sm:text-sm md:text-base">
