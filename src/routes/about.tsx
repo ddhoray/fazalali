@@ -52,7 +52,8 @@ const concerns = [
 ];
 
 const roles = [
-  { year: "Cambridge", text: "Commonwealth Scholar at the University of Cambridge as a split-site doctoral candidate. Influenced there by Nobel laureate Amartya Sen, Sir Leszek Borysiewicz, C. W. R. D. Moseley, and Lord Martin Rees." },
+  { year: "UWI · MPhil", text: "Completed his Masters in Philosophy at the University of the West Indies." },
+  { year: "Cambridge", text: "Commonwealth Scholar at the University of Cambridge, Hughes Hall. Influenced there by Nobel laureate Amartya Sen, Sir Leszek Borysiewicz, C. W. R. D. Moseley, and Lord Martin Rees." },
   { year: "UWI · ICT", text: "Planned and organised the international conference launching The Institute of Critical Thinking at the University of the West Indies — mirroring the innovation and entrepreneurship model of the Hebrew University of Jerusalem." },
   { year: "UWI · Evening University", text: "Head of Evening University at The UWI — widening pathways into higher education for working adults across the Caribbean." },
   { year: "UCSIS", text: "Secretary to the University Consortium of Small Island States (UCSIS) at the UWI Office of Graduate Studies and Research — a Kofi Annan mandate uniting the universities of Malta, the South Pacific, the US Virgin Islands, the West Indies, and Mauritius into a global capacity-building team for SIDS." },
@@ -60,7 +61,9 @@ const roles = [
   { year: "UTT", text: "Provost of the University of Trinidad and Tobago; established the UTT Aviation Campus and served as acting President." },
   { year: "UNESCO · TSC", text: "Member of the UNESCO Memory of the World team in Trinidad and Tobago; Chairman of the Teaching Service Commission of Trinidad and Tobago." },
   { year: "NIHERST", text: "President of the National Institute of Higher Education, Research, Science and Technology — the country's lead body for STEM popularisation and applied research." },
+  { year: "IDB", text: "External services consultant with the Inter-American Development Bank (IDB)." },
 ];
+
 
 function AboutPage() {
   return (
