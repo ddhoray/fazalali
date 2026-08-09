@@ -295,7 +295,7 @@ function Hero() {
             className="text-on-image absolute inset-0 z-10 flex flex-col justify-between px-6 pt-28 pb-12 text-white sm:px-12 sm:pt-32 sm:pb-16"
           >
             <p className="eyebrow opacity-85">
-              Omeros AI · Trinidad &amp; the World
+              Omeros AI :West Indies &amp; the World
             </p>
 
             <div>
