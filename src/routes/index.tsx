@@ -627,7 +627,7 @@ function Range() {
                       initial={false}
                       animate={{ opacity: isActive ? 1 : 0 }}
                       transition={{ duration: 0.4 }}
-                      className="eyebrow truncate pl-4 text-white/70"
+                      className={`eyebrow truncate pl-4 text-white/70 ${isActive ? "" : "pointer-events-none opacity-0"}`}
                     >
                       {s.kicker}
                     </motion.span>
