@@ -1,6 +1,6 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { motion, useScroll, useTransform, useMotionValueEvent } from "motion/react";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { BookOpen, Sparkles, PenLine, Compass, ArrowUpRight } from "lucide-react";
 import { BlurReveal, SlideIn } from "@/components/site/BlurReveal";
 import { WordScrollReveal } from "@/components/site/WordScrollReveal";
@@ -26,7 +26,6 @@ import featuredWriting from "@/assets/featured-writing.jpg";
 import practiceEssays from "@/assets/practice-essays.jpg";
 import practiceBook from "@/assets/practice-book.jpg";
 import practiceOmeros from "@/assets/practice-omeros.jpg";
-import practiceWestIndies from "@/assets/practice-westindies.jpg";
 import heroDesk from "@/assets/hero-desk.jpg";
 
 function formatArticleDate(date: string) {
@@ -519,43 +518,62 @@ function Portrait() {
 
 /* ───────────────────────── Range ──────────────────────── */
 
-const range = [
-  { n: "01", title: "Critical Theory in AI", body: "Frontier models read as social substrate — not products, not miracles.", icon: Sparkles, tag: "Theory", to: "/writing" as const },
-  { n: "02", title: "Education for Liberty", body: "What a child needs to learn so the next machine is a freedom, not a fence.", icon: BookOpen, tag: "Book", to: "/education-for-liberty" as const },
-  { n: "03", title: "Omeros AI", body: "A Caribbean initiative in artificial intelligence — convening the frontier, building regional capacity, aiming at a strategic AI hub by 2030.", icon: Compass, tag: "Initiative", to: "/omeros-ai" as const },
-  { n: "04", title: "From the West Indies", body: "A contribution from Trinidad to a conversation rarely written from here.", icon: PenLine, tag: "Journal", to: "/writing" as const },
+const streams = [
+  {
+    n: "01",
+    title: "Research",
+    kicker: "Critical Theory in AI",
+    body:
+      "Frontier models read as social substrate — not products, not miracles. Essays, lectures and working notes.",
+    icon: Sparkles,
+    image: practiceEssays,
+    to: "/writing" as const,
+    cta: "Read the essays",
+  },
+  {
+    n: "02",
+    title: "Publications",
+    kicker: "Education for Liberty",
+    body:
+      "The first title in a sequence of four. Three further volumes are in preparation.",
+    icon: BookOpen,
+    image: practiceBook,
+    to: "/books" as const,
+    cta: "See the publications",
+  },
+  {
+    n: "03",
+    title: "Conversation",
+    kicker: "The Omeros podcast",
+    body:
+      "Readings, interviews and arguments — the written work spoken aloud.",
+    icon: PenLine,
+    image: practiceOmeros,
+    to: "/podcast" as const,
+    cta: "Listen",
+  },
 ];
-
-
-const rangeImages = [practiceEssays, practiceBook, practiceOmeros, practiceWestIndies];
 
 function Range() {
   const navigate = useNavigate();
-  const [active, setActive] = useState(0);
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  // Auto-advance the active thread
-  useEffect(() => {
-    const id = setInterval(() => setActive((a) => (a + 1) % range.length), 4200);
-    return () => clearInterval(id);
-  }, []);
-
-  const current = range[active];
-  const CurrentIcon = current.icon;
 
   return (
     <section
-      ref={sectionRef}
       data-nav="dark"
       className="section-invert relative overflow-hidden px-5 py-20 sm:px-8 md:py-32"
     >
-
       <div className="relative mx-auto max-w-[1500px]">
-        <div className="mb-16 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-5">
+        <div className="mb-14 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-5">
           <div className="max-w-3xl">
-            <BlurReveal as="p" className="eyebrow text-muted-foreground">Range</BlurReveal>
-            <BlurReveal as="h2" delay={0.08} className="mt-3 font-display text-[12vw] leading-[1.02] sm:text-5xl md:text-7xl">
-              Four threads, <em className="italic text-accent">one practice.</em>
+            <BlurReveal as="p" className="eyebrow text-muted-foreground">
+              Omeros
+            </BlurReveal>
+            <BlurReveal
+              as="h2"
+              delay={0.08}
+              className="mt-3 font-display text-[12vw] leading-[1.02] sm:text-5xl md:text-7xl"
+            >
+              One practice, <em className="italic text-accent">three streams.</em>
             </BlurReveal>
           </div>
           <BlurReveal delay={0.16} className="eyebrow text-muted-foreground">
@@ -563,168 +581,70 @@ function Range() {
           </BlurReveal>
         </div>
 
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20">
-          {/* Orbital stage */}
-          <div className="relative mx-auto aspect-square w-full max-w-[560px]">
-            {/* Outer rotating ring (continuous) */}
-            <motion.div
-              aria-hidden
-              animate={{ rotate: 360 }}
-              transition={{ duration: 60, ease: "linear", repeat: Infinity }}
-              className="absolute inset-0"
-            >
-              <svg viewBox="0 0 200 200" className="size-full">
-                <defs>
-                  <path
-                    id="range-ring-text"
-                    d="M 100,100 m -92,0 a 92,92 0 1,1 184,0 a 92,92 0 1,1 -184,0"
-                  />
-                </defs>
-                <circle cx="100" cy="100" r="92" fill="none" stroke="currentColor" strokeOpacity="0.18" strokeWidth="0.4" />
-                <text className="fill-current text-[6px] uppercase tracking-[0.4em] opacity-70" style={{ letterSpacing: "0.3em" }}>
-                  <textPath href="#range-ring-text">
-                    Critical Theory · Education for Liberty · Omeros AI · From the West Indies ·
-                  </textPath>
-                </text>
-              </svg>
-            </motion.div>
+        <BlurReveal
+          delay={0.1}
+          className="mb-12 max-w-2xl text-lg leading-relaxed text-muted-foreground"
+        >
+          Omeros is the house, not a project inside it. Everything below is one
+          body of work under that name — research, publishing, and the
+          conversation around both.
+        </BlurReveal>
 
-            {/* Inner auto-rotating ring with thread markers — brings the active marker to top */}
-            <motion.div
-              animate={{ rotate: -(active / range.length) * 360 }}
-              transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute inset-[10%]"
-            >
-              <div className="relative size-full rounded-full border hairline">
-                {range.map((r, i) => {
-                  const angle = (i / range.length) * 360 - 90;
-                  const rad = (angle * Math.PI) / 180;
-                  const x = 50 + 50 * Math.cos(rad);
-                  const y = 50 + 50 * Math.sin(rad);
-                  const isActive = i === active;
-                  return (
-                    <button
-                      key={r.n}
-                      type="button"
-                      onClick={() => setActive(i)}
-                      aria-label={r.title}
-                      className="absolute -translate-x-1/2 -translate-y-1/2"
-                      style={{ left: `${x}%`, top: `${y}%` }}
-                    >
-                      <motion.span
-                        animate={{ rotate: (active / range.length) * 360 }}
-                        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                        className="block"
-                      >
-                        <motion.span
-                          animate={{
-                            scale: isActive ? 1.15 : 1,
-                            opacity: isActive ? 1 : 0.55,
-                          }}
-                          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                          className={`relative flex size-20 items-center justify-center overflow-hidden rounded-full border-2 md:size-24 ${
-                            isActive ? "border-accent" : "border-white/30"
-                          }`}
-                        >
-                          <img
-                            src={rangeImages[i]}
-                            alt=""
-                            className="absolute inset-0 size-full object-cover"
-                            loading="lazy"
-                          />
-                          <span className="relative z-10 font-display text-lg text-white drop-shadow">
-                            {r.n}
-                          </span>
-                        </motion.span>
-                      </motion.span>
-                    </button>
-                  );
-                })}
-              </div>
-            </motion.div>
-
-            {/* Center card */}
-            <div className="absolute inset-[24%] flex items-center justify-center">
-              <motion.button
-                key={current.n}
-                type="button"
-                onClick={() => navigate({ to: current.to })}
-                initial={{ opacity: 0, scale: 0.92, filter: "blur(8px)" }}
-                animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="group relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-full"
-              >
-                <img
-                  src={rangeImages[active]}
-                  alt={current.title}
-                  className="absolute inset-0 size-full object-cover transition-transform duration-[1400ms]"
-                />
-                <div className="absolute inset-0 bg-black/45" />
-                <Grain />
-                <div className="relative z-10 flex flex-col items-center gap-2 text-center text-white">
-                  <CurrentIcon className="size-6" />
-                  <span className="nav-link">{current.tag}</span>
-                </div>
-              </motion.button>
-            </div>
-          </div>
-
-          {/* Text panel — crossfade per active thread */}
-          <div className="relative min-h-[320px]">
-            <motion.div
-              key={current.n}
-              initial={{ opacity: 0, y: 24, filter: "blur(10px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <p className="eyebrow text-muted-foreground">
-                Thread {current.n} <span className="mx-2 opacity-40">/</span> {String(range.length).padStart(2, "0")}
-              </p>
-              <h3 className="mt-4 font-display text-5xl leading-[1.02] md:text-7xl">
-                {current.title}<span className="italic text-accent">.</span>
-              </h3>
-              <p className="mt-6 max-w-md text-lg leading-relaxed text-muted-foreground">
-                {current.body}
-              </p>
-              <button
-                type="button"
-                onClick={() => navigate({ to: current.to })}
-                className="group mt-8 inline-flex items-center gap-3 text-sm uppercase tracking-[0.2em]"
-              >
-                <span className="relative">
-                  Read the thread
-                  <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-100 bg-current transition-transform duration-500 group-hover:scale-x-0" />
-                </span>
-                <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
-              </button>
-            </motion.div>
-
-            {/* Progress pills */}
-            <div className="mt-12 flex items-center gap-2">
-              {range.map((r, i) => (
+        <div className="grid grid-cols-1 gap-px border hairline bg-white/15 md:grid-cols-3">
+          {streams.map((s, i) => {
+            const Icon = s.icon;
+            return (
+              <BlurReveal key={s.n} delay={0.08 * i} className="group">
                 <button
-                  key={r.n}
                   type="button"
-                  onClick={() => setActive(i)}
-                  aria-label={`Show ${r.title}`}
-                  className="relative h-1 flex-1 overflow-hidden bg-white/15"
+                  onClick={() => navigate({ to: s.to })}
+                  className="section-invert flex h-full w-full flex-col items-start p-6 text-left md:p-8"
                 >
-                    <motion.span
-                    initial={false}
-                    animate={{ scaleX: i === active ? 1 : i < active ? 1 : 0 }}
-                    transition={{ duration: i === active ? 4.2 : 0.4, ease: "linear" }}
-                    style={{ originX: 0 }}
-                    className="absolute inset-0 bg-accent"
-                  />
+                  <div className="relative w-full overflow-hidden">
+                    <div className="aspect-[4/3] w-full">
+                      <img
+                        src={s.image}
+                        alt={s.kicker}
+                        loading="lazy"
+                        className="size-full object-cover grayscale transition-all duration-[1200ms] ease-out group-hover:scale-[1.04] group-hover:grayscale-0"
+                      />
+                    </div>
+                    <span className="absolute left-0 top-0 bg-accent px-3 py-1 font-display text-sm text-white">
+                      {s.n}
+                    </span>
+                  </div>
+
+                  <div className="mt-6 flex items-center gap-2">
+                    <Icon className="size-4" />
+                    <span className="eyebrow text-muted-foreground">{s.kicker}</span>
+                  </div>
+
+                  <h3 className="mt-3 font-display text-4xl leading-[1.05] md:text-5xl">
+                    {s.title}
+                    <span className="italic text-accent">.</span>
+                  </h3>
+
+                  <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                    {s.body}
+                  </p>
+
+                  <span className="mt-auto inline-flex items-center gap-3 pt-8 text-sm uppercase tracking-[0.2em]">
+                    <span className="relative">
+                      {s.cta}
+                      <span className="absolute -bottom-1 left-0 h-px w-full origin-left bg-current transition-transform duration-500 group-hover:scale-x-0" />
+                    </span>
+                    <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
+                  </span>
                 </button>
-              ))}
-            </div>
-          </div>
+              </BlurReveal>
+            );
+          })}
         </div>
       </div>
     </section>
   );
 }
+
 
 /* ─────────────────────── Writing ──────────────────────── */
 
