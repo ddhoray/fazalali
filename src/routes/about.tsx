@@ -93,11 +93,23 @@ function AboutPage() {
         }
       />
 
-      {/* Portrait + bio */}
-      <section className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8 sm:py-10">
-        <div className="grid gap-12 md:grid-cols-[1fr_1.3fr] md:gap-20">
+      {/* Lead statement — full-width, breathable */}
+      <section className="mx-auto max-w-[1500px] px-5 pt-6 pb-2 sm:px-8 sm:pt-10 sm:pb-4">
+        <Reveal>
+          <p className="font-display text-[clamp(2.25rem,6.2vw,5.5rem)] leading-[0.98] text-balance">
+            <em className="italic">Fazal Ali</em> is a prophet provocateur who disrupts the
+            status quo to reveal uncomfortable truths — work that unsettles,
+            and forces Latin America and the Caribbean to confront its
+            inheritance of inherited inequality and intergenerational immobility.
+          </p>
+        </Reveal>
+      </section>
+
+      {/* Portrait + profile details */}
+      <section className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8 sm:py-16">
+        <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1fr)] lg:gap-16">
           <Reveal>
-            <div className="relative">
+            <figure className="relative lg:sticky lg:top-24">
               <div className="absolute -inset-3 border hairline" />
               <img
                 src={fazalPortrait}
@@ -105,37 +117,51 @@ function AboutPage() {
                 className="relative aspect-[4/5] w-full object-cover"
                 loading="lazy"
               />
-            </div>
+            </figure>
           </Reveal>
 
-          <Reveal delay={0.1}>
-            <div className="space-y-7">
-              <p className="font-display text-4xl leading-tight md:text-5xl">
-                <em>Fazal Ali</em> is a prophet provocateur who disrupts the
-                status quo to reveal uncomfortable truths — work that unsettles,
-                and forces Latin America and the Caribbean to confront its
-                inheritance of inherited inequality and intergenerational immobility.
-              </p>
-              <p className="text-lg leading-relaxed text-foreground/80">
-                A thinker, consultant, academic and technical expert exploring
-                how AI is shaping the future of innovation — through the lens of{" "}
-                <em>development as freedom,</em> drawing upon Amartya Sen's{" "}
-                <em>Development as Freedom</em> and John Rawls'{" "}
-                <em>A Theory of Justice.</em>
-              </p>
-              <p className="text-base leading-relaxed text-muted-foreground">
-                A Commonwealth Scholarship winner who read for his doctorate at
-                the University of Cambridge as a PhD candidate. Nobel laureate
-                Amartya Sen, Sir Leszek Borysiewicz, C. W. R. D. Moseley and
-                Lord Martin Rees shaped his thinking. He can be reached at{" "}
-                <a href="mailto:fazalalitsc@gmail.com" className="underline">
-                  fazalalitsc@gmail.com
-                </a>
-                .
-              </p>
+          <div className="space-y-0 lg:pt-6">
+            <Reveal delay={0.08}>
+              <div className="border-t hairline py-8 lg:py-10">
+                <p className="eyebrow text-muted-foreground mb-4">About</p>
+                <p className="text-xl leading-relaxed text-foreground/85 md:text-[22px] md:leading-[1.5]">
+                  A thinker, consultant, academic and technical expert exploring
+                  how AI is shaping the future of innovation — through the lens of{" "}
+                  <em>development as freedom,</em> drawing upon Amartya Sen's{" "}
+                  <em>Development as Freedom</em> and John Rawls'{" "}
+                  <em>A Theory of Justice.</em>
+                </p>
+              </div>
+            </Reveal>
 
-            </div>
-          </Reveal>
+            <Reveal delay={0.12}>
+              <div className="border-t hairline py-8 lg:py-10">
+                <p className="eyebrow text-muted-foreground mb-4">Background</p>
+                <p className="text-base leading-relaxed text-muted-foreground md:text-[17px] md:leading-[1.6]">
+                  A Commonwealth Scholarship winner who read for his doctorate at
+                  the University of Cambridge as a PhD candidate. Nobel laureate
+                  Amartya Sen, Sir Leszek Borysiewicz, C. W. R. D. Moseley and
+                  Lord Martin Rees shaped his thinking.
+                </p>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.16}>
+              <div className="border-t hairline py-8 lg:py-10">
+                <p className="eyebrow text-muted-foreground mb-4">Contact</p>
+                <p className="text-base leading-relaxed text-muted-foreground md:text-[17px] md:leading-[1.6]">
+                  He can be reached at{" "}
+                  <a
+                    href="mailto:fazalalitsc@gmail.com"
+                    className="underline underline-offset-4 decoration-accent-cool hover:text-accent-cool transition-colors"
+                  >
+                    fazalalitsc@gmail.com
+                  </a>
+                  .
+                </p>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </section>
 
