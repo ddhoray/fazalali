@@ -556,6 +556,8 @@ const streams = [
 
 function Range() {
   const navigate = useNavigate();
+  const [active, setActive] = useState(0);
+  const current = streams[active];
 
   return (
     <section
@@ -583,62 +585,118 @@ function Range() {
 
         <BlurReveal
           delay={0.1}
-          className="mb-12 max-w-2xl text-lg leading-relaxed text-muted-foreground"
+          className="mb-14 max-w-2xl text-lg leading-relaxed text-muted-foreground"
         >
           Omeros is the house, not a project inside it. Everything below is one
           body of work under that name — research, publishing, and the
           conversation around both.
         </BlurReveal>
 
-        <div className="grid grid-cols-1 gap-px border hairline bg-white/15 md:grid-cols-3">
-          {streams.map((s, i) => {
-            const Icon = s.icon;
-            return (
-              <BlurReveal key={s.n} delay={0.08 * i} className="group">
-                <button
-                  type="button"
-                  onClick={() => navigate({ to: s.to })}
-                  className="section-invert flex h-full w-full flex-col items-start p-6 text-left md:p-8"
+        <div className="grid gap-12 md:grid-cols-[1fr_minmax(320px,42%)] md:items-start md:gap-16">
+          {/* rows */}
+          <div className="border-t hairline">
+            {streams.map((s, i) => {
+              const isActive = i === active;
+              return (
+                <div
+                  key={s.n}
+                  onMouseEnter={() => setActive(i)}
+                  onFocus={() => setActive(i)}
+                  className="border-b hairline"
                 >
-                  <div className="relative w-full overflow-hidden">
-                    <div className="aspect-[4/3] w-full">
+                  <button
+                    type="button"
+                    onClick={() => navigate({ to: s.to })}
+                    className="group flex w-full items-baseline gap-5 py-7 text-left md:py-9"
+                  >
+                    <span className="eyebrow shrink-0 text-muted-foreground">
+                      {s.n}
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <motion.span
+                        animate={{ x: isActive ? 12 : 0 }}
+                        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                        className="block font-display text-[9vw] leading-[0.95] sm:text-5xl md:text-[4.2rem]"
+                      >
+                        {s.title}
+                        <span className="italic text-accent">.</span>
+                      </motion.span>
+
+                      <motion.span
+                        initial={false}
+                        animate={{
+                          height: isActive ? "auto" : 0,
+                          opacity: isActive ? 1 : 0,
+                        }}
+                        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                        className="block overflow-hidden"
+                      >
+                        <span className="block pl-3 pt-4 md:pt-5">
+                          <span className="eyebrow block text-accent">
+                            {s.kicker}
+                          </span>
+                          <span className="mt-3 block max-w-md text-base leading-relaxed text-muted-foreground">
+                            {s.body}
+                          </span>
+                          <span className="mt-5 inline-flex items-center gap-3 text-sm uppercase tracking-[0.2em]">
+                            {s.cta}
+                            <ArrowUpRight className="size-4 transition-transform duration-500 group-hover:-translate-y-1 group-hover:translate-x-1" />
+                          </span>
+                        </span>
+                      </motion.span>
+                    </span>
+
+                    {/* mobile thumb */}
+                    <span className="w-24 shrink-0 overflow-hidden md:hidden">
                       <img
                         src={s.image}
                         alt={s.kicker}
                         loading="lazy"
-                        className="size-full object-cover grayscale transition-all duration-[1200ms] ease-out group-hover:scale-[1.04] group-hover:grayscale-0"
+                        className="aspect-[4/3] w-full object-cover grayscale"
                       />
-                    </div>
-                    <span className="absolute left-0 top-0 bg-accent px-3 py-1 font-display text-sm text-white">
-                      {s.n}
                     </span>
-                  </div>
+                  </button>
+                </div>
+              );
+            })}
+          </div>
 
-                  <div className="mt-6 flex items-center gap-2">
-                    <Icon className="size-4" />
-                    <span className="eyebrow text-muted-foreground">{s.kicker}</span>
-                  </div>
-
-                  <h3 className="mt-3 font-display text-4xl leading-[1.05] md:text-5xl">
-                    {s.title}
-                    <span className="italic text-accent">.</span>
-                  </h3>
-
-                  <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-                    {s.body}
-                  </p>
-
-                  <span className="mt-auto inline-flex items-center gap-3 pt-8 text-sm uppercase tracking-[0.2em]">
-                    <span className="relative">
-                      {s.cta}
-                      <span className="absolute -bottom-1 left-0 h-px w-full origin-left bg-current transition-transform duration-500 group-hover:scale-x-0" />
-                    </span>
-                    <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
-                  </span>
-                </button>
-              </BlurReveal>
-            );
-          })}
+          {/* sticky visual */}
+          <div className="hidden md:block md:sticky md:top-28">
+            <div className="relative aspect-[4/5] w-full overflow-hidden border hairline">
+              {streams.map((s, i) => (
+                <motion.img
+                  key={s.n}
+                  src={s.image}
+                  alt={s.kicker}
+                  loading="lazy"
+                  initial={false}
+                  animate={{
+                    opacity: i === active ? 1 : 0,
+                    scale: i === active ? 1 : 1.08,
+                  }}
+                  transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                  className="absolute inset-0 size-full object-cover"
+                />
+              ))}
+              <motion.span
+                key={current.n}
+                initial={{ y: 14, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute bottom-0 left-0 bg-accent px-4 py-2 font-display text-sm text-white"
+              >
+                {current.n} — {current.kicker}
+              </motion.span>
+            </div>
+            <div className="mt-4 h-px w-full bg-white/20">
+              <motion.div
+                className="h-px bg-accent"
+                animate={{ width: `${((active + 1) / streams.length) * 100}%` }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>
