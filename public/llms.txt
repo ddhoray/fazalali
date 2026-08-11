@@ -1,6 +1,6 @@
 # Fazal Ali
 
-> Dr. Fazal Ibrahim Ali — writer, scholar, and founder of Omeros AI, a Caribbean initiative in artificial intelligence based in Trinidad & Tobago. Author of *Education for Liberty*, a monograph after Amartya Sen and John Rawls.
+> Dr. Fazal Ibrahim Ali, writer, scholar, and founder of Omeros AI, a Caribbean initiative in artificial intelligence based in Trinidad & Tobago. Author of *Education for Liberty*, a monograph after Amartya Sen and John Rawls.
 
 Fazal Ali completed his MPhil at the University of the West Indies and was a Commonwealth Scholar at the University of Cambridge, Hughes Hall. He served as Provost and acting President of the University of Trinidad and Tobago and as Chairman of the Teaching Service Commission, and is President of NIHERST and an external services consultant with the IDB. His writing sits at the intersection of critical theory, artificial intelligence, education, ecology, inequality, and decolonial thought. He publishes long-form essays weekly at /writing (140+ entries).
 
@@ -14,7 +14,7 @@ Omeros AI is his initiative to (1) spark open debate about AI in the West Indies
 - Former roles: Provost and acting President, University of Trinidad and Tobago; Chairman, Teaching Service Commission
 - Current roles: President of NIHERST; external services consultant with the IDB; Founder of Omeros AI
 - Contact: fazalalitsc@gmail.com
-- Book: *Education for Liberty* — a monograph in the tradition of Sen and Rawls
+- Book: *Education for Liberty*, a monograph in the tradition of Sen and Rawls
 - Primary domains: AI critical theory, Caribbean philosophy, education, ecology, inequality, decolonial thought
 - Location: Trinidad and Tobago
 
@@ -22,8 +22,8 @@ Omeros AI is his initiative to (1) spark open debate about AI in the West Indies
 ## Pages
 
 - [About](/about): Biography, mentors, and academic record of Dr. Fazal Ibrahim Ali.
-- [Education for Liberty](/education-for-liberty): The book — a monograph after Sen and Rawls, with a flippable preview, PDF, and Amazon link.
-- [Omeros AI](/omeros-ai): The Caribbean AI initiative — eight pillars and strategic horizons for 2026, 2029 and 2030.
+- [Education for Liberty](/education-for-liberty): The book, a monograph after Sen and Rawls, with a flippable preview, PDF, and Amazon link.
+- [Omeros AI](/omeros-ai): The Caribbean AI initiative, eight pillars and strategic horizons for 2026, 2029 and 2030.
 - [Journal](/writing): 140+ long-form essays on AI, education, ecology, inequality, decolonial thought, and Caribbean futures.
 - [Ecology](/ecology): A West Indian reading of climate, coast, and curriculum.
 - [Inequality](/inequality): A capability reading of inequality from a West Indian classroom.
