@@ -52,7 +52,7 @@ function ContactPage() {
     <div className="mx-auto max-w-5xl px-5 pt-24 pb-12 sm:px-8 sm:pt-24">
       <Reveal>
         <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">Write me</p>
-        <h1 className="mt-4 font-display text-6xl leading-[0.95] text-balance md:text-8xl">
+        <h1 className="mt-4 font-display text-[2.5rem] leading-[1.02] text-balance sm:text-5xl md:text-6xl lg:text-[4.25rem]">
           A short note <em className="italic">is enough.</em>
         </h1>
         <p className="mt-6 max-w-xl text-muted-foreground">
