@@ -180,8 +180,8 @@ function AboutPage() {
               <em className="italic text-white/70">through the lens of freedom.</em>
             </h2>
             <p className="mt-6 max-w-3xl text-base leading-relaxed text-white/65 md:text-lg">
-              A working index of the concerns that move across his essays,
-              consultancies and lectures.
+              A working index of the concerns that move across his essays and
+              consultancies.
             </p>
           </Reveal>
           <Reveal delay={0.08}>
