@@ -2,7 +2,7 @@ import { useRef, type ReactNode } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 
 /**
- * Parallax background image - image slides slower than the section as
+ * Parallax background image, image slides slower than the section as
  * the page scrolls, creating depth.
  */
 export function ParallaxImage({

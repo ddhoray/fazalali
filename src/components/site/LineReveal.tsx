@@ -73,7 +73,7 @@ export function WordReveal({
             className="inline-block"
           >
             {w}
-            {i < words.length - 1 ? "\u00A0" : ""}
+            {i < words.length, 1 ? "\u00A0" : ""}
           </motion.span>
         </span>
       ))}

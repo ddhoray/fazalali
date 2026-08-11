@@ -30,7 +30,7 @@ export const bookPages = [
   {
     eyebrow: "Chapter I",
     body:
-      "If the medium is freedom, then the curriculum is the design of conditions in which freedom can be practised - not announced. Practice precedes theory. The child who is permitted to refuse a wrong answer is already a citizen.",
+      "If the medium is freedom, then the curriculum is the design of conditions in which freedom can be practised, not announced. Practice precedes theory. The child who is permitted to refuse a wrong answer is already a citizen.",
     pageNumber: 2,
   },
   {
@@ -43,7 +43,7 @@ export const bookPages = [
   {
     eyebrow: "Chapter II",
     body:
-      "Sen's instrumental freedoms - political, economic, social, transparency, security - describe a Caribbean syllabus that already exists, unwritten, in our schools. This chapter writes it down.",
+      "Sen's instrumental freedoms, political, economic, social, transparency, security, describe a Caribbean syllabus that already exists, unwritten, in our schools. This chapter writes it down.",
     pageNumber: 4,
   },
   {
@@ -57,21 +57,21 @@ export const bookPages = [
     eyebrow: "Chapter IV",
     title: "The classroom as a polity.",
     body:
-      "If liberty is the goal, the classroom is its first parliament. Procedure matters. The right to be heard matters. The right to be wrong out loud matters most of all, because it is the precondition for revising one's mind in public - which is the precondition for democracy.",
+      "If liberty is the goal, the classroom is its first parliament. Procedure matters. The right to be heard matters. The right to be wrong out loud matters most of all, because it is the precondition for revising one's mind in public, which is the precondition for democracy.",
     pageNumber: 6,
   },
   {
     eyebrow: "Chapter V",
     title: "What we owe the future.",
     body:
-      "The pedagogy of failure, of patience, of refusal - in the age of AI. A short closing chapter argues that the model children will live alongside is statistical and tireless. Our job is to make sure they remain neither.",
+      "The pedagogy of failure, of patience, of refusal, in the age of AI. A short closing chapter argues that the model children will live alongside is statistical and tireless. Our job is to make sure they remain neither.",
     pageNumber: 7,
   },
   {
     eyebrow: "Coda",
     title: "Continue reading.",
     body:
-      "The flipbook above is a preview. Download the full 142-page PDF below, or buy the printed edition on Amazon. Then write to me - writeme@fazalali.com - and tell me where the argument bends.",
+      "The flipbook above is a preview. Download the full 142-page PDF below, or buy the printed edition on Amazon. Then write to me, writeme@fazalali.com, and tell me where the argument bends.",
     pageNumber: 8,
   },
 ];

@@ -14,7 +14,7 @@ export const ecology = {
     {
       h: "Inheritance, not scenery",
       body: [
-        "The Caribbean has been read by outsiders as a landscape for two centuries. The internal pedagogical task is to read it as an inheritance - something passed on, something owed, something that can be lost in a single generation if the curriculum forgets.",
+        "The Caribbean has been read by outsiders as a landscape for two centuries. The internal pedagogical task is to read it as an inheritance, something passed on, something owed, something that can be lost in a single generation if the curriculum forgets.",
       ],
     },
     {

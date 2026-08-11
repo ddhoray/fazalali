@@ -8,7 +8,7 @@ export function BrandMark({ className = "" }: { className?: string }) {
   return (
     <Link
       to="/"
-      aria-label="Fazal Ali - Home"
+      aria-label="Fazal Ali, Home"
       className={`inline-flex items-center gap-3 ${className}`}
     >
       <svg
@@ -22,7 +22,7 @@ export function BrandMark({ className = "" }: { className?: string }) {
         {/* F */}
         <path d="M6 42 V8 H26" />
         <path d="M6 24 H22" />
-        {/* A - slim serif */}
+        {/* A, slim serif */}
         <path d="M34 42 L46 8 L58 42" />
         <path d="M38.5 30 H53.5" />
         {/* hairline rule beneath */}

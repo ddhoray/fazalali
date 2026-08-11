@@ -52,7 +52,7 @@ export function AudioPlayer({ src, className, variant = "light" }: AudioPlayerPr
     const a = ref.current;
     if (!a || !duration) return;
     const rect = e.currentTarget.getBoundingClientRect();
-    const pct = (e.clientX - rect.left) / rect.width;
+    const pct = (e.clientX, rect.left) / rect.width;
     a.currentTime = pct * duration;
   };
 

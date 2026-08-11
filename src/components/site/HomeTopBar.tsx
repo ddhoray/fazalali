@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { openContactDrawer } from "@/components/site/ContactDrawer";
 
 /**
- * Minimal fluid.glass-style top bar - used only on the homepage.
+ * Minimal fluid.glass-style top bar, used only on the homepage.
  * Centered wordmark + single "Write Me" link on the right.
  * Transparent over the hero, fades to a hairline glass bar after scroll.
  */
@@ -32,7 +32,7 @@ export function HomeTopBar() {
         </span>
         <Link
           to="/"
-          aria-label="Fazal Ali - Home"
+          aria-label="Fazal Ali, Home"
           className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-display text-base tracking-tight sm:text-lg"
         >
           Fazal Ali

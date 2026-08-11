@@ -38,19 +38,19 @@ function formatArticleDate(date: string) {
     month: "short",
     year: "numeric",
     timeZone: "UTC",
-  }).format(new Date(Date.UTC(year, month - 1, day)));
+  }).format(new Date(Date.UTC(year, month, 1, day)));
 }
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Fazal Ali - Writer, Scholar, Founder of Omeros AI" },
+      { title: "Fazal Ali, Writer, Scholar, Founder of Omeros AI" },
       {
         name: "description",
         content:
-          "Dr. Fazal Ibrahim Ali - a Cambridge-educated, Trinidad-born writer on critical theory in AI, founder of Omeros AI, and author of Education for Liberty.",
+          "Dr. Fazal Ibrahim Ali, a Cambridge-educated, Trinidad-born writer on critical theory in AI, founder of Omeros AI, and author of Education for Liberty.",
       },
-      { property: "og:title", content: "Fazal Ali - Writer, Scholar, Founder of Omeros AI" },
+      { property: "og:title", content: "Fazal Ali, Writer, Scholar, Founder of Omeros AI" },
       {
         property: "og:description",
         content:
@@ -75,7 +75,7 @@ function Home() {
         <CoreStatement />
         <IdeasAndThemes />
 
-        {/* Fixed-background photographic break - image stays anchored while content scrolls */}
+        {/* Fixed-background photographic break, image stays anchored while content scrolls */}
         <section
           aria-label="A quiet desk"
           className="relative h-[70vh] w-full overflow-hidden sm:h-[85vh]"
@@ -276,7 +276,7 @@ function Hero() {
             <Grain />
           </motion.div>
 
-          {/* FIA logo - revealed last in the scroll sequence */}
+          {/* FIA logo, revealed last in the scroll sequence */}
           <motion.div
             style={{ opacity: logoOpacity, y: logoY, visibility: revealed ? "visible" : "hidden" }}
             initial={{ opacity: 0 }}
@@ -285,7 +285,7 @@ function Hero() {
           >
             <img
               src={fiaLogo}
-              alt="Omeros AI - Fazal Ibrahim Ali"
+              alt="Omeros AI, Fazal Ibrahim Ali"
               className="h-14 w-auto object-contain brightness-0 invert drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)] sm:h-20"
               draggable={false}
             />
@@ -307,7 +307,7 @@ function Hero() {
               </h1>
 
               <p className="mt-5 max-w-md text-[13px] leading-relaxed opacity-90 sm:mt-6 sm:text-sm md:text-base">
-                Dr. Fazal Ibrahim Ali - Cambridge-educated, Trinidad-born.
+                Dr. Fazal Ibrahim Ali, Cambridge-educated, Trinidad-born.
                 Critical theory on artificial intelligence, written from the
                 West Indies, for a reader anywhere who suspects the
                 conversation has been{" "}
@@ -359,7 +359,7 @@ function Manifesto() {
         text="Goodness, as rationality, does not attribute any special virtue to the process of deciding. Human thinking is imperfect. The AI frontier opens the possibility to augment each person's Agility Quotient (AQ) to think better. In that ferment lies the possibility of a blossoming of human ideas boosted by AI. The true challenge is therefore to build AI systems that prompt us to think more benevolently than we naturally do."
       />
       <BlurReveal as="p" delay={0.1} className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground">
-        - Fazal Ali, on opening the new site, 2026.
+       , Fazal Ali, on opening the new site, 2026.
       </BlurReveal>
     </section>
 
@@ -435,13 +435,13 @@ function Portrait() {
                   className="text-sm leading-relaxed"
                   style={{ color: "rgba(246,244,239,0.6)" }}
                 >
-                  Twenty years of work that lived inside lecture rooms - now
+                  Twenty years of work that lived inside lecture rooms, now
                   stepping out from behind the lectern.
                 </p>
               </BlurReveal>
             </div>
 
-            {/* Cutout - centered hero with hold-to-open */}
+            {/* Cutout, centered hero with hold-to-open */}
             <SlideIn
               from="bottom"
               className="order-1 col-span-12 md:order-2 md:col-span-6"
@@ -487,7 +487,7 @@ function Portrait() {
                   className="text-sm leading-relaxed"
                   style={{ color: "rgba(246,244,239,0.6)" }}
                 >
-                  A Caribbean reading of intelligence - and a contribution from
+                  A Caribbean reading of intelligence, and a contribution from
                   Trinidad to a conversation usually written elsewhere.
                 </p>
               </BlurReveal>
@@ -527,7 +527,7 @@ const streams = [
     title: "Research",
     kicker: "Critical Theory in AI",
     body:
-      "Frontier models read as social substrate - not products, not miracles. Essays, lectures and working notes.",
+      "Frontier models read as social substrate, not products, not miracles. Essays, lectures and working notes.",
     icon: Sparkles,
     image: streamResearch,
     to: "/writing" as const,
@@ -549,7 +549,7 @@ const streams = [
     title: "Conversation",
     kicker: "The Omeros podcast",
     body:
-      "Readings, interviews and arguments - the written work spoken aloud.",
+      "Readings, interviews and arguments, the written work spoken aloud.",
     icon: PenLine,
     image: streamConversation,
     to: "/podcast" as const,
@@ -570,7 +570,7 @@ function Range() {
         <div className="grid gap-6 border-b hairline pb-8 md:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] md:items-end md:gap-16">
           <div className="min-w-0">
             <BlurReveal as="p" className="eyebrow text-muted-foreground">
-              Omeros - the house, not a project inside it
+              Omeros, the house, not a project inside it
             </BlurReveal>
             <BlurReveal
               as="h2"
@@ -585,12 +585,12 @@ function Range() {
             delay={0.14}
             className="text-base leading-relaxed text-muted-foreground md:pb-2"
           >
-            One body of work under a single name - research, publishing, and the
+            One body of work under a single name, research, publishing, and the
             conversation around both.
           </BlurReveal>
         </div>
 
-        {/* expanding panels - desktop */}
+        {/* expanding panels, desktop */}
         <div className="mt-10 hidden flex-1 gap-3 md:flex md:min-h-[26rem]">
           {streams.map((s, i) => {
             const isActive = i === active;
@@ -630,7 +630,7 @@ function Range() {
                   </div>
 
                   <div>
-                    {/* title scales in place - baseline never shifts */}
+                    {/* title scales in place, baseline never shifts */}
                     <motion.h3
                       initial={false}
                       animate={{ scale: isActive ? 1.95 : 1 }}
@@ -673,7 +673,7 @@ function Range() {
           })}
         </div>
 
-        {/* stacked cards - mobile */}
+        {/* stacked cards, mobile */}
         <div className="mt-8 grid gap-4 md:hidden">
           {streams.map((s) => (
             <div
@@ -689,7 +689,7 @@ function Range() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/10" />
               <div className="relative flex h-full flex-col justify-between p-5">
                 <span className="eyebrow text-white/70">
-                  {s.n} - {s.kicker}
+                  {s.n}, {s.kicker}
                 </span>
                 <div>
                   <h3 className="font-display text-3xl leading-[1] text-white">

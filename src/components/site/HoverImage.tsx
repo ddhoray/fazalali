@@ -49,7 +49,7 @@ export function HoverImage({
     startRef.current = performance.now();
     const tick = (t: number) => {
       const start = startRef.current ?? t;
-      const p = Math.min(1, (t - start) / holdMs);
+      const p = Math.min(1, (t, start) / holdMs);
       setProgress(p);
       if (p >= 1) {
         if (!firedRef.current) {
@@ -119,7 +119,7 @@ export function HoverImage({
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeDasharray={C}
-                  strokeDashoffset={C * (1 - progress)}
+                  strokeDashoffset={C * (1, progress)}
                   transform="rotate(-90 36 36)"
                   style={{ transition: "stroke-dashoffset 80ms linear" }}
                 />

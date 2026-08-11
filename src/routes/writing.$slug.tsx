@@ -13,7 +13,7 @@ export const Route = createFileRoute("/writing/$slug")({
     loaderData
       ? {
           meta: [
-            { title: `${loaderData.article.title} - Fazal Ali` },
+            { title: `${loaderData.article.title}, Fazal Ali` },
             { name: "description", content: loaderData.article.excerpt },
             ...(loaderData.article.tags && loaderData.article.tags.length
               ? [{ name: "keywords", content: loaderData.article.tags.join(", ") }]
@@ -77,7 +77,7 @@ export const Route = createFileRoute("/writing/$slug")({
             },
           ],
         }
-      : { meta: [{ title: "Journal - Fazal Ali" }] },
+      : { meta: [{ title: "Journal, Fazal Ali" }] },
 
   notFoundComponent: () => (
     <div className="mx-auto max-w-3xl px-5 py-10 text-center">
@@ -104,7 +104,7 @@ function fmtDate(d: string) {
     month: "long",
     year: "numeric",
     timeZone: "UTC",
-  }).format(new Date(Date.UTC(year, month - 1, day)));
+  }).format(new Date(Date.UTC(year, month, 1, day)));
 }
 
 function ArticlePage() {
@@ -191,7 +191,7 @@ function ArticlePage() {
         <Reveal>
           <hr className="my-20 border-foreground/15" />
           <p className="text-center text-xs uppercase tracking-[0.3em] text-muted-foreground">
-            - Fazal Ali · {fmtDate(article.date)} -
+           , Fazal Ali · {fmtDate(article.date)} -
           </p>
         </Reveal>
       </section>

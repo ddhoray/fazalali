@@ -3,7 +3,7 @@ import { useEffect, type ReactNode } from "react";
 
 /**
  * Lightweight route wrapper.
- * No exit/enter animation - clicking a link should open the next page
+ * No exit/enter animation, clicking a link should open the next page
  * immediately, with no flash of the current page first.
  * Only responsibility: scroll to top on route change.
  */

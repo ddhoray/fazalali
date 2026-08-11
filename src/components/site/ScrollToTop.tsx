@@ -4,7 +4,7 @@ import { useRouterState } from "@tanstack/react-router";
 /**
  * Ensures each route renders starting at the top of the page.
  * Uses useLayoutEffect so the reset happens before the browser paints
- * the new route - no visible scroll animation, no flash at the previous
+ * the new route, no visible scroll animation, no flash at the previous
  * scroll position.
  */
 export function ScrollToTop() {

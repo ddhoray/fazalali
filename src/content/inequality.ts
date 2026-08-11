@@ -7,14 +7,14 @@ export const inequality = {
     {
       h: "Inherited geometry",
       body: [
-        "Colonial economies left a geometry - concentrated land, concentrated capital, concentrated attention in a few addresses - that the post-independence state has rearranged but not dissolved.",
+        "Colonial economies left a geometry, concentrated land, concentrated capital, concentrated attention in a few addresses, that the post-independence state has rearranged but not dissolved.",
         "Every classroom in the region is a small experiment in whether that geometry is going to be reproduced or unsettled by the next generation.",
       ],
     },
     {
       h: "The capability gap",
       body: [
-        "Sen's argument is exact here. Inequality is not principally an inequality of resources. It is an inequality of capabilities - of what a person, given their circumstances, can actually do and be.",
+        "Sen's argument is exact here. Inequality is not principally an inequality of resources. It is an inequality of capabilities, of what a person, given their circumstances, can actually do and be.",
         "A pedagogy organised around capability does not pretend the playing field is level. It builds the player.",
       ],
     },
