@@ -176,7 +176,7 @@ function BooksPage() {
             </div>
           </Reveal>
 
-          <div className="mt-12 flex flex-col gap-3 md:h-[620px] md:flex-row md:items-stretch">
+          <div className="mt-12 flex flex-col gap-4 md:h-[600px] md:flex-row md:items-stretch">
             {forthcoming.map((b, i) => {
               const isActive = active === i;
               const isCollapsed = active !== null && !isActive;
@@ -184,54 +184,79 @@ function BooksPage() {
                 <motion.article
                   key={b.title}
                   data-book-card
-                  className="relative h-[460px] min-h-0 min-w-0 cursor-default overflow-hidden border hairline bg-background md:h-[620px] md:flex-[1_1_0%]"
+                  className="group relative h-[420px] min-h-0 min-w-0 cursor-default overflow-hidden border hairline bg-foreground md:h-[600px] md:flex-[1_1_0%]"
                   onMouseEnter={() => setActive(i)}
                   onMouseLeave={() => setActive(null)}
                   onClick={() => setActive((prev) => (prev === i ? null : i))}
                   initial={false}
-                  animate={{
-                    flexGrow: isActive ? 2.5 : isCollapsed ? 0.65 : 1,
-                  }}
+                  animate={{ flexGrow: isActive ? 2.2 : isCollapsed ? 0.7 : 1 }}
                   transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <div className="absolute inset-x-0 top-0 z-20 flex h-20 items-center justify-between px-6 text-background">
-                    <BookOpen className="size-6 drop-shadow-md" strokeWidth={1.8} />
-                    <span className="text-xs font-semibold uppercase text-background drop-shadow-md">
+                  <motion.img
+                    src={b.image}
+                    alt={b.imageAlt}
+                    loading="lazy"
+                    className="absolute inset-0 size-full object-cover"
+                    animate={{ scale: isActive ? 1.06 : 1, opacity: isCollapsed ? 0.75 : 1 }}
+                    transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                  />
+                  <div className="absolute inset-0 z-10 bg-gradient-to-t from-foreground via-foreground/45 to-foreground/10" />
+
+                  {/* Top meta */}
+                  <div className="absolute inset-x-0 top-0 z-20 flex h-16 items-center justify-between gap-2 px-5 text-background md:px-6">
+                    <BookOpen className="size-5 shrink-0 drop-shadow" strokeWidth={1.8} />
+                    <motion.span
+                      className="truncate text-[11px] font-semibold uppercase tracking-[0.18em] drop-shadow"
+                      animate={{ opacity: isCollapsed ? 0 : 1 }}
+                      transition={{ duration: 0.35 }}
+                    >
                       {b.year}
+                    </motion.span>
+                  </div>
+
+                  {/* Collapsed: vertical title so nothing clips */}
+                  <motion.div
+                    className="pointer-events-none absolute inset-0 z-20 hidden items-end justify-center pb-8 md:flex"
+                    animate={{ opacity: isCollapsed ? 1 : 0 }}
+                    transition={{ duration: 0.4 }}
+                  >
+                    <span
+                      className="whitespace-nowrap font-display text-2xl text-background drop-shadow-lg"
+                      style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+                    >
+                      {b.title}
                     </span>
-                  </div>
+                  </motion.div>
 
-                  <div className="absolute inset-0 bg-foreground/5">
-                    <motion.img
-                      src={b.image}
-                      alt={b.imageAlt}
-                      loading="lazy"
-                      className="size-full object-cover"
-                      animate={{ scale: isActive ? 1.05 : 1 }}
-                      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                    />
-                  </div>
-                  <div className="absolute inset-0 z-10 bg-gradient-to-b from-foreground/55 via-foreground/5 to-foreground" />
-
-                  <div className="absolute inset-x-0 bottom-0 z-20 h-[230px] px-6 pb-7 text-background md:h-[250px] md:px-8 md:pb-8">
+                  {/* Expanded / default: horizontal title + note */}
+                  <motion.div
+                    className="absolute inset-x-0 bottom-0 z-20 px-5 pb-7 text-background md:px-8 md:pb-9"
+                    animate={{ opacity: isCollapsed ? 0 : 1 }}
+                    transition={{ duration: 0.4 }}
+                  >
                     <h3
                       data-book-title
-                      className="absolute inset-x-6 top-0 h-[112px] overflow-hidden font-display text-3xl font-medium leading-[1.08] text-background drop-shadow-lg md:inset-x-8 md:h-[126px] md:text-4xl"
+                      className="font-display text-2xl leading-[1.1] text-background drop-shadow-lg md:text-[2.4rem]"
                     >
                       {b.title}
                     </h3>
+                    <div className="mt-4 h-px w-14 bg-background/50" />
                     <motion.p
-                      className="absolute inset-x-6 top-[124px] line-clamp-3 text-base font-medium leading-relaxed text-background drop-shadow-md md:inset-x-8 md:top-[140px] md:text-lg"
-                      animate={{ opacity: isActive ? 1 : 0, x: isActive ? 0 : 8 }}
+                      className="mt-4 max-w-[46ch] text-[15px] leading-relaxed text-background/90 drop-shadow md:text-base"
+                      animate={{
+                        opacity: isActive ? 1 : 0,
+                        y: isActive ? 0 : 10,
+                      }}
                       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                     >
                       {b.note}
                     </motion.p>
-                  </div>
+                  </motion.div>
                 </motion.article>
               );
             })}
           </div>
+
         </div>
       </section>
     </div>
