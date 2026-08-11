@@ -95,7 +95,7 @@ function AboutPage() {
 
       {/* Portrait + profile details */}
       <section className="mx-auto max-w-[1500px] px-5 py-14 sm:px-8 sm:py-20">
-        <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] lg:gap-20">
+        <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,360px)_minmax(0,1fr)] lg:gap-16 xl:grid-cols-[minmax(0,420px)_minmax(0,1fr)] xl:gap-20">
           {/* Left: portrait column */}
           <Reveal>
             <figure className="lg:sticky lg:top-28">
@@ -124,8 +124,8 @@ function AboutPage() {
 
             <div className="mt-12 border-t hairline">
               <Reveal delay={0.08}>
-                <div className="grid gap-2 border-b hairline py-8 md:grid-cols-[160px_minmax(0,1fr)] md:gap-10">
-                  <p className="eyebrow text-muted-foreground md:pt-1">About</p>
+                <div className="grid gap-2 border-b hairline py-8 xl:grid-cols-[160px_minmax(0,1fr)] xl:gap-10">
+                  <p className="eyebrow text-muted-foreground xl:pt-1">About</p>
                   <p className="max-w-[60ch] text-base leading-[1.7] text-foreground/85 md:text-[17px]">
                     A thinker, consultant, academic and technical expert exploring
                     how AI is shaping the future of innovation, through the lens of{" "}
@@ -137,8 +137,8 @@ function AboutPage() {
               </Reveal>
 
               <Reveal delay={0.12}>
-                <div className="grid gap-2 border-b hairline py-8 md:grid-cols-[160px_minmax(0,1fr)] md:gap-10">
-                  <p className="eyebrow text-muted-foreground md:pt-1">Background</p>
+                <div className="grid gap-2 border-b hairline py-8 xl:grid-cols-[160px_minmax(0,1fr)] xl:gap-10">
+                  <p className="eyebrow text-muted-foreground xl:pt-1">Background</p>
                   <p className="max-w-[60ch] text-base leading-[1.7] text-muted-foreground md:text-[17px]">
                     A Commonwealth Scholarship winner who read for his doctorate at
                     the University of Cambridge as a PhD candidate. Nobel laureate
@@ -149,8 +149,8 @@ function AboutPage() {
               </Reveal>
 
               <Reveal delay={0.16}>
-                <div className="grid gap-2 border-b hairline py-8 md:grid-cols-[160px_minmax(0,1fr)] md:gap-10">
-                  <p className="eyebrow text-muted-foreground md:pt-1">Contact</p>
+                <div className="grid gap-2 border-b hairline py-8 xl:grid-cols-[160px_minmax(0,1fr)] xl:gap-10">
+                  <p className="eyebrow text-muted-foreground xl:pt-1">Contact</p>
                   <p className="max-w-[60ch] text-base leading-[1.7] text-muted-foreground md:text-[17px]">
                     He can be reached at{" "}
                     <a
