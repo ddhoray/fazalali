@@ -176,7 +176,7 @@ function BooksPage() {
             </div>
           </Reveal>
 
-          <div className="mt-12 flex flex-col gap-3 md:h-[560px] md:flex-row md:items-stretch">
+          <div className="mt-12 flex flex-col gap-3 md:h-[640px] md:flex-row md:items-stretch">
             {forthcoming.map((b, i) => {
               const isActive = active === i;
               const isCollapsed = active !== null && !isActive;
@@ -184,56 +184,61 @@ function BooksPage() {
                 <motion.article
                   key={b.title}
                   data-book-card
-                  className="group relative flex min-h-0 min-w-0 cursor-default flex-col overflow-hidden border hairline bg-card md:h-[560px] md:flex-[1_1_0%]"
+                  className="group relative flex min-h-0 min-w-0 cursor-default flex-col overflow-hidden border hairline bg-card md:h-[640px] md:flex-[1_1_0%]"
                   onMouseEnter={() => setActive(i)}
                   onMouseLeave={() => setActive(null)}
                   onFocus={() => setActive(i)}
                   onBlur={() => setActive(null)}
                   tabIndex={0}
                   initial={false}
-                  animate={{ flexGrow: isActive ? 2 : isCollapsed ? 0.65 : 1 }}
+                  animate={{ flexGrow: isActive ? 2.2 : isCollapsed ? 0.7 : 1 }}
                   transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  {/* Image */}
-                  <div className="relative h-[220px] w-full overflow-hidden md:h-[58%]">
+                  {/* Image — full-bleed, coloured, taller */}
+                  <div className="relative h-[260px] w-full flex-1 overflow-hidden md:h-auto">
                     <motion.img
                       src={b.image}
                       alt={b.imageAlt}
                       loading="lazy"
                       className="absolute inset-0 size-full object-cover"
                       animate={{
-                        scale: isActive ? 1.05 : 1,
-                        filter: isActive ? "grayscale(0%)" : "grayscale(100%)",
+                        scale: isActive ? 1.06 : 1,
+                        filter: isActive ? "brightness(1.05) contrast(1.05)" : "brightness(1) contrast(1)",
                       }}
                       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                     />
-                    <div className="absolute inset-0 bg-foreground/10" />
-                    <span className="absolute left-5 top-4 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-background drop-shadow md:left-6">
+                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-foreground/20 to-transparent" />
+                    <span className="absolute left-5 top-4 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-background/90 drop-shadow md:left-6">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                   </div>
 
-                  {/* Caption — solid, always legible */}
-                  <div className="relative flex min-h-0 flex-1 flex-col border-t hairline px-5 pb-6 pt-5 md:px-7 md:pt-6">
-                    <p className="eyebrow text-muted-foreground">{b.year}</p>
+                  {/* Caption — anchored to the bottom */}
+                  <div className="relative z-10 -mt-24 px-5 pb-6 pt-2 md:-mt-28 md:px-7 md:pb-8">
+                    <p className="eyebrow text-background/80 drop-shadow">{b.year}</p>
                     <h3
                       data-book-title
-                      className="mt-3 font-display text-[1.6rem] leading-[1.08] md:text-[2rem]"
+                      className="mt-2 font-display text-[1.75rem] leading-[1.05] text-background drop-shadow md:text-[2.1rem]"
                     >
                       {b.title}
                     </h3>
-                    <div className="mt-4 h-px w-12 bg-accent" />
-                    <motion.p
-                      className="mt-4 max-w-[48ch] overflow-hidden text-[15px] leading-relaxed text-foreground/70"
+                    <motion.div
+                      className="mt-4 h-px bg-accent"
                       initial={false}
-                      animate={{ opacity: isActive ? 1 : 0 }}
+                      animate={{ width: isActive ? 64 : 32 }}
+                      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    />
+                    <motion.p
+                      className="mt-4 max-w-[50ch] overflow-hidden text-[15px] leading-relaxed text-background/90 drop-shadow"
+                      initial={false}
+                      animate={{ opacity: isActive ? 1 : 0, height: isActive ? "auto" : 0 }}
                       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                       aria-hidden={!isActive}
                     >
                       {b.note}
                     </motion.p>
                     <motion.div
-                      className="mt-auto flex items-center gap-2 pt-5 text-[12px] font-semibold uppercase tracking-[0.18em] text-accent"
+                      className="mt-5 flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.18em] text-accent"
                       initial={false}
                       animate={{ opacity: isActive ? 1 : 0 }}
                       transition={{ duration: 0.45 }}
