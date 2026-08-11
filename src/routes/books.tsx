@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
 import { motion } from "motion/react";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
@@ -66,7 +65,6 @@ const forthcoming = [
 ];
 
 function BooksPage() {
-  const [active, setActive] = useState<number | null>(null);
   return (
     <div>
       <PageHero
@@ -176,80 +174,47 @@ function BooksPage() {
             </div>
           </Reveal>
 
-          <div className="mt-12 flex flex-col gap-3 md:h-[640px] md:flex-row md:items-stretch">
-            {forthcoming.map((b, i) => {
-              const isActive = active === i;
-              const isCollapsed = active !== null && !isActive;
-              return (
-                <motion.article
-                  key={b.title}
-                  data-book-card
-                  className="group relative flex min-h-0 min-w-0 cursor-default flex-col overflow-hidden border hairline bg-card md:h-[640px] md:flex-[1_1_0%]"
-                  onMouseEnter={() => setActive(i)}
-                  onMouseLeave={() => setActive(null)}
-                  onFocus={() => setActive(i)}
-                  onBlur={() => setActive(null)}
-                  tabIndex={0}
-                  initial={false}
-                  animate={{ flexGrow: isActive ? 2.2 : isCollapsed ? 0.7 : 1 }}
-                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  {/* Image — full-bleed, coloured, taller */}
-                  <div className="relative h-[260px] w-full flex-1 overflow-hidden md:h-auto">
-                    <motion.img
-                      src={b.image}
-                      alt={b.imageAlt}
-                      loading="lazy"
-                      className="absolute inset-0 size-full object-cover"
-                      animate={{
-                        scale: isActive ? 1.06 : 1,
-                        filter: isActive ? "brightness(1.05) contrast(1.05)" : "brightness(1) contrast(1)",
-                      }}
-                      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-foreground/20 to-transparent" />
-                    <span className="absolute left-5 top-4 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-background/90 drop-shadow md:left-6">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                  </div>
+          <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-5">
+            {forthcoming.map((b, i) => (
+              <motion.article
+                key={b.title}
+                data-book-card
+                className="group relative h-[540px] min-w-0 cursor-default overflow-hidden border hairline bg-card md:h-[600px]"
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.25 }}
+                transition={{ duration: 0.55, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <img
+                  src={b.image}
+                  alt={b.imageAlt}
+                  loading="lazy"
+                  className="absolute inset-0 size-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/55 to-transparent" />
 
-                  {/* Caption — anchored to the bottom */}
-                  <div className="relative z-10 -mt-24 px-5 pb-6 pt-2 md:-mt-28 md:px-7 md:pb-8">
-                    <p className="eyebrow text-background/80 drop-shadow">{b.year}</p>
-                    <h3
-                      data-book-title
-                      className="mt-2 font-display text-[1.75rem] leading-[1.05] text-background drop-shadow md:text-[2.1rem]"
-                    >
-                      {b.title}
-                    </h3>
-                    <motion.div
-                      className="mt-4 h-px bg-accent"
-                      initial={false}
-                      animate={{ width: isActive ? 64 : 32 }}
-                      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                    />
-                    <motion.p
-                      className="mt-4 max-w-[50ch] overflow-hidden text-[15px] leading-relaxed text-background/90 drop-shadow"
-                      initial={false}
-                      animate={{ opacity: isActive ? 1 : 0, height: isActive ? "auto" : 0 }}
-                      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                      aria-hidden={!isActive}
-                    >
-                      {b.note}
-                    </motion.p>
-                    <motion.div
-                      className="mt-5 flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.18em] text-accent"
-                      initial={false}
-                      animate={{ opacity: isActive ? 1 : 0 }}
-                      transition={{ duration: 0.45 }}
-                      aria-hidden={!isActive}
-                    >
-                      <BookOpen className="size-4" strokeWidth={1.8} /> In preparation
-                    </motion.div>
-                  </div>
-                </motion.article>
-              );
-            })}
+                <div className="absolute inset-x-0 top-0 flex items-center justify-between px-6 pt-6 text-background">
+                  <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.22em]">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <BookOpen className="size-4 opacity-80" strokeWidth={1.8} />
+                </div>
+
+                <div className="absolute inset-x-0 bottom-0 h-[245px] px-6 pb-7 pt-5 text-background md:h-[270px] md:px-7 md:pb-8">
+                  <p className="eyebrow h-5 text-background/80">{b.year}</p>
+                  <h3
+                    data-book-title
+                    className="mt-3 flex h-[82px] items-end font-display text-[2rem] leading-[1.02] md:h-[94px] md:text-[2.25rem]"
+                  >
+                    {b.title}
+                  </h3>
+                  <div className="mt-4 h-px w-10 bg-accent transition-[width] duration-500 group-hover:w-16" />
+                  <p className="mt-4 line-clamp-3 text-[15px] leading-relaxed text-background/85">
+                    {b.note}
+                  </p>
+                </div>
+              </motion.article>
+            ))}
           </div>
 
 
