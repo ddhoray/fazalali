@@ -174,22 +174,34 @@ function BooksPage() {
             </div>
           </Reveal>
 
-          <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-5">
+          <div
+            className="mt-12 flex flex-col gap-4 md:flex-row md:gap-5"
+            onMouseLeave={() => setActive(null)}
+          >
             {forthcoming.map((b, i) => (
               <motion.article
                 key={b.title}
                 data-book-card
+                onMouseEnter={() => setActive(i)}
                 className="group relative h-[540px] min-w-0 cursor-default overflow-hidden border hairline bg-card md:h-[600px]"
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.25 }}
+                animate={{
+                  flexGrow: active === null ? 1 : active === i ? 1.35 : 0.85,
+                }}
+                style={{ flexBasis: 0, flexGrow: 1 }}
                 transition={{ duration: 0.55, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
               >
                 <img
                   src={b.image}
                   alt={b.imageAlt}
                   loading="lazy"
-                  className="absolute inset-0 size-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
+                  className={`absolute inset-0 size-full object-cover transition-all duration-700 ease-out ${
+                    active !== null && active !== i
+                      ? "grayscale brightness-75"
+                      : "grayscale-0"
+                  } ${active === i ? "scale-[1.03] brightness-110" : ""}`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/55 to-transparent" />
 
@@ -208,7 +220,7 @@ function BooksPage() {
                   >
                     {b.title}
                   </h3>
-                  <div className="mt-4 h-px w-10 bg-accent transition-[width] duration-500 group-hover:w-16" />
+                  <div className={`mt-4 h-px bg-accent transition-[width] duration-500 ${active === i ? "w-16" : "w-10"}`} />
                   <p className="mt-4 line-clamp-3 text-[15px] leading-relaxed text-background/85">
                     {b.note}
                   </p>
@@ -216,6 +228,7 @@ function BooksPage() {
               </motion.article>
             ))}
           </div>
+
 
 
         </div>
