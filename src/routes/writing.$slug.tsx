@@ -139,7 +139,7 @@ function ArticlePage() {
             <ArrowLeft className="size-3" /> All entries
           </Link>
           <p className="eyebrow mt-12 text-white/60">{article.topic}</p>
-          <h1 className="mt-6 font-display text-5xl leading-[0.98] text-balance md:text-8xl">
+          <h1 className="mt-6 font-display text-[2.5rem] leading-[1.02] text-balance sm:text-5xl md:text-6xl lg:text-[4.25rem]">
             {article.title}
           </h1>
           <p className="mt-10 max-w-3xl text-xl leading-relaxed text-white/80">
