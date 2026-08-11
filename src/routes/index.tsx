@@ -564,7 +564,7 @@ function Range() {
   return (
     <section
       data-nav="dark"
-      className="section-invert relative flex min-h-[100svh] flex-col justify-center overflow-hidden px-5 py-16 sm:px-8 md:px-12 md:py-20"
+      className="section-invert relative flex min-h-[100svh] flex-col justify-center overflow-hidden px-5 pb-28 pt-16 sm:px-8 md:px-12 md:pb-32 md:pt-20"
     >
       <div className="relative mx-auto flex w-full max-w-[1600px] flex-1 flex-col">
         {/* header */}
@@ -624,16 +624,21 @@ function Range() {
                   <div className="flex items-center justify-between">
                     <span className="eyebrow text-white/70">{s.n}</span>
                     <motion.span
+                      initial={false}
                       animate={{ opacity: isActive ? 1 : 0 }}
                       transition={{ duration: 0.4 }}
-                      className="eyebrow text-white/70"
+                      className="eyebrow truncate pl-4 text-white/70"
                     >
                       {s.kicker}
                     </motion.span>
                   </div>
 
                   <div>
-                    <h3 className="font-display text-4xl leading-[1] text-white lg:text-5xl">
+                    <h3
+                      className={`font-display leading-[1] text-white transition-all duration-700 ${
+                        isActive ? "text-5xl lg:text-6xl" : "text-2xl lg:text-3xl"
+                      }`}
+                    >
                       {s.title}
                       <span className="italic text-accent">.</span>
                     </h3>
