@@ -184,7 +184,7 @@ function BooksPage() {
                 <motion.article
                   key={b.title}
                   data-book-card
-                  className="relative h-[460px] min-h-0 min-w-0 cursor-default overflow-hidden border hairline bg-background md:h-full md:flex-[1_1_0%]"
+                  className="relative h-[460px] min-h-0 min-w-0 cursor-default overflow-hidden border hairline bg-background md:h-[620px] md:flex-[1_1_0%]"
                   onMouseEnter={() => setActive(i)}
                   onMouseLeave={() => setActive(null)}
                   onClick={() => setActive((prev) => (prev === i ? null : i))}
