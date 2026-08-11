@@ -176,7 +176,7 @@ function BooksPage() {
             </div>
           </Reveal>
 
-          <div className="mt-12 flex flex-col gap-4 md:h-[600px] md:flex-row md:items-stretch">
+          <div className="mt-12 flex flex-col gap-3 md:h-[560px] md:flex-row md:items-stretch">
             {forthcoming.map((b, i) => {
               const isActive = active === i;
               const isCollapsed = active !== null && !isActive;
@@ -184,78 +184,69 @@ function BooksPage() {
                 <motion.article
                   key={b.title}
                   data-book-card
-                  className="group relative h-[420px] min-h-0 min-w-0 cursor-default overflow-hidden border hairline bg-foreground md:h-[600px] md:flex-[1_1_0%]"
+                  className="group relative flex min-h-0 min-w-0 cursor-default flex-col overflow-hidden border hairline bg-card md:h-[560px] md:flex-[1_1_0%]"
                   onMouseEnter={() => setActive(i)}
                   onMouseLeave={() => setActive(null)}
-                  onClick={() => setActive((prev) => (prev === i ? null : i))}
+                  onFocus={() => setActive(i)}
+                  onBlur={() => setActive(null)}
+                  tabIndex={0}
                   initial={false}
-                  animate={{ flexGrow: isActive ? 2.2 : isCollapsed ? 0.7 : 1 }}
+                  animate={{ flexGrow: isActive ? 2 : isCollapsed ? 0.65 : 1 }}
                   transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <motion.img
-                    src={b.image}
-                    alt={b.imageAlt}
-                    loading="lazy"
-                    className="absolute inset-0 size-full object-cover"
-                    animate={{ scale: isActive ? 1.06 : 1, opacity: isCollapsed ? 0.75 : 1 }}
-                    transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                  />
-                  <div className="absolute inset-0 z-10 bg-gradient-to-t from-foreground via-foreground/45 to-foreground/10" />
-
-                  {/* Top meta */}
-                  <div className="absolute inset-x-0 top-0 z-20 flex h-16 items-center justify-between gap-2 px-5 text-background md:px-6">
-                    <BookOpen className="size-5 shrink-0 drop-shadow" strokeWidth={1.8} />
-                    <motion.span
-                      className="truncate text-[11px] font-semibold uppercase tracking-[0.18em] drop-shadow"
-                      animate={{ opacity: isCollapsed ? 0 : 1 }}
-                      transition={{ duration: 0.35 }}
-                    >
-                      {b.year}
-                    </motion.span>
+                  {/* Image */}
+                  <div className="relative h-[220px] w-full overflow-hidden md:h-[58%]">
+                    <motion.img
+                      src={b.image}
+                      alt={b.imageAlt}
+                      loading="lazy"
+                      className="absolute inset-0 size-full object-cover"
+                      animate={{
+                        scale: isActive ? 1.05 : 1,
+                        filter: isActive ? "grayscale(0%)" : "grayscale(100%)",
+                      }}
+                      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                    />
+                    <div className="absolute inset-0 bg-foreground/10" />
+                    <span className="absolute left-5 top-4 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-background drop-shadow md:left-6">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
                   </div>
 
-                  {/* Collapsed: vertical title so nothing clips */}
-                  <motion.div
-                    className="pointer-events-none absolute inset-0 z-20 hidden items-end justify-center pb-8 md:flex"
-                    animate={{ opacity: isCollapsed ? 1 : 0 }}
-                    transition={{ duration: 0.4 }}
-                  >
-                    <span
-                      className="whitespace-nowrap font-display text-2xl text-background drop-shadow-lg"
-                      style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
-                    >
-                      {b.title}
-                    </span>
-                  </motion.div>
-
-                  {/* Expanded / default: horizontal title + note */}
-                  <motion.div
-                    className="absolute inset-x-0 bottom-0 z-20 px-5 pb-7 text-background md:px-8 md:pb-9"
-                    animate={{ opacity: isCollapsed ? 0 : 1 }}
-                    transition={{ duration: 0.4 }}
-                  >
+                  {/* Caption — solid, always legible */}
+                  <div className="relative flex min-h-0 flex-1 flex-col border-t hairline px-5 pb-6 pt-5 md:px-7 md:pt-6">
+                    <p className="eyebrow text-muted-foreground">{b.year}</p>
                     <h3
                       data-book-title
-                      className="font-display text-2xl leading-[1.1] text-background drop-shadow-lg md:text-[2.4rem]"
+                      className="mt-3 font-display text-[1.6rem] leading-[1.08] md:text-[2rem]"
                     >
                       {b.title}
                     </h3>
-                    <div className="mt-4 h-px w-14 bg-background/50" />
+                    <div className="mt-4 h-px w-12 bg-accent" />
                     <motion.p
-                      className="mt-4 max-w-[46ch] text-[15px] leading-relaxed text-background/90 drop-shadow md:text-base"
-                      animate={{
-                        opacity: isActive ? 1 : 0,
-                        y: isActive ? 0 : 10,
-                      }}
-                      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                      className="mt-4 max-w-[48ch] overflow-hidden text-[15px] leading-relaxed text-foreground/70"
+                      initial={false}
+                      animate={{ opacity: isActive ? 1 : 0 }}
+                      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                      aria-hidden={!isActive}
                     >
                       {b.note}
                     </motion.p>
-                  </motion.div>
+                    <motion.div
+                      className="mt-auto flex items-center gap-2 pt-5 text-[12px] font-semibold uppercase tracking-[0.18em] text-accent"
+                      initial={false}
+                      animate={{ opacity: isActive ? 1 : 0 }}
+                      transition={{ duration: 0.45 }}
+                      aria-hidden={!isActive}
+                    >
+                      <BookOpen className="size-4" strokeWidth={1.8} /> In preparation
+                    </motion.div>
+                  </div>
                 </motion.article>
               );
             })}
           </div>
+
 
         </div>
       </section>
