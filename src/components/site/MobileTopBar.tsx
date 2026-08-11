@@ -7,7 +7,7 @@ import { openContactDrawer } from "@/components/site/ContactDrawer";
 import fiaLogo from "@/assets/brand-fia.png";
 
 const links = [
-  { to: "/education-for-liberty", label: "Education for Liberty" },
+  { to: "/books", label: "Books" },
   { to: "/writing", label: "Journal" },
   { to: "/podcast", label: "Podcast" },
   { to: "/about", label: "About" },
