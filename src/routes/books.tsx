@@ -1,8 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
+import { motion } from "motion/react";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
 import { ArrowUpRight, Download, ShoppingCart, BookOpen } from "lucide-react";
 import bookCoverAsset from "@/assets/book-education-for-liberty-cover.png.asset.json";
+import intergenerationalImage from "@/assets/intergenerational-immobility-cover.jpg";
 import { assetUrl } from "@/lib/asset-url";
 
 const bookCover = assetUrl(bookCoverAsset);
@@ -57,13 +60,13 @@ const forthcoming = [
     title: "Intergenerational Immobility",
     note: "On inherited inequality, the data fabric of state enterprises, and what the next century owes the last.",
     year: "In preparation",
-    image:
-      "https://images.unsplash.com/photo-1531253450048-2a0a965096ff?w=1200&q=80&auto=format&fit=crop",
+    image: intergenerationalImage,
     imageAlt: "An elder's hand resting on a child's hand — generations in contact",
   },
 ];
 
 function BooksPage() {
+  const [active, setActive] = useState<number | null>(null);
   return (
     <div>
       <PageHero
@@ -173,35 +176,54 @@ function BooksPage() {
             </div>
           </Reveal>
 
-          <div className="mt-12 grid grid-cols-1 gap-px bg-foreground/10 md:grid-cols-3">
-            {forthcoming.map((b, i) => (
-              <Reveal key={b.title} delay={i * 0.08}>
-                <article className="flex h-full flex-col gap-6 bg-background p-8 md:p-10">
-                  <div className="flex items-center justify-between text-muted-foreground">
+          <div className="mt-12 flex h-auto flex-col gap-3 md:h-[640px] md:flex-row">
+            {forthcoming.map((b, i) => {
+              const isActive = active === i;
+              const isCollapsed = active !== null && !isActive;
+              return (
+                <motion.article
+                  key={b.title}
+                  className="relative flex cursor-default flex-col overflow-hidden border hairline bg-background"
+                  onMouseEnter={() => setActive(i)}
+                  onMouseLeave={() => setActive(null)}
+                  onClick={() => setActive((prev) => (prev === i ? null : i))}
+                  animate={{
+                    flex: isActive ? 2.5 : isCollapsed ? 0.65 : 1,
+                  }}
+                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <div className="flex shrink-0 items-center justify-between p-6 text-muted-foreground">
                     <BookOpen className="size-5" />
                     <span className="eyebrow">{b.year}</span>
                   </div>
-                  <div
-                    className="aspect-[3/4] w-full overflow-hidden border hairline bg-foreground/5"
-                  >
-                    <img
+                  <div className="relative min-h-0 flex-1 overflow-hidden border-y hairline bg-foreground/5">
+                    <motion.img
                       src={b.image}
                       alt={b.imageAlt}
                       loading="lazy"
-                      className="size-full object-cover transition-transform duration-[1200ms] ease-out hover:scale-[1.04]"
+                      className="size-full object-cover"
+                      animate={{ scale: isActive ? 1.05 : 1 }}
+                      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                     />
                   </div>
-                  <div>
+                  <div className="shrink-0 p-6">
                     <h3 className="font-display text-2xl leading-tight md:text-3xl">
                       {b.title}
                     </h3>
-                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                    <motion.p
+                      className="mt-3 overflow-hidden text-sm leading-relaxed text-muted-foreground"
+                      animate={{
+                        opacity: isActive ? 1 : 0,
+                        maxHeight: isActive ? 120 : 0,
+                      }}
+                      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    >
                       {b.note}
-                    </p>
+                    </motion.p>
                   </div>
-                </article>
-              </Reveal>
-            ))}
+                </motion.article>
+              );
+            })}
           </div>
         </div>
       </section>
