@@ -94,17 +94,15 @@ function AboutPage() {
       />
 
       {/* Lead statement - readable, editorial scale */}
-      <section className="mx-auto max-w-[1100px] px-5 pt-10 pb-6 sm:px-8 sm:pt-16 sm:pb-10">
+      <section className="mx-auto max-w-[980px] px-5 pt-10 pb-6 sm:px-8 sm:pt-16 sm:pb-10">
         <Reveal>
-          <p className="text-xl leading-relaxed text-foreground/90 md:text-2xl lg:text-[1.75rem] lg:leading-[1.5]">
-            <span className="font-display text-2xl leading-tight text-foreground md:text-4xl lg:text-[2.5rem]">
-              A prophet provocateur, schooled in freedom.
-            </span>
-            <span className="mx-2 text-muted-foreground">/</span>
-            Fazal Ali disrupts the status quo to reveal uncomfortable truths -
-            work that unsettles, and forces Latin America and the Caribbean to
-            confront its inheritance of inherited inequality and intergenerational
-            immobility.
+          <h2 className="font-display text-2xl leading-tight text-foreground md:text-4xl lg:text-[2.5rem]">
+            A prophet provocateur, schooled in freedom.
+          </h2>
+          <p className="mt-5 text-lg leading-relaxed text-foreground/85 md:text-xl lg:text-[1.35rem] lg:leading-[1.55]">
+            Fazal Ali disrupts the status quo to reveal uncomfortable truths. Work
+            that unsettles, and forces Latin America and the Caribbean to confront
+            its inheritance of inherited inequality and intergenerational immobility.
           </p>
         </Reveal>
       </section>
