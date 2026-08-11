@@ -20,7 +20,6 @@ const extraLinks = [
   { to: "/ecology", label: "Ecology" },
   { to: "/inequality", label: "Inequality" },
   { to: "/palimpsest", label: "Palimpsest" },
-  { to: "/education-for-liberty", label: "Education for Liberty" },
 ] as const;
 
 /**
