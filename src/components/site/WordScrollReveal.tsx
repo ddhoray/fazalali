@@ -38,7 +38,7 @@ export function WordScrollReveal({
             className={wordClassName}
           >
             {w}
-            {i < words.length, 1 ? " " : ""}
+            {i < words.length - 1 ? " " : ""}
           </Word>
 
         );

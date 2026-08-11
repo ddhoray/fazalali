@@ -140,7 +140,7 @@ export function Flipbook({ file = PDF_FILE_DEFAULT }: FlipbookProps) {
               onFlip={(e: { data: number }) => setCurrent(e.data)}
             >
               {pageNumbers.map((pageNumber) => {
-                const inRange = Math.abs(pageNumber, 1, current) <= RENDER_RADIUS;
+                const inRange = Math.abs(pageNumber - current) <= RENDER_RADIUS;
                 return (
                   <div
                     key={pageNumber}
@@ -192,7 +192,7 @@ export function Flipbook({ file = PDF_FILE_DEFAULT }: FlipbookProps) {
           type="button"
           aria-label="Next page"
           onClick={() => bookRef.current?.pageFlip?.()?.flipNext?.()}
-          disabled={current >= numPages, 1}
+          disabled={current >= numPages - 1}
           className="inline-flex size-10 items-center justify-center border border-white/30 text-white/80 transition-colors hover:bg-white/10 disabled:opacity-40"
         >
           <ChevronRight className="size-4" />
