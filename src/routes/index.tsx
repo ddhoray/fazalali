@@ -565,18 +565,18 @@ function Range() {
   return (
     <section
       data-nav="dark"
-      className="section-invert relative overflow-hidden px-5 py-20 sm:px-8 md:py-32"
+      className="section-invert relative flex min-h-[100svh] flex-col justify-center overflow-hidden px-5 py-14 sm:px-8 md:py-16"
     >
-      <div className="relative mx-auto max-w-[1500px]">
-        <div className="mb-14 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-5">
-          <div className="max-w-3xl">
+      <div className="relative mx-auto w-full max-w-[1500px]">
+        <div className="flex flex-wrap items-end justify-between gap-4 border-b hairline pb-4">
+          <div>
             <BlurReveal as="p" className="eyebrow text-muted-foreground">
-              Omeros
+              Omeros — the house, not a project inside it
             </BlurReveal>
             <BlurReveal
               as="h2"
               delay={0.08}
-              className="mt-3 font-display text-[12vw] leading-[1.02] sm:text-5xl md:text-7xl"
+              className="mt-2 font-display text-[10vw] leading-[1] sm:text-4xl md:text-6xl"
             >
               One practice, <em className="italic text-accent">three streams.</em>
             </BlurReveal>
@@ -586,18 +586,9 @@ function Range() {
           </BlurReveal>
         </div>
 
-        <BlurReveal
-          delay={0.1}
-          className="mb-14 max-w-2xl text-lg leading-relaxed text-muted-foreground"
-        >
-          Omeros is the house, not a project inside it. Everything below is one
-          body of work under that name — research, publishing, and the
-          conversation around both.
-        </BlurReveal>
-
-        <div className="grid gap-12 md:grid-cols-[1fr_minmax(320px,42%)] md:items-start md:gap-16">
+        <div className="mt-6 grid gap-8 md:mt-8 md:grid-cols-[1fr_minmax(300px,40%)] md:items-stretch md:gap-14">
           {/* rows */}
-          <div className="border-t hairline">
+          <div className="flex flex-col justify-center border-t hairline">
             {streams.map((s, i) => {
               const isActive = i === active;
               return (
@@ -610,19 +601,22 @@ function Range() {
                   <button
                     type="button"
                     onClick={() => navigate({ to: s.to })}
-                    className="group flex w-full items-baseline gap-5 py-7 text-left md:py-9"
+                    className="group flex w-full items-baseline gap-4 py-4 text-left md:py-5"
                   >
                     <span className="eyebrow shrink-0 text-muted-foreground">
                       {s.n}
                     </span>
                     <span className="min-w-0 flex-1">
                       <motion.span
-                        animate={{ x: isActive ? 12 : 0 }}
+                        animate={{ x: isActive ? 10 : 0 }}
                         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                        className="block font-display text-[9vw] leading-[0.95] sm:text-5xl md:text-[4.2rem]"
+                        className="flex items-baseline gap-3 font-display text-[8vw] leading-[0.95] sm:text-4xl md:text-[3.1rem]"
                       >
                         {s.title}
                         <span className="italic text-accent">.</span>
+                        <span className="eyebrow hidden text-muted-foreground md:inline">
+                          {s.kicker}
+                        </span>
                       </motion.span>
 
                       <motion.span
@@ -634,14 +628,11 @@ function Range() {
                         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                         className="block overflow-hidden"
                       >
-                        <span className="block pl-3 pt-4 md:pt-5">
-                          <span className="eyebrow block text-accent">
-                            {s.kicker}
-                          </span>
-                          <span className="mt-3 block max-w-md text-base leading-relaxed text-muted-foreground">
+                        <span className="block pl-2 pt-3">
+                          <span className="block max-w-md text-sm leading-relaxed text-muted-foreground">
                             {s.body}
                           </span>
-                          <span className="mt-5 inline-flex items-center gap-3 text-sm uppercase tracking-[0.2em]">
+                          <span className="mt-3 inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em]">
                             {s.cta}
                             <ArrowUpRight className="size-4 transition-transform duration-500 group-hover:-translate-y-1 group-hover:translate-x-1" />
                           </span>
@@ -650,7 +641,7 @@ function Range() {
                     </span>
 
                     {/* mobile thumb */}
-                    <span className="w-24 shrink-0 overflow-hidden md:hidden">
+                    <span className="w-20 shrink-0 overflow-hidden md:hidden">
                       <img
                         src={s.image}
                         alt={s.kicker}
@@ -664,9 +655,9 @@ function Range() {
             })}
           </div>
 
-          {/* sticky visual */}
-          <div className="hidden md:block md:sticky md:top-28">
-            <div className="relative aspect-[4/5] w-full overflow-hidden border hairline">
+          {/* visual */}
+          <div className="hidden md:flex md:flex-col">
+            <div className="relative min-h-[360px] flex-1 w-full overflow-hidden border hairline">
               {streams.map((s, i) => (
                 <motion.img
                   key={s.n}
@@ -687,12 +678,12 @@ function Range() {
                 initial={{ y: 14, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute bottom-0 left-0 bg-accent px-4 py-2 font-display text-sm text-white"
+                className="absolute bottom-0 left-0 bg-accent px-3 py-1.5 font-display text-xs text-white"
               >
                 {current.n} — {current.kicker}
               </motion.span>
             </div>
-            <div className="mt-4 h-px w-full bg-white/20">
+            <div className="mt-3 h-px w-full bg-white/20">
               <motion.div
                 className="h-px bg-accent"
                 animate={{ width: `${((active + 1) / streams.length) * 100}%` }}
