@@ -634,33 +634,40 @@ function Range() {
                   </div>
 
                   <div>
-                    <h3
-                      className={`font-display leading-[1] text-white transition-all duration-700 ${
-                        isActive ? "text-5xl lg:text-6xl" : "text-2xl lg:text-3xl"
-                      }`}
+                    {/* title scales in place — baseline never shifts */}
+                    <motion.h3
+                      initial={false}
+                      animate={{ scale: isActive ? 1.95 : 1 }}
+                      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                      style={{ transformOrigin: "left bottom" }}
+                      className="origin-bottom-left whitespace-nowrap font-display text-2xl leading-[1] text-white lg:text-3xl"
                     >
                       {s.title}
                       <span className="italic text-accent">.</span>
-                    </h3>
+                    </motion.h3>
 
-                    <motion.div
-                      initial={false}
-                      animate={{
-                        height: isActive ? "auto" : 0,
-                        opacity: isActive ? 1 : 0,
-                      }}
-                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                      className="overflow-hidden"
-                    >
-                      <p className="max-w-md pt-4 text-[0.95rem] leading-relaxed text-white/75">
-                        {s.body}
-                      </p>
-                      <span className="mt-6 inline-flex items-center gap-3 border-b border-white/40 pb-1 text-xs uppercase tracking-[0.22em] text-white">
-                        {s.cta}
-                        <ArrowUpRight className="size-4 transition-transform duration-500 group-hover:-translate-y-1 group-hover:translate-x-1" />
-                      </span>
-                    </motion.div>
+                    {/* reserved space so nothing jumps when copy appears */}
+                    <div className="h-[8.5rem] overflow-hidden">
+                      <motion.div
+                        initial={false}
+                        animate={{
+                          opacity: isActive ? 1 : 0,
+                          y: isActive ? 0 : 12,
+                        }}
+                        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                        className={isActive ? "" : "pointer-events-none"}
+                      >
+                        <p className="max-w-md pt-5 text-[0.95rem] leading-relaxed text-white/75">
+                          {s.body}
+                        </p>
+                        <span className="mt-5 inline-flex items-center gap-3 border-b border-white/40 pb-1 text-xs uppercase tracking-[0.22em] text-white">
+                          {s.cta}
+                          <ArrowUpRight className="size-4 transition-transform duration-500 group-hover:-translate-y-1 group-hover:translate-x-1" />
+                        </span>
+                      </motion.div>
+                    </div>
                   </div>
+
                 </div>
               </motion.button>
             );
