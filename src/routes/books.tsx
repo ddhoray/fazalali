@@ -60,8 +60,7 @@ const forthcoming = [
     title: "Intergenerational Immobility",
     note: "On inherited inequality, the data fabric of state enterprises, and what the next century owes the last.",
     year: "In preparation",
-    image:
-      "https://images.unsplash.com/photo-1531253450048-2a0a965096ff?w=1200&q=80&auto=format&fit=crop",
+    image: intergenerationalImage,
     imageAlt: "An elder's hand resting on a child's hand — generations in contact",
   },
 ];
