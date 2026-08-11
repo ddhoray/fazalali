@@ -206,9 +206,7 @@ function AboutPage() {
             <em className="text-muted-foreground">"</em>Standing on the shoulders
             of Amartya Sen's Development as Freedom and John Rawls' A Theory of
             Justice, Omeros AI builds a body of work that adds to the critical
-            theory on AI, written from the West Indies, for a reader anywhere
-            who suspects the conversation has been too narrow for too
-            long.<em className="text-muted-foreground">"</em>
+            theory on AI, written from the West Indies.<em className="text-muted-foreground">"</em>
           </p>
           <p className="mt-10 eyebrow text-muted-foreground">Fazal Ali · Omeros AI</p>
         </Reveal>
