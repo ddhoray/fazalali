@@ -195,8 +195,10 @@ function BooksPage() {
                   transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <div className="absolute inset-x-0 top-0 z-20 flex h-20 items-center justify-between px-6 text-background">
-                    <BookOpen className="size-5" />
-                    <span className="eyebrow">{b.year}</span>
+                    <BookOpen className="size-6 drop-shadow-md" strokeWidth={1.8} />
+                    <span className="text-xs font-semibold uppercase text-background drop-shadow-md">
+                      {b.year}
+                    </span>
                   </div>
 
                   <div className="absolute inset-0 bg-foreground/5">
@@ -209,17 +211,17 @@ function BooksPage() {
                       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                     />
                   </div>
-                  <div className="absolute inset-0 z-10 bg-gradient-to-b from-foreground/35 via-transparent to-foreground/90" />
+                  <div className="absolute inset-0 z-10 bg-gradient-to-b from-foreground/55 via-foreground/5 to-foreground" />
 
-                  <div className="absolute inset-x-0 bottom-0 z-20 h-[190px] px-6 pb-7 text-background md:h-[210px] md:px-8 md:pb-8">
+                  <div className="absolute inset-x-0 bottom-0 z-20 h-[230px] px-6 pb-7 text-background md:h-[250px] md:px-8 md:pb-8">
                     <h3
                       data-book-title
-                      className="absolute inset-x-6 top-0 h-[76px] overflow-hidden font-display text-2xl leading-tight md:inset-x-8 md:h-[84px] md:text-3xl"
+                      className="absolute inset-x-6 top-0 h-[112px] overflow-hidden font-display text-3xl font-medium leading-[1.08] text-background drop-shadow-lg md:inset-x-8 md:h-[126px] md:text-4xl"
                     >
                       {b.title}
                     </h3>
                     <motion.p
-                      className="absolute inset-x-6 top-[88px] line-clamp-3 text-sm leading-relaxed text-background/80 md:inset-x-8 md:top-[96px]"
+                      className="absolute inset-x-6 top-[124px] line-clamp-3 text-base font-medium leading-relaxed text-background drop-shadow-md md:inset-x-8 md:top-[140px] md:text-lg"
                       animate={{ opacity: isActive ? 1 : 0, x: isActive ? 0 : 8 }}
                       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                     >
