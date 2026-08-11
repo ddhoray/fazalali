@@ -183,7 +183,7 @@ function BooksPage() {
               return (
                 <motion.article
                   key={b.title}
-                  className="relative flex cursor-default flex-col overflow-hidden border hairline bg-background"
+                  className="relative h-[420px] cursor-default overflow-hidden border hairline bg-background md:h-auto"
                   onMouseEnter={() => setActive(i)}
                   onMouseLeave={() => setActive(null)}
                   onClick={() => setActive((prev) => (prev === i ? null : i))}
@@ -192,11 +192,12 @@ function BooksPage() {
                   }}
                   transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <div className="flex shrink-0 items-center justify-between p-6 text-muted-foreground">
+                  <div className="absolute inset-x-0 top-0 z-10 flex items-center justify-between p-6 text-muted-foreground">
                     <BookOpen className="size-5" />
                     <span className="eyebrow">{b.year}</span>
                   </div>
-                  <div className="relative min-h-0 flex-1 overflow-hidden border-y hairline bg-foreground/5">
+
+                  <div className="absolute inset-0 bg-foreground/5">
                     <motion.img
                       src={b.image}
                       alt={b.imageAlt}
@@ -206,16 +207,14 @@ function BooksPage() {
                       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                     />
                   </div>
-                  <div className="shrink-0 p-6">
+
+                  <div className="absolute inset-x-0 bottom-0 z-10 bg-background/95 p-6 backdrop-blur-sm md:h-40">
                     <h3 className="font-display text-2xl leading-tight md:text-3xl">
                       {b.title}
                     </h3>
                     <motion.p
-                      className="mt-3 overflow-hidden text-sm leading-relaxed text-muted-foreground"
-                      animate={{
-                        opacity: isActive ? 1 : 0,
-                        maxHeight: isActive ? 120 : 0,
-                      }}
+                      className="mt-3 text-sm leading-relaxed text-muted-foreground"
+                      animate={{ opacity: isActive ? 1 : 0 }}
                       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                     >
                       {b.note}
