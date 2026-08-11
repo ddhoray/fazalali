@@ -5,6 +5,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
 import { ArrowUpRight, Download, ShoppingCart, BookOpen } from "lucide-react";
 import bookCoverAsset from "@/assets/book-education-for-liberty-cover.png.asset.json";
+import intergenerationalImage from "@/assets/intergenerational-immobility-cover.jpg";
 import { assetUrl } from "@/lib/asset-url";
 
 const bookCover = assetUrl(bookCoverAsset);
