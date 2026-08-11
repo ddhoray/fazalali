@@ -94,7 +94,7 @@ function AboutPage() {
       />
 
       {/* Portrait + profile details */}
-      <section className="mx-auto max-w-[1180px] px-5 py-12 sm:px-8 sm:py-16">
+      <section className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8 sm:py-16">
         <Reveal>
           <p className="max-w-[62ch] text-lg leading-relaxed text-foreground/85 md:text-xl">
             Fazal Ali disrupts the status quo to reveal uncomfortable truths. Work
@@ -191,7 +191,7 @@ function AboutPage() {
       </section>
 
       {/* Pull-quote band */}
-      <section className="mx-auto max-w-[1300px] px-5 py-16 sm:px-8 sm:py-24">
+      <section className="mx-auto max-w-[1500px] px-5 py-16 sm:px-8 sm:py-24">
         <Reveal>
           <p className="font-display text-3xl leading-[1.15] text-balance md:text-6xl">
             <em className="text-muted-foreground">"</em>Standing on the shoulders
