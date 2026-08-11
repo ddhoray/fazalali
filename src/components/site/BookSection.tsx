@@ -63,10 +63,7 @@ export function BookSection() {
               delay={0.18}
               className="mt-6 max-w-xl text-base leading-relaxed text-foreground/80 md:text-lg"
             >
-              A foundation text in critical pedagogy. Unlike Paulo Freire's
-              "Pedagogy of the Oppressed" the focus is on releasing the
-              imagination and cultivating reasoned agency from behind a veil of
-              ignorance and within a new ecology of schooling.
+              A manifesto for releasing the imagination.
             </BlurReveal>
 
             <BlurReveal delay={0.26} className="mt-10 grid gap-4 sm:grid-cols-2">
