@@ -47,7 +47,7 @@ function StickyCard({
       style={{
         top: `${topOffset}vh`,
         zIndex: 10 + index,
-        marginBottom: index === total, 1 ? 0 : "12vh",
+        marginBottom: index === total - 1 ? 0 : "12vh",
       }}
     >
       <Link
