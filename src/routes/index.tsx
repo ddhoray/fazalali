@@ -27,6 +27,9 @@ import practiceEssays from "@/assets/practice-essays.jpg";
 import practiceBook from "@/assets/practice-book.jpg";
 import practiceOmeros from "@/assets/practice-omeros.jpg";
 import heroDesk from "@/assets/hero-desk.jpg";
+import streamResearch from "@/assets/stream-research.jpg";
+import streamPublications from "@/assets/stream-publications.jpg";
+import streamConversation from "@/assets/stream-conversation.jpg";
 
 function formatArticleDate(date: string) {
   const [year, month, day] = date.split("-").map(Number);
@@ -526,7 +529,7 @@ const streams = [
     body:
       "Frontier models read as social substrate — not products, not miracles. Essays, lectures and working notes.",
     icon: Sparkles,
-    image: practiceEssays,
+    image: streamResearch,
     to: "/writing" as const,
     cta: "Read the essays",
   },
@@ -537,7 +540,7 @@ const streams = [
     body:
       "The first title in a sequence of four. Three further volumes are in preparation.",
     icon: BookOpen,
-    image: practiceBook,
+    image: streamPublications,
     to: "/books" as const,
     cta: "See the publications",
   },
@@ -548,7 +551,7 @@ const streams = [
     body:
       "Readings, interviews and arguments — the written work spoken aloud.",
     icon: PenLine,
-    image: practiceOmeros,
+    image: streamConversation,
     to: "/podcast" as const,
     cta: "Listen",
   },
