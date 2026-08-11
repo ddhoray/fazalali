@@ -94,71 +94,80 @@ function AboutPage() {
       />
 
       {/* Portrait + profile details */}
-      <section className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8 sm:py-16">
-        <Reveal>
-          <p className="max-w-[62ch] text-lg leading-relaxed text-foreground/85 md:text-xl">
-            Fazal Ali disrupts the status quo to reveal uncomfortable truths. Work
-            that unsettles, and forces Latin America and the Caribbean to confront
-            its inheritance of inherited inequality and intergenerational immobility.
-          </p>
-        </Reveal>
-
-        <div className="mt-12 grid items-start gap-10 md:grid-cols-[minmax(0,340px)_minmax(0,1fr)] md:gap-14 lg:grid-cols-[minmax(0,400px)_minmax(0,1fr)]">
+      <section className="mx-auto max-w-[1500px] px-5 py-14 sm:px-8 sm:py-20">
+        <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] lg:gap-20">
+          {/* Left: portrait column */}
           <Reveal>
-            <figure className="relative md:sticky md:top-28">
+            <figure className="lg:sticky lg:top-28">
               <img
                 src={fazalPortrait}
                 alt="Dr. Fazal Ibrahim Ali"
                 className="aspect-[4/5] w-full border hairline object-cover"
                 loading="lazy"
               />
+              <figcaption className="mt-4 eyebrow text-muted-foreground">
+                Dr. Fazal Ibrahim Ali
+              </figcaption>
             </figure>
           </Reveal>
 
+          {/* Right: text column */}
           <div className="min-w-0">
-            <Reveal delay={0.08}>
-              <div className="border-t hairline py-7">
-                <p className="eyebrow text-muted-foreground mb-3">About</p>
-                <p className="max-w-[58ch] text-base leading-[1.65] text-foreground/85 md:text-[17px]">
-                  A thinker, consultant, academic and technical expert exploring
-                  how AI is shaping the future of innovation, through the lens of{" "}
-                  <em>development as freedom,</em> drawing upon Amartya Sen's{" "}
-                  <em>Development as Freedom</em> and John Rawls'{" "}
-                  <em>A Theory of Justice.</em>
-                </p>
-              </div>
+            <Reveal>
+              <p className="max-w-[62ch] text-xl leading-[1.5] text-foreground md:text-[26px] md:leading-[1.42]">
+                Fazal Ali disrupts the status quo to reveal uncomfortable truths.
+                Work that unsettles, and forces Latin America and the Caribbean to
+                confront its inheritance of inherited inequality and
+                intergenerational immobility.
+              </p>
             </Reveal>
 
-            <Reveal delay={0.12}>
-              <div className="border-t hairline py-7">
-                <p className="eyebrow text-muted-foreground mb-3">Background</p>
-                <p className="max-w-[58ch] text-base leading-[1.65] text-muted-foreground md:text-[17px]">
-                  A Commonwealth Scholarship winner who read for his doctorate at
-                  the University of Cambridge as a PhD candidate. Nobel laureate
-                  Amartya Sen, Sir Leszek Borysiewicz, C. W. R. D. Moseley and
-                  Lord Martin Rees shaped his thinking.
-                </p>
-              </div>
-            </Reveal>
+            <div className="mt-12 border-t hairline">
+              <Reveal delay={0.08}>
+                <div className="grid gap-2 border-b hairline py-8 md:grid-cols-[160px_minmax(0,1fr)] md:gap-10">
+                  <p className="eyebrow text-muted-foreground md:pt-1">About</p>
+                  <p className="max-w-[60ch] text-base leading-[1.7] text-foreground/85 md:text-[17px]">
+                    A thinker, consultant, academic and technical expert exploring
+                    how AI is shaping the future of innovation, through the lens of{" "}
+                    <em>development as freedom,</em> drawing upon Amartya Sen's{" "}
+                    <em>Development as Freedom</em> and John Rawls'{" "}
+                    <em>A Theory of Justice.</em>
+                  </p>
+                </div>
+              </Reveal>
 
-            <Reveal delay={0.16}>
-              <div className="border-y hairline py-7">
-                <p className="eyebrow text-muted-foreground mb-3">Contact</p>
-                <p className="max-w-[58ch] text-base leading-[1.65] text-muted-foreground md:text-[17px]">
-                  He can be reached at{" "}
-                  <a
-                    href="mailto:fazalalitsc@gmail.com"
-                    className="underline underline-offset-4 decoration-accent-cool hover:text-accent-cool transition-colors"
-                  >
-                    fazalalitsc@gmail.com
-                  </a>
-                  .
-                </p>
-              </div>
-            </Reveal>
+              <Reveal delay={0.12}>
+                <div className="grid gap-2 border-b hairline py-8 md:grid-cols-[160px_minmax(0,1fr)] md:gap-10">
+                  <p className="eyebrow text-muted-foreground md:pt-1">Background</p>
+                  <p className="max-w-[60ch] text-base leading-[1.7] text-muted-foreground md:text-[17px]">
+                    A Commonwealth Scholarship winner who read for his doctorate at
+                    the University of Cambridge as a PhD candidate. Nobel laureate
+                    Amartya Sen, Sir Leszek Borysiewicz, C. W. R. D. Moseley and
+                    Lord Martin Rees shaped his thinking.
+                  </p>
+                </div>
+              </Reveal>
+
+              <Reveal delay={0.16}>
+                <div className="grid gap-2 border-b hairline py-8 md:grid-cols-[160px_minmax(0,1fr)] md:gap-10">
+                  <p className="eyebrow text-muted-foreground md:pt-1">Contact</p>
+                  <p className="max-w-[60ch] text-base leading-[1.7] text-muted-foreground md:text-[17px]">
+                    He can be reached at{" "}
+                    <a
+                      href="mailto:fazalalitsc@gmail.com"
+                      className="underline underline-offset-4 decoration-accent-cool hover:text-accent-cool transition-colors"
+                    >
+                      fazalalitsc@gmail.com
+                    </a>
+                    .
+                  </p>
+                </div>
+              </Reveal>
+            </div>
           </div>
         </div>
       </section>
+
 
 
       {/* Concerns, what his work explores */}
