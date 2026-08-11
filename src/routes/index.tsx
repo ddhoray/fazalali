@@ -558,7 +558,6 @@ const streams = [
 ];
 
 function Range() {
-  const navigate = useNavigate();
   const [active, setActive] = useState(0);
 
   return (
@@ -596,15 +595,12 @@ function Range() {
           {streams.map((s, i) => {
             const isActive = i === active;
             return (
-              <motion.button
+              <motion.div
                 key={s.n}
-                type="button"
                 onMouseEnter={() => setActive(i)}
-                onFocus={() => setActive(i)}
-                onClick={() => navigate({ to: s.to })}
                 animate={{ flexGrow: isActive ? 2.6 : 1 }}
                 transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="group relative flex-1 basis-0 overflow-hidden border hairline text-left"
+                className="group relative flex-1 basis-0 cursor-default overflow-hidden border hairline"
               >
                 <motion.img
                   src={s.image}
@@ -660,16 +656,19 @@ function Range() {
                         <p className="max-w-md pt-5 text-[0.95rem] leading-relaxed text-white/75">
                           {s.body}
                         </p>
-                        <span className="mt-5 inline-flex items-center gap-3 border-b border-white/40 pb-1 text-xs uppercase tracking-[0.22em] text-white">
+                        <Link
+                          to={s.to}
+                          className="mt-5 inline-flex items-center gap-3 border-b border-white/40 pb-1 text-xs uppercase tracking-[0.22em] text-white hover:text-accent"
+                        >
                           {s.cta}
                           <ArrowUpRight className="size-4 transition-transform duration-500 group-hover:-translate-y-1 group-hover:translate-x-1" />
-                        </span>
+                        </Link>
                       </motion.div>
                     </div>
                   </div>
 
                 </div>
-              </motion.button>
+              </motion.div>
             );
           })}
         </div>
@@ -677,11 +676,9 @@ function Range() {
         {/* stacked cards — mobile */}
         <div className="mt-8 grid gap-4 md:hidden">
           {streams.map((s) => (
-            <button
+            <div
               key={s.n}
-              type="button"
-              onClick={() => navigate({ to: s.to })}
-              className="group relative h-56 w-full overflow-hidden border hairline text-left"
+              className="group relative h-56 w-full cursor-default overflow-hidden border hairline"
             >
               <img
                 src={s.image}
@@ -702,13 +699,16 @@ function Range() {
                   <p className="mt-2 text-sm leading-relaxed text-white/75">
                     {s.body}
                   </p>
-                  <span className="mt-4 inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-white">
+                  <Link
+                    to={s.to}
+                    className="mt-4 inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-white hover:text-accent"
+                  >
                     {s.cta}
                     <ArrowUpRight className="size-4" />
-                  </span>
+                  </Link>
                 </div>
               </div>
-            </button>
+            </div>
           ))}
         </div>
       </div>
