@@ -114,7 +114,7 @@ function AboutPage() {
                 <em>Fazal Ali</em> is a prophet provocateur who disrupts the
                 status quo to reveal uncomfortable truths — work that unsettles,
                 and forces Latin America and the Caribbean to confront its
-                hypocrisies.
+                inheritance of inherited inequality and intergenerational immobility.
               </p>
               <p className="text-lg leading-relaxed text-foreground/80">
                 A thinker, consultant, academic and technical expert, he
