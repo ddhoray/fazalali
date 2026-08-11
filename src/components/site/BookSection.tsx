@@ -7,7 +7,7 @@ import { assetUrl } from "@/lib/asset-url";
 const bookCover = assetUrl(bookCoverAsset);
 
 /**
- * Dedicated book section — appears on the home page above the journal block.
+ * Dedicated book section - appears on the home page above the journal block.
  * Cool slate background, book cover on the left, copy + credits on the right.
  */
 export function BookSection() {
@@ -36,7 +36,7 @@ export function BookSection() {
             >
               <img
                 src={bookCover}
-                alt="Education for Liberty — a monograph by Fazal Ali"
+                alt="Education for Liberty - a monograph by Fazal Ali"
                 className="size-full object-contain"
                 width={920}
                 height={1227}

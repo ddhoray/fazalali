@@ -72,7 +72,7 @@ export function FloatingBottomNav() {
               <motion.div layout className="flex items-center gap-1">
                 <Link
                   to="/"
-                  aria-label="Fazal Ali — Home"
+                  aria-label="Fazal Ali - Home"
                   onClick={(e) => e.stopPropagation()}
                   className="mr-1 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white ring-1 ring-black/10 shadow-sm transition-colors hover:bg-white/90 overflow-hidden"
                 >

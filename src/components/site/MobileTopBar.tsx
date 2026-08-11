@@ -41,7 +41,7 @@ export function MobileTopBar() {
       <header className="fixed inset-x-0 top-0 z-[60] flex items-center justify-between border-b border-black/10 bg-white px-4 py-3 lg:hidden">
         <Link
           to="/"
-          aria-label="Fazal Ali — Home"
+          aria-label="Fazal Ali - Home"
           className="inline-flex h-10 w-10 items-center justify-center"
         >
           <img src={fiaLogo} alt="FIA" className="h-8 w-8 object-contain" draggable={false} />

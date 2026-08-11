@@ -8,13 +8,13 @@ import heroInequality from "@/assets/hero-inequality.jpg";
 export const Route = createFileRoute("/inequality")({
   head: () => ({
     meta: [
-      { title: "Inequality — Education for Liberty | Fazal Ali" },
+      { title: "Inequality - Education for Liberty | Fazal Ali" },
       {
         name: "description",
         content:
           "The capability gap, the inherited geometry of the colonial economy, and what the West Indian classroom owes the child who arrived hungry.",
       },
-      { property: "og:title", content: "Inequality — Education for Liberty" },
+      { property: "og:title", content: "Inequality - Education for Liberty" },
       {
         property: "og:description",
         content: "A capability reading of inequality from a West Indian classroom.",
@@ -31,7 +31,7 @@ export const Route = createFileRoute("/inequality")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Article",
-          headline: "Inequality — Education for Liberty",
+          headline: "Inequality - Education for Liberty",
           description:
             "The capability gap, the inherited geometry of the colonial economy, and what the West Indian classroom owes the child who arrived hungry.",
           datePublished: "2026-01-15",

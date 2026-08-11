@@ -9,13 +9,13 @@ import heroPodcast from "@/assets/hero-podcast.jpg";
 export const Route = createFileRoute("/podcast")({
   head: () => ({
     meta: [
-      { title: "Podcast — Education for Liberty | Fazal Ali" },
+      { title: "Podcast - Education for Liberty | Fazal Ali" },
       {
         name: "description",
         content:
-          "Education for Liberty — the podcast. Episodes of Fazal Ali's monograph read aloud, beginning with the Preface and Prolegomenon.",
+          "Education for Liberty - the podcast. Episodes of Fazal Ali's monograph read aloud, beginning with the Preface and Prolegomenon.",
       },
-      { property: "og:title", content: "Education for Liberty — The Podcast" },
+      { property: "og:title", content: "Education for Liberty - The Podcast" },
       {
         property: "og:description",
         content: "A monograph by Fazal Ali, read aloud. Listen to the Preface and Prolegomenon.",
@@ -38,7 +38,7 @@ function PodcastPage() {
         standfirst={
           <>
             A monograph, read aloud. Begin at the Preface, continue with the
-            Prolegomenon — long-form, unhurried, made for headphones.
+            Prolegomenon - long-form, unhurried, made for headphones.
           </>
         }
         meta={

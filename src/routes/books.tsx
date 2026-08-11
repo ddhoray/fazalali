@@ -13,13 +13,13 @@ const bookCover = assetUrl(bookCoverAsset);
 export const Route = createFileRoute("/books")({
   head: () => ({
     meta: [
-      { title: "Books — Fazal Ali" },
+      { title: "Books - Fazal Ali" },
       {
         name: "description",
         content:
-          "Books by Fazal Ibrahim Ali — Education for Liberty, and the forthcoming volumes on Caribbean thought, AI, and intergenerational immobility.",
+          "Books by Fazal Ibrahim Ali - Education for Liberty, and the forthcoming volumes on Caribbean thought, AI, and intergenerational immobility.",
       },
-      { property: "og:title", content: "Books — Fazal Ali" },
+      { property: "og:title", content: "Books - Fazal Ali" },
       {
         property: "og:description",
         content:
@@ -46,11 +46,11 @@ const forthcoming = [
     year: "Forthcoming",
     image:
       "https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?w=1200&q=80&auto=format&fit=crop",
-    imageAlt: "Open sky and sea horizon — freedom as an atmosphere",
+    imageAlt: "Open sky and sea horizon - freedom as an atmosphere",
   },
   {
     title: "Sen in the Islands",
-    note: "Reading Amartya Sen's capability approach from a small state — where freedom is never abstract.",
+    note: "Reading Amartya Sen's capability approach from a small state - where freedom is never abstract.",
     year: "Forthcoming",
     image:
       "https://images.unsplash.com/photo-1559666126-84f389727b9a?w=1200&q=80&auto=format&fit=crop",
@@ -61,7 +61,7 @@ const forthcoming = [
     note: "On inherited inequality, the data fabric of state enterprises, and what the next century owes the last.",
     year: "In preparation",
     image: intergenerationalImage,
-    imageAlt: "An elder's hand resting on a child's hand — generations in contact",
+    imageAlt: "An elder's hand resting on a child's hand - generations in contact",
   },
 ];
 
@@ -79,7 +79,7 @@ function BooksPage() {
         standfirst={
           <>
             A body of writing built on Amartya Sen's <em>Development as
-            Freedom</em> and John Rawls' <em>A Theory of Justice</em> — Caribbean
+            Freedom</em> and John Rawls' <em>A Theory of Justice</em> - Caribbean
             in origin, global in address.
           </>
         }
@@ -112,7 +112,7 @@ function BooksPage() {
             >
               <img
                 src={bookCover}
-                alt="Education for Liberty — a monograph by Fazal Ali"
+                alt="Education for Liberty - a monograph by Fazal Ali"
                 className="size-full object-contain"
                 loading="lazy"
               />
@@ -170,7 +170,7 @@ function BooksPage() {
                 </h2>
               </div>
               <p className="max-w-md text-sm text-muted-foreground">
-                Three volumes in preparation — each extending the Omeros AI
+                Three volumes in preparation - each extending the Omeros AI
                 argument into a distinct register of public life.
               </p>
             </div>

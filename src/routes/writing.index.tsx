@@ -8,23 +8,23 @@ import heroBook from "@/assets/hero-writing.jpg";
 export const Route = createFileRoute("/writing/")({
   head: () => ({
     meta: [
-      { title: "Journal — Essays on AI, Education & the West Indies by Fazal Ali" },
+      { title: "Journal - Essays on AI, Education & the West Indies by Fazal Ali" },
       {
         name: "description",
         content:
-          "The journal of Fazal Ali — 140+ essays on critical theory in AI, education, ecology, inequality, decolonial thought, and the West Indian future.",
+          "The journal of Fazal Ali - 140+ essays on critical theory in AI, education, ecology, inequality, decolonial thought, and the West Indian future.",
       },
       {
         name: "keywords",
         content:
           "Fazal Ali journal, critical theory AI, Caribbean AI, West Indies philosophy, decolonial AI, Omeros AI essays, Trinidad writing, AI ethics essays, education philosophy, algorithmic justice, Global South AI",
       },
-      { property: "og:title", content: "Journal — Fazal Ali" },
+      { property: "og:title", content: "Journal - Fazal Ali" },
       { property: "og:description", content: "140+ essays on critical theory in AI, education, and Caribbean futures." },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/writing" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Journal — Fazal Ali" },
+      { name: "twitter:title", content: "Journal - Fazal Ali" },
       { name: "twitter:description", content: "140+ essays on critical theory in AI, education, and Caribbean futures." },
     ],
     links: [
@@ -139,7 +139,7 @@ function WritingIndex() {
         </Link>
       </section>
 
-      {/* Editorial grid — alternating */}
+      {/* Editorial grid - alternating */}
       <section className="mx-auto max-w-[1700px] px-5 py-12 sm:px-8 sm:py-14">
         <div className="grid gap-x-10 gap-y-20 md:grid-cols-2 md:gap-y-28">
           {rest.map((a, i) => (
