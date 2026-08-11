@@ -117,34 +117,23 @@ function AboutPage() {
                 inheritance of inherited inequality and intergenerational immobility.
               </p>
               <p className="text-lg leading-relaxed text-foreground/80">
-                A thinker, consultant, academic and technical expert, he
-                explores how AI is shaping the future of innovation — through
-                the lens of <em>development as freedom.</em> His persuasive
-                book, <em>Education for Liberty,</em> draws on Amartya Sen's{" "}
+                A thinker, consultant, academic and technical expert exploring
+                how AI is shaping the future of innovation — through the lens of{" "}
+                <em>development as freedom,</em> drawing upon Amartya Sen's{" "}
                 <em>Development as Freedom</em> and John Rawls'{" "}
                 <em>A Theory of Justice.</em>
               </p>
               <p className="text-base leading-relaxed text-muted-foreground">
-                Dr. Fazal Ali completed his Masters in Philosophy at the
-                University of the West Indies. He was a Commonwealth Scholar who
-                attended the University of Cambridge, Hughes Hall; the Provost of
-                the University of Trinidad and Tobago; the acting President of
-                UTT; and the Chairman of the Teaching Service Commission. He is
-                the President of NIHERST and an external services consultant with
-                the IDB. He can be reached at{" "}
+                A Commonwealth Scholarship winner who read for his doctorate at
+                the University of Cambridge as a PhD candidate. Nobel laureate
+                Amartya Sen, Sir Leszek Borysiewicz, C. W. R. D. Moseley and
+                Lord Martin Rees shaped his thinking. He can be reached at{" "}
                 <a href="mailto:fazalalitsc@gmail.com" className="underline">
                   fazalalitsc@gmail.com
                 </a>
                 .
               </p>
 
-              <p className="text-base leading-relaxed text-muted-foreground">
-                His writing now sits under the identity{" "}
-                <span className="font-display italic">Omeros AI</span> — a
-                Caribbean initiative on artificial intelligence, written from
-                the West Indies, for a reader anywhere who suspects the
-                conversation has been too narrow for too long.
-              </p>
             </div>
           </Reveal>
         </div>
