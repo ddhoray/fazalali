@@ -176,23 +176,25 @@ function BooksPage() {
             </div>
           </Reveal>
 
-          <div className="mt-12 flex h-auto flex-col gap-3 md:h-[640px] md:flex-row">
+          <div className="mt-12 flex flex-col gap-3 md:h-[620px] md:flex-row md:items-stretch">
             {forthcoming.map((b, i) => {
               const isActive = active === i;
               const isCollapsed = active !== null && !isActive;
               return (
                 <motion.article
                   key={b.title}
-                  className="relative h-[420px] cursor-default overflow-hidden border hairline bg-background md:h-auto"
+                  data-book-card
+                  className="relative h-[460px] min-h-0 min-w-0 cursor-default overflow-hidden border hairline bg-background md:h-full md:flex-[1_1_0%]"
                   onMouseEnter={() => setActive(i)}
                   onMouseLeave={() => setActive(null)}
                   onClick={() => setActive((prev) => (prev === i ? null : i))}
+                  initial={false}
                   animate={{
-                    flex: isActive ? 2.5 : isCollapsed ? 0.65 : 1,
+                    flexGrow: isActive ? 2.5 : isCollapsed ? 0.65 : 1,
                   }}
                   transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <div className="absolute inset-x-0 top-0 z-10 flex items-center justify-between p-6 text-muted-foreground">
+                  <div className="absolute inset-x-0 top-0 z-20 flex h-20 items-center justify-between px-6 text-background">
                     <BookOpen className="size-5" />
                     <span className="eyebrow">{b.year}</span>
                   </div>
@@ -207,14 +209,18 @@ function BooksPage() {
                       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                     />
                   </div>
+                  <div className="absolute inset-0 z-10 bg-gradient-to-b from-foreground/35 via-transparent to-foreground/90" />
 
-                  <div className="absolute inset-x-0 bottom-0 z-10 bg-background/95 p-6 backdrop-blur-sm md:h-40">
-                    <h3 className="font-display text-2xl leading-tight md:text-3xl">
+                  <div className="absolute inset-x-0 bottom-0 z-20 h-[190px] px-6 pb-7 text-background md:h-[210px] md:px-8 md:pb-8">
+                    <h3
+                      data-book-title
+                      className="absolute inset-x-6 top-0 h-[76px] overflow-hidden font-display text-2xl leading-tight md:inset-x-8 md:h-[84px] md:text-3xl"
+                    >
                       {b.title}
                     </h3>
                     <motion.p
-                      className="mt-3 text-sm leading-relaxed text-muted-foreground"
-                      animate={{ opacity: isActive ? 1 : 0 }}
+                      className="absolute inset-x-6 top-[88px] line-clamp-3 text-sm leading-relaxed text-background/80 md:inset-x-8 md:top-[96px]"
+                      animate={{ opacity: isActive ? 1 : 0, x: isActive ? 0 : 8 }}
                       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                     >
                       {b.note}
