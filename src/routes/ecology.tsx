@@ -8,13 +8,13 @@ import heroEcology from "@/assets/hero-ecology.jpg";
 export const Route = createFileRoute("/ecology")({
   head: () => ({
     meta: [
-      { title: "Ecology — Education for Liberty | Fazal Ali" },
+      { title: "Ecology, Education for Liberty | Fazal Ali" },
       {
         name: "description",
         content:
           "An island is the right scale at which to learn ecology. A West Indian reading of climate, coast, and curriculum.",
       },
-      { property: "og:title", content: "Ecology — Education for Liberty" },
+      { property: "og:title", content: "Ecology, Education for Liberty" },
       {
         property: "og:description",
         content: "Climate literacy as the substrate of citizenship in the West Indian classroom.",
@@ -31,7 +31,7 @@ export const Route = createFileRoute("/ecology")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Article",
-          headline: "Ecology — Education for Liberty",
+          headline: "Ecology, Education for Liberty",
           description:
             "An island is the right scale at which to learn ecology. A West Indian reading of climate, coast, and curriculum.",
           datePublished: "2026-01-15",

@@ -7,7 +7,7 @@ import heroPalimpsest from "@/assets/hero-palimpsest.jpg";
 export const Route = createFileRoute("/palimpsest")({
   head: () => ({
     meta: [
-      { title: "A Palimpsest of West Indian Education — Fazal Ali" },
+      { title: "A Palimpsest of West Indian Education, Fazal Ali" },
       {
         name: "description",
         content:
@@ -40,7 +40,7 @@ function PalimpsestPage() {
         standfirst={
           <>
             Set inside a frame of world events before and after Christopher
-            Columbus set sail for the New World in 1492 — from Oxford in 1096
+            Columbus set sail for the New World in 1492, from Oxford in 1096
             to the JFK Library in 1969, from the Encomienda to Eric Williams.
           </>
         }

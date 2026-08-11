@@ -37,13 +37,13 @@ import pSpiritual from "@/assets/paintings/spiritualbaptists.jpg.asset.json";
 export const Route = createFileRoute("/gallery")({
   head: () => ({
     meta: [
-      { title: "Gallery — Fazal Ali" },
+      { title: "Gallery, Fazal Ali" },
       {
         name: "description",
         content:
-          "A curated visual feed — paintings, postcards, and field notes from the West Indies.",
+          "A curated visual feed, paintings, postcards, and field notes from the West Indies.",
       },
-      { property: "og:title", content: "Gallery — Fazal Ali" },
+      { property: "og:title", content: "Gallery, Fazal Ali" },
       {
         property: "og:description",
         content: "Paintings and visual field notes from Trinidad and elsewhere.",
@@ -104,7 +104,7 @@ function GalleryPage() {
         title={<>The <em className="italic">gallery.</em></>}
         standfirst={
           <>
-            A curated selection of paintings — colour, coastline, and the page life of a working writer.
+            A curated selection of paintings, colour, coastline, and the page life of a working writer.
             More on <a href="https://www.instagram.com/thefazalali/" target="_blank" rel="noreferrer" className="underline-offset-4 hover:underline">@thefazalali</a>.
           </>
         }

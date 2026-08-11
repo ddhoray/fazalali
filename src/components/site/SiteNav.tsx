@@ -71,7 +71,7 @@ export function SiteNav() {
       )}
     >
       <div className="mx-auto flex max-w-[1700px] items-center justify-between px-5 py-5 sm:px-8 sm:py-6">
-        <Link to="/" aria-label="Fazal Ali — Home" className="inline-flex items-center">
+        <Link to="/" aria-label="Fazal Ali, Home" className="inline-flex items-center">
           <img
             src={fiaLogo}
             alt="Fazal Ali"

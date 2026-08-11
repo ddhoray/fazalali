@@ -40,7 +40,7 @@ export function SiteFooter() {
               rel="noreferrer"
               className="mt-2 block text-[13px] text-foreground/75 hover:text-foreground transition-colors"
             >
-              Instagram — @thefazalali
+              Instagram, @thefazalali
             </a>
           </div>
         </div>

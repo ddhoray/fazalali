@@ -4,7 +4,7 @@ import { BlurReveal } from "./BlurReveal";
 
 /**
  * Editorial newsletter sign-up block.
- * Client-side only — shows a thank-you state on submit.
+ * Client-side only, shows a thank-you state on submit.
  */
 export function Newsletter() {
   const [email, setEmail] = useState("");
@@ -36,7 +36,7 @@ export function Newsletter() {
             delay={0.16}
             className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground md:text-base"
           >
-            Occasional dispatches — new journal entries, notes from forthcoming books, and quiet
+            Occasional dispatches, new journal entries, notes from forthcoming books, and quiet
             reports from Omeros AI. No noise. No tracking. Read once, leave
             anytime.
           </BlurReveal>

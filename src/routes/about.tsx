@@ -8,13 +8,13 @@ import fazalPortrait from "@/assets/fazal-portrait.jpg";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "Profile — Fazal Ibrahim Ali" },
+      { title: "Profile, Fazal Ibrahim Ali" },
       {
         name: "description",
         content:
-          "Dr. Fazal Ibrahim Ali — Cambridge Commonwealth Scholar, former Provost of UTT, and writer on critical theory in AI from the West Indies.",
+          "Dr. Fazal Ibrahim Ali, Cambridge Commonwealth Scholar, former Provost of UTT, and writer on critical theory in AI from the West Indies.",
       },
-      { property: "og:title", content: "Profile — Fazal Ibrahim Ali" },
+      { property: "og:title", content: "Profile, Fazal Ibrahim Ali" },
       {
         property: "og:description",
         content:
@@ -54,13 +54,13 @@ const concerns = [
 const roles = [
   { year: "UWI · MPhil", text: "Completed his Masters in Philosophy at the University of the West Indies." },
   { year: "Cambridge", text: "Commonwealth Scholar at the University of Cambridge, Hughes Hall. Influenced there by Nobel laureate Amartya Sen, Sir Leszek Borysiewicz, C. W. R. D. Moseley, and Lord Martin Rees." },
-  { year: "UWI · ICT", text: "Planned and organised the international conference launching The Institute of Critical Thinking at the University of the West Indies — mirroring the innovation and entrepreneurship model of the Hebrew University of Jerusalem." },
-  { year: "UWI · Evening University", text: "Head of Evening University at The UWI — widening pathways into higher education for working adults across the Caribbean." },
-  { year: "UCSIS", text: "Secretary to the University Consortium of Small Island States (UCSIS) at the UWI Office of Graduate Studies and Research — a Kofi Annan mandate uniting the universities of Malta, the South Pacific, the US Virgin Islands, the West Indies, and Mauritius into a global capacity-building team for SIDS." },
+  { year: "UWI · ICT", text: "Planned and organised the international conference launching The Institute of Critical Thinking at the University of the West Indies, mirroring the innovation and entrepreneurship model of the Hebrew University of Jerusalem." },
+  { year: "UWI · Evening University", text: "Head of Evening University at The UWI, widening pathways into higher education for working adults across the Caribbean." },
+  { year: "UCSIS", text: "Secretary to the University Consortium of Small Island States (UCSIS) at the UWI Office of Graduate Studies and Research, a Kofi Annan mandate uniting the universities of Malta, the South Pacific, the US Virgin Islands, the West Indies, and Mauritius into a global capacity-building team for SIDS." },
   { year: "Lok Jack GSB", text: "Programme Director of the DBA programme at the Arthur Lok Jack Graduate School of Business, UWI." },
   { year: "UTT", text: "Provost of the University of Trinidad and Tobago; established the UTT Aviation Campus and served as acting President." },
   { year: "UNESCO · TSC", text: "Member of the UNESCO Memory of the World team in Trinidad and Tobago; Chairman of the Teaching Service Commission of Trinidad and Tobago." },
-  { year: "NIHERST", text: "President of the National Institute of Higher Education, Research, Science and Technology — the country's lead body for STEM popularisation and applied research." },
+  { year: "NIHERST", text: "President of the National Institute of Higher Education, Research, Science and Technology, the country's lead body for STEM popularisation and applied research." },
   { year: "IDB", text: "External services consultant with the Inter-American Development Bank (IDB)." },
 ];
 
@@ -77,7 +77,7 @@ function AboutPage() {
         }
         standfirst={
           <>
-            Dr. Fazal Ibrahim Ali — Cambridge Commonwealth Scholar, former
+            Dr. Fazal Ibrahim Ali, Cambridge Commonwealth Scholar, former
             Provost of the University of Trinidad and Tobago, President of
             NIHERST, and the author of <em>Education for Liberty.</em>
           </>
@@ -93,14 +93,16 @@ function AboutPage() {
         }
       />
 
-      {/* Lead statement — full-width, breathable */}
-      <section className="mx-auto max-w-[1500px] px-5 pt-6 pb-2 sm:px-8 sm:pt-10 sm:pb-4">
+      {/* Lead statement, readable, editorial scale */}
+      <section className="mx-auto max-w-[980px] px-5 pt-10 pb-6 sm:px-8 sm:pt-16 sm:pb-10">
         <Reveal>
-          <p className="font-display text-[clamp(2.25rem,6.2vw,5.5rem)] leading-[0.98] text-balance">
-            <em className="italic">Fazal Ali</em> is a prophet provocateur who disrupts the
-            status quo to reveal uncomfortable truths — work that unsettles,
-            and forces Latin America and the Caribbean to confront its
-            inheritance of inherited inequality and intergenerational immobility.
+          <h2 className="font-display text-2xl leading-tight text-foreground md:text-4xl lg:text-[2.5rem]">
+            A prophet provocateur, schooled in freedom.
+          </h2>
+          <p className="mt-5 text-lg leading-relaxed text-foreground/85 md:text-xl lg:text-[1.35rem] lg:leading-[1.55]">
+            Fazal Ali disrupts the status quo to reveal uncomfortable truths. Work
+            that unsettles, and forces Latin America and the Caribbean to confront
+            its inheritance of inherited inequality and intergenerational immobility.
           </p>
         </Reveal>
       </section>
@@ -126,7 +128,7 @@ function AboutPage() {
                 <p className="eyebrow text-muted-foreground mb-4">About</p>
                 <p className="text-xl leading-relaxed text-foreground/85 md:text-[22px] md:leading-[1.5]">
                   A thinker, consultant, academic and technical expert exploring
-                  how AI is shaping the future of innovation — through the lens of{" "}
+                  how AI is shaping the future of innovation, through the lens of{" "}
                   <em>development as freedom,</em> drawing upon Amartya Sen's{" "}
                   <em>Development as Freedom</em> and John Rawls'{" "}
                   <em>A Theory of Justice.</em>
@@ -165,13 +167,13 @@ function AboutPage() {
         </div>
       </section>
 
-      {/* Concerns — what his work explores */}
+      {/* Concerns, what his work explores */}
       <section data-nav="dark" className="section-invert">
         <div className="mx-auto max-w-[1500px] px-5 py-16 sm:px-8 sm:py-24">
           <Reveal>
             <p className="eyebrow text-white/55">What the work explores</p>
             <h2 className="mt-5 font-display text-4xl md:text-6xl">
-              Screen economies, the Law of AI, and policy intent —{" "}
+              Screen economies, the Law of AI, and policy intent -{" "}
               <em className="italic text-white/70">through the lens of freedom.</em>
             </h2>
             <p className="mt-6 max-w-3xl text-base leading-relaxed text-white/65 md:text-lg">
@@ -201,7 +203,7 @@ function AboutPage() {
             <em className="text-muted-foreground">"</em>Standing on the shoulders
             of Amartya Sen's Development as Freedom and John Rawls' A Theory of
             Justice, Omeros AI builds a body of work that adds to the critical
-            theory on AI — written from the West Indies, for a reader anywhere
+            theory on AI, written from the West Indies, for a reader anywhere
             who suspects the conversation has been too narrow for too
             long.<em className="text-muted-foreground">"</em>
           </p>

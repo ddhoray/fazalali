@@ -70,7 +70,7 @@ export function Flipbook({ file = PDF_FILE_DEFAULT }: FlipbookProps) {
       const vh = window.innerHeight;
       const isSingle = cw < 760;
       const reserved = isSingle ? 320 : 290;
-      const maxH = Math.max(isSingle ? 340 : 420, vh - reserved);
+      const maxH = Math.max(isSingle ? 340 : 420, vh, reserved);
       const horizontalBudget = isSingle ? cw - 24 : (cw - 40) / 2;
       let pageW = Math.max(150, Math.min(horizontalBudget, isSingle ? 360 : 540));
       let pageH = Math.round(pageW * 1.36);
@@ -140,7 +140,7 @@ export function Flipbook({ file = PDF_FILE_DEFAULT }: FlipbookProps) {
               onFlip={(e: { data: number }) => setCurrent(e.data)}
             >
               {pageNumbers.map((pageNumber) => {
-                const inRange = Math.abs(pageNumber - 1 - current) <= RENDER_RADIUS;
+                const inRange = Math.abs(pageNumber - current) <= RENDER_RADIUS;
                 return (
                   <div
                     key={pageNumber}

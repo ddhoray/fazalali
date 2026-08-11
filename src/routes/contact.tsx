@@ -9,9 +9,9 @@ import { ArrowRight, Check } from "lucide-react";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Write Me — Fazal Ali" },
-      { name: "description", content: "Press, residencies, conversations on AI and the Caribbean — write Fazal Ali." },
-      { property: "og:title", content: "Write Me — Fazal Ali" },
+      { title: "Write Me, Fazal Ali" },
+      { name: "description", content: "Press, residencies, conversations on AI and the Caribbean, write Fazal Ali." },
+      { property: "og:title", content: "Write Me, Fazal Ali" },
       { property: "og:description", content: "Send a note to Fazal Ali." },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/contact" },
     ],
@@ -56,7 +56,7 @@ function ContactPage() {
           A short note <em className="italic">is enough.</em>
         </h1>
         <p className="mt-6 max-w-xl text-muted-foreground">
-          Press, residencies, teaching, or a question about the writing — all read personally.
+          Press, residencies, teaching, or a question about the writing, all read personally.
         </p>
       </Reveal>
 

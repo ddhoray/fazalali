@@ -86,23 +86,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Fazal Ali — Writer, Scholar, Omeros AI" },
+      { title: "Fazal Ali, Writer, Scholar, Omeros AI" },
       {
         name: "description",
         content:
-          "Dr. Fazal Ibrahim Ali — writing on critical theory in AI from the West Indies. Books, ideas, art, and the Omeros AI identity.",
+          "Dr. Fazal Ibrahim Ali, writing on critical theory in AI from the West Indies. Books, ideas, art, and the Omeros AI identity.",
       },
       { name: "author", content: "Fazal Ibrahim Ali" },
       { name: "keywords", content: "Fazal Ali, Fazal Ibrahim Ali, Omeros AI, Education for Liberty, critical theory AI, Caribbean philosophy, Trinidad writer, West Indies AI, Cambridge scholar" },
       { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
       { name: "theme-color", content: "#0f1b3d" },
       { property: "og:site_name", content: "Fazal Ali" },
-      { property: "og:title", content: "Fazal Ali — Writer, Scholar, Omeros AI" },
+      { property: "og:title", content: "Fazal Ali, Writer, Scholar, Omeros AI" },
       { property: "og:description", content: "Writing on critical theory in AI from the West Indies. The Omeros AI brand identity." },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "en_US" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Fazal Ali — Writer, Scholar, Omeros AI" },
+      { name: "twitter:title", content: "Fazal Ali, Writer, Scholar, Omeros AI" },
       { name: "twitter:description", content: "Writing on critical theory in AI from the West Indies. The Omeros AI brand identity." },
     ],
     links: [
@@ -166,7 +166,7 @@ function RootShell({ children }: { children: ReactNode }) {
       <head>
         <HeadContent />
         <script
-          // No-flash theme init — default LIGHT, only opt-in to dark.
+          // No-flash theme init, default LIGHT, only opt-in to dark.
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var t=localStorage.getItem('theme');document.documentElement.classList.toggle('dark',t==='dark');}catch(e){}})();`,
           }}

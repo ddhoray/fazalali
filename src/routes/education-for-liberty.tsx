@@ -11,17 +11,17 @@ const heroBook = assetUrl(bookCoverAsset);
 export const Route = createFileRoute("/education-for-liberty")({
   head: () => ({
     meta: [
-      { title: "Education for Liberty — Fazal Ali" },
+      { title: "Education for Liberty, Fazal Ali" },
       {
         name: "description",
         content:
-          "Fazal Ali's monograph after Sen and Rawls — read a flippable preview, download the PDF, or buy on Amazon.",
+          "Fazal Ali's monograph after Sen and Rawls, read a flippable preview, download the PDF, or buy on Amazon.",
       },
-      { property: "og:title", content: "Education for Liberty — Fazal Ali" },
+      { property: "og:title", content: "Education for Liberty, Fazal Ali" },
       {
         property: "og:description",
         content:
-          "Building on Amartya Sen and John Rawls — education as the substrate of freedom. Flip through a preview or download the PDF.",
+          "Building on Amartya Sen and John Rawls, education as the substrate of freedom. Flip through a preview or download the PDF.",
       },
       { property: "og:type", content: "book" },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/education-for-liberty" },
@@ -70,7 +70,7 @@ const chapters = [
   { n: "II", title: "Sen, in the islands", body: "A reading of Development as Freedom from a small state, where capability is not abstract." },
   { n: "III", title: "Rawls, repositioned", body: "The veil of ignorance is heavier in the Caribbean. It is also more honest." },
   { n: "IV", title: "The classroom as a polity", body: "If liberty is the goal, the classroom is its first parliament." },
-  { n: "V", title: "What we owe the future", body: "The pedagogy of failure, of patience, of refusal — in the age of AI." },
+  { n: "V", title: "What we owe the future", body: "The pedagogy of failure, of patience, of refusal, in the age of AI." },
 ];
 
 function BookPage() {
@@ -95,7 +95,7 @@ function BookPage() {
           </>
         }
         image={heroBook}
-        imageAlt="Education for Liberty — monograph cover by Fazal Ibrahim Ali"
+        imageAlt="Education for Liberty, monograph cover by Fazal Ibrahim Ali"
         imageFit="contain"
       />
 
