@@ -126,10 +126,7 @@ function BooksPage() {
               has been too narrow for too long."
             </p>
             <p className="mt-8 max-w-xl text-base leading-relaxed text-foreground/75 md:text-lg">
-              A foundation text in critical pedagogy. Unlike Paulo Freire's
-              "Pedagogy of the Oppressed" the focus is on releasing the
-              imagination and cultivating reasoned agency from behind a veil of
-              ignorance and within a new ecology of schooling.
+              A manifesto for releasing the imagination.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
               <Link to="/education-for-liberty" className="group btn-cta btn-primary">
