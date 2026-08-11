@@ -151,7 +151,7 @@ function BookPage() {
       <section className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8 sm:py-10">
         <Reveal>
           <p className="eyebrow text-muted-foreground">Inside the book</p>
-          <h2 className="mt-5 font-display text-4xl md:text-7xl">
+          <h2 className="mt-5 font-display text-4xl md:text-6xl">
             Ideas &amp; <em className="italic text-accent">themes.</em>
           </h2>
         </Reveal>

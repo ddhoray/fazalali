@@ -139,7 +139,7 @@ function OmerosPage() {
         <div className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8 sm:py-10">
           <Reveal>
             <p className="eyebrow text-white/55">What Omeros AI sets out to do</p>
-            <h2 className="mt-5 font-display text-4xl md:text-7xl">
+            <h2 className="mt-5 font-display text-4xl md:text-6xl">
               Eight pillars of the work.
             </h2>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/65 md:text-lg">

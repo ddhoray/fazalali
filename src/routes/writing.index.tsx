@@ -122,7 +122,7 @@ function WritingIndex() {
             <Reveal delay={0.08}>
               <div className="flex h-full flex-col justify-center">
                 <p className="eyebrow text-muted-foreground">Featured · {featured.topic}</p>
-                <h2 className="mt-6 font-display text-4xl leading-[1.02] text-balance md:text-7xl">
+                <h2 className="mt-6 font-display text-4xl leading-[1.02] text-balance md:text-6xl">
                   {featured.title}
                 </h2>
                 <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">

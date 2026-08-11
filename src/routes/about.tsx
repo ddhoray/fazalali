@@ -210,7 +210,7 @@ function AboutPage() {
       <section className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8 sm:py-10">
         <Reveal>
           <p className="eyebrow text-muted-foreground">Professional background</p>
-          <h2 className="mt-5 font-display text-4xl md:text-7xl">
+          <h2 className="mt-5 font-display text-4xl md:text-6xl">
             Institutional <em className="italic text-accent">work.</em>
           </h2>
         </Reveal>
