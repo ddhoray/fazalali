@@ -75,8 +75,8 @@ export function PageHero({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.05 }}
             className={cn(
-              "mt-5 font-display leading-[0.95] text-balance text-5xl sm:text-6xl",
-              image ? "md:text-7xl lg:text-[5.5rem]" : "md:text-[7rem] lg:text-[8.5rem]",
+              "mt-5 font-display leading-[1.02] text-balance text-[2.5rem] sm:text-5xl",
+              image ? "md:text-6xl lg:text-[4.25rem]" : "md:text-[4rem] lg:text-[5rem]",
             )}
           >
             {title}

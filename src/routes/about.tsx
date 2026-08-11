@@ -93,40 +93,33 @@ function AboutPage() {
         }
       />
 
-      {/* Lead statement, readable, editorial scale */}
-      <section className="mx-auto max-w-[980px] px-5 pt-10 pb-6 sm:px-8 sm:pt-16 sm:pb-10">
+      {/* Portrait + profile details */}
+      <section className="mx-auto max-w-[1180px] px-5 py-12 sm:px-8 sm:py-16">
         <Reveal>
-          <h2 className="font-display text-2xl leading-tight text-foreground md:text-4xl lg:text-[2.5rem]">
-            A prophet provocateur, schooled in freedom.
-          </h2>
-          <p className="mt-5 text-lg leading-relaxed text-foreground/85 md:text-xl lg:text-[1.35rem] lg:leading-[1.55]">
+          <p className="max-w-[62ch] text-lg leading-relaxed text-foreground/85 md:text-xl">
             Fazal Ali disrupts the status quo to reveal uncomfortable truths. Work
             that unsettles, and forces Latin America and the Caribbean to confront
             its inheritance of inherited inequality and intergenerational immobility.
           </p>
         </Reveal>
-      </section>
 
-      {/* Portrait + profile details */}
-      <section className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8 sm:py-16">
-        <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1fr)] lg:gap-16">
+        <div className="mt-12 grid items-start gap-10 md:grid-cols-[minmax(0,340px)_minmax(0,1fr)] md:gap-14 lg:grid-cols-[minmax(0,400px)_minmax(0,1fr)]">
           <Reveal>
-            <figure className="relative lg:sticky lg:top-24">
-              <div className="absolute -inset-3 border hairline" />
+            <figure className="relative md:sticky md:top-28">
               <img
                 src={fazalPortrait}
                 alt="Dr. Fazal Ibrahim Ali"
-                className="relative aspect-[4/5] w-full object-cover"
+                className="aspect-[4/5] w-full border hairline object-cover"
                 loading="lazy"
               />
             </figure>
           </Reveal>
 
-          <div className="space-y-0 lg:pt-6">
+          <div className="min-w-0">
             <Reveal delay={0.08}>
-              <div className="border-t hairline py-8 lg:py-10">
-                <p className="eyebrow text-muted-foreground mb-4">About</p>
-                <p className="text-xl leading-relaxed text-foreground/85 md:text-[22px] md:leading-[1.5]">
+              <div className="border-t hairline py-7">
+                <p className="eyebrow text-muted-foreground mb-3">About</p>
+                <p className="max-w-[58ch] text-base leading-[1.65] text-foreground/85 md:text-[17px]">
                   A thinker, consultant, academic and technical expert exploring
                   how AI is shaping the future of innovation, through the lens of{" "}
                   <em>development as freedom,</em> drawing upon Amartya Sen's{" "}
@@ -137,9 +130,9 @@ function AboutPage() {
             </Reveal>
 
             <Reveal delay={0.12}>
-              <div className="border-t hairline py-8 lg:py-10">
-                <p className="eyebrow text-muted-foreground mb-4">Background</p>
-                <p className="text-base leading-relaxed text-muted-foreground md:text-[17px] md:leading-[1.6]">
+              <div className="border-t hairline py-7">
+                <p className="eyebrow text-muted-foreground mb-3">Background</p>
+                <p className="max-w-[58ch] text-base leading-[1.65] text-muted-foreground md:text-[17px]">
                   A Commonwealth Scholarship winner who read for his doctorate at
                   the University of Cambridge as a PhD candidate. Nobel laureate
                   Amartya Sen, Sir Leszek Borysiewicz, C. W. R. D. Moseley and
@@ -149,9 +142,9 @@ function AboutPage() {
             </Reveal>
 
             <Reveal delay={0.16}>
-              <div className="border-t hairline py-8 lg:py-10">
-                <p className="eyebrow text-muted-foreground mb-4">Contact</p>
-                <p className="text-base leading-relaxed text-muted-foreground md:text-[17px] md:leading-[1.6]">
+              <div className="border-y hairline py-7">
+                <p className="eyebrow text-muted-foreground mb-3">Contact</p>
+                <p className="max-w-[58ch] text-base leading-[1.65] text-muted-foreground md:text-[17px]">
                   He can be reached at{" "}
                   <a
                     href="mailto:fazalalitsc@gmail.com"
@@ -166,6 +159,7 @@ function AboutPage() {
           </div>
         </div>
       </section>
+
 
       {/* Concerns, what his work explores */}
       <section data-nav="dark" className="section-invert">
