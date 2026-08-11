@@ -560,137 +560,144 @@ const streams = [
 function Range() {
   const navigate = useNavigate();
   const [active, setActive] = useState(0);
-  const current = streams[active];
 
   return (
     <section
       data-nav="dark"
-      className="section-invert relative flex min-h-[100svh] flex-col justify-center overflow-hidden px-5 py-14 sm:px-8 md:py-16"
+      className="section-invert relative flex min-h-[100svh] flex-col justify-center overflow-hidden px-5 py-16 sm:px-8 md:px-12 md:py-20"
     >
-      <div className="relative mx-auto w-full max-w-[1500px]">
-        <div className="flex flex-wrap items-end justify-between gap-4 border-b hairline pb-4">
-          <div>
+      <div className="relative mx-auto flex w-full max-w-[1600px] flex-1 flex-col">
+        {/* header */}
+        <div className="grid gap-6 border-b hairline pb-8 md:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] md:items-end md:gap-16">
+          <div className="min-w-0">
             <BlurReveal as="p" className="eyebrow text-muted-foreground">
               Omeros — the house, not a project inside it
             </BlurReveal>
             <BlurReveal
               as="h2"
               delay={0.08}
-              className="mt-2 font-display text-[10vw] leading-[1] sm:text-4xl md:text-6xl"
+              className="mt-4 font-display text-[13vw] leading-[0.95] sm:text-6xl md:text-7xl"
             >
-              One practice, <em className="italic text-accent">three streams.</em>
+              One practice,{" "}
+              <em className="italic text-accent">three streams.</em>
             </BlurReveal>
           </div>
-          <BlurReveal delay={0.16} className="eyebrow text-muted-foreground">
-            Selected · 2024 — 2026
+          <BlurReveal
+            delay={0.14}
+            className="text-base leading-relaxed text-muted-foreground md:pb-2"
+          >
+            One body of work under a single name — research, publishing, and the
+            conversation around both.
           </BlurReveal>
         </div>
 
-        <div className="mt-6 grid gap-8 md:mt-8 md:grid-cols-[1fr_minmax(300px,40%)] md:items-stretch md:gap-14">
-          {/* rows */}
-          <div className="flex flex-col justify-center border-t hairline">
-            {streams.map((s, i) => {
-              const isActive = i === active;
-              return (
-                <div
-                  key={s.n}
-                  onMouseEnter={() => setActive(i)}
-                  onFocus={() => setActive(i)}
-                  className="border-b hairline"
-                >
-                  <button
-                    type="button"
-                    onClick={() => navigate({ to: s.to })}
-                    className="group flex w-full items-baseline gap-4 py-4 text-left md:py-5"
-                  >
-                    <span className="eyebrow shrink-0 text-muted-foreground">
-                      {s.n}
-                    </span>
-                    <span className="min-w-0 flex-1">
-                      <motion.span
-                        animate={{ x: isActive ? 10 : 0 }}
-                        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                        className="flex items-baseline gap-3 font-display text-[8vw] leading-[0.95] sm:text-4xl md:text-[3.1rem]"
-                      >
-                        {s.title}
-                        <span className="italic text-accent">.</span>
-                        <span className="eyebrow hidden text-muted-foreground md:inline">
-                          {s.kicker}
-                        </span>
-                      </motion.span>
-
-                      <motion.span
-                        initial={false}
-                        animate={{
-                          height: isActive ? "auto" : 0,
-                          opacity: isActive ? 1 : 0,
-                        }}
-                        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                        className="block overflow-hidden"
-                      >
-                        <span className="block pl-2 pt-3">
-                          <span className="block max-w-md text-sm leading-relaxed text-muted-foreground">
-                            {s.body}
-                          </span>
-                          <span className="mt-3 inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em]">
-                            {s.cta}
-                            <ArrowUpRight className="size-4 transition-transform duration-500 group-hover:-translate-y-1 group-hover:translate-x-1" />
-                          </span>
-                        </span>
-                      </motion.span>
-                    </span>
-
-                    {/* mobile thumb */}
-                    <span className="w-20 shrink-0 overflow-hidden md:hidden">
-                      <img
-                        src={s.image}
-                        alt={s.kicker}
-                        loading="lazy"
-                        className="aspect-[4/3] w-full object-cover grayscale"
-                      />
-                    </span>
-                  </button>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* visual */}
-          <div className="hidden md:flex md:flex-col">
-            <div className="relative min-h-[360px] flex-1 w-full overflow-hidden border hairline">
-              {streams.map((s, i) => (
+        {/* expanding panels — desktop */}
+        <div className="mt-10 hidden flex-1 gap-3 md:flex md:min-h-[26rem]">
+          {streams.map((s, i) => {
+            const isActive = i === active;
+            return (
+              <motion.button
+                key={s.n}
+                type="button"
+                onMouseEnter={() => setActive(i)}
+                onFocus={() => setActive(i)}
+                onClick={() => navigate({ to: s.to })}
+                animate={{ flexGrow: isActive ? 2.6 : 1 }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                className="group relative flex-1 basis-0 overflow-hidden border hairline text-left"
+              >
                 <motion.img
-                  key={s.n}
                   src={s.image}
                   alt={s.kicker}
                   loading="lazy"
-                  initial={false}
                   animate={{
-                    opacity: i === active ? 1 : 0,
-                    scale: i === active ? 1 : 1.08,
+                    scale: isActive ? 1.02 : 1.12,
+                    opacity: isActive ? 1 : 0.5,
+                    filter: isActive ? "grayscale(0)" : "grayscale(1)",
                   }}
-                  transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                   className="absolute inset-0 size-full object-cover"
                 />
-              ))}
-              <motion.span
-                key={current.n}
-                initial={{ y: 14, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute bottom-0 left-0 bg-accent px-3 py-1.5 font-display text-xs text-white"
-              >
-                {current.n} — {current.kicker}
-              </motion.span>
-            </div>
-            <div className="mt-3 h-px w-full bg-white/20">
-              <motion.div
-                className="h-px bg-accent"
-                animate={{ width: `${((active + 1) / streams.length) * 100}%` }}
-                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/10" />
+
+                <div className="relative flex h-full flex-col justify-between p-6 lg:p-8">
+                  <div className="flex items-center justify-between">
+                    <span className="eyebrow text-white/70">{s.n}</span>
+                    <motion.span
+                      animate={{ opacity: isActive ? 1 : 0 }}
+                      transition={{ duration: 0.4 }}
+                      className="eyebrow text-white/70"
+                    >
+                      {s.kicker}
+                    </motion.span>
+                  </div>
+
+                  <div>
+                    <h3 className="font-display text-4xl leading-[1] text-white lg:text-5xl">
+                      {s.title}
+                      <span className="italic text-accent">.</span>
+                    </h3>
+
+                    <motion.div
+                      initial={false}
+                      animate={{
+                        height: isActive ? "auto" : 0,
+                        opacity: isActive ? 1 : 0,
+                      }}
+                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <p className="max-w-md pt-4 text-[0.95rem] leading-relaxed text-white/75">
+                        {s.body}
+                      </p>
+                      <span className="mt-6 inline-flex items-center gap-3 border-b border-white/40 pb-1 text-xs uppercase tracking-[0.22em] text-white">
+                        {s.cta}
+                        <ArrowUpRight className="size-4 transition-transform duration-500 group-hover:-translate-y-1 group-hover:translate-x-1" />
+                      </span>
+                    </motion.div>
+                  </div>
+                </div>
+              </motion.button>
+            );
+          })}
+        </div>
+
+        {/* stacked cards — mobile */}
+        <div className="mt-8 grid gap-4 md:hidden">
+          {streams.map((s) => (
+            <button
+              key={s.n}
+              type="button"
+              onClick={() => navigate({ to: s.to })}
+              className="group relative h-56 w-full overflow-hidden border hairline text-left"
+            >
+              <img
+                src={s.image}
+                alt={s.kicker}
+                loading="lazy"
+                className="absolute inset-0 size-full object-cover"
               />
-            </div>
-          </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/10" />
+              <div className="relative flex h-full flex-col justify-between p-5">
+                <span className="eyebrow text-white/70">
+                  {s.n} — {s.kicker}
+                </span>
+                <div>
+                  <h3 className="font-display text-3xl leading-[1] text-white">
+                    {s.title}
+                    <span className="italic text-accent">.</span>
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-white/75">
+                    {s.body}
+                  </p>
+                  <span className="mt-4 inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-white">
+                    {s.cta}
+                    <ArrowUpRight className="size-4" />
+                  </span>
+                </div>
+              </div>
+            </button>
+          ))}
         </div>
       </div>
     </section>
