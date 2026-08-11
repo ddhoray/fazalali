@@ -65,6 +65,7 @@ const forthcoming = [
 ];
 
 function BooksPage() {
+  const [active, setActive] = useState<number | null>(null);
   return (
     <div>
       <PageHero
