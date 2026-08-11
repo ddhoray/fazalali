@@ -93,14 +93,18 @@ function AboutPage() {
         }
       />
 
-      {/* Lead statement - full-width, breathable */}
-      <section className="mx-auto max-w-[1500px] px-5 pt-6 pb-2 sm:px-8 sm:pt-10 sm:pb-4">
+      {/* Lead statement - readable, editorial scale */}
+      <section className="mx-auto max-w-[1100px] px-5 pt-10 pb-6 sm:px-8 sm:pt-16 sm:pb-10">
         <Reveal>
-          <p className="font-display text-[clamp(2.25rem,6.2vw,5.5rem)] leading-[0.98] text-balance">
-            <em className="italic">Fazal Ali</em> is a prophet provocateur who disrupts the
-            status quo to reveal uncomfortable truths - work that unsettles,
-            and forces Latin America and the Caribbean to confront its
-            inheritance of inherited inequality and intergenerational immobility.
+          <p className="text-xl leading-relaxed text-foreground/90 md:text-2xl lg:text-[1.75rem] lg:leading-[1.5]">
+            <span className="font-display text-2xl leading-tight text-foreground md:text-4xl lg:text-[2.5rem]">
+              A prophet provocateur, schooled in freedom.
+            </span>
+            <span className="mx-2 text-muted-foreground">/</span>
+            Fazal Ali disrupts the status quo to reveal uncomfortable truths -
+            work that unsettles, and forces Latin America and the Caribbean to
+            confront its inheritance of inherited inequality and intergenerational
+            immobility.
           </p>
         </Reveal>
       </section>
