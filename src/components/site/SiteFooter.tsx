@@ -2,17 +2,17 @@ import { Link } from "@tanstack/react-router";
 import { JustifiedWordmark } from "./JustifiedWordmark";
 
 export function SiteFooter() {
-  return (
+ return (
     <footer className="relative overflow-hidden border-t hairline bg-background">
       <div className="mx-auto max-w-[1700px] px-5 pt-8 pb-6 sm:px-8">
         <div className="grid gap-6 md:grid-cols-12 md:gap-10">
           <div className="md:col-span-3">
             <p className="eyebrow text-muted-foreground">Correspondence</p>
             <a
-              href="mailto:writeme@fazalali.com"
-              className="mt-2 block text-[13px] hover:underline underline-offset-4"
+ href="mailto:writeme@fazalali.com"
+ className="mt-2 block text-[13px] hover:underline underline-offset-4"
             >
-              writeme@fazalali.com
+ writeme@fazalali.com
             </a>
             <p className="mt-1 text-[12px] text-muted-foreground">
               Trinidad &amp; Tobago, West Indies
@@ -35,10 +35,10 @@ export function SiteFooter() {
           <div className="md:col-span-2">
             <p className="eyebrow text-muted-foreground">Elsewhere</p>
             <a
-              href="https://www.instagram.com/thefazalali/"
-              target="_blank"
-              rel="noreferrer"
-              className="mt-2 block text-[13px] text-foreground/75 hover:text-foreground transition-colors"
+ href="https://www.instagram.com/thefazalali/"
+ target="_blank"
+ rel="noreferrer"
+ className="mt-2 block text-[13px] text-foreground/75 hover:text-foreground transition-colors"
             >
               Instagram, @thefazalali
             </a>
@@ -57,10 +57,10 @@ export function SiteFooter() {
           <p>
             Designed &amp; developed by{" "}
             <a
-              href="https://hyperevamp.com"
-              target="_blank"
-              rel="noreferrer"
-              className="text-foreground hover:underline underline-offset-4"
+ href="https://hyperevamp.com"
+ target="_blank"
+ rel="noreferrer"
+ className="text-foreground hover:underline underline-offset-4"
             >
               HyperRevamp
             </a>

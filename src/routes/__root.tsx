@@ -2,8 +2,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
   Link,
-  createRootRouteWithContext,
-  useRouter,
+ createRootRouteWithContext,
+ useRouter,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -24,7 +24,7 @@ import { ScrollToTop } from "../components/site/ScrollToTop";
 
 
 function NotFoundComponent() {
-  return (
+ return (
     <div className="flex min-h-screen items-center justify-center px-4">
       <div className="glass max-w-md rounded-none p-10 text-center">
         <p className="font-display text-7xl">404</p>
@@ -34,8 +34,8 @@ function NotFoundComponent() {
         </p>
         <div className="mt-6">
           <Link
-            to="/"
-            className="btn-cta btn-primary"
+ to="/"
+ className="btn-cta btn-primary"
           >
             Go home
           </Link>
@@ -46,13 +46,13 @@ function NotFoundComponent() {
 }
 
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
-  console.error(error);
-  const router = useRouter();
-  useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
+ console.error(error);
+ const router = useRouter();
+ useEffect(() => {
+ reportLovableError(error, { boundary: "tanstack_root_error_component" });
   }, [error]);
 
-  return (
+ return (
     <div className="flex min-h-screen items-center justify-center px-4">
       <div className="glass max-w-md rounded-none p-10 text-center">
         <h1 className="font-display text-2xl">This page didn't load</h1>
@@ -61,17 +61,17 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
-            onClick={() => {
-              router.invalidate();
-              reset();
+ onClick={() => {
+ router.invalidate();
+ reset();
             }}
-            className="btn-cta btn-primary"
+ className="btn-cta btn-primary"
           >
             Try again
           </button>
           <a
-            href="/"
-            className="btn-cta btn-on-light"
+ href="/"
+ className="btn-cta btn-on-light"
           >
             Go home
           </a>
@@ -82,14 +82,14 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: () => ({
-    meta: [
+ head: () => ({
+ meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Fazal Ali, Writer, Scholar, Omeros AI" },
       {
-        name: "description",
-        content:
+ name: "description",
+ content:
           "Dr. Fazal Ibrahim Ali, writing on critical theory in AI from the West Indies. Books, ideas, art, and the Omeros AI identity.",
       },
       { name: "author", content: "Fazal Ibrahim Ali" },
@@ -105,35 +105,35 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:title", content: "Fazal Ali, Writer, Scholar, Omeros AI" },
       { name: "twitter:description", content: "Writing on critical theory in AI from the West Indies. The Omeros AI brand identity." },
     ],
-    links: [
+ links: [
       { rel: "stylesheet", href: appCss },
       { rel: "icon", type: "image/png", href: "/favicon.png" },
       { rel: "apple-touch-icon", href: "/favicon.png" },
       { rel: "preconnect", href: "https://api.fontshare.com" },
       { rel: "preconnect", href: "https://cdn.fontshare.com", crossOrigin: "anonymous" },
       {
-        rel: "stylesheet",
-        href: "https://api.fontshare.com/v2/css?f%5B%5D=general-sans@200,300,400,500,600,700&display=swap",
+ rel: "stylesheet",
+ href: "https://api.fontshare.com/v2/css?f%5B%5D=general-sans@200,300,400,500,600,700&display=swap",
       },
     ],
-    scripts: [
+ scripts: [
       {
-        type: "application/ld+json",
-        children: JSON.stringify({
+ type: "application/ld+json",
+ children: JSON.stringify({
           "@context": "https://schema.org",
           "@graph": [
             {
               "@type": "Person",
               "@id": "https://omeros-cipher-glass.lovable.app/#person",
-              name: "Fazal Ibrahim Ali",
-              alternateName: "Dr. Fazal Ali",
-              jobTitle: "Writer, Scholar, Founder of Omeros AI",
-              nationality: "Trinidadian",
-              birthPlace: "Trinidad and Tobago",
-              alumniOf: { "@type": "CollegeOrUniversity", name: "University of Cambridge" },
-              url: "https://omeros-cipher-glass.lovable.app",
-              sameAs: ["https://fazalali.com"],
-              knowsAbout: [
+ name: "Fazal Ibrahim Ali",
+ alternateName: "Dr. Fazal Ali",
+ jobTitle: "Writer, Scholar, Founder of Omeros AI",
+ nationality: "Trinidadian",
+ birthPlace: "Trinidad and Tobago",
+ alumniOf: { "@type": "CollegeOrUniversity", name: "University of Cambridge" },
+ url: "https://omeros-cipher-glass.lovable.app",
+ sameAs: ["https://fazalali.com"],
+ knowsAbout: [
                 "Critical theory in artificial intelligence",
                 "Caribbean philosophy",
                 "Education",
@@ -143,31 +143,31 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
             {
               "@type": "WebSite",
               "@id": "https://omeros-cipher-glass.lovable.app/#website",
-              url: "https://omeros-cipher-glass.lovable.app",
-              name: "Fazal Ali",
-              description: "Writer, scholar, and founder of Omeros AI.",
-              publisher: { "@id": "https://omeros-cipher-glass.lovable.app/#person" },
-              inLanguage: "en",
+ url: "https://omeros-cipher-glass.lovable.app",
+ name: "Fazal Ali",
+ description: "Writer, scholar, and founder of Omeros AI.",
+ publisher: { "@id": "https://omeros-cipher-glass.lovable.app/#person" },
+ inLanguage: "en",
             },
           ],
         }),
       },
     ],
   }),
-  shellComponent: RootShell,
-  component: RootComponent,
-  notFoundComponent: NotFoundComponent,
-  errorComponent: ErrorComponent,
+ shellComponent: RootShell,
+ component: RootComponent,
+ notFoundComponent: NotFoundComponent,
+ errorComponent: ErrorComponent,
 });
 
 function RootShell({ children }: { children: ReactNode }) {
-  return (
+ return (
     <html lang="en">
       <head>
         <HeadContent />
         <script
           // No-flash theme init, default LIGHT, only opt-in to dark.
-          dangerouslySetInnerHTML={{
+ dangerouslySetInnerHTML={{
             __html: `(function(){try{var t=localStorage.getItem('theme');document.documentElement.classList.toggle('dark',t==='dark');}catch(e){}})();`,
           }}
         />
@@ -181,9 +181,9 @@ function RootShell({ children }: { children: ReactNode }) {
 }
 
 function RootComponent() {
-  const { queryClient } = Route.useRouteContext();
+ const { queryClient } = Route.useRouteContext();
 
-  return (
+ return (
     <QueryClientProvider client={queryClient}>
       <SplashScreen />
       <SmoothScroll />

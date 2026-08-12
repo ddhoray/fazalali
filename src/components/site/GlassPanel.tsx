@@ -2,8 +2,8 @@ import { forwardRef, type HTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
-  bordered?: boolean;
-  strong?: boolean;
+ bordered?: boolean;
+ strong?: boolean;
 }
 
 /**
@@ -11,13 +11,13 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
  */
 export const GlassPanel = forwardRef<HTMLDivElement, Props>(
   ({ className, bordered = true, strong: _strong, ...rest }, ref) => {
-    return (
+ return (
       <div
-        ref={ref}
-        className={cn(
+ ref={ref}
+ className={cn(
           "bg-card",
-          bordered && "border hairline",
-          className,
+ bordered && "border hairline",
+ className,
         )}
         {...rest}
       />

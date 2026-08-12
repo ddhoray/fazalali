@@ -7,47 +7,47 @@ import { ArrowUpRight } from "lucide-react";
 import heroInequality from "@/assets/hero-inequality.jpg";
 
 export const Route = createFileRoute("/inequality")({
-  head: () => ({
-    meta: [
+ head: () => ({
+ meta: [
       { title: "Inequality, Education for Liberty | Fazal Ali" },
       {
-        name: "description",
-        content:
+ name: "description",
+ content:
           "The capability gap, the inherited geometry of the colonial economy, and what the West Indian classroom owes the child who arrived hungry.",
       },
       { property: "og:title", content: "Inequality, Education for Liberty" },
       {
-        property: "og:description",
-        content: "A capability reading of inequality from a West Indian classroom.",
+ property: "og:description",
+ content: "A capability reading of inequality from a West Indian classroom.",
       },
       { property: "og:type", content: "article" },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/inequality" },
     ],
-    links: [
+ links: [
       { rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/inequality" },
     ],
-    scripts: [
+ scripts: [
       {
-        type: "application/ld+json",
-        children: JSON.stringify({
+ type: "application/ld+json",
+ children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Article",
-          headline: "Inequality, Education for Liberty",
-          description:
+ headline: "Inequality, Education for Liberty",
+ description:
             "The capability gap, the inherited geometry of the colonial economy, and what the West Indian classroom owes the child who arrived hungry.",
-          datePublished: "2026-01-15",
-          author: {
+ datePublished: "2026-01-15",
+ author: {
             "@type": "Person",
-            name: "Fazal Ibrahim Ali",
-            url: "https://omeros-cipher-glass.lovable.app/about",
+ name: "Fazal Ibrahim Ali",
+ url: "https://omeros-cipher-glass.lovable.app/about",
           },
-          publisher: { "@type": "Person", name: "Fazal Ibrahim Ali" },
-          mainEntityOfPage: "https://omeros-cipher-glass.lovable.app/inequality",
+ publisher: { "@type": "Person", name: "Fazal Ibrahim Ali" },
+ mainEntityOfPage: "https://omeros-cipher-glass.lovable.app/inequality",
         }),
       },
     ],
   }),
-  component: InequalityPage,
+ component: InequalityPage,
 });
 
 const TRACK = /inherited inequalit|intergenerational immobilit|intergenerational inequalit/i;
@@ -57,13 +57,13 @@ const tracked = articles
   .slice(0, 8);
 
 function InequalityPage() {
-  return (
+ return (
     <div>
       <PageHero
-        eyebrow={inequality.eyebrow}
-        title={<>{inequality.title.replace(/\.$/, "")}<em className="italic">.</em></>}
-        standfirst={inequality.standfirst}
-        meta={
+ eyebrow={inequality.eyebrow}
+ title={<>{inequality.title.replace(/\.$/, "")}<em className="">.</em></>}
+ standfirst={inequality.standfirst}
+ meta={
           <>
             <span>Journal</span>
             <span className="size-1 bg-white/40" />
@@ -72,8 +72,8 @@ function InequalityPage() {
             <span>After Sen</span>
           </>
         }
-        image={heroInequality}
-        imageAlt="High-contrast Caribbean colonial stairwell"
+ image={heroInequality}
+ imageAlt="High-contrast Caribbean colonial stairwell"
       />
 
       <article className="mx-auto max-w-[820px] px-5 py-12 sm:px-8 sm:py-10">
@@ -110,9 +110,9 @@ function InequalityPage() {
             {tracked.map((a) => (
               <li key={a.slug} className="border-b hairline">
                 <Link
-                  to="/writing/$slug"
-                  params={{ slug: a.slug }}
-                  className="group grid gap-2 py-6 md:grid-cols-[1fr_auto] md:items-baseline md:gap-8"
+ to="/writing/$slug"
+ params={{ slug: a.slug }}
+ className="group grid gap-2 py-6 md:grid-cols-[1fr_auto] md:items-baseline md:gap-8"
                 >
                   <div className="min-w-0">
                     <h3 className="font-display text-xl leading-snug md:text-2xl">
@@ -132,8 +132,8 @@ function InequalityPage() {
           </ul>
 
           <Link
-            to="/writing"
-            className="mt-8 inline-flex items-center gap-2 border-b border-foreground pb-1 text-sm uppercase tracking-[0.2em]"
+ to="/writing"
+ className="mt-8 inline-flex items-center gap-2 border-b border-foreground pb-1 text-sm uppercase tracking-[0.2em]"
           >
             All entries <ArrowUpRight className="size-4" />
           </Link>

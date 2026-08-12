@@ -9,55 +9,55 @@ import { assetUrl } from "@/lib/asset-url";
 const heroBook = assetUrl(bookCoverAsset);
 
 export const Route = createFileRoute("/education-for-liberty")({
-  head: () => ({
-    meta: [
+ head: () => ({
+ meta: [
       { title: "Education for Liberty, Fazal Ali" },
       {
-        name: "description",
-        content:
+ name: "description",
+ content:
           "Fazal Ali's monograph after Sen and Rawls, read a flippable preview, download the PDF, or buy on Amazon.",
       },
       { property: "og:title", content: "Education for Liberty, Fazal Ali" },
       {
-        property: "og:description",
-        content:
+ property: "og:description",
+ content:
           "Building on Amartya Sen and John Rawls, education as the substrate of freedom. Flip through a preview or download the PDF.",
       },
       { property: "og:type", content: "book" },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/education-for-liberty" },
     ],
-    links: [
+ links: [
       { rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/education-for-liberty" },
     ],
-    scripts: [
+ scripts: [
       {
-        type: "application/ld+json",
-        children: JSON.stringify({
+ type: "application/ld+json",
+ children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Book",
-          name: "Education for Liberty",
-          author: {
+ name: "Education for Liberty",
+ author: {
             "@type": "Person",
-            name: "Fazal Ibrahim Ali",
-            url: "https://omeros-cipher-glass.lovable.app/about",
+ name: "Fazal Ibrahim Ali",
+ url: "https://omeros-cipher-glass.lovable.app/about",
           },
-          inLanguage: "en",
-          bookFormat: "https://schema.org/EBook",
-          url: "https://omeros-cipher-glass.lovable.app/education-for-liberty",
-          workExample: {
+ inLanguage: "en",
+ bookFormat: "https://schema.org/EBook",
+ url: "https://omeros-cipher-glass.lovable.app/education-for-liberty",
+ workExample: {
             "@type": "Book",
-            isbn: "",
-            bookFormat: "https://schema.org/EBook",
-            potentialAction: {
+ isbn: "",
+ bookFormat: "https://schema.org/EBook",
+ potentialAction: {
               "@type": "ReadAction",
-              target: "https://www.amazon.com/Education-Liberty-future-open-suggestions-ebook/dp/B072KJSQ6P/",
+ target: "https://www.amazon.com/Education-Liberty-future-open-suggestions-ebook/dp/B072KJSQ6P/",
             },
           },
         }),
       },
     ],
   }),
-  component: BookPage,
+ component: BookPage,
 });
 
 const PDF_URL =
@@ -74,18 +74,18 @@ const chapters = [
 ];
 
 function BookPage() {
-  return (
+ return (
     <div>
       <PageHero
-        eyebrow="The Book"
-        title={<>Education <em className="italic">for</em> Liberty</>}
-        standfirst={
+ eyebrow="The Book"
+ title={<>Education <em className="">for</em> Liberty</>}
+ standfirst={
           <>
             A persuasive work built on Amartya Sen's <em>Development as Freedom</em> and
             John Rawls' <em>A Theory of Justice</em>. After Sen. After Rawls. From Trinidad.
           </>
         }
-        meta={
+ meta={
           <>
             <span>142 pages</span>
             <span className="size-1 bg-white/40" />
@@ -94,9 +94,9 @@ function BookPage() {
             <span>Available on Amazon</span>
           </>
         }
-        image={heroBook}
-        imageAlt="Education for Liberty, monograph cover by Fazal Ibrahim Ali"
-        imageFit="contain"
+ image={heroBook}
+ imageAlt="Education for Liberty, monograph cover by Fazal Ibrahim Ali"
+ imageFit="contain"
       />
 
       {/* Flippable book preview */}
@@ -107,24 +107,24 @@ function BookPage() {
               <div>
                 <p className="eyebrow text-white/55">Preview</p>
                 <p className="mt-2 font-display text-3xl leading-none md:text-4xl">
-                  Flip <em className="italic">through</em> the book.
+                  Flip <em className="">through</em> the book.
                 </p>
               </div>
               <div className="flex flex-wrap gap-2">
                 <a
-                  href={PDF_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  download
-                  className="btn-cta btn-on-blue"
+ href={PDF_URL}
+ target="_blank"
+ rel="noreferrer"
+ download
+ className="btn-cta btn-on-blue"
                 >
                   <Download className="size-4" /> Download PDF
                 </a>
                 <a
-                  href={AMAZON_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="btn-cta btn-on-blue"
+ href={AMAZON_URL}
+ target="_blank"
+ rel="noreferrer"
+ className="btn-cta btn-on-blue"
                 >
                   <ShoppingCart className="size-4" /> Buy on Amazon
                 </a>
@@ -152,7 +152,7 @@ function BookPage() {
         <Reveal>
           <p className="eyebrow text-muted-foreground">Inside the book</p>
           <h2 className="mt-5 font-display text-4xl md:text-6xl">
-            Ideas &amp; <em className="italic text-accent">themes.</em>
+            Ideas &amp; <em className="text-accent">themes.</em>
           </h2>
         </Reveal>
         <div className="mt-16 border-t hairline">

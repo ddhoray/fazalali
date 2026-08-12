@@ -6,57 +6,57 @@ import { ArrowUpRight } from "lucide-react";
 import heroEcology from "@/assets/hero-ecology.jpg";
 
 export const Route = createFileRoute("/ecology")({
-  head: () => ({
-    meta: [
+ head: () => ({
+ meta: [
       { title: "Ecology, Education for Liberty | Fazal Ali" },
       {
-        name: "description",
-        content:
+ name: "description",
+ content:
           "A short note, not a body of work. Where the ethics of artificial intelligence were borrowed from ecological conservation.",
       },
       { property: "og:title", content: "Ecology, Education for Liberty" },
       {
-        property: "og:description",
-        content: "Precaution, stewardship, irreversibility: AI ethics borrowed from conservation.",
+ property: "og:description",
+ content: "Precaution, stewardship, irreversibility: AI ethics borrowed from conservation.",
       },
       { property: "og:type", content: "article" },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/ecology" },
     ],
-    links: [
+ links: [
       { rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/ecology" },
     ],
-    scripts: [
+ scripts: [
       {
-        type: "application/ld+json",
-        children: JSON.stringify({
+ type: "application/ld+json",
+ children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Article",
-          headline: "Ecology, Education for Liberty",
-          description:
+ headline: "Ecology, Education for Liberty",
+ description:
             "A short note, not a body of work. Where the ethics of artificial intelligence were borrowed from ecological conservation.",
-          datePublished: "2026-01-15",
-          author: {
+ datePublished: "2026-01-15",
+ author: {
             "@type": "Person",
-            name: "Fazal Ibrahim Ali",
-            url: "https://omeros-cipher-glass.lovable.app/about",
+ name: "Fazal Ibrahim Ali",
+ url: "https://omeros-cipher-glass.lovable.app/about",
           },
-          publisher: { "@type": "Person", name: "Fazal Ibrahim Ali" },
-          mainEntityOfPage: "https://omeros-cipher-glass.lovable.app/ecology",
+ publisher: { "@type": "Person", name: "Fazal Ibrahim Ali" },
+ mainEntityOfPage: "https://omeros-cipher-glass.lovable.app/ecology",
         }),
       },
     ],
   }),
-  component: EcologyPage,
+ component: EcologyPage,
 });
 
 function EcologyPage() {
-  return (
+ return (
     <div>
       <PageHero
-        eyebrow={ecology.eyebrow}
-        title={<>{ecology.title.replace(/\.$/, "")}<em className="italic">.</em></>}
-        standfirst={ecology.standfirst}
-        meta={
+ eyebrow={ecology.eyebrow}
+ title={<>{ecology.title.replace(/\.$/, "")}<em className="">.</em></>}
+ standfirst={ecology.standfirst}
+ meta={
           <>
             <span>Note</span>
             <span className="size-1 bg-foreground/30" />
@@ -65,8 +65,8 @@ function EcologyPage() {
             <span>From the West Indies</span>
           </>
         }
-        image={heroEcology}
-        imageAlt="Sunlight through a Caribbean forest canopy"
+ image={heroEcology}
+ imageAlt="Sunlight through a Caribbean forest canopy"
       />
 
       <article className="mx-auto max-w-[820px] px-5 py-12 sm:px-8 sm:py-10">

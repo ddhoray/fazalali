@@ -6,27 +6,27 @@ import { openContactDrawer } from "@/components/site/ContactDrawer";
 import fazalPortrait from "@/assets/fazal-portrait.jpg";
 
 export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
+ head: () => ({
+ meta: [
       { title: "Profile, Fazal Ibrahim Ali" },
       {
-        name: "description",
-        content:
+ name: "description",
+ content:
           "Dr. Fazal Ibrahim Ali, Cambridge Commonwealth Scholar, former Provost of UTT, and writer on critical theory in AI from the West Indies.",
       },
       { property: "og:title", content: "Profile, Fazal Ibrahim Ali" },
       {
-        property: "og:description",
-        content:
+ property: "og:description",
+ content:
           "Cambridge Commonwealth Scholar, scholar of Amartya Sen and John Rawls, writer on AI from the West Indies.",
       },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/about" },
     ],
-    links: [
+ links: [
       { rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/about" },
     ],
   }),
-  component: AboutPage,
+ component: AboutPage,
 });
 
 const concerns = [
@@ -67,23 +67,23 @@ const roles = [
 
 
 function AboutPage() {
-  return (
+ return (
     <div>
       <PageHero
-        eyebrow="Profile"
-        title={
+ eyebrow="Profile"
+ title={
           <>
-            A prophet provocateur, schooled in <em className="italic text-accent">freedom.</em>
+            A prophet provocateur, schooled in <em className="text-accent">freedom.</em>
           </>
         }
-        standfirst={
+ standfirst={
           <>
             Dr. Fazal Ibrahim Ali, Cambridge Commonwealth Scholar, former
             Provost of the University of Trinidad and Tobago, President of
             NIHERST, and the author of <em>Education for Liberty.</em>
           </>
         }
-        meta={
+ meta={
           <>
             <span>Trinidad &amp; Tobago</span>
             <span className="size-1 bg-white/40" />
@@ -101,10 +101,10 @@ function AboutPage() {
           <Reveal>
             <figure className="lg:sticky lg:top-28">
               <img
-                src={fazalPortrait}
-                alt="Dr. Fazal Ibrahim Ali"
-                className="aspect-[4/5] w-full border hairline object-cover"
-                loading="lazy"
+ src={fazalPortrait}
+ alt="Dr. Fazal Ibrahim Ali"
+ className="aspect-[4/5] w-full border hairline object-cover"
+ loading="lazy"
               />
               <figcaption className="mt-4 eyebrow text-muted-foreground">
                 Dr. Fazal Ibrahim Ali
@@ -118,8 +118,8 @@ function AboutPage() {
               <p className="max-w-[62ch] text-xl leading-[1.5] text-foreground md:text-[26px] md:leading-[1.42]">
                 Fazal Ali disrupts the status quo to reveal uncomfortable truths.
                 Work that unsettles, and forces Latin America and the Caribbean to
-                confront its inheritance of inherited inequality and
-                intergenerational immobility.
+ confront its inheritance of inherited inequality and
+ intergenerational immobility.
               </p>
             </Reveal>
 
@@ -129,7 +129,7 @@ function AboutPage() {
                   <p className="eyebrow text-muted-foreground xl:pt-1">About</p>
                   <p className="max-w-[60ch] text-base leading-[1.7] text-foreground/85 md:text-[17px]">
                     A thinker, consultant, academic and technical expert exploring
-                    how AI is shaping the future of innovation, through the lens of{" "}
+ how AI is shaping the future of innovation, through the lens of{" "}
                     <em>development as freedom,</em> drawing upon Amartya Sen's{" "}
                     <em>Development as Freedom</em> and John Rawls'{" "}
                     <em>A Theory of Justice.</em>
@@ -142,7 +142,7 @@ function AboutPage() {
                   <p className="eyebrow text-muted-foreground xl:pt-1">Background</p>
                   <p className="max-w-[60ch] text-base leading-[1.7] text-muted-foreground md:text-[17px]">
                     A Commonwealth Scholarship winner who read for his doctorate at
-                    the University of Cambridge as a PhD candidate. Nobel laureate
+ the University of Cambridge as a PhD candidate. Nobel laureate
                     Amartya Sen, Sir Leszek Borysiewicz, C. W. R. D. Moseley and
                     Lord Martin Rees shaped his thinking.
                   </p>
@@ -155,10 +155,10 @@ function AboutPage() {
                   <p className="max-w-[60ch] text-base leading-[1.7] text-muted-foreground md:text-[17px]">
                     He can be reached at{" "}
                     <a
-                      href="mailto:fazalalitsc@gmail.com"
-                      className="underline underline-offset-4 decoration-accent-cool hover:text-accent-cool transition-colors"
+ href="mailto:fazalalitsc@gmail.com"
+ className="underline underline-offset-4 decoration-accent-cool hover:text-accent-cool transition-colors"
                     >
-                      fazalalitsc@gmail.com
+ fazalalitsc@gmail.com
                     </a>
                     .
                   </p>
@@ -178,19 +178,19 @@ function AboutPage() {
             <p className="eyebrow text-white/55">What the work explores</p>
             <h2 className="mt-5 font-display text-4xl md:text-6xl">
               Screen economies, the Law of AI, and policy intent -{" "}
-              <em className="italic text-white/70">through the lens of freedom.</em>
+              <em className="text-white/70">through the lens of freedom.</em>
             </h2>
             <p className="mt-6 max-w-3xl text-base leading-relaxed text-white/65 md:text-lg">
               A working index of the concerns that move across his essays and
-              consultancies.
+ consultancies.
             </p>
           </Reveal>
           <Reveal delay={0.08}>
             <ul className="mt-12 flex flex-wrap gap-2.5">
               {concerns.map((c) => (
                 <li
-                  key={c}
-                  className="border border-white/20 px-4 py-2 text-sm text-white/85"
+ key={c}
+ className="border border-white/20 px-4 py-2 text-sm text-white/85"
                 >
                   {c}
                 </li>
@@ -205,9 +205,9 @@ function AboutPage() {
         <Reveal>
           <p className="font-display text-3xl leading-[1.15] text-balance md:text-6xl">
             <em className="text-muted-foreground">"</em>Standing on the shoulders
-            of Amartya Sen's Development as Freedom and John Rawls' A Theory of
+ of Amartya Sen's Development as Freedom and John Rawls' A Theory of
             Justice, Omeros AI builds a body of work that adds to the critical
-            theory on AI, written from the West Indies.<em className="text-muted-foreground">"</em>
+ theory on AI, written from the West Indies.<em className="text-muted-foreground">"</em>
           </p>
           <p className="mt-10 eyebrow text-muted-foreground">Fazal Ali · Omeros AI</p>
         </Reveal>
@@ -219,7 +219,7 @@ function AboutPage() {
         <Reveal>
           <p className="eyebrow text-muted-foreground">Professional background</p>
           <h2 className="mt-5 font-display text-4xl md:text-6xl">
-            Institutional <em className="italic text-accent">work.</em>
+            Institutional <em className="text-accent">work.</em>
           </h2>
         </Reveal>
         <div className="mt-16 border-t hairline">
@@ -242,15 +242,15 @@ function AboutPage() {
             </p>
             <div className="flex flex-wrap items-center gap-4">
               <button
-                type="button"
-                onClick={() => openContactDrawer()}
-                className="btn-cta btn-primary"
+ type="button"
+ onClick={() => openContactDrawer()}
+ className="btn-cta btn-primary"
               >
                 Write to him <ArrowUpRight className="size-4" />
               </button>
               <Link
-                to="/writing"
-                className="btn-cta btn-on-light"
+ to="/writing"
+ className="btn-cta btn-on-light"
               >
                 Read the journal
               </Link>

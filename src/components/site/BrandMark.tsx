@@ -5,19 +5,19 @@ import { Link } from "@tanstack/react-router";
  * surrounding text color (white on dark hero, black on light sections).
  */
 export function BrandMark({ className = "" }: { className?: string }) {
-  return (
+ return (
     <Link
-      to="/"
-      aria-label="Fazal Ali, Home"
-      className={`inline-flex items-center gap-3 ${className}`}
+ to="/"
+ aria-label="Fazal Ali, Home"
+ className={`inline-flex items-center gap-3 ${className}`}
     >
       <svg
-        viewBox="0 0 64 48"
-        className="h-7 w-auto"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.25"
-        aria-hidden
+ viewBox="0 0 64 48"
+ className="h-7 w-auto"
+ fill="none"
+ stroke="currentColor"
+ strokeWidth="1.25"
+ aria-hidden
       >
         {/* F */}
         <path d="M6 42 V8 H26" />
@@ -29,7 +29,7 @@ export function BrandMark({ className = "" }: { className?: string }) {
         <path d="M6 46 H58" opacity="0.4" />
       </svg>
       <span className="font-display text-[15px] tracking-[0.02em]">
-        Fazal<span className="italic"> Ali</span>
+        Fazal<span className=""> Ali</span>
       </span>
     </Link>
   );

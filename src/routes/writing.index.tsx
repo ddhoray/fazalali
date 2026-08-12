@@ -6,17 +6,17 @@ import { ArrowUpRight } from "lucide-react";
 import heroBook from "@/assets/hero-writing.jpg";
 
 export const Route = createFileRoute("/writing/")({
-  head: () => ({
-    meta: [
+ head: () => ({
+ meta: [
       { title: "Journal, Essays on AI, Education & the West Indies by Fazal Ali" },
       {
-        name: "description",
-        content:
+ name: "description",
+ content:
           "The journal of Fazal Ali, 140+ essays on critical theory in AI, education, ecology, inequality, decolonial thought, and the West Indian future.",
       },
       {
-        name: "keywords",
-        content:
+ name: "keywords",
+ content:
           "Fazal Ali journal, critical theory AI, Caribbean AI, West Indies philosophy, decolonial AI, Omeros AI essays, Trinidad writing, AI ethics essays, education philosophy, algorithmic justice, Global South AI",
       },
       { property: "og:title", content: "Journal, Fazal Ali" },
@@ -27,69 +27,69 @@ export const Route = createFileRoute("/writing/")({
       { name: "twitter:title", content: "Journal, Fazal Ali" },
       { name: "twitter:description", content: "140+ essays on critical theory in AI, education, and Caribbean futures." },
     ],
-    links: [
+ links: [
       { rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/writing" },
     ],
-    scripts: [
+ scripts: [
       {
-        type: "application/ld+json",
-        children: JSON.stringify({
+ type: "application/ld+json",
+ children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Blog",
-          name: "The Fazal Ali Journal",
-          description: "Essays on critical theory in AI, education, and the West Indies.",
-          url: "https://omeros-cipher-glass.lovable.app/writing",
-          author: {
+ name: "The Fazal Ali Journal",
+ description: "Essays on critical theory in AI, education, and the West Indies.",
+ url: "https://omeros-cipher-glass.lovable.app/writing",
+ author: {
             "@type": "Person",
-            name: "Fazal Ibrahim Ali",
-            url: "https://omeros-cipher-glass.lovable.app/about",
+ name: "Fazal Ibrahim Ali",
+ url: "https://omeros-cipher-glass.lovable.app/about",
           },
-          inLanguage: "en",
-          blogPost: articles.slice(0, 20).map((a) => ({
+ inLanguage: "en",
+ blogPost: articles.slice(0, 20).map((a) => ({
             "@type": "BlogPosting",
-            headline: a.title,
-            url: `https://omeros-cipher-glass.lovable.app/writing/${a.slug}`,
-            datePublished: a.date,
-            image: a.image,
-            keywords: (a.tags ?? []).join(", "),
+ headline: a.title,
+ url: `https://omeros-cipher-glass.lovable.app/writing/${a.slug}`,
+ datePublished: a.date,
+ image: a.image,
+ keywords: (a.tags ?? []).join(", "),
           })),
         }),
       },
     ],
   }),
-  component: WritingIndex,
+ component: WritingIndex,
 });
 
 
 function fmtDate(d: string) {
-  const [year, month, day] = d.split("-").map(Number);
-  return new Intl.DateTimeFormat("en-GB", {
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-    timeZone: "UTC",
+ const [year, month, day] = d.split("-").map(Number);
+ return new Intl.DateTimeFormat("en-GB", {
+ day: "2-digit",
+ month: "short",
+ year: "numeric",
+ timeZone: "UTC",
   }).format(new Date(Date.UTC(year, month, 1, day)));
 }
 
 function WritingIndex() {
-  const [featured, ...rest] = articles;
+ const [featured, ...rest] = articles;
 
-  return (
+ return (
     <div>
       <PageHero
-        eyebrow="Journal"
-        title={
+ eyebrow="Journal"
+ title={
           <>
-            Entries, slowly, <em className="italic">often.</em>
+            Entries, slowly, <em className="">often.</em>
           </>
         }
-        standfirst={
+ standfirst={
           <>
             A weekly note on AI, education and the West Indian future. Read in
-            order, or pick a thread.
+ order, or pick a thread.
           </>
         }
-        meta={
+ meta={
           <>
             <span>{articles.length} entries</span>
             <span className="size-1 bg-white/40" />
@@ -98,24 +98,24 @@ function WritingIndex() {
             <span>Critical theory · AI · Caribbean futures</span>
           </>
         }
-        image={heroBook}
-        imageAlt="A stack of books on a dark surface"
+ image={heroBook}
+ imageAlt="A stack of books on a dark surface"
       />
 
       {/* Featured */}
       <section className="border-b hairline">
         <Link
-          to="/writing/$slug"
-          params={{ slug: featured.slug }}
-          className="group block"
+ to="/writing/$slug"
+ params={{ slug: featured.slug }}
+ className="group block"
         >
           <div className="mx-auto grid max-w-[1700px] gap-10 px-5 py-12 sm:px-8 md:grid-cols-2 md:gap-16 md:py-14">
             <Reveal>
               <div className="relative aspect-[5/4] overflow-hidden bg-foreground/5">
                 <img
-                  src={featured.image}
-                  alt=""
-                  className="size-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.04]"
+ src={featured.image}
+ alt=""
+ className="size-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.04]"
                 />
               </div>
             </Reveal>
@@ -145,16 +145,16 @@ function WritingIndex() {
           {rest.map((a, i) => (
             <Reveal key={a.slug} delay={(i % 2) * 0.06}>
               <Link
-                to="/writing/$slug"
-                params={{ slug: a.slug }}
-                className={`group block ${i % 2 === 1 ? "md:mt-24" : ""}`}
+ to="/writing/$slug"
+ params={{ slug: a.slug }}
+ className={`group block ${i % 2 === 1 ? "md:mt-24" : ""}`}
               >
                 <div className="relative aspect-[4/3] overflow-hidden bg-foreground/5">
                   <img
-                    src={a.image}
-                    alt=""
-                    loading="lazy"
-                    className="size-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.05]"
+ src={a.image}
+ alt=""
+ loading="lazy"
+ className="size-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.05]"
                   />
                   <div className="pointer-events-none absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/15" />
                 </div>

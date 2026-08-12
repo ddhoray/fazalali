@@ -5,46 +5,46 @@ import { palimpsest } from "@/content/palimpsest";
 import heroPalimpsest from "@/assets/hero-palimpsest.jpg";
 
 export const Route = createFileRoute("/palimpsest")({
-  head: () => ({
-    meta: [
+ head: () => ({
+ meta: [
       { title: "A Palimpsest of West Indian Education, Fazal Ali" },
       {
-        name: "description",
-        content:
+ name: "description",
+ content:
           "A palimpsest of periods in West Indian education set inside a frame of world events before and after Columbus, traced from 1096 to 1979.",
       },
       { property: "og:title", content: "A Palimpsest of West Indian Education" },
       {
-        property: "og:description",
-        content: "Periods of West Indian education set inside a frame of world events.",
+ property: "og:description",
+ content: "Periods of West Indian education set inside a frame of world events.",
       },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/palimpsest" },
     ],
-    links: [
+ links: [
       { rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/palimpsest" },
     ],
   }),
-  component: PalimpsestPage,
+ component: PalimpsestPage,
 });
 
 function PalimpsestPage() {
-  return (
+ return (
     <div>
       <PageHero
-        eyebrow="Long read"
-        title={
+ eyebrow="Long read"
+ title={
           <>
-            A palimpsest of West Indian <em className="italic">education.</em>
+            A palimpsest of West Indian <em className="">education.</em>
           </>
         }
-        standfirst={
+ standfirst={
           <>
             Set inside a frame of world events before and after Christopher
             Columbus set sail for the New World in 1492, from Oxford in 1096
-            to the JFK Library in 1969, from the Encomienda to Eric Williams.
+ to the JFK Library in 1969, from the Encomienda to Eric Williams.
           </>
         }
-        meta={
+ meta={
           <>
             <span>10 sections</span>
             <span className="size-1 bg-white/40" />
@@ -53,8 +53,8 @@ function PalimpsestPage() {
             <span>Sources: Williams · Campbell · PNM</span>
           </>
         }
-        image={heroPalimpsest}
-        imageAlt="An open manuscript on a dark desk"
+ image={heroPalimpsest}
+ imageAlt="An open manuscript on a dark desk"
       />
 
       <section className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8 sm:py-10">
@@ -65,9 +65,9 @@ function PalimpsestPage() {
             <nav className="mt-6 flex flex-col gap-3 border-l hairline pl-5">
               {palimpsest.map((s, i) => (
                 <a
-                  key={s.id}
-                  href={`#${s.id}`}
-                  className="group flex items-baseline gap-3 text-sm text-muted-foreground transition-colors hover:text-foreground"
+ key={s.id}
+ href={`#${s.id}`}
+ className="group flex items-baseline gap-3 text-sm text-muted-foreground transition-colors hover:text-foreground"
                 >
                   <span className="font-mono text-[10px] opacity-50">
                     {(i + 1).toString().padStart(2, "0")}
@@ -95,14 +95,14 @@ function PalimpsestPage() {
                   <figure className="mt-10 overflow-hidden bg-foreground/5">
                     <div className="relative aspect-[16/9] w-full overflow-hidden">
                       <img
-                        src={s.image}
-                        alt={s.imageAlt}
-                        loading="lazy"
-                        className="size-full object-cover transition-transform duration-[1200ms] ease-out hover:scale-[1.03]"
+ src={s.image}
+ alt={s.imageAlt}
+ loading="lazy"
+ className="size-full object-cover transition-transform duration-[1200ms] ease-out hover:scale-[1.03]"
                       />
                     </div>
                     {s.imageCaption ? (
-                      <figcaption className="mt-3 text-xs italic text-muted-foreground">
+                      <figcaption className="mt-3 text-xs text-muted-foreground">
                         {s.imageCaption}
                       </figcaption>
                     ) : null}

@@ -4,15 +4,15 @@ import { Reveal } from "@/components/site/Reveal";
 import { articles } from "@/content/articles";
 
 export const Route = createFileRoute("/writing/$slug")({
-  loader: ({ params }) => {
-    const article = articles.find((a) => a.slug === params.slug);
-    if (!article) throw notFound();
-    return { article };
+ loader: ({ params }) => {
+ const article = articles.find((a) => a.slug === params.slug);
+ if (!article) throw notFound();
+ return { article };
   },
-  head: ({ loaderData, params }) =>
-    loaderData
+ head: ({ loaderData, params }) =>
+ loaderData
       ? {
-          meta: [
+ meta: [
             { title: `${loaderData.article.title}, Fazal Ali` },
             { name: "description", content: loaderData.article.excerpt },
             ...(loaderData.article.tags && loaderData.article.tags.length
@@ -22,8 +22,8 @@ export const Route = createFileRoute("/writing/$slug")({
             { name: "article:published_time", content: loaderData.article.date },
             { name: "article:section", content: loaderData.article.topic },
             ...((loaderData.article.tags ?? []).map((t: string) => ({
-              property: "article:tag",
-              content: t,
+ property: "article:tag",
+ content: t,
             }))),
             { property: "og:title", content: loaderData.article.title },
             { property: "og:description", content: loaderData.article.excerpt },
@@ -32,41 +32,41 @@ export const Route = createFileRoute("/writing/$slug")({
             { property: "og:url", content: `https://omeros-cipher-glass.lovable.app/writing/${params.slug}` },
             { name: "twitter:image", content: loaderData.article.image },
           ],
-          links: [
+ links: [
             { rel: "canonical", href: `https://omeros-cipher-glass.lovable.app/writing/${params.slug}` },
           ],
-          scripts: [
+ scripts: [
             {
-              type: "application/ld+json",
-              children: JSON.stringify({
+ type: "application/ld+json",
+ children: JSON.stringify({
                 "@context": "https://schema.org",
                 "@graph": [
                   {
                     "@type": "Article",
-                    headline: loaderData.article.title,
-                    description: loaderData.article.excerpt,
-                    image: [loaderData.article.image],
-                    datePublished: loaderData.article.date,
-                    dateModified: loaderData.article.date,
-                    articleSection: loaderData.article.topic,
-                    keywords: (loaderData.article.tags ?? []).join(", "),
-                    wordCount: loaderData.article.body.join(" ").split(/\s+/).length,
-                    articleBody: loaderData.article.body.join("\n\n"),
-                    inLanguage: "en",
-                    author: {
+ headline: loaderData.article.title,
+ description: loaderData.article.excerpt,
+ image: [loaderData.article.image],
+ datePublished: loaderData.article.date,
+ dateModified: loaderData.article.date,
+ articleSection: loaderData.article.topic,
+ keywords: (loaderData.article.tags ?? []).join(", "),
+ wordCount: loaderData.article.body.join(" ").split(/\s+/).length,
+ articleBody: loaderData.article.body.join("\n\n"),
+ inLanguage: "en",
+ author: {
                       "@type": "Person",
-                      name: "Fazal Ibrahim Ali",
-                      url: "https://omeros-cipher-glass.lovable.app/about",
+ name: "Fazal Ibrahim Ali",
+ url: "https://omeros-cipher-glass.lovable.app/about",
                     },
-                    publisher: {
+ publisher: {
                       "@type": "Person",
-                      name: "Fazal Ibrahim Ali",
+ name: "Fazal Ibrahim Ali",
                     },
-                    mainEntityOfPage: `https://omeros-cipher-glass.lovable.app/writing/${params.slug}`,
+ mainEntityOfPage: `https://omeros-cipher-glass.lovable.app/writing/${params.slug}`,
                   },
                   {
                     "@type": "BreadcrumbList",
-                    itemListElement: [
+ itemListElement: [
                       { "@type": "ListItem", position: 1, name: "Home", item: "https://omeros-cipher-glass.lovable.app/" },
                       { "@type": "ListItem", position: 2, name: "Journal", item: "https://omeros-cipher-glass.lovable.app/writing" },
                       { "@type": "ListItem", position: 3, name: loaderData.article.title, item: `https://omeros-cipher-glass.lovable.app/writing/${params.slug}` },
@@ -79,62 +79,62 @@ export const Route = createFileRoute("/writing/$slug")({
         }
       : { meta: [{ title: "Journal, Fazal Ali" }] },
 
-  notFoundComponent: () => (
+ notFoundComponent: () => (
     <div className="mx-auto max-w-3xl px-5 py-10 text-center">
       <h1 className="font-display text-4xl">Entry not found</h1>
       <Link to="/writing" className="mt-6 inline-block underline">All entries</Link>
     </div>
   ),
-  errorComponent: ({ error, reset }) => {
-    console.error(error);
-    return (
+ errorComponent: ({ error, reset }) => {
+ console.error(error);
+ return (
       <div className="mx-auto max-w-3xl px-5 py-10 text-center">
         <h1 className="font-display text-4xl">This entry didn't load</h1>
         <button onClick={reset} className="mt-6 underline">Try again</button>
       </div>
     );
   },
-  component: ArticlePage,
+ component: ArticlePage,
 });
 
 function fmtDate(d: string) {
-  const [year, month, day] = d.split("-").map(Number);
-  return new Intl.DateTimeFormat("en-GB", {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-    timeZone: "UTC",
+ const [year, month, day] = d.split("-").map(Number);
+ return new Intl.DateTimeFormat("en-GB", {
+ day: "2-digit",
+ month: "long",
+ year: "numeric",
+ timeZone: "UTC",
   }).format(new Date(Date.UTC(year, month, 1, day)));
 }
 
 function ArticlePage() {
-  const { article } = Route.useLoaderData();
-  const i = articles.findIndex((a) => a.slug === article.slug);
-  const next = articles[(i + 1) % articles.length];
-  const readingTime = Math.max(
+ const { article } = Route.useLoaderData();
+ const i = articles.findIndex((a) => a.slug === article.slug);
+ const next = articles[(i + 1) % articles.length];
+ const readingTime = Math.max(
     3,
     Math.round(article.body.join(" ").split(/\s+/).length / 220),
   );
 
-  return (
+ return (
     <article>
       {/* Dark cinematic hero with image backdrop */}
       <section
-        data-nav="dark"
-        className="section-invert relative isolate w-full overflow-hidden"
+ data-nav="dark"
+ className="section-invert relative isolate w-full overflow-hidden"
       >
         <div className="absolute inset-0">
           <img
-            src={article.image}
-            alt=""
-            className="size-full object-cover opacity-[0.35]"
+ src={article.image}
+ alt=""
+ className="size-full object-cover opacity-[0.35]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/30" />
         </div>
         <div className="relative mx-auto max-w-5xl px-5 pb-12 pt-24 sm:px-8 sm:pb-16 sm:pt-28">
           <Link
-            to="/writing"
-            className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-white/70 transition-colors hover:text-white"
+ to="/writing"
+ className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-white/70 transition-colors hover:text-white"
           >
             <ArrowLeft className="size-3" /> All entries
           </Link>
@@ -160,10 +160,10 @@ function ArticlePage() {
         <Reveal>
           <figure className="relative aspect-[16/9] w-full overflow-hidden border border-foreground/10 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.25)]">
             <img
-              src={article.image}
-              alt={article.title}
-              className="size-full object-cover"
-              loading="eager"
+ src={article.image}
+ alt={article.title}
+ className="size-full object-cover"
+ loading="eager"
             />
           </figure>
         </Reveal>
@@ -175,9 +175,9 @@ function ArticlePage() {
           <div className="prose-essay space-y-7 text-lg leading-[1.8] text-foreground/85">
             {article.body.map((p: string, idx: number) => (
               <p
-                key={idx}
-                className={
-                  idx === 0
+ key={idx}
+ className={
+ idx === 0
                     ? "first-letter:font-display first-letter:text-7xl first-letter:leading-none first-letter:mr-3 first-letter:float-left first-letter:mt-2"
                     : ""
                 }
@@ -199,9 +199,9 @@ function ArticlePage() {
       {/* Next entry dark band */}
       <section data-nav="dark" className="section-invert">
         <Link
-          to="/writing/$slug"
-          params={{ slug: next.slug }}
-          className="group block"
+ to="/writing/$slug"
+ params={{ slug: next.slug }}
+ className="group block"
         >
           <div className="mx-auto grid max-w-[1500px] gap-10 px-5 py-12 sm:px-8 sm:py-14 md:grid-cols-[1fr_auto] md:items-end">
             <div>

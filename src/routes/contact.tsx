@@ -7,53 +7,53 @@ import { submitContact } from "@/lib/contact.functions";
 import { ArrowRight, Check } from "lucide-react";
 
 export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
+ head: () => ({
+ meta: [
       { title: "Write Me, Fazal Ali" },
       { name: "description", content: "Press, residencies, conversations on AI and the Caribbean, write Fazal Ali." },
       { property: "og:title", content: "Write Me, Fazal Ali" },
       { property: "og:description", content: "Send a note to Fazal Ali." },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/contact" },
     ],
-    links: [
+ links: [
       { rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/contact" },
     ],
   }),
-  component: ContactPage,
+ component: ContactPage,
 });
 
 function ContactPage() {
-  const send = useServerFn(submitContact);
-  const [state, setState] = useState<"idle" | "sending" | "sent" | "error">("idle");
-  const [error, setError] = useState<string | null>(null);
+ const send = useServerFn(submitContact);
+ const [state, setState] = useState<"idle" | "sending" | "sent" | "error">("idle");
+ const [error, setError] = useState<string | null>(null);
 
-  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setState("sending");
-    setError(null);
-    const fd = new FormData(e.currentTarget);
-    try {
-      await send({
-        data: {
-          name: String(fd.get("name") ?? ""),
-          email: String(fd.get("email") ?? ""),
-          message: String(fd.get("message") ?? ""),
+ async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+ e.preventDefault();
+ setState("sending");
+ setError(null);
+ const fd = new FormData(e.currentTarget);
+ try {
+ await send({
+ data: {
+ name: String(fd.get("name") ?? ""),
+ email: String(fd.get("email") ?? ""),
+ message: String(fd.get("message") ?? ""),
         },
       });
-      setState("sent");
+ setState("sent");
       (e.target as HTMLFormElement).reset();
     } catch (err) {
-      setState("error");
-      setError(err instanceof Error ? err.message : "Something went wrong");
+ setState("error");
+ setError(err instanceof Error ? err.message : "Something went wrong");
     }
   }
 
-  return (
+ return (
     <div className="mx-auto max-w-5xl px-5 pt-24 pb-12 sm:px-8 sm:pt-24">
       <Reveal>
         <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">Write me</p>
         <h1 className="mt-4 font-display text-[2.5rem] leading-[1.02] text-balance sm:text-5xl md:text-6xl lg:text-[4.25rem]">
-          A short note <em className="italic">is enough.</em>
+          A short note <em className="">is enough.</em>
         </h1>
         <p className="mt-6 max-w-xl text-muted-foreground">
           Press, residencies, teaching, or a question about the writing, all read personally.
@@ -89,9 +89,9 @@ function ContactPage() {
                   Or email <a href="mailto:writeme@fazalali.com" className="underline">writeme@fazalali.com</a>
                 </p>
                 <button
-                  type="submit"
-                  disabled={state === "sending"}
-                  className="btn-cta btn-primary disabled:opacity-60"
+ type="submit"
+ disabled={state === "sending"}
+ className="btn-cta btn-primary disabled:opacity-60"
                 >
                   {state === "sending" ? "Sending…" : "Send note"}
                   <ArrowRight className="size-4" />
@@ -109,7 +109,7 @@ const inputCls =
   "w-full rounded-none border border-foreground/15 bg-background/55 backdrop-blur-sm px-4 py-3 text-base text-foreground placeholder:text-muted-foreground/70 focus:border-foreground/40 focus:outline-none transition-colors";
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
+ return (
     <label className="block">
       <span className="mb-2 block text-xs uppercase tracking-[0.18em] text-muted-foreground">{label}</span>
       {children}

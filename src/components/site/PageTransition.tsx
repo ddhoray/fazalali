@@ -8,12 +8,12 @@ import { useEffect, type ReactNode } from "react";
  * Only responsibility: scroll to top on route change.
  */
 export function PageTransition({ children }: { children: ReactNode }) {
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
+ const pathname = useRouterState({ select: (s) => s.location.pathname });
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    window.scrollTo({ top: 0, behavior: "auto" });
+ useEffect(() => {
+ if (typeof window === "undefined") return;
+ window.scrollTo({ top: 0, behavior: "auto" });
   }, [pathname]);
 
-  return <>{children}</>;
+ return <>{children}</>;
 }
