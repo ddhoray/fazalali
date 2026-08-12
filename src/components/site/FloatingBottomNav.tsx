@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { openContactDrawer } from "@/components/site/ContactDrawer";
-import omerosLogo from "@/assets/brand-omeros-lockup-transparent.png";
+import omerosMark from "@/assets/brand-omeros-mark.png";
 
 // Full menu, revealed in the expanding panel.
 const menuLinks = [
