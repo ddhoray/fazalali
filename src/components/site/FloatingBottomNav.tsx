@@ -43,10 +43,8 @@ export function FloatingBottomNav() {
     <div className="pointer-events-none fixed inset-x-0 bottom-6 z-[60] hidden justify-center px-4 lg:flex">
       <motion.nav
         aria-label="Site navigation"
-        layout
-        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
         className={cn(
-          "pointer-events-auto relative isolate overflow-hidden rounded-none",
+          "pointer-events-auto relative isolate w-[560px] max-w-[80vw] overflow-hidden rounded-none",
           "border border-white/10 bg-[#1c1c1c]/85 backdrop-blur-2xl",
           "shadow-[0_30px_70px_-30px_rgba(0,0,0,0.7)]",
         )}
@@ -58,10 +56,10 @@ export function FloatingBottomNav() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               className="overflow-hidden"
             >
-              <div className="w-[560px] max-w-[80vw] px-5 pt-5">
+              <div className="px-5 pt-5">
                 <p className="mb-4 text-[10px] uppercase tracking-[0.3em] text-white/35">
                   Menu
                 </p>
@@ -97,7 +95,7 @@ export function FloatingBottomNav() {
           )}
         </AnimatePresence>
 
-        <motion.div layout className="flex items-center gap-2 p-2">
+        <div className="grid grid-cols-[auto_auto_1fr] items-center gap-1 p-2">
           <Link
             to="/"
             aria-label="Home"
@@ -115,21 +113,19 @@ export function FloatingBottomNav() {
             type="button"
             onClick={() => setExpanded((v) => !v)}
             aria-expanded={expanded}
-            className="px-4 py-2.5 text-[11px] uppercase tracking-[0.2em] text-white/70 transition-colors hover:text-white"
+            className="justify-self-center px-4 py-2.5 text-[11px] uppercase tracking-[0.2em] text-white/70 transition-colors hover:text-white"
           >
             {expanded ? "Close" : "Menu"}
           </button>
 
-          <span className="h-5 w-px bg-white/15" />
-
           <button
             type="button"
             onClick={() => openContactDrawer()}
-            className="bg-white px-4 py-2.5 text-[11px] uppercase tracking-[0.2em] text-[#1c1c1c] transition-opacity hover:opacity-85"
+            className="w-full bg-white px-4 py-2.5 text-[11px] uppercase tracking-[0.2em] text-[#1c1c1c] transition-opacity hover:opacity-85"
           >
             Write Me
           </button>
-        </motion.div>
+        </div>
       </motion.nav>
     </div>
   );
