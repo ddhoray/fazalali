@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
 import { inequality } from "@/content/inequality";
+import { articles } from "@/content/articles";
 import { ArrowUpRight } from "lucide-react";
 import heroInequality from "@/assets/hero-inequality.jpg";
 
