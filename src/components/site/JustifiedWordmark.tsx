@@ -10,23 +10,23 @@ export function JustifiedWordmark({
   className?: string;
 }) {
   return (
-    <div className={`w-full ${className}`}>
+    <div className={`w-full overflow-hidden ${className}`}>
       <svg
-        viewBox="0 0 1000 180"
-        preserveAspectRatio="none"
-        className="block w-full"
-        style={{ height: "clamp(60px, 14vw, 220px)" }}
+        viewBox="0 0 1000 200"
+        preserveAspectRatio="xMidYMid meet"
+        className="block h-auto w-full"
+        role="img"
         aria-label={text}
       >
         <text
           x="500"
-          y="148"
+          y="160"
           textAnchor="middle"
-          textLength="980"
+          textLength="990"
           lengthAdjust="spacingAndGlyphs"
           fontFamily="Bodoni Moda, Times New Roman, serif"
           fontWeight="400"
-          fontSize="180"
+          fontSize="190"
           fill="currentColor"
         >
           {text}
