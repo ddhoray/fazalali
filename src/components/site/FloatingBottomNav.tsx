@@ -143,7 +143,7 @@ export function FloatingBottomNav() {
             <X className="h-5 w-5" strokeWidth={1.4} />
           </button>
         ) : (
-          <div className="flex h-14 items-center">
+          <div className="flex h-16 items-center">
             <Link
               to="/"
               aria-label="Home"
@@ -152,7 +152,7 @@ export function FloatingBottomNav() {
               <img
                 src={omerosMark}
                 alt="Omeros"
-                className="h-7 w-auto object-contain brightness-0 invert"
+                className="h-9 w-auto object-contain brightness-0 invert"
                 draggable={false}
               />
             </Link>
