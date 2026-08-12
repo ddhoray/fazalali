@@ -22,12 +22,22 @@ const secondaryLinks = [
 
 const easing = [0.22, 1, 0.36, 1] as const;
 
+const extraLabels: Record<string, string> = {
+  "/contact": "Contact",
+  "/omeros-ai": "Omeros AI",
+  "/education-for-liberty": "Education for Liberty",
+};
+
 function currentLabel(pathname: string) {
   if (pathname === "/") return "Home";
-  const all = [...primaryLinks, ...secondaryLinks];
-  const match = all.find(
-    (l) => pathname === l.to || pathname.startsWith(l.to + "/"),
-  );
+  const all = [
+    ...primaryLinks,
+    ...secondaryLinks,
+    ...Object.entries(extraLabels).map(([to, label]) => ({ to, label })),
+  ];
+  const match = all
+    .filter((l) => pathname === l.to || pathname.startsWith(l.to + "/"))
+    .sort((a, b) => b.to.length - a.to.length)[0];
   return match?.label ?? "Menu";
 }
 
@@ -164,7 +174,7 @@ export function FloatingBottomNav() {
               aria-expanded={false}
               className="flex h-full items-center gap-8 border-l border-white/10 px-5 text-[11px] uppercase tracking-[0.28em] text-white/80 transition-colors hover:text-white"
             >
-              <span>{currentLabel(pathname)}</span>
+              <span className="whitespace-nowrap">{currentLabel(pathname)}</span>
               <span className="flex flex-col gap-[5px]" aria-hidden>
                 <span className="block h-px w-6 bg-current" />
                 <span className="block h-px w-6 bg-current" />
