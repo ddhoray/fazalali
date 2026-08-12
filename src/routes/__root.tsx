@@ -15,6 +15,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteFooter } from "../components/site/SiteFooter";
 import { SmoothScroll } from "../components/site/SmoothScroll";
 import { PageTransition } from "../components/site/PageTransition";
+import { AutoReveal } from "../components/site/AutoReveal";
 import { ContactDrawer } from "../components/site/ContactDrawer";
 import { FloatingBottomNav } from "../components/site/FloatingBottomNav";
 import { MobileTopBar } from "../components/site/MobileTopBar";
@@ -190,6 +191,7 @@ function RootComponent() {
       <SplashScreen />
       <SmoothScroll />
       <ScrollToTop />
+      <AutoReveal />
 
       <main>
         <PageTransition>
