@@ -101,12 +101,12 @@ export function FloatingBottomNav() {
           <Link
             to="/"
             aria-label="Home"
-            className="inline-flex h-10 items-center justify-center px-2"
+            className="inline-flex h-12 items-center justify-center px-2"
           >
             <img
-              src={omerosLogo}
+              src={omerosMark}
               alt="Omeros"
-              className="h-5 w-auto object-contain brightness-0 invert"
+              className="h-7 w-auto object-contain brightness-0 invert"
               draggable={false}
             />
           </Link>
