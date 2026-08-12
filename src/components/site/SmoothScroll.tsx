@@ -3,20 +3,28 @@ import Lenis from "lenis";
 
 export function SmoothScroll() {
   useEffect(() => {
+    // Lerp mode (no duration/easing) gives the continuously damped,
+    // never-snapping glide of the reference site.
     const lenis = new Lenis({
-      duration: 1.5,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      lerp: 0.06,
       smoothWheel: true,
-      lerp: 0.085,
-      wheelMultiplier: 0.9,
-      touchMultiplier: 1.4,
+      wheelMultiplier: 0.85,
+      touchMultiplier: 1.5,
+      syncTouch: true,
+      syncTouchLerp: 0.08,
+      overscroll: false,
     });
+
+    // Expose for anchor scrolling elsewhere if needed.
+    (window as unknown as { lenis?: Lenis }).lenis = lenis;
+
     let raf = 0;
     const tick = (time: number) => {
       lenis.raf(time);
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
+
     return () => {
       cancelAnimationFrame(raf);
       lenis.destroy();
