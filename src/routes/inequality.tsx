@@ -49,6 +49,12 @@ export const Route = createFileRoute("/inequality")({
   component: InequalityPage,
 });
 
+const TRACK = /inherited inequalit|intergenerational immobilit|intergenerational inequalit/i;
+
+const tracked = articles
+  .filter((a) => TRACK.test([a.title, a.excerpt, ...a.body].join(" ")))
+  .slice(0, 8);
+
 function InequalityPage() {
   return (
     <div>
