@@ -138,21 +138,21 @@ export function FloatingBottomNav() {
             onClick={() => setExpanded(false)}
             aria-label="Close menu"
             aria-expanded
-            className="flex h-16 w-16 items-center justify-center text-white/80 transition-colors hover:text-white"
+            className="flex h-14 w-14 items-center justify-center text-white/80 transition-colors hover:text-white"
           >
             <X className="h-5 w-5" strokeWidth={1.4} />
           </button>
         ) : (
-          <div className="flex h-16 items-center">
+          <div className="flex h-14 items-center">
             <Link
               to="/"
               aria-label="Home"
-              className="flex h-full items-center px-5"
+              className="flex h-full items-center pl-5 pr-4"
             >
               <img
                 src={omerosMark}
                 alt="Omeros"
-                className="h-9 w-auto object-contain brightness-0 invert"
+                className="h-7 w-auto object-contain brightness-0 invert"
                 draggable={false}
               />
             </Link>
@@ -161,7 +161,7 @@ export function FloatingBottomNav() {
               type="button"
               onClick={() => setExpanded(true)}
               aria-expanded={false}
-              className="flex h-full items-center gap-14 px-6 text-[11px] uppercase tracking-[0.28em] text-white/80 transition-colors hover:text-white"
+              className="flex h-full items-center gap-10 pl-4 pr-5 text-[11px] uppercase tracking-[0.28em] text-white/80 transition-colors hover:text-white"
             >
               <span>{currentLabel(pathname)}</span>
               <span className="flex flex-col gap-[5px]" aria-hidden>
