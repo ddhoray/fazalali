@@ -41,7 +41,7 @@ export const Route = createFileRoute("/gallery")({
       {
         name: "description",
         content:
-          "A curated visual feed, paintings, postcards, and field notes from the West Indies.",
+          "A curated visual feed, paintings, postcards, and the canvas life of a working writer.",
       },
       { property: "og:title", content: "Gallery, Fazal Ali" },
       {
