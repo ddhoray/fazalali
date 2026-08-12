@@ -95,7 +95,7 @@ export function FloatingBottomNav() {
           )}
         </AnimatePresence>
 
-        <div className="grid grid-cols-[auto_1fr_auto] items-center gap-1 p-2">
+        <div className="grid grid-cols-[auto_auto_1fr] items-center gap-1 p-2">
           <Link
             to="/"
             aria-label="Home"
@@ -121,7 +121,7 @@ export function FloatingBottomNav() {
           <button
             type="button"
             onClick={() => openContactDrawer()}
-            className="bg-white px-4 py-2.5 text-[11px] uppercase tracking-[0.2em] text-[#1c1c1c] transition-opacity hover:opacity-85"
+            className="w-full bg-white px-4 py-2.5 text-[11px] uppercase tracking-[0.2em] text-[#1c1c1c] transition-opacity hover:opacity-85"
           >
             Write Me
           </button>
