@@ -6,27 +6,25 @@ import { openContactDrawer } from "@/components/site/ContactDrawer";
 import fazalPortrait from "@/assets/fazal-portrait.jpg";
 
 export const Route = createFileRoute("/about")({
- head: () => ({
- meta: [
+  head: () => ({
+    meta: [
       { title: "Profile, Fazal Ibrahim Ali" },
       {
- name: "description",
- content:
+        name: "description",
+        content:
           "Dr. Fazal Ibrahim Ali, Cambridge Commonwealth Scholar, former Provost of UTT, and writer on critical theory in AI from the West Indies.",
       },
       { property: "og:title", content: "Profile, Fazal Ibrahim Ali" },
       {
- property: "og:description",
- content:
+        property: "og:description",
+        content:
           "Cambridge Commonwealth Scholar, scholar of Amartya Sen and John Rawls, writer on AI from the West Indies.",
       },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/about" },
     ],
- links: [
-      { rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/about" },
-    ],
+    links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/about" }],
   }),
- component: AboutPage,
+  component: AboutPage,
 });
 
 const concerns = [
@@ -52,38 +50,67 @@ const concerns = [
 ];
 
 const roles = [
-  { year: "UWI · MPhil", text: "Completed his Masters in Philosophy at the University of the West Indies." },
-  { year: "Cambridge", text: "Commonwealth Scholar at the University of Cambridge, Hughes Hall. Influenced there by Nobel laureate Amartya Sen, Sir Leszek Borysiewicz, C. W. R. D. Moseley, and Lord Martin Rees." },
-  { year: "UWI · ICT", text: "Planned and organised the international conference launching The Institute of Critical Thinking at the University of the West Indies, mirroring the innovation and entrepreneurship model of the Hebrew University of Jerusalem." },
-  { year: "UWI · Evening University", text: "Head of Evening University at The UWI, widening pathways into higher education for working adults across the Caribbean." },
-  { year: "UCSIS", text: "Secretary to the University Consortium of Small Island States (UCSIS) at the UWI Office of Graduate Studies and Research, a Kofi Annan mandate uniting the universities of Malta, the South Pacific, the US Virgin Islands, the West Indies, and Mauritius into a global capacity-building team for SIDS." },
-  { year: "Lok Jack GSB", text: "Programme Director of the DBA programme at the Arthur Lok Jack Graduate School of Business, UWI." },
-  { year: "UTT", text: "Provost of the University of Trinidad and Tobago; established the UTT Aviation Campus and served as acting President." },
+  {
+    year: "UWI · MPhil",
+    text: "Completed his Masters in Philosophy at the University of the West Indies.",
+  },
+  {
+    year: "Cambridge",
+    text: "Commonwealth Scholar at the University of Cambridge, Hughes Hall. Influenced there by Nobel laureate Amartya Sen, Sir Leszek Borysiewicz, C. W. R. D. Moseley, and Lord Martin Rees.",
+  },
+  {
+    year: "UWI · ICT",
+    text: "Planned and organised the international conference launching The Institute of Critical Thinking at the University of the West Indies, mirroring the innovation and entrepreneurship model of the Hebrew University of Jerusalem.",
+  },
+  {
+    year: "UWI · Evening University",
+    text: "Head of Evening University at The UWI, widening pathways into higher education for working adults across the Caribbean.",
+  },
+  {
+    year: "UCSIS",
+    text: "Secretary to the University Consortium of Small Island States (UCSIS) at the UWI Office of Graduate Studies and Research, a Kofi Annan mandate uniting the universities of Malta, the South Pacific, the US Virgin Islands, the West Indies, and Mauritius into a global capacity-building team for SIDS.",
+  },
+  {
+    year: "Lok Jack GSB",
+    text: "Programme Director of the DBA programme at the Arthur Lok Jack Graduate School of Business, UWI.",
+  },
+  {
+    year: "UTT",
+    text: "Provost of the University of Trinidad and Tobago; established the UTT Aviation Campus and served as acting President.",
+  },
   { year: "UNESCO", text: "Member of the UNESCO Memory of the World team in Trinidad and Tobago." },
-  { year: "TSC", text: "Chairman of the Teaching Service Commission of Trinidad and Tobago, a statutory body of the State." },
-  { year: "NIHERST", text: "President of the National Institute of Higher Education, Research, Science and Technology, the country's lead body for STEM popularisation and applied research." },
-  { year: "IDB", text: "External services consultant with the Inter-American Development Bank (IDB)." },
+  {
+    year: "TSC",
+    text: "Chairman of the Teaching Service Commission of Trinidad and Tobago, a statutory body of the State.",
+  },
+  {
+    year: "NIHERST",
+    text: "President of the National Institute of Higher Education, Research, Science and Technology, the country's lead body for STEM popularisation and applied research.",
+  },
+  {
+    year: "IDB",
+    text: "External services consultant with the Inter-American Development Bank (IDB).",
+  },
 ];
 
-
 function AboutPage() {
- return (
+  return (
     <div>
       <PageHero
- eyebrow="Profile"
- title={
+        eyebrow="Profile"
+        title={
           <>
             A prophet provocateur, schooled in <em className="text-accent">freedom.</em>
           </>
         }
- standfirst={
+        standfirst={
           <>
-            Dr. Fazal Ibrahim Ali, Cambridge Commonwealth Scholar, former
-            Provost of the University of Trinidad and Tobago, President of
-            NIHERST, and the author of <em>Education for Liberty.</em>
+            Dr. Fazal Ibrahim Ali, Cambridge Commonwealth Scholar, former Provost of the University
+            of Trinidad and Tobago, President of NIHERST, and the author of{" "}
+            <em>Education for Liberty.</em>
           </>
         }
- meta={
+        meta={
           <>
             <span>Trinidad &amp; Tobago</span>
             <span className="size-1 bg-white/40" />
@@ -101,10 +128,10 @@ function AboutPage() {
           <Reveal>
             <figure className="lg:sticky lg:top-28">
               <img
- src={fazalPortrait}
- alt="Dr. Fazal Ibrahim Ali"
- className="aspect-[4/5] w-full border hairline object-cover"
- loading="lazy"
+                src={fazalPortrait}
+                alt="Dr. Fazal Ibrahim Ali"
+                className="aspect-[4/5] w-full border hairline object-cover"
+                loading="lazy"
               />
               <figcaption className="mt-4 eyebrow text-muted-foreground">
                 Dr. Fazal Ibrahim Ali
@@ -116,10 +143,9 @@ function AboutPage() {
           <div className="min-w-0">
             <Reveal>
               <p className="max-w-[62ch] text-xl leading-[1.5] text-foreground md:text-[26px] md:leading-[1.42]">
-                Fazal Ali disrupts the status quo to reveal uncomfortable truths.
-                Work that unsettles, and forces Latin America and the Caribbean to
- confront its inheritance of inherited inequality and
- intergenerational immobility.
+                Fazal Ali disrupts the status quo to reveal uncomfortable truths. Work that
+                unsettles, and forces Latin America and the Caribbean to confront its inheritance of
+                inherited inequality and intergenerational immobility.
               </p>
             </Reveal>
 
@@ -128,10 +154,9 @@ function AboutPage() {
                 <div className="grid gap-2 border-b hairline py-8 xl:grid-cols-[160px_minmax(0,1fr)] xl:gap-10">
                   <p className="eyebrow text-muted-foreground xl:pt-1">About</p>
                   <p className="max-w-[60ch] text-base leading-[1.7] text-foreground/85 md:text-[17px]">
-                    A thinker, consultant, academic and technical expert exploring
- how AI is shaping the future of innovation, through the lens of{" "}
-                    <em>development as freedom,</em> drawing upon Amartya Sen's{" "}
-                    <em>Development as Freedom</em> and John Rawls'{" "}
+                    A thinker, consultant, academic and technical expert exploring how AI is shaping
+                    the future of innovation, through the lens of <em>development as freedom,</em>{" "}
+                    drawing upon Amartya Sen's <em>Development as Freedom</em> and John Rawls'{" "}
                     <em>A Theory of Justice.</em>
                   </p>
                 </div>
@@ -141,10 +166,9 @@ function AboutPage() {
                 <div className="grid gap-2 border-b hairline py-8 xl:grid-cols-[160px_minmax(0,1fr)] xl:gap-10">
                   <p className="eyebrow text-muted-foreground xl:pt-1">Background</p>
                   <p className="max-w-[60ch] text-base leading-[1.7] text-muted-foreground md:text-[17px]">
-                    A Commonwealth Scholarship winner who read for his doctorate at
- the University of Cambridge as a PhD candidate. Nobel laureate
-                    Amartya Sen, Sir Leszek Borysiewicz, C. W. R. D. Moseley and
-                    Lord Martin Rees shaped his thinking.
+                    A Commonwealth Scholarship winner who read for his doctorate at the University
+                    of Cambridge as a PhD candidate. Nobel laureate Amartya Sen, Sir Leszek
+                    Borysiewicz, C. W. R. D. Moseley and Lord Martin Rees shaped his thinking.
                   </p>
                 </div>
               </Reveal>
@@ -155,10 +179,10 @@ function AboutPage() {
                   <p className="max-w-[60ch] text-base leading-[1.7] text-muted-foreground md:text-[17px]">
                     He can be reached at{" "}
                     <a
- href="mailto:fazalalitsc@gmail.com"
- className="underline underline-offset-4 decoration-accent-cool hover:text-accent-cool transition-colors"
+                      href="mailto:fazalalitsc@gmail.com"
+                      className="underline underline-offset-4 decoration-accent-cool hover:text-accent-cool transition-colors"
                     >
- fazalalitsc@gmail.com
+                      fazalalitsc@gmail.com
                     </a>
                     .
                   </p>
@@ -168,8 +192,6 @@ function AboutPage() {
           </div>
         </div>
       </section>
-
-
 
       {/* Concerns, what his work explores */}
       <section data-nav="dark" className="section-invert">
@@ -181,17 +203,13 @@ function AboutPage() {
               <em className="text-white/70">through the lens of freedom.</em>
             </h2>
             <p className="mt-6 max-w-3xl text-base leading-relaxed text-white/65 md:text-lg">
-              A working index of the concerns that move across his essays and
- consultancies.
+              A working index of the concerns that move across his essays and consultancies.
             </p>
           </Reveal>
           <Reveal delay={0.08}>
             <ul className="mt-12 flex flex-wrap gap-2.5">
               {concerns.map((c) => (
-                <li
- key={c}
- className="border border-white/20 px-4 py-2 text-sm text-white/85"
-                >
+                <li key={c} className="border border-white/20 px-4 py-2 text-sm text-white/85">
                   {c}
                 </li>
               ))}
@@ -204,15 +222,14 @@ function AboutPage() {
       <section className="mx-auto max-w-[1500px] px-5 py-16 sm:px-8 sm:py-24">
         <Reveal>
           <p className="font-display text-3xl leading-[1.15] text-balance md:text-6xl">
-            <em className="text-muted-foreground">"</em>Standing on the shoulders
- of Amartya Sen's Development as Freedom and John Rawls' A Theory of
-            Justice, Omeros AI builds a body of work that adds to the critical
- theory on AI, written from the West Indies.<em className="text-muted-foreground">"</em>
+            <em className="text-muted-foreground">"</em>Standing on the shoulders of Amartya Sen's
+            Development as Freedom and John Rawls' A Theory of Justice, Omeros AI builds a body of
+            work that adds to the critical theory on AI, written from the West Indies.
+            <em className="text-muted-foreground">"</em>
           </p>
           <p className="mt-10 eyebrow text-muted-foreground">Fazal Ali · Omeros AI</p>
         </Reveal>
       </section>
-
 
       {/* Professional background */}
       <section className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8 sm:py-10">
@@ -237,21 +254,16 @@ function AboutPage() {
 
         <Reveal>
           <div className="mt-20 flex flex-wrap items-end justify-between gap-6">
-            <p className="font-display text-3xl md:text-5xl">
-              Get in touch.
-            </p>
+            <p className="font-display text-3xl md:text-5xl">Get in touch.</p>
             <div className="flex flex-wrap items-center gap-4">
               <button
- type="button"
- onClick={() => openContactDrawer()}
- className="btn-cta btn-primary"
+                type="button"
+                onClick={() => openContactDrawer()}
+                className="btn-cta btn-primary"
               >
                 Write to him <ArrowUpRight className="size-4" />
               </button>
-              <Link
- to="/writing"
- className="btn-cta btn-on-light"
-              >
+              <Link to="/writing" className="btn-cta btn-on-light">
                 Read the journal
               </Link>
             </div>

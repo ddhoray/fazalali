@@ -3,13 +3,13 @@ import { Instagram, ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
 
 interface InstagramGridProps {
- limit?: number;
- showHeader?: boolean;
+  limit?: number;
+  showHeader?: boolean;
 }
 
 export function InstagramGrid({ limit, showHeader = true }: InstagramGridProps) {
- const items = limit ? posts.slice(0, limit) : posts;
- return (
+  const items = limit ? posts.slice(0, limit) : posts;
+  return (
     <section className="mx-auto max-w-[1700px] px-5 py-12 sm:px-8 sm:py-14">
       {showHeader && (
         <Reveal>
@@ -24,10 +24,10 @@ export function InstagramGrid({ limit, showHeader = true }: InstagramGridProps) 
               </p>
             </div>
             <a
- href="https://www.instagram.com/thefazalali/"
- target="_blank"
- rel="noreferrer"
- className="inline-flex items-center gap-2 border-b border-foreground pb-1 text-sm uppercase tracking-[0.2em]"
+              href="https://www.instagram.com/thefazalali/"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 border-b border-foreground pb-1 text-sm uppercase tracking-[0.2em]"
             >
               <Instagram className="size-4" /> Follow on Instagram
             </a>
@@ -37,17 +37,17 @@ export function InstagramGrid({ limit, showHeader = true }: InstagramGridProps) 
       <div className="grid grid-cols-2 gap-2 sm:gap-3 md:grid-cols-4 lg:grid-cols-5">
         {items.map((p, i) => (
           <a
- key={i}
- href={p.href}
- target="_blank"
- rel="noreferrer"
- className="group relative block aspect-square overflow-hidden bg-foreground/5"
+            key={i}
+            href={p.href}
+            target="_blank"
+            rel="noreferrer"
+            className="group relative block aspect-square overflow-hidden bg-foreground/5"
           >
             <img
- src={p.image}
- alt={p.caption}
- loading="lazy"
- className="size-full object-cover transition-transform duration-700 group-hover:scale-105"
+              src={p.image}
+              alt={p.caption}
+              loading="lazy"
+              className="size-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
             <div className="absolute inset-x-0 bottom-0 translate-y-2 p-3 text-white opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">

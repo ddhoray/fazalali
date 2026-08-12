@@ -8,14 +8,14 @@ import { useRouterState } from "@tanstack/react-router";
  * scroll position.
  */
 export function ScrollToTop() {
- const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
 
- useLayoutEffect(() => {
- if (typeof window === "undefined") return;
- window.scrollTo(0, 0);
- document.documentElement.scrollTop = 0;
- document.body.scrollTop = 0;
+  useLayoutEffect(() => {
+    if (typeof window === "undefined") return;
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
   }, [pathname]);
 
- return null;
+  return null;
 }

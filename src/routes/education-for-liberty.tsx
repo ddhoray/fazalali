@@ -9,83 +9,110 @@ import { assetUrl } from "@/lib/asset-url";
 const heroBook = assetUrl(bookCoverAsset);
 
 export const Route = createFileRoute("/education-for-liberty")({
- head: () => ({
- meta: [
+  head: () => ({
+    meta: [
       { title: "Education for Liberty, Fazal Ali" },
       {
- name: "description",
- content:
+        name: "description",
+        content:
           "Fazal Ali's monograph after Sen and Rawls, read a flippable preview, download the PDF, or buy on Amazon.",
       },
       { property: "og:title", content: "Education for Liberty, Fazal Ali" },
       {
- property: "og:description",
- content:
+        property: "og:description",
+        content:
           "Building on Amartya Sen and John Rawls, education as the substrate of freedom. Flip through a preview or download the PDF.",
       },
       { property: "og:type", content: "book" },
-      { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/education-for-liberty" },
+      {
+        property: "og:url",
+        content: "https://omeros-cipher-glass.lovable.app/education-for-liberty",
+      },
     ],
- links: [
+    links: [
       { rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/education-for-liberty" },
     ],
- scripts: [
+    scripts: [
       {
- type: "application/ld+json",
- children: JSON.stringify({
+        type: "application/ld+json",
+        children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Book",
- name: "Education for Liberty",
- author: {
+          name: "Education for Liberty",
+          author: {
             "@type": "Person",
- name: "Fazal Ibrahim Ali",
- url: "https://omeros-cipher-glass.lovable.app/about",
+            name: "Fazal Ibrahim Ali",
+            url: "https://omeros-cipher-glass.lovable.app/about",
           },
- inLanguage: "en",
- bookFormat: "https://schema.org/EBook",
- url: "https://omeros-cipher-glass.lovable.app/education-for-liberty",
- workExample: {
+          inLanguage: "en",
+          bookFormat: "https://schema.org/EBook",
+          url: "https://omeros-cipher-glass.lovable.app/education-for-liberty",
+          workExample: {
             "@type": "Book",
- isbn: "",
- bookFormat: "https://schema.org/EBook",
- potentialAction: {
+            isbn: "",
+            bookFormat: "https://schema.org/EBook",
+            potentialAction: {
               "@type": "ReadAction",
- target: "https://www.amazon.com/Education-Liberty-future-open-suggestions-ebook/dp/B072KJSQ6P/",
+              target:
+                "https://www.amazon.com/Education-Liberty-future-open-suggestions-ebook/dp/B072KJSQ6P/",
             },
           },
         }),
       },
     ],
   }),
- component: BookPage,
+  component: BookPage,
 });
 
-const PDF_URL =
-  "https://fazalali.com/wp-content/uploads/2026/02/EducationforLiberty.pdf";
+const PDF_URL = "https://fazalali.com/wp-content/uploads/2026/02/EducationforLiberty.pdf";
 const AMAZON_URL =
   "https://www.amazon.com/Education-Liberty-future-open-suggestions-ebook/dp/B072KJSQ6P/";
 
 const chapters = [
-  { n: "I", title: "Freedom as the medium", body: "Why education, before it is a system, is a metaphysical claim about what people are for." },
-  { n: "II", title: "Sen, in the islands", body: "A reading of Development as Freedom from a small state, where capability is not abstract." },
-  { n: "III", title: "Rawls, repositioned", body: "The veil of ignorance is heavier in the Caribbean. It is also more honest." },
-  { n: "IV", title: "The classroom as a polity", body: "If liberty is the goal, the classroom is its first parliament." },
-  { n: "V", title: "What we owe the future", body: "The pedagogy of failure, of patience, of refusal, in the age of AI." },
+  {
+    n: "I",
+    title: "Freedom as the medium",
+    body: "Why education, before it is a system, is a metaphysical claim about what people are for.",
+  },
+  {
+    n: "II",
+    title: "Sen, in the islands",
+    body: "A reading of Development as Freedom from a small state, where capability is not abstract.",
+  },
+  {
+    n: "III",
+    title: "Rawls, repositioned",
+    body: "The veil of ignorance is heavier in the Caribbean. It is also more honest.",
+  },
+  {
+    n: "IV",
+    title: "The classroom as a polity",
+    body: "If liberty is the goal, the classroom is its first parliament.",
+  },
+  {
+    n: "V",
+    title: "What we owe the future",
+    body: "The pedagogy of failure, of patience, of refusal, in the age of AI.",
+  },
 ];
 
 function BookPage() {
- return (
+  return (
     <div>
       <PageHero
- eyebrow="The Book"
- title={<>Education <em className="">for</em> Liberty</>}
- standfirst={
+        eyebrow="The Book"
+        title={
           <>
-            A persuasive work built on Amartya Sen's <em>Development as Freedom</em> and
-            John Rawls' <em>A Theory of Justice</em>. After Sen. After Rawls. From Trinidad.
+            Education <em className="">for</em> Liberty
           </>
         }
- meta={
+        standfirst={
+          <>
+            A persuasive work built on Amartya Sen's <em>Development as Freedom</em> and John Rawls'{" "}
+            <em>A Theory of Justice</em>. After Sen. After Rawls. From Trinidad.
+          </>
+        }
+        meta={
           <>
             <span>142 pages</span>
             <span className="size-1 bg-white/40" />
@@ -94,9 +121,9 @@ function BookPage() {
             <span>Available on Amazon</span>
           </>
         }
- image={heroBook}
- imageAlt="Education for Liberty, monograph cover by Fazal Ibrahim Ali"
- imageFit="contain"
+        image={heroBook}
+        imageAlt="Education for Liberty, monograph cover by Fazal Ibrahim Ali"
+        imageFit="contain"
       />
 
       {/* Flippable book preview */}
@@ -112,19 +139,19 @@ function BookPage() {
               </div>
               <div className="flex flex-wrap gap-2">
                 <a
- href={PDF_URL}
- target="_blank"
- rel="noreferrer"
- download
- className="btn-cta btn-on-blue"
+                  href={PDF_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  download
+                  className="btn-cta btn-on-blue"
                 >
                   <Download className="size-4" /> Download PDF
                 </a>
                 <a
- href={AMAZON_URL}
- target="_blank"
- rel="noreferrer"
- className="btn-cta btn-on-blue"
+                  href={AMAZON_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-cta btn-on-blue"
                 >
                   <ShoppingCart className="size-4" /> Buy on Amazon
                 </a>
@@ -139,7 +166,13 @@ function BookPage() {
           <Reveal>
             <p className="mx-auto mt-3 max-w-xl text-center text-[10px] uppercase tracking-[0.22em] text-white/45">
               Prefer to read offline?{" "}
-              <a href={PDF_URL} target="_blank" rel="noreferrer" download className="text-white underline-offset-4 hover:underline">
+              <a
+                href={PDF_URL}
+                target="_blank"
+                rel="noreferrer"
+                download
+                className="text-white underline-offset-4 hover:underline"
+              >
                 Download the full 142-page PDF
               </a>
             </p>
@@ -160,9 +193,7 @@ function BookPage() {
             <Reveal key={c.n} delay={i * 0.04}>
               <div className="grid gap-6 border-b hairline py-10 md:grid-cols-[120px_1fr_2fr] md:gap-12 md:py-12">
                 <p className="font-display text-5xl text-muted-foreground">{c.n}</p>
-                <p className="font-display text-2xl leading-tight md:text-3xl">
-                  {c.title}
-                </p>
+                <p className="font-display text-2xl leading-tight md:text-3xl">{c.title}</p>
                 <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
                   {c.body}
                 </p>

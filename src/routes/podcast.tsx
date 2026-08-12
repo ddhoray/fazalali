@@ -7,41 +7,43 @@ import { ArrowUpRight } from "lucide-react";
 import heroPodcast from "@/assets/hero-podcast.jpg";
 
 export const Route = createFileRoute("/podcast")({
- head: () => ({
- meta: [
+  head: () => ({
+    meta: [
       { title: "Podcast, Education for Liberty | Fazal Ali" },
       {
- name: "description",
- content:
+        name: "description",
+        content:
           "Education for Liberty, the podcast. Episodes of Fazal Ali's monograph read aloud, beginning with the Preface and Prolegomenon.",
       },
       { property: "og:title", content: "Education for Liberty, The Podcast" },
       {
- property: "og:description",
- content: "A monograph by Fazal Ali, read aloud. Listen to the Preface and Prolegomenon.",
+        property: "og:description",
+        content: "A monograph by Fazal Ali, read aloud. Listen to the Preface and Prolegomenon.",
       },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/podcast" },
     ],
- links: [
-      { rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/podcast" },
-    ],
+    links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/podcast" }],
   }),
- component: PodcastPage,
+  component: PodcastPage,
 });
 
 function PodcastPage() {
- return (
+  return (
     <div>
       <PageHero
- eyebrow="Education for Liberty"
- title={<>The <em className="">podcast.</em></>}
- standfirst={
+        eyebrow="Education for Liberty"
+        title={
           <>
-            A monograph, read aloud. Begin at the Preface, continue with the
-            Prolegomenon, long-form, unhurried, made for headphones.
+            The <em className="">podcast.</em>
           </>
         }
- meta={
+        standfirst={
+          <>
+            A monograph, read aloud. Begin at the Preface, continue with the Prolegomenon,
+            long-form, unhurried, made for headphones.
+          </>
+        }
+        meta={
           <>
             <span>{episodes.length} episodes</span>
             <span className="size-1 bg-white/40" />
@@ -52,8 +54,8 @@ function PodcastPage() {
             </Link>
           </>
         }
- image={heroPodcast}
- imageAlt="Studio microphone in low-key light"
+        image={heroPodcast}
+        imageAlt="Studio microphone in low-key light"
       />
 
       <section className="mx-auto max-w-[1300px] px-5 py-12 sm:px-8 sm:py-10">
@@ -68,9 +70,7 @@ function PodcastPage() {
                   <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
                     {ep.subtitle}
                   </p>
-                  <h2 className="font-display text-4xl leading-tight md:text-6xl">
-                    {ep.title}
-                  </h2>
+                  <h2 className="font-display text-4xl leading-tight md:text-6xl">{ep.title}</h2>
                   <p className="max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
                     {ep.description}
                   </p>
@@ -92,8 +92,8 @@ function PodcastPage() {
               </p>
             </div>
             <Link
- to="/palimpsest"
- className="inline-flex items-center gap-2 border-b border-foreground pb-1 text-sm uppercase tracking-[0.22em]"
+              to="/palimpsest"
+              className="inline-flex items-center gap-2 border-b border-foreground pb-1 text-sm uppercase tracking-[0.22em]"
             >
               Open palimpsest <ArrowUpRight className="size-4" />
             </Link>

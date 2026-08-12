@@ -5,107 +5,108 @@ import { ArrowUpRight } from "lucide-react";
 import heroOmeros from "@/assets/hero-omeros.jpg";
 
 export const Route = createFileRoute("/omeros-ai")({
- head: () => ({
- meta: [
+  head: () => ({
+    meta: [
       { title: "Omeros AI, A Caribbean voice in artificial intelligence" },
       {
- name: "description",
- content:
+        name: "description",
+        content:
           "Omeros AI is a Caribbean initiative to spark open debate, build skills, and make the West Indies a strategic AI hub by 2030.",
       },
       { property: "og:title", content: "Omeros AI, A Caribbean voice in artificial intelligence" },
       {
- property: "og:description",
- content:
+        property: "og:description",
+        content:
           "Prophet provocateur for AI in the West Indies, convening, capacity-building, and Global South leadership in AI governance.",
       },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/omeros-ai" },
     ],
- links: [
-      { rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/omeros-ai" },
-    ],
+    links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/omeros-ai" }],
   }),
- component: OmerosPage,
+  component: OmerosPage,
 });
 
 const pillars = [
   {
- k: "01",
- t: "Prophet provocateur",
- b: "Be a prophet provocateur for AI in the West Indies, starting honest public debate that refuses both hype and panic.",
+    k: "01",
+    t: "Prophet provocateur",
+    b: "Be a prophet provocateur for AI in the West Indies, starting honest public debate that refuses both hype and panic.",
   },
   {
- k: "02",
- t: "Open source & AI security",
- b: "Support the adoption of open-source AI innovations across the Caribbean, alongside the AI security initiatives that make that adoption safe.",
+    k: "02",
+    t: "Open source & AI security",
+    b: "Support the adoption of open-source AI innovations across the Caribbean, alongside the AI security initiatives that make that adoption safe.",
   },
   {
- k: "03",
- t: "Convene the frontier",
- b: "Bring AI experts from Google, Apple, NVIDIA, Netflix, AWS, OpenAI, Anthropic, Google DeepMind, Hugging Face, Lovable, Cursor and leading OSS communities into Caribbean rooms.",
+    k: "03",
+    t: "Convene the frontier",
+    b: "Bring AI experts from Google, Apple, NVIDIA, Netflix, AWS, OpenAI, Anthropic, Google DeepMind, Hugging Face, Lovable, Cursor and leading OSS communities into Caribbean rooms.",
   },
   {
- k: "04",
- t: "Build capacity",
- b: "Deliver workshops, fellowships and curricula that grow AI literacy and engineering depth across the region, from school benches to government cabinets.",
+    k: "04",
+    t: "Build capacity",
+    b: "Deliver workshops, fellowships and curricula that grow AI literacy and engineering depth across the region, from school benches to government cabinets.",
   },
   {
- k: "05",
- t: "Industrial digitalisation",
- b: "Drive autonomous machines, robotics, accelerated computing, data centres, national data libraries and data embassies across the Caribbean.",
+    k: "05",
+    t: "Industrial digitalisation",
+    b: "Drive autonomous machines, robotics, accelerated computing, data centres, national data libraries and data embassies across the Caribbean.",
   },
   {
- k: "06",
- t: "Fair algorithms, fair knowledge",
- b: "Make sure algorithms are fair and that small island developing states are counted, measured and represented on their own terms.",
+    k: "06",
+    t: "Fair algorithms, fair knowledge",
+    b: "Make sure algorithms are fair and that small island developing states are counted, measured and represented on their own terms.",
   },
   {
- k: "07",
- t: "Global–local linkages",
- b: "Link AI adoption in Brazil, Chile and Uruguay to SIDS in the West Indies, and nest regional initiatives inside global AI agendas and projects.",
+    k: "07",
+    t: "Global–local linkages",
+    b: "Link AI adoption in Brazil, Chile and Uruguay to SIDS in the West Indies, and nest regional initiatives inside global AI agendas and projects.",
   },
   {
- k: "08",
- t: "Energy-aware architectures",
- b: "Accelerate AI-optimised architectures that augment performance while reducing energy cost, from cloud to edge, so high-performance AI is democratised, not gated.",
+    k: "08",
+    t: "Energy-aware architectures",
+    b: "Accelerate AI-optimised architectures that augment performance while reducing energy cost, from cloud to edge, so high-performance AI is democratised, not gated.",
   },
 ];
 
 const goals = [
   {
- year: "2026",
- title: "Caribbean Algorithmic Equity Framework",
- body: "Launch a regional framework on fair algorithms and fair representation, designed in the Caribbean, built for small islands, shared outward.",
+    year: "2026",
+    title: "Caribbean Algorithmic Equity Framework",
+    body: "Launch a regional framework on fair algorithms and fair representation, designed in the Caribbean, built for small islands, shared outward.",
   },
   {
- year: "2029",
- title: "15 joint LATAM–Caribbean AI products",
- body: "Formal partnerships with Brazil, Chile and Uruguay on shared datasets, talent exchange and joint ventures, yielding 15 cross-border products serving both markets.",
+    year: "2029",
+    title: "15 joint LATAM–Caribbean AI products",
+    body: "Formal partnerships with Brazil, Chile and Uruguay on shared datasets, talent exchange and joint ventures, yielding 15 cross-border products serving both markets.",
   },
   {
- year: "2030",
- title: "Caribbean as a strategic AI hub",
- body: "Measured by regional AI startups scaled, government AI policies adopted, and Caribbean representation in global standards bodies, UN, G20, OECD and frontier-lab safety protocols.",
+    year: "2030",
+    title: "Caribbean as a strategic AI hub",
+    body: "Measured by regional AI startups scaled, government AI policies adopted, and Caribbean representation in global standards bodies, UN, G20, OECD and frontier-lab safety protocols.",
   },
 ];
 
 function OmerosPage() {
- return (
+  return (
     <div>
       <PageHero
- eyebrow="The initiative"
- title={<>Omeros<span className="">.</span></>}
- standfirst={
+        eyebrow="The initiative"
+        title={
           <>
-            <em>Omeros</em> is the Greek name for Homer, the poet of the sea, of
- journeys, of voices passed from one generation to the next. It is the
- name Fazal Ali gives to a Caribbean initiative in artificial
- intelligence: a <em>prophet provocateur</em> for AI in the West
-            Indies, convening, building capacity, and positioning the region as
- a strategic AI hub by 2030.
+            Omeros<span className="">.</span>
           </>
         }
- meta={
+        standfirst={
+          <>
+            <em>Omeros</em> is the Greek name for Homer, the poet of the sea, of journeys, of voices
+            passed from one generation to the next. It is the name Fazal Ali gives to a Caribbean
+            initiative in artificial intelligence: a <em>prophet provocateur</em> for AI in the West
+            Indies, convening, building capacity, and positioning the region as a strategic AI hub
+            by 2030.
+          </>
+        }
+        meta={
           <>
             <span>AI in the West Indies</span>
             <span className="size-1 bg-white/40" />
@@ -114,8 +115,8 @@ function OmerosPage() {
             <span>Hub by 2030</span>
           </>
         }
- image={heroOmeros}
- imageAlt="Open sea at first light, the world Homer sang"
+        image={heroOmeros}
+        imageAlt="Open sea at first light, the world Homer sang"
       />
 
       {/* Manifesto quote */}
@@ -123,11 +124,9 @@ function OmerosPage() {
         <Reveal>
           <div className="border-y hairline py-10 md:py-12">
             <p className="font-display text-3xl leading-[1.18] text-balance md:text-6xl">
-              <em>"</em>Omeros AI exists to open up honest debate about AI in
- the West Indies, to build capacity across the region, and to nest
- our small island futures inside the global conversation on
- intelligence, on terms set, in part, from
- here.<em>"</em>
+              <em>"</em>Omeros AI exists to open up honest debate about AI in the West Indies, to
+              build capacity across the region, and to nest our small island futures inside the
+              global conversation on intelligence, on terms set, in part, from here.<em>"</em>
             </p>
             <p className="mt-10 eyebrow text-muted-foreground">Fazal Ali · 2026</p>
           </div>
@@ -139,13 +138,11 @@ function OmerosPage() {
         <div className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8 sm:py-10">
           <Reveal>
             <p className="eyebrow text-white/55">What Omeros AI sets out to do</p>
-            <h2 className="mt-5 font-display text-4xl md:text-6xl">
-              Eight pillars of the work.
-            </h2>
+            <h2 className="mt-5 font-display text-4xl md:text-6xl">Eight pillars of the work.</h2>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/65 md:text-lg">
-              From convening the world's frontier labs in the Caribbean to
- driving open-source adoption, industrial digitalisation and
- algorithmic fairness, the work is plural, and it is regional.
+              From convening the world's frontier labs in the Caribbean to driving open-source
+              adoption, industrial digitalisation and algorithmic fairness, the work is plural, and
+              it is regional.
             </p>
           </Reveal>
 
@@ -171,11 +168,10 @@ function OmerosPage() {
             Strategic horizons, 2026, 2029, 2030.
           </h2>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-            Concrete commitments on a fixed timeline, a flagship summit series
- connecting 500+ regional builders annually with teams from OpenAI,
-            Anthropic, Google DeepMind, NVIDIA, AWS, Hugging Face and key OSS
- communities, with a target of 50+ cross-border collaborations a
- year.
+            Concrete commitments on a fixed timeline, a flagship summit series connecting 500+
+            regional builders annually with teams from OpenAI, Anthropic, Google DeepMind, NVIDIA,
+            AWS, Hugging Face and key OSS communities, with a target of 50+ cross-border
+            collaborations a year.
           </p>
         </Reveal>
 
@@ -202,17 +198,22 @@ function OmerosPage() {
               Notes on AI, education, and Caribbean futures.
             </p>
             <span className="mt-6 inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em]">
-              Open <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              Open{" "}
+              <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </span>
           </Link>
-          <Link to="/education-for-liberty" className="group flex flex-col gap-4 bg-background p-10 md:p-14">
+          <Link
+            to="/education-for-liberty"
+            className="group flex flex-col gap-4 bg-background p-10 md:p-14"
+          >
             <p className="eyebrow text-muted-foreground">The book</p>
             <p className="font-display text-3xl md:text-5xl">Education for Liberty.</p>
             <p className="mt-2 text-sm text-muted-foreground">
               Built on Sen and Rawls. Read the full PDF, hear the podcast.
             </p>
             <span className="mt-6 inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em]">
-              Open <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              Open{" "}
+              <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </span>
           </Link>
         </div>

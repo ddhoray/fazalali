@@ -35,39 +35,42 @@ import pScarlet from "@/assets/paintings/scarletibisteaser.jpg.asset.json";
 import pSpiritual from "@/assets/paintings/spiritualbaptists.jpg.asset.json";
 
 export const Route = createFileRoute("/gallery")({
- head: () => ({
- meta: [
+  head: () => ({
+    meta: [
       { title: "Gallery, Fazal Ali" },
       {
- name: "description",
- content:
+        name: "description",
+        content:
           "A curated visual feed, paintings, postcards, and the canvas life of a working writer.",
       },
       { property: "og:title", content: "Gallery, Fazal Ali" },
       {
- property: "og:description",
- content: "Paintings and visual field notes from Trinidad and elsewhere.",
+        property: "og:description",
+        content: "Paintings and visual field notes from Trinidad and elsewhere.",
       },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/gallery" },
     ],
- links: [
-      { rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/gallery" },
-    ],
+    links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/gallery" }],
   }),
- component: GalleryPage,
+  component: GalleryPage,
 });
 
 type Work = {
- src: string;
- title: string;
- year?: string;
- medium?: string;
+  src: string;
+  title: string;
+  year?: string;
+  medium?: string;
 };
 
 const works: Work[] = [
   { src: p1.url, title: "Run Into the Shimmering Light", year: "2023", medium: "Oil on canvas" },
   { src: p2.url, title: "Plunge Into Your Depths", year: "2022", medium: "Oil on canvas" },
-  { src: p3.url, title: "Everyone Here Is Searching", year: "2023", medium: "Mixed media on board" },
+  {
+    src: p3.url,
+    title: "Everyone Here Is Searching",
+    year: "2023",
+    medium: "Mixed media on board",
+  },
   { src: p4.url, title: "Go to the Limits", year: "2022", medium: "Oil on canvas" },
   { src: p5.url, title: "And the Angels Will Leap", year: "2023", medium: "Oil on canvas" },
   { src: p6.url, title: "No Feeling Is Final", year: "2022", medium: "Oil on canvas" },
@@ -89,7 +92,12 @@ const works: Work[] = [
   { src: p22.url, title: "You Have Been Sent Out", year: "2023", medium: "Mixed media on board" },
   { src: p23.url, title: "Above Us Only Sky", year: "2022", medium: "Oil on canvas" },
   { src: p24.url, title: "The Inner Light of All Things", year: "2023", medium: "Oil on canvas" },
-  { src: p25.url, title: "The Darkness of Each Endless Fall", year: "2022", medium: "Oil on canvas" },
+  {
+    src: p25.url,
+    title: "The Darkness of Each Endless Fall",
+    year: "2022",
+    medium: "Oil on canvas",
+  },
   { src: p26.url, title: "We Move About in the World", year: "2023", medium: "Oil on canvas" },
   { src: p27.url, title: "It Is Not Too Late", year: "2023", medium: "Acrylic on canvas" },
   { src: pScarlet.url, title: "Scarlet Ibis", year: "2023", medium: "Oil on canvas" },
@@ -97,57 +105,65 @@ const works: Work[] = [
 ];
 
 function GalleryPage() {
- return (
+  return (
     <div>
       <PageHero
- eyebrow="Visual field notes"
- title={<>The <em className="">gallery.</em></>}
- standfirst={
+        eyebrow="Visual field notes"
+        title={
           <>
-            A curated selection of paintings, colour, coastline, and the canvas life of a working writer.
-            More on <a href="https://www.instagram.com/thefazalali/" target="_blank" rel="noreferrer" className="underline-offset-4 hover:underline">@thefazalali</a>.
+            The <em className="">gallery.</em>
           </>
         }
- meta={
+        standfirst={
+          <>
+            A curated selection of paintings, colour, coastline, and the canvas life of a working
+            writer. More on{" "}
+            <a
+              href="https://www.instagram.com/thefazalali/"
+              target="_blank"
+              rel="noreferrer"
+              className="underline-offset-4 hover:underline"
+            >
+              @thefazalali
+            </a>
+            .
+          </>
+        }
+        meta={
           <>
             <span>Paintings · Trinidad</span>
             <span className="size-1 bg-white/40" />
             <a
- href="https://www.instagram.com/thefazalali/"
- target="_blank"
- rel="noreferrer"
- className="inline-flex items-center gap-2 underline-offset-4 hover:underline"
+              href="https://www.instagram.com/thefazalali/"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 underline-offset-4 hover:underline"
             >
               <Instagram className="size-3" /> Follow @thefazalali
             </a>
           </>
         }
- image={heroGallery}
- imageAlt="Aerial view of a Trinidad coastline"
+        image={heroGallery}
+        imageAlt="Aerial view of a Trinidad coastline"
       />
 
       <section className="mx-auto max-w-[1400px] px-4 md:px-8 py-12 md:py-20">
         <div className="columns-2 md:columns-3 lg:columns-4 gap-4 md:gap-6 [column-fill:_balance]">
           {works.map((w, i) => {
             // irregular sizing: vary widths via margin offsets & varied aspect feel
- const tilt = ["mt-0", "mt-6", "mt-12", "mt-2", "mt-8"][i % 5];
- return (
-              <figure
- key={w.src}
- className={`group mb-4 md:mb-6 break-inside-avoid ${tilt}`}
-              >
+            const tilt = ["mt-0", "mt-6", "mt-12", "mt-2", "mt-8"][i % 5];
+            return (
+              <figure key={w.src} className={`group mb-4 md:mb-6 break-inside-avoid ${tilt}`}>
                 <div className="relative overflow-hidden bg-muted">
                   <img
- src={w.src}
- alt={w.title}
- loading="lazy"
- className="w-full h-auto object-cover transition-transform duration-[1000ms] ease-out group-hover:scale-[1.04]"
+                    src={w.src}
+                    alt={w.title}
+                    loading="lazy"
+                    className="w-full h-auto object-cover transition-transform duration-[1000ms] ease-out group-hover:scale-[1.04]"
                   />
                 </div>
                 <figcaption className="mt-2 flex items-baseline justify-between gap-3">
-                  <h3 className="text-xs md:text-sm font-serif truncate">
-                    {w.title}
-                  </h3>
+                  <h3 className="text-xs md:text-sm font-serif truncate">{w.title}</h3>
                   <span className="text-[10px] uppercase tracking-[0.16em] text-muted-foreground shrink-0">
                     {w.year}
                   </span>
@@ -157,7 +173,6 @@ function GalleryPage() {
           })}
         </div>
       </section>
-
     </div>
   );
 }

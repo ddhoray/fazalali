@@ -4,22 +4,22 @@ import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
 
 type Props = {
- label: string;
- className?: string;
- invert?: boolean;
+  label: string;
+  className?: string;
+  invert?: boolean;
 } & Pick<ComponentProps<typeof Link>, "to" | "params">;
 
 export function CirclePill({ label, className, invert, to, params }: Props) {
- return (
+  return (
     <Link
- to={to as never}
- params={params as never}
- className={cn(
+      to={to as never}
+      params={params as never}
+      className={cn(
         "group inline-flex items-center gap-3 border px-5 py-2.5 text-[11px] uppercase tracking-[0.22em] transition-colors duration-300",
- invert
+        invert
           ? "border-white/40 text-white hover:bg-white hover:text-black"
           : "border-foreground/30 text-foreground hover:bg-foreground hover:text-background",
- className,
+        className,
       )}
     >
       <span>{label}</span>

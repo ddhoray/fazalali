@@ -7,47 +7,45 @@ import { ArrowUpRight } from "lucide-react";
 import heroInequality from "@/assets/hero-inequality.jpg";
 
 export const Route = createFileRoute("/inequality")({
- head: () => ({
- meta: [
+  head: () => ({
+    meta: [
       { title: "Inequality, Education for Liberty | Fazal Ali" },
       {
- name: "description",
- content:
+        name: "description",
+        content:
           "The capability gap, the inherited geometry of the colonial economy, and what the West Indian classroom owes the child who arrived hungry.",
       },
       { property: "og:title", content: "Inequality, Education for Liberty" },
       {
- property: "og:description",
- content: "A capability reading of inequality from a West Indian classroom.",
+        property: "og:description",
+        content: "A capability reading of inequality from a West Indian classroom.",
       },
       { property: "og:type", content: "article" },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/inequality" },
     ],
- links: [
-      { rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/inequality" },
-    ],
- scripts: [
+    links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/inequality" }],
+    scripts: [
       {
- type: "application/ld+json",
- children: JSON.stringify({
+        type: "application/ld+json",
+        children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Article",
- headline: "Inequality, Education for Liberty",
- description:
+          headline: "Inequality, Education for Liberty",
+          description:
             "The capability gap, the inherited geometry of the colonial economy, and what the West Indian classroom owes the child who arrived hungry.",
- datePublished: "2026-01-15",
- author: {
+          datePublished: "2026-01-15",
+          author: {
             "@type": "Person",
- name: "Fazal Ibrahim Ali",
- url: "https://omeros-cipher-glass.lovable.app/about",
+            name: "Fazal Ibrahim Ali",
+            url: "https://omeros-cipher-glass.lovable.app/about",
           },
- publisher: { "@type": "Person", name: "Fazal Ibrahim Ali" },
- mainEntityOfPage: "https://omeros-cipher-glass.lovable.app/inequality",
+          publisher: { "@type": "Person", name: "Fazal Ibrahim Ali" },
+          mainEntityOfPage: "https://omeros-cipher-glass.lovable.app/inequality",
         }),
       },
     ],
   }),
- component: InequalityPage,
+  component: InequalityPage,
 });
 
 const TRACK = /inherited inequalit|intergenerational immobilit|intergenerational inequalit/i;
@@ -57,13 +55,18 @@ const tracked = articles
   .slice(0, 8);
 
 function InequalityPage() {
- return (
+  return (
     <div>
       <PageHero
- eyebrow={inequality.eyebrow}
- title={<>{inequality.title.replace(/\.$/, "")}<em className="">.</em></>}
- standfirst={inequality.standfirst}
- meta={
+        eyebrow={inequality.eyebrow}
+        title={
+          <>
+            {inequality.title.replace(/\.$/, "")}
+            <em className="">.</em>
+          </>
+        }
+        standfirst={inequality.standfirst}
+        meta={
           <>
             <span>Journal</span>
             <span className="size-1 bg-white/40" />
@@ -72,8 +75,8 @@ function InequalityPage() {
             <span>After Sen</span>
           </>
         }
- image={heroInequality}
- imageAlt="High-contrast Caribbean colonial stairwell"
+        image={heroInequality}
+        imageAlt="High-contrast Caribbean colonial stairwell"
       />
 
       <article className="mx-auto max-w-[820px] px-5 py-12 sm:px-8 sm:py-10">
@@ -83,9 +86,7 @@ function InequalityPage() {
               <p className="eyebrow text-muted-foreground">
                 {String(i + 1).padStart(2, "0")} · Section
               </p>
-              <h2 className="mt-4 font-display text-3xl leading-tight md:text-5xl">
-                {s.h}
-              </h2>
+              <h2 className="mt-4 font-display text-3xl leading-tight md:text-5xl">{s.h}</h2>
               <div className="mt-8 space-y-6 text-lg leading-relaxed text-foreground/85">
                 {s.body.map((p, pi) => (
                   <p key={pi}>{p}</p>
@@ -110,14 +111,12 @@ function InequalityPage() {
             {tracked.map((a) => (
               <li key={a.slug} className="border-b hairline">
                 <Link
- to="/writing/$slug"
- params={{ slug: a.slug }}
- className="group grid gap-2 py-6 md:grid-cols-[1fr_auto] md:items-baseline md:gap-8"
+                  to="/writing/$slug"
+                  params={{ slug: a.slug }}
+                  className="group grid gap-2 py-6 md:grid-cols-[1fr_auto] md:items-baseline md:gap-8"
                 >
                   <div className="min-w-0">
-                    <h3 className="font-display text-xl leading-snug md:text-2xl">
-                      {a.title}
-                    </h3>
+                    <h3 className="font-display text-xl leading-snug md:text-2xl">{a.title}</h3>
                     <p className="mt-2 max-w-3xl text-sm leading-relaxed text-foreground/65">
                       {a.excerpt}
                     </p>
@@ -132,23 +131,28 @@ function InequalityPage() {
           </ul>
 
           <Link
- to="/writing"
- className="mt-8 inline-flex items-center gap-2 border-b border-foreground pb-1 text-sm uppercase tracking-[0.2em]"
+            to="/writing"
+            className="mt-8 inline-flex items-center gap-2 border-b border-foreground pb-1 text-sm uppercase tracking-[0.2em]"
           >
             All entries <ArrowUpRight className="size-4" />
           </Link>
         </div>
       </section>
 
-
       <section className="border-t hairline">
         <div className="mx-auto flex max-w-[1500px] flex-wrap items-end justify-between gap-6 px-5 py-10 sm:px-8">
           <p className="font-display text-3xl md:text-5xl">Read on.</p>
           <div className="flex flex-wrap gap-4 text-sm uppercase tracking-[0.2em]">
-            <Link to="/ecology" className="inline-flex items-center gap-2 border-b border-foreground pb-1">
+            <Link
+              to="/ecology"
+              className="inline-flex items-center gap-2 border-b border-foreground pb-1"
+            >
               Ecology <ArrowUpRight className="size-4" />
             </Link>
-            <Link to="/education-for-liberty" className="inline-flex items-center gap-2 border-b border-foreground pb-1">
+            <Link
+              to="/education-for-liberty"
+              className="inline-flex items-center gap-2 border-b border-foreground pb-1"
+            >
               The Book <ArrowUpRight className="size-4" />
             </Link>
           </div>

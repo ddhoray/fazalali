@@ -4,15 +4,15 @@ import { Link } from "@tanstack/react-router";
 import { Grain } from "./Grain";
 
 export interface FeaturedItem {
- eyebrow: string;
- title: string;
- year: string;
- image: string;
- to: string;
+  eyebrow: string;
+  title: string;
+  year: string;
+  image: string;
+  to: string;
 }
 
 export function FeaturedStack({ items }: { items: FeaturedItem[] }) {
- return (
+  return (
     <div className="relative">
       {items.map((item, i) => (
         <StickyCard key={item.title} item={item} index={i} total={items.length} />
@@ -21,45 +21,37 @@ export function FeaturedStack({ items }: { items: FeaturedItem[] }) {
   );
 }
 
-function StickyCard({
- item,
- index,
- total,
-}: {
- item: FeaturedItem;
- index: number;
- total: number;
-}) {
- const ref = useRef<HTMLDivElement>(null);
- const { scrollYProgress } = useScroll({
- target: ref,
- offset: ["start end", "end start"],
+function StickyCard({ item, index, total }: { item: FeaturedItem; index: number; total: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
   });
- const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1.08, 1, 0.96]);
- const y = useTransform(scrollYProgress, [0, 1], ["6%", "-6%"]);
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1.08, 1, 0.96]);
+  const y = useTransform(scrollYProgress, [0, 1], ["6%", "-6%"]);
 
- const topOffset = 6 + index * 2;
+  const topOffset = 6 + index * 2;
 
- return (
+  return (
     <div
- ref={ref}
- className="sticky"
- style={{
- top: `${topOffset}vh`,
- zIndex: 10 + index,
- marginBottom: index === total - 1 ? 0 : "12vh",
+      ref={ref}
+      className="sticky"
+      style={{
+        top: `${topOffset}vh`,
+        zIndex: 10 + index,
+        marginBottom: index === total - 1 ? 0 : "12vh",
       }}
     >
       <Link
- to={item.to as never}
- className="group relative mx-auto block aspect-[16/10] w-[92vw] max-w-[1500px] overflow-hidden bg-foreground/5"
+        to={item.to as never}
+        className="group relative mx-auto block aspect-[16/10] w-[92vw] max-w-[1500px] overflow-hidden bg-foreground/5"
       >
         <motion.div style={{ scale, y }} className="absolute inset-0">
           <img
- src={item.image}
- alt={item.title}
- className="size-full object-cover"
- loading="lazy"
+            src={item.image}
+            alt={item.title}
+            className="size-full object-cover"
+            loading="lazy"
           />
         </motion.div>
         <Grain />
@@ -74,7 +66,8 @@ function StickyCard({
           <div className="flex flex-col gap-6">
             <div className="flex items-end justify-between gap-6 text-background">
               <h3 className="font-display text-5xl leading-[0.95] md:text-8xl">
-                {item.title}<span className="">.</span>
+                {item.title}
+                <span className="">.</span>
               </h3>
               <span className="nav-link hidden md:inline">{item.year}</span>
             </div>

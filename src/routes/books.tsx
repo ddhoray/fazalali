@@ -11,79 +11,74 @@ import { assetUrl } from "@/lib/asset-url";
 const bookCover = assetUrl(bookCoverAsset);
 
 export const Route = createFileRoute("/books")({
- head: () => ({
- meta: [
+  head: () => ({
+    meta: [
       { title: "Books, Fazal Ali" },
       {
- name: "description",
- content:
+        name: "description",
+        content:
           "Books by Fazal Ibrahim Ali, Education for Liberty, and the forthcoming volumes on Caribbean thought, AI, and intergenerational immobility.",
       },
       { property: "og:title", content: "Books, Fazal Ali" },
       {
- property: "og:description",
- content:
-          "Education for Liberty and the forthcoming volumes from Omeros AI.",
+        property: "og:description",
+        content: "Education for Liberty and the forthcoming volumes from Omeros AI.",
       },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/books" },
     ],
- links: [
-      { rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/books" },
-    ],
+    links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/books" }],
   }),
- component: BooksPage,
+  component: BooksPage,
 });
 
-const PDF_URL =
-  "https://fazalali.com/wp-content/uploads/2026/02/EducationforLiberty.pdf";
+const PDF_URL = "https://fazalali.com/wp-content/uploads/2026/02/EducationforLiberty.pdf";
 const AMAZON_URL =
   "https://www.amazon.com/Education-Liberty-future-open-suggestions-ebook/dp/B072KJSQ6P/";
 
 const forthcoming = [
   {
- title: "Freedom as a Medium",
- note: "A long essay on liberty not as a state to be reached, but as the substrate in which thought and policy take shape.",
- year: "Forthcoming",
- image:
+    title: "Freedom as a Medium",
+    note: "A long essay on liberty not as a state to be reached, but as the substrate in which thought and policy take shape.",
+    year: "Forthcoming",
+    image:
       "https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?w=1200&q=80&auto=format&fit=crop",
- imageAlt: "Open sky and sea horizon, freedom as an atmosphere",
+    imageAlt: "Open sky and sea horizon, freedom as an atmosphere",
   },
   {
- title: "Sen in the Islands",
- note: "Reading Amartya Sen's capability approach from a small state, where freedom is never abstract.",
- year: "Forthcoming",
- image:
+    title: "Sen in the Islands",
+    note: "Reading Amartya Sen's capability approach from a small state, where freedom is never abstract.",
+    year: "Forthcoming",
+    image:
       "https://images.unsplash.com/photo-1559666126-84f389727b9a?w=1200&q=80&auto=format&fit=crop",
- imageAlt: "A small Caribbean island ringed by turquoise water",
+    imageAlt: "A small Caribbean island ringed by turquoise water",
   },
   {
- title: "Intergenerational Immobility",
- note: "On inherited inequality, the data fabric of state enterprises, and what the next century owes the last.",
- year: "In preparation",
- image: intergenerationalImage,
- imageAlt: "An elder's hand resting on a child's hand, generations in contact",
+    title: "Intergenerational Immobility",
+    note: "On inherited inequality, the data fabric of state enterprises, and what the next century owes the last.",
+    year: "In preparation",
+    image: intergenerationalImage,
+    imageAlt: "An elder's hand resting on a child's hand, generations in contact",
   },
 ];
 
 function BooksPage() {
- const [active, setActive] = useState<number | null>(null);
- return (
+  const [active, setActive] = useState<number | null>(null);
+  return (
     <div>
       <PageHero
- eyebrow="Books"
- title={
+        eyebrow="Books"
+        title={
           <>
             The <em className="text-accent">work</em>, in volumes.
           </>
         }
- standfirst={
+        standfirst={
           <>
-            A body of writing built on Amartya Sen's <em>Development as
-            Freedom</em> and John Rawls' <em>A Theory of Justice</em>, Caribbean
- in origin, global in address.
+            A body of writing built on Amartya Sen's <em>Development as Freedom</em> and John Rawls'{" "}
+            <em>A Theory of Justice</em>, Caribbean in origin, global in address.
           </>
         }
- meta={
+        meta={
           <>
             <span>Omeros AI</span>
             <span className="size-1 bg-white/40" />
@@ -104,17 +99,17 @@ function BooksPage() {
         <div className="mt-12 grid grid-cols-1 items-center gap-10 md:grid-cols-12 md:gap-16">
           <Reveal className="md:col-span-5">
             <div
- className="relative mx-auto aspect-[3/4] w-full max-w-[440px]"
- style={{
- filter:
+              className="relative mx-auto aspect-[3/4] w-full max-w-[440px]"
+              style={{
+                filter:
                   "drop-shadow(0 30px 40px rgba(15, 27, 61, 0.25)) drop-shadow(0 8px 16px rgba(15, 27, 61, 0.18))",
               }}
             >
               <img
- src={bookCover}
- alt="Education for Liberty, a monograph by Fazal Ali"
- className="size-full object-contain"
- loading="lazy"
+                src={bookCover}
+                alt="Education for Liberty, a monograph by Fazal Ali"
+                className="size-full object-contain"
+                loading="lazy"
               />
             </div>
           </Reveal>
@@ -122,11 +117,10 @@ function BooksPage() {
           <Reveal delay={0.1} className="md:col-span-7">
             <p className="eyebrow text-muted-foreground">First edition · 142 pages</p>
             <p className="mt-6 font-display text-2xl leading-snug md:text-3xl">
-              "Standing on the shoulders of Amartya Sen's Development as Freedom
- and John Rawls' A Theory of Justice, Omeros AI builds a body of
- work that adds to the critical theory on AI, written from the
-              West Indies, for a reader anywhere who suspects the conversation
- has been too narrow for too long."
+              "Standing on the shoulders of Amartya Sen's Development as Freedom and John Rawls' A
+              Theory of Justice, Omeros AI builds a body of work that adds to the critical theory on
+              AI, written from the West Indies, for a reader anywhere who suspects the conversation
+              has been too narrow for too long."
             </p>
             <p className="mt-8 max-w-xl text-base leading-relaxed text-foreground/75 md:text-lg">
               A manifesto for releasing the imagination.
@@ -137,19 +131,19 @@ function BooksPage() {
                 <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
               <a
- href={PDF_URL}
- target="_blank"
- rel="noreferrer"
- download
- className="btn-cta btn-on-light"
+                href={PDF_URL}
+                target="_blank"
+                rel="noreferrer"
+                download
+                className="btn-cta btn-on-light"
               >
                 <Download className="size-4" /> Download PDF
               </a>
               <a
- href={AMAZON_URL}
- target="_blank"
- rel="noreferrer"
- className="btn-cta btn-on-light"
+                href={AMAZON_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="btn-cta btn-on-light"
               >
                 <ShoppingCart className="size-4" /> Buy on Amazon
               </a>
@@ -170,39 +164,37 @@ function BooksPage() {
                 </h2>
               </div>
               <p className="max-w-md text-sm text-muted-foreground">
-                Three volumes in preparation, each extending the Omeros AI
- argument into a distinct register of public life.
+                Three volumes in preparation, each extending the Omeros AI argument into a distinct
+                register of public life.
               </p>
             </div>
           </Reveal>
 
           <div
- className="mt-12 flex flex-col gap-4 md:flex-row md:gap-5"
- onMouseLeave={() => setActive(null)}
+            className="mt-12 flex flex-col gap-4 md:flex-row md:gap-5"
+            onMouseLeave={() => setActive(null)}
           >
             {forthcoming.map((b, i) => (
               <motion.article
- key={b.title}
- data-book-card
- onMouseEnter={() => setActive(i)}
- className="group relative h-[540px] min-w-0 cursor-default overflow-hidden border hairline bg-card md:h-[600px]"
- initial={{ opacity: 0, y: 18 }}
- whileInView={{ opacity: 1, y: 0 }}
- viewport={{ once: true, amount: 0.25 }}
- animate={{
- flexGrow: active === null ? 1 : active === i ? 1.35 : 0.85,
+                key={b.title}
+                data-book-card
+                onMouseEnter={() => setActive(i)}
+                className="group relative h-[540px] min-w-0 cursor-default overflow-hidden border hairline bg-card md:h-[600px]"
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.25 }}
+                animate={{
+                  flexGrow: active === null ? 1 : active === i ? 1.35 : 0.85,
                 }}
- style={{ flexBasis: 0, flexGrow: 1 }}
- transition={{ duration: 0.55, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                style={{ flexBasis: 0, flexGrow: 1 }}
+                transition={{ duration: 0.55, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
               >
                 <img
- src={b.image}
- alt={b.imageAlt}
- loading="lazy"
- className={`absolute inset-0 size-full object-cover transition-all duration-700 ease-out ${
- active !== null && active !== i
-                      ? "grayscale brightness-75"
-                      : "grayscale-0"
+                  src={b.image}
+                  alt={b.imageAlt}
+                  loading="lazy"
+                  className={`absolute inset-0 size-full object-cover transition-all duration-700 ease-out ${
+                    active !== null && active !== i ? "grayscale brightness-75" : "grayscale-0"
                   } ${active === i ? "scale-[1.03] brightness-110" : ""}`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/55 to-transparent" />
@@ -217,12 +209,14 @@ function BooksPage() {
                 <div className="absolute inset-x-0 bottom-0 h-[245px] px-6 pb-7 pt-5 text-background md:h-[270px] md:px-7 md:pb-8">
                   <p className="eyebrow h-5 text-background/80">{b.year}</p>
                   <h3
- data-book-title
- className="mt-3 flex h-[82px] items-end font-display text-[2rem] leading-[1.02] md:h-[94px] md:text-[2.25rem]"
+                    data-book-title
+                    className="mt-3 flex h-[82px] items-end font-display text-[2rem] leading-[1.02] md:h-[94px] md:text-[2.25rem]"
                   >
                     {b.title}
                   </h3>
-                  <div className={`mt-4 h-px bg-accent transition-[width] duration-500 ${active === i ? "w-16" : "w-10"}`} />
+                  <div
+                    className={`mt-4 h-px bg-accent transition-[width] duration-500 ${active === i ? "w-16" : "w-10"}`}
+                  />
                   <p className="mt-4 line-clamp-3 text-[15px] leading-relaxed text-background/85">
                     {b.note}
                   </p>
@@ -230,9 +224,6 @@ function BooksPage() {
               </motion.article>
             ))}
           </div>
-
-
-
         </div>
       </section>
     </div>
