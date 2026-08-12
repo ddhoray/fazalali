@@ -21,9 +21,7 @@ export const Route = createFileRoute("/omeros-ai")({
       },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/omeros-ai" },
     ],
-    links: [
-      { rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/omeros-ai" },
-    ],
+    links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/omeros-ai" }],
   }),
   component: OmerosPage,
 });
@@ -94,15 +92,18 @@ function OmerosPage() {
     <div>
       <PageHero
         eyebrow="The initiative"
-        title={<>Omeros<span className="italic">.</span></>}
+        title={
+          <>
+            Omeros<span className="">.</span>
+          </>
+        }
         standfirst={
           <>
-            <em>Omeros</em> is the Greek name for Homer, the poet of the sea, of
-            journeys, of voices passed from one generation to the next. It is the
-            name Fazal Ali gives to a Caribbean initiative in artificial
-            intelligence: a <em>prophet provocateur</em> for AI in the West
-            Indies, convening, building capacity, and positioning the region as
-            a strategic AI hub by 2030.
+            <em>Omeros</em> is the Greek name for Homer, the poet of the sea, of journeys, of voices
+            passed from one generation to the next. It is the name Fazal Ali gives to a Caribbean
+            initiative in artificial intelligence: a <em>prophet provocateur</em> for AI in the West
+            Indies, convening, building capacity, and positioning the region as a strategic AI hub
+            by 2030.
           </>
         }
         meta={
@@ -123,11 +124,9 @@ function OmerosPage() {
         <Reveal>
           <div className="border-y hairline py-10 md:py-12">
             <p className="font-display text-3xl leading-[1.18] text-balance md:text-6xl">
-              <em>"</em>Omeros AI exists to open up honest debate about AI in
-              the West Indies, to build capacity across the region, and to nest
-              our small island futures inside the global conversation on
-              intelligence, on terms set, in part, from
-              here.<em>"</em>
+              <em>"</em>Omeros AI exists to open up honest debate about AI in the West Indies, to
+              build capacity across the region, and to nest our small island futures inside the
+              global conversation on intelligence, on terms set, in part, from here.<em>"</em>
             </p>
             <p className="mt-10 eyebrow text-muted-foreground">Fazal Ali · 2026</p>
           </div>
@@ -139,13 +138,11 @@ function OmerosPage() {
         <div className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8 sm:py-10">
           <Reveal>
             <p className="eyebrow text-white/55">What Omeros AI sets out to do</p>
-            <h2 className="mt-5 font-display text-4xl md:text-6xl">
-              Eight pillars of the work.
-            </h2>
+            <h2 className="mt-5 font-display text-4xl md:text-6xl">Eight pillars of the work.</h2>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/65 md:text-lg">
-              From convening the world's frontier labs in the Caribbean to
-              driving open-source adoption, industrial digitalisation and
-              algorithmic fairness, the work is plural, and it is regional.
+              From convening the world's frontier labs in the Caribbean to driving open-source
+              adoption, industrial digitalisation and algorithmic fairness, the work is plural, and
+              it is regional.
             </p>
           </Reveal>
 
@@ -171,11 +168,10 @@ function OmerosPage() {
             Strategic horizons, 2026, 2029, 2030.
           </h2>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-            Concrete commitments on a fixed timeline, a flagship summit series
-            connecting 500+ regional builders annually with teams from OpenAI,
-            Anthropic, Google DeepMind, NVIDIA, AWS, Hugging Face and key OSS
-            communities, with a target of 50+ cross-border collaborations a
-            year.
+            Concrete commitments on a fixed timeline, a flagship summit series connecting 500+
+            regional builders annually with teams from OpenAI, Anthropic, Google DeepMind, NVIDIA,
+            AWS, Hugging Face and key OSS communities, with a target of 50+ cross-border
+            collaborations a year.
           </p>
         </Reveal>
 
@@ -202,17 +198,22 @@ function OmerosPage() {
               Notes on AI, education, and Caribbean futures.
             </p>
             <span className="mt-6 inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em]">
-              Open <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              Open{" "}
+              <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </span>
           </Link>
-          <Link to="/education-for-liberty" className="group flex flex-col gap-4 bg-background p-10 md:p-14">
+          <Link
+            to="/education-for-liberty"
+            className="group flex flex-col gap-4 bg-background p-10 md:p-14"
+          >
             <p className="eyebrow text-muted-foreground">The book</p>
             <p className="font-display text-3xl md:text-5xl">Education for Liberty.</p>
             <p className="mt-2 text-sm text-muted-foreground">
               Built on Sen and Rawls. Read the full PDF, hear the podcast.
             </p>
             <span className="mt-6 inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em]">
-              Open <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              Open{" "}
+              <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </span>
           </Link>
         </div>

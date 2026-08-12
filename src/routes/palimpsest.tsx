@@ -20,9 +20,7 @@ export const Route = createFileRoute("/palimpsest")({
       },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/palimpsest" },
     ],
-    links: [
-      { rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/palimpsest" },
-    ],
+    links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/palimpsest" }],
   }),
   component: PalimpsestPage,
 });
@@ -34,14 +32,14 @@ function PalimpsestPage() {
         eyebrow="Long read"
         title={
           <>
-            A palimpsest of West Indian <em className="italic">education.</em>
+            A palimpsest of West Indian <em className="">education.</em>
           </>
         }
         standfirst={
           <>
-            Set inside a frame of world events before and after Christopher
-            Columbus set sail for the New World in 1492, from Oxford in 1096
-            to the JFK Library in 1969, from the Encomienda to Eric Williams.
+            Set inside a frame of world events before and after Christopher Columbus set sail for
+            the New World in 1492, from Oxford in 1096 to the JFK Library in 1969, from the
+            Encomienda to Eric Williams.
           </>
         }
         meta={
@@ -87,9 +85,7 @@ function PalimpsestPage() {
                     <span className="font-mono text-xs text-muted-foreground">
                       {(si + 1).toString().padStart(2, "0")}
                     </span>
-                    <h2 className="font-display text-3xl leading-tight md:text-5xl">
-                      {s.title}
-                    </h2>
+                    <h2 className="font-display text-3xl leading-tight md:text-5xl">{s.title}</h2>
                   </div>
 
                   <figure className="mt-10 overflow-hidden bg-foreground/5">
@@ -102,7 +98,7 @@ function PalimpsestPage() {
                       />
                     </div>
                     {s.imageCaption ? (
-                      <figcaption className="mt-3 text-xs italic text-muted-foreground">
+                      <figcaption className="mt-3 text-xs text-muted-foreground">
                         {s.imageCaption}
                       </figcaption>
                     ) : null}

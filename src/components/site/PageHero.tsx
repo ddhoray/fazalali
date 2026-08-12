@@ -34,19 +34,13 @@ export function PageHero({
   imageFit = "cover",
 }: PageHeroProps) {
   return (
-    <section
-      className={cn(
-        "relative isolate w-full overflow-hidden bg-[#f5f3f0]",
-        className,
-      )}
-    >
+    <section className={cn("relative isolate w-full overflow-hidden bg-[#f5f3f0]", className)}>
       {/* faint vertical hairlines for editorial texture */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 opacity-[0.05]"
         style={{
-          backgroundImage:
-            "linear-gradient(90deg, rgba(0,0,0,0.5) 1px, transparent 1px)",
+          backgroundImage: "linear-gradient(90deg, rgba(0,0,0,0.5) 1px, transparent 1px)",
           backgroundSize: "12.5% 100%",
         }}
       />

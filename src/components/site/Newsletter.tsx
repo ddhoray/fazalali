@@ -30,15 +30,14 @@ export function Newsletter() {
             delay={0.08}
             className="mt-5 font-display text-[12vw] leading-[0.95] tracking-[-0.03em] sm:text-5xl md:text-6xl lg:text-7xl"
           >
-            A letter, <em className="italic">now and then.</em>
+            A letter, <em className="">now and then.</em>
           </BlurReveal>
           <BlurReveal
             delay={0.16}
             className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground md:text-base"
           >
             Occasional dispatches, new journal entries, notes from forthcoming books, and quiet
-            reports from Omeros AI. No noise. No tracking. Read once, leave
-            anytime.
+            reports from Omeros AI. No noise. No tracking. Read once, leave anytime.
           </BlurReveal>
         </div>
 
@@ -66,17 +65,13 @@ export function Newsletter() {
                     onChange={(e) => setEmail(e.target.value)}
                     className="w-full bg-transparent font-display text-2xl tracking-tight outline-none placeholder:text-muted-foreground/60 md:text-3xl"
                   />
-                  <button
-                    type="submit"
-                    className="group btn-cta btn-on-blue shrink-0"
-                  >
+                  <button type="submit" className="group btn-cta btn-on-blue shrink-0">
                     Subscribe
                     <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </button>
                 </div>
                 <p className="mt-4 text-xs text-muted-foreground">
-                  By subscribing you agree to receive occasional emails. No
-                  spam, ever.
+                  By subscribing you agree to receive occasional emails. No spam, ever.
                 </p>
               </form>
             )}

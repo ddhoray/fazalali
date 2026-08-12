@@ -51,9 +51,7 @@ function Tile({ item }: { item: BentoItem }) {
         <h3 className="font-display text-3xl leading-[1.02] text-balance md:text-5xl">
           {item.title}
         </h3>
-        <p className="mt-5 max-w-md text-sm leading-relaxed text-muted-foreground">
-          {item.body}
-        </p>
+        <p className="mt-5 max-w-md text-sm leading-relaxed text-muted-foreground">{item.body}</p>
       </div>
 
       <div className="mt-8 flex items-center justify-between">

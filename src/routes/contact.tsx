@@ -10,14 +10,15 @@ export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Write Me, Fazal Ali" },
-      { name: "description", content: "Press, residencies, conversations on AI and the Caribbean, write Fazal Ali." },
+      {
+        name: "description",
+        content: "Press, residencies, conversations on AI and the Caribbean, write Fazal Ali.",
+      },
       { property: "og:title", content: "Write Me, Fazal Ali" },
       { property: "og:description", content: "Send a note to Fazal Ali." },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/contact" },
     ],
-    links: [
-      { rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/contact" },
-    ],
+    links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/contact" }],
   }),
   component: ContactPage,
 });
@@ -53,7 +54,7 @@ function ContactPage() {
       <Reveal>
         <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">Write me</p>
         <h1 className="mt-4 font-display text-[2.5rem] leading-[1.02] text-balance sm:text-5xl md:text-6xl lg:text-[4.25rem]">
-          A short note <em className="italic">is enough.</em>
+          A short note <em className="">is enough.</em>
         </h1>
         <p className="mt-6 max-w-xl text-muted-foreground">
           Press, residencies, teaching, or a question about the writing, all read personally.
@@ -69,24 +70,49 @@ function ContactPage() {
               </div>
               <p className="font-display text-3xl">Note received.</p>
               <p className="max-w-sm text-sm text-muted-foreground">
-                Thank you. I'll reply from <span className="text-foreground">writeme@fazalali.com</span> as soon as I can.
+                Thank you. I'll reply from{" "}
+                <span className="text-foreground">writeme@fazalali.com</span> as soon as I can.
               </p>
             </div>
           ) : (
             <form onSubmit={onSubmit} className="grid gap-6">
               <Field label="Your name">
-                <input name="name" required maxLength={120} className={inputCls} placeholder="Jane Doe" />
+                <input
+                  name="name"
+                  required
+                  maxLength={120}
+                  className={inputCls}
+                  placeholder="Jane Doe"
+                />
               </Field>
               <Field label="Email">
-                <input name="email" type="email" required maxLength={200} className={inputCls} placeholder="you@domain.com" />
+                <input
+                  name="email"
+                  type="email"
+                  required
+                  maxLength={200}
+                  className={inputCls}
+                  placeholder="you@domain.com"
+                />
               </Field>
               <Field label="Message">
-                <textarea name="message" required minLength={4} maxLength={4000} rows={6} className={inputCls} placeholder="Say a little about what you're writing or working on…" />
+                <textarea
+                  name="message"
+                  required
+                  minLength={4}
+                  maxLength={4000}
+                  rows={6}
+                  className={inputCls}
+                  placeholder="Say a little about what you're writing or working on…"
+                />
               </Field>
               {error && <p className="text-sm text-destructive">{error}</p>}
               <div className="flex items-center justify-between">
                 <p className="text-xs text-muted-foreground">
-                  Or email <a href="mailto:writeme@fazalali.com" className="underline">writeme@fazalali.com</a>
+                  Or email{" "}
+                  <a href="mailto:writeme@fazalali.com" className="underline">
+                    writeme@fazalali.com
+                  </a>
                 </p>
                 <button
                   type="submit"
@@ -111,7 +137,9 @@ const inputCls =
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="mb-2 block text-xs uppercase tracking-[0.18em] text-muted-foreground">{label}</span>
+      <span className="mb-2 block text-xs uppercase tracking-[0.18em] text-muted-foreground">
+        {label}
+      </span>
       {children}
     </label>
   );

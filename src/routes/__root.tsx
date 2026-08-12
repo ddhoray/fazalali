@@ -21,8 +21,6 @@ import { MobileTopBar } from "../components/site/MobileTopBar";
 import { SplashScreen } from "../components/site/SplashScreen";
 import { ScrollToTop } from "../components/site/ScrollToTop";
 
-
-
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center px-4">
@@ -33,10 +31,7 @@ function NotFoundComponent() {
           The page you're looking for has drifted out of frame.
         </p>
         <div className="mt-6">
-          <Link
-            to="/"
-            className="btn-cta btn-primary"
-          >
+          <Link to="/" className="btn-cta btn-primary">
             Go home
           </Link>
         </div>
@@ -56,9 +51,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
     <div className="flex min-h-screen items-center justify-center px-4">
       <div className="glass max-w-md rounded-none p-10 text-center">
         <h1 className="font-display text-2xl">This page didn't load</h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end.
-        </p>
+        <p className="mt-2 text-sm text-muted-foreground">Something went wrong on our end.</p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
             onClick={() => {
@@ -69,10 +62,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
           >
             Try again
           </button>
-          <a
-            href="/"
-            className="btn-cta btn-on-light"
-          >
+          <a href="/" className="btn-cta btn-on-light">
             Go home
           </a>
         </div>
@@ -93,17 +83,29 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Dr. Fazal Ibrahim Ali, writing on critical theory in AI from the West Indies. Books, ideas, art, and the Omeros AI identity.",
       },
       { name: "author", content: "Fazal Ibrahim Ali" },
-      { name: "keywords", content: "Fazal Ali, Fazal Ibrahim Ali, Omeros AI, Education for Liberty, critical theory AI, Caribbean philosophy, Trinidad writer, West Indies AI, Cambridge scholar" },
+      {
+        name: "keywords",
+        content:
+          "Fazal Ali, Fazal Ibrahim Ali, Omeros AI, Education for Liberty, critical theory AI, Caribbean philosophy, Trinidad writer, West Indies AI, Cambridge scholar",
+      },
       { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
       { name: "theme-color", content: "#0f1b3d" },
       { property: "og:site_name", content: "Fazal Ali" },
       { property: "og:title", content: "Fazal Ali, Writer, Scholar, Omeros AI" },
-      { property: "og:description", content: "Writing on critical theory in AI from the West Indies. The Omeros AI brand identity." },
+      {
+        property: "og:description",
+        content:
+          "Writing on critical theory in AI from the West Indies. The Omeros AI brand identity.",
+      },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "en_US" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Fazal Ali, Writer, Scholar, Omeros AI" },
-      { name: "twitter:description", content: "Writing on critical theory in AI from the West Indies. The Omeros AI brand identity." },
+      {
+        name: "twitter:description",
+        content:
+          "Writing on critical theory in AI from the West Indies. The Omeros AI brand identity.",
+      },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -188,8 +190,7 @@ function RootComponent() {
       <SplashScreen />
       <SmoothScroll />
       <ScrollToTop />
-      
-      
+
       <main>
         <PageTransition>
           <Outlet />
@@ -201,6 +202,5 @@ function RootComponent() {
       <MobileTopBar />
       <ContactDrawer />
     </QueryClientProvider>
-
   );
 }

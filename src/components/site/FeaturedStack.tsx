@@ -21,15 +21,7 @@ export function FeaturedStack({ items }: { items: FeaturedItem[] }) {
   );
 }
 
-function StickyCard({
-  item,
-  index,
-  total,
-}: {
-  item: FeaturedItem;
-  index: number;
-  total: number;
-}) {
+function StickyCard({ item, index, total }: { item: FeaturedItem; index: number; total: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -74,7 +66,8 @@ function StickyCard({
           <div className="flex flex-col gap-6">
             <div className="flex items-end justify-between gap-6 text-background">
               <h3 className="font-display text-5xl leading-[0.95] md:text-8xl">
-                {item.title}<span className="italic">.</span>
+                {item.title}
+                <span className="">.</span>
               </h3>
               <span className="nav-link hidden md:inline">{item.year}</span>
             </div>

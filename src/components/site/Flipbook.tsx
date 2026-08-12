@@ -86,10 +86,7 @@ export function Flipbook({ file = PDF_FILE_DEFAULT }: FlipbookProps) {
   }, [numPages]);
 
   const fileOption = useMemo(() => ({ url: file }), [file]);
-  const pageNumbers = useMemo(
-    () => Array.from({ length: numPages }, (_, i) => i + 1),
-    [numPages],
-  );
+  const pageNumbers = useMemo(() => Array.from({ length: numPages }, (_, i) => i + 1), [numPages]);
 
   if (!modules) {
     return (

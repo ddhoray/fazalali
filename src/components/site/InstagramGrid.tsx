@@ -17,7 +17,7 @@ export function InstagramGrid({ limit, showHeader = true }: InstagramGridProps) 
             <div>
               <p className="eyebrow text-muted-foreground">Elsewhere</p>
               <h2 className="mt-4 font-display text-4xl md:text-7xl">
-                <em className="italic">@thefazalali</em>
+                <em className="">@thefazalali</em>
               </h2>
               <p className="mt-4 max-w-md text-sm text-muted-foreground md:text-base">
                 Field notes, drone footage, carnival, and the occasional book.

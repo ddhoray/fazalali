@@ -5,7 +5,6 @@ import { BookOpen, Sparkles, PenLine, Compass, ArrowUpRight } from "lucide-react
 import { BlurReveal, SlideIn } from "@/components/site/BlurReveal";
 import { WordScrollReveal } from "@/components/site/WordScrollReveal";
 
-
 import { HoverImage } from "@/components/site/HoverImage";
 import { CirclePill } from "@/components/site/CirclePill";
 import { Grain } from "@/components/site/Grain";
@@ -59,9 +58,7 @@ export const Route = createFileRoute("/")({
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/" },
       { property: "og:type", content: "website" },
     ],
-    links: [
-      { rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/" },
-    ],
+    links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/" }],
   }),
   component: Home,
 });
@@ -91,7 +88,7 @@ function Home() {
             <div className="max-w-xl">
               <p className="eyebrow opacity-85">A quiet desk</p>
               <h3 className="mt-3 font-display text-3xl leading-[1.04] sm:text-5xl">
-                Slow reading, <em className="italic text-accent">long sentences.</em>
+                Slow reading, <em className="text-accent">long sentences.</em>
               </h3>
             </div>
           </div>
@@ -102,7 +99,7 @@ function Home() {
         <BookSection />
         <Range />
         <LatestWriting />
-        
+
         <Newsletter />
       </div>
     </>
@@ -124,19 +121,17 @@ function CoreStatement() {
           className="mt-6 font-display text-[8vw] leading-[1.02] tracking-[-0.025em] text-balance sm:text-5xl md:text-6xl lg:text-7xl"
         >
           The ethics of AI must be the preserve of{" "}
-          <em className="italic text-accent">all cultures and continents.</em>
+          <em className="text-accent">all cultures and continents.</em>
         </BlurReveal>
         <div className="mt-10 grid max-w-4xl gap-6 text-base leading-relaxed text-foreground/75 md:text-lg">
           <BlurReveal as="p" delay={0.16}>
-            Every agency, company, institution and country designing,
-            developing and deploying AI architectures has an obligation to
-            incorporate a more geographically, culturally and socially diverse
-            array of perspectives.
+            Every agency, company, institution and country designing, developing and deploying AI
+            architectures has an obligation to incorporate a more geographically, culturally and
+            socially diverse array of perspectives.
           </BlurReveal>
           <BlurReveal as="p" delay={0.22}>
-            Only then do we begin to achieve fair algorithms, fairness in whose
-            knowledge counts, and an end to inequality passed down from one
-            generation to the next.
+            Only then do we begin to achieve fair algorithms, fairness in whose knowledge counts,
+            and an end to inequality passed down from one generation to the next.
           </BlurReveal>
         </div>
       </div>
@@ -147,14 +142,46 @@ function CoreStatement() {
 /* ─────────────────── Ideas & Themes ─────────────────── */
 
 const ideas = [
-  { title: "Freedom as a Medium", note: "Liberty as the substrate of thought, not a destination.", to: "/writing" as const },
-  { title: "Sen in the Islands", note: "The capability approach, read from a small state.", to: "/writing" as const },
-  { title: "AI Ethics", note: "A globally distributed obligation, not a Silicon Valley deliverable.", to: "/writing" as const },
-  { title: "Algorithmic Fairness", note: "On the geography of training data and the politics of inference.", to: "/writing" as const },
-  { title: "Epistemic Justice", note: "Whose knowledge is held to be knowledge in the age of the model.", to: "/writing" as const },
-  { title: "Inequality", note: "The data fabric of state enterprises and what it reproduces.", to: "/inequality" as const },
-  { title: "Intergenerational Immobility", note: "Inherited inequality, and what the next century owes the last.", to: "/inequality" as const },
-  { title: "Education for Liberty", note: "What a child needs to learn so the next machine is a freedom.", to: "/education-for-liberty" as const },
+  {
+    title: "Freedom as a Medium",
+    note: "Liberty as the substrate of thought, not a destination.",
+    to: "/writing" as const,
+  },
+  {
+    title: "Sen in the Islands",
+    note: "The capability approach, read from a small state.",
+    to: "/writing" as const,
+  },
+  {
+    title: "AI Ethics",
+    note: "A globally distributed obligation, not a Silicon Valley deliverable.",
+    to: "/writing" as const,
+  },
+  {
+    title: "Algorithmic Fairness",
+    note: "On the geography of training data and the politics of inference.",
+    to: "/writing" as const,
+  },
+  {
+    title: "Epistemic Justice",
+    note: "Whose knowledge is held to be knowledge in the age of the model.",
+    to: "/writing" as const,
+  },
+  {
+    title: "Inequality",
+    note: "The data fabric of state enterprises and what it reproduces.",
+    to: "/inequality" as const,
+  },
+  {
+    title: "Intergenerational Immobility",
+    note: "Inherited inequality, and what the next century owes the last.",
+    to: "/inequality" as const,
+  },
+  {
+    title: "Education for Liberty",
+    note: "What a child needs to learn so the next machine is a freedom.",
+    to: "/education-for-liberty" as const,
+  },
 ];
 
 function IdeasAndThemes() {
@@ -171,7 +198,7 @@ function IdeasAndThemes() {
               delay={0.08}
               className="mt-3 font-display text-4xl leading-[1] md:text-6xl"
             >
-              Areas of <em className="italic text-accent">inquiry.</em>
+              Areas of <em className="text-accent">inquiry.</em>
             </BlurReveal>
           </div>
           <BlurReveal delay={0.16}>
@@ -189,15 +216,11 @@ function IdeasAndThemes() {
                 className="group flex h-full flex-col justify-between gap-8 bg-background p-7 transition-colors hover:bg-foreground/[0.03] md:p-9"
               >
                 <div>
-                  <p className="eyebrow text-muted-foreground">
-                    {String(i + 1).padStart(2, "0")}
-                  </p>
+                  <p className="eyebrow text-muted-foreground">{String(i + 1).padStart(2, "0")}</p>
                   <h3 className="mt-4 font-display text-2xl leading-tight md:text-3xl">
                     {idea.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                    {idea.note}
-                  </p>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{idea.note}</p>
                 </div>
                 <span className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-muted-foreground transition-colors group-hover:text-foreground">
                   Read
@@ -211,7 +234,6 @@ function IdeasAndThemes() {
     </section>
   );
 }
-
 
 /* ───────────────────────── Hero ───────────────────────── */
 
@@ -263,7 +285,6 @@ function Hero() {
             className="absolute inset-0 size-full object-cover"
           />
 
-
           <motion.div
             style={{ opacity: heroOverlayOpacity }}
             className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-black/10"
@@ -292,26 +313,27 @@ function Hero() {
           </motion.div>
 
           <motion.div
-            style={{ opacity: titleOpacity, y: titleY, visibility: revealed ? "visible" : "hidden" }}
+            style={{
+              opacity: titleOpacity,
+              y: titleY,
+              visibility: revealed ? "visible" : "hidden",
+            }}
             initial={{ opacity: 0 }}
             aria-hidden={!revealed}
             className="text-on-image absolute inset-0 z-10 flex flex-col justify-between px-6 pt-28 pb-12 text-white sm:px-12 sm:pt-32 sm:pb-16"
           >
-            <p className="eyebrow opacity-85">
-              Omeros AI :West Indies &amp; the World
-            </p>
+            <p className="eyebrow opacity-85">Omeros AI :West Indies &amp; the World</p>
 
             <div>
               <h1 className="font-display text-[12vw] leading-[1.02] tracking-[-0.035em] text-balance sm:text-[9vw] md:text-[7vw] md:leading-[0.96]">
-                A prophet provocateur, schooled in <span className="italic">freedom.</span>
+                A prophet provocateur, schooled in <span className="">freedom.</span>
               </h1>
 
               <p className="mt-5 max-w-md text-[13px] leading-relaxed opacity-90 sm:mt-6 sm:text-sm md:text-base">
-                Dr. Fazal Ibrahim Ali, Cambridge-educated, Trinidad-born.
-                Critical theory on artificial intelligence, written from the
-                West Indies, for a reader anywhere who suspects the
-                conversation has been{" "}
-                <em className="italic text-accent">too narrow for too long.</em>
+                Dr. Fazal Ibrahim Ali, Cambridge-educated, Trinidad-born. Critical theory on
+                artificial intelligence, written from the West Indies, for a reader anywhere who
+                suspects the conversation has been{" "}
+                <em className="text-accent">too narrow for too long.</em>
               </p>
 
               <p className="mt-8 text-[10px] uppercase tracking-[0.3em] opacity-70">
@@ -325,7 +347,6 @@ function Hero() {
   );
 }
 
-
 /* ───────────────── Quiet editorial divider ──────────────── */
 
 function Quietline() {
@@ -335,7 +356,7 @@ function Quietline() {
         <BlurReveal as="span" className="eyebrow text-muted-foreground">
           Est. Trinidad, 1974
         </BlurReveal>
-        <BlurReveal delay={0.1} className="text-center font-display text-xl italic md:text-2xl">
+        <BlurReveal delay={0.1} className="text-center font-display text-xl md:text-2xl">
           This is the next world.
         </BlurReveal>
         <BlurReveal as="span" delay={0.2} className="eyebrow text-right text-muted-foreground">
@@ -358,11 +379,14 @@ function Manifesto() {
         className="font-display text-[8vw] leading-[1.04] tracking-[-0.025em] text-balance sm:text-[5vw] sm:leading-[1.08] md:text-[3.4vw]"
         text="Goodness, as rationality, does not attribute any special virtue to the process of deciding. Human thinking is imperfect. The AI frontier opens the possibility to augment each person's Agility Quotient (AQ) to think better. In that ferment lies the possibility of a blossoming of human ideas boosted by AI. The true challenge is therefore to build AI systems that prompt us to think more benevolently than we naturally do."
       />
-      <BlurReveal as="p" delay={0.1} className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground">
-       , Fazal Ali, on opening the new site, 2026.
+      <BlurReveal
+        as="p"
+        delay={0.1}
+        className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground"
+      >
+        , Fazal Ali, on opening the new site, 2026.
       </BlurReveal>
     </section>
-
   );
 }
 
@@ -371,11 +395,7 @@ function Manifesto() {
 function Portrait() {
   const navigateRoot = useNavigate();
   return (
-    <section
-
-      data-nav="dark"
-      className="section-invert relative overflow-hidden py-10 md:py-14"
-    >
+    <section data-nav="dark" className="section-invert relative overflow-hidden py-10 md:py-14">
       <Grain />
 
       <div className="relative z-10 mx-auto max-w-[1500px] px-5 sm:px-8">
@@ -410,7 +430,6 @@ function Portrait() {
             >
               FAZAL ALI
             </h2>
-
           </BlurReveal>
 
           {/* 3-column row with flanking text and centered cutout */}
@@ -418,34 +437,24 @@ function Portrait() {
             {/* Left text */}
             <div className="order-2 col-span-6 md:order-1 md:col-span-3">
               <BlurReveal delay={0.1} className="space-y-4 text-left">
-                <p
-                  className="eyebrow"
-                  style={{ color: "rgba(246,244,239,0.55)" }}
-                >
+                <p className="eyebrow" style={{ color: "rgba(246,244,239,0.55)" }}>
                   Origin
                 </p>
                 <p
-                  className="font-display text-lg italic leading-snug md:text-xl"
+                  className="font-display text-lg leading-snug md:text-xl"
                   style={{ color: "rgba(246,244,239,0.9)" }}
                 >
-                  Born in Trinidad. Read at Cambridge. Mentored by Sen, Rees and
-                  Borysiewicz.
+                  Born in Trinidad. Read at Cambridge. Mentored by Sen, Rees and Borysiewicz.
                 </p>
-                <p
-                  className="text-sm leading-relaxed"
-                  style={{ color: "rgba(246,244,239,0.6)" }}
-                >
-                  Twenty years of work that lived inside lecture rooms, now
-                  stepping out from behind the lectern.
+                <p className="text-sm leading-relaxed" style={{ color: "rgba(246,244,239,0.6)" }}>
+                  Twenty years of work that lived inside lecture rooms, now stepping out from behind
+                  the lectern.
                 </p>
               </BlurReveal>
             </div>
 
             {/* Cutout, centered hero with hold-to-open */}
-            <SlideIn
-              from="bottom"
-              className="order-1 col-span-12 md:order-2 md:col-span-6"
-            >
+            <SlideIn from="bottom" className="order-1 col-span-12 md:order-2 md:col-span-6">
               <HoverImage
                 src={portrait}
                 alt="Dr. Fazal Ibrahim Ali"
@@ -466,29 +475,21 @@ function Portrait() {
               </HoverImage>
             </SlideIn>
 
-
             {/* Right text */}
             <div className="order-3 col-span-6 md:col-span-3">
               <BlurReveal delay={0.18} className="space-y-4 text-right">
-                <p
-                  className="eyebrow"
-                  style={{ color: "rgba(246,244,239,0.55)" }}
-                >
+                <p className="eyebrow" style={{ color: "rgba(246,244,239,0.55)" }}>
                   Today
                 </p>
                 <p
-                  className="font-display text-lg italic leading-snug md:text-xl"
+                  className="font-display text-lg leading-snug md:text-xl"
                   style={{ color: "rgba(246,244,239,0.9)" }}
                 >
-                  Writer · Scholar · Founder of{" "}
-                  <span className="not-italic">Omeros AI</span>.
+                  Writer · Scholar · Founder of <span className="not-italic">Omeros AI</span>.
                 </p>
-                <p
-                  className="text-sm leading-relaxed"
-                  style={{ color: "rgba(246,244,239,0.6)" }}
-                >
-                  A Caribbean reading of intelligence, and a contribution from
-                  Trinidad to a conversation usually written elsewhere.
+                <p className="text-sm leading-relaxed" style={{ color: "rgba(246,244,239,0.6)" }}>
+                  A Caribbean reading of intelligence, and a contribution from Trinidad to a
+                  conversation usually written elsewhere.
                 </p>
               </BlurReveal>
             </div>
@@ -498,7 +499,7 @@ function Portrait() {
         {/* Quote row */}
         <BlurReveal
           delay={0.22}
-          className="mx-auto mt-14 max-w-3xl text-center font-display text-2xl italic leading-[1.25] md:mt-20 md:text-4xl"
+          className="mx-auto mt-14 max-w-3xl text-center font-display text-2xl leading-[1.25] md:mt-20 md:text-4xl"
         >
           <span style={{ color: "rgba(246,244,239,0.95)" }}>
             &ldquo;I have grown braver. A little more adventurous.&rdquo;
@@ -526,8 +527,7 @@ const streams = [
     n: "01",
     title: "Research",
     kicker: "Critical Theory in AI",
-    body:
-      "Frontier models read as social substrate, not products, not miracles. Essays, lectures and working notes.",
+    body: "Frontier models read as social substrate, not products, not miracles. Essays, lectures and working notes.",
     icon: Sparkles,
     image: streamResearch,
     to: "/writing" as const,
@@ -537,8 +537,7 @@ const streams = [
     n: "02",
     title: "Publications",
     kicker: "Education for Liberty",
-    body:
-      "The first title in a sequence of four. Three further volumes are in preparation.",
+    body: "The first title in a sequence of four. Three further volumes are in preparation.",
     icon: BookOpen,
     image: streamPublications,
     to: "/books" as const,
@@ -548,8 +547,7 @@ const streams = [
     n: "03",
     title: "Conversation",
     kicker: "The Omeros podcast",
-    body:
-      "Readings, interviews and arguments, the written work spoken aloud.",
+    body: "Readings, interviews and arguments, the written work spoken aloud.",
     icon: PenLine,
     image: streamConversation,
     to: "/podcast" as const,
@@ -577,16 +575,15 @@ function Range() {
               delay={0.08}
               className="mt-4 font-display text-[13vw] leading-[0.95] sm:text-6xl md:text-7xl"
             >
-              One practice,{" "}
-              <em className="italic text-accent">three streams.</em>
+              One practice, <em className="text-accent">three streams.</em>
             </BlurReveal>
           </div>
           <BlurReveal
             delay={0.14}
             className="text-base leading-relaxed text-muted-foreground md:pb-2"
           >
-            One body of work under a single name, research, publishing, and the
-            conversation around both.
+            One body of work under a single name, research, publishing, and the conversation around
+            both.
           </BlurReveal>
         </div>
 
@@ -639,7 +636,7 @@ function Range() {
                       className="origin-bottom-left whitespace-nowrap font-display text-2xl leading-[1] text-white lg:text-3xl"
                     >
                       {s.title}
-                      <span className="italic text-accent">.</span>
+                      <span className="text-accent">.</span>
                     </motion.h3>
 
                     {/* reserved space so nothing jumps when copy appears */}
@@ -666,7 +663,6 @@ function Range() {
                       </motion.div>
                     </div>
                   </div>
-
                 </div>
               </motion.div>
             );
@@ -694,11 +690,9 @@ function Range() {
                 <div>
                   <h3 className="font-display text-3xl leading-[1] text-white">
                     {s.title}
-                    <span className="italic text-accent">.</span>
+                    <span className="text-accent">.</span>
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-white/75">
-                    {s.body}
-                  </p>
+                  <p className="mt-2 text-sm leading-relaxed text-white/75">{s.body}</p>
                   <Link
                     to={s.to}
                     className="mt-4 inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-white hover:text-accent"
@@ -716,7 +710,6 @@ function Range() {
   );
 }
 
-
 /* ─────────────────────── Writing ──────────────────────── */
 
 const writingImages = [featuredWriting, practiceEssays, featuredOmeros];
@@ -728,13 +721,21 @@ function LatestWriting() {
     <section className="mx-auto max-w-[1700px] scroll-mt-24 bg-background px-5 py-10 sm:px-8 md:py-14">
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4 border-b hairline pb-5">
         <div>
-          <BlurReveal as="p" className="eyebrow text-muted-foreground">From the Journal</BlurReveal>
-          <BlurReveal as="h2" delay={0.08} className="mt-3 font-display text-[11vw] leading-[1] sm:text-5xl md:text-6xl">
-            Recent pieces<span className="italic">.</span>
+          <BlurReveal as="p" className="eyebrow text-muted-foreground">
+            From the Journal
+          </BlurReveal>
+          <BlurReveal
+            as="h2"
+            delay={0.08}
+            className="mt-3 font-display text-[11vw] leading-[1] sm:text-5xl md:text-6xl"
+          >
+            Recent pieces<span className="">.</span>
           </BlurReveal>
         </div>
         <BlurReveal delay={0.16}>
-          <Link to="/writing" className="nav-link">All entries →</Link>
+          <Link to="/writing" className="nav-link">
+            All entries →
+          </Link>
         </BlurReveal>
       </div>
 
@@ -746,18 +747,14 @@ function LatestWriting() {
                 src={writingImages[i % writingImages.length]}
                 alt={a.title}
                 holdMs={6000}
-                onHoldComplete={() =>
-                  navigate({ to: "/writing/$slug", params: { slug: a.slug } })
-                }
+                onHoldComplete={() => navigate({ to: "/writing/$slug", params: { slug: a.slug } })}
               >
                 <Link
                   to="/writing/$slug"
                   params={{ slug: a.slug }}
                   className="group grid grid-cols-1 gap-3 py-6 md:grid-cols-[160px_1fr_auto] md:items-baseline md:gap-12 md:py-8"
                 >
-                  <span className="eyebrow text-muted-foreground">
-                    {formatArticleDate(a.date)}
-                  </span>
+                  <span className="eyebrow text-muted-foreground">{formatArticleDate(a.date)}</span>
                   <h3 className="font-display text-[7vw] leading-[1.05] transition-transform duration-700 group-hover:translate-x-3 sm:text-3xl md:text-5xl">
                     {a.title}
                   </h3>
@@ -773,4 +770,3 @@ function LatestWriting() {
     </section>
   );
 }
-

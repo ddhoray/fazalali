@@ -37,11 +37,7 @@ export function HomeTopBar() {
         >
           Fazal Ali
         </Link>
-        <button
-          type="button"
-          onClick={() => openContactDrawer()}
-          className="btn-cta btn-primary"
-        >
+        <button type="button" onClick={() => openContactDrawer()} className="btn-cta btn-primary">
           <span aria-hidden>↳</span> Write Me
         </button>
       </div>

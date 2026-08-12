@@ -40,7 +40,6 @@ export function WordScrollReveal({
             {w}
             {i < words.length - 1 ? " " : ""}
           </Word>
-
         );
       })}
     </p>

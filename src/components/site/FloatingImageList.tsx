@@ -21,7 +21,7 @@ export function FloatingImageList({ items }: { items: FloatingItem[] }) {
             <span className="nav-link opacity-50">{`0${i + 1}`}</span>
             <h3 className="font-display text-[10vw] leading-[0.95] tracking-[-0.025em] transition-transform duration-700 ease-out group-hover:translate-x-3 md:text-[6.5vw]">
               {item.title}
-              <span className="italic">.</span>
+              <span className="">.</span>
             </h3>
             <span className="nav-link hidden text-right opacity-60 md:inline">
               {item.eyebrow} · {item.year}

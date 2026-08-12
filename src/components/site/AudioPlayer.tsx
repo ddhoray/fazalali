@@ -44,7 +44,9 @@ export function AudioPlayer({ src, className, variant = "light" }: AudioPlayerPr
       a.pause();
       setPlaying(false);
     } else {
-      a.play().then(() => setPlaying(true)).catch(() => setPlaying(false));
+      a.play()
+        .then(() => setPlaying(true))
+        .catch(() => setPlaying(false));
     }
   };
 
@@ -79,10 +81,7 @@ export function AudioPlayer({ src, className, variant = "light" }: AudioPlayerPr
         {playing ? <Pause className="size-5" /> : <Play className="ml-0.5 size-5" />}
       </button>
       <div className="flex-1 min-w-0">
-        <div
-          onClick={seek}
-          className={cn("relative h-1 w-full cursor-pointer", bgBar)}
-        >
+        <div onClick={seek} className={cn("relative h-1 w-full cursor-pointer", bgBar)}>
           <div
             className={cn("absolute inset-y-0 left-0", fillBar)}
             style={{ width: duration ? `${(current / duration) * 100}%` : "0%" }}

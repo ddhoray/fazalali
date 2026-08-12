@@ -30,11 +30,7 @@ export function ThemeToggle() {
       onClick={toggle}
       className="inline-flex size-9 items-center justify-center border border-current/20 transition-opacity hover:opacity-70"
     >
-      {mounted && theme === "dark" ? (
-        <Sun className="size-4" />
-      ) : (
-        <Moon className="size-4" />
-      )}
+      {mounted && theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
     </button>
   );
 }

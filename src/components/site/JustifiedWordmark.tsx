@@ -2,13 +2,7 @@
  * Edge-to-edge wordmark, uses SVG textLength to force the text to span
  * exactly the container width without cropping or letter-spacing hacks.
  */
-export function JustifiedWordmark({
-  text,
-  className = "",
-}: {
-  text: string;
-  className?: string;
-}) {
+export function JustifiedWordmark({ text, className = "" }: { text: string; className?: string }) {
   return (
     <div className={`w-full overflow-hidden ${className}`}>
       <svg

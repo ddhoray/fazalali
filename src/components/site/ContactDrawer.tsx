@@ -92,7 +92,7 @@ export function ContactDrawer() {
                     Write me
                   </p>
                   <h2 className="mt-2 font-display text-4xl leading-[0.95] sm:text-5xl">
-                    A short note <em className="italic">is enough.</em>
+                    A short note <em className="">is enough.</em>
                   </h2>
                 </div>
                 <button
@@ -112,8 +112,7 @@ export function ContactDrawer() {
                   <p className="font-display text-3xl">Note received.</p>
                   <p className="max-w-sm text-sm text-muted-foreground">
                     Thank you. I'll reply from{" "}
-                    <span className="text-foreground">writeme@fazalali.com</span>{" "}
-                    as soon as I can.
+                    <span className="text-foreground">writeme@fazalali.com</span> as soon as I can.
                   </p>
                 </div>
               ) : (

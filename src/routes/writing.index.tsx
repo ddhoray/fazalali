@@ -20,16 +20,20 @@ export const Route = createFileRoute("/writing/")({
           "Fazal Ali journal, critical theory AI, Caribbean AI, West Indies philosophy, decolonial AI, Omeros AI essays, Trinidad writing, AI ethics essays, education philosophy, algorithmic justice, Global South AI",
       },
       { property: "og:title", content: "Journal, Fazal Ali" },
-      { property: "og:description", content: "140+ essays on critical theory in AI, education, and Caribbean futures." },
+      {
+        property: "og:description",
+        content: "140+ essays on critical theory in AI, education, and Caribbean futures.",
+      },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/writing" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Journal, Fazal Ali" },
-      { name: "twitter:description", content: "140+ essays on critical theory in AI, education, and Caribbean futures." },
+      {
+        name: "twitter:description",
+        content: "140+ essays on critical theory in AI, education, and Caribbean futures.",
+      },
     ],
-    links: [
-      { rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/writing" },
-    ],
+    links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/writing" }],
     scripts: [
       {
         type: "application/ld+json",
@@ -60,7 +64,6 @@ export const Route = createFileRoute("/writing/")({
   component: WritingIndex,
 });
 
-
 function fmtDate(d: string) {
   const [year, month, day] = d.split("-").map(Number);
   return new Intl.DateTimeFormat("en-GB", {
@@ -80,13 +83,13 @@ function WritingIndex() {
         eyebrow="Journal"
         title={
           <>
-            Entries, slowly, <em className="italic">often.</em>
+            Entries, slowly, <em className="">often.</em>
           </>
         }
         standfirst={
           <>
-            A weekly note on AI, education and the West Indian future. Read in
-            order, or pick a thread.
+            A weekly note on AI, education and the West Indian future. Read in order, or pick a
+            thread.
           </>
         }
         meta={
@@ -104,11 +107,7 @@ function WritingIndex() {
 
       {/* Featured */}
       <section className="border-b hairline">
-        <Link
-          to="/writing/$slug"
-          params={{ slug: featured.slug }}
-          className="group block"
-        >
+        <Link to="/writing/$slug" params={{ slug: featured.slug }} className="group block">
           <div className="mx-auto grid max-w-[1700px] gap-10 px-5 py-12 sm:px-8 md:grid-cols-2 md:gap-16 md:py-14">
             <Reveal>
               <div className="relative aspect-[5/4] overflow-hidden bg-foreground/5">

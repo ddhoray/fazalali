@@ -34,9 +34,7 @@ export function SiteNav() {
   }, []);
 
   useEffect(() => {
-    const sections = Array.from(
-      document.querySelectorAll<HTMLElement>('[data-nav="dark"]'),
-    );
+    const sections = Array.from(document.querySelectorAll<HTMLElement>('[data-nav="dark"]'));
     if (sections.length === 0) {
       setOverDark(false);
       return;
@@ -77,9 +75,7 @@ export function SiteNav() {
             alt="Fazal Ali"
             className={cn(
               "h-7 w-auto sm:h-8 transition-[filter] duration-500",
-              lightOnDark
-                ? "brightness-0 invert"
-                : "brightness-0",
+              lightOnDark ? "brightness-0 invert" : "brightness-0",
             )}
           />
         </Link>

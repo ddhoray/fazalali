@@ -22,20 +22,16 @@ export const Route = createFileRoute("/books")({
       { property: "og:title", content: "Books, Fazal Ali" },
       {
         property: "og:description",
-        content:
-          "Education for Liberty and the forthcoming volumes from Omeros AI.",
+        content: "Education for Liberty and the forthcoming volumes from Omeros AI.",
       },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/books" },
     ],
-    links: [
-      { rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/books" },
-    ],
+    links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/books" }],
   }),
   component: BooksPage,
 });
 
-const PDF_URL =
-  "https://fazalali.com/wp-content/uploads/2026/02/EducationforLiberty.pdf";
+const PDF_URL = "https://fazalali.com/wp-content/uploads/2026/02/EducationforLiberty.pdf";
 const AMAZON_URL =
   "https://www.amazon.com/Education-Liberty-future-open-suggestions-ebook/dp/B072KJSQ6P/";
 
@@ -73,14 +69,13 @@ function BooksPage() {
         eyebrow="Books"
         title={
           <>
-            The <em className="italic text-accent">work</em>, in volumes.
+            The <em className="text-accent">work</em>, in volumes.
           </>
         }
         standfirst={
           <>
-            A body of writing built on Amartya Sen's <em>Development as
-            Freedom</em> and John Rawls' <em>A Theory of Justice</em>, Caribbean
-            in origin, global in address.
+            A body of writing built on Amartya Sen's <em>Development as Freedom</em> and John Rawls'{" "}
+            <em>A Theory of Justice</em>, Caribbean in origin, global in address.
           </>
         }
         meta={
@@ -97,7 +92,7 @@ function BooksPage() {
         <Reveal>
           <p className="eyebrow text-muted-foreground">In print</p>
           <h2 className="mt-4 font-display text-4xl leading-[1] md:text-6xl">
-            Education for <em className="italic text-accent">Liberty.</em>
+            Education for <em className="text-accent">Liberty.</em>
           </h2>
         </Reveal>
 
@@ -121,11 +116,10 @@ function BooksPage() {
 
           <Reveal delay={0.1} className="md:col-span-7">
             <p className="eyebrow text-muted-foreground">First edition · 142 pages</p>
-            <p className="mt-6 font-display text-2xl italic leading-snug md:text-3xl">
-              "Standing on the shoulders of Amartya Sen's Development as Freedom
-              and John Rawls' A Theory of Justice, Omeros AI builds a body of
-              work that adds to the critical theory on AI, written from the
-              West Indies, for a reader anywhere who suspects the conversation
+            <p className="mt-6 font-display text-2xl leading-snug md:text-3xl">
+              "Standing on the shoulders of Amartya Sen's Development as Freedom and John Rawls' A
+              Theory of Justice, Omeros AI builds a body of work that adds to the critical theory on
+              AI, written from the West Indies, for a reader anywhere who suspects the conversation
               has been too narrow for too long."
             </p>
             <p className="mt-8 max-w-xl text-base leading-relaxed text-foreground/75 md:text-lg">
@@ -166,12 +160,12 @@ function BooksPage() {
               <div>
                 <p className="eyebrow text-muted-foreground">Forthcoming</p>
                 <h2 className="mt-4 font-display text-4xl leading-[1] md:text-6xl">
-                  Books to <em className="italic text-accent">come.</em>
+                  Books to <em className="text-accent">come.</em>
                 </h2>
               </div>
               <p className="max-w-md text-sm text-muted-foreground">
-                Three volumes in preparation, each extending the Omeros AI
-                argument into a distinct register of public life.
+                Three volumes in preparation, each extending the Omeros AI argument into a distinct
+                register of public life.
               </p>
             </div>
           </Reveal>
@@ -200,15 +194,13 @@ function BooksPage() {
                   alt={b.imageAlt}
                   loading="lazy"
                   className={`absolute inset-0 size-full object-cover transition-all duration-700 ease-out ${
-                    active !== null && active !== i
-                      ? "grayscale brightness-75"
-                      : "grayscale-0"
+                    active !== null && active !== i ? "grayscale brightness-75" : "grayscale-0"
                   } ${active === i ? "scale-[1.03] brightness-110" : ""}`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/55 to-transparent" />
 
                 <div className="absolute inset-x-0 top-0 flex items-center justify-between px-6 pt-6 text-background">
-                  <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.22em]">
+                  <span className="font-mono text-[11px] font-medium uppercase tracking-[0.22em]">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <BookOpen className="size-4 opacity-80" strokeWidth={1.8} />
@@ -222,7 +214,9 @@ function BooksPage() {
                   >
                     {b.title}
                   </h3>
-                  <div className={`mt-4 h-px bg-accent transition-[width] duration-500 ${active === i ? "w-16" : "w-10"}`} />
+                  <div
+                    className={`mt-4 h-px bg-accent transition-[width] duration-500 ${active === i ? "w-16" : "w-10"}`}
+                  />
                   <p className="mt-4 line-clamp-3 text-[15px] leading-relaxed text-background/85">
                     {b.note}
                   </p>
@@ -230,9 +224,6 @@ function BooksPage() {
               </motion.article>
             ))}
           </div>
-
-
-
         </div>
       </section>
     </div>

@@ -29,7 +29,7 @@ export function BrandMark({ className = "" }: { className?: string }) {
         <path d="M6 46 H58" opacity="0.4" />
       </svg>
       <span className="font-display text-[15px] tracking-[0.02em]">
-        Fazal<span className="italic"> Ali</span>
+        Fazal<span className=""> Ali</span>
       </span>
     </Link>
   );

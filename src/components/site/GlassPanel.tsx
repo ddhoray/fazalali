@@ -14,11 +14,7 @@ export const GlassPanel = forwardRef<HTMLDivElement, Props>(
     return (
       <div
         ref={ref}
-        className={cn(
-          "bg-card",
-          bordered && "border hairline",
-          className,
-        )}
+        className={cn("bg-card", bordered && "border hairline", className)}
         {...rest}
       />
     );

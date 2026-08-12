@@ -10,9 +10,7 @@ function DefaultErrorComponent({ error, reset }: { error: Error; reset: () => vo
     <div className="flex min-h-screen items-center justify-center px-4">
       <div className="glass max-w-md rounded-none p-10 text-center">
         <h1 className="font-display text-2xl">This page didn't load</h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end.
-        </p>
+        <p className="mt-2 text-sm text-muted-foreground">Something went wrong on our end.</p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
             onClick={() => {

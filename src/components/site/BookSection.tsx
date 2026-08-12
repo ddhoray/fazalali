@@ -56,7 +56,7 @@ export function BookSection() {
             >
               Education
               <br />
-              <span className="italic">for Liberty.</span>
+              <span className="">for Liberty.</span>
             </BlurReveal>
 
             <BlurReveal
@@ -69,16 +69,14 @@ export function BookSection() {
             <BlurReveal delay={0.26} className="mt-10 grid gap-4 sm:grid-cols-2">
               <div className="border-l-2 pl-4" style={{ borderColor: "oklch(0.55 0.10 235)" }}>
                 <p className="eyebrow text-muted-foreground">Foreword</p>
-                <p className="mt-2 font-display text-lg italic leading-snug">
-                  Sir George Alleyne
-                </p>
+                <p className="mt-2 font-display text-lg leading-snug">Sir George Alleyne</p>
                 <p className="text-xs text-muted-foreground">
                   M.D., F.R.C.P., F.A.C.P. (Hon), DSc (Hon)
                 </p>
               </div>
               <div className="border-l-2 pl-4" style={{ borderColor: "oklch(0.55 0.10 235)" }}>
                 <p className="eyebrow text-muted-foreground">Epilogue</p>
-                <p className="mt-2 font-display text-lg italic leading-snug">
+                <p className="mt-2 font-display text-lg leading-snug">
                   Archbishop Joseph Everard Harris
                 </p>
                 <p className="text-xs text-muted-foreground">C.S.Sp.</p>
@@ -86,17 +84,11 @@ export function BookSection() {
             </BlurReveal>
 
             <BlurReveal delay={0.34} className="mt-10 flex flex-wrap gap-3">
-              <Link
-                to="/education-for-liberty"
-                className="group btn-cta btn-primary"
-              >
+              <Link to="/education-for-liberty" className="group btn-cta btn-primary">
                 Read the monograph
                 <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
-              <Link
-                to="/contact"
-                className="btn-cta btn-on-light"
-              >
+              <Link to="/contact" className="btn-cta btn-on-light">
                 Request a copy
               </Link>
             </BlurReveal>

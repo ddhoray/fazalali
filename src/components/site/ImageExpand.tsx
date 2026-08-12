@@ -38,11 +38,7 @@ export function ImageExpand({
     <section ref={ref} className={`relative w-full ${height} bg-background`}>
       <div className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden">
         <motion.div
-          style={
-            reduce
-              ? undefined
-              : { width, borderRadius: radius }
-          }
+          style={reduce ? undefined : { width, borderRadius: radius }}
           className="relative h-[88vh] overflow-hidden bg-foreground/5 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.45)]"
         >
           <motion.img

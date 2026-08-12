@@ -21,19 +21,25 @@ export const Route = createFileRoute("/writing/$slug")({
             { name: "author", content: "Fazal Ibrahim Ali" },
             { name: "article:published_time", content: loaderData.article.date },
             { name: "article:section", content: loaderData.article.topic },
-            ...((loaderData.article.tags ?? []).map((t: string) => ({
+            ...(loaderData.article.tags ?? []).map((t: string) => ({
               property: "article:tag",
               content: t,
-            }))),
+            })),
             { property: "og:title", content: loaderData.article.title },
             { property: "og:description", content: loaderData.article.excerpt },
             { property: "og:type", content: "article" },
             { property: "og:image", content: loaderData.article.image },
-            { property: "og:url", content: `https://omeros-cipher-glass.lovable.app/writing/${params.slug}` },
+            {
+              property: "og:url",
+              content: `https://omeros-cipher-glass.lovable.app/writing/${params.slug}`,
+            },
             { name: "twitter:image", content: loaderData.article.image },
           ],
           links: [
-            { rel: "canonical", href: `https://omeros-cipher-glass.lovable.app/writing/${params.slug}` },
+            {
+              rel: "canonical",
+              href: `https://omeros-cipher-glass.lovable.app/writing/${params.slug}`,
+            },
           ],
           scripts: [
             {
@@ -67,9 +73,24 @@ export const Route = createFileRoute("/writing/$slug")({
                   {
                     "@type": "BreadcrumbList",
                     itemListElement: [
-                      { "@type": "ListItem", position: 1, name: "Home", item: "https://omeros-cipher-glass.lovable.app/" },
-                      { "@type": "ListItem", position: 2, name: "Journal", item: "https://omeros-cipher-glass.lovable.app/writing" },
-                      { "@type": "ListItem", position: 3, name: loaderData.article.title, item: `https://omeros-cipher-glass.lovable.app/writing/${params.slug}` },
+                      {
+                        "@type": "ListItem",
+                        position: 1,
+                        name: "Home",
+                        item: "https://omeros-cipher-glass.lovable.app/",
+                      },
+                      {
+                        "@type": "ListItem",
+                        position: 2,
+                        name: "Journal",
+                        item: "https://omeros-cipher-glass.lovable.app/writing",
+                      },
+                      {
+                        "@type": "ListItem",
+                        position: 3,
+                        name: loaderData.article.title,
+                        item: `https://omeros-cipher-glass.lovable.app/writing/${params.slug}`,
+                      },
                     ],
                   },
                 ],
@@ -82,7 +103,9 @@ export const Route = createFileRoute("/writing/$slug")({
   notFoundComponent: () => (
     <div className="mx-auto max-w-3xl px-5 py-10 text-center">
       <h1 className="font-display text-4xl">Entry not found</h1>
-      <Link to="/writing" className="mt-6 inline-block underline">All entries</Link>
+      <Link to="/writing" className="mt-6 inline-block underline">
+        All entries
+      </Link>
     </div>
   ),
   errorComponent: ({ error, reset }) => {
@@ -90,7 +113,9 @@ export const Route = createFileRoute("/writing/$slug")({
     return (
       <div className="mx-auto max-w-3xl px-5 py-10 text-center">
         <h1 className="font-display text-4xl">This entry didn't load</h1>
-        <button onClick={reset} className="mt-6 underline">Try again</button>
+        <button onClick={reset} className="mt-6 underline">
+          Try again
+        </button>
       </div>
     );
   },
@@ -111,24 +136,14 @@ function ArticlePage() {
   const { article } = Route.useLoaderData();
   const i = articles.findIndex((a) => a.slug === article.slug);
   const next = articles[(i + 1) % articles.length];
-  const readingTime = Math.max(
-    3,
-    Math.round(article.body.join(" ").split(/\s+/).length / 220),
-  );
+  const readingTime = Math.max(3, Math.round(article.body.join(" ").split(/\s+/).length / 220));
 
   return (
     <article>
       {/* Dark cinematic hero with image backdrop */}
-      <section
-        data-nav="dark"
-        className="section-invert relative isolate w-full overflow-hidden"
-      >
+      <section data-nav="dark" className="section-invert relative isolate w-full overflow-hidden">
         <div className="absolute inset-0">
-          <img
-            src={article.image}
-            alt=""
-            className="size-full object-cover opacity-[0.35]"
-          />
+          <img src={article.image} alt="" className="size-full object-cover opacity-[0.35]" />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/30" />
         </div>
         <div className="relative mx-auto max-w-5xl px-5 pb-12 pt-24 sm:px-8 sm:pb-16 sm:pt-28">
@@ -142,9 +157,7 @@ function ArticlePage() {
           <h1 className="mt-6 font-display text-[2.5rem] leading-[1.02] text-balance sm:text-5xl md:text-6xl lg:text-[4.25rem]">
             {article.title}
           </h1>
-          <p className="mt-10 max-w-3xl text-xl leading-relaxed text-white/80">
-            {article.excerpt}
-          </p>
+          <p className="mt-10 max-w-3xl text-xl leading-relaxed text-white/80">{article.excerpt}</p>
           <div className="mt-14 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-white/15 pt-6 text-xs uppercase tracking-[0.22em] text-white/55">
             <time>{fmtDate(article.date)}</time>
             <span className="size-1 bg-white/40" />
@@ -191,27 +204,21 @@ function ArticlePage() {
         <Reveal>
           <hr className="my-20 border-foreground/15" />
           <p className="text-center text-xs uppercase tracking-[0.3em] text-muted-foreground">
-           , Fazal Ali · {fmtDate(article.date)} -
+            , Fazal Ali · {fmtDate(article.date)} -
           </p>
         </Reveal>
       </section>
 
       {/* Next entry dark band */}
       <section data-nav="dark" className="section-invert">
-        <Link
-          to="/writing/$slug"
-          params={{ slug: next.slug }}
-          className="group block"
-        >
+        <Link to="/writing/$slug" params={{ slug: next.slug }} className="group block">
           <div className="mx-auto grid max-w-[1500px] gap-10 px-5 py-12 sm:px-8 sm:py-14 md:grid-cols-[1fr_auto] md:items-end">
             <div>
               <p className="eyebrow text-white/55">Next entry · {next.topic}</p>
               <h2 className="mt-5 font-display text-4xl leading-tight text-white md:text-6xl">
                 {next.title}
               </h2>
-              <p className="mt-5 max-w-xl text-base text-white/65 md:text-lg">
-                {next.excerpt}
-              </p>
+              <p className="mt-5 max-w-xl text-base text-white/65 md:text-lg">{next.excerpt}</p>
             </div>
             <div className="inline-flex items-center gap-3 text-sm uppercase tracking-[0.22em] text-white">
               Read next

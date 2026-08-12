@@ -24,7 +24,10 @@ export const Route = createFileRoute("/education-for-liberty")({
           "Building on Amartya Sen and John Rawls, education as the substrate of freedom. Flip through a preview or download the PDF.",
       },
       { property: "og:type", content: "book" },
-      { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/education-for-liberty" },
+      {
+        property: "og:url",
+        content: "https://omeros-cipher-glass.lovable.app/education-for-liberty",
+      },
     ],
     links: [
       { rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/education-for-liberty" },
@@ -50,7 +53,8 @@ export const Route = createFileRoute("/education-for-liberty")({
             bookFormat: "https://schema.org/EBook",
             potentialAction: {
               "@type": "ReadAction",
-              target: "https://www.amazon.com/Education-Liberty-future-open-suggestions-ebook/dp/B072KJSQ6P/",
+              target:
+                "https://www.amazon.com/Education-Liberty-future-open-suggestions-ebook/dp/B072KJSQ6P/",
             },
           },
         }),
@@ -60,17 +64,36 @@ export const Route = createFileRoute("/education-for-liberty")({
   component: BookPage,
 });
 
-const PDF_URL =
-  "https://fazalali.com/wp-content/uploads/2026/02/EducationforLiberty.pdf";
+const PDF_URL = "https://fazalali.com/wp-content/uploads/2026/02/EducationforLiberty.pdf";
 const AMAZON_URL =
   "https://www.amazon.com/Education-Liberty-future-open-suggestions-ebook/dp/B072KJSQ6P/";
 
 const chapters = [
-  { n: "I", title: "Freedom as the medium", body: "Why education, before it is a system, is a metaphysical claim about what people are for." },
-  { n: "II", title: "Sen, in the islands", body: "A reading of Development as Freedom from a small state, where capability is not abstract." },
-  { n: "III", title: "Rawls, repositioned", body: "The veil of ignorance is heavier in the Caribbean. It is also more honest." },
-  { n: "IV", title: "The classroom as a polity", body: "If liberty is the goal, the classroom is its first parliament." },
-  { n: "V", title: "What we owe the future", body: "The pedagogy of failure, of patience, of refusal, in the age of AI." },
+  {
+    n: "I",
+    title: "Freedom as the medium",
+    body: "Why education, before it is a system, is a metaphysical claim about what people are for.",
+  },
+  {
+    n: "II",
+    title: "Sen, in the islands",
+    body: "A reading of Development as Freedom from a small state, where capability is not abstract.",
+  },
+  {
+    n: "III",
+    title: "Rawls, repositioned",
+    body: "The veil of ignorance is heavier in the Caribbean. It is also more honest.",
+  },
+  {
+    n: "IV",
+    title: "The classroom as a polity",
+    body: "If liberty is the goal, the classroom is its first parliament.",
+  },
+  {
+    n: "V",
+    title: "What we owe the future",
+    body: "The pedagogy of failure, of patience, of refusal, in the age of AI.",
+  },
 ];
 
 function BookPage() {
@@ -78,11 +101,15 @@ function BookPage() {
     <div>
       <PageHero
         eyebrow="The Book"
-        title={<>Education <em className="italic">for</em> Liberty</>}
+        title={
+          <>
+            Education <em className="">for</em> Liberty
+          </>
+        }
         standfirst={
           <>
-            A persuasive work built on Amartya Sen's <em>Development as Freedom</em> and
-            John Rawls' <em>A Theory of Justice</em>. After Sen. After Rawls. From Trinidad.
+            A persuasive work built on Amartya Sen's <em>Development as Freedom</em> and John Rawls'{" "}
+            <em>A Theory of Justice</em>. After Sen. After Rawls. From Trinidad.
           </>
         }
         meta={
@@ -107,7 +134,7 @@ function BookPage() {
               <div>
                 <p className="eyebrow text-white/55">Preview</p>
                 <p className="mt-2 font-display text-3xl leading-none md:text-4xl">
-                  Flip <em className="italic">through</em> the book.
+                  Flip <em className="">through</em> the book.
                 </p>
               </div>
               <div className="flex flex-wrap gap-2">
@@ -139,7 +166,13 @@ function BookPage() {
           <Reveal>
             <p className="mx-auto mt-3 max-w-xl text-center text-[10px] uppercase tracking-[0.22em] text-white/45">
               Prefer to read offline?{" "}
-              <a href={PDF_URL} target="_blank" rel="noreferrer" download className="text-white underline-offset-4 hover:underline">
+              <a
+                href={PDF_URL}
+                target="_blank"
+                rel="noreferrer"
+                download
+                className="text-white underline-offset-4 hover:underline"
+              >
                 Download the full 142-page PDF
               </a>
             </p>
@@ -152,7 +185,7 @@ function BookPage() {
         <Reveal>
           <p className="eyebrow text-muted-foreground">Inside the book</p>
           <h2 className="mt-5 font-display text-4xl md:text-6xl">
-            Ideas &amp; <em className="italic text-accent">themes.</em>
+            Ideas &amp; <em className="text-accent">themes.</em>
           </h2>
         </Reveal>
         <div className="mt-16 border-t hairline">
@@ -160,9 +193,7 @@ function BookPage() {
             <Reveal key={c.n} delay={i * 0.04}>
               <div className="grid gap-6 border-b hairline py-10 md:grid-cols-[120px_1fr_2fr] md:gap-12 md:py-12">
                 <p className="font-display text-5xl text-muted-foreground">{c.n}</p>
-                <p className="font-display text-2xl leading-tight md:text-3xl">
-                  {c.title}
-                </p>
+                <p className="font-display text-2xl leading-tight md:text-3xl">{c.title}</p>
                 <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
                   {c.body}
                 </p>
