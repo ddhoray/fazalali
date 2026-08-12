@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
 import { inequality } from "@/content/inequality";
+import { articles } from "@/content/articles";
 import { ArrowUpRight } from "lucide-react";
 import heroInequality from "@/assets/hero-inequality.jpg";
 
@@ -49,6 +50,12 @@ export const Route = createFileRoute("/inequality")({
   component: InequalityPage,
 });
 
+const TRACK = /inherited inequalit|intergenerational immobilit|intergenerational inequalit/i;
+
+const tracked = articles
+  .filter((a) => TRACK.test([a.title, a.excerpt, ...a.body].join(" ")))
+  .slice(0, 8);
+
 function InequalityPage() {
   return (
     <div>
@@ -88,6 +95,51 @@ function InequalityPage() {
           </Reveal>
         ))}
       </article>
+
+      <section className="border-t hairline bg-[oklch(0.98_0.004_250)]">
+        <div className="mx-auto max-w-[1500px] px-5 py-14 sm:px-8">
+          <p className="eyebrow text-muted-foreground">Traced through the essays</p>
+          <h2 className="mt-4 max-w-2xl font-display text-3xl leading-tight md:text-5xl">
+            Inherited inequality and intergenerational immobility.
+          </h2>
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-foreground/70 sm:text-lg">
+            The recurring argument of the journal. These entries carry it directly.
+          </p>
+
+          <ul className="mt-10 border-t hairline">
+            {tracked.map((a) => (
+              <li key={a.slug} className="border-b hairline">
+                <Link
+                  to="/writing/$slug"
+                  params={{ slug: a.slug }}
+                  className="group grid gap-2 py-6 md:grid-cols-[1fr_auto] md:items-baseline md:gap-8"
+                >
+                  <div className="min-w-0">
+                    <h3 className="font-display text-xl leading-snug md:text-2xl">
+                      {a.title}
+                    </h3>
+                    <p className="mt-2 max-w-3xl text-sm leading-relaxed text-foreground/65">
+                      {a.excerpt}
+                    </p>
+                  </div>
+                  <span className="inline-flex shrink-0 items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                    {a.date}
+                    <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          <Link
+            to="/writing"
+            className="mt-8 inline-flex items-center gap-2 border-b border-foreground pb-1 text-sm uppercase tracking-[0.2em]"
+          >
+            All entries <ArrowUpRight className="size-4" />
+          </Link>
+        </div>
+      </section>
+
 
       <section className="border-t hairline">
         <div className="mx-auto flex max-w-[1500px] flex-wrap items-end justify-between gap-6 px-5 py-10 sm:px-8">
