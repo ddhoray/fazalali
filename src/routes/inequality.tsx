@@ -96,7 +96,7 @@ function InequalityPage() {
         ))}
       </article>
 
-      <section className="border-t hairline bg-[oklch(0.98_0.004_250)]">
+      <section className="border-t hairline bg-[#f5f3f0]">
         <div className="mx-auto max-w-[1500px] px-5 py-14 sm:px-8">
           <p className="eyebrow text-muted-foreground">Traced through the essays</p>
           <h2 className="mt-4 max-w-2xl font-display text-3xl leading-tight md:text-5xl">
