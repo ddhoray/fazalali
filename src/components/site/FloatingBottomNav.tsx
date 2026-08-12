@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { openContactDrawer } from "@/components/site/ContactDrawer";
-import omerosMark from "@/assets/brand-omeros-mark.png";
+import omerosMark from "@/assets/omeros-dock-mark.png.asset.json";
 
 const primaryLinks = [
   { to: "/about", label: "Profile" },
@@ -150,9 +150,9 @@ export function FloatingBottomNav() {
               className="flex h-full shrink-0 items-center justify-center px-4"
             >
               <img
-                src={omerosMark}
+                src={omerosMark.url}
                 alt="Omeros"
-                className="block h-28 w-28 object-contain brightness-0 invert"
+                className="block h-28 w-28 object-contain"
                 draggable={false}
               />
             </Link>
