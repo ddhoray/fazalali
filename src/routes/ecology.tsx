@@ -12,12 +12,12 @@ export const Route = createFileRoute("/ecology")({
       {
         name: "description",
         content:
-          "An island is the right scale at which to learn ecology. A West Indian reading of climate, coast, and curriculum.",
+          "A short note, not a body of work. Where the ethics of artificial intelligence were borrowed from ecological conservation.",
       },
       { property: "og:title", content: "Ecology, Education for Liberty" },
       {
         property: "og:description",
-        content: "Climate literacy as the substrate of citizenship in the West Indian classroom.",
+        content: "Precaution, stewardship, irreversibility: AI ethics borrowed from conservation.",
       },
       { property: "og:type", content: "article" },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/ecology" },
@@ -33,7 +33,7 @@ export const Route = createFileRoute("/ecology")({
           "@type": "Article",
           headline: "Ecology, Education for Liberty",
           description:
-            "An island is the right scale at which to learn ecology. A West Indian reading of climate, coast, and curriculum.",
+            "A short note, not a body of work. Where the ethics of artificial intelligence were borrowed from ecological conservation.",
           datePublished: "2026-01-15",
           author: {
             "@type": "Person",
@@ -58,10 +58,10 @@ function EcologyPage() {
         standfirst={ecology.standfirst}
         meta={
           <>
-            <span>Journal</span>
-            <span className="size-1 bg-white/40" />
-            <span>{ecology.sections.length} parts</span>
-            <span className="size-1 bg-white/40" />
+            <span>Note</span>
+            <span className="size-1 bg-foreground/30" />
+            <span>Short read</span>
+            <span className="size-1 bg-foreground/30" />
             <span>From the West Indies</span>
           </>
         }
@@ -74,7 +74,7 @@ function EcologyPage() {
           <Reveal key={s.h} delay={i * 0.04}>
             <section className="mb-16 last:mb-0">
               <p className="eyebrow text-muted-foreground">
-                {String(i + 1).padStart(2, "0")} · Section
+                {String(i + 1).padStart(2, "0")} · Note
               </p>
               <h2 className="mt-4 font-display text-3xl leading-tight md:text-5xl">
                 {s.h}
