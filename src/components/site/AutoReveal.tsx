@@ -1,9 +1,13 @@
 import { useEffect } from "react";
 import { useRouterState } from "@tanstack/react-router";
 
+const ITEM_SELECTOR =
+  "h1, h2, h3, h4, h5, h6, p, blockquote, li, figure, img, a[class*='btn'], button, .reveal-item";
+
 /**
- * Applies the homepage's damped fade-up reveal to every section on every page.
- * Sections are tagged on route change and revealed as they enter the viewport.
+ * Site-wide scroll reveal.
+ * Each section fades up, and the text inside it reveals sequentially,
+ * matching the homepage motion language on every page.
  */
 export function AutoReveal() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
@@ -18,8 +22,10 @@ export function AutoReveal() {
       const main = document.querySelector("main");
       if (!main) return;
 
-      const candidates = Array.from(
-        main.querySelectorAll<HTMLElement>(":scope > section, :scope > div > section"),
+      const sections = Array.from(
+        main.querySelectorAll<HTMLElement>(
+          ":scope > section, :scope > div > section, :scope > div > div > section",
+        ),
       );
 
       observer = new IntersectionObserver(
@@ -31,15 +37,32 @@ export function AutoReveal() {
             }
           }
         },
-        { rootMargin: "0px 0px -8% 0px", threshold: 0.05 },
+        { rootMargin: "0px 0px -10% 0px", threshold: 0.05 },
       );
 
-      candidates.forEach((el, i) => {
-        // Leave the first (hero) block alone so it is visible immediately.
-        if (i === 0) return;
-        if (el.dataset.reveal === "on") return;
-        el.dataset.reveal = "on";
-        observer?.observe(el);
+      sections.forEach((section, sectionIndex) => {
+        if (section.dataset.reveal === "on") return;
+        section.dataset.reveal = "on";
+
+        // Stagger the text/media blocks inside the section.
+        const items = Array.from(
+          section.querySelectorAll<HTMLElement>(ITEM_SELECTOR),
+        ).filter((el) => {
+          // Skip nested items whose ancestor is already an item.
+          return !el.parentElement?.closest("[data-reveal-item]");
+        });
+
+        items.slice(0, 24).forEach((el, i) => {
+          el.dataset.revealItem = "";
+          el.style.transitionDelay = `${Math.min(i * 70, 700)}ms`;
+        });
+
+        // Hero (first section) reveals immediately, others on scroll.
+        if (sectionIndex === 0) {
+          requestAnimationFrame(() => section.classList.add("is-revealed"));
+        } else {
+          observer?.observe(section);
+        }
       });
     };
 
