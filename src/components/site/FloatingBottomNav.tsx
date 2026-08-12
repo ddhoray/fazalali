@@ -138,12 +138,12 @@ export function FloatingBottomNav() {
             onClick={() => setExpanded(false)}
             aria-label="Close menu"
             aria-expanded
-            className="flex h-14 w-14 items-center justify-center text-white/80 transition-colors hover:text-white"
+            className="flex h-16 w-16 items-center justify-center text-white/80 transition-colors hover:text-white"
           >
             <X className="h-5 w-5" strokeWidth={1.4} />
           </button>
         ) : (
-          <div className="flex h-14 items-center">
+          <div className="flex h-16 items-center">
             <Link
               to="/"
               aria-label="Home"
@@ -152,7 +152,7 @@ export function FloatingBottomNav() {
               <img
                 src={omerosMark}
                 alt="Omeros"
-                className="h-7 w-auto object-contain brightness-0 invert"
+                className="h-9 w-auto object-contain brightness-0 invert"
                 draggable={false}
               />
             </Link>
