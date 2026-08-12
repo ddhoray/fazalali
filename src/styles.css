@@ -5,13 +5,13 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --radius-sm: 0;
-  --radius-md: 0;
-  --radius-lg: 0;
-  --radius-xl: 0;
-  --radius-2xl: 0;
-  --radius-3xl: 0;
-  --radius-4xl: 0;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 0.875rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
+  --radius-4xl: 2rem;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -33,39 +33,41 @@
   --color-input: var(--border);
   --color-ring: var(--foreground);
 
-  --font-display: "Bodoni Moda", "Times New Roman", serif;
-  --font-sans: "Inter", "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "General Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "General Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
-  --radius: 0;
+  --radius: 0.75rem;
 
-  /* Omeros AI palette — cool fog white + slate ink */
-  --background: oklch(0.975 0.004 250);  /* cool fog white */
-  --foreground: oklch(0.20 0.015 250);   /* slate ink, neutral cool */
+  /* Fluid palette — warm bone paper + graphite ink */
+  --background: oklch(0.955 0.004 85);   /* bone / warm off-white */
+  --foreground: oklch(0.225 0.002 85);   /* graphite ink */
 
-  --muted: oklch(0.93 0.006 250);
-  --muted-foreground: oklch(0.42 0.012 250);
+  --muted: oklch(0.915 0.004 85);
+  --muted-foreground: oklch(0.48 0.004 85);
 
   --card: var(--background);
   --card-foreground: var(--foreground);
 
   /* Hairlines — near neutral, no sepia */
-  --border: color-mix(in oklab, oklch(0.20 0.010 250) 16%, transparent);
+  --border: color-mix(in oklab, oklch(0.22 0.002 85) 14%, transparent);
 
-  /* Accent — Omeros sand-dollar blue, used for links/CTAs */
-  --accent-cool: #024bcc;
+  /* Accent — graphite (fluid.glass has no chromatic accent) */
+  --accent-cool: #1c1c1c;
+  --ink: #1c1c1c;
+  --bone: #f1efec;
 }
 
 .dark {
-  --background: oklch(0.16 0.020 250);    /* deep editorial ink — cool, not brown */
-  --foreground: oklch(0.97 0.005 250);    /* milk-white, neutral */
-  --muted: oklch(0.26 0.020 250);
-  --muted-foreground: oklch(0.78 0.010 250);
+  --background: oklch(0.20 0.002 85);
+  --foreground: oklch(0.96 0.003 85);
+  --muted: oklch(0.28 0.002 85);
+  --muted-foreground: oklch(0.78 0.003 85);
   --card: var(--background);
   --card-foreground: var(--foreground);
   --border: color-mix(in oklab, var(--foreground) 18%, transparent);
-  --accent-cool: #4f8cff;
+  --accent-cool: #f1efec;
 }
 
 @layer base {
@@ -112,9 +114,9 @@
 
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    font-weight: 400;
-    letter-spacing: -0.025em;
-    line-height: 0.98;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1.02;
   }
 }
 
@@ -145,7 +147,7 @@
   }
 
 
-  .hairline { border-color: color-mix(in oklab, oklch(0.20 0.010 250) 16%, transparent); }
+  .hairline { border-color: color-mix(in oklab, oklch(0.22 0.002 85) 14%, transparent); }
 
   .text-balance { text-wrap: balance; }
   .text-pretty { text-wrap: pretty; }
@@ -170,17 +172,17 @@
 
   /* Dark editorial section — deep ink, milk-white text (no sepia/brown) */
   .section-dark {
-    background-color: oklch(0.16 0.020 250);
-    color: oklch(0.97 0.005 250);
+    background-color: #1c1c1c;
+    color: #f1efec;
   }
-  .section-dark .text-muted-foreground { color: color-mix(in oklab, oklch(0.97 0.005 250) 68%, transparent) !important; }
-  .section-dark .hairline { border-color: color-mix(in oklab, oklch(0.97 0.005 250) 22%, transparent) !important; }
+  .section-dark .text-muted-foreground { color: color-mix(in oklab, #f1efec 68%, transparent) !important; }
+  .section-dark .hairline { border-color: color-mix(in oklab, #f1efec 22%, transparent) !important; }
   .section-dark .text-background,
-  .section-dark [class*="text-background/"] { color: oklch(0.97 0.005 250) !important; }
+  .section-dark [class*="text-background/"] { color: #f1efec !important; }
 
   /* Cold iron inverted band — alternates with milk-white sections. */
   .section-invert {
-    background-color: #024bcc !important;
+    background-color: #1c1c1c !important;
     color: #ffffff !important;
   }
   .section-invert *,
@@ -197,10 +199,10 @@
   .section-invert blockquote { color: #ffffff !important; opacity: 1 !important; }
   .section-invert .text-muted-foreground { color: #ffffff !important; opacity: 1 !important; }
   .section-invert .hairline { border-color: rgba(255,255,255,0.22) !important; }
-  .section-invert .bg-background { background-color: #024bcc !important; }
-  .section-invert .bg-card { background-color: #024bcc !important; }
+  .section-invert .bg-background { background-color: #1c1c1c !important; }
+  .section-invert .bg-card { background-color: #1c1c1c !important; }
   .section-invert .bg-foreground { background-color: #ffffff !important; }
-  .section-invert .text-background { color: #024bcc !important; }
+  .section-invert .text-background { color: #1c1c1c !important; }
   .section-invert .bg-foreground\/5 { background-color: rgba(255,255,255,0.06) !important; }
   .section-invert .bg-foreground\/15 { background-color: rgba(255,255,255,0.18) !important; }
   /* Light-background CTAs inside dark sections keep dark text for contrast. */
@@ -270,6 +272,14 @@
   .section-dark .accent-underline { background-image: linear-gradient(#ffffff, #ffffff); }
 
   /* CTAs — three canonical variants */
+  /* Fluid-style dock */
+  .dock-shell {
+    background-color: #1c1c1c;
+    color: #f1efec;
+    border-radius: 0.9rem;
+    box-shadow: 0 24px 60px -20px rgba(0,0,0,0.45);
+  }
+
   .btn-cta {
     display: inline-flex;
     align-items: center;

@@ -21,10 +21,10 @@ export function HomeTopBar() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 border-b hairline bg-white transition-all duration-500",
-        scrolled ? "shadow-sm" : "",
+        "fixed inset-x-0 top-0 z-50 transition-all duration-500",
+        scrolled ? "border-b hairline bg-[#f1efec]/90 backdrop-blur-md" : "bg-transparent",
       )}
-      style={{ color: "var(--accent-cool)" }}
+      style={{ color: scrolled ? "var(--ink)" : "#ffffff" }}
     >
       <div className="relative mx-auto flex max-w-[1700px] items-center justify-between px-5 py-4 sm:px-8 sm:py-5">
         <span className="text-[11px] font-medium uppercase tracking-[0.22em] opacity-80">
