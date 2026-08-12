@@ -64,9 +64,9 @@ export function FloatingBottomNav() {
               layout
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               className={cn(
-                "relative isolate cursor-pointer overflow-hidden border border-black/10 bg-white text-black",
-                "shadow-[0_1px_0_0_rgba(0,0,0,0.04)_inset,0_36px_110px_-16px_rgba(0,0,0,0.35)]",
-                expanded ? "rounded-[2rem] px-3 py-3" : "rounded-full px-2.5 py-2",
+                "relative isolate cursor-pointer overflow-hidden border border-white/10 bg-[#1c1c1c] text-[#f1efec]",
+                "shadow-[0_28px_80px_-24px_rgba(0,0,0,0.55)]",
+                expanded ? "rounded-[1.25rem] p-2.5" : "rounded-[0.9rem] p-1.5",
               )}
             >
               <motion.div layout className="flex items-center gap-1">
@@ -74,12 +74,12 @@ export function FloatingBottomNav() {
                   to="/"
                   aria-label="Fazal Ali, Home"
                   onClick={(e) => e.stopPropagation()}
-                  className="mr-1 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white ring-1 ring-black/10 shadow-sm transition-colors hover:bg-white/90 overflow-hidden"
+                  className="mr-1 inline-flex h-11 w-11 items-center justify-center rounded-[0.6rem] bg-white/10 transition-colors hover:bg-white/15 overflow-hidden"
                 >
                   <img
                     src={fiaLogo}
                     alt="FIA"
-                    className="h-8 w-8 object-contain"
+                    className="h-7 w-7 object-contain brightness-0 invert"
                     draggable={false}
                   />
                 </Link>
@@ -92,14 +92,14 @@ export function FloatingBottomNav() {
                       to={l.to}
                       onClick={(e) => e.stopPropagation()}
                       className={cn(
-                        "relative rounded-full px-4 py-2.5 text-[11px] font-medium uppercase tracking-[0.16em] transition-colors",
-                        active ? "text-black" : "text-black/65 hover:text-black",
+                        "relative rounded-[0.6rem] px-4 py-2.5 text-[11px] font-medium uppercase tracking-[0.18em] transition-colors",
+                        active ? "text-[#f1efec]" : "text-[#f1efec]/60 hover:text-[#f1efec]",
                       )}
                     >
                       {active && (
                         <motion.span
                           layoutId="floating-nav-pill"
-                          className="absolute inset-0 rounded-full bg-black/10"
+                          className="absolute inset-0 rounded-[0.6rem] bg-white/10"
                           transition={{ type: "spring", stiffness: 380, damping: 32 }}
                         />
                       )}
@@ -107,7 +107,7 @@ export function FloatingBottomNav() {
                     </Link>
                   );
                 })}
-                <span className="mx-1 h-5 w-px bg-black/15" />
+                <span className="mx-1 h-5 w-px bg-white/15" />
                 <button
                   type="button"
                   onClick={(e) => {
@@ -117,8 +117,8 @@ export function FloatingBottomNav() {
                   aria-expanded={expanded}
                   aria-label={expanded ? "Close index" : "Open index"}
                   className={cn(
-                    "inline-flex h-9 w-9 items-center justify-center rounded-full border border-black/15 text-black/75 transition-all hover:bg-black/5 hover:text-black",
-                    expanded && "bg-black/10 text-black",
+                    "inline-flex h-9 w-9 items-center justify-center rounded-[0.6rem] border border-white/15 text-[#f1efec]/75 transition-all hover:bg-white/10 hover:text-[#f1efec]",
+                    expanded && "bg-white/10 text-[#f1efec]",
                   )}
                 >
                   {expanded ? (
@@ -133,7 +133,7 @@ export function FloatingBottomNav() {
                     e.stopPropagation();
                     openContactDrawer();
                   }}
-                  className="ml-1 rounded-full bg-black px-4 py-2.5 text-[11px] font-medium uppercase tracking-[0.16em] text-white transition-opacity hover:opacity-90"
+                  className="ml-1 rounded-[0.6rem] bg-[#f1efec] px-4 py-2.5 text-[11px] font-medium uppercase tracking-[0.18em] text-[#1c1c1c] transition-opacity hover:opacity-85"
                 >
                   Write Me
                 </button>
@@ -149,8 +149,8 @@ export function FloatingBottomNav() {
                     transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                     className="overflow-hidden"
                   >
-                    <div className="mt-3 border-t border-black/10 pt-3">
-                      <p className="px-2 pb-2 text-[10px] uppercase tracking-[0.18em] text-black/55">
+                    <div className="mt-3 border-t border-white/10 pt-3">
+                      <p className="px-2 pb-2 text-[10px] uppercase tracking-[0.18em] text-[#f1efec]/55">
                         More
                       </p>
                       <ul className="flex flex-wrap gap-1.5">
@@ -166,10 +166,10 @@ export function FloatingBottomNav() {
                                   setExpanded(false);
                                 }}
                                 className={cn(
-                                  "block rounded-full px-3.5 py-2 text-[11px] font-medium uppercase tracking-[0.16em] transition-colors",
+                                  "block rounded-[0.6rem] px-3.5 py-2 text-[11px] font-medium uppercase tracking-[0.18em] transition-colors",
                                   active
-                                    ? "bg-black/10 text-black"
-                                    : "text-black/65 hover:bg-black/5 hover:text-black",
+                                    ? "bg-white/10 text-[#f1efec]"
+                                    : "text-[#f1efec]/60 hover:bg-white/10 hover:text-[#f1efec]",
                                 )}
                               >
                                 {l.label}

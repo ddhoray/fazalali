@@ -38,7 +38,7 @@ export function MobileTopBar() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-[60] flex items-center justify-between border-b border-black/10 bg-white px-4 py-3 lg:hidden">
+      <header className="fixed inset-x-0 top-0 z-[60] flex items-center justify-between border-b border-black/5 bg-[#f1efec] px-4 py-3 lg:hidden">
         <Link
           to="/"
           aria-label="Fazal Ali, Home"
@@ -51,7 +51,7 @@ export function MobileTopBar() {
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/15 bg-white text-black"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-[0.6rem] border border-black/15 bg-transparent text-[#1c1c1c]"
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
@@ -64,7 +64,7 @@ export function MobileTopBar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-[55] flex flex-col bg-white pt-16 lg:hidden"
+            className="fixed inset-0 z-[55] flex flex-col bg-[#f1efec] pt-16 lg:hidden"
           >
             <nav className="flex flex-col overflow-y-auto px-6 py-6">
               {links.map((l) => {
@@ -89,7 +89,7 @@ export function MobileTopBar() {
                   setOpen(false);
                   openContactDrawer();
                 }}
-                className="mt-6 rounded-full bg-black px-6 py-4 text-[13px] font-medium uppercase tracking-[0.18em] text-white"
+                className="mt-6 rounded-[0.6rem] bg-[#1c1c1c] px-6 py-4 text-[13px] font-medium uppercase tracking-[0.18em] text-white"
               >
                 Write Me
               </button>
