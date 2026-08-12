@@ -97,30 +97,30 @@ export function FloatingBottomNav() {
           )}
         </AnimatePresence>
 
-        <div className="flex items-center gap-2 p-2">
-          <Link
-            to="/"
-            aria-label="Home"
-            className="inline-flex h-12 items-center justify-center px-2"
-          >
-            <img
-              src={omerosMark}
-              alt="Omeros"
-              className="h-7 w-auto object-contain brightness-0 invert"
-              draggable={false}
-            />
-          </Link>
+        <div className="flex items-center justify-between p-2">
+          <div className="flex items-center gap-2">
+            <Link
+              to="/"
+              aria-label="Home"
+              className="inline-flex h-12 items-center justify-center px-2"
+            >
+              <img
+                src={omerosMark}
+                alt="Omeros"
+                className="h-7 w-auto object-contain brightness-0 invert"
+                draggable={false}
+              />
+            </Link>
 
-          <button
-            type="button"
-            onClick={() => setExpanded((v) => !v)}
-            aria-expanded={expanded}
-            className="px-4 py-2.5 text-[11px] uppercase tracking-[0.2em] text-white/70 transition-colors hover:text-white"
-          >
-            {expanded ? "Close" : "Menu"}
-          </button>
-
-          <span className="h-5 w-px bg-white/15" />
+            <button
+              type="button"
+              onClick={() => setExpanded((v) => !v)}
+              aria-expanded={expanded}
+              className="px-4 py-2.5 text-[11px] uppercase tracking-[0.2em] text-white/70 transition-colors hover:text-white"
+            >
+              {expanded ? "Close" : "Menu"}
+            </button>
+          </div>
 
           <button
             type="button"
