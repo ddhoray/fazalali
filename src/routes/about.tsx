@@ -238,7 +238,7 @@ function AboutPage() {
         <Reveal>
           <div className="mt-20 flex flex-wrap items-end justify-between gap-6">
             <p className="font-display text-3xl md:text-5xl">
-              Write to him.
+              Get in touch.
             </p>
             <div className="flex flex-wrap items-center gap-4">
               <button
@@ -246,7 +246,7 @@ function AboutPage() {
                 onClick={() => openContactDrawer()}
                 className="btn-cta btn-primary"
               >
-                Write Me <ArrowUpRight className="size-4" />
+                Write to him <ArrowUpRight className="size-4" />
               </button>
               <Link
                 to="/writing"
