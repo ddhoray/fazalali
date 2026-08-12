@@ -147,15 +147,16 @@ export function FloatingBottomNav() {
             <Link
               to="/"
               aria-label="Home"
-              className="flex h-full items-center pl-5 pr-4"
+              className="flex h-full shrink-0 items-center justify-center px-4"
             >
               <img
                 src={omerosMark}
                 alt="Omeros"
-                className="h-7 w-auto object-contain brightness-0 invert"
+                className="block h-10 w-10 object-contain brightness-0 invert"
                 draggable={false}
               />
             </Link>
+
 
             <button
               type="button"
