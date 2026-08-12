@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { openContactDrawer } from "@/components/site/ContactDrawer";
-import omerosLogo from "@/assets/brand-omeros-lockup-transparent.png";
+import omerosMark from "@/assets/brand-omeros-mark.png";
 
 // Full menu, revealed in the expanding panel.
 const menuLinks = [
@@ -101,12 +101,12 @@ export function FloatingBottomNav() {
           <Link
             to="/"
             aria-label="Home"
-            className="inline-flex h-10 items-center justify-center px-2"
+            className="inline-flex h-12 items-center justify-center px-2"
           >
             <img
-              src={omerosLogo}
+              src={omerosMark}
               alt="Omeros"
-              className="h-5 w-auto object-contain brightness-0 invert"
+              className="h-7 w-auto object-contain brightness-0 invert"
               draggable={false}
             />
           </Link>
