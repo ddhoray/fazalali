@@ -1,27 +1,28 @@
 export const ecology = {
-  eyebrow: "Education for Liberty",
+  eyebrow: "A short note",
   title: "Ecology.",
   standfirst:
-    "An island is the right scale at which to learn ecology. The coast is the syllabus. The forest is the teacher. The hurricane is the exam.",
+    "Not a body of work, a note. Ecology appears in the writing mostly where it is borrowed: the ethics we now ask of artificial intelligence were first argued out in conservation.",
   sections: [
     {
-      h: "The island as a curriculum",
+      h: "What the note claims",
       body: [
-        "In the West Indies, ecology is not a unit in a science textbook. It is the weather that decides whether the bus runs, the soil that decides whether the crop comes in, the sea that decides whether a child becomes a fisherman, an engineer, or a migrant.",
-        "A pedagogy that takes the island seriously cannot treat ecology as enrichment. It is the substrate on which every other subject sits.",
+        "He has not written at length on ecology. It surfaces in the essays as a source rather than a subject, and this page keeps to that scale.",
+        "The island still matters to how he reads scale: the coast is close enough to teach, the hurricane close enough to test. But that is context, not a thesis.",
       ],
     },
     {
-      h: "Inheritance, not scenery",
+      h: "Borrowed principles",
       body: [
-        "The Caribbean has been read by outsiders as a landscape for two centuries. The internal pedagogical task is to read it as an inheritance, something passed on, something owed, something that can be lost in a single generation if the curriculum forgets.",
+        "Most of the ethical vocabulary now attached to artificial intelligence, precaution, stewardship, carrying capacity, irreversibility, the duty owed to people who are not yet in the room, was developed first in ecological conservation.",
+        "Naming the loan matters. It tells you the arguments are older than the technology, and that they were tested on systems we already knew how to ruin.",
       ],
     },
     {
-      h: "Climate as a literacy",
+      h: "Where it leads",
       body: [
-        "We propose climate literacy not as a checklist of facts about parts per million, but as a habit of mind: the capacity to hold long time horizons next to short political ones without flinching.",
-        "That habit is the same habit that produces good citizens, good engineers, and good poets. The case for ecology in the West Indian classroom is, finally, a case for citizenship.",
+        "The through line for him runs from conservation to Omeros AI: long time horizons held next to short political ones, without flinching.",
+        "If ecology earns a longer treatment later, it will be there, in the ethics, rather than in a curriculum chapter of its own.",
       ],
     },
   ],
