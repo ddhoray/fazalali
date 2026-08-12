@@ -118,6 +118,15 @@
     letter-spacing: -0.03em;
     line-height: 1.02;
   }
+
+  /* No italics anywhere, and cap weight at medium */
+  em, i, cite, blockquote, address, dfn, var {
+    font-style: normal;
+  }
+  strong, b, th {
+    font-weight: 500;
+  }
+
 }
 
 @layer utilities {
