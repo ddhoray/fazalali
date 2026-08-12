@@ -36,7 +36,7 @@ export function PageHero({
   return (
     <section
       className={cn(
-        "relative isolate w-full overflow-hidden bg-[oklch(0.98_0.004_250)]",
+        "relative isolate w-full overflow-hidden bg-[#f5f3f0]",
         className,
       )}
     >
@@ -110,7 +110,7 @@ export function PageHero({
             className={cn(
               "relative aspect-[4/5] w-full overflow-hidden",
               imageFit === "contain"
-                ? "flex items-center justify-center bg-[oklch(0.94_0.008_75)] p-6 sm:p-8"
+                ? "flex items-center justify-center bg-[#e9e6e1] p-6 sm:p-8"
                 : "border border-foreground/10 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.25)]",
             )}
           >

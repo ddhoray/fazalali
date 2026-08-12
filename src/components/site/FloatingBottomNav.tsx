@@ -74,12 +74,12 @@ export function FloatingBottomNav() {
                   to="/"
                   aria-label="Fazal Ali, Home"
                   onClick={(e) => e.stopPropagation()}
-                  className="mr-1 inline-flex h-11 w-11 items-center justify-center rounded-[0.6rem] bg-white/10 transition-colors hover:bg-white/15 overflow-hidden"
+                  className="mr-1 inline-flex h-11 w-11 items-center justify-center rounded-[0.6rem] bg-[#f1efec] transition-colors hover:bg-white overflow-hidden"
                 >
                   <img
                     src={fiaLogo}
                     alt="FIA"
-                    className="h-7 w-7 object-contain brightness-0 invert"
+                    className="h-7 w-7 object-contain"
                     draggable={false}
                   />
                 </Link>
