@@ -59,7 +59,8 @@ const roles = [
   { year: "UCSIS", text: "Secretary to the University Consortium of Small Island States (UCSIS) at the UWI Office of Graduate Studies and Research, a Kofi Annan mandate uniting the universities of Malta, the South Pacific, the US Virgin Islands, the West Indies, and Mauritius into a global capacity-building team for SIDS." },
   { year: "Lok Jack GSB", text: "Programme Director of the DBA programme at the Arthur Lok Jack Graduate School of Business, UWI." },
   { year: "UTT", text: "Provost of the University of Trinidad and Tobago; established the UTT Aviation Campus and served as acting President." },
-  { year: "UNESCO · TSC", text: "Member of the UNESCO Memory of the World team in Trinidad and Tobago; Chairman of the Teaching Service Commission of Trinidad and Tobago." },
+  { year: "UNESCO", text: "Member of the UNESCO Memory of the World team in Trinidad and Tobago." },
+  { year: "TSC", text: "Chairman of the Teaching Service Commission of Trinidad and Tobago, a statutory body of the State." },
   { year: "NIHERST", text: "President of the National Institute of Higher Education, Research, Science and Technology, the country's lead body for STEM popularisation and applied research." },
   { year: "IDB", text: "External services consultant with the Inter-American Development Bank (IDB)." },
 ];
