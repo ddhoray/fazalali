@@ -152,7 +152,7 @@ export function FloatingBottomNav() {
               <img
                 src={omerosMark}
                 alt="Omeros"
-                className="block h-10 w-10 object-contain brightness-0 invert"
+                className="block h-14 w-14 object-contain brightness-0 invert"
                 draggable={false}
               />
             </Link>
