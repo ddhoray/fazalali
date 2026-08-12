@@ -104,7 +104,7 @@ function GalleryPage() {
         title={<>The <em className="italic">gallery.</em></>}
         standfirst={
           <>
-            A curated selection of paintings, colour, coastline, and the page life of a working writer.
+            A curated selection of paintings, colour, coastline, and the canvas life of a working writer.
             More on <a href="https://www.instagram.com/thefazalali/" target="_blank" rel="noreferrer" className="underline-offset-4 hover:underline">@thefazalali</a>.
           </>
         }
