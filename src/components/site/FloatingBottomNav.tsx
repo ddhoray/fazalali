@@ -1,25 +1,35 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import {
+  BookOpen,
+  PenLine,
+  Mic,
+  User,
+  Image as ImageIcon,
+  Leaf,
+  Scale,
+  Layers,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { openContactDrawer } from "@/components/site/ContactDrawer";
-import fiaLogo from "@/assets/brand-fia.png";
+import omerosLogo from "@/assets/brand-omeros-lockup-transparent.png";
 
-// Full index, revealed in the expanding panel.
-const indexLinks = [
-  { to: "/books", label: "Books" },
-  { to: "/writing", label: "Journal" },
-  { to: "/podcast", label: "Podcast" },
-  { to: "/about", label: "Profile" },
-  { to: "/gallery", label: "Gallery" },
-  { to: "/ecology", label: "Ecology" },
-  { to: "/inequality", label: "Inequality" },
-  { to: "/palimpsest", label: "Palimpsest" },
+// Full menu, revealed in the expanding panel.
+const menuLinks = [
+  { to: "/books", label: "Books", icon: BookOpen },
+  { to: "/writing", label: "Journal", icon: PenLine },
+  { to: "/podcast", label: "Podcast", icon: Mic },
+  { to: "/about", label: "Profile", icon: User },
+  { to: "/gallery", label: "Gallery", icon: ImageIcon },
+  { to: "/ecology", label: "Ecology", icon: Leaf },
+  { to: "/inequality", label: "Inequality", icon: Scale },
+  { to: "/palimpsest", label: "Palimpsest", icon: Layers },
 ] as const;
 
 /**
- * Minimal glass dock, anchored bottom-centre.
- * Sharp edges, transparent frosted surface, one expanding index.
+ * Dark translucent dock, anchored bottom-centre.
+ * Sharp edges, frosted graphite surface, one expanding menu.
  */
 export function FloatingBottomNav() {
   const [expanded, setExpanded] = useState(false);
@@ -37,43 +47,52 @@ export function FloatingBottomNav() {
         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
         className={cn(
           "pointer-events-auto relative isolate overflow-hidden rounded-none",
-          "border border-foreground/10 bg-background/55 backdrop-blur-xl",
-          "shadow-[0_24px_60px_-30px_rgba(0,0,0,0.45)]",
+          "border border-white/10 bg-[#1c1c1c]/85 backdrop-blur-2xl",
+          "shadow-[0_30px_70px_-30px_rgba(0,0,0,0.7)]",
         )}
       >
         <AnimatePresence initial={false}>
           {expanded && (
             <motion.div
-              key="index"
+              key="menu"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
               className="overflow-hidden"
             >
-              <ul className="flex flex-col px-3 pt-3">
-                {indexLinks.map((l) => {
-                  const active =
-                    pathname === l.to || pathname.startsWith(l.to + "/");
-                  return (
-                    <li key={l.to}>
-                      <Link
-                        to={l.to}
-                        onClick={() => setExpanded(false)}
-                        className={cn(
-                          "block px-3 py-2 text-[11px] uppercase tracking-[0.2em] transition-colors",
-                          active
-                            ? "text-foreground"
-                            : "text-foreground/55 hover:text-foreground",
-                        )}
-                      >
-                        {l.label}
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-              <div className="mx-3 mt-3 border-t border-foreground/10" />
+              <div className="w-[560px] max-w-[80vw] px-5 pt-5">
+                <p className="mb-4 text-[10px] uppercase tracking-[0.3em] text-white/35">
+                  Menu
+                </p>
+                <ul className="grid grid-cols-2 gap-1">
+                  {menuLinks.map((l) => {
+                    const Icon = l.icon;
+                    const active =
+                      pathname === l.to || pathname.startsWith(l.to + "/");
+                    return (
+                      <li key={l.to}>
+                        <Link
+                          to={l.to}
+                          onClick={() => setExpanded(false)}
+                          className={cn(
+                            "group flex items-center gap-3 px-3 py-3 transition-colors",
+                            active
+                              ? "bg-white/10 text-white"
+                              : "text-white/60 hover:bg-white/5 hover:text-white",
+                          )}
+                        >
+                          <Icon className="h-4 w-4 shrink-0" strokeWidth={1.4} />
+                          <span className="text-[11px] uppercase tracking-[0.2em]">
+                            {l.label}
+                          </span>
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+              <div className="mx-5 mt-5 border-t border-white/10" />
             </motion.div>
           )}
         </AnimatePresence>
@@ -81,13 +100,13 @@ export function FloatingBottomNav() {
         <motion.div layout className="flex items-center gap-2 p-2">
           <Link
             to="/"
-            aria-label="Fazal Ali, Home"
-            className="inline-flex h-10 w-10 items-center justify-center"
+            aria-label="Home"
+            className="inline-flex h-10 items-center justify-center px-2"
           >
             <img
-              src={fiaLogo}
-              alt="FIA"
-              className="h-7 w-7 object-contain mix-blend-multiply"
+              src={omerosLogo}
+              alt="Omeros"
+              className="h-5 w-auto object-contain brightness-0 invert"
               draggable={false}
             />
           </Link>
@@ -96,17 +115,17 @@ export function FloatingBottomNav() {
             type="button"
             onClick={() => setExpanded((v) => !v)}
             aria-expanded={expanded}
-            className="px-4 py-2.5 text-[11px] uppercase tracking-[0.2em] text-foreground/70 transition-colors hover:text-foreground"
+            className="px-4 py-2.5 text-[11px] uppercase tracking-[0.2em] text-white/70 transition-colors hover:text-white"
           >
-            {expanded ? "Close" : "Index"}
+            {expanded ? "Close" : "Menu"}
           </button>
 
-          <span className="h-5 w-px bg-foreground/15" />
+          <span className="h-5 w-px bg-white/15" />
 
           <button
             type="button"
             onClick={() => openContactDrawer()}
-            className="bg-foreground px-4 py-2.5 text-[11px] uppercase tracking-[0.2em] text-background transition-opacity hover:opacity-85"
+            className="bg-white px-4 py-2.5 text-[11px] uppercase tracking-[0.2em] text-[#1c1c1c] transition-opacity hover:opacity-85"
           >
             Write Me
           </button>
