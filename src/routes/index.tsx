@@ -262,6 +262,39 @@ function Hero() {
     setRevealed(v >= 0.5);
   });
 
+  // Hero audio: browsers block unmuted autoplay, so start muted and turn the
+  // sound on at the first user gesture. A manual toggle stays available.
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [soundOn, setSoundOn] = useState(false);
+  const userMutedRef = useRef(false);
+
+  const toggleSound = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    const next = !soundOn;
+    userMutedRef.current = !next;
+    v.muted = !next;
+    v.volume = 1;
+    if (next) void v.play().catch(() => {});
+    setSoundOn(next);
+  };
+
+  useEffect(() => {
+    const enable = () => {
+      const v = videoRef.current;
+      if (!v || userMutedRef.current) return;
+      v.muted = false;
+      v.volume = 1;
+      v.play()
+        .then(() => setSoundOn(!v.muted))
+        .catch(() => {});
+    };
+    const events: (keyof WindowEventMap)[] = ["pointerdown", "keydown", "touchstart", "wheel"];
+    events.forEach((e) => window.addEventListener(e, enable, { once: true, passive: true }));
+    return () => events.forEach((e) => window.removeEventListener(e, enable));
+  }, []);
+
+
   return (
     <section
       ref={ref}
