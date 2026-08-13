@@ -1,7 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { motion, useScroll, useTransform, useMotionValueEvent } from "motion/react";
-import { useRef, useState } from "react";
-import { BookOpen, Sparkles, PenLine, Compass, ArrowUpRight } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { BookOpen, Sparkles, PenLine, Compass, ArrowUpRight, Volume2, VolumeX } from "lucide-react";
 import { BlurReveal, SlideIn } from "@/components/site/BlurReveal";
 import { WordScrollReveal } from "@/components/site/WordScrollReveal";
 
@@ -262,6 +262,39 @@ function Hero() {
     setRevealed(v >= 0.5);
   });
 
+  // Hero audio: browsers block unmuted autoplay, so start muted and turn the
+  // sound on at the first user gesture. A manual toggle stays available.
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [soundOn, setSoundOn] = useState(false);
+  const userMutedRef = useRef(false);
+
+  const toggleSound = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    const next = !soundOn;
+    userMutedRef.current = !next;
+    v.muted = !next;
+    v.volume = 1;
+    if (next) void v.play().catch(() => {});
+    setSoundOn(next);
+  };
+
+  useEffect(() => {
+    const enable = () => {
+      const v = videoRef.current;
+      if (!v || userMutedRef.current) return;
+      v.muted = false;
+      v.volume = 1;
+      v.play()
+        .then(() => setSoundOn(!v.muted))
+        .catch(() => {});
+    };
+    const events: (keyof WindowEventMap)[] = ["pointerdown", "keydown", "touchstart", "wheel"];
+    events.forEach((e) => window.addEventListener(e, enable, { once: true, passive: true }));
+    return () => events.forEach((e) => window.removeEventListener(e, enable));
+  }, []);
+
+
   return (
     <section
       ref={ref}
@@ -274,7 +307,9 @@ function Hero() {
           className="relative overflow-hidden bg-neutral-900"
         >
           <video
+            ref={videoRef}
             src={heroVideo}
+            poster={heroImage}
             autoPlay
             muted
             loop
@@ -282,8 +317,20 @@ function Hero() {
             preload="auto"
             disablePictureInPicture
             disableRemotePlayback
-            className="absolute inset-0 size-full object-cover"
+            style={{ backgroundImage: `url(${heroImage})` }}
+            className="absolute inset-0 size-full bg-cover bg-center object-cover"
           />
+
+          {/* Sound control, audio starts muted (browser policy) and unmutes on first interaction */}
+          <button
+            type="button"
+            onClick={() => toggleSound()}
+            aria-label={soundOn ? "Mute hero audio" : "Unmute hero audio"}
+            className="absolute bottom-5 right-5 z-30 inline-flex size-11 items-center justify-center border border-white/25 bg-black/40 text-white backdrop-blur transition-colors hover:bg-black/60"
+          >
+            {soundOn ? <Volume2 className="size-4" /> : <VolumeX className="size-4" />}
+          </button>
+
 
           <motion.div
             style={{ opacity: heroOverlayOpacity }}
