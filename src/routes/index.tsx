@@ -281,58 +281,58 @@ function Hero() {
 
   useEffect(() => {
     let done = false;
-    const enable = () => {
-      const v = videoRef.current;
-      if (!v || done || userMutedRef.current) return;
-      v.muted = false;
-      v.volume = 1;
-      v.play()
-        .then(() => {
-          if (!v.muted) {
-            done = true;
-            setSoundOn(true);
-          }
-        })
-        .catch(() => {
-          v.muted = true;
-          void v.play().catch(() => {});
-        });
+    const v = videoRef.current;
+    if (!v) return;
+
+    // Keep the picture playing no matter what; only the audio is negotiated.
+    const keepPlaying = () => {
+      if (v.paused) void v.play().catch(() => {});
     };
 
-    // Try right away, on every early media event, and on a short retry loop so
-    // sound comes on as soon as the browser permits it.
+    const enable = () => {
+      if (done || userMutedRef.current) return;
+      v.muted = false;
+      v.volume = 1;
+      keepPlaying();
+      // Give the browser a tick to reject the unmute, then confirm.
+      window.setTimeout(() => {
+        if (v.muted || v.paused) {
+          v.muted = true;
+          keepPlaying();
+        } else {
+          done = true;
+          setSoundOn(true);
+        }
+      }, 120);
+    };
+
+    keepPlaying();
     enable();
-    const v = videoRef.current;
-    const mediaEvents = ["loadedmetadata", "loadeddata", "canplay", "playing"];
-    mediaEvents.forEach((e) => v?.addEventListener(e, enable));
-    const timer = window.setInterval(() => {
-      if (done) window.clearInterval(timer);
-      else enable();
-    }, 250);
-    const stopTimer = window.setTimeout(() => window.clearInterval(timer), 8000);
+    v.addEventListener("canplay", keepPlaying);
+    v.addEventListener("stalled", keepPlaying);
 
     const events: (keyof WindowEventMap)[] = [
       "pointerdown",
-      "pointerup",
       "click",
       "keydown",
       "touchstart",
-      "touchend",
       "wheel",
       "scroll",
-      "mousemove",
     ];
-    const onFirst = () => enable();
+    const onFirst = () => {
+      enable();
+      if (done) events.forEach((e) => window.removeEventListener(e, onFirst, { capture: true }));
+    };
     events.forEach((e) =>
       window.addEventListener(e, onFirst, { passive: true, capture: true }),
     );
     return () => {
-      window.clearInterval(timer);
-      window.clearTimeout(stopTimer);
-      mediaEvents.forEach((e) => v?.removeEventListener(e, enable));
+      v.removeEventListener("canplay", keepPlaying);
+      v.removeEventListener("stalled", keepPlaying);
       events.forEach((e) => window.removeEventListener(e, onFirst, { capture: true }));
     };
   }, []);
+
 
 
 
