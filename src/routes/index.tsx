@@ -284,17 +284,23 @@ function Hero() {
     const v = videoRef.current;
     if (!v) return;
 
-    // Keep the picture playing no matter what; only the audio is negotiated.
+    // The picture must never stop: keep it playing muted at all times.
     const keepPlaying = () => {
       if (v.paused) void v.play().catch(() => {});
     };
 
+    // Only try sound once the page has real user activation, otherwise the
+    // browser rejects it and pauses the video, which is what made it stutter.
     const enable = () => {
       if (done || userMutedRef.current) return;
+      const activated =
+        typeof navigator !== "undefined" &&
+        (navigator as Navigator & { userActivation?: { hasBeenActive: boolean } })
+          .userActivation?.hasBeenActive !== false;
+      if (!activated) return;
       v.muted = false;
       v.volume = 1;
       keepPlaying();
-      // Give the browser a tick to reject the unmute, then confirm.
       window.setTimeout(() => {
         if (v.muted || v.paused) {
           v.muted = true;
@@ -303,13 +309,15 @@ function Hero() {
           done = true;
           setSoundOn(true);
         }
-      }, 120);
+      }, 150);
     };
 
     keepPlaying();
     enable();
-    v.addEventListener("canplay", keepPlaying);
-    v.addEventListener("stalled", keepPlaying);
+    const mediaEvents = ["loadeddata", "canplay", "stalled", "pause", "waiting"];
+    mediaEvents.forEach((e) => v.addEventListener(e, keepPlaying));
+    const onVisible = () => keepPlaying();
+    document.addEventListener("visibilitychange", onVisible);
 
     const events: (keyof WindowEventMap)[] = [
       "pointerdown",
@@ -320,6 +328,7 @@ function Hero() {
       "scroll",
     ];
     const onFirst = () => {
+      keepPlaying();
       enable();
       if (done) events.forEach((e) => window.removeEventListener(e, onFirst, { capture: true }));
     };
@@ -327,10 +336,11 @@ function Hero() {
       window.addEventListener(e, onFirst, { passive: true, capture: true }),
     );
     return () => {
-      v.removeEventListener("canplay", keepPlaying);
-      v.removeEventListener("stalled", keepPlaying);
+      mediaEvents.forEach((e) => v.removeEventListener(e, keepPlaying));
+      document.removeEventListener("visibilitychange", onVisible);
       events.forEach((e) => window.removeEventListener(e, onFirst, { capture: true }));
     };
+
   }, []);
 
 
