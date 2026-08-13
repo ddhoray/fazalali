@@ -5,6 +5,7 @@ import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { openContactDrawer } from "@/components/site/ContactDrawer";
 import omerosMark from "@/assets/omeros-dock-mark.png.asset.json";
+import { assetUrl } from "@/lib/asset-url";
 
 const primaryLinks = [
   { to: "/about", label: "Profile" },
