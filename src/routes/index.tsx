@@ -14,7 +14,7 @@ import { Newsletter } from "@/components/site/Newsletter";
 import { articles } from "@/content/articles";
 import portraitAsset from "@/assets/fazal-cutout.png.asset.json";
 const portrait = assetUrl(portraitAsset);
-import heroVideoAsset from "@/assets/hero-loop.mp4.asset.json";
+import heroVideoAsset from "@/assets/hero-loop-web.mp4.asset.json";
 import { assetUrl } from "@/lib/asset-url";
 const heroImage = "/hero-beach.jpg";
 const heroVideo = assetUrl(heroVideoAsset);
@@ -281,58 +281,68 @@ function Hero() {
 
   useEffect(() => {
     let done = false;
-    const enable = () => {
-      const v = videoRef.current;
-      if (!v || done || userMutedRef.current) return;
-      v.muted = false;
-      v.volume = 1;
-      v.play()
-        .then(() => {
-          if (!v.muted) {
-            done = true;
-            setSoundOn(true);
-          }
-        })
-        .catch(() => {
-          v.muted = true;
-          void v.play().catch(() => {});
-        });
+    const v = videoRef.current;
+    if (!v) return;
+
+    // The picture must never stop: keep it playing muted at all times.
+    const keepPlaying = () => {
+      if (v.paused) void v.play().catch(() => {});
     };
 
-    // Try right away, on every early media event, and on a short retry loop so
-    // sound comes on as soon as the browser permits it.
+    // Only try sound once the page has real user activation, otherwise the
+    // browser rejects it and pauses the video, which is what made it stutter.
+    const enable = () => {
+      if (done || userMutedRef.current) return;
+      const activated =
+        typeof navigator !== "undefined" &&
+        (navigator as Navigator & { userActivation?: { hasBeenActive: boolean } })
+          .userActivation?.hasBeenActive !== false;
+      if (!activated) return;
+      v.muted = false;
+      v.volume = 1;
+      keepPlaying();
+      window.setTimeout(() => {
+        if (v.muted || v.paused) {
+          v.muted = true;
+          keepPlaying();
+        } else {
+          done = true;
+          setSoundOn(true);
+        }
+      }, 150);
+    };
+
+    keepPlaying();
     enable();
-    const v = videoRef.current;
-    const mediaEvents = ["loadedmetadata", "loadeddata", "canplay", "playing"];
-    mediaEvents.forEach((e) => v?.addEventListener(e, enable));
-    const timer = window.setInterval(() => {
-      if (done) window.clearInterval(timer);
-      else enable();
-    }, 250);
-    const stopTimer = window.setTimeout(() => window.clearInterval(timer), 8000);
+    const mediaEvents = ["loadeddata", "canplay", "stalled", "pause", "waiting"];
+    mediaEvents.forEach((e) => v.addEventListener(e, keepPlaying));
+    const onVisible = () => keepPlaying();
+    document.addEventListener("visibilitychange", onVisible);
 
     const events: (keyof WindowEventMap)[] = [
       "pointerdown",
-      "pointerup",
       "click",
       "keydown",
       "touchstart",
-      "touchend",
       "wheel",
       "scroll",
-      "mousemove",
     ];
-    const onFirst = () => enable();
+    const onFirst = () => {
+      keepPlaying();
+      enable();
+      if (done) events.forEach((e) => window.removeEventListener(e, onFirst, { capture: true }));
+    };
     events.forEach((e) =>
       window.addEventListener(e, onFirst, { passive: true, capture: true }),
     );
     return () => {
-      window.clearInterval(timer);
-      window.clearTimeout(stopTimer);
-      mediaEvents.forEach((e) => v?.removeEventListener(e, enable));
+      mediaEvents.forEach((e) => v.removeEventListener(e, keepPlaying));
+      document.removeEventListener("visibilitychange", onVisible);
       events.forEach((e) => window.removeEventListener(e, onFirst, { capture: true }));
     };
+
   }, []);
+
 
 
 
