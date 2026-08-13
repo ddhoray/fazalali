@@ -280,88 +280,76 @@ function Hero() {
   };
 
   useEffect(() => {
-    let done = false;
     const v = videoRef.current;
     if (!v) return;
+    let unmounted = false;
+    let soundDone = false;
 
-    // The picture must never stop: keep it playing muted at all times.
+    // Picture first: always keep the muted video rolling. Never fight the
+    // browser with repeated play()/muted toggles, that is what made it stutter.
     const keepPlaying = () => {
-      if (v.paused) void v.play().catch(() => {});
+      if (!unmounted && v.paused) void v.play().catch(() => {});
     };
+    keepPlaying();
+    v.addEventListener("loadeddata", keepPlaying);
+    v.addEventListener("canplay", keepPlaying);
+    document.addEventListener("visibilitychange", keepPlaying);
 
-    // Try sound as early as the browser allows; retry on every signal until it
-    // sticks. If the attempt is rejected we silently fall back to muted.
-    const enable = () => {
-      if (done || userMutedRef.current || !v.muted) return;
+    // Sound: a single attempt, made only once the browser reports a real user
+    // activation. One attempt avoids the pause/restart loop entirely.
+    const tryUnmute = () => {
+      if (soundDone || unmounted || userMutedRef.current) return;
+      const activated =
+        (navigator as Navigator & { userActivation?: { hasBeenActive: boolean } }).userActivation
+          ?.hasBeenActive ?? true;
+      if (!activated) return;
+      soundDone = true;
       v.muted = false;
       v.volume = 1;
-      const p = v.play();
-      const settle = () => {
-        window.setTimeout(() => {
+      void Promise.resolve(v.play())
+        .then(() => {
           if (v.muted || v.paused) {
+            soundDone = false;
             v.muted = true;
             keepPlaying();
           } else {
-            done = true;
             setSoundOn(true);
+            cleanupGestures();
           }
-        }, 120);
-      };
-      if (p && typeof p.then === "function") {
-        p.then(settle).catch(() => {
+        })
+        .catch(() => {
+          soundDone = false;
           v.muted = true;
           keepPlaying();
         });
-      } else {
-        settle();
-      }
     };
 
-    keepPlaying();
-    enable();
-    const mediaEvents = ["loadeddata", "canplay", "playing", "stalled", "pause", "waiting"];
-    const onMedia = () => {
-      keepPlaying();
-      enable();
-    };
-    mediaEvents.forEach((e) => v.addEventListener(e, onMedia));
-    const onVisible = () => keepPlaying();
-    document.addEventListener("visibilitychange", onVisible);
-
-    const poll = window.setInterval(() => {
-      keepPlaying();
-      enable();
-      if (done) window.clearInterval(poll);
-    }, 400);
-
-    const events: (keyof WindowEventMap)[] = [
+    const gestures: (keyof WindowEventMap)[] = [
       "pointerdown",
       "pointermove",
-      "mousemove",
       "click",
       "keydown",
       "touchstart",
-      "touchend",
       "wheel",
       "scroll",
     ];
-    const onFirst = () => {
-      keepPlaying();
-      enable();
-      if (done) events.forEach((e) => window.removeEventListener(e, onFirst, { capture: true }));
-    };
-    events.forEach((e) =>
-      window.addEventListener(e, onFirst, { passive: true, capture: true }),
+    const onGesture = () => tryUnmute();
+    const cleanupGestures = () =>
+      gestures.forEach((e) => window.removeEventListener(e, onGesture, { capture: true }));
+    gestures.forEach((e) =>
+      window.addEventListener(e, onGesture, { passive: true, capture: true }),
     );
+    tryUnmute();
 
     return () => {
-      window.clearInterval(poll);
-      mediaEvents.forEach((e) => v.removeEventListener(e, onMedia));
-      document.removeEventListener("visibilitychange", onVisible);
-      events.forEach((e) => window.removeEventListener(e, onFirst, { capture: true }));
+      unmounted = true;
+      v.removeEventListener("loadeddata", keepPlaying);
+      v.removeEventListener("canplay", keepPlaying);
+      document.removeEventListener("visibilitychange", keepPlaying);
+      cleanupGestures();
     };
-
   }, []);
+
 
 
 
