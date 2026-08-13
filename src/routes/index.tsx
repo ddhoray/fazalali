@@ -280,35 +280,60 @@ function Hero() {
   };
 
   useEffect(() => {
+    let done = false;
     const enable = () => {
       const v = videoRef.current;
-      if (!v || userMutedRef.current) return;
+      if (!v || done || userMutedRef.current) return;
       v.muted = false;
       v.volume = 1;
       v.play()
-        .then(() => setSoundOn(!v.muted))
+        .then(() => {
+          if (!v.muted) {
+            done = true;
+            setSoundOn(true);
+          }
+        })
         .catch(() => {
           v.muted = true;
           void v.play().catch(() => {});
         });
     };
-    // Try immediately (works when the browser allows sound autoplay)
+
+    // Try right away, on every early media event, and on a short retry loop so
+    // sound comes on as soon as the browser permits it.
     enable();
+    const v = videoRef.current;
+    const mediaEvents = ["loadedmetadata", "loadeddata", "canplay", "playing"];
+    mediaEvents.forEach((e) => v?.addEventListener(e, enable));
+    const timer = window.setInterval(() => {
+      if (done) window.clearInterval(timer);
+      else enable();
+    }, 250);
+    const stopTimer = window.setTimeout(() => window.clearInterval(timer), 8000);
+
     const events: (keyof WindowEventMap)[] = [
       "pointerdown",
+      "pointerup",
+      "click",
       "keydown",
       "touchstart",
+      "touchend",
       "wheel",
       "scroll",
       "mousemove",
     ];
-    const onFirst = () => {
-      enable();
-      events.forEach((e) => window.removeEventListener(e, onFirst));
+    const onFirst = () => enable();
+    events.forEach((e) =>
+      window.addEventListener(e, onFirst, { passive: true, capture: true }),
+    );
+    return () => {
+      window.clearInterval(timer);
+      window.clearTimeout(stopTimer);
+      mediaEvents.forEach((e) => v?.removeEventListener(e, enable));
+      events.forEach((e) => window.removeEventListener(e, onFirst, { capture: true }));
     };
-    events.forEach((e) => window.addEventListener(e, onFirst, { passive: true }));
-    return () => events.forEach((e) => window.removeEventListener(e, onFirst));
   }, []);
+
 
 
 
