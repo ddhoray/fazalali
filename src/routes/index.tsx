@@ -1,6 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { motion, useScroll, useTransform, useMotionValueEvent } from "motion/react";
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { BookOpen, Sparkles, PenLine, Compass, ArrowUpRight, Volume2, VolumeX } from "lucide-react";
 import { BlurReveal, SlideIn } from "@/components/site/BlurReveal";
 import { WordScrollReveal } from "@/components/site/WordScrollReveal";
@@ -266,7 +267,12 @@ function Hero() {
   // sound on at the first user gesture. A manual toggle stays available.
   const videoRef = useRef<HTMLVideoElement>(null);
   const [soundOn, setSoundOn] = useState(false);
+  const [soundControlReady, setSoundControlReady] = useState(false);
   const userMutedRef = useRef(false);
+
+  useEffect(() => {
+    setSoundControlReady(true);
+  }, []);
 
   const toggleSound = () => {
     const v = videoRef.current;
@@ -381,18 +387,6 @@ function Hero() {
             className="absolute inset-0 size-full bg-cover bg-center object-cover"
           />
 
-          {/* Sound control — fixed to the viewport bottom-right so it stays put */}
-          <button
-            type="button"
-            onClick={() => toggleSound()}
-            aria-label={soundOn ? "Mute hero audio" : "Unmute hero audio"}
-            className="fixed bottom-5 right-5 z-[80] inline-flex size-11 items-center justify-center border border-white/25 bg-black/40 text-white backdrop-blur transition-colors duration-300 hover:bg-black/60"
-          >
-            {soundOn ? <Volume2 className="size-4" /> : <VolumeX className="size-4" />}
-          </button>
-
-
-
           <motion.div
             style={{ opacity: heroOverlayOpacity }}
             className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-black/10"
@@ -451,6 +445,19 @@ function Hero() {
           </motion.div>
         </motion.div>
       </div>
+      {soundControlReady
+        ? createPortal(
+            <button
+              type="button"
+              onClick={toggleSound}
+              aria-label={soundOn ? "Mute hero audio" : "Unmute hero audio"}
+              className="fixed bottom-5 right-5 z-[9999] inline-flex size-11 items-center justify-center border border-white/25 bg-black/40 text-white backdrop-blur transition-colors duration-300 hover:bg-black/60"
+            >
+              {soundOn ? <Volume2 className="size-4" /> : <VolumeX className="size-4" />}
+            </button>,
+            document.body,
+          )
+        : null}
     </section>
   );
 }
