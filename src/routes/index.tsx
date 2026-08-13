@@ -287,12 +287,29 @@ function Hero() {
       v.volume = 1;
       v.play()
         .then(() => setSoundOn(!v.muted))
-        .catch(() => {});
+        .catch(() => {
+          v.muted = true;
+          void v.play().catch(() => {});
+        });
     };
-    const events: (keyof WindowEventMap)[] = ["pointerdown", "keydown", "touchstart", "wheel"];
-    events.forEach((e) => window.addEventListener(e, enable, { once: true, passive: true }));
-    return () => events.forEach((e) => window.removeEventListener(e, enable));
+    // Try immediately (works when the browser allows sound autoplay)
+    enable();
+    const events: (keyof WindowEventMap)[] = [
+      "pointerdown",
+      "keydown",
+      "touchstart",
+      "wheel",
+      "scroll",
+      "mousemove",
+    ];
+    const onFirst = () => {
+      enable();
+      events.forEach((e) => window.removeEventListener(e, onFirst));
+    };
+    events.forEach((e) => window.addEventListener(e, onFirst, { passive: true }));
+    return () => events.forEach((e) => window.removeEventListener(e, onFirst));
   }, []);
+
 
 
   return (
