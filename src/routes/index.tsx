@@ -274,7 +274,9 @@ function Hero() {
           className="relative overflow-hidden bg-neutral-900"
         >
           <video
+            ref={videoRef}
             src={heroVideo}
+            poster={heroImage}
             autoPlay
             muted
             loop
@@ -282,8 +284,20 @@ function Hero() {
             preload="auto"
             disablePictureInPicture
             disableRemotePlayback
-            className="absolute inset-0 size-full object-cover"
+            style={{ backgroundImage: `url(${heroImage})` }}
+            className="absolute inset-0 size-full bg-cover bg-center object-cover"
           />
+
+          {/* Sound control, audio starts muted (browser policy) and unmutes on first interaction */}
+          <button
+            type="button"
+            onClick={() => toggleSound()}
+            aria-label={soundOn ? "Mute hero audio" : "Unmute hero audio"}
+            className="absolute bottom-5 right-5 z-30 inline-flex size-11 items-center justify-center border border-white/25 bg-black/40 text-white backdrop-blur transition-colors hover:bg-black/60"
+          >
+            {soundOn ? <Volume2 className="size-4" /> : <VolumeX className="size-4" />}
+          </button>
+
 
           <motion.div
             style={{ opacity: heroOverlayOpacity }}
