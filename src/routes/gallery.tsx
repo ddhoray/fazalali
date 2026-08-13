@@ -33,6 +33,7 @@ import p26 from "@/assets/paintings/26.wemoveaboutintheworld.jpg.asset.json";
 import p27 from "@/assets/paintings/27.itisnottoolate.jpg.asset.json";
 import pScarlet from "@/assets/paintings/scarletibisteaser.jpg.asset.json";
 import pSpiritual from "@/assets/paintings/spiritualbaptists.jpg.asset.json";
+import { assetUrl } from "@/lib/asset-url";
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
@@ -63,45 +64,45 @@ type Work = {
 };
 
 const works: Work[] = [
-  { src: p1.url, title: "Run Into the Shimmering Light", year: "2023", medium: "Oil on canvas" },
-  { src: p2.url, title: "Plunge Into Your Depths", year: "2022", medium: "Oil on canvas" },
+  { src: assetUrl(p1), title: "Run Into the Shimmering Light", year: "2023", medium: "Oil on canvas" },
+  { src: assetUrl(p2), title: "Plunge Into Your Depths", year: "2022", medium: "Oil on canvas" },
   {
-    src: p3.url,
+    src: assetUrl(p3),
     title: "Everyone Here Is Searching",
     year: "2023",
     medium: "Mixed media on board",
   },
-  { src: p4.url, title: "Go to the Limits", year: "2022", medium: "Oil on canvas" },
-  { src: p5.url, title: "And the Angels Will Leap", year: "2023", medium: "Oil on canvas" },
-  { src: p6.url, title: "No Feeling Is Final", year: "2022", medium: "Oil on canvas" },
-  { src: p7.url, title: "Give Me a Hand", year: "2023", medium: "Oil on canvas" },
-  { src: p8.url, title: "Through the Empty Branches", year: "2022", medium: "Acrylic on canvas" },
-  { src: p9.url, title: "It Is What You Have", year: "2023", medium: "Oil on canvas" },
-  { src: p10.url, title: "Let Everything Happen to You", year: "2023", medium: "Oil on canvas" },
-  { src: p11.url, title: "Give Me Your Hand", year: "2023", medium: "Oil on canvas" },
-  { src: p12.url, title: "So We Are Grasped By", year: "2022", medium: "Acrylic on canvas" },
-  { src: p13.url, title: "My Eyes Touch the Hill", year: "2023", medium: "Oil on canvas" },
-  { src: p14.url, title: "I Promise to Hold You Forever", year: "2023", medium: "Oil on canvas" },
-  { src: p15.url, title: "God Speaks to Each of Us", year: "2022", medium: "Oil on canvas" },
-  { src: p16.url, title: "Make Big Shadows", year: "2023", medium: "Oil on canvas" },
-  { src: p17.url, title: "Be the Ground", year: "2022", medium: "Mixed media on canvas" },
-  { src: p18.url, title: "You Are the Sun", year: "2023", medium: "Oil on canvas" },
-  { src: p19.url, title: "Hardly Sense In It", year: "2023", medium: "Oil on canvas" },
-  { src: p20.url, title: "Somehow We Survive", year: "2022", medium: "Mixed media on canvas" },
-  { src: p21.url, title: "Begin Again and Again", year: "2023", medium: "Acrylic on canvas" },
-  { src: p22.url, title: "You Have Been Sent Out", year: "2023", medium: "Mixed media on board" },
-  { src: p23.url, title: "Above Us Only Sky", year: "2022", medium: "Oil on canvas" },
-  { src: p24.url, title: "The Inner Light of All Things", year: "2023", medium: "Oil on canvas" },
+  { src: assetUrl(p4), title: "Go to the Limits", year: "2022", medium: "Oil on canvas" },
+  { src: assetUrl(p5), title: "And the Angels Will Leap", year: "2023", medium: "Oil on canvas" },
+  { src: assetUrl(p6), title: "No Feeling Is Final", year: "2022", medium: "Oil on canvas" },
+  { src: assetUrl(p7), title: "Give Me a Hand", year: "2023", medium: "Oil on canvas" },
+  { src: assetUrl(p8), title: "Through the Empty Branches", year: "2022", medium: "Acrylic on canvas" },
+  { src: assetUrl(p9), title: "It Is What You Have", year: "2023", medium: "Oil on canvas" },
+  { src: assetUrl(p10), title: "Let Everything Happen to You", year: "2023", medium: "Oil on canvas" },
+  { src: assetUrl(p11), title: "Give Me Your Hand", year: "2023", medium: "Oil on canvas" },
+  { src: assetUrl(p12), title: "So We Are Grasped By", year: "2022", medium: "Acrylic on canvas" },
+  { src: assetUrl(p13), title: "My Eyes Touch the Hill", year: "2023", medium: "Oil on canvas" },
+  { src: assetUrl(p14), title: "I Promise to Hold You Forever", year: "2023", medium: "Oil on canvas" },
+  { src: assetUrl(p15), title: "God Speaks to Each of Us", year: "2022", medium: "Oil on canvas" },
+  { src: assetUrl(p16), title: "Make Big Shadows", year: "2023", medium: "Oil on canvas" },
+  { src: assetUrl(p17), title: "Be the Ground", year: "2022", medium: "Mixed media on canvas" },
+  { src: assetUrl(p18), title: "You Are the Sun", year: "2023", medium: "Oil on canvas" },
+  { src: assetUrl(p19), title: "Hardly Sense In It", year: "2023", medium: "Oil on canvas" },
+  { src: assetUrl(p20), title: "Somehow We Survive", year: "2022", medium: "Mixed media on canvas" },
+  { src: assetUrl(p21), title: "Begin Again and Again", year: "2023", medium: "Acrylic on canvas" },
+  { src: assetUrl(p22), title: "You Have Been Sent Out", year: "2023", medium: "Mixed media on board" },
+  { src: assetUrl(p23), title: "Above Us Only Sky", year: "2022", medium: "Oil on canvas" },
+  { src: assetUrl(p24), title: "The Inner Light of All Things", year: "2023", medium: "Oil on canvas" },
   {
-    src: p25.url,
+    src: assetUrl(p25),
     title: "The Darkness of Each Endless Fall",
     year: "2022",
     medium: "Oil on canvas",
   },
-  { src: p26.url, title: "We Move About in the World", year: "2023", medium: "Oil on canvas" },
-  { src: p27.url, title: "It Is Not Too Late", year: "2023", medium: "Acrylic on canvas" },
-  { src: pScarlet.url, title: "Scarlet Ibis", year: "2023", medium: "Oil on canvas" },
-  { src: pSpiritual.url, title: "Spiritual Baptists", year: "2022", medium: "Oil on canvas" },
+  { src: assetUrl(p26), title: "We Move About in the World", year: "2023", medium: "Oil on canvas" },
+  { src: assetUrl(p27), title: "It Is Not Too Late", year: "2023", medium: "Acrylic on canvas" },
+  { src: assetUrl(pScarlet), title: "Scarlet Ibis", year: "2023", medium: "Oil on canvas" },
+  { src: assetUrl(pSpiritual), title: "Spiritual Baptists", year: "2022", medium: "Oil on canvas" },
 ];
 
 function GalleryPage() {
