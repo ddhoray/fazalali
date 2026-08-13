@@ -13,7 +13,7 @@ import { BookSection } from "@/components/site/BookSection";
 import { Newsletter } from "@/components/site/Newsletter";
 import { articles } from "@/content/articles";
 import portraitAsset from "@/assets/fazal-cutout.png.asset.json";
-const portrait = portraitAsset.url;
+const portrait = assetUrl(portraitAsset);
 import heroVideoAsset from "@/assets/hero-loop.mp4.asset.json";
 import { assetUrl } from "@/lib/asset-url";
 const heroImage = "/hero-beach.jpg";

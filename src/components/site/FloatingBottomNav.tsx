@@ -160,7 +160,7 @@ export function FloatingBottomNav() {
               className="flex h-full w-16 shrink-0 items-center justify-center"
             >
               <img
-                src={omerosMark.url}
+                src={assetUrl(omerosMark)}
                 alt="Omeros"
                 className="block h-11 w-11 object-contain"
                 draggable={false}
