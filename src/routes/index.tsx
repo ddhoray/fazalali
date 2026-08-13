@@ -338,15 +338,18 @@ function Hero() {
             className="absolute inset-0 size-full bg-cover bg-center object-cover"
           />
 
-          {/* Sound control, audio starts muted (browser policy) and unmutes on first interaction */}
+          {/* Sound control, hidden once the hero scrolls away so it doesn't linger */}
           <button
             type="button"
             onClick={() => toggleSound()}
             aria-label={soundOn ? "Mute hero audio" : "Unmute hero audio"}
-            className="absolute bottom-5 right-5 z-30 inline-flex size-11 items-center justify-center border border-white/25 bg-black/40 text-white backdrop-blur transition-colors hover:bg-black/60"
+            className={`absolute bottom-5 right-5 z-30 inline-flex size-11 items-center justify-center border border-white/25 bg-black/40 text-white backdrop-blur transition-all duration-300 hover:bg-black/60 ${
+              revealed ? "pointer-events-none opacity-0" : "opacity-100"
+            }`}
           >
             {soundOn ? <Volume2 className="size-4" /> : <VolumeX className="size-4" />}
           </button>
+
 
 
           <motion.div
