@@ -343,7 +343,7 @@ function Hero() {
             type="button"
             onClick={() => toggleSound()}
             aria-label={soundOn ? "Mute hero audio" : "Unmute hero audio"}
-            className="fixed bottom-5 right-5 z-50 inline-flex size-11 items-center justify-center border border-white/25 bg-black/40 text-white backdrop-blur transition-colors duration-300 hover:bg-black/60"
+            className="fixed bottom-5 right-5 z-[70] inline-flex size-11 items-center justify-center border border-white/25 bg-black/40 text-white backdrop-blur transition-colors duration-300 hover:bg-black/60"
           >
             {soundOn ? <Volume2 className="size-4" /> : <VolumeX className="size-4" />}
           </button>
