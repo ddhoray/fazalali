@@ -14,7 +14,7 @@ import { Newsletter } from "@/components/site/Newsletter";
 import { articles } from "@/content/articles";
 import portraitAsset from "@/assets/fazal-cutout.png.asset.json";
 const portrait = assetUrl(portraitAsset);
-import heroVideoAsset from "@/assets/hero-loop.mp4.asset.json";
+import heroVideoAsset from "@/assets/hero-loop-web.mp4.asset.json";
 import { assetUrl } from "@/lib/asset-url";
 const heroImage = "/hero-beach.jpg";
 const heroVideo = assetUrl(heroVideoAsset);
