@@ -287,12 +287,29 @@ function Hero() {
       v.volume = 1;
       v.play()
         .then(() => setSoundOn(!v.muted))
-        .catch(() => {});
+        .catch(() => {
+          v.muted = true;
+          void v.play().catch(() => {});
+        });
     };
-    const events: (keyof WindowEventMap)[] = ["pointerdown", "keydown", "touchstart", "wheel"];
-    events.forEach((e) => window.addEventListener(e, enable, { once: true, passive: true }));
-    return () => events.forEach((e) => window.removeEventListener(e, enable));
+    // Try immediately (works when the browser allows sound autoplay)
+    enable();
+    const events: (keyof WindowEventMap)[] = [
+      "pointerdown",
+      "keydown",
+      "touchstart",
+      "wheel",
+      "scroll",
+      "mousemove",
+    ];
+    const onFirst = () => {
+      enable();
+      events.forEach((e) => window.removeEventListener(e, onFirst));
+    };
+    events.forEach((e) => window.addEventListener(e, onFirst, { passive: true }));
+    return () => events.forEach((e) => window.removeEventListener(e, onFirst));
   }, []);
+
 
 
   return (
@@ -321,15 +338,18 @@ function Hero() {
             className="absolute inset-0 size-full bg-cover bg-center object-cover"
           />
 
-          {/* Sound control, audio starts muted (browser policy) and unmutes on first interaction */}
+          {/* Sound control, hidden once the hero scrolls away so it doesn't linger */}
           <button
             type="button"
             onClick={() => toggleSound()}
             aria-label={soundOn ? "Mute hero audio" : "Unmute hero audio"}
-            className="absolute bottom-5 right-5 z-30 inline-flex size-11 items-center justify-center border border-white/25 bg-black/40 text-white backdrop-blur transition-colors hover:bg-black/60"
+            className={`absolute bottom-5 right-5 z-30 inline-flex size-11 items-center justify-center border border-white/25 bg-black/40 text-white backdrop-blur transition-all duration-300 hover:bg-black/60 ${
+              revealed ? "pointer-events-none opacity-0" : "opacity-100"
+            }`}
           >
             {soundOn ? <Volume2 className="size-4" /> : <VolumeX className="size-4" />}
           </button>
+
 
 
           <motion.div
