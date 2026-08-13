@@ -5,6 +5,7 @@ import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { openContactDrawer } from "@/components/site/ContactDrawer";
 import omerosMark from "@/assets/omeros-dock-mark.png.asset.json";
+import { assetUrl } from "@/lib/asset-url";
 
 const primaryLinks = [
   { to: "/about", label: "Profile" },
@@ -160,7 +161,7 @@ export function FloatingBottomNav() {
               className="flex h-full w-16 shrink-0 items-center justify-center"
             >
               <img
-                src={omerosMark.url}
+                src={assetUrl(omerosMark)}
                 alt="Omeros"
                 className="block h-11 w-11 object-contain"
                 draggable={false}
