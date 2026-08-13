@@ -289,41 +289,59 @@ function Hero() {
       if (v.paused) void v.play().catch(() => {});
     };
 
-    // Only try sound once the page has real user activation, otherwise the
-    // browser rejects it and pauses the video, which is what made it stutter.
+    // Try sound as early as the browser allows; retry on every signal until it
+    // sticks. If the attempt is rejected we silently fall back to muted.
     const enable = () => {
-      if (done || userMutedRef.current) return;
-      const activated =
-        typeof navigator !== "undefined" &&
-        (navigator as Navigator & { userActivation?: { hasBeenActive: boolean } })
-          .userActivation?.hasBeenActive !== false;
-      if (!activated) return;
+      if (done || userMutedRef.current || !v.muted) return;
       v.muted = false;
       v.volume = 1;
-      keepPlaying();
-      window.setTimeout(() => {
-        if (v.muted || v.paused) {
+      const p = v.play();
+      const settle = () => {
+        window.setTimeout(() => {
+          if (v.muted || v.paused) {
+            v.muted = true;
+            keepPlaying();
+          } else {
+            done = true;
+            setSoundOn(true);
+          }
+        }, 120);
+      };
+      if (p && typeof p.then === "function") {
+        p.then(settle).catch(() => {
           v.muted = true;
           keepPlaying();
-        } else {
-          done = true;
-          setSoundOn(true);
-        }
-      }, 150);
+        });
+      } else {
+        settle();
+      }
     };
 
     keepPlaying();
     enable();
-    const mediaEvents = ["loadeddata", "canplay", "stalled", "pause", "waiting"];
-    mediaEvents.forEach((e) => v.addEventListener(e, keepPlaying));
+    const mediaEvents = ["loadeddata", "canplay", "playing", "stalled", "pause", "waiting"];
+    const onMedia = () => {
+      keepPlaying();
+      enable();
+    };
+    mediaEvents.forEach((e) => v.addEventListener(e, onMedia));
     const onVisible = () => keepPlaying();
     document.addEventListener("visibilitychange", onVisible);
 
+    const poll = window.setInterval(() => {
+      keepPlaying();
+      enable();
+      if (done) window.clearInterval(poll);
+    }, 400);
+
     const events: (keyof WindowEventMap)[] = [
       "pointerdown",
+      "pointermove",
+      "mousemove",
       "click",
       "keydown",
       "touchstart",
+      "touchend",
       "wheel",
       "scroll",
     ];
@@ -335,8 +353,10 @@ function Hero() {
     events.forEach((e) =>
       window.addEventListener(e, onFirst, { passive: true, capture: true }),
     );
+
     return () => {
-      mediaEvents.forEach((e) => v.removeEventListener(e, keepPlaying));
+      window.clearInterval(poll);
+      mediaEvents.forEach((e) => v.removeEventListener(e, onMedia));
       document.removeEventListener("visibilitychange", onVisible);
       events.forEach((e) => window.removeEventListener(e, onFirst, { capture: true }));
     };
