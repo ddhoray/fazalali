@@ -355,7 +355,8 @@ function Hero() {
     );
 
     return () => {
-      mediaEvents.forEach((e) => v.removeEventListener(e, keepPlaying));
+      window.clearInterval(poll);
+      mediaEvents.forEach((e) => v.removeEventListener(e, onMedia));
       document.removeEventListener("visibilitychange", onVisible);
       events.forEach((e) => window.removeEventListener(e, onFirst, { capture: true }));
     };
