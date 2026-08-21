@@ -492,13 +492,6 @@ function Manifesto() {
         className="font-display text-[8vw] leading-[1.04] tracking-[-0.025em] text-balance sm:text-[5vw] sm:leading-[1.08] md:text-[3.4vw]"
         text="Goodness, as rationality, does not attribute any special virtue to the process of deciding. Human thinking is imperfect. The AI frontier opens the possibility to augment each person's Agility Quotient (AQ) to think better. In that ferment lies the possibility of a blossoming of human ideas boosted by AI. The true challenge is therefore to build AI systems that prompt us to think more benevolently than we naturally do."
       />
-      <BlurReveal
-        as="p"
-        delay={0.1}
-        className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground"
-      >
-        , Fazal Ali, on opening the new site, 2026.
-      </BlurReveal>
     </section>
   );
 }
