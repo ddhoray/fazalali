@@ -502,15 +502,12 @@ function Portrait() {
 
       <div className="relative z-10 mx-auto max-w-[1400px] px-5 sm:px-8">
         {/* Top meta bar */}
-        <div
-          className="mb-12 flex items-center justify-between border-b pb-4"
-          style={{ borderColor: "rgba(246,244,239,0.2)" }}
-        >
-          <BlurReveal as="p" className="eyebrow">
-            <span style={{ color: "rgba(246,244,239,0.65)" }}>The writer</span>
+        <div className="mb-12 flex items-center justify-between border-b border-white/20 pb-4">
+          <BlurReveal as="p" className="eyebrow text-white/65">
+            The writer
           </BlurReveal>
-          <BlurReveal as="p" delay={0.1} className="eyebrow">
-            <span style={{ color: "rgba(246,244,239,0.65)" }}>Trinidad · b. 1974</span>
+          <BlurReveal as="p" delay={0.1} className="eyebrow text-white/65">
+            Trinidad · b. 1974
           </BlurReveal>
         </div>
 
