@@ -124,11 +124,6 @@ function CoreStatement() {
           <em className="text-accent">all cultures and continents.</em>
         </BlurReveal>
         <div className="mt-10 grid max-w-4xl gap-6 text-base leading-relaxed text-foreground/75 md:text-lg">
-          <BlurReveal as="p" delay={0.16}>
-            Every agency, company, institution and country designing, developing and deploying AI
-            architectures has an obligation to incorporate a more geographically, culturally and
-            socially diverse array of perspectives.
-          </BlurReveal>
           <BlurReveal as="p" delay={0.22}>
             Only then do we begin to achieve fair algorithms, fairness in whose knowledge counts,
             and an end to inequality passed down from one generation to the next.
