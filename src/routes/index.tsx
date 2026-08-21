@@ -13,8 +13,7 @@ import { BookSection } from "@/components/site/BookSection";
 
 import { Newsletter } from "@/components/site/Newsletter";
 import { articles } from "@/content/articles";
-import portraitAsset from "@/assets/fazal-cutout.png.asset.json";
-const portrait = assetUrl(portraitAsset);
+import fazalPortrait from "@/assets/fazal-portrait.jpg";
 import heroVideoAsset from "@/assets/hero-loop-web.mp4.asset.json";
 import { assetUrl } from "@/lib/asset-url";
 
@@ -546,67 +545,26 @@ function Portrait() {
             </h2>
           </BlurReveal>
 
-          {/* 3-column row with flanking text and centered cutout */}
-          <div className="relative z-10 grid grid-cols-12 items-center gap-6 md:gap-10">
-            {/* Left text */}
-            <div className="order-2 col-span-6 md:order-1 md:col-span-3">
-              <BlurReveal delay={0.1} className="space-y-4 text-left">
-                <p className="eyebrow" style={{ color: "rgba(246,244,239,0.55)" }}>
-                  Origin
-                </p>
-                <p
-                  className="font-display text-lg leading-snug md:text-xl"
-                  style={{ color: "rgba(246,244,239,0.9)" }}
-                >
-                  Born in Trinidad. Read at Cambridge. Mentored by Sen, Rees and Borysiewicz.
-                </p>
-                <p className="text-sm leading-relaxed" style={{ color: "rgba(246,244,239,0.6)" }}>
-                  Twenty years of work that lived inside lecture rooms, now stepping out from behind
-                  the lectern.
-                </p>
-              </BlurReveal>
-            </div>
-
-            {/* Cutout, centered hero with hold-to-open */}
-            <SlideIn from="bottom" className="order-1 col-span-12 md:order-2 md:col-span-6">
+          {/* Centered portrait with hold-to-open */}
+          <div className="relative z-10">
+            <SlideIn from="bottom" className="mx-auto max-w-[460px]">
               <HoverImage
-                src={portrait}
+                src={fazalPortrait}
                 alt="Dr. Fazal Ibrahim Ali"
                 imageless
                 holdMs={6000}
                 onHoldComplete={() => navigateRoot({ to: "/about" })}
               >
-                <div className="relative mx-auto aspect-[3/4] w-full max-w-[460px] cursor-pointer">
+                <div className="relative mx-auto aspect-[3/4] w-full cursor-pointer">
                   <img
-                    src={portrait}
+                    src={fazalPortrait}
                     alt="Dr. Fazal Ibrahim Ali"
-                    className="absolute inset-0 size-full object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.55)]"
+                    className="absolute inset-0 size-full object-cover drop-shadow-[0_30px_60px_rgba(0,0,0,0.55)]"
                     loading="lazy"
-                    width={1024}
-                    height={1365}
                   />
                 </div>
               </HoverImage>
             </SlideIn>
-
-            {/* Right text */}
-            <div className="order-3 col-span-6 md:col-span-3">
-              <BlurReveal delay={0.18} className="space-y-4 text-right">
-                <p className="eyebrow" style={{ color: "rgba(246,244,239,0.55)" }}>
-                  Today
-                </p>
-                <p
-                  className="font-display text-lg leading-snug md:text-xl"
-                  style={{ color: "rgba(246,244,239,0.9)" }}
-                >
-                  Writer · Scholar · Founder of <span className="not-italic">Omeros AI</span>.
-                </p>
-                <p className="text-sm leading-relaxed" style={{ color: "rgba(246,244,239,0.6)" }}>
-                  A Caribbean reading of intelligence, and a contribution from Trinidad to a
-                  conversation usually written elsewhere.
-                </p>
-              </BlurReveal>
-            </div>
           </div>
         </div>
 
