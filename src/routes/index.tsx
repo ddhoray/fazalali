@@ -139,17 +139,17 @@ function CoreStatement() {
 
 const ideas = [
   {
-    title: "Freedom as a Medium",
-    note: "Liberty as the substrate of thought, not a destination.",
+    title: "AI Reindustrialisation",
+    note: "The global AI hyperscale buildout is not just creating a new computing age; it\u2019s driving the Reindustrialisation of nation-states.",
     to: "/writing" as const,
   },
   {
-    title: "Sen in the Islands",
+    title: "Capability deprivation is an unfreedom",
     note: "The capability approach, read from a small state.",
     to: "/writing" as const,
   },
   {
-    title: "AI Ethics",
+    title: "The Ethics of AI",
     note: "A globally distributed obligation, not a Silicon Valley deliverable.",
     to: "/writing" as const,
   },
@@ -164,7 +164,7 @@ const ideas = [
     to: "/writing" as const,
   },
   {
-    title: "Inequality",
+    title: "Inherited Inequality",
     note: "The data fabric of state enterprises and what it reproduces.",
     to: "/inequality" as const,
   },
@@ -174,9 +174,9 @@ const ideas = [
     to: "/inequality" as const,
   },
   {
-    title: "Education for Liberty",
-    note: "What a child needs to learn so the next machine is a freedom.",
-    to: "/education-for-liberty" as const,
+    title: "Uneven Development",
+    note: "On the geographies of growth and the margins it leaves behind.",
+    to: "/writing" as const,
   },
 ];
 
