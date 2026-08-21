@@ -497,13 +497,13 @@ function Manifesto() {
 function Portrait() {
   const navigateRoot = useNavigate();
   return (
-    <section data-nav="dark" className="section-invert relative overflow-hidden py-10 md:py-14">
+    <section data-nav="dark" className="section-invert relative overflow-hidden py-12 md:py-20">
       <Grain />
 
-      <div className="relative z-10 mx-auto max-w-[1500px] px-5 sm:px-8">
+      <div className="relative z-10 mx-auto max-w-[1400px] px-5 sm:px-8">
         {/* Top meta bar */}
         <div
-          className="mb-10 flex items-center justify-between border-b pb-4"
+          className="mb-12 flex items-center justify-between border-b pb-4"
           style={{ borderColor: "rgba(246,244,239,0.2)" }}
         >
           <BlurReveal as="p" className="eyebrow">
@@ -514,66 +514,87 @@ function Portrait() {
           </BlurReveal>
         </div>
 
-        {/* Hero composition: huge name behind, cutout center, flanking text */}
-        <div className="relative">
-          {/* Massive wordmark behind */}
-          <BlurReveal
-            as="div"
-            className="pointer-events-none absolute inset-x-0 top-0 z-0 -translate-y-[18%] select-none text-center md:-translate-y-[22%]"
-            y={20}
-          >
-            <h2
-              className="font-display font-medium leading-[0.82] tracking-[-0.05em]"
-              style={{
-                color: "rgba(255,255,255,0.05)",
-                fontSize: "clamp(96px, 22vw, 360px)",
-                whiteSpace: "nowrap",
-              }}
+        {/* Two-column layout: portrait left, text right on desktop; stacked on mobile */}
+        <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-[minmax(0,420px)_1fr] md:gap-16 lg:gap-20">
+          {/* Portrait */}
+          <SlideIn from="bottom" className="mx-auto w-full max-w-[420px]">
+            <HoverImage
+              src={fazalPortrait}
+              alt="Dr. Fazal Ibrahim Ali"
+              imageless
+              holdMs={6000}
+              onHoldComplete={() => navigateRoot({ to: "/about" })}
             >
-              FAZAL ALI
-            </h2>
-          </BlurReveal>
-
-          {/* Centered portrait with hold-to-open */}
-          <div className="relative z-10">
-            <SlideIn from="bottom" className="mx-auto max-w-[460px]">
-              <HoverImage
-                src={fazalPortrait}
-                alt="Dr. Fazal Ibrahim Ali"
-                imageless
-                holdMs={6000}
-                onHoldComplete={() => navigateRoot({ to: "/about" })}
-              >
-                <div className="relative mx-auto aspect-[3/4] w-full cursor-pointer">
-                  {/* Framed monochrome portrait */}
-                  <div className="absolute inset-0 overflow-hidden border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.55)]">
-                    <img
-                      src={fazalPortrait}
-                      alt="Dr. Fazal Ibrahim Ali"
-                      className="absolute inset-0 size-full object-cover [filter:grayscale(1)_contrast(1.12)_brightness(0.94)]"
-                      loading="lazy"
-                    />
-                    {/* bottom vignette for depth */}
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
-                  </div>
-                  {/* editorial corner accent ticks */}
-                  <div className="pointer-events-none absolute -left-2 -top-2 size-12 border-l border-t border-white/25" />
-                  <div className="pointer-events-none absolute -bottom-2 -right-2 size-12 border-b border-r border-white/25" />
+              <div className="relative mx-auto aspect-[3/4] w-full cursor-pointer">
+                {/* Framed monochrome portrait */}
+                <div className="absolute inset-0 overflow-hidden border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.55)]">
+                  <img
+                    src={fazalPortrait}
+                    alt="Dr. Fazal Ibrahim Ali"
+                    className="absolute inset-0 size-full object-cover [filter:grayscale(1)_contrast(1.12)_brightness(0.94)]"
+                    loading="lazy"
+                  />
+                  {/* bottom vignette for depth */}
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
                 </div>
-              </HoverImage>
-            </SlideIn>
+                {/* editorial corner accent ticks */}
+                <div className="pointer-events-none absolute -left-2 -top-2 size-12 border-l border-t border-white/25" />
+                <div className="pointer-events-none absolute -bottom-2 -right-2 size-12 border-b border-r border-white/25" />
+              </div>
+            </HoverImage>
+          </SlideIn>
+
+          {/* Text column */}
+          <div className="min-w-0">
+            <BlurReveal as="p" className="eyebrow text-accent">
+              Fazal Ibrahim Ali
+            </BlurReveal>
+            <BlurReveal
+              as="h2"
+              delay={0.08}
+              className="mt-4 font-display text-4xl leading-[1.02] tracking-[-0.025em] sm:text-5xl md:text-6xl"
+              style={{ color: "rgba(246,244,239,0.95)" }}
+            >
+              A writer on critical theory in AI, from the West Indies.
+            </BlurReveal>
+            <BlurReveal
+              as="p"
+              delay={0.16}
+              className="mt-6 max-w-lg text-base leading-relaxed sm:text-lg"
+              style={{ color: "rgba(246,244,239,0.6)" }}
+            >
+              Born in Trinidad and educated at Cambridge, Dr. Fazal Ibrahim Ali writes on the
+              ethics of artificial intelligence, inherited inequality, and the capability approach
+              from the perspective of the small state. Founder of Omeros AI and author of Education
+              for Liberty.
+            </BlurReveal>
+
+            <BlurReveal delay={0.24}>
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <CirclePill to="/about" label="More about me" invert />
+                <Link
+                  to="/books"
+                  className="inline-flex items-center gap-2 border-b pb-1 text-sm uppercase tracking-[0.2em] transition-colors"
+                  style={{ borderColor: "rgba(246,244,239,0.3)", color: "rgba(246,244,239,0.7)" }}
+                >
+                  The book <ArrowUpRight className="size-4" />
+                </Link>
+              </div>
+            </BlurReveal>
           </div>
         </div>
 
-
+        {/* Bottom meta bar */}
         <div
-          className="mt-10 flex flex-wrap items-center justify-between gap-6 border-t pt-5"
+          className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t pt-5"
           style={{ borderColor: "rgba(246,244,239,0.2)" }}
         >
           <p className="eyebrow" style={{ color: "rgba(246,244,239,0.55)" }}>
             Cambridge · Trinidad · 2026
           </p>
-          <CirclePill to="/about" label="More about me" invert />
+          <p className="eyebrow" style={{ color: "rgba(246,244,239,0.55)" }}>
+            Omeros AI · Education for Liberty
+          </p>
         </div>
       </div>
     </section>
