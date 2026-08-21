@@ -521,10 +521,10 @@ function Portrait() {
           {/* Stacked wordmark */}
           <BlurReveal
             as="div"
-            className="pointer-events-none select-none font-display leading-[0.82] tracking-[-0.05em] text-white/[0.10]"
+            className="pointer-events-none select-none font-display leading-[1.05] tracking-[-0.05em] text-white/[0.10]"
           >
-            <span className="block text-[20vw] md:text-[9.5vw]">FAZAL</span>
-            <span className="-mt-[1.5vw] block text-[20vw] md:text-[9.5vw]">ALI</span>
+            <span className="block text-[19vw] md:text-[9vw]">FAZAL</span>
+            <span className="block text-[19vw] md:text-[9vw]">ALI</span>
           </BlurReveal>
 
           {/* Nameplate */}
