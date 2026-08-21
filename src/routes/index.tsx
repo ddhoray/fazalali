@@ -572,8 +572,7 @@ function Portrait() {
                 <CirclePill to="/about" label="More about me" invert />
                 <Link
                   to="/books"
-                  className="inline-flex items-center gap-2 border-b pb-1 text-sm uppercase tracking-[0.2em] transition-colors"
-                  style={{ borderColor: "rgba(246,244,239,0.3)", color: "rgba(246,244,239,0.7)" }}
+                  className="inline-flex items-center gap-2 border-b border-white/30 pb-1 text-sm uppercase tracking-[0.2em] text-white/70 transition-colors hover:text-white"
                 >
                   The book <ArrowUpRight className="size-4" />
                 </Link>
