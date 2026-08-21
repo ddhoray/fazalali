@@ -536,7 +536,7 @@ function Portrait() {
             <h2
               className="font-display font-medium leading-[0.82] tracking-[-0.05em]"
               style={{
-                color: "rgba(255,255,255,0.22)",
+                color: "rgba(255,255,255,0.05)",
                 fontSize: "clamp(96px, 22vw, 360px)",
                 whiteSpace: "nowrap",
               }}
@@ -556,12 +556,20 @@ function Portrait() {
                 onHoldComplete={() => navigateRoot({ to: "/about" })}
               >
                 <div className="relative mx-auto aspect-[3/4] w-full cursor-pointer">
-                  <img
-                    src={fazalPortrait}
-                    alt="Dr. Fazal Ibrahim Ali"
-                    className="absolute inset-0 size-full object-cover drop-shadow-[0_30px_60px_rgba(0,0,0,0.55)]"
-                    loading="lazy"
-                  />
+                  {/* Framed monochrome portrait */}
+                  <div className="absolute inset-0 overflow-hidden border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.55)]">
+                    <img
+                      src={fazalPortrait}
+                      alt="Dr. Fazal Ibrahim Ali"
+                      className="absolute inset-0 size-full object-cover [filter:grayscale(1)_contrast(1.12)_brightness(0.94)]"
+                      loading="lazy"
+                    />
+                    {/* bottom vignette for depth */}
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+                  </div>
+                  {/* editorial corner accent ticks */}
+                  <div className="pointer-events-none absolute -left-2 -top-2 size-12 border-l border-t border-white/25" />
+                  <div className="pointer-events-none absolute -bottom-2 -right-2 size-12 border-b border-r border-white/25" />
                 </div>
               </HoverImage>
             </SlideIn>
