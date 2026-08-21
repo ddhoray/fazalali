@@ -500,30 +500,43 @@ function Portrait() {
     <section data-nav="dark" className="section-invert relative min-h-[88vh] overflow-hidden">
       <Grain />
 
-      {/* Stacked wordmark, contained to the left half so it sits behind the nameplate */}
-      <BlurReveal
-        as="div"
-        className="pointer-events-none absolute left-0 top-1/2 z-0 w-1/2 max-w-[680px] -translate-y-1/2 select-none pl-5 font-display text-white/[0.06] md:pl-12"
-      >
-        <span className="block text-[22vw] leading-[0.8] tracking-[-0.05em] md:text-[13vw]">
-          FAZAL
-        </span>
-        <span className="-mt-[1.5vw] block text-[22vw] leading-[0.8] tracking-[-0.05em] md:text-[13vw]">
-          ALI
-        </span>
-      </BlurReveal>
+      <div className="relative z-10 mx-auto grid min-h-[88vh] w-full max-w-[1500px] grid-cols-1 items-stretch md:grid-cols-2">
+        {/* Left: large full-height portrait */}
+        <div className="relative order-1 min-h-[60vh] overflow-hidden md:min-h-[88vh]">
+          <img
+            src={fazalPortrait}
+            alt="Dr. Fazal Ibrahim Ali"
+            className="absolute inset-0 size-full object-cover [filter:grayscale(1)_contrast(1.12)_brightness(0.94)]"
+            loading="lazy"
+          />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#17100b]/80 md:to-[#17100b]" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+          {/* editorial corner accent ticks */}
+          <div className="pointer-events-none absolute left-4 top-4 size-12 border-l border-t border-white/30" />
+          <div className="pointer-events-none absolute bottom-4 left-4 size-12 border-b border-l border-white/30" />
+        </div>
 
-      <div className="relative z-10 mx-auto grid min-h-[88vh] w-full max-w-[1400px] grid-cols-1 items-center gap-10 px-5 py-24 md:grid-cols-[1.1fr_minmax(0,460px)] md:gap-16 md:px-12 md:py-28">
-        {/* Left: nameplate + CTA, vertically centered */}
-        <div className="order-2 flex flex-col justify-center gap-8 md:order-1 md:h-full">
-          <div className="flex items-center gap-4">
-            <span className="h-px w-10 bg-white/25" />
-            <BlurReveal as="p" className="eyebrow text-white/60">
+        {/* Right: wordmark + nameplate + CTA, vertically centered */}
+        <div className="relative order-2 flex flex-col justify-center px-6 py-16 md:px-16 md:py-0">
+          {/* Stacked wordmark */}
+          <BlurReveal
+            as="div"
+            className="pointer-events-none select-none font-display leading-[0.82] tracking-[-0.05em] text-white/[0.10]"
+          >
+            <span className="block text-[20vw] md:text-[9.5vw]">FAZAL</span>
+            <span className="-mt-[1.5vw] block text-[20vw] md:text-[9.5vw]">ALI</span>
+          </BlurReveal>
+
+          {/* Nameplate */}
+          <div className="mt-12 flex items-center gap-4">
+            <span className="h-px w-12 bg-white/30" />
+            <BlurReveal as="p" delay={0.15} className="eyebrow text-white/70">
               Trinidad · Cambridge · 2026
             </BlurReveal>
           </div>
 
-          <BlurReveal delay={0.2}>
+          {/* CTA */}
+          <BlurReveal delay={0.3} className="mt-8">
             <button
               type="button"
               onClick={() => navigateRoot({ to: "/about" })}
@@ -533,34 +546,6 @@ function Portrait() {
               <ArrowRight className="size-3.5" />
             </button>
           </BlurReveal>
-        </div>
-
-        {/* Right: large framed portrait */}
-        <div className="order-1 md:order-2">
-          <SlideIn from="bottom" className="w-full">
-            <HoverImage
-              src={fazalPortrait}
-              alt="Dr. Fazal Ibrahim Ali"
-              imageless
-              holdMs={6000}
-              onHoldComplete={() => navigateRoot({ to: "/about" })}
-            >
-              <div className="relative mx-auto aspect-[3/4] w-full max-w-[460px] cursor-pointer md:ml-auto md:mr-0">
-                <div className="absolute inset-0 overflow-hidden border border-white/10 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.7)]">
-                  <img
-                    src={fazalPortrait}
-                    alt="Dr. Fazal Ibrahim Ali"
-                    className="absolute inset-0 size-full object-cover [filter:grayscale(1)_contrast(1.12)_brightness(0.94)]"
-                    loading="lazy"
-                  />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
-                </div>
-                {/* editorial corner accent ticks */}
-                <div className="pointer-events-none absolute -left-2 -top-2 size-12 border-l border-t border-white/30" />
-                <div className="pointer-events-none absolute -bottom-2 -right-2 size-12 border-b border-r border-white/30" />
-              </div>
-            </HoverImage>
-          </SlideIn>
         </div>
       </div>
     </section>
