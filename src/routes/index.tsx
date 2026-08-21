@@ -582,14 +582,11 @@ function Portrait() {
         </div>
 
         {/* Bottom meta bar */}
-        <div
-          className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t pt-5"
-          style={{ borderColor: "rgba(246,244,239,0.2)" }}
-        >
-          <p className="eyebrow" style={{ color: "rgba(246,244,239,0.55)" }}>
+        <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-white/20 pt-5">
+          <p className="eyebrow text-white/55">
             Cambridge · Trinidad · 2026
           </p>
-          <p className="eyebrow" style={{ color: "rgba(246,244,239,0.55)" }}>
+          <p className="eyebrow text-white/55">
             Omeros AI · Education for Liberty
           </p>
         </div>
