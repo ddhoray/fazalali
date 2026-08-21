@@ -120,7 +120,7 @@ export function SiteFooter() {
           <p>
             Designed &amp; developed by{" "}
             <a
-              href="https://hyperevamp.com"
+              href="https://hyperrevamp.com"
               target="_blank"
               rel="noreferrer"
               className="text-foreground hover:underline underline-offset-4"
