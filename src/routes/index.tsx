@@ -500,15 +500,15 @@ function Portrait() {
     <section data-nav="dark" className="section-invert relative min-h-[88vh] overflow-hidden">
       <Grain />
 
-      {/* Oversized stacked wordmark, bleeding off the left edge */}
+      {/* Stacked wordmark, contained to the left half so it sits behind the nameplate */}
       <BlurReveal
         as="div"
-        className="pointer-events-none absolute left-0 top-1/2 z-0 -translate-y-1/2 select-none pl-0 font-display text-white/[0.05]"
+        className="pointer-events-none absolute left-0 top-1/2 z-0 w-1/2 max-w-[680px] -translate-y-1/2 select-none pl-5 font-display text-white/[0.06] md:pl-12"
       >
-        <span className="block text-[34vw] leading-[0.78] tracking-[-0.05em] md:text-[27vw]">
+        <span className="block text-[22vw] leading-[0.8] tracking-[-0.05em] md:text-[13vw]">
           FAZAL
         </span>
-        <span className="-mt-[3vw] block text-[34vw] leading-[0.78] tracking-[-0.05em] md:text-[27vw]">
+        <span className="-mt-[1.5vw] block text-[22vw] leading-[0.8] tracking-[-0.05em] md:text-[13vw]">
           ALI
         </span>
       </BlurReveal>
