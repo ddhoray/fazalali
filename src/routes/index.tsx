@@ -48,7 +48,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Dr. Fazal Ibrahim Ali, a Cambridge-educated, Trinidad-born writer on critical theory in AI, founder of Omeros AI, and author of Education for Liberty.",
+          "Dr. Fazal Ibrahim Ali, born in Trinidad and educated at Cambridge, a writer on critical theory in AI, founder of Omeros AI, and author of Education for Liberty.",
       },
       { property: "og:title", content: "Fazal Ali, Writer, Scholar, Founder of Omeros AI" },
       {
