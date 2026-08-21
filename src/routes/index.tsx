@@ -48,7 +48,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Dr. Fazal Ibrahim Ali, a Cambridge-educated, Trinidad-born writer on critical theory in AI, founder of Omeros AI, and author of Education for Liberty.",
+          "Dr. Fazal Ibrahim Ali, born in Trinidad and educated at Cambridge, a writer on critical theory in AI, founder of Omeros AI, and author of Education for Liberty.",
       },
       { property: "og:title", content: "Fazal Ali, Writer, Scholar, Founder of Omeros AI" },
       {
@@ -431,10 +431,10 @@ function Hero() {
               </h1>
 
               <p className="mt-5 max-w-md text-[13px] leading-relaxed opacity-90 sm:mt-6 sm:text-sm md:text-base">
-                Dr. Fazal Ibrahim Ali, Cambridge-educated, Trinidad-born. Critical theory on
-                artificial intelligence, written from the West Indies, for a reader anywhere who
-                suspects the conversation has been{" "}
-                <em className="text-accent">too narrow for too long.</em>
+                Dr. Fazal Ibrahim Ali, born here in Trinidad and educated at Cambridge. Critical
+                theory on artificial intelligence, written from the West Indies, for a reader
+                anywhere who suspects the conversation has been{" "}
+                <em className="text-accent">too narrow for too long - and who wants to change its nature.</em>
               </p>
 
               <p className="mt-8 text-[10px] uppercase tracking-[0.3em] opacity-70">
