@@ -565,15 +565,6 @@ function Portrait() {
           </div>
         </div>
 
-        {/* Quote row */}
-        <BlurReveal
-          delay={0.22}
-          className="mx-auto mt-14 max-w-3xl text-center font-display text-2xl leading-[1.25] md:mt-20 md:text-4xl"
-        >
-          <span style={{ color: "rgba(246,244,239,0.95)" }}>
-            &ldquo;I have grown braver. A little more adventurous.&rdquo;
-          </span>
-        </BlurReveal>
 
         <div
           className="mt-10 flex flex-wrap items-center justify-between gap-6 border-t pt-5"
