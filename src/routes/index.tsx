@@ -497,62 +497,71 @@ function Manifesto() {
 function Portrait() {
   const navigateRoot = useNavigate();
   return (
-    <section data-nav="dark" className="section-invert relative flex min-h-[80vh] items-center justify-center overflow-hidden py-20 md:py-28">
+    <section data-nav="dark" className="section-invert relative min-h-[88vh] overflow-hidden">
       <Grain />
 
-      {/* Background wordmark */}
+      {/* Oversized stacked wordmark, bleeding off the left edge */}
       <BlurReveal
-        as="h2"
-        className="pointer-events-none absolute inset-0 flex items-center justify-center font-display text-[26vw] leading-none tracking-[-0.04em] text-white/[0.05] md:text-[20vw]"
+        as="div"
+        className="pointer-events-none absolute left-0 top-1/2 z-0 -translate-y-1/2 select-none pl-0 font-display text-white/[0.05]"
       >
-        FAZAL ALI
+        <span className="block text-[34vw] leading-[0.78] tracking-[-0.05em] md:text-[27vw]">
+          FAZAL
+        </span>
+        <span className="-mt-[3vw] block text-[34vw] leading-[0.78] tracking-[-0.05em] md:text-[27vw]">
+          ALI
+        </span>
       </BlurReveal>
 
-      <div className="relative z-10 flex flex-col items-center px-5 text-center">
-        {/* Portrait */}
-        <SlideIn from="bottom" className="w-full max-w-[560px]">
-          <HoverImage
-            src={fazalPortrait}
-            alt="Dr. Fazal Ibrahim Ali"
-            imageless
-            holdMs={6000}
-            onHoldComplete={() => navigateRoot({ to: "/about" })}
-          >
-            <div className="relative mx-auto aspect-[3/4] w-full cursor-pointer">
-              {/* Framed monochrome portrait */}
-              <div className="absolute inset-0 overflow-hidden border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.55)]">
-                <img
-                  src={fazalPortrait}
-                  alt="Dr. Fazal Ibrahim Ali"
-                  className="absolute inset-0 size-full object-cover [filter:grayscale(1)_contrast(1.12)_brightness(0.94)]"
-                  loading="lazy"
-                />
-                {/* bottom vignette for depth */}
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+      <div className="relative z-10 mx-auto grid min-h-[88vh] w-full max-w-[1400px] grid-cols-1 items-center gap-10 px-5 py-24 md:grid-cols-[1.1fr_minmax(0,460px)] md:gap-16 md:px-12 md:py-28">
+        {/* Left: nameplate + CTA */}
+        <div className="order-2 flex flex-col justify-end md:order-1 md:h-full">
+          <div className="mt-2 flex items-center gap-4 md:mt-0">
+            <span className="h-px w-10 bg-white/25" />
+            <BlurReveal as="p" className="eyebrow text-white/55">
+              Trinidad · Cambridge · 2026
+            </BlurReveal>
+          </div>
+
+          <BlurReveal delay={0.2} className="mt-10">
+            <button
+              type="button"
+              onClick={() => navigateRoot({ to: "/about" })}
+              className="btn-cta btn-on-blue"
+            >
+              More about me
+              <ArrowRight className="size-3.5" />
+            </button>
+          </BlurReveal>
+        </div>
+
+        {/* Right: large framed portrait */}
+        <div className="order-1 md:order-2">
+          <SlideIn from="bottom" className="w-full">
+            <HoverImage
+              src={fazalPortrait}
+              alt="Dr. Fazal Ibrahim Ali"
+              imageless
+              holdMs={6000}
+              onHoldComplete={() => navigateRoot({ to: "/about" })}
+            >
+              <div className="relative mx-auto aspect-[3/4] w-full max-w-[460px] cursor-pointer md:ml-auto md:mr-0">
+                <div className="absolute inset-0 overflow-hidden border border-white/10 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.7)]">
+                  <img
+                    src={fazalPortrait}
+                    alt="Dr. Fazal Ibrahim Ali"
+                    className="absolute inset-0 size-full object-cover [filter:grayscale(1)_contrast(1.12)_brightness(0.94)]"
+                    loading="lazy"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+                </div>
+                {/* editorial corner accent ticks */}
+                <div className="pointer-events-none absolute -left-2 -top-2 size-12 border-l border-t border-white/30" />
+                <div className="pointer-events-none absolute -bottom-2 -right-2 size-12 border-b border-r border-white/30" />
               </div>
-              {/* editorial corner accent ticks */}
-              <div className="pointer-events-none absolute -left-2 -top-2 size-12 border-l border-t border-white/25" />
-              <div className="pointer-events-none absolute -bottom-2 -right-2 size-12 border-b border-r border-white/25" />
-            </div>
-          </HoverImage>
-        </SlideIn>
-
-        {/* City line */}
-        <BlurReveal as="p" delay={0.3} className="eyebrow mt-8 text-white/55">
-          Trinidad · Cambridge · 2026
-        </BlurReveal>
-
-        {/* CTA */}
-        <BlurReveal delay={0.45} className="mt-6">
-          <button
-            type="button"
-            onClick={() => navigateRoot({ to: "/about" })}
-            className="btn-cta btn-on-blue"
-          >
-            More about me
-            <ArrowRight className="size-3.5" />
-          </button>
-        </BlurReveal>
+            </HoverImage>
+          </SlideIn>
+        </div>
       </div>
     </section>
   );
