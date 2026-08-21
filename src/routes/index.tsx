@@ -2,7 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { motion, useScroll, useTransform, useMotionValueEvent } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { BookOpen, Sparkles, PenLine, Compass, ArrowUpRight, Volume2, VolumeX } from "lucide-react";
+import { BookOpen, Sparkles, PenLine, Compass, ArrowUpRight, ArrowRight, Volume2, VolumeX } from "lucide-react";
 import { BlurReveal, SlideIn } from "@/components/site/BlurReveal";
 import { WordScrollReveal } from "@/components/site/WordScrollReveal";
 
