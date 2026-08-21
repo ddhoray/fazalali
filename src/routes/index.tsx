@@ -17,7 +17,7 @@ import portraitAsset from "@/assets/fazal-cutout.png.asset.json";
 const portrait = assetUrl(portraitAsset);
 import heroVideoAsset from "@/assets/hero-loop-web.mp4.asset.json";
 import { assetUrl } from "@/lib/asset-url";
-const heroImage = "/hero-beach.jpg";
+
 const heroVideo = assetUrl(heroVideoAsset);
 import fiaLogo from "@/assets/brand-omeros-lockup-transparent.png";
 import featuredEducation from "@/assets/featured-education.jpg";
@@ -375,7 +375,7 @@ function Hero() {
           <video
             ref={videoRef}
             src={heroVideo}
-            poster={heroImage}
+            
             autoPlay
             muted
             loop
@@ -383,8 +383,7 @@ function Hero() {
             preload="auto"
             disablePictureInPicture
             disableRemotePlayback
-            style={{ backgroundImage: `url(${heroImage})` }}
-            className="absolute inset-0 size-full bg-cover bg-center object-cover"
+            className="absolute inset-0 size-full bg-neutral-900 object-cover"
           />
 
           <motion.div
