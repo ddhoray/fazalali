@@ -7,10 +7,10 @@ import fiaLogo from "@/assets/brand-omeros-lockup-transparent.png";
  * Fades out after a short delay; uses sessionStorage so it only appears once.
  */
 export function SplashScreen() {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
 
   useEffect(() => {
-    setShow(!sessionStorage.getItem("fia-splash-seen"));
+    if (sessionStorage.getItem("fia-splash-seen")) setShow(false);
   }, []);
 
   useEffect(() => {
