@@ -129,10 +129,6 @@ function CoreStatement() {
             architectures has an obligation to incorporate a more geographically, culturally and
             socially diverse array of perspectives.
           </BlurReveal>
-          <BlurReveal as="p" delay={0.22}>
-            Only then do we begin to achieve fair algorithms, fairness in whose knowledge counts,
-            and an end to inequality passed down from one generation to the next.
-          </BlurReveal>
         </div>
       </div>
     </section>
@@ -143,17 +139,17 @@ function CoreStatement() {
 
 const ideas = [
   {
-    title: "Freedom as a Medium",
-    note: "Liberty as the substrate of thought, not a destination.",
+    title: "AI Reindustrialisation",
+    note: "The global AI hyperscale buildout is not just creating a new computing age; it\u2019s driving the Reindustrialisation of nation-states.",
     to: "/writing" as const,
   },
   {
-    title: "Sen in the Islands",
+    title: "Capability deprivation is an unfreedom",
     note: "The capability approach, read from a small state.",
     to: "/writing" as const,
   },
   {
-    title: "AI Ethics",
+    title: "The Ethics of AI",
     note: "A globally distributed obligation, not a Silicon Valley deliverable.",
     to: "/writing" as const,
   },
@@ -168,7 +164,7 @@ const ideas = [
     to: "/writing" as const,
   },
   {
-    title: "Inequality",
+    title: "Inherited Inequality",
     note: "The data fabric of state enterprises and what it reproduces.",
     to: "/inequality" as const,
   },
@@ -178,9 +174,9 @@ const ideas = [
     to: "/inequality" as const,
   },
   {
-    title: "Education for Liberty",
-    note: "What a child needs to learn so the next machine is a freedom.",
-    to: "/education-for-liberty" as const,
+    title: "Uneven Development",
+    note: "On the geographies of growth and the margins it leaves behind.",
+    to: "/writing" as const,
   },
 ];
 
@@ -569,15 +565,6 @@ function Portrait() {
           </div>
         </div>
 
-        {/* Quote row */}
-        <BlurReveal
-          delay={0.22}
-          className="mx-auto mt-14 max-w-3xl text-center font-display text-2xl leading-[1.25] md:mt-20 md:text-4xl"
-        >
-          <span style={{ color: "rgba(246,244,239,0.95)" }}>
-            &ldquo;I have grown braver. A little more adventurous.&rdquo;
-          </span>
-        </BlurReveal>
 
         <div
           className="mt-10 flex flex-wrap items-center justify-between gap-6 border-t pt-5"
