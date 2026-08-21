@@ -56,7 +56,7 @@ const roles = [
   },
   {
     year: "Cambridge",
-    text: "Commonwealth Scholar at the University of Cambridge, Hughes Hall. Influenced there by Nobel laureate Amartya Sen, Sir Leszek Borysiewicz, C. W. R. D. Moseley, and Lord Martin Rees.",
+    text: "Commonwealth Scholar who read for his doctorate at the University of Cambridge, Hughes Hall, and the University of the West Indies as a split site PhD candidate. Influenced there by Nobel laureate Amartya Sen, Sir Leszek Borysiewicz, C. W. R. D. Moseley, and Lord Martin Rees.",
   },
   {
     year: "UWI · ICT",
@@ -167,8 +167,9 @@ function AboutPage() {
                   <p className="eyebrow text-muted-foreground xl:pt-1">Background</p>
                   <p className="max-w-[60ch] text-base leading-[1.7] text-muted-foreground md:text-[17px]">
                     A Commonwealth Scholarship winner who read for his doctorate at the University
-                    of Cambridge as a PhD candidate. Nobel laureate Amartya Sen, Sir Leszek
-                    Borysiewicz, C. W. R. D. Moseley and Lord Martin Rees shaped his thinking.
+                    of Cambridge and the University of the West Indies as a split site PhD
+                    candidate. Nobel laureate Amartya Sen, Sir Leszek Borysiewicz, C. W. R. D.
+                    Moseley and Lord Martin Rees shaped his thinking.
                   </p>
                 </div>
               </Reveal>
