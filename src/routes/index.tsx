@@ -514,16 +514,16 @@ function Portrait() {
       </BlurReveal>
 
       <div className="relative z-10 mx-auto grid min-h-[88vh] w-full max-w-[1400px] grid-cols-1 items-center gap-10 px-5 py-24 md:grid-cols-[1.1fr_minmax(0,460px)] md:gap-16 md:px-12 md:py-28">
-        {/* Left: nameplate + CTA */}
-        <div className="order-2 flex flex-col justify-end md:order-1 md:h-full">
-          <div className="mt-2 flex items-center gap-4 md:mt-0">
+        {/* Left: nameplate + CTA, vertically centered */}
+        <div className="order-2 flex flex-col justify-center gap-8 md:order-1 md:h-full">
+          <div className="flex items-center gap-4">
             <span className="h-px w-10 bg-white/25" />
-            <BlurReveal as="p" className="eyebrow text-white/55">
+            <BlurReveal as="p" className="eyebrow text-white/60">
               Trinidad · Cambridge · 2026
             </BlurReveal>
           </div>
 
-          <BlurReveal delay={0.2} className="mt-10">
+          <BlurReveal delay={0.2}>
             <button
               type="button"
               onClick={() => navigateRoot({ to: "/about" })}
