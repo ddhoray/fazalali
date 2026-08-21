@@ -2,7 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { motion, useScroll, useTransform, useMotionValueEvent } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { BookOpen, Sparkles, PenLine, Compass, ArrowUpRight, Volume2, VolumeX } from "lucide-react";
+import { BookOpen, Sparkles, PenLine, Compass, ArrowUpRight, ArrowRight, Volume2, VolumeX } from "lucide-react";
 import { BlurReveal, SlideIn } from "@/components/site/BlurReveal";
 import { WordScrollReveal } from "@/components/site/WordScrollReveal";
 
@@ -510,7 +510,7 @@ function Portrait() {
 
       <div className="relative z-10 flex flex-col items-center px-5 text-center">
         {/* Portrait */}
-        <SlideIn from="bottom" className="w-full max-w-[380px]">
+        <SlideIn from="bottom" className="w-full max-w-[560px]">
           <HoverImage
             src={fazalPortrait}
             alt="Dr. Fazal Ibrahim Ali"
@@ -540,6 +540,18 @@ function Portrait() {
         {/* City line */}
         <BlurReveal as="p" delay={0.3} className="eyebrow mt-8 text-white/55">
           Trinidad · Cambridge · 2026
+        </BlurReveal>
+
+        {/* CTA */}
+        <BlurReveal delay={0.45} className="mt-6">
+          <button
+            type="button"
+            onClick={() => navigateRoot({ to: "/about" })}
+            className="btn-cta btn-on-blue"
+          >
+            More about me
+            <ArrowRight className="size-3.5" />
+          </button>
         </BlurReveal>
       </div>
     </section>
