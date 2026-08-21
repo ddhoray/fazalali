@@ -552,16 +552,14 @@ function Portrait() {
             <BlurReveal
               as="h2"
               delay={0.08}
-              className="mt-4 font-display text-4xl leading-[1.02] tracking-[-0.025em] sm:text-5xl md:text-6xl"
-              style={{ color: "rgba(246,244,239,0.95)" }}
+              className="mt-4 font-display text-4xl leading-[1.02] tracking-[-0.025em] text-white/95 sm:text-5xl md:text-6xl"
             >
               A writer on critical theory in AI, from the West Indies.
             </BlurReveal>
             <BlurReveal
               as="p"
               delay={0.16}
-              className="mt-6 max-w-lg text-base leading-relaxed sm:text-lg"
-              style={{ color: "rgba(246,244,239,0.6)" }}
+              className="mt-6 max-w-lg text-base leading-relaxed text-white/60 sm:text-lg"
             >
               Born in Trinidad and educated at Cambridge, Dr. Fazal Ibrahim Ali writes on the
               ethics of artificial intelligence, inherited inequality, and the capability approach
