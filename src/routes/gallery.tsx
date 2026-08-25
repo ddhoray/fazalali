@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
 
-import heroGallery from "@/assets/hero-gallery.jpg";
+
 import { Instagram } from "lucide-react";
 
 import p1 from "@/assets/paintings/1.runintotheshimmeringlightthb.jpg.asset.json";
