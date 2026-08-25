@@ -2,7 +2,7 @@ export const inequality = {
   eyebrow: "Education for Liberty",
   title: "Inequality.",
   standfirst:
-    "The West Indian school sits on an unequal substrate it did not design and cannot ignore. To teach in it is to negotiate with that substrate, every day, with thirty witnesses.",
+    "No one is enough. No single thought is the perfect answer to all of our problems in the age of AI. We need everyone to collaborate and produce new knowledge.",
   sections: [
     {
       h: "Inherited geometry",
