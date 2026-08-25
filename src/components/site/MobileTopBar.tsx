@@ -91,7 +91,7 @@ export function MobileTopBar() {
                 }}
                 className="mt-6 rounded-[0.6rem] bg-[#1c1c1c] px-6 py-4 text-[13px] font-medium uppercase tracking-[0.18em] text-white"
               >
-                Write Me
+                Write to him
               </button>
             </nav>
           </motion.div>

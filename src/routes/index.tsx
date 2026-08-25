@@ -542,7 +542,7 @@ function Portrait() {
               onClick={() => navigateRoot({ to: "/about" })}
               className="btn-cta btn-on-blue"
             >
-              More about me
+              More about Fazal
               <ArrowRight className="size-3.5" />
             </button>
           </BlurReveal>

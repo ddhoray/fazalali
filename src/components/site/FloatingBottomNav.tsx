@@ -125,7 +125,7 @@ export function FloatingBottomNav() {
                 }}
                 className="mt-8 flex w-full items-center justify-center gap-3 border border-white/15 bg-white/[0.04] px-6 py-4 text-[11px] uppercase tracking-[0.28em] text-white transition-colors hover:bg-white/10"
               >
-                <span aria-hidden>↳</span> Write Me
+                <span aria-hidden>↳</span> Write to him
               </button>
             </div>
           </motion.div>

@@ -101,7 +101,7 @@ export function SiteNav() {
             onClick={() => openContactDrawer()}
             className={cn("nav-link-minimal opacity-100", navUnderline)}
           >
-            Write Me
+            Write to him
           </button>
         </nav>
 
@@ -137,7 +137,7 @@ export function SiteNav() {
               }}
               className="nav-link-minimal py-3.5 text-left text-foreground/75"
             >
-              Write Me
+              Write to him
             </button>
           </nav>
         </div>

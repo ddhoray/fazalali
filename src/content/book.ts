@@ -71,7 +71,7 @@ export const bookPages = [
     eyebrow: "Coda",
     title: "Continue reading.",
     body:
-      "The flipbook above is a preview. Download the full 142-page PDF below, or buy the printed edition on Amazon. Then write to me, writeme@fazalali.com, and tell me where the argument bends.",
+      "The flipbook above is a preview. Download the full 142-page PDF below, or buy the printed edition on Amazon. Then write to him, writeme@fazalali.com, and tell him where the argument bends.",
     pageNumber: 8,
   },
 ];
