@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
 import { ecology } from "@/content/ecology";
+import { articles } from "@/content/articles";
 import { ArrowUpRight } from "lucide-react";
 import heroEcology from "@/assets/hero-ecology.jpg";
 
