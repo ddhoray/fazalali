@@ -3531,4 +3531,182 @@ export const articles: Article[] = [
       `Although characteristically a geographical concept, “peripherality” today has blossomed into a model of spatial theory that loosely couples features of the production of space with economic development processes.`,
     ],
   },
+  {
+    slug: "the-earth-and-green-ai",
+    title: `The Earth and Green AI`,
+    excerpt: `Computing gives rise to two forms of CO2 emissions. The environmental costs of computation, the carbon footprint of AI, and the associated greenhouse gas emissions remain persistent problems.`,
+    date: "2023-08-20",
+    topic: `Technology`,
+    image: `https://fazalali.com/wp-content/uploads/2023/08/Genetec_data-center-1020x685.jpg`,
+    tags: [`Technology`, `AI`, `artificial intelligence`, `environment`, `society`],
+    body: [
+      `From the Report of the Intergovernmental Panel on Climate Change, it is clear that the planet is confronting an urgent greenhouse gas problem. With current global emissions of over 50 gigatons of CO2 annually, achieving net-zero emissions will require a challenging systemic transformation of industries, infrastructure, economies, and societies.`,
+      `Computing gives rise to two forms of CO2 emissions. First, a large component of computing resources is energized by electricity. So-called operational carbon emissions arise wherever the cradle of that electricity is not carbon-free. Second, embodied carbon emissions arise because the manufacturing processes that create computing hardware also generate carbon emissions.`,
+      `The environmental costs of computation — chiefly data, and the carbon footprint of AI, and the associated greenhouse gas emissions remain persistent problems. In the near future, large and complex workloads will have to be executed in battery-constrained environments like cameras, EVs, and mobile phones.`,
+      `This will require superior energy efficiency that will allow cloud providers to use new types of chips to address energy costs and their carbon footprint. This has triggered concerns about emissions associated with warehouses stacked with servers, routers, and switches that power AI systems.`,
+      `Researchers looking into Energy and Policy Considerations for Deep Learning using Natural Language Processing, have found that the computational and environmental costs of training AI models grew in direct proportion, and even exploded when tuning strategies were used to augment accuracy.`,
+      `In particular, they found that neural architecture search, which tries to optimize a model by incrementally tweaking a neural network’s design through in-depth trial and error, had high associated costs for slender performance benefits.
+Most of these prototypes are costly to train and progress, both financially, due to the cost of hardware and power consumption or cloud computing time, and environmentally, because of the carbon footprint required to power contemporary tensor processing hardware.`,
+      `To quicken AI training, Google created an Application Specific Integrated Circuit (ASIC), or Tensor Processing Unit (TPU). TPUs are used to solve complex matrix and vector operations at ultra-high speeds. However, IBM has recently developed a new prototype chip that can reduce energy costs and the carbon footprint of facilities that use this new chip design.
+Generally, computer chips store information in 0s and 1s. But the new chips use components called memory resistors or “memristors” which are nature-inspired computing devices that mimic the human brain. Moreover, they are partially analogue. Memristors can store a range of numbers and can remember its electric history in a way that is akin to synapses in living biological systems.`,
+      `Interconnected chips of this type can coalesce into a network that can approximate a biological brain. But no chip at this time can come close to the performance excellence and power economy of the human brain. Nothing at this time can match the energy efficiency, fluidity, and self-organizing capacity of the human brain.`,
+      `Memristors also have some digital components that allow these chips to be used in existing AI systems. This opens up possibilities for chips in EVs, telescopes, and phones to be more energy efficient and thereby extending the life of batteries.
+These new chips also open fresh frontiers for many new applications. While these chips are not a solution to the climate problem, they remain an excellent first step. These chips may also reduce the amount of water needed for cooling power-hungry data centres, and could replace the chips in the banks of computers that now power powerful AI applications.
+The demand for data storage will increase as bureaucracies shift to e-Identity, Open Finance, and Digital Trade. Data like oil and gas, once mined and refined, are a highly lucrative commodity. And like its fossil-fuel counterpart, the process of deep learning has an oversized impact on the planet.`,
+      `Open Data, Data Embassies, and Cloud Computing continue to speed up in the downstream surface wave patterns created by the passage of the Sars-CoV-2 episode. And there is no signal on the horizon, of any drop or slowing down of these advances. In fact, cloud computing may have a larger carbon footprint than entire industries.
+A fifty-year-old clause in the constitution of the State of Montana in the United States of America provides that, “the state and each person shall maintain and improve a clean and healthy environment in Montana for present and future generations”.`,
+      `Citing this clause, sixteen activists, between the ages of five and twenty-two targeted the 2011 state law, that made it illegal for environmental reviews to consider climate impacts when deciding on new projects like power generation plants.
+On Monday 13th August, 2023, District Court Judge Kathy Seeley ruled that the approval process for fossil fuel permits was unconstitutional. The state is appealing the decision. If the Judge’s decision is upheld, the state will have to redraft its environmental review process. Similar cases will be heard shortly in Australia, Colombia, New Zealand, Pakistan and, Uganda, and in Alaska, and Utah in the USA.`,
+      `What is clear is that AI will accelerate the transformations to better integrate variable renewable energy into a stable electricity grid. AI will also help to reduce the cost of carbon capture. But AI itself will need to become Green.`,
+      `#digitaltransformation #digitalcaribbean
+									
+		
+	
+
+	
+		
+			#Ålesund  #Norway  #COVID-19 #Escape  #Holiday  #B
+			
+                    
+                						
+		
+	
+
+	
+		
+			#Point Radix #Escape to the east coast #BenDelorai
+									
+		
+	
+
+	
+		
+			#Mayaro #Bodow #Caribbean  #COVID #Calm #Beach #Ro
+									
+		
+	
+
+	
+		
+			Preparing for a Roast Fish Feast #saltlife #mayaro
+									
+		
+	
+
+	
+		
+			#saltlife #mayaro #beach #seaweed #sargassum #boat
+									
+		
+	
+
+	
+		
+			#Cannes #DanceFestival  #Dance
+			
+                    
+                						
+		
+	
+
+	
+		
+			Edinburgh
+									
+		
+	
+
+	
+		
+			#GretaThunberg  #extinctionrebellion  #happy new y
+									
+		
+	
+
+	
+		
+			#westindies  #caribbean  #beaches
+			
+                    
+                						
+		
+	
+
+	
+		
+			#visitscotland  #harrypotter  #hiddenscotland
+			
+                    
+                						
+		
+	
+
+	
+		
+			#Tutankhamun #PricelessTreasures #London
+			
+                    
+                						
+		
+	
+
+	
+		
+			#NobelPrize  #PeterRatcliffe  #FrancisCrickInstitu
+									
+		
+	
+
+	
+		
+			@hm #NewYork
+									
+		
+	
+
+	
+		
+			#5thavenue #NewYork #TimesSquare #architecture #ch
+									
+		
+	
+
+	
+		
+			#mintonsharlem Playhouse #jazz
+									
+		
+	
+
+	
+		
+			#extinctionrebellion #newyork #timessquare #climat
+									
+		
+	
+
+	
+		
+			#NewYork #TimesSquare #ExtinctionRebellion #gretat
+			
+                    
+                						
+		
+	
+	
+
+	
+
+			
+			Load More
+			
+		
+	
+			
+			
+				
+                    
+                				Follow on Instagram`,
+    ],
+  },
 ];
