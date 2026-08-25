@@ -158,9 +158,19 @@
 
   .hairline { border-color: color-mix(in oklab, oklch(0.22 0.002 85) 14%, transparent); }
 
+  @keyframes marquee-x {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .marquee-track {
+    animation: marquee-x linear infinite;
+  }
+  .group:hover .marquee-track { animation-play-state: paused; }
+
   .text-balance { text-wrap: balance; }
   .text-pretty { text-wrap: pretty; }
   .measure { max-width: 62ch; }
+
 
   /* Film grain overlay — applied to images/sections */
   .grain {
