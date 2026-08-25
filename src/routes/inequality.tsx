@@ -106,6 +106,50 @@ function InequalityPage() {
         </div>
       </section>
 
+      <section className="border-b hairline">
+        <div className="mx-auto max-w-[1500px] px-5 py-14 sm:px-8">
+          <p className="eyebrow text-muted-foreground">Selected readings</p>
+          <h2 className="mt-4 max-w-2xl font-display text-3xl leading-tight md:text-5xl">
+            Where the argument is carried further.
+          </h2>
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-foreground/70 sm:text-lg">
+            Three essays on rents, resource economies, and what the machine inherits from the
+            struggles that came before it.
+          </p>
+
+          <div className="mt-12 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+            {SELECTED.map((a, i) => (
+              <Reveal key={a.slug} delay={i * 0.05}>
+                <Link
+                  to="/writing/$slug"
+                  params={{ slug: a.slug }}
+                  className="group flex h-full flex-col"
+                >
+                  <div className="relative aspect-[4/3] w-full overflow-hidden border hairline bg-[#e9e6e1]">
+                    <img
+                      src={a.image}
+                      alt={a.title}
+                      loading="lazy"
+                      className="size-full object-cover grayscale transition-all duration-700 ease-out group-hover:scale-[1.04] group-hover:grayscale-0"
+                    />
+                  </div>
+                  <p className="mt-5 text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
+                    {String(i + 1).padStart(2, "0")} · {a.date}
+                  </p>
+                  <h3 className="mt-3 font-display text-2xl leading-snug">{a.title}</h3>
+                  <p className="mt-3 line-clamp-4 text-sm leading-relaxed text-foreground/65">
+                    {a.excerpt}
+                  </p>
+                  <span className="mt-5 inline-flex items-center gap-2 self-start border-b border-foreground/40 pb-1 text-[11px] uppercase tracking-[0.2em] transition-colors group-hover:border-foreground">
+                    Read
+                    <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </span>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
 
 
       <article className="mx-auto max-w-[820px] px-5 py-12 sm:px-8 sm:py-10">
