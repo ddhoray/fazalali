@@ -2,7 +2,15 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
 import { ArrowUpRight } from "lucide-react";
-import heroOmeros from "@/assets/hero-omeros.jpg";
+import { ImageMarquee } from "@/components/site/ImageMarquee";
+import { assetUrl } from "@/lib/asset-url";
+import om44 from "@/assets/omeros/44.asset.json";
+import om45 from "@/assets/omeros/45.asset.json";
+import om46 from "@/assets/omeros/46.asset.json";
+import om47 from "@/assets/omeros/47.asset.json";
+import om48 from "@/assets/omeros/48.asset.json";
+
+const omerosImages = [om44, om45, om46, om47, om48].map((a) => assetUrl(a));
 
 export const Route = createFileRoute("/omeros-ai")({
   head: () => ({
@@ -115,9 +123,22 @@ function OmerosPage() {
             <span>Hub by 2030</span>
           </>
         }
-        image={heroOmeros}
-        imageAlt="Open sea at first light, the world Homer sang"
+        image={omerosImages[0]}
+        imageAlt="A research campus, solar roof and sphere, the infrastructure of intelligence"
       />
+
+      {/* Field images */}
+      <section className="mx-auto max-w-[1500px] px-5 pt-10 sm:px-8">
+        <Reveal>
+          <p className="eyebrow text-muted-foreground">Field notes</p>
+          <ImageMarquee
+            images={omerosImages}
+            alt="Research campuses and laboratories visited for Omeros AI"
+            className="mt-6 w-full"
+            speed={70}
+          />
+        </Reveal>
+      </section>
 
       {/* Manifesto quote */}
       <section className="mx-auto max-w-[1400px] px-5 py-12 sm:px-8 sm:py-10">

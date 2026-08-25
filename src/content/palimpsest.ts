@@ -11,6 +11,11 @@ export interface PalimpsestSection {
   entries: PalimpsestEntry[];
 }
 
+import img40 from "@/assets/palimpsest/40.asset.json";
+import img41 from "@/assets/palimpsest/41.asset.json";
+import img42 from "@/assets/palimpsest/42.asset.json";
+import { assetUrl } from "@/lib/asset-url";
+
 const u = (id: string) =>
   `https://images.unsplash.com/photo-${id}?w=1600&q=80&auto=format&fit=crop`;
 
@@ -37,8 +42,8 @@ export const palimpsest: PalimpsestSection[] = [
   {
     id: "los-reyes",
     title: "Los Reyes Católicos",
-    image: u("1524661135-423995f22d0b"),
-    imageAlt: "An antique world map with a brass compass",
+    image: assetUrl(img41),
+    imageAlt: "An antique world map studded with pins across the Atlantic",
     imageCaption: "The cartography of conquest, Spain looks west across the Atlantic.",
     entries: [
       { text: "1498, First Peoples in Trinidad encounter the Italian Navigator Christopher Columbus on a voyage sponsored by Isabel I de Castilla and Ferdinand II of Aragon of Spain." },
@@ -111,8 +116,8 @@ export const palimpsest: PalimpsestSection[] = [
   {
     id: "ucwi",
     title: "1943, University College of the West Indies",
-    image: u("1607237138185-eedd9c632b0b"),
-    imageAlt: "A grand university hall with arched windows",
+    image: assetUrl(img40),
+    imageAlt: "A red brick university building with a central clock tower",
     imageCaption: "A wartime camp in Jamaica turned into the region's first university.",
     entries: [
       { text: "The Asquith Commission of Vice Chancellors was appointed to 'consider the principles which should guide the promotion of higher education, learning and research… in the colonies.'" },
@@ -145,8 +150,8 @@ export const palimpsest: PalimpsestSection[] = [
   {
     id: "jfk-mthope",
     title: "1969 / 1979, Eric Williams, JFK Library and Mt Hope",
-    image: u("1568667256549-094345857637"),
-    imageAlt: "A modern academic library with rows of bookshelves",
+    image: assetUrl(img42),
+    imageAlt: "A circular library lined with curved shelves of books",
     imageCaption: "A library, a Nobel laureate, a medical complex, sovereignty in brick.",
     entries: [
       { text: "1969, The JFK quadrangle, along with the JFK Library, was completed with funds from the government of the United States of America through the efforts of Prime Minister Eric Williams." },
