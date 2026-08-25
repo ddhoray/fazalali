@@ -37,25 +37,24 @@ const AMAZON_URL =
 
 const forthcoming = [
   {
-    title: "Freedom as a Medium",
-    note: "A long essay on liberty not as a state to be reached, but as the substrate in which thought and policy take shape.",
-    year: "Forthcoming",
+    title: "After the Future",
+    note: "An anthology of short essays on artificial intelligence and its impact on development in Latin America and the Caribbean. On algorithmic fairness, epistemic justice, and the coming wave that could reverse, or deepen, inherited inequality. Foreword by David Rosenblatt.",
+    year: "Forthcoming · Essays on AI",
+    image: afterTheFutureCover,
+    imageAlt: "Cover of After the Future, essays on AI by Fazal Ali",
+  },
+  {
+    title: "Secure Development",
+    note: "A construct of his own making: development that holds. Growth measured not by the height of the peak but by how little of it can be taken away, from a region where gains have always been reversible.",
+    year: "Forthcoming · A construct",
     image:
       "https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?w=1200&q=80&auto=format&fit=crop",
     imageAlt: "Open sky and sea horizon, freedom as an atmosphere",
   },
   {
-    title: "Sen in the Islands",
-    note: "Reading Amartya Sen's capability approach from a small state, where freedom is never abstract.",
-    year: "Forthcoming",
-    image:
-      "https://images.unsplash.com/photo-1559666126-84f389727b9a?w=1200&q=80&auto=format&fit=crop",
-    imageAlt: "A small Caribbean island ringed by turquoise water",
-  },
-  {
-    title: "Intergenerational Immobility",
-    note: "On inherited inequality, the data fabric of state enterprises, and what the next century owes the last.",
-    year: "In preparation",
+    title: "Abbreviated Development",
+    note: "The second construct: development cut short, arrested mid-sentence by export concentration, revenue shortfalls, and the digital and governance gaps that keep a small state from finishing its own argument.",
+    year: "In preparation · A construct",
     image: intergenerationalImage,
     imageAlt: "An elder's hand resting on a child's hand, generations in contact",
   },
