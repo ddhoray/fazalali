@@ -4,7 +4,22 @@ import { PageHero } from "@/components/site/PageHero";
 import { inequality } from "@/content/inequality";
 import { articles } from "@/content/articles";
 import { ArrowUpRight } from "lucide-react";
-import heroInequality from "@/assets/hero-inequality.jpg";
+import { RotatingImage } from "@/components/site/RotatingImage";
+import { assetUrl } from "@/lib/asset-url";
+import img1 from "@/assets/inequality/1.asset.json";
+import img2 from "@/assets/inequality/2.asset.json";
+import img3 from "@/assets/inequality/3.asset.json";
+import img4 from "@/assets/inequality/4.asset.json";
+import img5 from "@/assets/inequality/5.asset.json";
+import img6 from "@/assets/inequality/6.asset.json";
+import img7 from "@/assets/inequality/7.asset.json";
+import img8 from "@/assets/inequality/8.asset.json";
+import img9 from "@/assets/inequality/9.asset.json";
+import img10 from "@/assets/inequality/10.asset.json";
+
+const rotation = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10].map((p) =>
+  assetUrl(p),
+);
 
 export const Route = createFileRoute("/inequality")({
   head: () => ({
@@ -75,9 +90,21 @@ function InequalityPage() {
             <span>After Sen</span>
           </>
         }
-        image={heroInequality}
-        imageAlt="High-contrast Caribbean colonial stairwell"
+        image={rotation[0]}
+        imageAlt="Field and archive photographs from the Caribbean"
       />
+
+      <section className="border-b hairline">
+        <div className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8">
+          <p className="eyebrow text-muted-foreground">A set in rotation</p>
+          <RotatingImage
+            images={rotation}
+            alt="Rotating field and archive photographs"
+            className="mt-6 aspect-[16/9] w-full"
+          />
+        </div>
+      </section>
+
 
       <article className="mx-auto max-w-[820px] px-5 py-12 sm:px-8 sm:py-10">
         {inequality.sections.map((s, i) => (
