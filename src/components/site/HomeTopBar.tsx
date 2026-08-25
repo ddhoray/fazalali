@@ -5,7 +5,7 @@ import { openContactDrawer } from "@/components/site/ContactDrawer";
 
 /**
  * Minimal fluid.glass-style top bar, used only on the homepage.
- * Centered wordmark + single "Write Me" link on the right.
+ * Centered wordmark + single "Write to him" link on the right.
  * Transparent over the hero, fades to a hairline glass bar after scroll.
  */
 export function HomeTopBar() {
@@ -38,7 +38,7 @@ export function HomeTopBar() {
           Fazal Ali
         </Link>
         <button type="button" onClick={() => openContactDrawer()} className="btn-cta btn-primary">
-          <span aria-hidden>↳</span> Write Me
+          <span aria-hidden>↳</span> Write to him
         </button>
       </div>
     </header>

@@ -89,7 +89,7 @@ export function ContactDrawer() {
               <div className="mb-6 flex items-start justify-between gap-6">
                 <div>
                   <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
-                    Write me
+                    Write to him
                   </p>
                   <h2 className="mt-2 font-display text-4xl leading-[0.95] sm:text-5xl">
                     A short note <em className="">is enough.</em>
@@ -111,8 +111,8 @@ export function ContactDrawer() {
                   </div>
                   <p className="font-display text-3xl">Note received.</p>
                   <p className="max-w-sm text-sm text-muted-foreground">
-                    Thank you. I'll reply from{" "}
-                    <span className="text-foreground">writeme@fazalali.com</span> as soon as I can.
+                    Thank you. He will reply from{" "}
+                    <span className="text-foreground">writeme@fazalali.com</span> as soon as he can.
                   </p>
                 </div>
               ) : (

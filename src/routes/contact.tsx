@@ -9,12 +9,12 @@ import { ArrowRight, Check } from "lucide-react";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Write Me, Fazal Ali" },
+      { title: "Write to Him, Fazal Ali" },
       {
         name: "description",
         content: "Press, residencies, conversations on AI and the Caribbean, write Fazal Ali.",
       },
-      { property: "og:title", content: "Write Me, Fazal Ali" },
+      { property: "og:title", content: "Write to Him, Fazal Ali" },
       { property: "og:description", content: "Send a note to Fazal Ali." },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/contact" },
     ],
@@ -52,12 +52,12 @@ function ContactPage() {
   return (
     <div className="mx-auto max-w-5xl px-5 pt-24 pb-12 sm:px-8 sm:pt-24">
       <Reveal>
-        <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">Write me</p>
+        <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">Write to him</p>
         <h1 className="mt-4 font-display text-[2.5rem] leading-[1.02] text-balance sm:text-5xl md:text-6xl lg:text-[4.25rem]">
           A short note <em className="">is enough.</em>
         </h1>
         <p className="mt-6 max-w-xl text-muted-foreground">
-          Press, residencies, teaching, or a question about the writing, all read personally.
+          Press, residencies, teaching, or a question about the writing, all read by him personally.
         </p>
       </Reveal>
 
@@ -70,8 +70,8 @@ function ContactPage() {
               </div>
               <p className="font-display text-3xl">Note received.</p>
               <p className="max-w-sm text-sm text-muted-foreground">
-                Thank you. I'll reply from{" "}
-                <span className="text-foreground">writeme@fazalali.com</span> as soon as I can.
+                Thank you. He will reply from{" "}
+                <span className="text-foreground">writeme@fazalali.com</span> as soon as he can.
               </p>
             </div>
           ) : (
