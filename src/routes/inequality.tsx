@@ -65,6 +65,17 @@ export const Route = createFileRoute("/inequality")({
 
 const TRACK = /inherited inequalit|intergenerational immobilit|intergenerational inequalit/i;
 
+const SELECTED_SLUGS = [
+  "ai-and-a-digital-pause",
+  "covid-19-in-a-dutch-diseased-economy",
+  "ai-assemblages-and-the-end-of-historical-struggles",
+];
+
+const SELECTED = SELECTED_SLUGS.map((s) => articles.find((a) => a.slug === s)).filter(
+  (a): a is (typeof articles)[number] => Boolean(a),
+);
+
+
 const tracked = articles
   .filter((a) => TRACK.test([a.title, a.excerpt, ...a.body].join(" ")))
   .slice(0, 8);
