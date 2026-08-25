@@ -144,8 +144,8 @@ function GalleryPage() {
             </a>
           </>
         }
-        image={heroGallery}
-        imageAlt="Aerial view of a Trinidad coastline"
+        image={assetUrl(p1)}
+        imageAlt="Run Into the Shimmering Light, abstract painting"
       />
 
       <section className="mx-auto max-w-[1400px] px-4 md:px-8 py-12 md:py-20">
