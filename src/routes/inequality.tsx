@@ -90,9 +90,21 @@ function InequalityPage() {
             <span>After Sen</span>
           </>
         }
-        image={heroInequality}
-        imageAlt="High-contrast Caribbean colonial stairwell"
+        image={rotation[0]}
+        imageAlt="Field and archive photographs from the Caribbean"
       />
+
+      <section className="border-b hairline">
+        <div className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8">
+          <p className="eyebrow text-muted-foreground">A set in rotation</p>
+          <RotatingImage
+            images={rotation}
+            alt="Rotating field and archive photographs"
+            className="mt-6 aspect-[16/9] w-full"
+          />
+        </div>
+      </section>
+
 
       <article className="mx-auto max-w-[820px] px-5 py-12 sm:px-8 sm:py-10">
         {inequality.sections.map((s, i) => (
