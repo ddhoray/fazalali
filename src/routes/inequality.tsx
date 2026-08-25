@@ -4,7 +4,22 @@ import { PageHero } from "@/components/site/PageHero";
 import { inequality } from "@/content/inequality";
 import { articles } from "@/content/articles";
 import { ArrowUpRight } from "lucide-react";
-import heroInequality from "@/assets/hero-inequality.jpg";
+import { RotatingImage } from "@/components/site/RotatingImage";
+import { assetUrl } from "@/lib/asset-url";
+import img1 from "@/assets/inequality/1.asset.json";
+import img2 from "@/assets/inequality/2.asset.json";
+import img3 from "@/assets/inequality/3.asset.json";
+import img4 from "@/assets/inequality/4.asset.json";
+import img5 from "@/assets/inequality/5.asset.json";
+import img6 from "@/assets/inequality/6.asset.json";
+import img7 from "@/assets/inequality/7.asset.json";
+import img8 from "@/assets/inequality/8.asset.json";
+import img9 from "@/assets/inequality/9.asset.json";
+import img10 from "@/assets/inequality/10.asset.json";
+
+const rotation = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10].map((p) =>
+  assetUrl(p),
+);
 
 export const Route = createFileRoute("/inequality")({
   head: () => ({
