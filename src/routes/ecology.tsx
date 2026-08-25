@@ -47,6 +47,18 @@ export const Route = createFileRoute("/ecology")({
   component: EcologyPage,
 });
 
+const READING_SLUGS = [
+  "ai-and-intergenerational-climate-justice",
+  "the-earth-and-green-ai",
+  "green-and-blue-ai-in-the-caribbean",
+  "development-and-the-dna-of-ai",
+  "finding-the-still-point-in-the-age-of-ai",
+];
+
+const ECOLOGY_READINGS = READING_SLUGS.map((s) => articles.find((a) => a.slug === s)).filter(
+  (a): a is (typeof articles)[number] => Boolean(a),
+);
+
 function EcologyPage() {
   return (
     <div>
