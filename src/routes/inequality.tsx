@@ -4,7 +4,7 @@ import { PageHero } from "@/components/site/PageHero";
 import { inequality } from "@/content/inequality";
 import { articles } from "@/content/articles";
 import { ArrowUpRight } from "lucide-react";
-import { RotatingImage } from "@/components/site/RotatingImage";
+import { ImageMarquee } from "@/components/site/ImageMarquee";
 import { assetUrl } from "@/lib/asset-url";
 import img1 from "@/assets/inequality/1.asset.json";
 import img2 from "@/assets/inequality/2.asset.json";
@@ -95,15 +95,17 @@ function InequalityPage() {
       />
 
       <section className="border-b hairline">
-        <div className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8">
-          <p className="eyebrow text-muted-foreground">A set in rotation</p>
-          <RotatingImage
+        <div className="mx-auto max-w-[1500px] py-12">
+          <p className="eyebrow px-5 text-muted-foreground sm:px-8">A set in rotation</p>
+          <ImageMarquee
             images={rotation}
             alt="Rotating field and archive photographs"
-            className="mt-6 aspect-[16/9] w-full"
+            className="mt-6 w-full"
+            speed={70}
           />
         </div>
       </section>
+
 
 
       <article className="mx-auto max-w-[820px] px-5 py-12 sm:px-8 sm:py-10">
