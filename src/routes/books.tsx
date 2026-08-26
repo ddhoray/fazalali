@@ -38,7 +38,7 @@ const AMAZON_URL =
   "https://www.amazon.com/Education-Liberty-future-open-suggestions-ebook/dp/B072KJSQ6P/";
 
 const cardLink =
-  "text-background underline decoration-accent/70 underline-offset-4 transition-colors hover:text-accent";
+  "text-inherit underline decoration-accent underline-offset-4 transition-colors hover:text-accent";
 
 const forthcoming: {
   title: string;
