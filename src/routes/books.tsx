@@ -1,9 +1,9 @@
 import { useState, type ReactNode } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
-import { ArrowUpRight, Download, ShoppingCart, BookOpen } from "lucide-react";
+import { ArrowUpRight, Download, ShoppingCart, BookOpen, X } from "lucide-react";
 import bookCoverAsset from "@/assets/book-education-for-liberty-cover.png.asset.json";
 import afterTheFutureAsset from "@/assets/after-the-future-cover.jpg.asset.json";
 import intergenerationalImage from "@/assets/intergenerational-immobility-cover.jpg";
@@ -38,7 +38,7 @@ const AMAZON_URL =
   "https://www.amazon.com/Education-Liberty-future-open-suggestions-ebook/dp/B072KJSQ6P/";
 
 const cardLink =
-  "text-background underline decoration-accent/70 underline-offset-4 transition-colors hover:text-accent";
+  "text-inherit underline decoration-accent underline-offset-4 transition-colors hover:text-accent";
 
 const forthcoming: {
   title: string;
@@ -134,6 +134,7 @@ const forthcoming: {
 
 function BooksPage() {
   const [active, setActive] = useState<number | null>(null);
+  const [open, setOpen] = useState<number | null>(null);
   return (
     <div>
       <PageHero
@@ -250,7 +251,13 @@ function BooksPage() {
                 key={b.title}
                 data-book-card
                 onMouseEnter={() => setActive(i)}
-                className="group relative h-[540px] min-w-0 cursor-default overflow-hidden border hairline bg-card md:h-[600px]"
+                onClick={() => setOpen(i)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") setOpen(i);
+                }}
+                className="group relative h-[540px] min-w-0 cursor-pointer overflow-hidden border hairline bg-card md:h-[600px]"
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.25 }}
@@ -297,6 +304,64 @@ function BooksPage() {
           </div>
         </div>
       </section>
+
+      {/* Full-content overlay */}
+      <AnimatePresence>
+        {open !== null && (
+          <motion.div
+            key="book-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[90] flex items-center justify-center bg-foreground/70 p-4 backdrop-blur-sm sm:p-8"
+            onClick={() => setOpen(null)}
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 32, scale: 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 24, scale: 0.98 }}
+              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+              className="relative max-h-[85vh] w-full max-w-3xl overflow-y-auto border hairline bg-card"
+              onClick={(e) => e.stopPropagation()}
+              role="dialog"
+              aria-modal="true"
+              aria-label={forthcoming[open].title}
+            >
+              <button
+                type="button"
+                onClick={() => setOpen(null)}
+                aria-label="Close"
+                className="absolute right-4 top-4 z-10 flex size-10 items-center justify-center border hairline bg-background/90 text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+              >
+                <X className="size-4" />
+              </button>
+
+              <div className="relative h-56 overflow-hidden sm:h-72">
+                <img
+                  src={forthcoming[open].image}
+                  alt={forthcoming[open].imageAlt}
+                  className="size-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/25 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 px-6 pb-5 text-background sm:px-9">
+                  <p className="eyebrow text-background/80">{forthcoming[open].year}</p>
+                  <h3 className="mt-2 font-display text-3xl leading-[1.02] sm:text-5xl">
+                    {forthcoming[open].title}
+                  </h3>
+                </div>
+              </div>
+
+              <div className="px-6 py-7 sm:px-9 sm:py-9">
+                <div className="h-px w-14 bg-accent" />
+                <p className="mt-5 text-base leading-relaxed text-foreground/85 sm:text-lg">
+                  {forthcoming[open].note}
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
