@@ -304,6 +304,64 @@ function BooksPage() {
           </div>
         </div>
       </section>
+
+      {/* Full-content overlay */}
+      <AnimatePresence>
+        {open !== null && (
+          <motion.div
+            key="book-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[90] flex items-center justify-center bg-foreground/70 p-4 backdrop-blur-sm sm:p-8"
+            onClick={() => setOpen(null)}
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 32, scale: 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 24, scale: 0.98 }}
+              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+              className="relative max-h-[85vh] w-full max-w-3xl overflow-y-auto border hairline bg-card"
+              onClick={(e) => e.stopPropagation()}
+              role="dialog"
+              aria-modal="true"
+              aria-label={forthcoming[open].title}
+            >
+              <button
+                type="button"
+                onClick={() => setOpen(null)}
+                aria-label="Close"
+                className="absolute right-4 top-4 z-10 flex size-10 items-center justify-center border hairline bg-background/90 text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+              >
+                <X className="size-4" />
+              </button>
+
+              <div className="relative h-56 overflow-hidden sm:h-72">
+                <img
+                  src={forthcoming[open].image}
+                  alt={forthcoming[open].imageAlt}
+                  className="size-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/25 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 px-6 pb-5 text-background sm:px-9">
+                  <p className="eyebrow text-background/80">{forthcoming[open].year}</p>
+                  <h3 className="mt-2 font-display text-3xl leading-[1.02] sm:text-5xl">
+                    {forthcoming[open].title}
+                  </h3>
+                </div>
+              </div>
+
+              <div className="px-6 py-7 sm:px-9 sm:py-9">
+                <div className="h-px w-14 bg-accent" />
+                <p className="mt-5 text-base leading-relaxed text-foreground/85 sm:text-lg">
+                  {forthcoming[open].note}
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
