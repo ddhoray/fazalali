@@ -26,6 +26,8 @@ export const Route = createFileRoute("/books")({
         property: "og:description",
         content: "Education for Liberty and the forthcoming volumes from Omeros AI.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/books" },
     ],
     links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/books" }],
@@ -257,7 +259,7 @@ function BooksPage() {
                 onKeyDown={(e) => {
                   if (e.key === "Enter" || e.key === " ") setOpen(i);
                 }}
-                className="group relative h-[540px] min-w-0 cursor-pointer overflow-hidden border hairline bg-card md:h-[600px]"
+                className="group relative min-w-0 cursor-pointer overflow-hidden border hairline bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent md:h-[600px]"
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.25 }}
@@ -267,15 +269,19 @@ function BooksPage() {
                 style={{ flexBasis: 0, flexGrow: 1 }}
                 transition={{ duration: 0.55, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
               >
-                <img
-                  src={b.image}
-                  alt={b.imageAlt}
-                  loading="lazy"
-                  className={`absolute inset-0 size-full object-cover transition-all duration-700 ease-out ${
-                    active !== null && active !== i ? "grayscale brightness-75" : "grayscale-0"
-                  } ${active === i ? "scale-[1.03] brightness-110" : ""}`}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/55 to-transparent" />
+                <div className="relative h-[390px] overflow-hidden bg-foreground md:absolute md:inset-0 md:h-auto">
+                  <img
+                    src={b.image}
+                    alt={b.imageAlt}
+                    loading="lazy"
+                    className={`size-full transition-all duration-700 ease-out ${
+                      i === 0 ? "object-contain" : "object-cover"
+                    } ${active !== null && active !== i ? "grayscale brightness-75" : "grayscale-0"} ${
+                      active === i && i !== 0 ? "scale-[1.03] brightness-110" : ""
+                    }`}
+                  />
+                </div>
+                <div className="pointer-events-none absolute inset-0 hidden bg-gradient-to-t from-foreground via-foreground/45 to-transparent md:block" />
 
                 <div className="absolute inset-x-0 top-0 flex items-center justify-between px-6 pt-6 text-background">
                   <span className="font-mono text-[11px] font-medium uppercase tracking-[0.22em]">
@@ -284,19 +290,19 @@ function BooksPage() {
                   <BookOpen className="size-4 opacity-80" strokeWidth={1.8} />
                 </div>
 
-                <div className="absolute inset-x-0 bottom-0 h-[245px] px-6 pb-7 pt-5 text-background md:h-[270px] md:px-7 md:pb-8">
-                  <p className="eyebrow h-5 text-background/80">{b.year}</p>
+                <div className="relative min-h-[210px] bg-foreground px-6 pb-7 pt-6 text-background md:absolute md:inset-x-0 md:bottom-0 md:h-[245px] md:min-h-0 md:bg-transparent md:px-7 md:pb-8 md:pt-5">
+                  <p className="eyebrow text-background/80">{b.year}</p>
                   <h3
                     data-book-title
-                    className="mt-3 flex h-[82px] items-end font-display text-[2rem] leading-[1.02] md:h-[94px] md:text-[2.25rem]"
+                    className="mt-3 font-display text-[2rem] leading-[1.08] md:flex md:h-[94px] md:items-end md:text-[2.25rem]"
                   >
                     {b.title}
                   </h3>
                   <div
                     className={`mt-4 h-px bg-accent transition-[width] duration-500 ${active === i ? "w-16" : "w-10"}`}
                   />
-                  <p className="mt-4 line-clamp-4 text-[15px] leading-relaxed text-background/85">
-                    {b.note}
+                  <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.18em] text-background/80">
+                    Open full note
                   </p>
                 </div>
               </motion.article>
@@ -322,7 +328,7 @@ function BooksPage() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 24, scale: 0.98 }}
               transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-              className="relative max-h-[85vh] w-full max-w-3xl overflow-y-auto border hairline bg-card"
+              className="relative max-h-[90vh] w-full max-w-5xl overflow-y-auto border hairline bg-card"
               onClick={(e) => e.stopPropagation()}
               role="dialog"
               aria-modal="true"
@@ -337,26 +343,25 @@ function BooksPage() {
                 <X className="size-4" />
               </button>
 
-              <div className="relative h-56 overflow-hidden sm:h-72">
-                <img
-                  src={forthcoming[open].image}
-                  alt={forthcoming[open].imageAlt}
-                  className="size-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/25 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 px-6 pb-5 text-background sm:px-9">
-                  <p className="eyebrow text-background/80">{forthcoming[open].year}</p>
-                  <h3 className="mt-2 font-display text-3xl leading-[1.02] sm:text-5xl">
+              <div className="grid md:min-h-[620px] md:grid-cols-[minmax(300px,0.85fr)_minmax(0,1.15fr)]">
+                <div className="flex min-h-[430px] items-center justify-center overflow-hidden bg-foreground p-5 sm:min-h-[540px] sm:p-8 md:min-h-0">
+                  <img
+                    src={forthcoming[open].image}
+                    alt={forthcoming[open].imageAlt}
+                    className={`max-h-[72vh] size-full ${open === 0 ? "object-contain" : "object-cover"}`}
+                  />
+                </div>
+
+                <div className="flex flex-col justify-center px-6 py-9 sm:px-10 sm:py-12">
+                  <p className="eyebrow text-muted-foreground">{forthcoming[open].year}</p>
+                  <h3 className="mt-4 max-w-lg font-display text-4xl leading-[1.05] sm:text-5xl">
                     {forthcoming[open].title}
                   </h3>
+                  <div className="mt-7 h-px w-14 bg-accent" />
+                  <p className="mt-7 text-base leading-relaxed text-foreground/85 sm:text-lg">
+                    {forthcoming[open].note}
+                  </p>
                 </div>
-              </div>
-
-              <div className="px-6 py-7 sm:px-9 sm:py-9">
-                <div className="h-px w-14 bg-accent" />
-                <p className="mt-5 text-base leading-relaxed text-foreground/85 sm:text-lg">
-                  {forthcoming[open].note}
-                </p>
               </div>
             </motion.div>
           </motion.div>
