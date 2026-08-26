@@ -259,14 +259,14 @@ function BooksPage() {
                 onKeyDown={(e) => {
                   if (e.key === "Enter" || e.key === " ") setOpen(i);
                 }}
-                className="group relative min-w-0 cursor-pointer overflow-hidden border hairline bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent md:h-[600px]"
+                className="group relative min-w-0 cursor-pointer overflow-hidden border hairline bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent md:h-[600px] md:basis-0"
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.25 }}
                 animate={{
                   flexGrow: active === null ? 1 : active === i ? 1.35 : 0.85,
                 }}
-                style={{ flexBasis: 0, flexGrow: 1 }}
+                style={{ flexGrow: 1 }}
                 transition={{ duration: 0.55, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
               >
                 <div className="relative h-[390px] overflow-hidden bg-foreground md:absolute md:inset-0 md:h-auto">
