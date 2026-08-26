@@ -42,7 +42,7 @@ const cardLink =
 
 const forthcoming: {
   title: string;
-  note: React.ReactNode;
+  note: ReactNode;
   year: string;
   image: string;
   imageAlt: string;
