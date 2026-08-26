@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { Reveal } from "@/components/site/Reveal";
@@ -37,17 +37,72 @@ const PDF_URL = "https://fazalali.com/wp-content/uploads/2026/02/EducationforLib
 const AMAZON_URL =
   "https://www.amazon.com/Education-Liberty-future-open-suggestions-ebook/dp/B072KJSQ6P/";
 
-const forthcoming = [
+const cardLink =
+  "text-background underline decoration-accent/70 underline-offset-4 transition-colors hover:text-accent";
+
+const forthcoming: {
+  title: string;
+  note: ReactNode;
+  year: string;
+  image: string;
+  imageAlt: string;
+}[] = [
   {
     title: "After the Future",
-    note: "An anthology of short essays on artificial intelligence and its impact on development in Latin America and the Caribbean. On algorithmic fairness, epistemic justice, and the coming wave that could reverse, or deepen, inherited inequality. Foreword by David Rosenblatt.",
+    note: (
+      <>
+        Where are we? The future is here, it is just not sprinkled equally. So what happens{" "}
+        <a
+          href="https://fazalali.com/2024/05/04/after-the-future/"
+          target="_blank"
+          rel="noreferrer"
+          className={cardLink}
+        >
+          after the future
+        </a>
+        ? We cannot relinquish our reasoned agency and hope to live freely in a future that will
+        never be our own. A future that belongs to someone else is not freedom, and the struggle to
+        secure equal rights can only find a remedy from behind a Rawlsian Veil of Ignorance.
+      </>
+    ),
     year: "Forthcoming · Essays on AI",
     image: afterTheFutureCover,
     imageAlt: "Cover of After the Future, essays on AI by Fazal Ali",
   },
   {
     title: "Secure Development",
-    note: "A construct of his own making: development that holds. Growth measured not by the height of the peak but by how little of it can be taken away, from a region where gains have always been reversible.",
+    note: (
+      <>
+        The constellation of values, technologies, and practices that lessen vulnerabilities, a{" "}
+        <a
+          href="https://fazalali.com/2023/03/19/sensitivity-to-vulnerability/"
+          target="_blank"
+          rel="noreferrer"
+          className={cardLink}
+        >
+          sensitivity to vulnerability
+        </a>{" "}
+        balanced against resilience. An{" "}
+        <a
+          href="https://fazalali.com/2026/05/16/ai-as-an-always-on-intelligent-security-fabric/"
+          target="_blank"
+          rel="noreferrer"
+          className={cardLink}
+        >
+          always-on intelligent security fabric
+        </a>{" "}
+        for a net-zero future, alert to{" "}
+        <a
+          href="https://fazalali.com/2026/04/12/the-100-model-war-and-shadow-ai/"
+          target="_blank"
+          rel="noreferrer"
+          className={cardLink}
+        >
+          the model wars and shadow AI
+        </a>
+        . A skills-and-capabilities approach to development that holds.
+      </>
+    ),
     year: "Forthcoming · A construct",
     image:
       "https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?w=1200&q=80&auto=format&fit=crop",
@@ -55,7 +110,22 @@ const forthcoming = [
   },
   {
     title: "Abbreviated Development",
-    note: "The second construct: development cut short, arrested mid-sentence by export concentration, revenue shortfalls, and the digital and governance gaps that keep a small state from finishing its own argument.",
+    note: (
+      <>
+        The dangerous gap that opens when the speed of code outpaces the state's ability to write
+        primary law: legislative lag, amplified risk, a state unable to protect its citizens. The
+        remedy is{" "}
+        <a
+          href="https://fazalali.com/2023/05/27/unusual-thinking-and-abbreviated-development/"
+          target="_blank"
+          rel="noreferrer"
+          className={cardLink}
+        >
+          unusual thinking
+        </a>
+        , open-source legal frameworks, and continuously updated regulation.
+      </>
+    ),
     year: "In preparation · A construct",
     image: intergenerationalImage,
     imageAlt: "An elder's hand resting on a child's hand, generations in contact",
@@ -218,7 +288,7 @@ function BooksPage() {
                   <div
                     className={`mt-4 h-px bg-accent transition-[width] duration-500 ${active === i ? "w-16" : "w-10"}`}
                   />
-                  <p className="mt-4 line-clamp-3 text-[15px] leading-relaxed text-background/85">
+                  <p className="mt-4 line-clamp-4 text-[15px] leading-relaxed text-background/85">
                     {b.note}
                   </p>
                 </div>
