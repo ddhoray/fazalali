@@ -251,7 +251,13 @@ function BooksPage() {
                 key={b.title}
                 data-book-card
                 onMouseEnter={() => setActive(i)}
-                className="group relative h-[540px] min-w-0 cursor-default overflow-hidden border hairline bg-card md:h-[600px]"
+                onClick={() => setOpen(i)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") setOpen(i);
+                }}
+                className="group relative h-[540px] min-w-0 cursor-pointer overflow-hidden border hairline bg-card md:h-[600px]"
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.25 }}
