@@ -288,7 +288,7 @@ function BooksPage() {
                   <div
                     className={`mt-4 h-px bg-accent transition-[width] duration-500 ${active === i ? "w-16" : "w-10"}`}
                   />
-                  <p className="mt-4 line-clamp-3 text-[15px] leading-relaxed text-background/85">
+                  <p className="mt-4 line-clamp-4 text-[15px] leading-relaxed text-background/85">
                     {b.note}
                   </p>
                 </div>
