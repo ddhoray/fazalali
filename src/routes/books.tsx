@@ -1,9 +1,9 @@
 import { useState, type ReactNode } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
-import { ArrowUpRight, Download, ShoppingCart, BookOpen } from "lucide-react";
+import { ArrowUpRight, Download, ShoppingCart, BookOpen, X } from "lucide-react";
 import bookCoverAsset from "@/assets/book-education-for-liberty-cover.png.asset.json";
 import afterTheFutureAsset from "@/assets/after-the-future-cover.jpg.asset.json";
 import intergenerationalImage from "@/assets/intergenerational-immobility-cover.jpg";
