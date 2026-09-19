@@ -620,7 +620,7 @@ function Range() {
         </div>
 
         {/* expanding panels, desktop */}
-        <div className="mt-10 hidden flex-1 gap-3 md:flex md:min-h-[26rem]">
+        <div className="mt-10 hidden flex-1 gap-3 md:flex md:min-h-[30rem]">
           {streams.map((s, i) => {
             const isActive = i === active;
             return (
@@ -629,7 +629,7 @@ function Range() {
                 onMouseEnter={() => setActive(i)}
                 animate={{ flexGrow: isActive ? 2.6 : 1 }}
                 transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="group relative flex-1 basis-0 cursor-default overflow-hidden border hairline"
+                className="group relative min-w-0 flex-1 basis-0 cursor-default overflow-hidden border hairline"
               >
                 <motion.img
                   src={s.image}
@@ -645,34 +645,32 @@ function Range() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/10" />
 
-                <div className="relative flex h-full flex-col justify-between p-6 lg:p-8">
-                  <div className="flex items-center justify-between">
-                    <span className="eyebrow text-white/70">{s.n}</span>
+                <div className="relative flex h-full min-w-0 flex-col justify-between p-6 lg:p-8">
+                  <div className="grid grid-cols-[auto_minmax(0,1fr)] items-start gap-4">
+                    <span className="eyebrow shrink-0 text-white/70">{s.n}</span>
                     <motion.span
                       initial={false}
                       animate={{ opacity: isActive ? 1 : 0 }}
                       transition={{ duration: 0.4 }}
-                      className={`eyebrow truncate pl-4 text-white/70 ${isActive ? "" : "pointer-events-none opacity-0"}`}
+                      className={`eyebrow min-w-0 text-right leading-relaxed text-white/70 ${isActive ? "" : "pointer-events-none opacity-0"}`}
                     >
                       {s.kicker}
                     </motion.span>
                   </div>
 
                   <div>
-                    {/* title scales in place, baseline never shifts */}
-                    <motion.h3
-                      initial={false}
-                      animate={{ scale: isActive ? 1.95 : 1 }}
-                      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                      style={{ transformOrigin: "left bottom" }}
-                      className="origin-bottom-left whitespace-nowrap font-display text-2xl leading-[1] text-white lg:text-3xl"
+                    {/* Keep every title within its panel, including at tablet widths. */}
+                    <h3
+                      className={`max-w-full text-pretty font-display leading-[1.05] text-white transition-[font-size] duration-700 ${
+                        isActive ? "text-4xl lg:text-5xl" : "text-2xl lg:text-3xl"
+                      }`}
                     >
                       {s.title}
                       <span className="text-accent">.</span>
-                    </motion.h3>
+                    </h3>
 
-                    {/* reserved space so nothing jumps when copy appears */}
-                    <div className="h-[8.5rem] overflow-hidden">
+                    {/* Reserve enough room for the complete copy and CTA. */}
+                    <div className="min-h-[11rem]">
                       <motion.div
                         initial={false}
                         animate={{
