@@ -629,7 +629,7 @@ function Range() {
                 onMouseEnter={() => setActive(i)}
                 animate={{ flexGrow: isActive ? 2.6 : 1 }}
                 transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="group relative flex-1 basis-0 cursor-default overflow-hidden border hairline"
+                className="group relative min-w-0 flex-1 basis-0 cursor-default overflow-hidden border hairline"
               >
                 <motion.img
                   src={s.image}
@@ -660,16 +660,14 @@ function Range() {
 
                   <div>
                     {/* Keep every title within its panel, including at tablet widths. */}
-                    <motion.h3
-                      initial={false}
-                      animate={{ scale: isActive ? 1.35 : 1 }}
-                      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                      style={{ transformOrigin: "left bottom" }}
-                      className="origin-bottom-left max-w-full font-display text-2xl leading-[1.05] text-white lg:text-3xl"
+                    <h3
+                      className={`max-w-full text-pretty font-display leading-[1.05] text-white transition-[font-size] duration-700 ${
+                        isActive ? "text-4xl lg:text-5xl" : "text-2xl lg:text-3xl"
+                      }`}
                     >
                       {s.title}
                       <span className="text-accent">.</span>
-                    </motion.h3>
+                    </h3>
 
                     {/* Reserve enough room for the complete copy and CTA. */}
                     <div className="min-h-[11rem]">
