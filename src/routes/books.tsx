@@ -8,6 +8,7 @@ import bookCoverAsset from "@/assets/book-education-for-liberty-cover.png.asset.
 import afterTheFutureAsset from "@/assets/after-the-future-cover.jpg.asset.json";
 import secureDevelopmentAsset from "@/assets/secure-development-cover.jpg.asset.json";
 import intergenerationalImage from "@/assets/intergenerational-immobility-cover.jpg";
+import abbreviatedDevelopmentAsset from "@/assets/abbreviated-development-cover.jpg.asset.json";
 import { assetUrl } from "@/lib/asset-url";
 
 const bookCover = assetUrl(bookCoverAsset);
