@@ -33,6 +33,12 @@ import p26 from "@/assets/paintings/26.wemoveaboutintheworld.jpg.asset.json";
 import p27 from "@/assets/paintings/27.itisnottoolate.jpg.asset.json";
 import pScarlet from "@/assets/paintings/scarletibisteaser.jpg.asset.json";
 import pSpiritual from "@/assets/paintings/spiritualbaptists.jpg.asset.json";
+import newNocturneHouse from "@/assets/gallery/nocturne-house-painting.webp.asset.json";
+import newBeachFigure from "@/assets/gallery/beach-figure-painting.webp.asset.json";
+import newUrbanCarrying from "@/assets/gallery/urban-carrying-painting.webp.asset.json";
+import newFazalPiano from "@/assets/gallery/fazal-piano-upscaled.png.asset.json";
+import newBluePalms from "@/assets/gallery/blue-palms-painting.png.asset.json";
+import newUnfinishedTropical from "@/assets/gallery/unfinished-tropical-painting.webp.asset.json";
 import { assetUrl } from "@/lib/asset-url";
 
 export const Route = createFileRoute("/gallery")({
@@ -64,6 +70,12 @@ type Work = {
 };
 
 const works: Work[] = [
+  { src: assetUrl(newNocturneHouse), title: "Untitled" },
+  { src: assetUrl(newBeachFigure), title: "Untitled" },
+  { src: assetUrl(newUrbanCarrying), title: "Untitled" },
+  { src: assetUrl(newFazalPiano), title: "Fazal Ali" },
+  { src: assetUrl(newBluePalms), title: "Untitled" },
+  { src: assetUrl(newUnfinishedTropical), title: "Untitled" },
   { src: assetUrl(p1), title: "Run Into the Shimmering Light", year: "2023", medium: "Oil on canvas" },
   { src: assetUrl(p2), title: "Plunge Into Your Depths", year: "2022", medium: "Oil on canvas" },
   {
