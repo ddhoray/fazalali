@@ -56,6 +56,8 @@ export const Route = createFileRoute("/gallery")({
         content: "Paintings and visual field notes from Trinidad and elsewhere.",
       },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/gallery" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/gallery" }],
   }),
@@ -67,15 +69,16 @@ type Work = {
   title: string;
   year?: string;
   medium?: string;
+  hideCaption?: boolean;
 };
 
 const works: Work[] = [
-  { src: assetUrl(newNocturneHouse), title: "Untitled" },
-  { src: assetUrl(newBeachFigure), title: "Untitled" },
-  { src: assetUrl(newUrbanCarrying), title: "Untitled" },
-  { src: assetUrl(newFazalPiano), title: "Fazal Ali" },
-  { src: assetUrl(newBluePalms), title: "Untitled" },
-  { src: assetUrl(newUnfinishedTropical), title: "Untitled" },
+  { src: assetUrl(newNocturneHouse), title: "A night painting of a house and palms", hideCaption: true },
+  { src: assetUrl(newBeachFigure), title: "A figure walking through palms beside the sea", hideCaption: true },
+  { src: assetUrl(newUrbanCarrying), title: "An urban scene with a carried corrugated panel", hideCaption: true },
+  { src: assetUrl(newFazalPiano), title: "Fazal Ali seated beside a piano", hideCaption: true },
+  { src: assetUrl(newBluePalms), title: "A painting of palms in blue and green", hideCaption: true },
+  { src: assetUrl(newUnfinishedTropical), title: "A developing tropical city painting", hideCaption: true },
   { src: assetUrl(p1), title: "Run Into the Shimmering Light", year: "2023", medium: "Oil on canvas" },
   { src: assetUrl(p2), title: "Plunge Into Your Depths", year: "2022", medium: "Oil on canvas" },
   {
@@ -175,12 +178,14 @@ function GalleryPage() {
                     className="w-full h-auto object-cover transition-transform duration-[1000ms] ease-out group-hover:scale-[1.04]"
                   />
                 </div>
-                <figcaption className="mt-2 flex items-baseline justify-between gap-3">
-                  <h3 className="text-xs md:text-sm font-serif truncate">{w.title}</h3>
-                  <span className="text-[10px] uppercase tracking-[0.16em] text-muted-foreground shrink-0">
-                    {w.year}
-                  </span>
-                </figcaption>
+                {!w.hideCaption && (
+                  <figcaption className="mt-2 flex items-baseline justify-between gap-3">
+                    <h3 className="text-xs md:text-sm font-serif truncate">{w.title}</h3>
+                    <span className="text-[10px] uppercase tracking-[0.16em] text-muted-foreground shrink-0">
+                      {w.year}
+                    </span>
+                  </figcaption>
+                )}
               </figure>
             );
           })}
