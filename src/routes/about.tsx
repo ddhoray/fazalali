@@ -155,9 +155,8 @@ function AboutPage() {
                   <p className="eyebrow text-muted-foreground xl:pt-1">About</p>
                   <p className="max-w-[60ch] text-base leading-[1.7] text-foreground/85 md:text-[17px]">
                     A thinker, consultant, academic and technical expert exploring how AI is shaping
-                    the future of innovation, through the lens of <em>development as freedom,</em>{" "}
-                    drawing upon Amartya Sen's <em>Development as Freedom</em> and John Rawls'{" "}
-                    <em>A Theory of Justice.</em>
+                    the future of innovation, drawing upon Amartya Sen's <em>Development as
+                    Freedom</em> and John Rawls' <em>A Theory of Justice.</em>
                   </p>
                 </div>
               </Reveal>
