@@ -14,6 +14,7 @@ import { assetUrl } from "@/lib/asset-url";
 const bookCover = assetUrl(bookCoverAsset);
 const afterTheFutureCover = assetUrl(afterTheFutureAsset);
 const secureDevelopmentCover = assetUrl(secureDevelopmentAsset);
+const abbreviatedDevelopmentCover = assetUrl(abbreviatedDevelopmentAsset);
 
 export const Route = createFileRoute("/books")({
   head: () => ({
