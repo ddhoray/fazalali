@@ -6,11 +6,13 @@ import { PageHero } from "@/components/site/PageHero";
 import { ArrowUpRight, Download, ShoppingCart, BookOpen, X } from "lucide-react";
 import bookCoverAsset from "@/assets/book-education-for-liberty-cover.png.asset.json";
 import afterTheFutureAsset from "@/assets/after-the-future-cover.jpg.asset.json";
+import secureDevelopmentAsset from "@/assets/secure-development-cover.jpg.asset.json";
 import intergenerationalImage from "@/assets/intergenerational-immobility-cover.jpg";
 import { assetUrl } from "@/lib/asset-url";
 
 const bookCover = assetUrl(bookCoverAsset);
 const afterTheFutureCover = assetUrl(afterTheFutureAsset);
+const secureDevelopmentCover = assetUrl(secureDevelopmentAsset);
 
 export const Route = createFileRoute("/books")({
   head: () => ({
