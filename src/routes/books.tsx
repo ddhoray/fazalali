@@ -108,9 +108,8 @@ const forthcoming: {
       </>
     ),
     year: "Forthcoming · A construct",
-    image:
-      "https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?w=1200&q=80&auto=format&fit=crop",
-    imageAlt: "Open sky and sea horizon, freedom as an atmosphere",
+    image: secureDevelopmentCover,
+    imageAlt: "A modern urban courtyard framed by glass and stone towers",
   },
   {
     title: "Abbreviated Development",
