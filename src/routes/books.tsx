@@ -6,11 +6,14 @@ import { PageHero } from "@/components/site/PageHero";
 import { ArrowUpRight, Download, ShoppingCart, BookOpen, X } from "lucide-react";
 import bookCoverAsset from "@/assets/book-education-for-liberty-cover.png.asset.json";
 import afterTheFutureAsset from "@/assets/after-the-future-cover.jpg.asset.json";
-import intergenerationalImage from "@/assets/intergenerational-immobility-cover.jpg";
+import secureDevelopmentAsset from "@/assets/secure-development-cover.jpg.asset.json";
+import abbreviatedDevelopmentAsset from "@/assets/abbreviated-development-cover.jpg.asset.json";
 import { assetUrl } from "@/lib/asset-url";
 
 const bookCover = assetUrl(bookCoverAsset);
 const afterTheFutureCover = assetUrl(afterTheFutureAsset);
+const secureDevelopmentCover = assetUrl(secureDevelopmentAsset);
+const abbreviatedDevelopmentCover = assetUrl(abbreviatedDevelopmentAsset);
 
 export const Route = createFileRoute("/books")({
   head: () => ({
@@ -106,9 +109,8 @@ const forthcoming: {
       </>
     ),
     year: "Forthcoming · A construct",
-    image:
-      "https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?w=1200&q=80&auto=format&fit=crop",
-    imageAlt: "Open sky and sea horizon, freedom as an atmosphere",
+    image: secureDevelopmentCover,
+    imageAlt: "A modern urban courtyard framed by glass and stone towers",
   },
   {
     title: "Abbreviated Development",
@@ -129,8 +131,8 @@ const forthcoming: {
       </>
     ),
     year: "In preparation · A construct",
-    image: intergenerationalImage,
-    imageAlt: "An elder's hand resting on a child's hand, generations in contact",
+    image: abbreviatedDevelopmentCover,
+    imageAlt: "A weathered wooden shack on stilts in a tropical clearing",
   },
 ];
 
