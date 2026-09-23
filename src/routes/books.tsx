@@ -132,8 +132,8 @@ const forthcoming: {
       </>
     ),
     year: "In preparation · A construct",
-    image: intergenerationalImage,
-    imageAlt: "An elder's hand resting on a child's hand, generations in contact",
+    image: abbreviatedDevelopmentCover,
+    imageAlt: "A weathered wooden shack on stilts in a tropical clearing",
   },
 ];
 
