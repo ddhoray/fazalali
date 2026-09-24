@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
+import ecoHeroVideo from "@/assets/ecology/eco-hero.mp4.asset.json";
+import { assetUrl } from "@/lib/asset-url";
 import { ecology } from "@/content/ecology";
 import { articles } from "@/content/articles";
 import { ArrowUpRight } from "lucide-react";
@@ -80,7 +82,7 @@ function EcologyPage() {
             <span>From the West Indies</span>
           </>
         }
-        image={ecology.heroImage}
+        video={assetUrl(ecoHeroVideo)}
         imageAlt={ecology.heroImageAlt}
       />
 

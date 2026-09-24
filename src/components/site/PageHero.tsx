@@ -15,6 +15,8 @@ interface PageHeroProps {
   imageAlt?: string;
   /** How the image should fit. Use 'contain' for book covers to avoid cropping. */
   imageFit?: "cover" | "contain";
+  /** Optional muted looping video shown instead of the image. */
+  video?: string;
 }
 
 /**
@@ -32,6 +34,7 @@ export function PageHero({
   image,
   imageAlt = "",
   imageFit = "cover",
+  video,
 }: PageHeroProps) {
   return (
     <section className={cn("relative isolate w-full overflow-hidden bg-[#f5f3f0]", className)}>
@@ -48,7 +51,7 @@ export function PageHero({
       <div
         className={cn(
           "relative mx-auto grid max-w-[1500px] items-center gap-12 px-5 pb-12 pt-24 sm:px-8 sm:pb-12 sm:pt-24 md:gap-16 md:py-10",
-          image ? "md:grid-cols-2" : "md:grid-cols-1",
+          image || video ? "md:grid-cols-2" : "md:grid-cols-1",
           align === "center" && !image && "text-center",
         )}
       >
@@ -96,7 +99,7 @@ export function PageHero({
         </div>
 
         {/* Image column */}
-        {image && (
+        {(image || video) && (
           <motion.div
             initial={{ opacity: 0, scale: 1.03 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -108,6 +111,19 @@ export function PageHero({
                 : "border border-foreground/10 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.25)]",
             )}
           >
+            {video ? (
+              <video
+                src={video}
+                poster={image}
+                aria-label={imageAlt}
+                className="size-full object-cover"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="auto"
+              />
+            ) : (
             <img
               src={image}
               alt={imageAlt}
@@ -119,6 +135,7 @@ export function PageHero({
               width={1152}
               height={1440}
             />
+            )}
           </motion.div>
         )}
       </div>
