@@ -118,7 +118,7 @@ function EcologyPage() {
       </article>
 
       <section className="border-t hairline">
-        <div className="mx-auto max-w-[1500px] px-5 py-16 sm:px-8">
+        <div className="mx-auto max-w-[1800px] px-5 py-16 sm:px-8">
           <p className="eyebrow text-muted-foreground">Field notes</p>
           <h2 className="mt-4 max-w-2xl font-display text-3xl leading-tight md:text-5xl">
             The ground the ethics stand on.
@@ -144,7 +144,7 @@ function EcologyPage() {
 
       {FEATURED_MANIFESTO && (
         <section className="border-t hairline bg-[#f5f3f0]">
-          <div className="mx-auto grid max-w-[1500px] gap-10 px-5 py-16 sm:px-8 md:grid-cols-2 md:items-center">
+          <div className="mx-auto grid max-w-[1800px] gap-10 px-5 py-16 sm:px-8 md:grid-cols-2 md:items-center">
             <Reveal>
               <Link
                 to="/writing/$slug"
@@ -181,7 +181,7 @@ function EcologyPage() {
       )}
 
       <section className="border-t hairline bg-[#f5f3f0]">
-        <div className="mx-auto max-w-[1500px] px-5 py-16 sm:px-8">
+        <div className="mx-auto max-w-[1800px] px-5 py-16 sm:px-8">
           <p className="eyebrow text-muted-foreground">Selected readings</p>
           <h2 className="mt-4 max-w-2xl font-display text-3xl leading-tight md:text-5xl">
             Where ecology enters the argument.
@@ -227,7 +227,7 @@ function EcologyPage() {
 
       <section className="border-t hairline">
 
-        <div className="mx-auto flex max-w-[1500px] flex-wrap items-end justify-between gap-6 px-5 py-10 sm:px-8">
+        <div className="mx-auto flex max-w-[1800px] flex-wrap items-end justify-between gap-6 px-5 py-10 sm:px-8">
           <p className="font-display text-3xl md:text-5xl">Read on.</p>
           <div className="flex flex-wrap gap-4 text-sm uppercase tracking-[0.2em]">
             <Link
