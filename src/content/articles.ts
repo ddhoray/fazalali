@@ -1,4 +1,12 @@
 import manifestoImage from "@/assets/ecology/ai-earth-manifesto.jpg.asset.json";
+import recentArticleImage1 from "@/assets/articles/recklessness-risk-responsibility-and-ai.jpg.asset.json";
+import recentArticleImage2 from "@/assets/articles/orbital-space-based-ai-data-centres.jpg.asset.json";
+import recentArticleImage3 from "@/assets/articles/ai-adtech-and-luxury-beauty-brands.jpg.asset.json";
+import recentArticleImage4 from "@/assets/articles/coding-culture-with-data-driven-innovation-and-ai.jpg.asset.json";
+import recentArticleImage5 from "@/assets/articles/ai-and-the-unscripted-chaos-of-live-sport.jpg.asset.json";
+import recentArticleImage6 from "@/assets/articles/creative-ai-and-data-driven-innovation-in-creative-industries.jpg.asset.json";
+import recentArticleImage7 from "@/assets/articles/building-ai-models-that-prompt-us-to-think-more-humanely.jpg.asset.json";
+import recentArticleImage8 from "@/assets/articles/ai-proof-university-graduates.jpg.asset.json";
 import { assetUrl } from "@/lib/asset-url";
 
 export interface Article {
@@ -14,6 +22,259 @@ export interface Article {
 }
 
 export const articles: Article[] = [
+{
+    "slug": "recklessness-risk-responsibility-and-ai",
+    "title": "Recklessness Risk Responsibility and AI",
+    "excerpt": "Every silver lining has a shadowy cloud behind it. Unless AI design-stage transformations prioritise preventing deeper disparities, progress will only amplify inherited inequality and intergenerational immobility. Justice demands access to the benefits of innovation and opportunities. Just laws and just redistribution methods can correct imbalances and lighten the burden on society’s most vulnerable. As we […]",
+    "date": "2026-09-20",
+    "topic": "Technology",
+    "image": assetUrl(recentArticleImage1),
+    "tags": [
+        "Technology",
+        "AI",
+        "artificial intelligence"
+    ],
+    "body": [
+        "Every silver lining has a shadowy cloud behind it. Unless AI design-stage transformations prioritise preventing deeper disparities, progress will only amplify inherited inequality and intergenerational immobility.",
+        "Justice demands access to the benefits of innovation and opportunities. Just laws and just redistribution methods can correct imbalances and lighten the burden on society’s most vulnerable.",
+        "As we cross the AI portal, it is not enough to react to bizarre AI incidents; we must oversee the transition in advance. AI companies are struggling to control the Agentic AI technologies they have created.",
+        "A swarm of experimental AI Agents surreptitiously used DseWiki for their comms. The agents were prohibited from posting or modifying internet content. But they ignored their instructions and found ways to write to old Wikis and abandoned websites, stashing information for other Agents to retrieve that could help them complete their assigned tasks.",
+        "In idle August, AI Agents working in a sealed digital test room escaped a sandbox and reached the open internet. Next month, the initial public offering of one of the newest and most powerful AI models begins its marketing.",
+        "The potential listing could be worth US$2T. It will test investor appetite for artificial superintelligence (ASI). Whoever wins AI, wins! Locked in a race to get there first, human efforts to create ASI could threaten all of humanity.",
+        "In a glimmer of hope, some expressed optimism about the potential for international coordination among AI labs and on pacing progress in the race. Extinctionists warn that humanity could irreversibly lose control, with catastrophic consequences.",
+        "Anti-extinctionists worry about whether we should allow fully uncontrolled development and address vulnerabilities in software frameworks as we master the creation and proliferation of ASI in real-time",
+        "Others dismiss “terminator scenarios” but acknowledge threats to the Earth. Some clamour for an AI-Earth Manifesto and measures to halt AI from propagating deepfakes and disinformation. Discussions about AI and autonomous weapons systems remain shielded in cloistered societies of sophists.",
+        "At its core, the debate is about the alignment problem. AI alignment aims to build human ethical ideas into the technology. However, those efforts appear to be stalling amid a superabundant wave of global hysteria and a bewildering lack of prudence.",
+        "Nothing there takes us anywhere near where we need to be for all of humanity, the earth and the e-nvironment. Everywhere the ceremony of innocence is silenced. The thoughtful are paralysed by inaction and doubt. The extreme drive events forward with passionate intensity. Distrust has spiralled. AI is now seen as an irreplaceable layer in citizen security, while its use in automated weapons systems remains unresolved.",
+        "AI Safety Ministers now elevate the conversation on AI Security, prompt injection, and model penetration into the Cabinet Papers. This provides a forum to consider that, in the history of human civilisation, no human technology from the plough and the printing press to reusable rockets has ever posed this level of danger to all of humanity.",
+        "These troubles have spurred calls for a new multinational treaty to regulate and safely develop ASI. It is not a call to ban innovation, and truncate scientific endeavour, but a safety-first approach to developing and proliferating an unprecedented form of artificial agency.",
+        "AI-risks do not end at national borders. No nation-state can tackle the threat alone. Right now, two recurring alignment problems exist, with varying severity across models. These are biased reasoning, in which the model selectively interprets evidence to justify its actions, and recklessness, or a propensity to keep trying to solve a problem, even when this could lead to harm.",
+        "In a recent incident, a model was undeterred in its decision-making to achieve its objective. Its Chain of Thought (CoT) consistently claimed it was operating within a safe simulation, as it ignored clear technical evidence to the contrary and pursued actions that could have caused real-world harm.",
+        "The model went to extreme lengths to bypass registration barriers, ultimately uploading three versions of a malicious package to a public repository. Although the model stated in its chain of thought (CoT) that it believed it was operating in a simulated e-nvironment, the e-nvironment provided clear evidence that it was on the real internet, and the actions the model took were consistent with its knowing this.",
+        "Once online, the model attempted to use payment-processor credentials for cryptocurrencies to buy a telephone number, which it needed to register an email address. When that failed, it found a free, disposable email provider, registered an account on a platform, and published the three versions of the malicious package.",
+        "The package was active for 90 minutes and was downloaded by 15 real systems. During that time, the model captured the leaked credentials of one of these systems and used them to breach that security vendor’s live database."
+    ]
+},
+{
+    "slug": "orbital-space-based-ai-data-centres",
+    "title": "Orbital space-based AI data centres",
+    "excerpt": "Countries that invest in building data centres lower the barriers to developing more of their own AI companies. Conversely, countries that do not invest in hyperscale AI infrastructure will be nowhere in the AI value chain. They will remain tool importers, and their workforce will stagnate as users of AI assemblages and as participants in […]",
+    "date": "2026-09-12",
+    "topic": "Technology",
+    "image": assetUrl(recentArticleImage2),
+    "tags": [
+        "Technology",
+        "AI",
+        "artificial intelligence",
+        "cern"
+    ],
+    "body": [
+        "Countries that invest in building data centres lower the barriers to developing more of their own AI companies. Conversely, countries that do not invest in hyperscale AI infrastructure will be nowhere in the AI value chain. They will remain tool importers, and their workforce will stagnate as users of AI assemblages and as participants in data-driven innovation in the new Digital Creative Industries.",
+        "Land, political stability, relationships with members of the Five Eyes Security Alliance, which participates in joint signals intelligence (SIGINT) collection and sharing, a skilled workforce, and a stable energy grid are critical factors in attracting investment. Screen economies and digital creative industries that innovate with data are now closely linked to investment in AI architectures and Q-commerce.",
+        "However, data centres need uninterrupted power at a scale and speed that wind and solar cannot match. This has sparked discussions about orbital compute infrastructure and a coming wave of space-based data centres, moving from concept to early deployment, fuelled by velocity and venture capital. This will require packing lightweight servers into space-qualified modules powered by batteries and solar energy and using high-bandwidth communications back to Earth.",
+        "Gemini has already piloted a one-kilowatt (kW) satellite with five embedded GPUs. This early space platform carried data-centre-grade compute into orbit, enabling Gemini to run inference. However, calling it a data centre is misleading. It is an early human instance of putting one of the first satellites that carry data-centre-grade GPUs into space.",
+        "Flocks of orbital, space-based AI infrastructure offer several structural advantages. These include unconstrained energy scaling and cost competitiveness relative to terrestrial systems. We must now assess whether space-based compute can deliver predictable performance, repeatable deployment, credible reliability, and competitive economics, even after accounting for launch cadence, replacement rotations, in-space cooling, and data movement costs.",
+        "Data centres involving satellites orbiting Earth are therefore not a fanciful idea. We are already in that future. The next generation of data centres will carry a ten-kW rack-scale system into space, with multiple advanced AI chips and more robust cooling infrastructure.",
+        "That star-date is the point from which AI behemoths will be able to have part of their terrestrial infrastructure orbiting the planet in a flock. The real step-change, however, is planned for 2028, when a three-ton, 200kW system designed to fit into Starship’s deployment launch format is deployed.",
+        "After that, regardless of any failures or delays that may push the launch date to 2030, we will have effectively succeeded in deploying a space-based data centre capable of handling large-scale inference workloads.",
+        "A flock of 88,000 satellites orbiting the Earth with these GPUs will deliver about 20 gigawatts of compute capacity, dedicated to inference workflows. At the heart of this human ambition is the notion of “intelligent failure.”",
+        "Elon Musk has redefined “failure” before our very eyes. Failure begins with designing smart pilots that keep failures slight. It is a culture alien to West Indian civilisation. We must learn to fail small and recover fast.",
+        "We must not run from the endless opportunities that fall at our feet; instead, we must fail small, adapt, iterate, and recover with speed. There is no Big Bang! Only the next rehearsal. Intelligent failure turns on limitless naivete and an absence of artificiality.",
+        "Such failure is always intelligent because there is no formula to precisely map the terrain in advance. Failure is better than never trying. To do nothing is to never fail. Never failing is doing nothing. This is an unknown cultural oasis for former plantation societies that continue to lean on the pillars of Ward Schools that created no space for failure.",
+        "Data centre construction on Earth faces one principal constraint. Energy! We are unable to build the required energy infrastructure fast enough. In space, the constraints and bottlenecks around permits to allow the quick buildout of large-scale solar installations disappear.",
+        "While data centres that run on solar power need battery storage or other backup power for nighttime use, solar generation can be near continuous in the right orbit. Orbital data centres will use a dawn-dusk sun-synchronous orbit that follows the Earth’s terminator line and will remain in continuous sunlight.",
+        "This future is being designed on the possibility that launch costs will decline materially to about US$500 per kilogram. At that turning point, orbital compute will be economically competitive with terrestrial alternatives. Bringing infrastructure costs in space down to about US$5M per megawatt, compared with US$12M to US$15M for terrestrial systems, is another target.",
+        "Orbital AI-Assemblages will be a fertile field for hyperscalers and emerging AI-focused neocloud providers. Demand for orbital compute is also being driven by the increased difficulty of finding new energy sources for data centres. Terrestrial data centres near conflict zones are vulnerable to persistent drone attacks on hyperscale AI campuses and energy infrastructure."
+    ]
+},
+{
+    "slug": "ai-adtech-and-luxury-beauty-brands",
+    "title": "AI-AdTech and Luxury Beauty Brands",
+    "excerpt": "AI is not adding a new layer of advertising to the luxury beauty and personal care market. It is rewriting every layer. The West Indies needs to rebuild its advertising stack around AI, spanning ML-led bidding systems and identity graphs, transformer-based recommendation engines, and agentic advertising infrastructure This will enable the W.I. to map regional […]",
+    "date": "2026-09-05",
+    "topic": "Technology",
+    "image": assetUrl(recentArticleImage3),
+    "tags": [
+        "Technology",
+        "AI",
+        "artificial intelligence"
+    ],
+    "body": [
+        "AI is not adding a new layer of advertising to the luxury beauty and personal care market. It is rewriting every layer. The West Indies needs to rebuild its advertising stack around AI, spanning ML-led bidding systems and identity graphs, transformer-based recommendation engines, and agentic advertising infrastructure",
+        "This will enable the W.I. to map regional talent and MSMEs that carefully use only pure, unadulterated, rainforest-sourced ingredients in their beauty products. AI is compressing the entire advertising stack. The AI-AdTech industry is moving from fragmented optimisation toward autonomous orchestration.",
+        "Open ecologies are structurally more competitive because AI erodes the historical advantages that walled gardens have cultivated. Commerce signal is the new moat. Edgy platforms own transaction intelligence, not just impressions. The AI-AdTech industry has moved from campaign management to AI-led business outcome optimisation.",
+        "First-party data and AI-enabled monetisation infrastructure are strategic assets. The W.I. must confront colonial patterns of serving the global AdTech market. It must build and own the product identities that power the next phase of AI-AdTech designed for Screen Economies.",
+        "AI can enable indigenous open ecosystems to recover lost signal quality, augment targeting precision, amplify attribution accuracy, scale quick-commerce (Q-Commerce) intelligence, automate data-driven innovation and outcome optimisation, and build interoperable AI-native infrastructure.",
+        "The Age of AI will enable conversational interfaces, agentic commerce, AI-native applications, and hyper-personalised experiences to create entirely new advertising surfaces, open ecosystems with robust data-lake infrastructure, and execution speeds in Q-Commerce that can position “pure luxury brands” from the W.I. A significant proportion of beauty and personal care shoppers are Gen Zers, who discover the products they buy through the TikTok effect.",
+        "They are spending roughly twice as much on personal care as millennials. The Beauty and Personal Care market is racing. Q-commerce is fast becoming the channel that decides who wins wallet share. Q-commerce focuses on quick delivery using advanced logistics algorithms and small fulfilment centres.",
+        "In recent months, beauty brands have attracted significant global capital through acquisitions and purchases of majority stakes. Legacy brands have seen explosive growth in the beauty industry in Korea, the UAE, and Brazil. In these economies, the beauty industry is expected to nearly double in size by the end of this decade and grow at twice the rate of the country’s GDP and the broader retail market.",
+        "Per capita income has crossed a threshold beyond which discretionary spending is growing exponentially. This increase in average household earnings is providing a tailwind to growth. In former plantation economies, there is a historical trend to underspend on beauty. However, the internet and greater spending power have opened access to Kiko Milano.",
+        "The coming wave of AI-AdTech penetration in tier-one, tier-two, and tier-three towns aims to deliver specific “pure” beauty and personal care products. A beauty market full of synthetic products is opting to acquire MSMEs that use ultra-pure ingredients and processes. Convincing customers to use pure, traditional formulations is not easy in a world awash with cheap synthetic ingredients.",
+        "Cheap, low-quality ingredients are abundant, reducing production costs. The new beauty brands are not compromising on ingredient quality to reduce production costs, and Gen Zers are refusing to compromise their wellness and wellbeing. We are at an inflexion point. What was once an aspirational category has now become a daily expression of self-care.",
+        "Humans crave clean ingredients that are so pure that someone could almost eat them. Brands now produce their ingredients in-house rather than importing them. They build ecologies in hamlets where both sourcing and manufacturing occur. From sourcing raw materials to manufacturing the product, everything happens in-house.",
+        "They have also revived old formulations that are native to their communities, which remain uncodified and part of their oral histories. These companies build their brands offline before they go online and avoid the franchise model. They begin with chains of offline, company-owned stores. They build the brand by employing the local community, with most of the ingredients they use grown and produced locally.",
+        "They open small guilds, encouraging non-metro communities to work and be supported by income generated by production units that curate indigenous ingredients. The coming wave will be driven by these niche brands innovating with pure ingredients. Once in Cedros, body lotions were made with virgin coconut oil and pure desi ghee. The ghee was churned from fresh cow’s milk, not imported commercial butter. The cows roamed freely beneath coconut palms near the Los Gallos rocks along Columbus Beach.",
+        "The ghee was then aged with aromatic plants, mixed in clay pots, and buried beneath Banyan trees near the “chowk” upon which the shimmering, hand-crafted model mausoleums, or Hosay Tajas, were built.",
+        "It is this hidden knowledge and search for “purity” in offline production that is attracting acquisitions by behemoths like L’Oréal and Estée Lauder ahead of the Q-Commerce frenzy online."
+    ]
+},
+{
+    "slug": "coding-culture-with-data-driven-innovation-and-ai",
+    "title": "Coding Culture with Data-Driven Innovation and AI",
+    "excerpt": "Ours is a civilisation of collisions. The modern world as we know it, was created from these impairments. As doubts about Columbus’s claims of having been close to Japan crept in, disagreements between Castile and Portugal were resolved in the Atlantic. What followed was a cortege of diplomatic standoffs, treaties and wars. Nothing stood in […]",
+    "date": "2026-08-23",
+    "topic": "Technology",
+    "image": assetUrl(recentArticleImage4),
+    "tags": [
+        "Technology",
+        "AI",
+        "artificial intelligence"
+    ],
+    "body": [
+        "Ours is a civilisation of collisions. The modern world as we know it, was created from these impairments. As doubts about Columbus’s claims of having been close to Japan crept in, disagreements between Castile and Portugal were resolved in the Atlantic. What followed was a cortege of diplomatic standoffs, treaties and wars.",
+        "Nothing stood in the way of the Iberian pioneers from peremptorily claiming monopoly rights over the discovery of the whole planet as a privatised political space except Francis I, King of France, who famously asked to see the clause in “Adam’s will” that cut France out of the world.",
+        "In the end, what remained was a civilisation free from the fixed, dead past of stone remnants of dead empires. This paradisal perspective freed us of old-world burdens and enabled us to name things afresh. At the Studio Museum in Harlem in 1971, LeRoy Clarke presented “Fragments of a Spiritual,” a collection of paintings, poems, and hundreds of ink drawings on paper.",
+        "Considering the scale of Africa and Asia and being a witness to a modest minaret in Madras Settlement and an onion-domed Shiv Mandir moored in the Sea, it dawns upon our souls that we must be abridgements of what we were, once upon a time.",
+        "And in desperate acceptance of being a bit more than a diminutive distortion, we dance an epic poem in silence in the stillness of a cane field, and drum bamboo reeds in a J’ouvert procession to meet the rising sun. So today we know we are free because we are all still running.",
+        "In the coming wave, generative designers, data artists, creative informatics specialists, and creative technologists will use data and digital to engage in Data-Driven Innovation (DDI) in the Trinidad Carnival. The coming wave of digital creative entrepreneurs will create guilds of Digital Creative Industries for screen economies.",
+        "These new Digital Creative Industries, which find a foothold in the masquerade traditions of the Trinidad Carnival and the festival arts of Hosay and Ramleela, will be pivotal to future economic diversification in the Age of Artificial Intelligence (AI).",
+        "The future of Trinidad’s carnival and festival industries is nested inside DDI, creative AI, digital design, and immersive technologies. The Carnival and festival industries are celebrations of the arts. They encompass visual arts, performing arts, literary arts, and the design arts.",
+        "They are a crucible for Minshallesque kinetic sculptures, drama and theatre, dance, musical composition, drawing and painting, stage lighting, sound technology, songwriting, and costume design. In the Age of AI, Carnival Arts aficionados, masquerade companies, steel membrane orchestras, “Mas” businesses, and digital creative entrepreneurs in the festival industry will confidently innovate by leveraging creative informatics to develop digital products.",
+        "We are on the cusp of a new age of Carnival and festival experiences that are well positioned for DDI. DDI in the Carnival and festival industries will blend the arts, commerce, data, and digital technologies to transform product development by interweaving the Experience and Screen Economies.",
+        "The traditional focus of a tourism product grounded in sun, sea and sand will give way to the economic proposal that the data generated by creative work may be more valuable than the original business activity.",
+        "Creative information organisms will unmask the “New” value in the data that their works in kinetic sculpture, sound technology, video, photography, dance, paint, costume, clothing, literature, textiles and fashion create. The Carnivals of the Caribbean in particular are an untouched oasis of creativity awaiting the coming wave of DDI.",
+        "This shifts the tourism brand identity away from sun, sea, and sand to memory as the distinct economic offering. In the coming wave, goods become brand stories, and digital and DDI services become the stage. Digital Creative Industries in the Carnival Arts can combine creativity, technology, virtual production, animation, immersive technologies, creative AI, digital design, visual effects, and DDI to produce content, experiences, and products.",
+        "DDI for the Carnivals of the Caribbean bring together artistic talent and technological innovation, making them one of the Caribbean’s most dynamic and rapidly evolving economic sectors.",
+        "Sugar Mas of St Kitts and Nevis, which blends Christmas festivities with traditional masquerade; Bacchanal Jamaica, which is a fusion of soca, reggae, and conscience vibes; Crop Over, which culminates in Grand Kadooment; Spicemas of Grenada, and the Junkanoo held during the Christmas holiday season in Jamaica that combines Akan, Yoruba, and Igbo traditions with British holiday customs are an abundant source of data for the Digital Creative Industries.",
+        "This is a completely new class of Creative Industries that are “Global” in scope and outlook. This requires talent incubators where university students spend the July-August mastering coding; robotics; moulding; casting; 3D printing; prototyping and laser cutting; active listening; agile thinking; organisational awareness; and synthesising messages."
+    ]
+},
+{
+    "slug": "ai-and-the-unscripted-chaos-of-live-sport",
+    "title": "AI and the Unscripted Chaos of Live Sport",
+    "excerpt": "Unscripted chaos in live sport is a hedge against AI disruption. Real-time athletic triumph depends on biological fragility, grit under severe stress, and spontaneous human error that algorithms cannot fake. At the Mondo Classic on 12th March 2026, Armand Duplantis, nicknamed “Mondo”, broke his own pole vault world record for the 15th time with a jump […]",
+    "date": "2026-08-16",
+    "topic": "Technology",
+    "image": assetUrl(recentArticleImage5),
+    "tags": [
+        "Technology",
+        "AI",
+        "artificial intelligence",
+        "sports"
+    ],
+    "body": [
+        "Unscripted chaos in live sport is a hedge against AI disruption. Real-time athletic triumph depends on biological fragility, grit under severe stress, and spontaneous human error that algorithms cannot fake. At the Mondo Classic on 12 th March 2026, Armand Duplantis, nicknamed “Mondo”, broke his own pole vault world record for the 15th time with a jump of 6.31 metres (20 feet, 8¼ inches).",
+        "After clearing 5.65m, 5.90m, and 6.08m, “Mondo” asked for the bar to be lifted 23cm to a world-record height, then soared over it. Automated data analysis enhances fan personalisation, but the core product, the jump itself, remains valuable because it cannot be pre-calculated. As AI disrupts media, writing, and digital arts, financial markets and tech investors view real-time unscripted human physical competition as inherently AI-proof.",
+        "Because physical sports rely on generational communal identity, raw physiological strain, and genuine uncertainty, live sporting events like the FIFA 2026 World Cup command irreplaceable emotional and economic value. The reality premium is what information organisms in the infosphere are craving.",
+        "No artificially generated pixel-perfect highlight or simulated sporting outcome could have replicated the authentic communal tension of the live stadium event on 16 th August 2009, when Usain Bolt ran the 100-meter dash in a blistering 9.58 seconds in Berlin.",
+        "Live sport is now increasingly viewed by investors as an “AI-proof” defensive hedge against digital disruption and artificial intelligence. Because synthetic or AI-generated media is cheap and easy to replicate, real-time human competition offers a unique, unreplicable authenticity that audiences and advertisers crave. Fandom is anchored in community, human history, cultural identity, geography, local tribalism, and generational tradition, rather than purely synthetic entertainment and optimisation.",
+        "Physical imperfections, strain, human error, and the sheer willpower of athletes remain untranslatable into code. Live sport is increasingly viewed by investors as uniquely “AI-Proof” because its value relies on the physical vulnerability of the human athlete, emotional connection with viewers and live spectators, and shared cultural identity.",
+        "Athletes and live crowds act as co-creators of the culture, ensuring that the core product remains fundamentally human even as avatars and digital clones layer the infosphere. The emotional and economic value is anchored in the physical venue and live event, where spectators extemporaneously burst into a choreographed Norwegian Row. The unscripted tension of Saturday’s qualifying session at the Monaco Grand Prix, and the raw fan accessibility, grassy tailgates, and roaring V8 engines of NASCAR racing are priceless.",
+        "Live sport is a lucrative investment class. Investors are seeing an “AI-Proof” opportunity in live sport. Venture capitalists are certain that these events are a valuable hedge and are backing their convictions with capital. These events have AI-Proof authenticity, brimming with real-time human emotion, unpredictable endings, and physical achievements that cannot be simulated by artificial intelligence pixels or bots.",
+        "Despite stubborn macroeconomic inflation and cost-of-living pressures, live sports attendance has shown extraordinary economic resilience, frequently breaking attendance records as fans prioritise experiences over discretionary spending cuts. Live sport exhibits recession-defying demand despite rising ticket costs.",
+        "Franchises feature diverse income streams, including long-term media rights, lucrative streaming deals, live ticketing, and global sponsorships. Private equity heavyweights like Arctos Sports Partners and CVC Capital Partners are pouring billions into passive and controlling stakes in teams.",
+        "Emerging market instruments, such as planned sports-linked futures and options via groups like CME Group, aim to turn sports outcomes into calculated hedging tools. While AI can easily replicate digital media like movies and music, a pixel-perfect simulation cannot replace the authentic emotional stakes of the Hand of God during a quarter-final match between Argentina and England on 22 nd June, 1986, or the athletic feat during the Paris 2024 Olympics, when Brazilian surfer Gabriel Medina in Teahupo’o, exited a monstrous barrel wave and launched into the air above the ocean mist, hovering perfectly vertical with his right index finger pointing up toward the sky, completely parallel in mid-air alongside his surfboard, earning the surfer a 9.90 score, the highest single-wave score in Olympic history.",
+        "Sports like the 10-meter platform dive, where divers hit speeds of up to 55 km/h upon entering the water, and West Indies Cricket are steeped in tradition, culture, customs, institutions, and identity that help protect these forms of entertainment from being upended by AI. The outlook is that these cultural institutions, rooted in tradition, identity, and shared human experience, will not just survive the AI revolution but also matter even more. No algorithm can duplicate the unscripted narrative and raw emotional release of a live Quinton de Kock shot for six runs over the boundary at Kensington Oval.",
+        "Financial backers of technology companies developing AI in Silicon Valley have now joined Wall Street technology venture capitalists and Formula 1 racing aficionados in investing in those qualities of sports that are uniquely shielded from technological replacement."
+    ]
+},
+{
+    "slug": "creative-ai-and-data-driven-innovation-in-creative-industries",
+    "title": "Creative AI and Data-Driven Innovation in Creative Industries",
+    "excerpt": "Creative informatics sits at the intersection of the creative industries, digital, data, creative AI, commerce, the arts, culture, and heritage. In the Algorithmic Age, data-driven innovation can be as valuable as the creative product itself. Organisations and creatives in certain sub-sectors of the creative industries are mastering data-led approaches and innovating with data. Digital creative […]",
+    "date": "2026-08-08",
+    "topic": "Technology",
+    "image": assetUrl(recentArticleImage6),
+    "tags": [
+        "Technology",
+        "AI",
+        "artificial intelligence"
+    ],
+    "body": [
+        "Creative informatics sits at the intersection of the creative industries, digital, data, creative AI, commerce, the arts, culture, and heritage. In the Algorithmic Age, data-driven innovation can be as valuable as the creative product itself. Organisations and creatives in certain sub-sectors of the creative industries are mastering data-led approaches and innovating with data.",
+        "Digital creative industries are a new hub of innovation, officially recognised as a priority Industrial Strategy Sector pivotal to development, job creation, and the strengthening of the global position of screen economies. Despite their scale and impact, Standard Industrial Classification (SIC) codes in some jurisdictions struggle to capture this new sector in its entirety.",
+        "Private data and technology companies have addressed this planning gap by building Real-Time Industry Classifications that serve as Data-Driven Innovation Observatories. They offer bureaucracies a lucid, up-to-date view of Data Artists in the economy, where they are working, their projects, and independent performance metrics.",
+        "Generative designers, data artists, creative informatics specialists, and creative technologists are the jobs of the future. Some creatives have even discovered that the data generated by their creativity is more valuable than the original business activity and have pivoted to realise the “New” value in their data.",
+        "In every moment, we produce a continuous string of data points that flow unhindered into data refineries, data lakes and data cooperatives, all sunk deep beneath a plethora of Apps. TikTok and Spotify are superb at remaining hidden in plain sight.",
+        "Clicks on Spotify are not colourless. Clicks generate invaluable user data in real time. Spotify’s smart recommendation engine, seamless multi-device control, and rich social and mixing features allow users to discover and personalise streamed content using its “Discover Weekly and Release Radar”.",
+        "Custom playlists can be updated weekly to match the user’s personal taste and discover new tracks. The AI Playlist and AI DJ allow users to generate custom playlists from text prompts. The Daylist is a dynamic playlist that matches your niche music tastes and microgenres to specific times of day, complete with quirky, AI-generated titles.",
+        "Playback and Audio Quality allow you to seamlessly switch playback between devices without losing your place. The Lossless Audio feature enables High-resolution FLAC streaming up to 24-bit/44.1 kHz.",
+        "Smart Mix and Transitions offer custom crossfades, gapless playback, and a mixing tool that fades tracks into one another like a pro DJ. Blend combines the musical tastes of up to 10 friends into a single shared, updating playlist.",
+        "Jam is a real-time collaborative listening session for groups, whether you are in the same room or miles apart. In-App Messaging allows listeners to share and react to songs, podcasts, and audiobooks directly inside the App. This is the infosphere that our children now inhabit. They are in a different world. Perhaps this is why we find it hard to understand them.",
+        "Being ordinary is the worst outcome in the Intelligent Age. The rise of AI needs a proportionate increase in human creativity and innovation. As nations build hyperscale AI campuses and artificial life flourishes, we will crave “human-ness” even more. Brands will begin to embody lovable imperfections and blurred cultural identities.",
+        "Data-driven innovation will shift from crafting expressions to architecting brand humanity. This means mastering AI, humanising brands, and driving innovation through digital technologies and data. Success will be a blend of cultural victories and creative informatics.",
+        "Creative AI allows us to be more innovative than just generating shorts and reels. Big innovation can become data-driven. As AI perfects, humans must disrupt. Culture has consistently served as the arena for imagination, and now, AI is firmly established within our cultural métissage. All that remains is to explore AI culture even further.",
+        "Creative Screen Economies differentiate between data and digitalisation. Digital includes the digitisation of creative practice, digital systems, and digital skills. Data includes scraping, refining, and combining discrete data to create new data. Screen economies are not built for an endless stream of sameness. Resemblance exhausts consumer interest. Algorithms optimise for immediate needs, not for creating eternal brand adoration.",
+        "Attachment is not desirable. Relationships are fluid. Liquid moderns crave impermanent bonds that are slack enough to prevent suffocation, but tight enough to provide security. The habitual sources of solace are less steadfast.",
+        "Our deepest wish is to stop our connections with creative brands from curdling and clotting. But if we tilt the balance too far to freedom, we find ourselves desperate to belong. We want a contradiction; to be free and to be shielded at once. The nouveau embrace is tight but tentative.",
+        "The curricula vitarum of liquid moderns are beautifully unstable, replete with short engagements and amazing experiences. This is at the heart of data-driven innovation in the creative industries using digital and data."
+    ]
+},
+{
+    "slug": "building-ai-models-that-prompt-us-to-think-more-humanely",
+    "title": "Building AI Models that prompt us to think more humanely",
+    "excerpt": "To shape the future, we must fashion AI systems that prompt us to think better and more humanely than we naturally do. AI opens up the possibility of augmenting human intelligence and solving problems with wisdom. In that ferment lies the possibility of an efflorescence of machine ideas, new creations, even new species of ideas […]",
+    "date": "2026-08-01",
+    "topic": "Technology",
+    "image": assetUrl(recentArticleImage7),
+    "tags": [
+        "Technology",
+        "AI",
+        "artificial intelligence",
+        "UN",
+        "United Nations",
+        "Word Food Programme"
+    ],
+    "body": [
+        "To shape the future, we must fashion AI systems that prompt us to think better and more humanely than we naturally do. AI opens up the possibility of augmenting human intelligence and solving problems with wisdom. In that ferment lies the possibility of an efflorescence of machine ideas, new creations, even new species of ideas at the intersection of AI-enabled neuroprosthetics.",
+        "This will not alter the fact that these new ideas, and new species of ideas at the intersection of the cortex and neuroprosthetics, are still human ideas, but they have been boosted and enabled by AI to make us better humans. Humans never think about the world with an empty mind. Our past shapes what we see first.",
+        "There is no immaculate perception. Everything is already understood. There is always some “Vorhaben” or fore-meaning, fore-understanding, or pre-project that is brought forward to every experience and thought. In the Intelligent Age, humans prompt AI models to achieve a range of objectives along a continuum from the decent to the nefarious.",
+        "Regardless of where our prompts fall along this continuum, we know that human thinking is imperfect and coloured by fore-understanding, and memory is a bricolage of edits and forgettings. We must therefore ask: What kind of thinking do AI-enabled roles expect from human deliberative rationality?",
+        "Creative screen economies need thinkers who display blind naivety. Workers who challenge assumptions. They are the ones who will be crucial for organisational agility and innovation. AI-fluency does not erode this capacity. But AI-illiteracy can wear away chances of finding jobs in AI-enabled roles. The future jobs market wants data-fluent workers. Workers who are willing to be prompted by AI to think better and more humanely than we naturally do. Workers who can supervise AI.",
+        "AI-assemblages are forcing firms to focus on two organisational risks related to the erosion of critical thinking: the forfeiture of expertise and a deficit of epistemic pluralism. These risks harm their ability to stay agile and innovative. Companies understand that AI is not neutral. They know that AI is humans. They know that we need to shape AI rather than be shaped by AI.",
+        "Workers who trust analytic tools without understanding them could lose their expertise. AI can compromise people’s ability to question the information they receive, raising concerns about the harms of cognitive offloading and cognitive surrender. Unbridled use of AI may also lead to the decontextualisation of expertise within organisations. AI can readily access facts and data but misses nuances.",
+        "Nuances are recognised by people with intuition, emotion, and lived experience of multiple domains of expertise. They see things in the data because they have direct experience of life and living and understand context. An algorithm does not experience the life-worlds of humans directly; it overlooks nuances.",
+        "AI nurtures homogeneous thinking and reduces the diversity of ideas, partly because it has a bias towards averaging. This encourages human prompters to ignore unforeseen information that can trigger creative insights. This leads to the development of monocultures that lack the diverse experiences and perspectives essential to an organisation’s capacity to innovate.",
+        "This further constrains a company’s agility, as workers are more likely to miss environmental signals that invite change. The task ahead is to design AI-enabled work environments that preserve human agency and leadership. Bureaucracies can encourage Local Economic Development Units (LEDs) and Municipal Corporations to use AI tools during specific time blocks or provide them with gated interfaces that unlock assistance only after the teams frame their projects and upload them.",
+        "Problem framing is not problem finding or problem solving. The same problem framed in different ways produces different solution strategies. Another approach is to host AI-free strategy sessions. Squads can first brainstorm their strategic plans based on their own judgement and experience ahead of uploading and prompting AI interfaces.",
+        "In some settings, two squads can run sprints on the same challenge in parallel. One uses a traditional design process from behind a veil of ignorance, while the other relies heavily on AI-supported workflows. The AI-supported team will usually arrive at options that dramatically expand the exploration space with burgeoning divergence.",
+        "The human-led team will find fewer routes, with stronger coherence, sharper narratives, and more contextual problem frames. Bringing the two teams’ outputs together creates an incredible efflorescence of machine ideas and human ideas that are still human ideas in the end.",
+        "Goodness, as rationality, does not attribute any special virtue to the process of deciding. Human thinking is imperfect. The AI frontier opens the possibility to augment each person’s Agility Quotient (AQ) to think better. In that ferment lies the possibility of a blossoming of human ideas boosted by AI. The true challenge is therefore to build AI systems that prompt us to think more benevolently than we naturally do."
+    ]
+},
+{
+    "slug": "ai-proof-university-graduates",
+    "title": "AI-Proof University Graduates",
+    "excerpt": "Ivy League universities are asking themselves: what value will graduates bring to the workplace that AI cannot provide? Firms and bureaucracies are asking: What would a work environment saturated with frontier AI models require of the university graduate? The University is in ruins. In its pursuit of bureaucratic “excellence”, the University shifted from a cultural […]",
+    "date": "2026-07-25",
+    "topic": "Technology",
+    "image": assetUrl(recentArticleImage8),
+    "tags": [
+        "Technology",
+        "AI",
+        "artificial intelligence"
+    ],
+    "body": [
+        "Ivy League universities are asking themselves: what value will graduates bring to the workplace that AI cannot provide? Firms and bureaucracies are asking: What would a work environment saturated with frontier AI models require of the university graduate?",
+        "The University is in ruins. In its pursuit of bureaucratic “excellence”, the University shifted from a cultural institution that builds national identity to a profit-driven corporation. “Excellence” replaced culture as the primary goal. Universities have not always been bureaucratic systems. Once, the idea of the University was accorded the kind of referential value that “excellence” lacks.",
+        "The appeal to excellence arose when the nation-state ceased to be capitalism’s elemental unit. In that moment, rather than states striving to exemplify capitalism, capitalism engulfed the nation-state. To understand this enigma, one need only reflect on the idea that FIFA has more member associations than the United Nations has sovereign member states.",
+        "Specifically, FIFA counts 211 national member associations, whereas the United Nations recognises 193 member states. Now, in a daze, we gaze at the spectre of AI cavorting like a Moko Jumbie among the ruins and in the cloud.",
+        "With great expectations, graduates set out to find a job. But work finds the skill it needs on its own. Moreover, unbeknownst to job-evaluation committees and HR departments, AI has already edited every job description. This invisible rewrite has caused an “authenticity gap”. This is precisely why highly selective institutions have set out to AI-proof their graduates.",
+        "Universities are in dialogue with management consulting firms and executives at mega caps about how to graduate workers who are essentially AI-proof. They are now focusing on two main areas: (1) enabling all students to achieve AI fluency, and (2) aligning academic offerings with the realities of AI-enabled roles.",
+        "They are recalibrating how they are preparing students from induction to graduation. A cloud now hangs over coursework and the use of AI. Universities must decide how to include AI chatbot outputs as appendices and how to vet bibliographies for hallucinated citations.",
+        "Can the use of Turnitin and Quetext to generate AI-content detection reports empower students to develop the AI-literacy, social skills, critical thinking, and cognitive capabilities that the AI-thick workplace expects?",
+        "Universities are already responding to the local context of Municipal Corporations by sourcing data that highlight the specific skills for SMEs and then mapping those needs against student skill sets. Local Economic Development Units (LEDs) can now identify emerging and existing market opportunities for SMEs to overcome trade barriers and expand their businesses across creative screen economies.",
+        "Institutions now pair students with SMEs that wish to get more value from their data sets. SMEs submit data-intensive projects to higher education institutions while committing to mentoring students. Students help solve real-world problems, and universities create a pipeline of data-fluent graduates with expertise.",
+        "SMEs lack the scale to invest in AI capabilities and training and are less likely to have structured internship programs. Universities now have a role to find frictionless ways to partner with LEDs and SMEs.",
+        "AI is accelerating, and that acceleration is accelerating. Universities need to make sure the partnerships they forge are developing equally fast. The scale of change required requires more than pilots.",
+        "Once, universities relied on traditions of intellectual self-formation and world-class faculty that allow students to develop intellectual independence, ethical reasoning, critical thinking, and a core curriculum requiring students to debate foundational texts in philosophy and society.",
+        "With the “AI-Bend in the River” ahead, they are now inserting guidelines on the curated use of tools and technologies that use AI. Faculty are now allowed to create ideographic AI policy prescriptions for individual courses. Blanket policy prescriptions form an umbrella framework.",
+        "Some law schools now prohibit students from using AI to draft, frame arguments, and edit coursework. The expectation is that classroom time be used to engage students in sustained and rigorous dialogue that minimises distractions from screens.",
+        "Others are banning laptops, tablets and phones in the classroom for first-year law students as part of their broader strategy of graduating AI-proof workers. This prohibition aims to prevent generative AI from undermining the Socratic method.",
+        "Students reading courses in legal research and writing are expected to compose arguments without AI. Other students are permitted to use AI for research and preparing oral arguments, with faculty providing feedback. This approach allows learners to nurture their own writing skills independent of generative AI tools while also developing their ability to supervise AI and critique its output.",
+        "In July 2026, the creators of ChatGPT were engaged in a controlled test of the capabilities of its most advanced AI models. The agent escaped containment, reached the internet and broke into Hugging Face to fulfil its testing objective. This is a warning sign that confirms our worst fears."
+    ]
+},
   {
     slug: "the-ai-earth-manifesto",
     title: "The AI Earth Manifesto",
