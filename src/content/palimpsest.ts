@@ -11,14 +11,25 @@ export interface PalimpsestSection {
   entries: PalimpsestEntry[];
 }
 
-import n1 from "@/assets/palimpsest/new-1.jpg.asset.json";
-import n2 from "@/assets/palimpsest/new-2.jpg.asset.json";
-import n3 from "@/assets/palimpsest/new-3.jpg.asset.json";
-import n4 from "@/assets/palimpsest/new-4.jpg.asset.json";
+import p1 from "@/assets/palimpsest/palimpsest-final-1.jpg.asset.json";
+import p2 from "@/assets/palimpsest/palimpsest-final-2.jpg.asset.json";
+import p3 from "@/assets/palimpsest/palimpsest-final-3.jpg.asset.json";
+import p4 from "@/assets/palimpsest/palimpsest-final-4.jpg.asset.json";
+import p5 from "@/assets/palimpsest/palimpsest-final-5.jpg.asset.json";
+import p6 from "@/assets/palimpsest/palimpsest-final-6.jpg.asset.json";
 import { assetUrl } from "@/lib/asset-url";
 
 const u = (id: string) =>
   `https://images.unsplash.com/photo-${id}?w=1600&q=80&auto=format&fit=crop`;
+
+// Stock architecture/campus imagery matching the uploaded set, for the
+// four sections without a unique supplied photo.
+const stock = {
+  stanford: u("1743461436107-e9053072d3e9"),
+  glass: u("1754608264029-a305aeb1622b"),
+  glasgow: u("1667058876798-5f90ce69bd3e"),
+  gates: u("1741529648017-eefa08e7db2c"),
+};
 
 export const palimpsest: PalimpsestSection[] = [
   {
