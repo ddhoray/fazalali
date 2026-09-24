@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
-import ecoHeroVideo from "@/assets/ecology/eco-hero-enhanced.mp4.asset.json";
+import ecoHeroVideo from "@/assets/ecology/eco-hero-enhanced-web.mp4.asset.json";
 import { assetUrl } from "@/lib/asset-url";
 import { ecology } from "@/content/ecology";
 import { articles } from "@/content/articles";
