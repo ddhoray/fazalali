@@ -4,7 +4,6 @@ import { PageHero } from "@/components/site/PageHero";
 import { ecology } from "@/content/ecology";
 import { articles } from "@/content/articles";
 import { ArrowUpRight } from "lucide-react";
-import heroEcology from "@/assets/hero-ecology.jpg";
 
 export const Route = createFileRoute("/ecology")({
   head: () => ({
@@ -81,8 +80,8 @@ function EcologyPage() {
             <span>From the West Indies</span>
           </>
         }
-        image={heroEcology}
-        imageAlt="Sunlight through a Caribbean forest canopy"
+        image={ecology.heroImage}
+        imageAlt={ecology.heroImageAlt}
       />
 
       <article className="mx-auto max-w-[820px] px-5 py-12 sm:px-8 sm:py-10">
@@ -93,6 +92,16 @@ function EcologyPage() {
                 {String(i + 1).padStart(2, "0")} · Note
               </p>
               <h2 className="mt-4 font-display text-3xl leading-tight md:text-5xl">{s.h}</h2>
+              <figure className="mt-8">
+                <div className="relative aspect-[16/9] w-full overflow-hidden border hairline bg-[#e9e6e1]">
+                  <img
+                    src={s.image}
+                    alt={s.imageAlt}
+                    loading="lazy"
+                    className="size-full object-cover"
+                  />
+                </div>
+              </figure>
               <div className="mt-8 space-y-6 text-lg leading-relaxed text-foreground/85">
                 {s.body.map((p, pi) => (
                   <p key={pi}>{p}</p>
@@ -102,6 +111,31 @@ function EcologyPage() {
           </Reveal>
         ))}
       </article>
+
+      <section className="border-t hairline">
+        <div className="mx-auto max-w-[1500px] px-5 py-16 sm:px-8">
+          <p className="eyebrow text-muted-foreground">Field notes</p>
+          <h2 className="mt-4 max-w-2xl font-display text-3xl leading-tight md:text-5xl">
+            The ground the ethics stand on.
+          </h2>
+          <div className="mt-12 grid gap-6 sm:grid-cols-3">
+            {ecology.strip.map((item, i) => (
+              <Reveal key={item.image} delay={i * 0.05}>
+                <figure>
+                  <div className="relative aspect-[4/3] w-full overflow-hidden border hairline bg-[#e9e6e1]">
+                    <img
+                      src={item.image}
+                      alt={item.imageAlt}
+                      loading="lazy"
+                      className="size-full object-cover"
+                    />
+                  </div>
+                </figure>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section className="border-t hairline bg-[#f5f3f0]">
         <div className="mx-auto max-w-[1500px] px-5 py-16 sm:px-8">
