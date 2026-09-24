@@ -26,7 +26,7 @@ export function AutoReveal() {
         main.querySelectorAll<HTMLElement>(
           ":scope > section, :scope > div > section, :scope > div > div > section",
         ),
-      );
+      ).filter((section) => !section.closest("[data-auto-reveal='off']"));
 
       observer = new IntersectionObserver(
         (entries) => {
