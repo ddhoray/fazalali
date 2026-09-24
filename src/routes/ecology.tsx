@@ -50,12 +50,13 @@ export const Route = createFileRoute("/ecology")({
 });
 
 const READING_SLUGS = [
-  "ai-and-intergenerational-climate-justice",
   "the-earth-and-green-ai",
   "green-and-blue-ai-in-the-caribbean",
   "development-and-the-dna-of-ai",
   "finding-the-still-point-in-the-age-of-ai",
 ];
+
+const FEATURED_MANIFESTO = articles.find((a) => a.slug === "the-ai-earth-manifesto");
 
 const ECOLOGY_READINGS = READING_SLUGS.map((s) => articles.find((a) => a.slug === s)).filter(
   (a): a is (typeof articles)[number] => Boolean(a),
@@ -140,6 +141,44 @@ function EcologyPage() {
           </div>
         </div>
       </section>
+
+      {FEATURED_MANIFESTO && (
+        <section className="border-t hairline bg-[#f5f3f0]">
+          <div className="mx-auto grid max-w-[1500px] gap-10 px-5 py-16 sm:px-8 md:grid-cols-2 md:items-center">
+            <Reveal>
+              <Link
+                to="/writing/$slug"
+                params={{ slug: FEATURED_MANIFESTO.slug }}
+                className="group block overflow-hidden border hairline"
+              >
+                <img
+                  src={FEATURED_MANIFESTO.image}
+                  alt="A Geneva street beneath Swiss flags, featured image for The AI Earth Manifesto"
+                  className="aspect-video w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                  loading="lazy"
+                />
+              </Link>
+            </Reveal>
+            <Reveal delay={0.06}>
+              <p className="eyebrow text-muted-foreground">Featured manifesto · 30 August 2026</p>
+              <h2 className="mt-5 font-display text-4xl leading-tight md:text-6xl">
+                {FEATURED_MANIFESTO.title}
+              </h2>
+              <p className="mt-6 max-w-xl text-lg leading-relaxed text-foreground/75">
+                {FEATURED_MANIFESTO.excerpt}
+              </p>
+              <Link
+                to="/writing/$slug"
+                params={{ slug: FEATURED_MANIFESTO.slug }}
+                className="mt-8 inline-flex items-center gap-2 border-b border-foreground pb-1 text-xs uppercase tracking-[0.2em]"
+              >
+                Read the manifesto
+                <ArrowUpRight className="size-4" />
+              </Link>
+            </Reveal>
+          </div>
+        </section>
+      )}
 
       <section className="border-t hairline bg-[#f5f3f0]">
         <div className="mx-auto max-w-[1500px] px-5 py-16 sm:px-8">

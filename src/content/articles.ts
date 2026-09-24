@@ -1,3 +1,6 @@
+import manifestoImage from "@/assets/ecology/ai-earth-manifesto.jpg.asset.json";
+import { assetUrl } from "@/lib/asset-url";
+
 export interface Article {
   slug: string;
   title: string;
@@ -7,9 +10,43 @@ export interface Article {
   topic: string;
   image: string;
   tags?: string[];
+  principles?: { title: string; body: string }[];
 }
 
 export const articles: Article[] = [
+  {
+    slug: "the-ai-earth-manifesto",
+    title: "The AI Earth Manifesto",
+    excerpt:
+      "AI must serve life. Ten principles place ecological integrity, biodiversity, Indigenous sovereignty, and restoration at the centre of AI governance.",
+    date: "2026-08-30",
+    topic: "Ecology",
+    image: assetUrl(manifestoImage),
+    tags: ["Ecology", "AI", "artificial intelligence", "biodiversity", "AI governance"],
+    body: [
+      "A synoptic view of the highest-profile taxonomies of ethical principles for AI shows broad convergence on about 47 values, including artificial authority, human autonomy, beneficence, non-maleficence, algorithmic fairness, epistemic justice, and explicability, which encompasses both the epistemological sense of intelligibility and the ethical sense of accountability.",
+      "Four of these are core axioms commonly used in bioethics. This coherence between bioethics and the ethics of AI is evidence that approaching AI as an unprecedented form of agency is productive. AI is not a new variety of human multiple intelligences. It is an unprecedented form of agency that can adroitly handle problem frames, in view of a goal, without the need for intelligence.",
+      "This decoupling of agency and intelligence, and the ensconcing of the world, have created considerable risks to human and non-human forms of life. Hyperscale AI Architectures support human efforts to achieve Sustainable Development Goal No. 13. The aim of Goal No. 13 is to strengthen resilience to climate-related hazards and to integrate climate measures into national policies.",
+      "However, the industry’s core growth model structurally affects all life on Earth through its demand for rare earths and its use of roughly 1.5 per cent of the world’s total electricity. Elements such as neodymium and dysprosium are added to semiconductors to enhance their magnetic, optical, and conductive properties.",
+      "Lithography machines use tiny rare-earth-powered motors and actuators to etch complex circuits onto silicon wafers. Gadolinium enhances the thermal tolerance of advanced graphics processing units (GPUs) and AI accelerators. This AI-Nature blind spot has implications for biodiversity, habitats, and ecosystems.",
+      "Magisterial tropical insects like the Blue Emperor often live close to their upper thermal tolerance limits. However, exposure to high temperatures during the pupal and larval stages can alter the microscopic nanostructures on their wings, dulling their brilliant iridescent blue colours.",
+      "Rather than simply relocating to cooler zones, many tropical butterfly populations face severe risks because higher temperatures, combined with habitat fragmentation, restrict their ability to find suitable host plants and shade. Over 1,700 butterfly species have taken flight. They can no longer be found where they once were. They have fled to higher altitudes.",
+      "While about eighty per cent of butterfly species are shifting their ranges towards higher elevations, island species often face severe habitat traps that prevent them from simply moving away to a cooler region. The Constitutions and Model Specifications of AI Assemblages may need to treat biodiversity loss, species extinction, habitat degradation, ecological instability, ecosystem collapse, severe habitat loss, and irreversible biodiversity degradation as first-order risks, alongside risks related to labour market impacts, fairness, equity, delegated authority, and transparency.",
+      "In simple terms, AI companies’ internal manifestos need refreshing to recognise biodiversity as a protected interest, on par with human life, autonomy, security, safety, liberty, and equality. AI must serve life. It must not contest the conditions that make all life possible. We must therefore affirm that, at a time of accelerating biodiversity loss, species extinction, habitat degradation, and ecological instability, the governance of AI must move beyond velocity and opulence. It is therefore critical that the islands of the West Indies propose an AI Earth Manifesto based on ten simple principles:",
+    ],
+    principles: [
+      { title: "Principle 1: Primacy of Ecological Integrity", body: "AI systems should be designed with explicit regard for the flourishing of humans, nonhuman species, and ecosystems." },
+      { title: "Principle 2: Non-Extinction Commitment", body: "No AI system should be developed or used in ways that materially increase the risk of species extinction or irreversible ecosystem loss." },
+      { title: "Principle 3: Precaution Under Ecological Uncertainty", body: "High-uncertainty, high-impact uses of AI should be paused, limited, or prohibited until ecological risks are adequately assessed." },
+      { title: "Principle 4: The Intrinsic Value of Nonhuman Life", body: "Nonhuman beings and ecological communities possess value beyond their utility to human economies or institutions. AI policy must not reduce biodiversity to a mere resource pool." },
+      { title: "Principle 5: Full Lifecycle Responsibility", body: "The ecological impacts of AI arise across its entire lifecycle, including mineral extraction, energy demand, cooling, land occupation, logistics, and waste." },
+      { title: "Principle 6: Justice, Sovereignty, and Protection of Ecological Stewards", body: "AI governance must account for unequal exposure to ecological harm, protect vulnerable communities, and preserve ecological inheritance for future generations." },
+      { title: "Principle 7: Respect for Indigenous Knowledge and Sovereignty", body: "Ecological data governance and AI deployment in biodiverse regions must respect Indigenous rights and Indigenous knowledge." },
+      { title: "Principle 8: Red Lines for Harmful Applications", body: "AI must be used for biodiversity monitoring, ecological research, habitat restoration, climate adaptation, and other purposes that strengthen the protection and recovery of living systems." },
+      { title: "Principle 9: Independent Ecological Oversight", body: "Organisations developing or deploying AI must assess, disclose, and continuously monitor the ecological consequences of their systems." },
+      { title: "Principle 10: Restoration and Remediation", body: "Those who profit from AI should bear responsibility for preventing, mitigating, and repairing the ecological harms their systems cause or intensify." },
+    ],
+  },
   {
     slug: "ai-officiates-the-fifa-2026-world-cup",
     title: `AI Officiates the FIFA 2026 World Cup`,

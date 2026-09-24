@@ -34,6 +34,7 @@ export const Route = createFileRoute("/writing/$slug")({
               content: `https://omeros-cipher-glass.lovable.app/writing/${params.slug}`,
             },
             { name: "twitter:image", content: loaderData.article.image },
+            { name: "twitter:card", content: "summary_large_image" },
           ],
           links: [
             {
@@ -57,7 +58,13 @@ export const Route = createFileRoute("/writing/$slug")({
                     articleSection: loaderData.article.topic,
                     keywords: (loaderData.article.tags ?? []).join(", "),
                     wordCount: loaderData.article.body.join(" ").split(/\s+/).length,
-                    articleBody: loaderData.article.body.join("\n\n"),
+                    articleBody: [
+                      ...loaderData.article.body,
+                      ...(loaderData.article.principles ?? []).flatMap((principle) => [
+                        principle.title,
+                        principle.body,
+                      ]),
+                    ].join("\n\n"),
                     inLanguage: "en",
                     author: {
                       "@type": "Person",
@@ -197,6 +204,12 @@ function ArticlePage() {
               >
                 {p}
               </p>
+            ))}
+            {article.principles?.map((principle) => (
+              <section key={principle.title} className="border-t border-foreground/15 pt-7">
+                <h2 className="font-display text-2xl leading-snug sm:text-3xl">{principle.title}</h2>
+                <p className="mt-4">{principle.body}</p>
+              </section>
             ))}
           </div>
         </Reveal>
