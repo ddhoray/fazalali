@@ -7,31 +7,22 @@ import { Instagram } from "lucide-react";
 import p1 from "@/assets/paintings/1.runintotheshimmeringlightthb.jpg.asset.json";
 import p2 from "@/assets/paintings/2.plungeintoyourdepths.jpg.asset.json";
 import p3 from "@/assets/paintings/3.everyonehereissearching.jpg.asset.json";
-import p4 from "@/assets/paintings/4.gotothelimitsthb.jpg.asset.json";
 import p5 from "@/assets/paintings/5.andtheangelswillleap.jpg.asset.json";
 import p6 from "@/assets/paintings/6.nofellingisfinal.jpg.asset.json";
 import p7 from "@/assets/paintings/7.givemeahandthb.jpg.asset.json";
 import p8 from "@/assets/paintings/8.throughtheemptybranches.jpg.asset.json";
-import p9 from "@/assets/paintings/9.itiswhatyouhave.jpg.asset.json";
-import p10 from "@/assets/paintings/10.leteverythinghappentoyouthb.jpg.asset.json";
 import p11 from "@/assets/paintings/11.givemeyourhand.jpg.asset.json";
 import p12 from "@/assets/paintings/12.sowearegraspedby.jpg.asset.json";
-import p13 from "@/assets/paintings/13.myeyestouchthehillthb.jpg.asset.json";
 import p14 from "@/assets/paintings/14.Ipromisetoholdyouforever.jpg.asset.json";
 import p15 from "@/assets/paintings/15.godspeakstoeachofus.jpg.asset.json";
 import p16 from "@/assets/paintings/16.makebigshadowsthb.jpg.asset.json";
 import p17 from "@/assets/paintings/17.betheground.jpg.asset.json";
-import p18 from "@/assets/paintings/18.youarethesun.jpg.asset.json";
-import p19 from "@/assets/paintings/19.hardlysenseinitthb.jpg.asset.json";
 import p20 from "@/assets/paintings/20.somehowwesurvive.jpg.asset.json";
 import p21 from "@/assets/paintings/21.beginagainandagain.jpg.asset.json";
-import p22 from "@/assets/paintings/22.youhavebeensentouthbt.jpg.asset.json";
 import p23 from "@/assets/paintings/23.aboveusonlysky.jpg.asset.json";
 import p24 from "@/assets/paintings/24.theinnerlightofallthings.jpg.asset.json";
 import p25 from "@/assets/paintings/25.thedarknessofeachendlessfathbl.jpg.asset.json";
 import p26 from "@/assets/paintings/26.wemoveaboutintheworld.jpg.asset.json";
-import p27 from "@/assets/paintings/27.itisnottoolate.jpg.asset.json";
-import pScarlet from "@/assets/paintings/scarletibisteaser.jpg.asset.json";
 import pSpiritual from "@/assets/paintings/spiritualbaptists.jpg.asset.json";
 import newNocturneHouse from "@/assets/gallery/nocturne-house-painting.webp.asset.json";
 import newBeachFigure from "@/assets/gallery/beach-figure-painting.webp.asset.json";
@@ -79,7 +70,6 @@ const works: Work[] = [
   { src: assetUrl(newFazalPiano), title: "Fazal Ali seated beside a piano", hideCaption: true },
   { src: assetUrl(newBluePalms), title: "A painting of palms in blue and green", hideCaption: true },
   { src: assetUrl(newUnfinishedTropical), title: "A developing tropical city painting", hideCaption: true },
-  { src: assetUrl(p1), title: "Run Into the Shimmering Light", year: "2023", medium: "Oil on canvas" },
   { src: assetUrl(p2), title: "Plunge Into Your Depths", year: "2022", medium: "Oil on canvas" },
   {
     src: assetUrl(p3),
@@ -87,25 +77,18 @@ const works: Work[] = [
     year: "2023",
     medium: "Mixed media on board",
   },
-  { src: assetUrl(p4), title: "Go to the Limits", year: "2022", medium: "Oil on canvas" },
   { src: assetUrl(p5), title: "And the Angels Will Leap", year: "2023", medium: "Oil on canvas" },
   { src: assetUrl(p6), title: "No Feeling Is Final", year: "2022", medium: "Oil on canvas" },
   { src: assetUrl(p7), title: "Give Me a Hand", year: "2023", medium: "Oil on canvas" },
   { src: assetUrl(p8), title: "Through the Empty Branches", year: "2022", medium: "Acrylic on canvas" },
-  { src: assetUrl(p9), title: "It Is What You Have", year: "2023", medium: "Oil on canvas" },
-  { src: assetUrl(p10), title: "Let Everything Happen to You", year: "2023", medium: "Oil on canvas" },
   { src: assetUrl(p11), title: "Give Me Your Hand", year: "2023", medium: "Oil on canvas" },
   { src: assetUrl(p12), title: "So We Are Grasped By", year: "2022", medium: "Acrylic on canvas" },
-  { src: assetUrl(p13), title: "My Eyes Touch the Hill", year: "2023", medium: "Oil on canvas" },
   { src: assetUrl(p14), title: "I Promise to Hold You Forever", year: "2023", medium: "Oil on canvas" },
   { src: assetUrl(p15), title: "God Speaks to Each of Us", year: "2022", medium: "Oil on canvas" },
   { src: assetUrl(p16), title: "Make Big Shadows", year: "2023", medium: "Oil on canvas" },
   { src: assetUrl(p17), title: "Be the Ground", year: "2022", medium: "Mixed media on canvas" },
-  { src: assetUrl(p18), title: "You Are the Sun", year: "2023", medium: "Oil on canvas" },
-  { src: assetUrl(p19), title: "Hardly Sense In It", year: "2023", medium: "Oil on canvas" },
   { src: assetUrl(p20), title: "Somehow We Survive", year: "2022", medium: "Mixed media on canvas" },
   { src: assetUrl(p21), title: "Begin Again and Again", year: "2023", medium: "Acrylic on canvas" },
-  { src: assetUrl(p22), title: "You Have Been Sent Out", year: "2023", medium: "Mixed media on board" },
   { src: assetUrl(p23), title: "Above Us Only Sky", year: "2022", medium: "Oil on canvas" },
   { src: assetUrl(p24), title: "The Inner Light of All Things", year: "2023", medium: "Oil on canvas" },
   {
@@ -115,8 +98,6 @@ const works: Work[] = [
     medium: "Oil on canvas",
   },
   { src: assetUrl(p26), title: "We Move About in the World", year: "2023", medium: "Oil on canvas" },
-  { src: assetUrl(p27), title: "It Is Not Too Late", year: "2023", medium: "Acrylic on canvas" },
-  { src: assetUrl(pScarlet), title: "Scarlet Ibis", year: "2023", medium: "Oil on canvas" },
   { src: assetUrl(pSpiritual), title: "Spiritual Baptists", year: "2022", medium: "Oil on canvas" },
 ];
 
