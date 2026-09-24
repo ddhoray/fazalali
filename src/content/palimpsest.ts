@@ -17,26 +17,18 @@ import p3 from "@/assets/palimpsest/palimpsest-final-3.jpg.asset.json";
 import p4 from "@/assets/palimpsest/palimpsest-final-4.jpg.asset.json";
 import p5 from "@/assets/palimpsest/palimpsest-final-5.jpg.asset.json";
 import p6 from "@/assets/palimpsest/palimpsest-final-6.jpg.asset.json";
+import gPrelude from "@/assets/palimpsest/gen-prelude.jpg";
+import gGordon from "@/assets/palimpsest/gen-gordon.jpg";
+import gUcwi from "@/assets/palimpsest/gen-ucwi.jpg";
+import gLewis from "@/assets/palimpsest/gen-lewis.jpg";
 import { assetUrl } from "@/lib/asset-url";
-
-const u = (id: string) =>
-  `https://images.unsplash.com/photo-${id}?w=1600&q=80&auto=format&fit=crop`;
-
-// Stock architecture/campus imagery matching the uploaded set, for the
-// four sections without a unique supplied photo.
-const stock = {
-  stanford: u("1743461436107-e9053072d3e9"),
-  glass: u("1754608264029-a305aeb1622b"),
-  glasgow: u("1667058876798-5f90ce69bd3e"),
-  gates: u("1741529648017-eefa08e7db2c"),
-};
 
 export const palimpsest: PalimpsestSection[] = [
   {
     id: "prelude",
     title: "Prelude, The Old World",
-    image: stock.stanford,
-    imageAlt: "A campus building and tower rising among green trees",
+    image: gPrelude,
+    imageAlt: "A gothic stone university quadrangle beside a modern white ribbed walkway",
     entries: [
       { text: "The University of Oxford. No clear date of foundation, but teaching commenced in some form in 1096 and developed rapidly from 1167 onwards when Henry II banned English students from attending the University of Paris." },
       { text: "The University of Cambridge was established in 1209 and given royal charter status by King Henry III in 1231." },
@@ -100,8 +92,8 @@ export const palimpsest: PalimpsestSection[] = [
   {
     id: "gordon-gladstone",
     title: "1870, Gordon–Gladstone Dual System of Control",
-    image: stock.glass,
-    imageAlt: "Modern glass towers rising into a cloudy sky",
+    image: gGordon,
+    imageAlt: "Ruins of a Caribbean sugar estate with a stone chimney beside cane fields",
     entries: [
       { text: "Governor Gordon, following William Gladstone and the findings of the Keenan Inquiry of 1869, introduced a system by which government-controlled and denominational schools would receive aid and compete on specific terms for government grants." },
       { text: "1875, System adjusted to make it easier for denominational schools to get grants. 1890, Government to establish schools only where the church could not or would not. 1901–1902, Fees abolished, increasing government funding burden; building and apparatus grants to existing denominational schools discontinued." },
@@ -122,8 +114,8 @@ export const palimpsest: PalimpsestSection[] = [
   {
     id: "ucwi",
     title: "1943, University College of the West Indies",
-    image: stock.glasgow,
-    imageAlt: "A historic university tower building at dusk",
+    image: gUcwi,
+    imageAlt: "Students walking past an arcaded Caribbean university college among palms",
     entries: [
       { text: "The Asquith Commission of Vice Chancellors was appointed to 'consider the principles which should guide the promotion of higher education, learning and research… in the colonies.'" },
       { text: "In 1943 there were about 20 East Indian students at McGill University in Canada. In 1945 eight Chinese boys departed to study in England. In 1948 it was reported that 77 graduates of Naparima College were at universities abroad." },
@@ -142,8 +134,8 @@ export const palimpsest: PalimpsestSection[] = [
   {
     id: "lewis-williams",
     title: "1962, Lewis–Williams: Education for Industrialisation",
-    image: stock.gates,
-    imageAlt: "A modern university building with large glass windows and limestone panels",
+    image: gLewis,
+    imageAlt: "A glass-fronted engineering research institute with industrial pipework",
     entries: [
       { text: "Trinidad and Tobago becomes Independent. The West Indian Federation collapses. Drafting of the Gurr 1967–1983 Education Plan commences." },
       { text: "Under Williams, a multi-faculty university campus emerged in Trinidad between 1960 and 1963: agriculture, engineering, arts and sciences." },
