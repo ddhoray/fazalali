@@ -114,6 +114,8 @@ function WritingIndex() {
                 <img
                   src={featured.image}
                   alt=""
+                  referrerPolicy="no-referrer"
+                  fetchPriority="high"
                   className="size-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.04]"
                 />
               </div>
@@ -152,7 +154,8 @@ function WritingIndex() {
                   <img
                     src={a.image}
                     alt=""
-                    loading="lazy"
+                    loading={i < 16 ? "eager" : "lazy"}
+                    referrerPolicy="no-referrer"
                     className="size-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.05]"
                   />
                   <div className="pointer-events-none absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/15" />
