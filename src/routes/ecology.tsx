@@ -85,6 +85,7 @@ function EcologyPage() {
         video={assetUrl(ecoHeroVideo)}
         imageAlt={ecology.heroImageAlt}
         mediaClassName="mx-auto max-w-[420px] md:justify-self-center"
+        mediaAspect="landscape"
       />
 
       <article className="mx-auto max-w-[820px] px-5 py-12 sm:px-8 sm:py-10">
