@@ -199,8 +199,7 @@ function AboutPage() {
           <Reveal>
             <p className="eyebrow text-white/55">What the work explores</p>
             <h2 className="mt-5 font-display text-4xl md:text-6xl">
-              Screen economies, the Law of AI, and policy intent -{" "}
-              <em className="text-white/70">through the lens of freedom.</em>
+              Screen economies, the Law of AI, and policy intent.
             </h2>
             <p className="mt-6 max-w-3xl text-base leading-relaxed text-white/65 md:text-lg">
               A working index of the concerns that move across his essays and consultancies.
