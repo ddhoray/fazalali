@@ -23,6 +23,7 @@ export const Route = createFileRoute("/ecology")({
       },
       { property: "og:type", content: "article" },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/ecology" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/ecology" }],
     scripts: [
