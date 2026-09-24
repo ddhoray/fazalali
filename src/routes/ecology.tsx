@@ -84,7 +84,7 @@ function EcologyPage() {
         }
         video={assetUrl(ecoHeroVideo)}
         imageAlt={ecology.heroImageAlt}
-        mediaClassName="mx-auto max-w-[420px] md:justify-self-center"
+        mediaClassName="mx-auto w-full max-w-[520px] md:justify-self-center"
         mediaAspect="landscape"
       />
 
