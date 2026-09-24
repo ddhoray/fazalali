@@ -6,17 +6,14 @@
  * those paths return 404. This helper rewrites them to the absolute Lovable
  * published origin, which serves the same files with permissive caching.
  */
-const LOVABLE_HOSTS = [".lovable.app", ".lovableproject.com", ".lovable.dev"];
 const LOVABLE_ASSET_ORIGIN = "https://omeros-cipher-glass.lovable.app";
 
 export function assetUrl(pointer: { url: string }): string {
   const url = pointer.url;
   if (!url.startsWith("/__l5e/")) return url;
 
-  // SSR: emit the absolute URL so prerendered HTML works on any host.
-  if (typeof window === "undefined") return `${LOVABLE_ASSET_ORIGIN}${url}`;
-
-  const host = window.location.hostname;
-  const isLovable = LOVABLE_HOSTS.some((suffix) => host.endsWith(suffix));
-  return isLovable ? url : `${LOVABLE_ASSET_ORIGIN}${url}`;
+  // Always emit one stable URL. Returning a relative URL in the browser but
+  // an absolute URL during SSR causes React hydration mismatches and can leave
+  // image elements pointing at a preview host that cannot serve CDN assets.
+  return `${LOVABLE_ASSET_ORIGIN}${url}`;
 }

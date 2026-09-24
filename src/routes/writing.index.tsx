@@ -78,7 +78,7 @@ function WritingIndex() {
   const [featured, ...rest] = articles;
 
   return (
-    <div>
+    <div data-auto-reveal="off">
       <PageHero
         eyebrow="Journal"
         title={
