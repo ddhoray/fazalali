@@ -1,0 +1,196 @@
+import { createFileRoute, Link, Outlet, redirect, useNavigate, useRouterState } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
+import { useState, type ReactNode } from "react";
+import {
+  BookOpen,
+  ExternalLink,
+  FileText,
+  Images,
+  Inbox,
+  LayoutDashboard,
+  Layers,
+  LogOut,
+  Mail,
+  Menu,
+  MessageSquareQuote,
+  Newspaper,
+  PanelsTopLeft,
+  Shield,
+  History,
+  Trees,
+  UserRound,
+  X,
+  Library,
+} from "lucide-react";
+import { Toaster } from "@/components/ui/sonner";
+import { adminLogout, adminMe } from "@/lib/admin/admin.functions";
+import { cn } from "@/lib/utils";
+import mark from "@/assets/brand-omeros-mark.png";
+
+export const Route = createFileRoute("/admin")({
+  ssr: false,
+  head: () => ({
+    meta: [
+      { title: "Omeros Admin" },
+      { name: "robots", content: "noindex, nofollow" },
+      { name: "description", content: "Omeros content management." },
+      { property: "og:title", content: "Omeros Admin" },
+      { property: "og:description", content: "Omeros content management." },
+    ],
+  }),
+  beforeLoad: async ({ location }) => {
+    if (location.pathname.startsWith("/admin/login")) return { me: null };
+    const me = await adminMe();
+    if (!me) throw redirect({ to: "/admin/login" });
+    return { me };
+  },
+  component: AdminLayout,
+});
+
+type NavItem = { to: string; label: string; icon: ReactNode; params?: Record<string, string>; min?: "editor" | "owner" };
+const NAV: { group: string; items: NavItem[] }[] = [
+  { group: "Overview", items: [{ to: "/admin", label: "Dashboard", icon: <LayoutDashboard /> }] },
+  {
+    group: "Content",
+    items: [
+      { to: "/admin/articles", label: "Journal", icon: <Newspaper /> },
+      { to: "/admin/pages", label: "Page text", icon: <PanelsTopLeft /> },
+      { to: "/admin/collections/$collection", params: { collection: "books" }, label: "Books", icon: <BookOpen /> },
+      { to: "/admin/collections/$collection", params: { collection: "gallery" }, label: "Gallery", icon: <Images /> },
+      { to: "/admin/collections/$collection", params: { collection: "palimpsest" }, label: "Palimpsest", icon: <Layers /> },
+      { to: "/admin/collections/$collection", params: { collection: "readings" }, label: "Ecology & Inequality", icon: <Trees /> },
+      { to: "/admin/collections/$collection", params: { collection: "testimonials" }, label: "Testimonials", icon: <MessageSquareQuote /> },
+    ],
+  },
+  { group: "Media", items: [{ to: "/admin/media", label: "Media library", icon: <Library /> }] },
+  {
+    group: "Audience",
+    items: [
+      { to: "/admin/inbox", label: "Inbox", icon: <Inbox /> },
+      { to: "/admin/subscribers", label: "Newsletter", icon: <Mail /> },
+    ],
+  },
+  {
+    group: "Team",
+    items: [
+      { to: "/admin/staff", label: "Staff & roles", icon: <Shield />, min: "owner" },
+      { to: "/admin/audit", label: "Audit log", icon: <History />, min: "editor" },
+      { to: "/admin/profile", label: "My profile", icon: <UserRound /> },
+    ],
+  },
+];
+const RANK = { viewer: 0, author: 1, editor: 2, owner: 3 } as const;
+
+function AdminLayout() {
+  const { me } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const [open, setOpen] = useState(false);
+  const logout = useServerFn(adminLogout);
+  const navigate = useNavigate();
+
+  if (!me) {
+    return (
+      <>
+        <Outlet />
+        <Toaster position="top-center" />
+      </>
+    );
+  }
+
+  const isActive = (it: NavItem) => {
+    const href = it.params ? it.to.replace("$collection", it.params.collection) : it.to;
+    return href === "/admin" ? pathname === "/admin" || pathname === "/admin/" : pathname.startsWith(href);
+  };
+
+  const sidebar = (
+    <nav className="flex h-full flex-col">
+      <div className="flex h-16 items-center gap-3 border-b border-border px-5">
+        <img src={mark} alt="" className="size-8 object-contain" />
+        <div className="leading-tight">
+          <p className="font-display text-base tracking-tight">Omeros</p>
+          <p className="text-[10px] uppercase tracking-[0.24em] text-muted-foreground">Admin</p>
+        </div>
+      </div>
+      <div className="flex-1 space-y-6 overflow-y-auto px-3 py-5">
+        {NAV.map((g) => {
+          const items = g.items.filter((i) => !i.min || RANK[me.role] >= RANK[i.min]);
+          if (!items.length) return null;
+          return (
+            <div key={g.group}>
+              <p className="px-3 pb-2 text-[10px] uppercase tracking-[0.24em] text-muted-foreground">{g.group}</p>
+              {items.map((it) => (
+                <Link
+                  key={it.label}
+                  to={it.to as "/admin"}
+                  params={it.params as never}
+                  onClick={() => setOpen(false)}
+                  className={cn(
+                    "flex items-center gap-3 px-3 py-2 text-sm transition-colors [&_svg]:size-4",
+                    isActive(it) ? "bg-foreground text-background" : "text-foreground/75 hover:bg-muted hover:text-foreground",
+                  )}
+                >
+                  {it.icon}
+                  {it.label}
+                </Link>
+              ))}
+            </div>
+          );
+        })}
+      </div>
+      <div className="border-t border-border p-3">
+        <a href="/" target="_blank" rel="noreferrer" className="flex items-center gap-3 px-3 py-2 text-sm text-foreground/75 hover:bg-muted [&_svg]:size-4">
+          <ExternalLink /> View website
+        </a>
+      </div>
+    </nav>
+  );
+
+  return (
+    <div className="min-h-screen bg-muted/40 text-foreground">
+      <aside className="fixed inset-y-0 left-0 z-30 hidden w-64 border-r border-border bg-background lg:block">{sidebar}</aside>
+      {open && (
+        <div className="fixed inset-0 z-40 lg:hidden">
+          <div className="absolute inset-0 bg-foreground/40" onClick={() => setOpen(false)} />
+          <aside className="absolute inset-y-0 left-0 w-72 bg-background">{sidebar}</aside>
+        </div>
+      )}
+      <div className="lg:pl-64">
+        <header className="sticky top-0 z-20 flex h-14 items-center gap-3 border-b border-border bg-background/90 px-4 backdrop-blur md:px-8">
+          <button className="lg:hidden" onClick={() => setOpen(!open)} aria-label="Menu">
+            {open ? <X className="size-5" /> : <Menu className="size-5" />}
+          </button>
+          <p className="hidden text-xs uppercase tracking-[0.22em] text-muted-foreground sm:block">omeros.hyperrevamp.com</p>
+          <div className="ml-auto flex items-center gap-3">
+            <Link to="/admin/articles/$id" params={{ id: "new" }} className="hidden items-center gap-2 bg-omeros px-3 py-1.5 text-xs uppercase tracking-[0.16em] text-background sm:inline-flex">
+              <FileText className="size-3.5" /> New entry
+            </Link>
+            <Link to="/admin/profile" className="flex items-center gap-2">
+              <span className="flex size-8 items-center justify-center overflow-hidden bg-foreground text-xs text-background">
+                {me.avatar_url ? <img src={me.avatar_url} alt="" className="size-full object-cover" /> : (me.name || "A").slice(0, 1).toUpperCase()}
+              </span>
+              <span className="hidden text-left leading-tight md:block">
+                <span className="block text-sm">{me.name || me.phone}</span>
+                <span className="block text-[10px] uppercase tracking-[0.18em] text-muted-foreground">{me.role}</span>
+              </span>
+            </Link>
+            <button
+              onClick={async () => {
+                await logout();
+                navigate({ to: "/admin/login", replace: true });
+              }}
+              className="p-2 text-muted-foreground hover:text-foreground"
+              aria-label="Sign out"
+              title="Sign out"
+            >
+              <LogOut className="size-4" />
+            </button>
+          </div>
+        </header>
+        <main className="mx-auto max-w-[1400px] px-4 py-8 md:px-8">
+          <Outlet />
+        </main>
+      </div>
+      <Toaster position="top-center" />
+    </div>
+  );
+}
