@@ -22,6 +22,7 @@ import {
   X,
   Library,
   ChevronDown,
+  Sparkles,
 } from "lucide-react";
 import { Toaster } from "@/components/ui/sonner";
 import { adminLogout, adminMe } from "@/lib/admin/admin.functions";

@@ -1,4 +1,4 @@
-import { CmsTestimonials, useCmsText } from "@/components/site/CmsExtras";
+import { CmsTestimonials, useCmsEntries, useCmsText } from "@/components/site/CmsExtras";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
@@ -99,6 +99,8 @@ function AboutPage() {
   const heroTitle = useCmsText("profile", "heroTitle");
   const heroIntro = useCmsText("profile", "heroIntro");
   const aboutBody = useCmsText("profile", "aboutBody");
+  const cmsRoles = useCmsEntries("profile_roles");
+  const displayedRoles = cmsRoles.length ? cmsRoles.map((role) => ({ year: role.title, text: role.body ?? "" })) : roles;
   return (
     <div>
       <PageHero
@@ -240,7 +242,7 @@ function AboutPage() {
           </h2>
         </Reveal>
         <div className="mt-16 border-t hairline">
-          {roles.map((m, i) => (
+           {displayedRoles.map((m, i) => (
             <Reveal key={m.year} delay={i * 0.04}>
               <div className="grid gap-3 border-b hairline py-8 md:grid-cols-[240px_1fr] md:gap-12 md:py-10">
                 <p className="font-display text-2xl leading-none md:text-3xl">{m.year}</p>
