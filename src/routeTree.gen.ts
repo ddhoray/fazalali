@@ -27,6 +27,7 @@ import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as WritingSlugRouteImport } from './routes/writing.$slug'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as AdminArticlesIndexRouteImport } from './routes/admin.articles.index'
+import { Route as AdminArticlesIdRouteImport } from './routes/admin.articles.$id'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -118,6 +119,11 @@ const AdminArticlesIndexRoute = AdminArticlesIndexRouteImport.update({
   path: '/articles/',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminArticlesIdRoute = AdminArticlesIdRouteImport.update({
+  id: '/articles/$id',
+  path: '/articles/$id',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -137,6 +143,7 @@ export interface FileRoutesByFullPath {
   '/writing/$slug': typeof WritingSlugRoute
   '/admin/': typeof AdminIndexRoute
   '/writing/': typeof WritingIndexRoute
+  '/admin/articles/$id': typeof AdminArticlesIdRoute
   '/admin/articles/': typeof AdminArticlesIndexRoute
 }
 export interface FileRoutesByTo {
@@ -156,6 +163,7 @@ export interface FileRoutesByTo {
   '/writing/$slug': typeof WritingSlugRoute
   '/admin': typeof AdminIndexRoute
   '/writing': typeof WritingIndexRoute
+  '/admin/articles/$id': typeof AdminArticlesIdRoute
   '/admin/articles': typeof AdminArticlesIndexRoute
 }
 export interface FileRoutesById {
@@ -177,6 +185,7 @@ export interface FileRoutesById {
   '/writing/$slug': typeof WritingSlugRoute
   '/admin/': typeof AdminIndexRoute
   '/writing/': typeof WritingIndexRoute
+  '/admin/articles/$id': typeof AdminArticlesIdRoute
   '/admin/articles/': typeof AdminArticlesIndexRoute
 }
 export interface FileRouteTypes {
@@ -199,6 +208,7 @@ export interface FileRouteTypes {
     | '/writing/$slug'
     | '/admin/'
     | '/writing/'
+    | '/admin/articles/$id'
     | '/admin/articles/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -218,6 +228,7 @@ export interface FileRouteTypes {
     | '/writing/$slug'
     | '/admin'
     | '/writing'
+    | '/admin/articles/$id'
     | '/admin/articles'
   id:
     | '__root__'
@@ -238,6 +249,7 @@ export interface FileRouteTypes {
     | '/writing/$slug'
     | '/admin/'
     | '/writing/'
+    | '/admin/articles/$id'
     | '/admin/articles/'
   fileRoutesById: FileRoutesById
 }
@@ -387,18 +399,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminArticlesIndexRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/articles/$id': {
+      id: '/admin/articles/$id'
+      path: '/articles/$id'
+      fullPath: '/admin/articles/$id'
+      preLoaderRoute: typeof AdminArticlesIdRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
 interface AdminRouteChildren {
   AdminLoginRoute: typeof AdminLoginRoute
   AdminIndexRoute: typeof AdminIndexRoute
+  AdminArticlesIdRoute: typeof AdminArticlesIdRoute
   AdminArticlesIndexRoute: typeof AdminArticlesIndexRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
   AdminLoginRoute: AdminLoginRoute,
   AdminIndexRoute: AdminIndexRoute,
+  AdminArticlesIdRoute: AdminArticlesIdRoute,
   AdminArticlesIndexRoute: AdminArticlesIndexRoute,
 }
 
