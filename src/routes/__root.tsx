@@ -4,8 +4,10 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
+  type ErrorComponentProps,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
@@ -21,6 +23,7 @@ import { FloatingBottomNav } from "../components/site/FloatingBottomNav";
 import { MobileTopBar } from "../components/site/MobileTopBar";
 import { SplashScreen } from "../components/site/SplashScreen";
 import { ScrollToTop } from "../components/site/ScrollToTop";
+import { trackView } from "../lib/cms.functions";
 
 function NotFoundComponent() {
   return (
@@ -41,7 +44,7 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error, reset }: ErrorComponentProps) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
@@ -185,6 +188,20 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const isAdmin = pathname.startsWith("/admin");
+
+  useEffect(() => {
+    if (!isAdmin) trackView({ data: { path: pathname } }).catch(() => {});
+  }, [pathname, isAdmin]);
+
+  if (isAdmin) {
+    return (
+      <QueryClientProvider client={queryClient}>
+        <Outlet />
+      </QueryClientProvider>
+    );
+  }
 
   return (
     <QueryClientProvider client={queryClient}>

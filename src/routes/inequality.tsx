@@ -1,3 +1,4 @@
+import { CmsReadings, CmsTestimonials, CmsPalimpsest, useCmsEntries } from "@/components/site/CmsExtras";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
@@ -159,6 +160,7 @@ function InequalityPage() {
               </Reveal>
             ))}
           </div>
+          <CmsReadings page="inequality" />
         </div>
       </section>
 

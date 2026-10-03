@@ -8,8 +8,8 @@ export const PAGE_SCHEMAS: PageSchema[] = [
     label: "Homepage",
     path: "/",
     fields: [
-      { key: "latestHeading", label: "Latest journal heading", def: "Latest from the journal" },
-      { key: "announcement", label: "Announcement line (optional, shown above the footer)", def: "", long: true },
+      { key: "journalEyebrow", label: "Journal section label", def: "From the Journal" },
+      { key: "journalHeading", label: "Journal section heading", def: "Recent pieces." },
     ],
   },
   {
@@ -19,15 +19,6 @@ export const PAGE_SCHEMAS: PageSchema[] = [
     fields: [
       { key: "testimonialsHeading", label: "Testimonials heading", def: "In others' words" },
       { key: "testimonialsIntro", label: "Testimonials intro", def: "Colleagues, students and collaborators on the work.", long: true },
-    ],
-  },
-  {
-    key: "contact",
-    label: "Contact & footer",
-    path: "/contact",
-    fields: [
-      { key: "email", label: "Public email", def: "" },
-      { key: "footerNote", label: "Footer note", def: "", long: true },
     ],
   },
 ];

@@ -7,7 +7,7 @@ import heroBook from "@/assets/hero-writing.jpg";
 
 export const Route = createFileRoute("/writing/")({
   loader: () => getJournal(),
-  head: () => ({
+  head: ({ loaderData }) => ({
     meta: [
       { title: "Journal, Essays on AI, Education & the West Indies by Fazal Ali" },
       {
@@ -50,7 +50,7 @@ export const Route = createFileRoute("/writing/")({
             url: "https://omeros-cipher-glass.lovable.app/about",
           },
           inLanguage: "en",
-          blogPost: articles.slice(0, 20).map((a) => ({
+          blogPost: (loaderData ?? []).slice(0, 20).map((a) => ({
             "@type": "BlogPosting",
             headline: a.title,
             url: `https://omeros-cipher-glass.lovable.app/writing/${a.slug}`,

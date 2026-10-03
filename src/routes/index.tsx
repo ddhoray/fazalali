@@ -1,3 +1,4 @@
+import { useCmsText } from "@/components/site/CmsExtras";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { motion, useScroll, useTransform, useMotionValueEvent } from "motion/react";
 import { useEffect, useRef, useState } from "react";
@@ -747,19 +748,21 @@ const writingImages = [featuredWriting, practiceEssays, featuredOmeros];
 function LatestWriting() {
   const latest = articles.slice(0, 3);
   const navigate = useNavigate();
+  const eyebrow = useCmsText("home", "journalEyebrow");
+  const heading = useCmsText("home", "journalHeading");
   return (
     <section className="mx-auto max-w-[1700px] scroll-mt-24 bg-background px-5 py-10 sm:px-8 md:py-14">
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4 border-b hairline pb-5">
         <div>
           <BlurReveal as="p" className="eyebrow text-muted-foreground">
-            From the Journal
+            {eyebrow}
           </BlurReveal>
           <BlurReveal
             as="h2"
             delay={0.08}
             className="mt-3 font-display text-[11vw] leading-[1] sm:text-5xl md:text-6xl"
           >
-            Recent pieces<span className="">.</span>
+            {heading}
           </BlurReveal>
         </div>
         <BlurReveal delay={0.16}>

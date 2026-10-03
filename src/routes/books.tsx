@@ -1,3 +1,4 @@
+import { CmsReadings, CmsTestimonials, CmsPalimpsest, useCmsEntries } from "@/components/site/CmsExtras";
 import { useState, type ReactNode } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "motion/react";
@@ -139,6 +140,24 @@ const forthcoming: {
 function BooksPage() {
   const [active, setActive] = useState<number | null>(null);
   const [open, setOpen] = useState<number | null>(null);
+  const cmsBooks = useCmsEntries("books").map((e) => ({
+    title: e.title,
+    note: (
+      <>
+        {e.body}
+        {e.link_url ? (
+          <>
+            {" "}
+            <a href={e.link_url} target="_blank" rel="noreferrer" className="underline">Read more</a>
+          </>
+        ) : null}
+      </>
+    ),
+    year: e.subtitle ?? "Forthcoming",
+    image: e.image_url ?? "",
+    imageAlt: e.title,
+  }));
+  const books = [...forthcoming, ...cmsBooks];
   return (
     <div>
       <PageHero
@@ -250,7 +269,7 @@ function BooksPage() {
             className="mt-12 flex flex-col gap-4 md:flex-row md:gap-5"
             onMouseLeave={() => setActive(null)}
           >
-            {forthcoming.map((b, i) => (
+            {books.map((b, i) => (
               <motion.article
                 key={b.title}
                 data-book-card
@@ -334,7 +353,7 @@ function BooksPage() {
               onClick={(e) => e.stopPropagation()}
               role="dialog"
               aria-modal="true"
-              aria-label={forthcoming[open].title}
+              aria-label={books[open].title}
             >
               <button
                 type="button"
@@ -348,20 +367,20 @@ function BooksPage() {
               <div className="grid md:min-h-[620px] md:grid-cols-[minmax(300px,0.85fr)_minmax(0,1.15fr)]">
                 <div className="flex min-h-[430px] items-center justify-center overflow-hidden bg-foreground p-5 sm:min-h-[540px] sm:p-8 md:min-h-0">
                   <img
-                    src={forthcoming[open].image}
-                    alt={forthcoming[open].imageAlt}
+                    src={books[open].image}
+                    alt={books[open].imageAlt}
                     className={`max-h-[72vh] size-full ${open === 0 ? "object-contain" : "object-cover"}`}
                   />
                 </div>
 
                 <div className="flex flex-col justify-center px-6 py-9 sm:px-10 sm:py-12">
-                  <p className="eyebrow text-muted-foreground">{forthcoming[open].year}</p>
+                  <p className="eyebrow text-muted-foreground">{books[open].year}</p>
                   <h3 className="mt-4 max-w-lg font-display text-4xl leading-[1.05] sm:text-5xl">
-                    {forthcoming[open].title}
+                    {books[open].title}
                   </h3>
                   <div className="mt-7 h-px w-14 bg-accent" />
                   <p className="mt-7 text-base leading-relaxed text-foreground/85 sm:text-lg">
-                    {forthcoming[open].note}
+                    {books[open].note}
                   </p>
                 </div>
               </div>

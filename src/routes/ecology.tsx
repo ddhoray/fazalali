@@ -1,3 +1,4 @@
+import { CmsReadings, CmsTestimonials, CmsPalimpsest, useCmsEntries } from "@/components/site/CmsExtras";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
@@ -223,6 +224,7 @@ function EcologyPage() {
               </Reveal>
             ))}
           </div>
+          <CmsReadings page="ecology" />
         </div>
       </section>
 
