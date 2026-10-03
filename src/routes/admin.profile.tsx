@@ -1,8 +1,8 @@
-import { createFileRoute, useNavigate, useRouter } from "@tanstack/react-router";
+import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import { KeyRound, Loader2, LogOut, Save } from "lucide-react";
+import { KeyRound, Loader2, Save } from "lucide-react";
 import { toast } from "sonner";
 import { adminLogout, adminMyActivity, adminUpdateProfile } from "@/lib/admin/admin.functions";
 import { Field, ImageField, PageHeader, Panel, StatusBadge, inputCls, timeAgo } from "@/components/admin/AdminUi";
