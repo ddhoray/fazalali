@@ -11,11 +11,14 @@ import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/admin/pages")({ component: PagesEditor });
 
+const EMPTY_PAGES: Awaited<ReturnType<ReturnType<typeof useServerFn<typeof adminGetPages>>>> = [];
+
 function PagesEditor() {
   const get = useServerFn(adminGetPages);
   const save = useServerFn(adminSavePage);
   const qc = useQueryClient();
-  const { data = [] } = useQuery({ queryKey: ["admin", "pages"], queryFn: () => get() });
+  const query = useQuery({ queryKey: ["admin", "pages"], queryFn: () => get() });
+  const data = query.data ?? EMPTY_PAGES;
   const [active, setActive] = useState(PAGE_SCHEMAS[0].key);
   const schema = useMemo(() => PAGE_SCHEMAS.find((p) => p.key === active) ?? PAGE_SCHEMAS[0], [active]);
   const [values, setValues] = useState<Record<string, string>>({});
