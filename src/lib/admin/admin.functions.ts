@@ -12,11 +12,15 @@ export const adminLogin = createServerFn({ method: "POST" })
     const s = await S();
     const db = await DB();
     const phone = s.normalizePhone(data.phone);
-    const { data: staff } = await db
+    const { data: staff, error } = await db
       .from("cms_staff")
       .select("id, otp_hash, active, name")
       .eq("phone", phone)
       .maybeSingle();
+    if (error) {
+      console.error("adminLogin failed", error);
+      return { ok: false as const, error: "Sign-in is temporarily unavailable: the server can't reach the database." };
+    }
     if (!staff || !staff.active || staff.otp_hash !== (await s.sha256(data.otp.trim()))) {
       return { ok: false as const, error: "That number and code don't match an active account." };
     }
@@ -36,11 +40,15 @@ export const adminCheckPhone = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     const s = await S();
     const db = await DB();
-    const { data: staff } = await db
+    const { data: staff, error } = await db
       .from("cms_staff")
       .select("id, active")
       .eq("phone", s.normalizePhone(data.phone))
       .maybeSingle();
+    if (error) {
+      console.error("adminCheckPhone failed", error);
+      throw new Error("Sign-in is temporarily unavailable: the server can't reach the database.");
+    }
     return { exists: Boolean(staff?.active) };
   });
 
