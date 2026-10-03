@@ -566,7 +566,7 @@ export const adminUpdateProfile = createServerFn({ method: "POST" })
     const s = await S();
     const me = await s.requireStaff();
     const db = await DB();
-    const patch: Record<string, string | null> = {
+    const patch: { name: string; email: string | null; avatar_url: string | null; bio: string | null; otp_hash?: string } = {
       name: data.name,
       email: data.email || null,
       avatar_url: data.avatar_url || null,
