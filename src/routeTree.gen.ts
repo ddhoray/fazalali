@@ -25,8 +25,16 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as WritingIndexRouteImport } from './routes/writing.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as WritingSlugRouteImport } from './routes/writing.$slug'
+import { Route as AdminSubscribersRouteImport } from './routes/admin.subscribers'
+import { Route as AdminStaffRouteImport } from './routes/admin.staff'
+import { Route as AdminProfileRouteImport } from './routes/admin.profile'
+import { Route as AdminPagesRouteImport } from './routes/admin.pages'
+import { Route as AdminMediaRouteImport } from './routes/admin.media'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
+import { Route as AdminInboxRouteImport } from './routes/admin.inbox'
+import { Route as AdminAuditRouteImport } from './routes/admin.audit'
 import { Route as AdminArticlesIndexRouteImport } from './routes/admin.articles.index'
+import { Route as AdminCollectionsCollectionRouteImport } from './routes/admin.collections.$collection'
 import { Route as AdminArticlesIdRouteImport } from './routes/admin.articles.$id'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -109,9 +117,44 @@ const WritingSlugRoute = WritingSlugRouteImport.update({
   path: '/writing/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminSubscribersRoute = AdminSubscribersRouteImport.update({
+  id: '/subscribers',
+  path: '/subscribers',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminStaffRoute = AdminStaffRouteImport.update({
+  id: '/staff',
+  path: '/staff',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminProfileRoute = AdminProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminPagesRoute = AdminPagesRouteImport.update({
+  id: '/pages',
+  path: '/pages',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminMediaRoute = AdminMediaRouteImport.update({
+  id: '/media',
+  path: '/media',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminLoginRoute = AdminLoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminInboxRoute = AdminInboxRouteImport.update({
+  id: '/inbox',
+  path: '/inbox',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAuditRoute = AdminAuditRouteImport.update({
+  id: '/audit',
+  path: '/audit',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminArticlesIndexRoute = AdminArticlesIndexRouteImport.update({
@@ -119,6 +162,12 @@ const AdminArticlesIndexRoute = AdminArticlesIndexRouteImport.update({
   path: '/articles/',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminCollectionsCollectionRoute =
+  AdminCollectionsCollectionRouteImport.update({
+    id: '/collections/$collection',
+    path: '/collections/$collection',
+    getParentRoute: () => AdminRoute,
+  } as any)
 const AdminArticlesIdRoute = AdminArticlesIdRouteImport.update({
   id: '/articles/$id',
   path: '/articles/$id',
@@ -139,11 +188,19 @@ export interface FileRoutesByFullPath {
   '/palimpsest': typeof PalimpsestRoute
   '/podcast': typeof PodcastRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/audit': typeof AdminAuditRoute
+  '/admin/inbox': typeof AdminInboxRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/media': typeof AdminMediaRoute
+  '/admin/pages': typeof AdminPagesRoute
+  '/admin/profile': typeof AdminProfileRoute
+  '/admin/staff': typeof AdminStaffRoute
+  '/admin/subscribers': typeof AdminSubscribersRoute
   '/writing/$slug': typeof WritingSlugRoute
   '/admin/': typeof AdminIndexRoute
   '/writing/': typeof WritingIndexRoute
   '/admin/articles/$id': typeof AdminArticlesIdRoute
+  '/admin/collections/$collection': typeof AdminCollectionsCollectionRoute
   '/admin/articles/': typeof AdminArticlesIndexRoute
 }
 export interface FileRoutesByTo {
@@ -159,11 +216,19 @@ export interface FileRoutesByTo {
   '/palimpsest': typeof PalimpsestRoute
   '/podcast': typeof PodcastRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/audit': typeof AdminAuditRoute
+  '/admin/inbox': typeof AdminInboxRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/media': typeof AdminMediaRoute
+  '/admin/pages': typeof AdminPagesRoute
+  '/admin/profile': typeof AdminProfileRoute
+  '/admin/staff': typeof AdminStaffRoute
+  '/admin/subscribers': typeof AdminSubscribersRoute
   '/writing/$slug': typeof WritingSlugRoute
   '/admin': typeof AdminIndexRoute
   '/writing': typeof WritingIndexRoute
   '/admin/articles/$id': typeof AdminArticlesIdRoute
+  '/admin/collections/$collection': typeof AdminCollectionsCollectionRoute
   '/admin/articles': typeof AdminArticlesIndexRoute
 }
 export interface FileRoutesById {
@@ -181,11 +246,19 @@ export interface FileRoutesById {
   '/palimpsest': typeof PalimpsestRoute
   '/podcast': typeof PodcastRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/audit': typeof AdminAuditRoute
+  '/admin/inbox': typeof AdminInboxRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/media': typeof AdminMediaRoute
+  '/admin/pages': typeof AdminPagesRoute
+  '/admin/profile': typeof AdminProfileRoute
+  '/admin/staff': typeof AdminStaffRoute
+  '/admin/subscribers': typeof AdminSubscribersRoute
   '/writing/$slug': typeof WritingSlugRoute
   '/admin/': typeof AdminIndexRoute
   '/writing/': typeof WritingIndexRoute
   '/admin/articles/$id': typeof AdminArticlesIdRoute
+  '/admin/collections/$collection': typeof AdminCollectionsCollectionRoute
   '/admin/articles/': typeof AdminArticlesIndexRoute
 }
 export interface FileRouteTypes {
@@ -204,11 +277,19 @@ export interface FileRouteTypes {
     | '/palimpsest'
     | '/podcast'
     | '/sitemap.xml'
+    | '/admin/audit'
+    | '/admin/inbox'
     | '/admin/login'
+    | '/admin/media'
+    | '/admin/pages'
+    | '/admin/profile'
+    | '/admin/staff'
+    | '/admin/subscribers'
     | '/writing/$slug'
     | '/admin/'
     | '/writing/'
     | '/admin/articles/$id'
+    | '/admin/collections/$collection'
     | '/admin/articles/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -224,11 +305,19 @@ export interface FileRouteTypes {
     | '/palimpsest'
     | '/podcast'
     | '/sitemap.xml'
+    | '/admin/audit'
+    | '/admin/inbox'
     | '/admin/login'
+    | '/admin/media'
+    | '/admin/pages'
+    | '/admin/profile'
+    | '/admin/staff'
+    | '/admin/subscribers'
     | '/writing/$slug'
     | '/admin'
     | '/writing'
     | '/admin/articles/$id'
+    | '/admin/collections/$collection'
     | '/admin/articles'
   id:
     | '__root__'
@@ -245,11 +334,19 @@ export interface FileRouteTypes {
     | '/palimpsest'
     | '/podcast'
     | '/sitemap.xml'
+    | '/admin/audit'
+    | '/admin/inbox'
     | '/admin/login'
+    | '/admin/media'
+    | '/admin/pages'
+    | '/admin/profile'
+    | '/admin/staff'
+    | '/admin/subscribers'
     | '/writing/$slug'
     | '/admin/'
     | '/writing/'
     | '/admin/articles/$id'
+    | '/admin/collections/$collection'
     | '/admin/articles/'
   fileRoutesById: FileRoutesById
 }
@@ -385,6 +482,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WritingSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/subscribers': {
+      id: '/admin/subscribers'
+      path: '/subscribers'
+      fullPath: '/admin/subscribers'
+      preLoaderRoute: typeof AdminSubscribersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/staff': {
+      id: '/admin/staff'
+      path: '/staff'
+      fullPath: '/admin/staff'
+      preLoaderRoute: typeof AdminStaffRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/profile': {
+      id: '/admin/profile'
+      path: '/profile'
+      fullPath: '/admin/profile'
+      preLoaderRoute: typeof AdminProfileRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/pages': {
+      id: '/admin/pages'
+      path: '/pages'
+      fullPath: '/admin/pages'
+      preLoaderRoute: typeof AdminPagesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/media': {
+      id: '/admin/media'
+      path: '/media'
+      fullPath: '/admin/media'
+      preLoaderRoute: typeof AdminMediaRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/login': {
       id: '/admin/login'
       path: '/login'
@@ -392,11 +524,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminLoginRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/inbox': {
+      id: '/admin/inbox'
+      path: '/inbox'
+      fullPath: '/admin/inbox'
+      preLoaderRoute: typeof AdminInboxRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/audit': {
+      id: '/admin/audit'
+      path: '/audit'
+      fullPath: '/admin/audit'
+      preLoaderRoute: typeof AdminAuditRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/articles/': {
       id: '/admin/articles/'
       path: '/articles'
       fullPath: '/admin/articles/'
       preLoaderRoute: typeof AdminArticlesIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/collections/$collection': {
+      id: '/admin/collections/$collection'
+      path: '/collections/$collection'
+      fullPath: '/admin/collections/$collection'
+      preLoaderRoute: typeof AdminCollectionsCollectionRouteImport
       parentRoute: typeof AdminRoute
     }
     '/admin/articles/$id': {
@@ -410,16 +563,32 @@ declare module '@tanstack/react-router' {
 }
 
 interface AdminRouteChildren {
+  AdminAuditRoute: typeof AdminAuditRoute
+  AdminInboxRoute: typeof AdminInboxRoute
   AdminLoginRoute: typeof AdminLoginRoute
+  AdminMediaRoute: typeof AdminMediaRoute
+  AdminPagesRoute: typeof AdminPagesRoute
+  AdminProfileRoute: typeof AdminProfileRoute
+  AdminStaffRoute: typeof AdminStaffRoute
+  AdminSubscribersRoute: typeof AdminSubscribersRoute
   AdminIndexRoute: typeof AdminIndexRoute
   AdminArticlesIdRoute: typeof AdminArticlesIdRoute
+  AdminCollectionsCollectionRoute: typeof AdminCollectionsCollectionRoute
   AdminArticlesIndexRoute: typeof AdminArticlesIndexRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminAuditRoute: AdminAuditRoute,
+  AdminInboxRoute: AdminInboxRoute,
   AdminLoginRoute: AdminLoginRoute,
+  AdminMediaRoute: AdminMediaRoute,
+  AdminPagesRoute: AdminPagesRoute,
+  AdminProfileRoute: AdminProfileRoute,
+  AdminStaffRoute: AdminStaffRoute,
+  AdminSubscribersRoute: AdminSubscribersRoute,
   AdminIndexRoute: AdminIndexRoute,
   AdminArticlesIdRoute: AdminArticlesIdRoute,
+  AdminCollectionsCollectionRoute: AdminCollectionsCollectionRoute,
   AdminArticlesIndexRoute: AdminArticlesIndexRoute,
 }
 
