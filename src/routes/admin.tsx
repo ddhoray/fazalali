@@ -1,6 +1,6 @@
 import { createFileRoute, Link, Outlet, redirect, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import {
   BookOpen,
   ExternalLink,
@@ -21,11 +21,14 @@ import {
   UserRound,
   X,
   Library,
+  ChevronDown,
+  Sparkles,
 } from "lucide-react";
 import { Toaster } from "@/components/ui/sonner";
 import { adminLogout, adminMe } from "@/lib/admin/admin.functions";
 import { cn } from "@/lib/utils";
 import mark from "@/assets/brand-omeros-mark.png";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/admin")({
   ssr: false,
@@ -60,6 +63,13 @@ const NAV: { group: string; items: NavItem[] }[] = [
       { to: "/admin/collections/$collection", params: { collection: "palimpsest" }, label: "Palimpsest", icon: <Layers /> },
       { to: "/admin/collections/$collection", params: { collection: "readings" }, label: "Ecology & Inequality", icon: <Trees /> },
       { to: "/admin/collections/$collection", params: { collection: "testimonials" }, label: "Testimonials", icon: <MessageSquareQuote /> },
+      { to: "/admin/collections/$collection", params: { collection: "ecology" }, label: "Ecology sections", icon: <Trees /> },
+      { to: "/admin/collections/$collection", params: { collection: "inequality" }, label: "Inequality sections", icon: <Layers /> },
+      { to: "/admin/collections/$collection", params: { collection: "omeros" }, label: "Omeros AI", icon: <FileText /> },
+      { to: "/admin/collections/$collection", params: { collection: "podcast" }, label: "Podcast", icon: <Library /> },
+      { to: "/admin/collections/$collection", params: { collection: "home_ideas" }, label: "Homepage ideas", icon: <Sparkles /> },
+      { to: "/admin/collections/$collection", params: { collection: "home_streams" }, label: "Homepage streams", icon: <PanelsTopLeft /> },
+      { to: "/admin/collections/$collection", params: { collection: "profile_roles" }, label: "Profile timeline", icon: <UserRound /> },
     ],
   },
   { group: "Media", items: [{ to: "/admin/media", label: "Media library", icon: <Library /> }] },
@@ -85,8 +95,26 @@ function AdminLayout() {
   const { me } = Route.useRouteContext();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const [open, setOpen] = useState(false);
+  const [groups, setGroups] = useState<Record<string, boolean>>(() => Object.fromEntries(NAV.map((g) => [g.group, true])));
   const logout = useServerFn(adminLogout);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    try {
+      const saved = window.localStorage.getItem("omeros-admin-nav");
+      if (saved) setGroups((current) => ({ ...current, ...JSON.parse(saved) }));
+    } catch {
+      // Navigation remains fully expanded if stored preferences are unavailable.
+    }
+  }, []);
+
+  const toggleGroup = (group: string) => {
+    setGroups((current) => {
+      const next = { ...current, [group]: !current[group] };
+      window.localStorage.setItem("omeros-admin-nav", JSON.stringify(next));
+      return next;
+    });
+  };
 
   if (!me) {
     return (
@@ -104,35 +132,47 @@ function AdminLayout() {
 
   const sidebar = (
     <nav className="flex h-full flex-col">
-      <div className="flex h-16 items-center gap-3 border-b border-border px-5">
+      <div className="flex h-[72px] items-center gap-3 border-b border-border px-5">
         <img src={mark} alt="" className="size-8 object-contain" />
         <div className="leading-tight">
           <p className="font-display text-base tracking-tight">Omeros</p>
           <p className="text-[10px] uppercase tracking-[0.24em] text-muted-foreground">Admin</p>
         </div>
       </div>
-      <div className="flex-1 space-y-6 overflow-y-auto px-3 py-5">
+      <div className="flex-1 space-y-2 overflow-y-auto px-3 py-4">
         {NAV.map((g) => {
           const items = g.items.filter((i) => !i.min || RANK[me.role] >= RANK[i.min]);
           if (!items.length) return null;
           return (
-            <div key={g.group}>
-              <p className="px-3 pb-2 text-[10px] uppercase tracking-[0.24em] text-muted-foreground">{g.group}</p>
-              {items.map((it) => (
+            <div key={g.group} className="border-b border-border pb-2 last:border-0">
+              <button
+                type="button"
+                onClick={() => toggleGroup(g.group)}
+                className="flex w-full items-center justify-between px-3 py-2.5 text-[10px] uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground"
+                aria-expanded={groups[g.group] !== false}
+              >
+                {g.group}
+                <ChevronDown className={cn("size-3.5 transition-transform", groups[g.group] === false && "-rotate-90")} />
+              </button>
+              <div className={cn("grid transition-[grid-template-rows]", groups[g.group] === false ? "grid-rows-[0fr]" : "grid-rows-[1fr]")}>
+                <div className="overflow-hidden">
+                {items.map((it) => (
                 <Link
                   key={it.label}
                   to={it.to as "/admin"}
                   params={it.params as never}
                   onClick={() => setOpen(false)}
                   className={cn(
-                    "flex items-center gap-3 px-3 py-2 text-sm transition-colors [&_svg]:size-4",
+                    "my-0.5 flex min-h-10 items-center gap-3 px-3 py-2 text-sm transition-colors [&_svg]:size-4",
                     isActive(it) ? "bg-foreground text-background" : "text-foreground/75 hover:bg-muted hover:text-foreground",
                   )}
                 >
                   {it.icon}
                   {it.label}
                 </Link>
-              ))}
+                ))}
+                </div>
+              </div>
             </div>
           );
         })}
@@ -147,18 +187,18 @@ function AdminLayout() {
 
   return (
     <div className="min-h-screen bg-muted/40 text-foreground">
-      <aside className="fixed inset-y-0 left-0 z-30 hidden w-64 border-r border-border bg-background lg:block">{sidebar}</aside>
+      <aside className="fixed inset-y-0 left-0 z-30 hidden w-72 border-r border-border bg-background lg:block">{sidebar}</aside>
       {open && (
         <div className="fixed inset-0 z-40 lg:hidden">
           <div className="absolute inset-0 bg-foreground/40" onClick={() => setOpen(false)} />
-          <aside className="absolute inset-y-0 left-0 w-72 bg-background">{sidebar}</aside>
+          <aside className="absolute inset-y-0 left-0 w-[min(88vw,320px)] bg-background shadow-2xl">{sidebar}</aside>
         </div>
       )}
-      <div className="lg:pl-64">
-        <header className="sticky top-0 z-20 flex h-14 items-center gap-3 border-b border-border bg-background/90 px-4 backdrop-blur md:px-8">
-          <button className="lg:hidden" onClick={() => setOpen(!open)} aria-label="Menu">
+      <div className="lg:pl-72">
+        <header className="sticky top-0 z-20 flex h-16 items-center gap-3 border-b border-border bg-background/95 px-4 backdrop-blur md:px-8">
+          <Button variant="ghost" size="icon" className="min-h-11 min-w-11 rounded-none lg:hidden" onClick={() => setOpen(!open)} aria-label="Menu">
             {open ? <X className="size-5" /> : <Menu className="size-5" />}
-          </button>
+          </Button>
           <p className="hidden text-xs uppercase tracking-[0.22em] text-muted-foreground sm:block">omeros.hyperrevamp.com</p>
           <div className="ml-auto flex items-center gap-3">
             <Link to="/admin/articles/$id" params={{ id: "new" }} className="hidden items-center gap-2 bg-omeros px-3 py-1.5 text-xs uppercase tracking-[0.16em] text-background sm:inline-flex">
@@ -186,7 +226,7 @@ function AdminLayout() {
             </button>
           </div>
         </header>
-        <main className="mx-auto max-w-[1400px] px-4 py-8 md:px-8">
+        <main className="mx-auto max-w-[1480px] px-4 py-6 sm:px-6 md:px-8 md:py-9">
           <Outlet />
         </main>
       </div>

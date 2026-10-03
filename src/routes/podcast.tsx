@@ -5,6 +5,7 @@ import { AudioPlayer } from "@/components/site/AudioPlayer";
 import { episodes } from "@/content/podcast";
 import { ArrowUpRight } from "lucide-react";
 import heroPodcast from "@/assets/hero-podcast.jpg";
+import { useCmsEntries, useCmsText } from "@/components/site/CmsExtras";
 
 export const Route = createFileRoute("/podcast")({
   head: () => ({
@@ -28,24 +29,27 @@ export const Route = createFileRoute("/podcast")({
 });
 
 function PodcastPage() {
+  const heroTitle = useCmsText("podcast", "heroTitle");
+  const heroIntro = useCmsText("podcast", "heroIntro");
+  const cmsEpisodes = useCmsEntries("podcast").map((e, i) => ({ slug: e.id, number: (e.data as { number?: string })?.number ?? String(i + 1).padStart(2, "0"), title: e.title, subtitle: e.subtitle ?? "Education for Liberty", description: e.body ?? "", duration: (e.data as { duration?: string })?.duration ?? "", audio: e.link_url ?? "" }));
+  const displayedEpisodes = cmsEpisodes.length ? cmsEpisodes : episodes;
   return (
     <div>
       <PageHero
         eyebrow="Education for Liberty"
         title={
           <>
-            The <em className="">podcast.</em>
+            {heroTitle}
           </>
         }
         standfirst={
           <>
-            A monograph, read aloud. Begin at the Preface, continue with the Prolegomenon,
-            long-form, unhurried, made for headphones.
+            {heroIntro}
           </>
         }
         meta={
           <>
-            <span>{episodes.length} episodes</span>
+            <span>{displayedEpisodes.length} episodes</span>
             <span className="size-1 bg-white/40" />
             <span>Listen anywhere</span>
             <span className="size-1 bg-white/40" />
@@ -60,7 +64,7 @@ function PodcastPage() {
 
       <section className="mx-auto max-w-[1300px] px-5 py-12 sm:px-8 sm:py-10">
         <div className="space-y-px border-y hairline">
-          {episodes.map((ep, i) => (
+           {displayedEpisodes.map((ep, i) => (
             <Reveal key={ep.slug} delay={i * 0.05}>
               <article className="group grid gap-8 border-b hairline py-12 last:border-b-0 md:grid-cols-[auto_1fr] md:gap-14 md:py-10">
                 <div className="font-display text-7xl leading-none text-foreground/15 md:text-[9rem]">

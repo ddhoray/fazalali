@@ -1,4 +1,4 @@
-import { CmsReadings, CmsTestimonials, CmsPalimpsest, useCmsEntries } from "@/components/site/CmsExtras";
+import { useCmsEntries, useCmsText } from "@/components/site/CmsExtras";
 import { useState, type ReactNode } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "motion/react";
@@ -138,6 +138,10 @@ const forthcoming: {
 ];
 
 function BooksPage() {
+  const heroTitle = useCmsText("books", "heroTitle");
+  const heroIntro = useCmsText("books", "heroIntro");
+  const forthcomingHeading = useCmsText("books", "forthcomingHeading");
+  const forthcomingIntro = useCmsText("books", "forthcomingIntro");
   const [active, setActive] = useState<number | null>(null);
   const [open, setOpen] = useState<number | null>(null);
   const cmsBooks = useCmsEntries("books").map((e) => ({
@@ -157,20 +161,19 @@ function BooksPage() {
     image: e.image_url ?? "",
     imageAlt: e.title,
   }));
-  const books = [...forthcoming, ...cmsBooks];
+  const books = cmsBooks.length ? cmsBooks : forthcoming;
   return (
     <div>
       <PageHero
         eyebrow="Books"
         title={
           <>
-            The <em className="text-accent">work</em>, in volumes.
+            {heroTitle}
           </>
         }
         standfirst={
           <>
-            A body of writing built on Amartya Sen's <em>Development as Freedom</em> and John Rawls'{" "}
-            <em>A Theory of Justice</em>, Caribbean in origin, global in address.
+            {heroIntro}
           </>
         }
         meta={
@@ -255,12 +258,11 @@ function BooksPage() {
               <div>
                 <p className="eyebrow text-muted-foreground">Forthcoming</p>
                 <h2 className="mt-4 font-display text-4xl leading-[1] md:text-6xl">
-                  Books to <em className="text-accent">come.</em>
+                   {forthcomingHeading}
                 </h2>
               </div>
               <p className="max-w-md text-sm text-muted-foreground">
-                Three volumes in preparation, each extending the Omeros AI argument into a distinct
-                register of public life.
+                 {forthcomingIntro}
               </p>
             </div>
           </Reveal>

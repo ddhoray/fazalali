@@ -5,6 +5,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { GlassPanel } from "@/components/site/GlassPanel";
 import { submitContact } from "@/lib/contact.functions";
 import { ArrowRight, Check } from "lucide-react";
+import { useCmsText } from "@/components/site/CmsExtras";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -24,6 +25,9 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
+  const heading = useCmsText("contact", "heading");
+  const intro = useCmsText("contact", "intro");
+  const success = useCmsText("contact", "success");
   const send = useServerFn(submitContact);
   const [state, setState] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
@@ -54,10 +58,10 @@ function ContactPage() {
       <Reveal>
         <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">Write to him</p>
         <h1 className="mt-4 font-display text-[2.5rem] leading-[1.02] text-balance sm:text-5xl md:text-6xl lg:text-[4.25rem]">
-          A short note <em className="">is enough.</em>
+          {heading}
         </h1>
         <p className="mt-6 max-w-xl text-muted-foreground">
-          Press, residencies, teaching, or a question about the writing, all read by him personally.
+          {intro}
         </p>
       </Reveal>
 
@@ -70,8 +74,7 @@ function ContactPage() {
               </div>
               <p className="font-display text-3xl">Note received.</p>
               <p className="max-w-sm text-sm text-muted-foreground">
-                Thank you. He will reply from{" "}
-                <span className="text-foreground">writeme@fazalali.com</span> as soon as he can.
+                 {success}
               </p>
             </div>
           ) : (

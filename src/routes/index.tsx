@@ -1,4 +1,4 @@
-import { useCmsText } from "@/components/site/CmsExtras";
+import { useCmsEntries, useCmsText } from "@/components/site/CmsExtras";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { motion, useScroll, useTransform, useMotionValueEvent } from "motion/react";
 import { useEffect, useRef, useState } from "react";
@@ -14,6 +14,7 @@ import { BookSection } from "@/components/site/BookSection";
 
 import { Newsletter } from "@/components/site/Newsletter";
 import { articles } from "@/content/articles";
+import { getJournal } from "@/lib/cms.functions";
 import fazalPortrait from "@/assets/fazal-portrait.jpg";
 import heroVideoAsset from "@/assets/hero-loop-web.mp4.asset.json";
 import { assetUrl } from "@/lib/asset-url";
@@ -42,6 +43,7 @@ function formatArticleDate(date: string) {
 }
 
 export const Route = createFileRoute("/")({
+  loader: () => getJournal(),
   head: () => ({
     meta: [
       { title: "Fazal Ali, Writer, Scholar, Founder of Omeros AI" },
@@ -110,25 +112,25 @@ function Home() {
 /* ─────────────────── Core Statement ─────────────────── */
 
 function CoreStatement() {
+  const eyebrow = useCmsText("home", "coreEyebrow");
+  const heading = useCmsText("home", "coreHeading");
+  const body = useCmsText("home", "coreBody");
   return (
     <section className="border-b hairline bg-background">
       <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 sm:py-28">
         <BlurReveal as="p" className="eyebrow text-muted-foreground">
-          A core statement
+          {eyebrow}
         </BlurReveal>
         <BlurReveal
           as="h2"
           delay={0.08}
           className="mt-6 font-display text-[8vw] leading-[1.02] tracking-[-0.025em] text-balance sm:text-5xl md:text-6xl lg:text-7xl"
         >
-          The ethics of AI must be the preserve of{" "}
-          <em className="text-accent">all cultures and continents.</em>
+          {heading}
         </BlurReveal>
         <div className="mt-10 grid max-w-4xl gap-6 text-base leading-relaxed text-foreground/75 md:text-lg">
           <BlurReveal as="p" delay={0.16}>
-            Every agency, company, institution and country designing, developing and deploying AI
-            architectures has an obligation to incorporate a more geographically, culturally and
-            socially diverse array of perspectives.
+            {body}
           </BlurReveal>
         </div>
       </div>
@@ -182,6 +184,8 @@ const ideas = [
 ];
 
 function IdeasAndThemes() {
+  const cmsIdeas = useCmsEntries("home_ideas");
+  const displayedIdeas = cmsIdeas.length ? cmsIdeas.map((idea) => ({ title: idea.title, note: idea.body ?? "", to: idea.link_url || "/writing" })) : ideas;
   return (
     <section className="border-b hairline bg-background">
       <div className="mx-auto max-w-[1700px] px-5 py-16 sm:px-8 sm:py-20">
@@ -206,10 +210,10 @@ function IdeasAndThemes() {
         </div>
 
         <div className="grid grid-cols-1 gap-px bg-foreground/10 sm:grid-cols-2 lg:grid-cols-4">
-          {ideas.map((idea, i) => (
+           {displayedIdeas.map((idea, i) => (
             <SlideIn key={idea.title} from="bottom" delay={i * 0.04}>
-              <Link
-                to={idea.to}
+               <a
+                 href={idea.to}
                 className="group flex h-full flex-col justify-between gap-8 bg-background p-7 transition-colors hover:bg-foreground/[0.03] md:p-9"
               >
                 <div>
@@ -223,7 +227,7 @@ function IdeasAndThemes() {
                   Read
                   <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </span>
-              </Link>
+               </a>
             </SlideIn>
           ))}
         </div>
@@ -590,6 +594,8 @@ const streams = [
 
 function Range() {
   const [active, setActive] = useState(0);
+  const cmsStreams = useCmsEntries("home_streams");
+  const displayedStreams = cmsStreams.length ? cmsStreams.map((stream, i) => ({ n: stream.subtitle ?? String(i + 1).padStart(2, "0"), title: stream.title, kicker: (stream.data as { kicker?: string })?.kicker ?? stream.subtitle ?? "", body: stream.body ?? "", icon: streams[i % streams.length].icon, image: stream.image_url || streams[i % streams.length].image, to: stream.link_url || "/writing", cta: (stream.data as { cta?: string })?.cta ?? "Open" })) : streams;
 
   return (
     <section
@@ -622,7 +628,7 @@ function Range() {
 
         {/* expanding panels, desktop */}
         <div className="mt-10 hidden flex-1 gap-3 md:flex md:min-h-[30rem]">
-          {streams.map((s, i) => {
+           {displayedStreams.map((s, i) => {
             const isActive = i === active;
             return (
               <motion.div
@@ -684,13 +690,13 @@ function Range() {
                         <p className="max-w-md pt-5 text-[0.95rem] leading-relaxed text-white/75">
                           {s.body}
                         </p>
-                        <Link
-                          to={s.to}
+                         <a
+                           href={s.to}
                           className="mt-5 inline-flex items-center gap-3 border-b border-white/40 pb-1 text-xs uppercase tracking-[0.22em] text-white hover:text-accent"
                         >
                           {s.cta}
                           <ArrowUpRight className="size-4 transition-transform duration-500 group-hover:-translate-y-1 group-hover:translate-x-1" />
-                        </Link>
+                         </a>
                       </motion.div>
                     </div>
                   </div>
@@ -702,7 +708,7 @@ function Range() {
 
         {/* stacked cards, mobile */}
         <div className="mt-8 grid gap-4 md:hidden">
-          {streams.map((s) => (
+           {displayedStreams.map((s) => (
             <div
               key={s.n}
               className="group relative h-56 w-full cursor-default overflow-hidden border hairline"
@@ -724,13 +730,13 @@ function Range() {
                     <span className="text-accent">.</span>
                   </h3>
                   <p className="mt-2 text-sm leading-relaxed text-white/75">{s.body}</p>
-                  <Link
-                    to={s.to}
+                   <a
+                     href={s.to}
                     className="mt-4 inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-white hover:text-accent"
                   >
                     {s.cta}
                     <ArrowUpRight className="size-4" />
-                  </Link>
+                   </a>
                 </div>
               </div>
             </div>
@@ -746,7 +752,7 @@ function Range() {
 const writingImages = [featuredWriting, practiceEssays, featuredOmeros];
 
 function LatestWriting() {
-  const latest = articles.slice(0, 3);
+  const latest = Route.useLoaderData().slice(0, 3);
   const navigate = useNavigate();
   const eyebrow = useCmsText("home", "journalEyebrow");
   const heading = useCmsText("home", "journalHeading");
@@ -777,7 +783,7 @@ function LatestWriting() {
           <div key={a.slug} className="overflow-visible">
             <SlideIn delay={i * 0.06} from="bottom" className="overflow-visible">
               <HoverImage
-                src={writingImages[i % writingImages.length]}
+                 src={a.image || writingImages[i % writingImages.length]}
                 alt={a.title}
                 holdMs={6000}
                 onHoldComplete={() => navigate({ to: "/writing/$slug", params: { slug: a.slug } })}
