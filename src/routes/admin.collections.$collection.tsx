@@ -102,7 +102,7 @@ function CollectionPage() {
                   setDragId(null);
                   persistOrder(next);
                 }}
-                className={cn("flex items-center gap-4 border-b border-border px-4 py-3 last:border-0", !e.published && "opacity-50", dragId === e.id && "bg-omeros-soft")}
+                className={cn("grid grid-cols-[auto_auto_minmax(0,1fr)] items-center gap-3 border-b border-border px-3 py-3 sm:flex sm:gap-4 sm:px-4", !e.published && "opacity-50", dragId === e.id && "bg-omeros-soft")}
               >
                 {canEdit && <GripVertical className="size-4 shrink-0 cursor-grab text-muted-foreground" />}
                 <span className="size-14 shrink-0 overflow-hidden bg-muted">{e.image_url && <img src={e.image_url} alt="" className="size-full object-cover" />}</span>
@@ -115,7 +115,7 @@ function CollectionPage() {
                   </p>
                 </div>
                 {canEdit && (
-                  <div className="flex gap-1 text-muted-foreground [&_button]:p-1.5 [&_svg]:size-4">
+                  <div className="col-span-3 flex flex-wrap justify-end gap-1 text-muted-foreground sm:col-span-1 [&_button]:inline-flex [&_button]:min-h-11 [&_button]:min-w-11 [&_button]:items-center [&_button]:justify-center [&_svg]:size-4">
                     <button title="Move up" onClick={() => move(i, -1)}><ArrowUp /></button>
                     <button title="Move down" onClick={() => move(i, 1)}><ArrowDown /></button>
                     <button title={e.featured ? "Unfeature" : "Feature"} onClick={() => quick(e, { featured: !e.featured })}><Star /></button>

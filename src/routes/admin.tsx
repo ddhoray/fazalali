@@ -200,15 +200,15 @@ function AdminLayout() {
             {open ? <X className="size-5" /> : <Menu className="size-5" />}
           </Button>
           <p className="hidden text-xs uppercase tracking-[0.22em] text-muted-foreground sm:block">omeros.hyperrevamp.com</p>
-          <div className="ml-auto flex items-center gap-3">
-            <Link to="/admin/articles/$id" params={{ id: "new" }} className="hidden items-center gap-2 bg-omeros px-3 py-1.5 text-xs uppercase tracking-[0.16em] text-background sm:inline-flex">
-              <FileText className="size-3.5" /> New entry
+          <div className="ml-auto flex min-w-0 items-center gap-2 sm:gap-3">
+            <Link to="/admin/articles/$id" params={{ id: "new" }} aria-label="New entry" className="inline-flex min-h-11 min-w-11 items-center justify-center gap-2 bg-omeros p-2 text-xs uppercase tracking-[0.16em] text-background sm:min-h-0 sm:min-w-0 sm:px-3 sm:py-2">
+              <FileText className="size-4" /> <span className="hidden sm:inline">New entry</span>
             </Link>
             <Link to="/admin/profile" className="flex items-center gap-2">
               <span className="flex size-8 items-center justify-center overflow-hidden bg-foreground text-xs text-background">
                 {me.avatar_url ? <img src={me.avatar_url} alt="" className="size-full object-cover" /> : (me.name || "A").slice(0, 1).toUpperCase()}
               </span>
-              <span className="hidden text-left leading-tight md:block">
+              <span className="hidden min-w-0 text-left leading-tight sm:block">
                 <span className="block text-sm">{me.name || me.phone}</span>
                 <span className="block text-[10px] uppercase tracking-[0.18em] text-muted-foreground">{me.role}</span>
               </span>
@@ -218,7 +218,7 @@ function AdminLayout() {
                 await logout();
                 navigate({ to: "/admin/login", replace: true });
               }}
-              className="p-2 text-muted-foreground hover:text-foreground"
+              className="inline-flex min-h-11 min-w-11 items-center justify-center text-muted-foreground hover:text-foreground"
               aria-label="Sign out"
               title="Sign out"
             >

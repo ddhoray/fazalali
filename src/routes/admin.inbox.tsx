@@ -50,7 +50,7 @@ function InboxPage() {
         </div>
       </div>
       <div className="grid gap-4 lg:grid-cols-[minmax(300px,390px)_minmax(0,1fr)]">
-        <Panel className={cn("max-h-[72vh] overflow-y-auto", sel && "hidden lg:block")}>
+        <Panel className={cn("max-h-[72vh] overflow-y-auto", sel && "hidden md:block")}>
           {!items.length && <Empty icon={<Inbox className="size-8" />} title="All clear" body="New messages will land here." />}
           {items.map((m) => (
             <button
@@ -70,18 +70,18 @@ function InboxPage() {
             </button>
           ))}
         </Panel>
-        <Panel className={cn("min-h-[420px] p-5 sm:p-7", !sel && "hidden lg:block")}>
+        <Panel className={cn("min-h-[420px] p-5 sm:p-7", !sel && "hidden md:block")}>
           {!sel ? (
             <Empty icon={<Mail className="size-8" />} title="Select a message" />
           ) : (
             <div>
-              <button className="mb-5 inline-flex items-center gap-2 text-sm text-muted-foreground lg:hidden" onClick={() => setSelId(null)}><ArrowLeft className="size-4" /> Back to inbox</button>
+               <button className="mb-5 inline-flex min-h-11 items-center gap-2 text-sm text-muted-foreground md:hidden" onClick={() => setSelId(null)}><ArrowLeft className="size-4" /> Back to inbox</button>
               <div className="flex flex-wrap items-start justify-between gap-4 border-b border-border pb-4">
                 <div>
                   <p className="font-display text-2xl">{sel.name}</p>
                   <p className="text-sm text-muted-foreground">{sel.email} · {fmtDateTime(sel.created_at)}</p>
                 </div>
-                <div className="flex gap-1 [&_button]:p-2 [&_a]:p-2 [&_svg]:size-4">
+                <div className="flex gap-1 [&_button]:inline-flex [&_button]:min-h-11 [&_button]:min-w-11 [&_button]:items-center [&_button]:justify-center [&_a]:inline-flex [&_a]:min-h-11 [&_a]:min-w-11 [&_a]:items-center [&_a]:justify-center [&_svg]:size-4">
                   <a href={`mailto:${sel.email}?subject=${encodeURIComponent("Re: your message to Fazal Ali")}`} title="Reply" className="text-omeros"><Reply /></a>
                   <button title={sel.read ? "Mark unread" : "Mark read"} onClick={() => act(sel.id, { read: !sel.read })}>{sel.read ? <Mail /> : <MailOpen />}</button>
                   <button title={sel.archived ? "Move to inbox" : "Archive"} onClick={() => act(sel.id, { archived: !sel.archived })}><Archive /></button>

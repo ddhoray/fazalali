@@ -34,19 +34,19 @@ function PagesEditor() {
     <div className="space-y-6">
       <PageHeader eyebrow="Content" title="Page text" description="Edit headings, intros and details that appear across the site." />
       <div className="grid gap-6 lg:grid-cols-[220px_1fr]">
-        <div className="flex gap-1 overflow-x-auto lg:flex-col">
+        <div className="flex gap-1 overflow-x-auto border-b border-border lg:flex-col lg:border-b-0">
           {PAGE_SCHEMAS.map((p) => (
             <button
               key={p.key}
               onClick={() => setActive(p.key)}
-              className={cn("whitespace-nowrap px-4 py-2.5 text-left text-sm", active === p.key ? "bg-foreground text-background" : "hover:bg-muted")}
+              className={cn("min-h-11 shrink-0 whitespace-nowrap border-b-2 px-4 py-2.5 text-left text-sm lg:border-b-0 lg:border-l-2", active === p.key ? "border-omeros bg-foreground text-background" : "border-transparent hover:bg-muted")}
             >
               {p.label}
             </button>
           ))}
         </div>
         <Panel className="space-y-5 p-6">
-          <div className="flex items-center justify-between">
+          <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
             <p className="font-display text-2xl">{schema.label}</p>
             <a href={schema.path} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-xs text-omeros">
               View page <ExternalLink className="size-3" />

@@ -313,7 +313,7 @@ function BooksPage() {
                   <BookOpen className="size-4 opacity-80" strokeWidth={1.8} />
                 </div>
 
-                <div className="relative min-h-[210px] bg-foreground px-6 pb-7 pt-6 text-background md:absolute md:inset-x-0 md:bottom-0 md:h-[245px] md:min-h-0 md:bg-transparent md:px-7 md:pb-8 md:pt-5">
+                <div className="relative min-h-fit bg-foreground px-6 pb-8 pt-6 text-background md:absolute md:inset-x-0 md:bottom-0 md:h-[245px] md:min-h-0 md:bg-transparent md:px-7 md:pb-8 md:pt-5">
                   <p className="eyebrow text-background/80">{b.year}</p>
                   <h3
                     data-book-title
@@ -361,13 +361,13 @@ function BooksPage() {
                 type="button"
                 onClick={() => setOpen(null)}
                 aria-label="Close"
-                className="absolute right-4 top-4 z-10 flex size-10 items-center justify-center border hairline bg-background/90 text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+                 className="absolute right-4 top-4 z-10 flex size-11 items-center justify-center border hairline bg-background/90 text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
               >
                 <X className="size-4" />
               </button>
 
               <div className="grid md:min-h-[620px] md:grid-cols-[minmax(300px,0.85fr)_minmax(0,1.15fr)]">
-                <div className="flex min-h-[430px] items-center justify-center overflow-hidden bg-foreground p-5 sm:min-h-[540px] sm:p-8 md:min-h-0">
+                <div className="flex min-h-[300px] items-center justify-center overflow-hidden bg-foreground p-5 sm:min-h-[540px] sm:p-8 md:min-h-0">
                   <img
                     src={books[open].image}
                     alt={books[open].imageAlt}

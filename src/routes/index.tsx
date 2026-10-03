@@ -124,7 +124,7 @@ function CoreStatement() {
         <BlurReveal
           as="h2"
           delay={0.08}
-          className="mt-6 font-display text-[8vw] leading-[1.02] tracking-[-0.025em] text-balance sm:text-5xl md:text-6xl lg:text-7xl"
+          className="mt-6 font-display text-[clamp(2.5rem,8vw,4.5rem)] leading-[1.02] tracking-[-0.025em] text-balance"
         >
           {heading}
         </BlurReveal>
@@ -426,7 +426,7 @@ function Hero() {
             <p className="eyebrow opacity-85">Omeros AI :West Indies &amp; the World</p>
 
             <div>
-              <h1 className="font-display text-[12vw] leading-[1.02] tracking-[-0.035em] text-balance sm:text-[9vw] md:text-[7vw] md:leading-[0.96]">
+              <h1 className="font-display text-[clamp(2.5rem,12vw,6.5rem)] leading-[1.02] tracking-[-0.035em] text-balance md:leading-[0.96]">
                 A prophet provocateur, schooled in <span className="">freedom.</span>
               </h1>
 

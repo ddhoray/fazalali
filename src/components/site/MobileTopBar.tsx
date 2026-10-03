@@ -42,7 +42,7 @@ export function MobileTopBar() {
         <Link
           to="/"
           aria-label="Fazal Ali, Home"
-          className="inline-flex h-10 w-10 items-center justify-center"
+          className="inline-flex min-h-11 min-w-11 items-center justify-center"
         >
           <img src={fiaLogo} alt="FIA" className="h-8 w-8 object-contain" draggable={false} />
         </Link>
@@ -51,7 +51,7 @@ export function MobileTopBar() {
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-[0.6rem] border border-black/15 bg-transparent text-[#1c1c1c]"
+          className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-[0.6rem] border border-black/15 bg-transparent text-[#1c1c1c]"
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>

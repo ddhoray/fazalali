@@ -98,7 +98,7 @@ export function ContactDrawer() {
                 <button
                   aria-label="Close"
                   onClick={() => setOpen(false)}
-                  className="inline-flex size-10 items-center justify-center rounded-none border border-foreground/15 hover:bg-foreground/5"
+                  className="inline-flex size-11 shrink-0 items-center justify-center rounded-none border border-foreground/15 hover:bg-foreground/5"
                 >
                   <X className="size-5" />
                 </button>
