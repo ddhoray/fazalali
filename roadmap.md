@@ -10,4 +10,4 @@
 - [x] Clarify and polish the Inbox workflow for public contact messages.
 - [x] Expand Page text and structured collections so all major frontend content is backend-controlled.
 - [x] Make homepage Journal content use the backend source and add safe sync/import flows for existing content.
-- [ ] Verify admin usability and backend content reads across relevant viewports.
+- [x] Verify admin usability and backend content reads across relevant viewports.

@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ExternalLink, Loader2, Save } from "lucide-react";
 import { toast } from "sonner";
 import { adminGetPages, adminSavePage } from "@/lib/admin/admin.functions";
@@ -17,7 +17,7 @@ function PagesEditor() {
   const qc = useQueryClient();
   const { data = [] } = useQuery({ queryKey: ["admin", "pages"], queryFn: () => get() });
   const [active, setActive] = useState(PAGE_SCHEMAS[0].key);
-  const schema = PAGE_SCHEMAS.find((p) => p.key === active)!;
+  const schema = useMemo(() => PAGE_SCHEMAS.find((p) => p.key === active) ?? PAGE_SCHEMAS[0], [active]);
   const [values, setValues] = useState<Record<string, string>>({});
   const [busy, setBusy] = useState(false);
   const { me } = Route.useRouteContext();
