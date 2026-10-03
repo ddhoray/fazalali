@@ -1,3 +1,4 @@
+import { CmsReadings, CmsTestimonials, CmsPalimpsest, useCmsEntries } from "@/components/site/CmsExtras";
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
 
@@ -102,6 +103,8 @@ const works: Work[] = [
 ];
 
 function GalleryPage() {
+  const cmsWorks: Work[] = useCmsEntries("gallery").filter((e) => e.image_url).map((e) => ({ src: e.image_url!, title: e.body || e.title, year: e.subtitle ?? undefined, hideCaption: !e.subtitle }));
+  const allWorks = [...cmsWorks, ...works];
   return (
     <div>
       <PageHero
@@ -146,7 +149,7 @@ function GalleryPage() {
 
       <section className="mx-auto max-w-[1400px] px-4 md:px-8 py-12 md:py-20">
         <div className="columns-2 md:columns-3 lg:columns-4 gap-4 md:gap-6 [column-fill:_balance]">
-          {works.map((w, i) => {
+          {allWorks.map((w, i) => {
             // irregular sizing: vary widths via margin offsets & varied aspect feel
             const tilt = ["mt-0", "mt-6", "mt-12", "mt-2", "mt-8"][i % 5];
             return (
