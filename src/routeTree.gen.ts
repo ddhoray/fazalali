@@ -19,10 +19,12 @@ import { Route as EducationForLibertyRouteImport } from './routes/education-for-
 import { Route as EcologyRouteImport } from './routes/ecology'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BooksRouteImport } from './routes/books'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as WritingIndexRouteImport } from './routes/writing.index'
 import { Route as WritingSlugRouteImport } from './routes/writing.$slug'
+import { Route as AdminLoginRouteImport } from './routes/admin.login'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -74,6 +76,11 @@ const BooksRoute = BooksRouteImport.update({
   path: '/books',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -94,10 +101,16 @@ const WritingSlugRoute = WritingSlugRouteImport.update({
   path: '/writing/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRouteWithChildren
   '/books': typeof BooksRoute
   '/contact': typeof ContactRoute
   '/ecology': typeof EcologyRoute
@@ -108,12 +121,14 @@ export interface FileRoutesByFullPath {
   '/palimpsest': typeof PalimpsestRoute
   '/podcast': typeof PodcastRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/login': typeof AdminLoginRoute
   '/writing/$slug': typeof WritingSlugRoute
   '/writing/': typeof WritingIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRouteWithChildren
   '/books': typeof BooksRoute
   '/contact': typeof ContactRoute
   '/ecology': typeof EcologyRoute
@@ -124,6 +139,7 @@ export interface FileRoutesByTo {
   '/palimpsest': typeof PalimpsestRoute
   '/podcast': typeof PodcastRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/login': typeof AdminLoginRoute
   '/writing/$slug': typeof WritingSlugRoute
   '/writing': typeof WritingIndexRoute
 }
@@ -131,6 +147,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRouteWithChildren
   '/books': typeof BooksRoute
   '/contact': typeof ContactRoute
   '/ecology': typeof EcologyRoute
@@ -141,6 +158,7 @@ export interface FileRoutesById {
   '/palimpsest': typeof PalimpsestRoute
   '/podcast': typeof PodcastRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/login': typeof AdminLoginRoute
   '/writing/$slug': typeof WritingSlugRoute
   '/writing/': typeof WritingIndexRoute
 }
@@ -149,6 +167,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/admin'
     | '/books'
     | '/contact'
     | '/ecology'
@@ -159,12 +178,14 @@ export interface FileRouteTypes {
     | '/palimpsest'
     | '/podcast'
     | '/sitemap.xml'
+    | '/admin/login'
     | '/writing/$slug'
     | '/writing/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
+    | '/admin'
     | '/books'
     | '/contact'
     | '/ecology'
@@ -175,12 +196,14 @@ export interface FileRouteTypes {
     | '/palimpsest'
     | '/podcast'
     | '/sitemap.xml'
+    | '/admin/login'
     | '/writing/$slug'
     | '/writing'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/admin'
     | '/books'
     | '/contact'
     | '/ecology'
@@ -191,6 +214,7 @@ export interface FileRouteTypes {
     | '/palimpsest'
     | '/podcast'
     | '/sitemap.xml'
+    | '/admin/login'
     | '/writing/$slug'
     | '/writing/'
   fileRoutesById: FileRoutesById
@@ -198,6 +222,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AdminRoute: typeof AdminRouteWithChildren
   BooksRoute: typeof BooksRoute
   ContactRoute: typeof ContactRoute
   EcologyRoute: typeof EcologyRoute
@@ -284,6 +309,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BooksRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -312,12 +344,30 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WritingSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
+
+interface AdminRouteChildren {
+  AdminLoginRoute: typeof AdminLoginRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminLoginRoute: AdminLoginRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AdminRoute: AdminRouteWithChildren,
   BooksRoute: BooksRoute,
   ContactRoute: ContactRoute,
   EcologyRoute: EcologyRoute,
