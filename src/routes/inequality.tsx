@@ -1,4 +1,4 @@
-import { CmsReadings, CmsTestimonials, CmsPalimpsest, useCmsEntries } from "@/components/site/CmsExtras";
+import { CmsReadings, useCmsEntries, useCmsText } from "@/components/site/CmsExtras";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
@@ -82,22 +82,25 @@ const tracked = articles
   .slice(0, 8);
 
 function InequalityPage() {
+  const heroTitle = useCmsText("inequality", "heroTitle");
+  const heroIntro = useCmsText("inequality", "heroIntro");
+  const cmsSections = useCmsEntries("inequality");
+  const sections = cmsSections.length ? cmsSections.map((s) => ({ h: s.title, body: (s.body ?? "").split(/\n\s*\n/).filter(Boolean) })) : inequality.sections;
   return (
     <div>
       <PageHero
         eyebrow={inequality.eyebrow}
         title={
           <>
-            {inequality.title.replace(/\.$/, "")}
-            <em className="">.</em>
+            {heroTitle}
           </>
         }
-        standfirst={inequality.standfirst}
+        standfirst={heroIntro}
         meta={
           <>
             <span>Journal</span>
             <span className="size-1 bg-white/40" />
-            <span>{inequality.sections.length} parts</span>
+             <span>{sections.length} parts</span>
             <span className="size-1 bg-white/40" />
             <span>After Sen</span>
           </>
@@ -166,7 +169,7 @@ function InequalityPage() {
 
 
       <article className="mx-auto max-w-[820px] px-5 py-12 sm:px-8 sm:py-10">
-        {inequality.sections.map((s, i) => (
+        {sections.map((s, i) => (
           <Reveal key={s.h} delay={i * 0.04}>
             <section className="mb-16 last:mb-0">
               <p className="eyebrow text-muted-foreground">

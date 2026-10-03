@@ -1,4 +1,4 @@
-import { CmsReadings, CmsTestimonials, CmsPalimpsest, useCmsEntries } from "@/components/site/CmsExtras";
+import { CmsReadings, useCmsEntries, useCmsText } from "@/components/site/CmsExtras";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
@@ -65,17 +65,20 @@ const ECOLOGY_READINGS = READING_SLUGS.map((s) => articles.find((a) => a.slug ==
 );
 
 function EcologyPage() {
+  const heroTitle = useCmsText("ecology", "heroTitle");
+  const heroIntro = useCmsText("ecology", "heroIntro");
+  const cmsSections = useCmsEntries("ecology");
+  const sections = cmsSections.length ? cmsSections.map((s) => ({ h: s.title, image: s.image_url ?? "", imageAlt: s.subtitle ?? s.title, body: (s.body ?? "").split(/\n\s*\n/).filter(Boolean) })) : ecology.sections;
   return (
     <div>
       <PageHero
         eyebrow={ecology.eyebrow}
         title={
           <>
-            {ecology.title.replace(/\.$/, "")}
-            <em className="">.</em>
+            {heroTitle}
           </>
         }
-        standfirst={ecology.standfirst}
+        standfirst={heroIntro}
         meta={
           <>
             <span>Note</span>
@@ -92,14 +95,14 @@ function EcologyPage() {
       />
 
       <article className="mx-auto max-w-[820px] px-5 py-12 sm:px-8 sm:py-10">
-        {ecology.sections.map((s, i) => (
+        {sections.map((s, i) => (
           <Reveal key={s.h} delay={i * 0.04}>
             <section className="mb-16 last:mb-0">
               <p className="eyebrow text-muted-foreground">
                 {String(i + 1).padStart(2, "0")} · Note
               </p>
               <h2 className="mt-4 font-display text-3xl leading-tight md:text-5xl">{s.h}</h2>
-              <figure className="mt-8">
+               {s.image && <figure className="mt-8">
                 <div className="relative aspect-[16/9] w-full overflow-hidden border hairline bg-[#e9e6e1]">
                   <img
                     src={s.image}
@@ -108,7 +111,7 @@ function EcologyPage() {
                     className="size-full object-cover"
                   />
                 </div>
-              </figure>
+               </figure>}
               <div className="mt-8 space-y-6 text-lg leading-relaxed text-foreground/85">
                 {s.body.map((p, pi) => (
                   <p key={pi}>{p}</p>

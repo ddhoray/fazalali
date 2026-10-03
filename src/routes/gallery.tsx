@@ -1,4 +1,4 @@
-import { CmsReadings, CmsTestimonials, CmsPalimpsest, useCmsEntries } from "@/components/site/CmsExtras";
+import { useCmsEntries, useCmsText } from "@/components/site/CmsExtras";
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
 
@@ -103,21 +103,22 @@ const works: Work[] = [
 ];
 
 function GalleryPage() {
+  const heroTitle = useCmsText("gallery", "heroTitle");
+  const heroIntro = useCmsText("gallery", "heroIntro");
   const cmsWorks: Work[] = useCmsEntries("gallery").filter((e) => e.image_url).map((e) => ({ src: e.image_url!, title: e.body || e.title, year: e.subtitle ?? undefined, hideCaption: !e.subtitle }));
-  const allWorks = [...cmsWorks, ...works];
+  const allWorks = cmsWorks.length ? cmsWorks : works;
   return (
     <div>
       <PageHero
         eyebrow="Visual field notes"
         title={
           <>
-            The <em className="">gallery.</em>
+            {heroTitle}
           </>
         }
         standfirst={
           <>
-            A curated selection of paintings, colour, coastline, and the canvas life of a working
-            writer. More on{" "}
+            {heroIntro} More on{" "}
             <a
               href="https://www.instagram.com/thefazalali/"
               target="_blank"

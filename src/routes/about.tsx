@@ -1,4 +1,4 @@
-import { CmsReadings, CmsTestimonials, CmsPalimpsest, useCmsEntries } from "@/components/site/CmsExtras";
+import { CmsTestimonials, useCmsText } from "@/components/site/CmsExtras";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
@@ -95,20 +95,22 @@ const roles = [
 ];
 
 function AboutPage() {
+  const heroEyebrow = useCmsText("profile", "heroEyebrow");
+  const heroTitle = useCmsText("profile", "heroTitle");
+  const heroIntro = useCmsText("profile", "heroIntro");
+  const aboutBody = useCmsText("profile", "aboutBody");
   return (
     <div>
       <PageHero
-        eyebrow="Profile"
+        eyebrow={heroEyebrow}
         title={
           <>
-            A prophet provocateur, schooled in <em className="text-accent">freedom.</em>
+            {heroTitle}
           </>
         }
         standfirst={
           <>
-            Dr. Fazal Ibrahim Ali, Cambridge Commonwealth Scholar, former Provost of the University
-            of Trinidad and Tobago, President of NIHERST, and the author of{" "}
-            <em>Education for Liberty.</em>
+            {heroIntro}
           </>
         }
         meta={
@@ -155,9 +157,7 @@ function AboutPage() {
                 <div className="grid gap-2 border-b hairline py-8 xl:grid-cols-[160px_minmax(0,1fr)] xl:gap-10">
                   <p className="eyebrow text-muted-foreground xl:pt-1">About</p>
                   <p className="max-w-[60ch] text-base leading-[1.7] text-foreground/85 md:text-[17px]">
-                    A thinker, consultant, academic and technical expert exploring how AI is shaping
-                    the future of innovation, drawing upon Amartya Sen's <em>Development as
-                    Freedom</em> and John Rawls' <em>A Theory of Justice.</em>
+                    {aboutBody}
                   </p>
                 </div>
               </Reveal>

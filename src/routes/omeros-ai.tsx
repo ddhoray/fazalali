@@ -9,6 +9,7 @@ import om45 from "@/assets/omeros/45.asset.json";
 import om46 from "@/assets/omeros/46.asset.json";
 import om47 from "@/assets/omeros/47.asset.json";
 import om48 from "@/assets/omeros/48.asset.json";
+import { useCmsEntries, useCmsText } from "@/components/site/CmsExtras";
 
 const omerosImages = [om44, om45, om46, om47, om48].map((a) => assetUrl(a));
 
@@ -96,22 +97,26 @@ const goals = [
 ];
 
 function OmerosPage() {
+  const heroTitle = useCmsText("omeros", "heroTitle");
+  const heroIntro = useCmsText("omeros", "heroIntro");
+  const manifesto = useCmsText("omeros", "manifesto");
+  const cmsItems = useCmsEntries("omeros");
+  const cmsPillars = cmsItems.filter((i) => (i.data as { page?: string })?.page === "pillar").map((i, n) => ({ k: i.subtitle ?? String(n + 1).padStart(2, "0"), t: i.title, b: i.body ?? "" }));
+  const cmsGoals = cmsItems.filter((i) => (i.data as { page?: string })?.page === "goal").map((i) => ({ year: i.subtitle ?? "", title: i.title, body: i.body ?? "" }));
+  const displayedPillars = cmsPillars.length ? cmsPillars : pillars;
+  const displayedGoals = cmsGoals.length ? cmsGoals : goals;
   return (
     <div>
       <PageHero
         eyebrow="The initiative"
         title={
           <>
-            Omeros<span className="">.</span>
+            {heroTitle}
           </>
         }
         standfirst={
           <>
-            <em>Omeros</em> is the Greek name for Homer, the poet of the sea, of journeys, of voices
-            passed from one generation to the next. It is the name Fazal Ali gives to a Caribbean
-            initiative in artificial intelligence: a <em>prophet provocateur</em> for AI in the West
-            Indies, convening, building capacity, and positioning the region as a strategic AI hub
-            by 2030.
+            {heroIntro}
           </>
         }
         meta={
@@ -145,9 +150,7 @@ function OmerosPage() {
         <Reveal>
           <div className="border-y hairline py-10 md:py-12">
             <p className="font-display text-3xl leading-[1.18] text-balance md:text-6xl">
-              <em>"</em>Omeros AI exists to open up honest debate about AI in the West Indies, to
-              build capacity across the region, and to nest our small island futures inside the
-              global conversation on intelligence, on terms set, in part, from here.<em>"</em>
+               <em>"</em>{manifesto}<em>"</em>
             </p>
             <p className="mt-10 eyebrow text-muted-foreground">Fazal Ali · 2026</p>
           </div>
@@ -168,7 +171,7 @@ function OmerosPage() {
           </Reveal>
 
           <div className="mt-16 grid gap-px bg-white/15 md:grid-cols-2 lg:grid-cols-4">
-            {pillars.map((t, i) => (
+             {displayedPillars.map((t, i) => (
               <Reveal key={t.k} delay={i * 0.04}>
                 <div className="bg-background p-8 md:p-10 h-full">
                   <p className="font-display text-5xl text-white/30">{t.k}</p>
@@ -197,7 +200,7 @@ function OmerosPage() {
         </Reveal>
 
         <div className="mt-12 grid gap-px bg-foreground/15 md:grid-cols-3">
-          {goals.map((g, i) => (
+           {displayedGoals.map((g, i) => (
             <Reveal key={g.year} delay={i * 0.06}>
               <div className="bg-background p-8 md:p-10 h-full">
                 <p className="font-display text-6xl text-accent">{g.year}</p>

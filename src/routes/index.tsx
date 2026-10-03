@@ -14,6 +14,7 @@ import { BookSection } from "@/components/site/BookSection";
 
 import { Newsletter } from "@/components/site/Newsletter";
 import { articles } from "@/content/articles";
+import { getJournal } from "@/lib/cms.functions";
 import fazalPortrait from "@/assets/fazal-portrait.jpg";
 import heroVideoAsset from "@/assets/hero-loop-web.mp4.asset.json";
 import { assetUrl } from "@/lib/asset-url";
@@ -42,6 +43,7 @@ function formatArticleDate(date: string) {
 }
 
 export const Route = createFileRoute("/")({
+  loader: () => getJournal(),
   head: () => ({
     meta: [
       { title: "Fazal Ali, Writer, Scholar, Founder of Omeros AI" },
@@ -110,25 +112,25 @@ function Home() {
 /* ─────────────────── Core Statement ─────────────────── */
 
 function CoreStatement() {
+  const eyebrow = useCmsText("home", "coreEyebrow");
+  const heading = useCmsText("home", "coreHeading");
+  const body = useCmsText("home", "coreBody");
   return (
     <section className="border-b hairline bg-background">
       <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 sm:py-28">
         <BlurReveal as="p" className="eyebrow text-muted-foreground">
-          A core statement
+          {eyebrow}
         </BlurReveal>
         <BlurReveal
           as="h2"
           delay={0.08}
           className="mt-6 font-display text-[8vw] leading-[1.02] tracking-[-0.025em] text-balance sm:text-5xl md:text-6xl lg:text-7xl"
         >
-          The ethics of AI must be the preserve of{" "}
-          <em className="text-accent">all cultures and continents.</em>
+          {heading}
         </BlurReveal>
         <div className="mt-10 grid max-w-4xl gap-6 text-base leading-relaxed text-foreground/75 md:text-lg">
           <BlurReveal as="p" delay={0.16}>
-            Every agency, company, institution and country designing, developing and deploying AI
-            architectures has an obligation to incorporate a more geographically, culturally and
-            socially diverse array of perspectives.
+            {body}
           </BlurReveal>
         </div>
       </div>
@@ -746,7 +748,7 @@ function Range() {
 const writingImages = [featuredWriting, practiceEssays, featuredOmeros];
 
 function LatestWriting() {
-  const latest = articles.slice(0, 3);
+  const latest = Route.useLoaderData().slice(0, 3);
   const navigate = useNavigate();
   const eyebrow = useCmsText("home", "journalEyebrow");
   const heading = useCmsText("home", "journalHeading");
@@ -777,7 +779,7 @@ function LatestWriting() {
           <div key={a.slug} className="overflow-visible">
             <SlideIn delay={i * 0.06} from="bottom" className="overflow-visible">
               <HoverImage
-                src={writingImages[i % writingImages.length]}
+                 src={a.image || writingImages[i % writingImages.length]}
                 alt={a.title}
                 holdMs={6000}
                 onHoldComplete={() => navigate({ to: "/writing/$slug", params: { slug: a.slug } })}

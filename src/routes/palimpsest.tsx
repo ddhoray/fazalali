@@ -1,4 +1,4 @@
-import { CmsReadings, CmsTestimonials, CmsPalimpsest, useCmsEntries } from "@/components/site/CmsExtras";
+import { CmsPalimpsest, useCmsText } from "@/components/site/CmsExtras";
 import { createFileRoute } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
@@ -27,20 +27,20 @@ export const Route = createFileRoute("/palimpsest")({
 });
 
 function PalimpsestPage() {
+  const heroTitle = useCmsText("palimpsest", "heroTitle");
+  const heroIntro = useCmsText("palimpsest", "heroIntro");
   return (
     <div>
       <PageHero
         eyebrow="Long read"
         title={
           <>
-            A palimpsest of West Indian <em className="">education.</em>
+            {heroTitle}
           </>
         }
         standfirst={
           <>
-            Set inside a frame of world events before and after Christopher Columbus set sail for
-            the New World in 1492, from Oxford in 1096 to the JFK Library in 1969, from the
-            Encomienda to Eric Williams.
+            {heroIntro}
           </>
         }
         meta={
