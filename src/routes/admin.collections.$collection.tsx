@@ -187,7 +187,7 @@ function CollectionPage() {
                 <Toggle checked={edit.published} onChange={(v) => setEdit({ ...edit, published: v })} label="Visible on site" />
                 <Toggle checked={edit.featured} onChange={(v) => setEdit({ ...edit, featured: v })} label="Featured" />
               </div>
-              <button className="w-full bg-omeros py-3 text-sm text-background">Save</button>
+              <button className="w-full bg-omeros py-3 text-sm text-background">Save changes</button>
             </form>
           )}
         </SheetContent>

@@ -6,8 +6,8 @@
 - [x] Fix blank images throughout the Journal page.
 - [x] Build /admin CMS (journal, pages, collections, media, inbox, newsletter, staff/roles, audit, profile, AI assist) with phone + code login.
 
-- [ ] Make admin navigation groups collapsible and improve the admin shell across desktop, tablet, and mobile.
-- [ ] Clarify and polish the Inbox workflow for public contact messages.
+- [x] Make admin navigation groups collapsible and improve the admin shell across desktop, tablet, and mobile.
+- [x] Clarify and polish the Inbox workflow for public contact messages.
 - [ ] Expand Page text and structured collections so all major frontend content is backend-controlled.
 - [ ] Make homepage Journal content use the backend source and add safe sync/import flows for existing content.
 - [ ] Verify admin usability and backend content reads across relevant viewports.

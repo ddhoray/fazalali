@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { adminAiAssist, adminListMedia, adminUploadMedia } from "@/lib/admin/admin.functions";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Button } from "@/components/ui/button";
 
 export function PageHeader({
   eyebrow,
@@ -20,11 +21,11 @@ export function PageHeader({
   actions?: ReactNode;
 }) {
   return (
-    <div className="flex flex-col gap-4 border-b border-border pb-6 md:flex-row md:items-end md:justify-between">
+    <div className="flex flex-col gap-5 border-b border-border pb-7 md:flex-row md:items-end md:justify-between">
       <div>
         {eyebrow && <p className="text-[11px] uppercase tracking-[0.24em] text-omeros">{eyebrow}</p>}
-        <h1 className="mt-2 font-display text-3xl tracking-tight md:text-4xl">{title}</h1>
-        {description && <p className="mt-2 max-w-2xl text-sm text-muted-foreground">{description}</p>}
+        <h1 className="mt-2 font-display text-3xl md:text-4xl">{title}</h1>
+        {description && <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">{description}</p>}
       </div>
       {actions && <div className="flex flex-wrap items-center gap-2">{actions}</div>}
     </div>
@@ -32,7 +33,11 @@ export function PageHeader({
 }
 
 export function Panel({ className, children }: { className?: string; children: ReactNode }) {
-  return <div className={cn("border border-border bg-card", className)}>{children}</div>;
+  return <div className={cn("border border-border bg-card shadow-sm", className)}>{children}</div>;
+}
+
+export function AdminButton({ className, ...props }: React.ComponentProps<typeof Button>) {
+  return <Button className={cn("min-h-10 rounded-none", className)} {...props} />;
 }
 
 export function StatCard({ label, value, hint, icon }: { label: string; value: ReactNode; hint?: string; icon?: ReactNode }) {

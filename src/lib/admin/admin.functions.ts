@@ -253,7 +253,7 @@ export const adminImportArticles = createServerFn({ method: "POST" }).handler(as
 
 const EntryInput = z.object({
   id: z.string().uuid().optional(),
-  collection: z.enum(["books", "gallery", "palimpsest", "testimonials", "readings"]),
+  collection: z.enum(["books", "gallery", "palimpsest", "testimonials", "readings", "ecology", "inequality", "omeros", "podcast"]),
   title: z.string().max(300).default(""),
   subtitle: z.string().max(300).nullable().optional(),
   body: z.string().max(20000).nullable().optional(),
