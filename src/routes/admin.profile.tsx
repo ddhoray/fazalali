@@ -1,10 +1,10 @@
-import { createFileRoute, useNavigate, useRouter } from "@tanstack/react-router";
+import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import { KeyRound, Loader2, LogOut, Save } from "lucide-react";
+import { KeyRound, Loader2, Save } from "lucide-react";
 import { toast } from "sonner";
-import { adminLogout, adminMyActivity, adminUpdateProfile } from "@/lib/admin/admin.functions";
+import { adminMyActivity, adminUpdateProfile } from "@/lib/admin/admin.functions";
 import { Field, ImageField, PageHeader, Panel, StatusBadge, inputCls, timeAgo } from "@/components/admin/AdminUi";
 
 export const Route = createFileRoute("/admin/profile")({ component: ProfilePage });
@@ -12,10 +12,8 @@ export const Route = createFileRoute("/admin/profile")({ component: ProfilePage 
 function ProfilePage() {
   const { me } = Route.useRouteContext();
   const update = useServerFn(adminUpdateProfile);
-  const logout = useServerFn(adminLogout);
   const activity = useServerFn(adminMyActivity);
   const router = useRouter();
-  const navigate = useNavigate();
   const { data: acts = [] } = useQuery({ queryKey: ["admin", "my-activity"], queryFn: () => activity() });
   const [f, setF] = useState({ name: me?.name ?? "", email: me?.email ?? "", avatar_url: me?.avatar_url ?? "", bio: me?.bio ?? "" });
   const [codes, setCodes] = useState({ currentOtp: "", newOtp: "" });
@@ -48,15 +46,6 @@ function ProfilePage() {
           <p className="text-sm text-muted-foreground">+91 {me.phone}</p>
           <div className="mt-3"><StatusBadge status={me.role} /></div>
           {f.bio && <p className="mt-4 text-sm text-muted-foreground">{f.bio}</p>}
-          <button
-            onClick={async () => {
-              await logout();
-              navigate({ to: "/admin/login", replace: true });
-            }}
-            className="mt-6 inline-flex items-center gap-2 text-sm text-destructive"
-          >
-            <LogOut className="size-4" /> Sign out
-          </button>
           <div className="mt-8 border-t border-border pt-5 text-left">
             <p className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">Your recent activity</p>
             <ul className="mt-3 space-y-2 text-xs">

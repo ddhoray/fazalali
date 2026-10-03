@@ -176,6 +176,19 @@ function AdminLayout() {
             </div>
           );
         })}
+        <div className="border-t border-border pt-2">
+          <button
+            type="button"
+            onClick={async () => {
+              await logout();
+              navigate({ to: "/admin/login", replace: true });
+            }}
+            className="my-0.5 flex min-h-10 w-full items-center gap-3 px-3 py-2 text-sm text-destructive transition-colors hover:bg-destructive/10 [&_svg]:size-4"
+          >
+            <LogOut />
+            Sign out
+          </button>
+        </div>
       </div>
       <div className="border-t border-border p-3">
         <a href="/" target="_blank" rel="noreferrer" className="flex items-center gap-3 px-3 py-2 text-sm text-foreground/75 hover:bg-muted [&_svg]:size-4">
