@@ -117,5 +117,8 @@ export const COLLECTIONS = {
   inequality: { label: "Inequality sections", description: "Sections shown on Inequality. Once populated, these replace the built-in sections.", titleLabel: "Section heading", subtitleLabel: "Label", bodyLabel: "Paragraphs (separate with a blank line)", linkLabel: null, image: true },
   omeros: { label: "Omeros AI", description: "Pillars and strategic goals on the Omeros AI page.", titleLabel: "Heading", subtitleLabel: "Number or year", bodyLabel: "Description", linkLabel: null, image: true, pagePicker: ["pillar", "goal"] },
   podcast: { label: "Podcast", description: "Podcast episodes. Once populated, these replace the built-in episode list.", titleLabel: "Episode title", subtitleLabel: "Series subtitle", bodyLabel: "Episode description", linkLabel: "Audio file URL", image: false },
+  profile_roles: { label: "Profile timeline", description: "Professional background entries shown on the Profile page.", titleLabel: "Institution / period", subtitleLabel: "Optional short label", bodyLabel: "Description", linkLabel: null, image: false },
+  home_ideas: { label: "Homepage ideas", description: "The areas of inquiry shown on the homepage.", titleLabel: "Idea", subtitleLabel: "Destination path", bodyLabel: "Short description", linkLabel: "Destination URL", image: false },
+  home_streams: { label: "Homepage streams", description: "The three practice cards shown on the homepage.", titleLabel: "Stream title", subtitleLabel: "Kicker", bodyLabel: "Description", linkLabel: "Destination URL", image: true },
 } as const;
 export type CollectionKey = keyof typeof COLLECTIONS;
