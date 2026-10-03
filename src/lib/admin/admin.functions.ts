@@ -609,6 +609,7 @@ export const adminAiAssist = createServerFn({ method: "POST" })
       headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
       body: JSON.stringify({
         model: "openai/gpt-6-astra",
+        store: false,
         input: [
           {
             role: "system",

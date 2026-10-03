@@ -1,11 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
-import { articles } from "@/content/articles";
+import { getJournal } from "@/lib/cms.functions";
 import { ArrowUpRight } from "lucide-react";
 import heroBook from "@/assets/hero-writing.jpg";
 
 export const Route = createFileRoute("/writing/")({
+  loader: () => getJournal(),
   head: () => ({
     meta: [
       { title: "Journal, Essays on AI, Education & the West Indies by Fazal Ali" },
@@ -75,6 +76,7 @@ function fmtDate(d: string) {
 }
 
 function WritingIndex() {
+  const articles = Route.useLoaderData();
   const [featured, ...rest] = articles;
 
   return (
