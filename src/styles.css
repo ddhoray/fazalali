@@ -32,6 +32,9 @@
   --color-border: var(--border);
   --color-input: var(--border);
   --color-ring: var(--foreground);
+  --color-omeros: oklch(0.48 0.22 262);
+  --color-omeros-soft: color-mix(in oklab, oklch(0.48 0.22 262) 12%, transparent);
+  --color-success: oklch(0.6 0.14 155);
 
   --font-display: "General Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "General Sans", "Inter", ui-sans-serif, system-ui, sans-serif;

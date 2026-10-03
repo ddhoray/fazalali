@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { ArrowUpRight, Mail } from "lucide-react";
 import { BlurReveal } from "./BlurReveal";
+import { subscribe } from "@/lib/cms.functions";
 
 /**
  * Editorial newsletter sign-up block.
@@ -14,6 +15,7 @@ export function Newsletter() {
     e.preventDefault();
     if (!email || !email.includes("@")) return;
     setDone(true);
+    subscribe({ data: { email } }).catch(() => {});
   }
 
   return (

@@ -160,6 +160,10 @@ export interface Article {
   image: string;
   tags?: string[];
   principles?: { title: string; body: string }[];
+  /** Rich HTML body from the admin panel (overrides `body` when present). */
+  html?: string;
+  seoTitle?: string;
+  seoDescription?: string;
 }
 
 export const articles: Article[] = [

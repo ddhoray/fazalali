@@ -1,20 +1,25 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
-import { articles } from "@/content/articles";
+import { getJournal, getJournalEntry } from "@/lib/cms.functions";
 
 export const Route = createFileRoute("/writing/$slug")({
-  loader: ({ params }) => {
-    const article = articles.find((a) => a.slug === params.slug);
+  loader: async ({ params }) => {
+    const [article, list] = await Promise.all([
+      getJournalEntry({ data: { slug: params.slug } }),
+      getJournal(),
+    ]);
     if (!article) throw notFound();
-    return { article };
+    const i = list.findIndex((a) => a.slug === article.slug);
+    const next = list.length ? list[(i + 1) % list.length] : article;
+    return { article, next: { slug: next.slug, title: next.title, topic: next.topic, excerpt: next.excerpt } };
   },
   head: ({ loaderData, params }) =>
     loaderData
       ? {
           meta: [
-            { title: `${loaderData.article.title}, Fazal Ali` },
-            { name: "description", content: loaderData.article.excerpt },
+            { title: loaderData.article.seoTitle ?? `${loaderData.article.title}, Fazal Ali` },
+            { name: "description", content: loaderData.article.seoDescription ?? loaderData.article.excerpt },
             ...(loaderData.article.tags && loaderData.article.tags.length
               ? [{ name: "keywords", content: loaderData.article.tags.join(", ") }]
               : []),
@@ -140,9 +145,7 @@ function fmtDate(d: string) {
 }
 
 function ArticlePage() {
-  const { article } = Route.useLoaderData();
-  const i = articles.findIndex((a) => a.slug === article.slug);
-  const next = articles[(i + 1) % articles.length];
+  const { article, next } = Route.useLoaderData();
   const readingTime = Math.max(3, Math.round(article.body.join(" ").split(/\s+/).length / 220));
 
   return (
@@ -193,7 +196,13 @@ function ArticlePage() {
       <section className="mx-auto max-w-3xl px-5 py-12 sm:px-8 sm:py-10">
         <Reveal>
           <div className="prose-essay space-y-7 text-lg leading-[1.8] text-foreground/85">
-            {article.body.map((p: string, idx: number) => (
+            {article.html ? (
+              <div
+                className="cms-html space-y-7 [&_a]:underline [&_blockquote]:border-l-2 [&_blockquote]:border-foreground/30 [&_blockquote]:pl-5 [&_blockquote]:italic [&_h2]:font-display [&_h2]:text-3xl [&_h3]:font-display [&_h3]:text-2xl [&_img]:w-full [&_li]:ml-5 [&_ol]:list-decimal [&_ul]:list-disc"
+                dangerouslySetInnerHTML={{ __html: article.html }}
+              />
+            ) : null}
+            {(article.html ? [] : article.body).map((p: string, idx: number) => (
               <p
                 key={idx}
                 className={
