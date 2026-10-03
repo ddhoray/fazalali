@@ -134,7 +134,7 @@ function ArticlesPage() {
                     <td className="hidden px-4 py-3 text-muted-foreground md:table-cell">{a.topic}</td>
                     <td className="hidden whitespace-nowrap px-4 py-3 text-muted-foreground md:table-cell">{fmtDateTime(a.publish_at)}</td>
                     <td className="px-4 py-3">
-                      <div className="flex justify-end gap-1 text-muted-foreground [&_button]:p-1.5 [&_a]:p-1.5 [&_svg]:size-4">
+                      <div className="flex justify-end gap-1 text-muted-foreground [&_button]:inline-flex [&_button]:min-h-11 [&_button]:min-w-11 [&_button]:items-center [&_button]:justify-center [&_a]:inline-flex [&_a]:min-h-11 [&_a]:min-w-11 [&_a]:items-center [&_a]:justify-center [&_svg]:size-4">
                         <Link to="/admin/articles/$id" params={{ id: a.id }} title="Edit" className="hover:text-foreground"><Pencil /></Link>
                         <button
                           title="Duplicate"

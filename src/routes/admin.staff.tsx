@@ -83,7 +83,7 @@ function StaffPage() {
                 <td className="hidden px-4 py-3 text-muted-foreground md:table-cell">{fmtDateTime(s.last_login_at)}</td>
                 <td className="px-4 py-3 text-xs">{s.active ? <span className="text-success">Active</span> : <span className="text-muted-foreground">Deactivated</span>}</td>
                 <td className="px-4 py-3">
-                  <div className="flex justify-end gap-1 text-muted-foreground [&_button]:p-1.5 [&_svg]:size-4">
+                  <div className="flex justify-end gap-1 text-muted-foreground [&_button]:inline-flex [&_button]:min-h-11 [&_button]:min-w-11 [&_button]:items-center [&_button]:justify-center [&_svg]:size-4">
                     <button title="Edit" onClick={() => setF({ id: s.id, phone: s.phone, name: s.name, email: s.email ?? "", role: s.role as Role, otp: "", active: s.active })}><Pencil /></button>
                     {s.id !== me?.id && (
                       <button title="Remove" className="hover:text-destructive" onClick={async () => { if (!confirm(`Remove ${s.name || s.phone}?`)) return; await del({ data: { id: s.id } }); toast.success("Removed"); qc.invalidateQueries({ queryKey: ["admin", "staff"] }); }}>

@@ -207,7 +207,7 @@ function ArticlePage() {
                 key={idx}
                 className={
                   idx === 0
-                    ? "first-letter:font-display first-letter:text-7xl first-letter:leading-none first-letter:mr-3 first-letter:float-left first-letter:mt-2"
+                    ? "first-letter:font-display first-letter:text-6xl first-letter:leading-none first-letter:mr-3 first-letter:float-left first-letter:mt-2 sm:first-letter:text-7xl"
                     : ""
                 }
               >

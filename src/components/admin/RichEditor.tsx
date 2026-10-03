@@ -49,7 +49,7 @@ export function RichEditor({ value, onChange }: { value: string; onChange: (html
       title={label}
       aria-label={label}
       onClick={on}
-      className={cn("flex size-8 items-center justify-center hover:bg-muted", active && "bg-omeros-soft text-omeros")}
+      className={cn("flex size-11 shrink-0 items-center justify-center hover:bg-muted sm:size-9", active && "bg-omeros-soft text-omeros")}
     >
       {children}
     </button>
@@ -59,7 +59,7 @@ export function RichEditor({ value, onChange }: { value: string; onChange: (html
 
   return (
     <div className="border border-border bg-background">
-      <div className="sticky top-14 z-10 flex flex-wrap items-center gap-0.5 border-b border-border bg-background/95 px-2 py-1.5 backdrop-blur [&_svg]:size-4">
+      <div className="sticky top-14 z-10 flex items-center gap-0.5 overflow-x-auto border-b border-border bg-background/95 px-2 py-1.5 backdrop-blur [&_svg]:size-4">
         <B label="Heading" on={() => editor.chain().focus().toggleHeading({ level: 2 }).run()} active={editor.isActive("heading", { level: 2 })}><Heading2 /></B>
         <B label="Subheading" on={() => editor.chain().focus().toggleHeading({ level: 3 }).run()} active={editor.isActive("heading", { level: 3 })}><Heading3 /></B>
         <span className="mx-1 h-5 w-px bg-border" />
@@ -88,7 +88,7 @@ export function RichEditor({ value, onChange }: { value: string; onChange: (html
         <span className="mx-1 h-5 w-px bg-border" />
         <B label="Undo" on={() => editor.chain().focus().undo().run()}><Undo2 /></B>
         <B label="Redo" on={() => editor.chain().focus().redo().run()}><Redo2 /></B>
-        <span className="ml-auto px-2 text-xs text-muted-foreground">
+        <span className="ml-auto shrink-0 px-2 text-xs text-muted-foreground">
           {words} words · {Math.max(1, Math.round(words / 220))} min read
         </span>
       </div>

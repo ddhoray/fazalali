@@ -52,7 +52,7 @@ export function BookSection() {
             <BlurReveal
               as="h2"
               delay={0.08}
-              className="mt-4 font-display text-[12vw] leading-[0.92] tracking-[-0.03em] sm:text-6xl md:text-7xl"
+              className="mt-4 font-display text-[clamp(2.5rem,12vw,4.5rem)] leading-[0.92] tracking-[-0.03em]"
             >
               Education
               <br />

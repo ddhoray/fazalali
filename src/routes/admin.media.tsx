@@ -84,16 +84,16 @@ function MediaPage() {
           <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
           <input className={cn(inputCls, "pl-9")} placeholder="Search by name or alt text" value={q} onChange={(e) => setQ(e.target.value)} />
         </div>
-        <div className="flex border border-border bg-background">
+        <div className="flex max-w-full overflow-x-auto border border-border bg-background">
           {[["all", "All"], ["image/", "Images"], ["video/", "Video"], ["audio/", "Audio"], ["application/", "Docs"]].map(([v, l]) => (
-            <button key={v} onClick={() => setType(v)} className={cn("px-3 py-2.5 text-xs uppercase tracking-[0.14em]", type === v ? "bg-foreground text-background" : "text-muted-foreground")}>
+            <button key={v} onClick={() => setType(v)} className={cn("min-h-11 shrink-0 px-3 py-2.5 text-xs uppercase tracking-[0.14em]", type === v ? "bg-foreground text-background" : "text-muted-foreground")}>
               {l}
             </button>
           ))}
         </div>
         <div className="flex border border-border bg-background">
-          <button onClick={() => setView("grid")} className={cn("px-3", view === "grid" && "bg-muted")} aria-label="Grid"><Grid2X2 className="size-4" /></button>
-          <button onClick={() => setView("list")} className={cn("px-3", view === "list" && "bg-muted")} aria-label="List"><List className="size-4" /></button>
+          <button onClick={() => setView("grid")} className={cn("min-h-11 min-w-11 px-3", view === "grid" && "bg-muted")} aria-label="Grid"><Grid2X2 className="size-4" /></button>
+          <button onClick={() => setView("list")} className={cn("min-h-11 min-w-11 px-3", view === "list" && "bg-muted")} aria-label="List"><List className="size-4" /></button>
         </div>
       </div>
 

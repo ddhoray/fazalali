@@ -21,13 +21,13 @@ export function PageHeader({
   actions?: ReactNode;
 }) {
   return (
-    <div className="flex flex-col gap-5 border-b border-border pb-7 md:flex-row md:items-end md:justify-between">
-      <div>
+    <div className="grid grid-cols-1 gap-5 border-b border-border pb-7 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
+      <div className="min-w-0">
         {eyebrow && <p className="text-[11px] uppercase tracking-[0.24em] text-omeros">{eyebrow}</p>}
         <h1 className="mt-2 font-display text-3xl md:text-4xl">{title}</h1>
         {description && <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">{description}</p>}
       </div>
-      {actions && <div className="flex flex-wrap items-center gap-2">{actions}</div>}
+      {actions && <div className="flex min-w-0 flex-wrap items-center gap-2">{actions}</div>}
     </div>
   );
 }
@@ -47,7 +47,7 @@ export function StatCard({ label, value, hint, icon }: { label: string; value: R
         {label}
         <span className="text-omeros">{icon}</span>
       </div>
-      <p className="mt-4 font-display text-4xl tracking-tight">{value}</p>
+      <p className="mt-4 truncate font-display text-3xl tracking-tight sm:text-4xl">{value}</p>
       {hint && <p className="mt-1 text-xs text-muted-foreground">{hint}</p>}
     </Panel>
   );
@@ -151,7 +151,7 @@ export function AiAssist({
           <Sparkles className="size-3" /> Suggest
         </button>
       </PopoverTrigger>
-      <PopoverContent className="w-96 p-0" align="end">
+      <PopoverContent className="w-[calc(100vw-2rem)] p-0 sm:w-96" align="end">
         <div className="flex items-center justify-between border-b border-border px-4 py-2.5 text-xs uppercase tracking-[0.18em] text-muted-foreground">
           AI suggestions
           <button type="button" onClick={run} className="normal-case tracking-normal text-omeros">Regenerate</button>
@@ -209,7 +209,7 @@ export function ImageField({ value, onChange, label = "Image" }: { value: string
   const [open, setOpen] = useState(false);
   return (
     <Field label={label}>
-      <div className="flex gap-3">
+      <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-3">
         <button
           type="button"
           onClick={() => setOpen(true)}
@@ -217,7 +217,7 @@ export function ImageField({ value, onChange, label = "Image" }: { value: string
         >
           {value ? <img src={value} alt="" className="size-full object-cover" /> : <ImageIcon className="size-5 text-muted-foreground" />}
         </button>
-        <div className="flex-1 space-y-2">
+        <div className="min-w-0 space-y-2">
           <input className={inputCls} placeholder="https://… or pick from library" value={value ?? ""} onChange={(e) => onChange(e.target.value)} />
           <div className="flex gap-3 text-xs">
             <button type="button" className="text-omeros hover:underline" onClick={() => setOpen(true)}>Choose from library</button>
@@ -240,7 +240,7 @@ export function MediaPicker({ open, onOpenChange, onPick }: { open: boolean; onO
   const items = data.filter((m) => m.content_type.startsWith("image/") && (m.filename + m.alt).toLowerCase().includes(q.toLowerCase()));
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl">
+      <DialogContent className="max-h-[92svh] w-[calc(100vw-2rem)] max-w-4xl overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="font-display text-2xl">Media library</DialogTitle>
         </DialogHeader>
