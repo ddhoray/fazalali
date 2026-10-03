@@ -11,6 +11,6 @@
 - [x] Expand Page text and structured collections so all major frontend content is backend-controlled.
 - [x] Make homepage Journal content use the backend source and add safe sync/import flows for existing content.
 - [x] Verify admin usability and backend content reads across relevant viewports.
-- [ ] Audit every public and admin screen at phone, tablet, and desktop widths.
-- [ ] Fix responsive overflow, clipping, navigation, forms, tables, dialogs, and tap targets.
-- [ ] Browser-verify representative public and admin workflows at all three widths.
+- [x] Audit every public and admin screen at phone, tablet, and desktop widths.
+- [x] Fix responsive overflow, clipping, navigation, forms, tables, dialogs, and tap targets.
+- [x] Browser-verify representative public and admin workflows at all three widths.

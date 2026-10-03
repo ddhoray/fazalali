@@ -49,7 +49,7 @@ function InboxPage() {
           <input className={cn(inputCls, "pl-9")} value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search messages" />
         </div>
       </div>
-      <div className="grid gap-4 lg:grid-cols-[minmax(300px,390px)_minmax(0,1fr)]">
+      <div className="grid gap-4 md:grid-cols-[minmax(280px,360px)_minmax(0,1fr)]">
         <Panel className={cn("max-h-[72vh] overflow-y-auto", sel && "hidden md:block")}>
           {!items.length && <Empty icon={<Inbox className="size-8" />} title="All clear" body="New messages will land here." />}
           {items.map((m) => (
