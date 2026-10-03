@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/admin/pages")({ component: PagesEditor });
 
-const EMPTY_PAGES: Awaited<ReturnType<ReturnType<typeof useServerFn<typeof adminGetPages>>>> = [];
+const EMPTY_PAGES: Array<{ key: string; data: unknown }> = [];
 
 function PagesEditor() {
   const get = useServerFn(adminGetPages);
