@@ -1,52 +1,57 @@
-## Goal
-Replace all warm-toned imagery (sepia, golden, amber, warm beach) with **cool, neutral, modern editorial photography** — crisp greys, slate blues, fog whites, charcoal — and tighten the layout into a clean minimal editorial feel.
+# Omeros Admin Panel (/admin)
 
-## Image Replacements (regenerate via imagegen, save over existing .jpg paths)
+A full content manager at omeros.hyperrevamp.com/admin, modeled on Luvomen's admin but built around the Omeros writing, art and research content.
 
-All new images: cool grey/slate/fog palette, soft natural light, modern editorial photography, no warm yellow/orange/sepia cast, no parchment, no colonial/historic textures.
+## Login
+- `/admin/login`: phone number + 4-digit OTP screen, styled like Luvomen.
+- Administrator: **8105391122 / OTP 1122**. No real SMS is sent. Each team member gets their own number and code.
+- Sessions are checked on the server. Every admin action is checked again, not only the page.
 
-**Hero images** (modern, cool, atmospheric)
-- `hero-beach.jpg` (asset) → cool overcast Caribbean coast, silver sea, grey sky
-- `hero-desk.jpg` → minimalist desk, white/oak, soft cool window light
-- `hero-writing.jpg` → open notebook, cool morning light, neutral linen
-- `hero-podcast.jpg` → modern matte-black mic, soft grey backdrop
-- `hero-omeros.jpg` → abstract data/neural mesh in cool blues
-- `hero-ecology.jpg` → mangrove/sea in muted teal-grey
-- `hero-inequality.jpg` → modern architecture, concrete, cool light
-- `hero-palimpsest.jpg` → layered paper textures in cool greys
-- `hero-gallery.jpg` → minimal gallery wall, cool whites
-- `hero-book.jpg`, `hero-statue.jpg` → cool tones if still referenced
+## Layout
+- A sidebar with grouped sections (Content, Media, Audience, Team, Settings), a top bar with search, and a profile menu.
+- Uses the Omeros brand: bone/graphite colors, Omeros blue accents, sharp edges and General Sans.
+- Works on desktop and tablet; the sidebar collapses on mobile.
 
-**Featured / practice** (homepage cards)
-- `featured-education.jpg`, `featured-omeros.jpg`, `featured-writing.jpg`
-- `practice-essays.jpg`, `practice-book.jpg`, `practice-omeros.jpg`
-→ editorial modern still lifes, cool neutral palette
+## Sections
+1. **Dashboard**: page views, top articles, recent edits, new messages and scheduled posts, plus quick buttons ("New article", "Upload media").
+2. **Journal articles**: a searchable, filterable table (status, category, tag, date).
+   - The editor has rich text, a featured image picked from the media library, an excerpt, tags and category.
+   - It also has SEO fields with a Google preview, a slug and an Open Graph image.
+   - Posts can be Draft, Scheduled (publish date and time) or Published. Live preview in a side pane. Duplicate and delete with confirmation.
+   - **AI assist** suggests SEO titles, meta descriptions, excerpts and image alt text.
+   - All 150+ existing posts are imported, so the public Journal reads from the admin.
+3. **Books**: add, edit and reorder the forthcoming books (cover, status, description, links).
+4. **Ecology & Inequality**: page text, Selected readings links, image strips and the featured manifesto.
+5. **Gallery**: paintings with captions and alt text, drag to reorder, hide or show.
+6. **Palimpsest**: edit the 10 sections (title, text, image).
+7. **Homepage & Profile text**: hero lines, biography, buttons, footer and contact details, all editable as fields.
+8. **Testimonials**: quote, name, role and photo, with reordering and a featured toggle; shown on the site where you choose.
+9. **Media library**: upload images, video, audio and PDFs in a grid or list. Search, copy the link, edit alt text, see where each file is used, and delete.
+10. **Inbox & Newsletter**: contact-form messages (read/unread, archive) and newsletter sign-ups, with CSV export.
+11. **Staff & Roles**: add CMS users by phone and set their role.
+    - **Owner**: full access.
+    - **Editor**: content and media.
+    - **Author**: own drafts only.
+    - **Viewer**: read-only.
+    - Users can be deactivated or removed.
+12. **Audit log**: who changed what and when, with filters.
+13. **Profile**: your name, photo, email, phone, role, recent activity and sign out.
 
-**Article thumbnails** (10 in `src/content/articles.ts`)
-- carnival, failure, fabric, shield, gravity, datacenter, shelf, 100model, cern, divine → modern cool-toned editorial photography matching each topic (data center, fabric textures, architecture, etc.) — no warm cast
+## What changes on the public site
+The Journal, Books, Gallery, Palimpsest, Ecology, Inequality, Homepage and Profile pages read their content from the admin. They look exactly the same as now.
 
-**Portraits** — keep `fazal-portrait.jpg` / `fazal-cutout.png` (real photos of the author, do not replace), but adjust surrounding frame styling to cool neutral.
+## Technical details
+- Lovable Cloud tables: articles, pages/content blocks (JSON per page), books, gallery_items, palimpsest_sections, testimonials, media, messages, subscribers, staff, staff_roles (separate table), admin_sessions, audit_log, page_views.
+- OTP login is checked by server functions. The session is an httpOnly cookie stored in admin_sessions. A `requireAdmin` middleware with a role check guards every admin server function. Content tables have public read access only for published rows.
+- Files are stored in a Cloud storage bucket. The editor is TipTap. AI assist uses the Lovable AI Gateway.
+- A seed migration copies the current static content (articles.ts, palimpsest.ts, ecology.ts, gallery, books and so on) into the tables. Public routes switch to loaders with the current files as a fallback.
+- Routes: `/admin/login` plus `/admin/*` pages, all marked noindex.
 
-## Styling refinements (`src/styles.css` + components)
-- Audit and remove any remaining warm beige/cream/amber section backgrounds; shift to ivory/off-white `oklch(0.97 0.005 250)` and cool charcoal `oklch(0.18 0.015 250)`.
-- Cards/borders: hairline cool grey, no warm shadows.
-- Confirm `PageHero` cream bg → swap to cool fog white.
-- Remove `grain` warm tint if present.
-
-## Layout polish (minimal editorial)
-- Tighten section spacing, larger negative space.
-- Confirm typography stays as-is (client loves the font).
-- Image treatments: rounded-none or rounded-sm, hairline border, no heavy shadows — gallery/editorial feel.
-
-## Files touched
-- All `src/assets/*.jpg` (regenerated in place, cool palette)
-- `src/styles.css` (warm token audit)
-- `src/components/site/PageHero.tsx` (background)
-- `src/components/site/BookSection.tsx`, `FeaturedStack.tsx`, `ScrollGrowBento.tsx` (frame styling if warm)
-- No route logic changes; image imports stay the same.
-
-## Out of scope
-- No layout/route restructuring
-- No font changes
-- No copy changes
-- Author portraits kept as-is
+## Build order
+1. Cloud, schema, seed data and login
+2. Shell, dashboard and profile
+3. Journal editor
+4. Media library
+5. Other content modules
+6. Inbox, testimonials, staff and audit log
+7. Connect the public pages to the admin and check everything
