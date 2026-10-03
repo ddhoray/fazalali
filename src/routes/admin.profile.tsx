@@ -48,15 +48,6 @@ function ProfilePage() {
           <p className="text-sm text-muted-foreground">+91 {me.phone}</p>
           <div className="mt-3"><StatusBadge status={me.role} /></div>
           {f.bio && <p className="mt-4 text-sm text-muted-foreground">{f.bio}</p>}
-          <button
-            onClick={async () => {
-              await logout();
-              navigate({ to: "/admin/login", replace: true });
-            }}
-            className="mt-6 inline-flex items-center gap-2 text-sm text-destructive"
-          >
-            <LogOut className="size-4" /> Sign out
-          </button>
           <div className="mt-8 border-t border-border pt-5 text-left">
             <p className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">Your recent activity</p>
             <ul className="mt-3 space-y-2 text-xs">
