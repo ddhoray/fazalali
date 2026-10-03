@@ -604,12 +604,12 @@ export const adminAiAssist = createServerFn({ method: "POST" })
       alt: "Write 3 concise, descriptive image alt texts (max 120 characters).",
       tags: "Suggest 3 comma-separated tag sets of 4–6 tags each.",
     };
-    const res = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+    const res = await fetch("https://ai.gateway.lovable.dev/v1/responses", {
       method: "POST",
       headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
       body: JSON.stringify({
-        model: "google/gemini-3-flash-preview",
-        messages: [
+        model: "openai/gpt-6-astra",
+        input: [
           {
             role: "system",
             content:
@@ -622,8 +622,14 @@ export const adminAiAssist = createServerFn({ method: "POST" })
     if (res.status === 429) return { suggestions: [], error: "Too many requests, try again in a moment." };
     if (res.status === 402) return { suggestions: [], error: "AI credits are exhausted for this workspace." };
     if (!res.ok) return { suggestions: [], error: "AI request failed." };
-    const json = (await res.json()) as { choices?: { message?: { content?: string } }[] };
-    const raw = json.choices?.[0]?.message?.content ?? "[]";
+    const json = (await res.json()) as {
+      output_text?: string;
+      output?: { content?: { type?: string; text?: string }[] }[];
+    };
+    const raw =
+      json.output_text ??
+      (json.output ?? []).flatMap((o) => o.content ?? []).map((c) => c.text ?? "").join("") ??
+      "[]";
     try {
       const arr = JSON.parse(raw.replace(/```json|```/g, "").trim());
       return { suggestions: (Array.isArray(arr) ? arr : []).map(String).slice(0, 3) };
