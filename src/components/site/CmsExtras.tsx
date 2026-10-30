@@ -62,6 +62,17 @@ export function Rich({ text, accent = "text-accent" }: { text: string; accent?: 
   return parts.map((p, i) => (i % 2 ? <em key={i} className={accent}>{p}</em> : <Fragment key={i}>{p}</Fragment>));
 }
 
+/** Renders [words](https://link) as inline links, with *asterisk* accents. */
+export function InlineLinks({ text, linkClass = "underline underline-offset-4" }: { text: string; linkClass?: string }): ReactNode {
+  const parts = text.split(/\[([^\]]+)\]\(([^)\s]+)\)/g);
+  const out: ReactNode[] = [];
+  for (let i = 0; i < parts.length; i += 3) {
+    if (parts[i]) out.push(<Fragment key={i}><Rich text={parts[i]} /></Fragment>);
+    if (parts[i + 1]) out.push(<a key={i + "l"} href={parts[i + 2]} target="_blank" rel="noreferrer" className={linkClass}>{parts[i + 1]}</a>);
+  }
+  return out;
+}
+
 export function CmsReadings({ page }: { page: "ecology" | "inequality" }) {
   const items = useCmsEntries("readings").filter((e) => (e.data as { page?: string })?.page === page);
   if (!items.length) return null;
@@ -112,25 +123,6 @@ export function CmsTestimonials() {
           ))}
         </div>
       </div>
-    </section>
-  );
-}
-
-export function CmsPalimpsest() {
-  const items = useCmsEntries("palimpsest");
-  if (!items.length) return null;
-  return (
-    <section className="mx-auto max-w-[1500px] space-y-20 px-5 py-16 sm:px-8">
-      {items.map((s) => (
-        <article key={s.id} className="grid gap-8 md:grid-cols-2 md:items-center">
-          {s.image_url && <img src={s.image_url} alt={s.title} loading="lazy" className="aspect-[4/3] w-full object-cover" />}
-          <div>
-            {s.subtitle && <p className="eyebrow text-muted-foreground">{s.subtitle}</p>}
-            <h2 className="mt-4 font-display text-3xl leading-tight md:text-5xl">{s.title}</h2>
-            {s.body && <p className="mt-6 whitespace-pre-line text-base leading-relaxed text-foreground/75">{s.body}</p>}
-          </div>
-        </article>
-      ))}
     </section>
   );
 }

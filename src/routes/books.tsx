@@ -1,4 +1,4 @@
-import { useCmsEntries, useCmsText } from "@/components/site/CmsExtras";
+import { InlineLinks, useCmsEntries, useCmsText } from "@/components/site/CmsExtras";
 import { useState, type ReactNode } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "motion/react";
@@ -148,11 +148,11 @@ function BooksPage() {
     title: e.title,
     note: (
       <>
-        {e.body}
+        <InlineLinks text={e.body ?? ""} linkClass={cardLink} />
         {e.link_url ? (
           <>
             {" "}
-            <a href={e.link_url} target="_blank" rel="noreferrer" className="underline">Read more</a>
+            <a href={e.link_url} target="_blank" rel="noreferrer" className={cardLink}>Read more</a>
           </>
         ) : null}
       </>
