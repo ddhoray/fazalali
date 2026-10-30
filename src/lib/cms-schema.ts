@@ -52,6 +52,10 @@ export const PAGE_SCHEMAS: PageSchema[] = [
       t("creditPrefix", "Credit text", "Designed & developed by", "Footer"),
       t("creditName", "Credit name", "HyperRevamp", "Footer"),
       url("creditUrl", "Credit link", "https://hyperrevamp.com", "Footer"),
+      img("splashLogo", "Splash logo (shown on first visit)", "Opening splash"),
+      t("splashEnabled", "Show splash screen (yes / no)", "yes", "Opening splash"),
+      t("splashSeconds", "Splash duration in seconds", "1.6", "Opening splash"),
+      t("splashTagline", "Splash line under the logo (optional)", "", "Opening splash"),
       t("nlEyebrow", "Newsletter label", "The Letter · No. 01", "Newsletter"),
       t("nlHeading", "Newsletter heading", "A letter, *now and then.*", "Newsletter"),
       l("nlBody", "Newsletter text", "Occasional dispatches, new journal entries, notes from forthcoming books, and quiet reports from Omeros AI. No noise. No tracking. Read once, leave anytime.", "Newsletter"),
@@ -148,6 +152,16 @@ export const PAGE_SCHEMAS: PageSchema[] = [
   ]},
 ];
 
+/** Search & sharing fields on every page (empty = the built-in title/description). */
+for (const p of PAGE_SCHEMAS) {
+  if (p.key === "site") continue;
+  p.fields.push(
+    t("seoTitle", "Search title (browser tab & Google)", "", "Search & sharing"),
+    l("seoDescription", "Search description", "", "Search & sharing"),
+    img("seoImage", "Sharing image (link previews)", "Search & sharing"),
+  );
+}
+
 /** Parse a `links` field: one "Label | /path" per line. */
 export function parseLinks(v: string): { label: string; to: string }[] {
   return v
@@ -160,7 +174,7 @@ export function parseLinks(v: string): { label: string; to: string }[] {
 export const COLLECTIONS = {
   books: {
     label: "Books",
-    description: "Forthcoming books shown on the Books page, after the built-in titles.",
+    description: "Forthcoming books on the Books page. Use [words](https://link) inside the description for inline links.",
     titleLabel: "Book title",
     subtitleLabel: "Status / year (e.g. Forthcoming · 2027)",
     bodyLabel: "Description",
@@ -178,10 +192,10 @@ export const COLLECTIONS = {
   },
   palimpsest: {
     label: "Palimpsest",
-    description: "Additional Palimpsest sections, shown after the existing ten.",
+    description: "The Palimpsest timeline sections. Once populated, these replace the built-in sections.",
     titleLabel: "Section title",
-    subtitleLabel: "Year / eyebrow",
-    bodyLabel: "Section text",
+    subtitleLabel: "Image caption (optional)",
+    bodyLabel: "Timeline entries (separate with a blank line)",
     linkLabel: null,
     image: true,
   },
@@ -211,5 +225,7 @@ export const COLLECTIONS = {
   profile_roles: { label: "Profile timeline", description: "Professional background entries shown on the Profile page.", titleLabel: "Institution / period", subtitleLabel: "Optional short label", bodyLabel: "Description", linkLabel: null, image: false },
   home_ideas: { label: "Homepage ideas", description: "The areas of inquiry shown on the homepage.", titleLabel: "Idea", subtitleLabel: "Destination path", bodyLabel: "Short description", linkLabel: "Destination URL", image: false },
   home_streams: { label: "Homepage streams", description: "The three practice cards shown on the homepage.", titleLabel: "Stream title", subtitleLabel: "Kicker", bodyLabel: "Description", linkLabel: "Destination URL", image: true },
+  education_chapters: { label: "Education for Liberty themes", description: "The 'Ideas & themes' chapters on the Education for Liberty page. Once populated, these replace the built-in chapters.", titleLabel: "Theme title", subtitleLabel: "Numeral (e.g. I, II)", bodyLabel: "Description", linkLabel: null, image: false },
+  field_notes: { label: "Field notes photos", description: "The Field notes photos on Ecology and the rotating photo strip on Inequality. Once populated for a page, these replace its built-in photos.", titleLabel: "Image description (alt text)", subtitleLabel: "Caption (optional)", bodyLabel: "Note (optional)", linkLabel: null, image: true, pagePicker: ["ecology", "inequality"] },
 } as const;
 export type CollectionKey = keyof typeof COLLECTIONS;
