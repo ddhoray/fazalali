@@ -89,6 +89,7 @@ export const getPublicEntries = createServerFn({ method: "GET" })
         .select("id, title, subtitle, body, image_url, link_url, data, featured")
         .eq("collection", data.collection)
         .eq("published", true)
+        .or(`publish_at.is.null,publish_at.lte.${new Date().toISOString()}`)
         .order("position");
       return rows ?? [];
     } catch {
@@ -99,9 +100,21 @@ export const getPublicEntries = createServerFn({ method: "GET" })
 export const getPublicPages = createServerFn({ method: "GET" }).handler(async () => {
   try {
     const db = await DB();
-    const { data } = await db.from("cms_pages").select("key, data");
+    const { data } = await db.from("cms_pages").select("key, data, scheduled_data, scheduled_at");
     const out: Record<string, Record<string, string>> = {};
-    for (const r of data ?? []) out[r.key] = (r.data ?? {}) as Record<string, string>;
+    const now = Date.now();
+    for (const r of data ?? []) {
+      let d = (r.data ?? {}) as Record<string, string>;
+      // A scheduled update goes live the first time the site is read after its time.
+      if (r.scheduled_at && r.scheduled_data && new Date(r.scheduled_at).getTime() <= now) {
+        d = { ...d, ...(r.scheduled_data as Record<string, string>) };
+        await db
+          .from("cms_pages")
+          .update({ data: d, scheduled_data: null, scheduled_at: null, updated_at: new Date().toISOString() })
+          .eq("key", r.key);
+      }
+      out[r.key] = d;
+    }
     return out;
   } catch {
     return {} as Record<string, Record<string, string>>;

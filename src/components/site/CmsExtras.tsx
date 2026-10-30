@@ -1,7 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
+import { queryOptions, useQuery } from "@tanstack/react-query";
+import { Fragment, type ReactNode } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { getPublicEntries, getPublicPages } from "@/lib/cms.functions";
-import { PAGE_SCHEMAS } from "@/lib/cms-schema";
+import { PAGE_SCHEMAS, parseLinks } from "@/lib/cms-schema";
 
 export type CmsEntry = {
   id: string;
@@ -24,11 +25,31 @@ export function useCmsEntries(collection: string) {
   return data;
 }
 
+/** All saved page content; prefetched in the root loader so the first paint is already correct. */
+export const cmsPagesQuery = queryOptions({ queryKey: ["cms", "pages"], queryFn: () => getPublicPages(), staleTime: 30_000 });
+
+/** Saved value only ("" when the editor hasn't set it). Use for media overrides. */
+export function useCmsSaved(page: string, field: string) {
+  const { data } = useQuery(cmsPagesQuery);
+  return (data?.[page]?.[field] ?? "").trim();
+}
+
 /** Editable page text with the site's default copy as fallback. */
 export function useCmsText(page: string, field: string) {
-  const { data } = useQuery({ queryKey: ["cms", "pages"], queryFn: () => getPublicPages(), staleTime: 60_000 });
+  const { data } = useQuery(cmsPagesQuery);
   const def = PAGE_SCHEMAS.find((p) => p.key === page)?.fields.find((f) => f.key === field)?.def ?? "";
-  return data?.[page]?.[field] ?? def;
+  const v = data?.[page]?.[field];
+  return v === undefined || v === "" ? def : v;
+}
+
+export function useCmsLinks(page: string, field: string) {
+  return parseLinks(useCmsText(page, field));
+}
+
+/** Renders *asterisk* spans as the accent italic. */
+export function Rich({ text, accent = "text-accent" }: { text: string; accent?: string }): ReactNode {
+  const parts = text.split(/\*([^*]+)\*/g);
+  return parts.map((p, i) => (i % 2 ? <em key={i} className={accent}>{p}</em> : <Fragment key={i}>{p}</Fragment>));
 }
 
 export function CmsReadings({ page }: { page: "ecology" | "inequality" }) {
