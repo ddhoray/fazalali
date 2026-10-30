@@ -1,4 +1,5 @@
 import { CmsTestimonials, useCmsEntries, useCmsText } from "@/components/site/CmsExtras";
+import { withSeo } from "@/lib/seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
@@ -7,7 +8,8 @@ import { openContactDrawer } from "@/components/site/ContactDrawer";
 import fazalPortrait from "@/assets/fazal-portrait.jpg";
 
 export const Route = createFileRoute("/about")({
-  head: () => ({
+  head: (ctx) =>
+    withSeo("profile", ctx, ({
     meta: [
       { title: "Profile, Fazal Ibrahim Ali" },
       {
@@ -24,7 +26,7 @@ export const Route = createFileRoute("/about")({
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/about" },
     ],
     links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/about" }],
-  }),
+  })),
   component: AboutPage,
 });
 

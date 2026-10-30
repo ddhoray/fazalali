@@ -1,4 +1,5 @@
 import { Rich, useCmsEntries, useCmsSaved, useCmsText } from "@/components/site/CmsExtras";
+import { withSeo } from "@/lib/seo";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { motion, useScroll, useTransform, useMotionValueEvent } from "motion/react";
 import { useEffect, useRef, useState } from "react";
@@ -44,7 +45,8 @@ function formatArticleDate(date: string) {
 
 export const Route = createFileRoute("/")({
   loader: () => getJournal(),
-  head: () => ({
+  head: (ctx) =>
+    withSeo("home", ctx, ({
     meta: [
       { title: "Fazal Ali, Writer, Scholar, Founder of Omeros AI" },
       {
@@ -62,7 +64,7 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
     ],
     links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/" }],
-  }),
+  })),
   component: Home,
 });
 

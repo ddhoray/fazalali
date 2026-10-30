@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { withSeo } from "@/lib/seo";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
 import { getJournal } from "@/lib/cms.functions";
@@ -7,7 +8,8 @@ import heroBook from "@/assets/hero-writing.jpg";
 
 export const Route = createFileRoute("/writing/")({
   loader: () => getJournal(),
-  head: ({ loaderData }) => ({
+  head: (ctx) =>
+    withSeo("writing", ctx, (({ loaderData }) => ({
     meta: [
       { title: "Journal, Essays on AI, Education & the West Indies by Fazal Ali" },
       {
@@ -61,7 +63,7 @@ export const Route = createFileRoute("/writing/")({
         }),
       },
     ],
-  }),
+  }))(ctx)),
   component: WritingIndex,
 });
 

@@ -1,4 +1,5 @@
 import { CmsReadings, useCmsEntries, useCmsText } from "@/components/site/CmsExtras";
+import { withSeo } from "@/lib/seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
@@ -23,7 +24,8 @@ const rotation = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10].m
 );
 
 export const Route = createFileRoute("/inequality")({
-  head: () => ({
+  head: (ctx) =>
+    withSeo("inequality", ctx, ({
     meta: [
       { title: "Inequality, Education for Liberty | Fazal Ali" },
       {
@@ -60,7 +62,7 @@ export const Route = createFileRoute("/inequality")({
         }),
       },
     ],
-  }),
+  })),
   component: InequalityPage,
 });
 

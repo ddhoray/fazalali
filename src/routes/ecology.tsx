@@ -1,4 +1,5 @@
 import { CmsReadings, useCmsEntries, useCmsText } from "@/components/site/CmsExtras";
+import { withSeo } from "@/lib/seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
@@ -9,7 +10,8 @@ import { articles } from "@/content/articles";
 import { ArrowUpRight } from "lucide-react";
 
 export const Route = createFileRoute("/ecology")({
-  head: () => ({
+  head: (ctx) =>
+    withSeo("ecology", ctx, ({
     meta: [
       { title: "Ecology, Education for Liberty | Fazal Ali" },
       {
@@ -47,7 +49,7 @@ export const Route = createFileRoute("/ecology")({
         }),
       },
     ],
-  }),
+  })),
   component: EcologyPage,
 });
 

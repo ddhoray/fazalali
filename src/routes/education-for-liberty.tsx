@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { withSeo } from "@/lib/seo";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
 import { Flipbook } from "@/components/site/Flipbook";
@@ -11,7 +12,8 @@ import { builtinChapters } from "@/content/education";
 const heroBook = assetUrl(bookCoverAsset);
 
 export const Route = createFileRoute("/education-for-liberty")({
-  head: () => ({
+  head: (ctx) =>
+    withSeo("education", ctx, ({
     meta: [
       { title: "Education for Liberty, Fazal Ali" },
       {
@@ -62,7 +64,7 @@ export const Route = createFileRoute("/education-for-liberty")({
         }),
       },
     ],
-  }),
+  })),
   component: BookPage,
 });
 

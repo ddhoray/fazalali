@@ -1,4 +1,5 @@
 import { useCmsEntries, useCmsText } from "@/components/site/CmsExtras";
+import { withSeo } from "@/lib/seo";
 import { createFileRoute } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
@@ -6,7 +7,8 @@ import { palimpsest as builtinPalimpsest } from "@/content/palimpsest";
 import heroPalimpsest from "@/assets/hero-palimpsest.jpg";
 
 export const Route = createFileRoute("/palimpsest")({
-  head: () => ({
+  head: (ctx) =>
+    withSeo("palimpsest", ctx, ({
     meta: [
       { title: "A Palimpsest of West Indian Education, Fazal Ali" },
       {
@@ -22,7 +24,7 @@ export const Route = createFileRoute("/palimpsest")({
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/palimpsest" },
     ],
     links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/palimpsest" }],
-  }),
+  })),
   component: PalimpsestPage,
 });
 

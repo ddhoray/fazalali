@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { withSeo } from "@/lib/seo";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
 import { ArrowUpRight } from "lucide-react";
@@ -14,7 +15,8 @@ import { useCmsEntries, useCmsText } from "@/components/site/CmsExtras";
 const omerosImages = [om44, om45, om46, om47, om48].map((a) => assetUrl(a));
 
 export const Route = createFileRoute("/omeros-ai")({
-  head: () => ({
+  head: (ctx) =>
+    withSeo("omeros", ctx, ({
     meta: [
       { title: "Omeros AI, A Caribbean voice in artificial intelligence" },
       {
@@ -31,7 +33,7 @@ export const Route = createFileRoute("/omeros-ai")({
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/omeros-ai" },
     ],
     links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/omeros-ai" }],
-  }),
+  })),
   component: OmerosPage,
 });
 
