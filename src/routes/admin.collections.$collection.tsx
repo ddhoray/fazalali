@@ -2,13 +2,14 @@ import { createFileRoute, notFound } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
-import { ArrowDown, ArrowUp, Eye, EyeOff, GripVertical, Pencil, Plus, Star, Trash2 } from "lucide-react";
+import { ArrowDown, ArrowUp, Download, Eye, EyeOff, GripVertical, Pencil, Plus, Star, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { adminDeleteEntry, adminListEntries, adminReorderEntries, adminSaveEntry } from "@/lib/admin/admin.functions";
 import { COLLECTIONS, type CollectionKey } from "@/lib/cms-schema";
 import { AiAssist, Empty, Field, ImageField, PageHeader, Panel, Toggle, inputCls } from "@/components/admin/AdminUi";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
+import { BUILTINS } from "@/lib/cms-builtins";
 
 export const Route = createFileRoute("/admin/collections/$collection")({
   beforeLoad: ({ params }) => {
@@ -66,6 +67,26 @@ function CollectionPage() {
     refresh();
   }
 
+  const builtin = BUILTINS[key];
+  const [importing, setImporting] = useState(false);
+  async function importBuiltins() {
+    if (!builtin) return;
+    const rows = builtin();
+    if (!confirm(`Copy the ${rows.length} items the site currently shows into this list so you can edit them?`)) return;
+    setImporting(true);
+    try {
+      for (const r of rows) {
+        await save({ data: { collection: key, title: r.title, subtitle: r.subtitle ?? "", body: r.body ?? "", image_url: r.image_url ?? "", link_url: r.link_url ?? "", data: r.data ?? {}, published: true, featured: false } as never });
+      }
+      toast.success(`Imported ${rows.length} items`);
+      refresh();
+    } catch (e) {
+      toast.error((e as Error).message);
+    } finally {
+      setImporting(false);
+    }
+  }
+
   return (
     <div className="space-y-6">
       <PageHeader
@@ -74,12 +95,19 @@ function CollectionPage() {
         description={cfg.description}
         actions={
           canEdit && (
+            <div className="flex flex-wrap gap-2">
+            {builtin && !items.length && !isLoading && (
+              <button onClick={importBuiltins} disabled={importing} className="inline-flex items-center gap-2 border border-border px-4 py-2 text-sm disabled:opacity-50">
+                <Download className="size-4" /> {importing ? "Importing…" : "Import what the site shows now"}
+              </button>
+            )}
             <button
               onClick={() => setEdit({ title: "", subtitle: "", body: "", image_url: "", link_url: "", data: "pagePicker" in cfg ? { page: cfg.pagePicker[0] } : {}, published: true, featured: false })}
               className="inline-flex items-center gap-2 bg-foreground px-4 py-2 text-sm text-background"
             >
               <Plus className="size-4" /> Add item
             </button>
+            </div>
           )
         }
       />
@@ -87,7 +115,7 @@ function CollectionPage() {
         {isLoading ? (
           <p className="p-8 text-sm text-muted-foreground">Loading…</p>
         ) : !items.length ? (
-          <Empty title={`No ${cfg.label.toLowerCase()} items yet`} body="Add the first one. You can drag to reorder and hide items without deleting them." />
+          <Empty title={`No ${cfg.label.toLowerCase()} items yet`} body={builtin ? "The page is showing its built-in content. Import it to edit, or add items to replace it." : "Add the first one. You can drag to reorder and hide items without deleting them."} />
         ) : (
           <ul>
             {items.map((e, i) => (
