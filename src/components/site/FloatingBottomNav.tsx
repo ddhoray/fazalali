@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { openContactDrawer } from "@/components/site/ContactDrawer";
 import omerosMark from "@/assets/omeros-dock-mark.png.asset.json";
 import { assetUrl } from "@/lib/asset-url";
+import { useCmsLinks, useCmsSaved, useCmsText } from "@/components/site/CmsExtras";
 
 const primaryLinks = [
   { to: "/about", label: "Profile" },
@@ -29,11 +30,11 @@ const extraLabels: Record<string, string> = {
   "/education-for-liberty": "Education for Liberty",
 };
 
-function currentLabel(pathname: string) {
+function currentLabel(pathname: string, primary: readonly { to: string; label: string }[], secondary: readonly { to: string; label: string }[]) {
   if (pathname === "/") return "Home";
   const all = [
-    ...primaryLinks,
-    ...secondaryLinks,
+    ...primary,
+    ...secondary,
     ...Object.entries(extraLabels).map(([to, label]) => ({ to, label })),
   ];
   const match = all
@@ -49,6 +50,14 @@ function currentLabel(pathname: string) {
 export function FloatingBottomNav() {
   const [expanded, setExpanded] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const cmsPrimary = useCmsLinks("site", "navPrimary");
+  const cmsSecondary = useCmsLinks("site", "navSecondary");
+  const primary = cmsPrimary.length ? cmsPrimary : primaryLinks;
+  const secondary = cmsSecondary.length ? cmsSecondary : [...secondaryLinks, { to: "/education-for-liberty", label: "Education for Liberty" }, { to: "/omeros-ai", label: "Omeros AI" }];
+  const menuLabel = useCmsText("site", "menuLabel");
+  const menuCta = useCmsText("site", "menuCta");
+  const dockLogo = useCmsSaved("site", "dockLogo") || assetUrl(omerosMark);
+  const half = Math.ceil(secondary.length / 2);
 
   useEffect(() => {
     setExpanded(false);
@@ -69,14 +78,14 @@ export function FloatingBottomNav() {
           >
             <div className="px-10 py-10">
               <p className="text-[10px] uppercase tracking-[0.32em] text-white/40">
-                Menu
+                {menuLabel}
               </p>
 
               <ul className="mt-6 space-y-1">
-                {primaryLinks.map((l) => (
+                {primary.map((l) => (
                   <li key={l.to}>
                     <Link
-                      to={l.to}
+                      to={l.to as "/"}
                       onClick={() => setExpanded(false)}
                       className="block text-[34px] leading-[1.18] font-normal text-white/90 transition-colors hover:text-white"
                     >
@@ -87,34 +96,20 @@ export function FloatingBottomNav() {
               </ul>
 
               <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-2 text-[15px] text-white/60">
-                <div className="space-y-2">
-                  {secondaryLinks.map((l) => (
-                    <Link
-                      key={l.to}
-                      to={l.to}
-                      onClick={() => setExpanded(false)}
-                      className="block transition-colors hover:text-white"
-                    >
-                      {l.label}
-                    </Link>
-                  ))}
-                </div>
-                <div className="space-y-2">
-                  <Link
-                    to="/education-for-liberty"
-                    onClick={() => setExpanded(false)}
-                    className="block transition-colors hover:text-white"
-                  >
-                    Education for Liberty
-                  </Link>
-                  <Link
-                    to="/omeros-ai"
-                    onClick={() => setExpanded(false)}
-                    className="block transition-colors hover:text-white"
-                  >
-                    Omeros AI
-                  </Link>
-                </div>
+                {[secondary.slice(0, half), secondary.slice(half)].map((col, ci) => (
+                  <div key={ci} className="space-y-2">
+                    {col.map((l) => (
+                      <Link
+                        key={l.to}
+                        to={l.to as "/"}
+                        onClick={() => setExpanded(false)}
+                        className="block transition-colors hover:text-white"
+                      >
+                        {l.label}
+                      </Link>
+                    ))}
+                  </div>
+                ))}
               </div>
 
               <button
@@ -125,7 +120,7 @@ export function FloatingBottomNav() {
                 }}
                 className="mt-8 flex w-full items-center justify-center gap-3 border border-white/15 bg-white/[0.04] px-6 py-4 text-[11px] uppercase tracking-[0.28em] text-white transition-colors hover:bg-white/10"
               >
-                <span aria-hidden>↳</span> Write to him
+                <span aria-hidden>↳</span> {menuCta}
               </button>
             </div>
           </motion.div>
@@ -161,7 +156,7 @@ export function FloatingBottomNav() {
               className="flex h-full w-16 shrink-0 items-center justify-center"
             >
               <img
-                src={assetUrl(omerosMark)}
+                src={dockLogo}
                 alt="Omeros"
                 className="block h-11 w-11 object-contain"
                 draggable={false}
@@ -175,7 +170,7 @@ export function FloatingBottomNav() {
               aria-expanded={false}
               className="flex h-full items-center gap-8 border-l border-white/10 px-5 text-[11px] uppercase tracking-[0.28em] text-white/80 transition-colors hover:text-white"
             >
-              <span className="whitespace-nowrap">{currentLabel(pathname)}</span>
+              <span className="whitespace-nowrap">{currentLabel(pathname, primary, secondary)}</span>
               <span className="flex flex-col gap-[5px]" aria-hidden>
                 <span className="block h-px w-6 bg-current" />
                 <span className="block h-px w-6 bg-current" />

@@ -38,7 +38,7 @@ export const PAGE_SCHEMAS: PageSchema[] = [
       t("menuLabel", "Menu panel label", "Menu", "Desktop menu"),
       t("menuCta", "Menu button text", "Write to him", "Desktop menu"),
       img("dockLogo", "Menu logo", "Desktop menu"),
-      links("navMobile", "Mobile menu links", "Education for Liberty | /education-for-liberty\nBooks | /books\nJournal | /writing\nPodcast | /podcast\nProfile | /about\nGallery | /gallery\nEcology | /ecology\nInequality | /inequality\nPalimpsest | /palimpsest\nOmeros AI | /omeros-ai", "Mobile menu"),
+      links("navMobile", "Mobile menu links", "Books | /books\nJournal | /writing\nPodcast | /podcast\nAbout | /about\nGallery | /gallery\nEcology | /ecology\nInequality | /inequality\nPalimpsest | /palimpsest", "Mobile menu"),
       img("mobileLogo", "Mobile logo", "Mobile menu"),
       t("contactLabel", "Contact label", "Write to him", "Footer"),
       t("email", "Contact email", "writeme@fazalali.com", "Footer"),
