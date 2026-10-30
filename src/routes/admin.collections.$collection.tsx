@@ -27,6 +27,7 @@ type Entry = {
   data: Record<string, unknown>;
   published: boolean;
   featured: boolean;
+  publish_at?: string | null;
 };
 
 function CollectionPage() {
@@ -187,7 +188,18 @@ function CollectionPage() {
                 <Toggle checked={edit.published} onChange={(v) => setEdit({ ...edit, published: v })} label="Visible on site" />
                 <Toggle checked={edit.featured} onChange={(v) => setEdit({ ...edit, featured: v })} label="Featured" />
               </div>
-              <button className="w-full bg-omeros py-3 text-sm text-background">Save changes</button>
+              <Field label="Go live" hint={edit.publish_at && new Date(edit.publish_at) > new Date() ? "Scheduled" : "Now"}>
+                <input
+                  type="datetime-local"
+                  className={inputCls}
+                  value={edit.publish_at ? toLocal(edit.publish_at) : ""}
+                  onChange={(e) => setEdit({ ...edit, publish_at: e.target.value ? new Date(e.target.value).toISOString() : null })}
+                />
+                <p className="mt-1 text-xs text-muted-foreground">Leave empty to show immediately, or pick a future date and time.</p>
+              </Field>
+              <button className="w-full bg-omeros py-3 text-sm text-background">
+                {edit.publish_at && new Date(edit.publish_at) > new Date() ? "Schedule" : "Save & publish now"}
+              </button>
             </form>
           )}
         </SheetContent>
@@ -196,7 +208,12 @@ function CollectionPage() {
   );
 }
 
-function toInput(e: { id: string; title: string; subtitle: string | null; body: string | null; image_url: string | null; link_url: string | null; data: unknown; published: boolean; featured: boolean }): Entry {
+function toLocal(iso: string) {
+  const d = new Date(iso);
+  return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+}
+
+function toInput(e: { id: string; title: string; subtitle: string | null; body: string | null; image_url: string | null; link_url: string | null; data: unknown; published: boolean; featured: boolean; publish_at?: string | null }): Entry {
   return {
     id: e.id,
     title: e.title,
@@ -207,5 +224,6 @@ function toInput(e: { id: string; title: string; subtitle: string | null; body: 
     data: (e.data ?? {}) as Record<string, unknown>,
     published: e.published,
     featured: e.featured,
+    publish_at: e.publish_at ?? null,
   };
 }

@@ -204,6 +204,24 @@ export function useUpload() {
   };
 }
 
+/** Video / audio field with library picker, upload and URL paste. */
+export function MediaUrlField({ value, onChange, label, kind }: { value: string; onChange: (v: string) => void; label: string; kind: "video" | "audio" }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <Field label={label}>
+      <div className="space-y-2">
+        {value && (kind === "video" ? <video src={value} muted controls className="max-h-48 w-full bg-black object-contain" /> : <audio src={value} controls className="w-full" />)}
+        <input className={inputCls} placeholder={`Leave empty to keep the built-in ${kind}`} value={value} onChange={(e) => onChange(e.target.value)} />
+        <div className="flex gap-3 text-xs">
+          <button type="button" className="text-omeros hover:underline" onClick={() => setOpen(true)}>Choose or upload {kind}</button>
+          {value && <button type="button" className="text-muted-foreground hover:underline" onClick={() => onChange("")}>Use built-in</button>}
+        </div>
+      </div>
+      <MediaPicker kind={kind} open={open} onOpenChange={setOpen} onPick={(m) => onChange(m.url)} />
+    </Field>
+  );
+}
+
 /** Image field with media library picker + direct upload + URL paste. */
 export function ImageField({ value, onChange, label = "Image" }: { value: string | null | undefined; onChange: (v: string) => void; label?: string }) {
   const [open, setOpen] = useState(false);
@@ -230,14 +248,14 @@ export function ImageField({ value, onChange, label = "Image" }: { value: string
   );
 }
 
-export function MediaPicker({ open, onOpenChange, onPick }: { open: boolean; onOpenChange: (o: boolean) => void; onPick: (m: MediaRow) => void }) {
+export function MediaPicker({ open, onOpenChange, onPick, kind = "image" }: { open: boolean; onOpenChange: (o: boolean) => void; onPick: (m: MediaRow) => void; kind?: "image" | "video" | "audio" }) {
   const list = useServerFn(adminListMedia);
   const { data = [], isLoading } = useQuery({ queryKey: ["admin", "media"], queryFn: () => list() as Promise<MediaRow[]>, enabled: open });
   const [q, setQ] = useState("");
   const upload = useUpload();
   const fileRef = useRef<HTMLInputElement>(null);
   const [busy, setBusy] = useState(false);
-  const items = data.filter((m) => m.content_type.startsWith("image/") && (m.filename + m.alt).toLowerCase().includes(q.toLowerCase()));
+  const items = data.filter((m) => m.content_type.startsWith(`${kind}/`) && (m.filename + m.alt).toLowerCase().includes(q.toLowerCase()));
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-h-[92svh] w-[calc(100vw-2rem)] max-w-4xl overflow-y-auto">
@@ -259,7 +277,7 @@ export function MediaPicker({ open, onOpenChange, onPick }: { open: boolean; onO
           <input
             ref={fileRef}
             type="file"
-            accept="image/*"
+            accept={`${kind}/*`}
             hidden
             multiple
             onChange={async (e) => {
