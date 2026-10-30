@@ -6,6 +6,7 @@ import { Flipbook } from "@/components/site/Flipbook";
 import { ArrowUpRight, Download, ShoppingCart } from "lucide-react";
 import bookCoverAsset from "@/assets/book-education-for-liberty-cover.png.asset.json";
 import { assetUrl } from "@/lib/asset-url";
+import { useCmsEntries } from "@/components/site/CmsExtras";
 const heroBook = assetUrl(bookCoverAsset);
 
 export const Route = createFileRoute("/education-for-liberty")({
@@ -68,7 +69,7 @@ const PDF_URL = "https://fazalali.com/wp-content/uploads/2026/02/EducationforLib
 const AMAZON_URL =
   "https://www.amazon.com/Education-Liberty-future-open-suggestions-ebook/dp/B072KJSQ6P/";
 
-const chapters = [
+export const builtinChapters = [
   {
     n: "I",
     title: "Freedom",
@@ -103,6 +104,8 @@ const chapters = [
 
 
 function BookPage() {
+  const cmsChapters = useCmsEntries("education_chapters");
+  const chapters = cmsChapters.length ? cmsChapters.map((c, i) => ({ n: c.subtitle || String(i + 1), title: c.title, body: c.body ?? "" })) : builtinChapters;
   return (
     <div>
       <PageHero
@@ -197,7 +200,7 @@ function BookPage() {
         </Reveal>
         <div className="mt-16 border-t hairline">
           {chapters.map((c, i) => (
-            <Reveal key={c.n} delay={i * 0.04}>
+            <Reveal key={c.n + c.title} delay={i * 0.04}>
               <div className="grid gap-6 border-b hairline py-10 md:grid-cols-[120px_1fr_2fr] md:gap-12 md:py-12">
                 <p className="font-display text-5xl text-muted-foreground">{c.n}</p>
                 <p className="font-display text-2xl leading-tight md:text-3xl">{c.title}</p>

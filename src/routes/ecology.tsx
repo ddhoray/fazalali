@@ -69,6 +69,8 @@ function EcologyPage() {
   const heroIntro = useCmsText("ecology", "heroIntro");
   const cmsSections = useCmsEntries("ecology");
   const sections = cmsSections.length ? cmsSections.map((s) => ({ h: s.title, image: s.image_url ?? "", imageAlt: s.subtitle ?? s.title, body: (s.body ?? "").split(/\n\s*\n/).filter(Boolean) })) : ecology.sections;
+  const cmsStrip = useCmsEntries("field_notes").filter((e) => (e.data as { page?: string })?.page === "ecology" && e.image_url);
+  const strip = cmsStrip.length ? cmsStrip.map((e) => ({ image: e.image_url!, imageAlt: e.title })) : ecology.strip;
   return (
     <div>
       <PageHero
@@ -130,7 +132,7 @@ function EcologyPage() {
             The ground the ethics stand on.
           </h2>
           <div className="mt-12 grid gap-6 sm:grid-cols-3">
-            {ecology.strip.map((item, i) => (
+            {strip.map((item, i) => (
               <Reveal key={item.image} delay={i * 0.05}>
                 <figure>
                   <div className="relative aspect-[4/3] w-full overflow-hidden border hairline bg-[#e9e6e1]">

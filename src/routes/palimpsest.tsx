@@ -1,8 +1,8 @@
-import { CmsPalimpsest, useCmsText } from "@/components/site/CmsExtras";
+import { useCmsEntries, useCmsText } from "@/components/site/CmsExtras";
 import { createFileRoute } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
-import { palimpsest } from "@/content/palimpsest";
+import { palimpsest as builtinPalimpsest } from "@/content/palimpsest";
 import heroPalimpsest from "@/assets/hero-palimpsest.jpg";
 
 export const Route = createFileRoute("/palimpsest")({
@@ -27,6 +27,10 @@ export const Route = createFileRoute("/palimpsest")({
 });
 
 function PalimpsestPage() {
+  const cms = useCmsEntries("palimpsest");
+  const palimpsest = cms.length
+    ? cms.map((e, i) => ({ id: `section-${i + 1}`, title: e.title, image: e.image_url ?? "", imageAlt: ((e.data as { alt?: string })?.alt) || e.title, imageCaption: e.subtitle ?? "", entries: (e.body ?? "").split(/\n\s*\n/).filter(Boolean).map((text) => ({ text })) }))
+    : builtinPalimpsest;
   const heroTitle = useCmsText("palimpsest", "heroTitle");
   const heroIntro = useCmsText("palimpsest", "heroIntro");
   return (
@@ -124,7 +128,6 @@ function PalimpsestPage() {
           </div>
         </div>
       </section>
-      <CmsPalimpsest />
     </div>
   );
 }
