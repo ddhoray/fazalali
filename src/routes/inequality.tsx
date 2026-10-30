@@ -89,6 +89,7 @@ function InequalityPage() {
   return (
     <div>
       <PageHero
+        cmsKey="inequality"
         eyebrow={inequality.eyebrow}
         title={
           <>

@@ -24,6 +24,7 @@ import { MobileTopBar } from "../components/site/MobileTopBar";
 import { SplashScreen } from "../components/site/SplashScreen";
 import { ScrollToTop } from "../components/site/ScrollToTop";
 import { trackView } from "../lib/cms.functions";
+import { cmsPagesQuery } from "../components/site/CmsExtras";
 
 function NotFoundComponent() {
   return (
@@ -161,6 +162,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
   }),
   shellComponent: RootShell,
+  loader: ({ context }) => context.queryClient.ensureQueryData(cmsPagesQuery).catch(() => ({})),
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,

@@ -32,6 +32,7 @@ function PalimpsestPage() {
   return (
     <div>
       <PageHero
+        cmsKey="palimpsest"
         eyebrow="Long read"
         title={
           <>

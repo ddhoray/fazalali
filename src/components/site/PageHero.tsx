@@ -1,6 +1,7 @@
 import { type ReactNode } from "react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
+import { Rich, useCmsSaved } from "@/components/site/CmsExtras";
 
 interface PageHeroProps {
   eyebrow?: string;
@@ -20,6 +21,8 @@ interface PageHeroProps {
   /** Optional sizing overrides for the image or video frame. */
   mediaClassName?: string;
   mediaAspect?: "portrait" | "landscape";
+  /** Page key in the admin panel; saved banner fields override the props. */
+  cmsKey?: string;
 }
 
 /**
@@ -40,7 +43,22 @@ export function PageHero({
   video,
   mediaClassName,
   mediaAspect = "portrait",
+  cmsKey,
 }: PageHeroProps) {
+  const k = cmsKey ?? "__none";
+  const sEyebrow = useCmsSaved(k, "heroEyebrow");
+  const sTitle = useCmsSaved(k, "heroTitle");
+  const sIntro = useCmsSaved(k, "heroIntro");
+  const sImage = useCmsSaved(k, "heroImage");
+  const sVideo = useCmsSaved(k, "heroVideo");
+  if (sEyebrow) eyebrow = sEyebrow;
+  if (sTitle) title = <Rich text={sTitle} />;
+  if (sIntro) standfirst = <Rich text={sIntro} />;
+  if (sImage) {
+    image = sImage;
+    if (!sVideo) video = undefined;
+  }
+  if (sVideo) video = sVideo;
   return (
     <section className={cn("relative isolate w-full overflow-hidden bg-[#f5f3f0]", className)}>
       {/* faint vertical hairlines for editorial texture */}

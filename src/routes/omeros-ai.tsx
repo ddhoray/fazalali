@@ -108,6 +108,7 @@ function OmerosPage() {
   return (
     <div>
       <PageHero
+        cmsKey="omeros"
         eyebrow="The initiative"
         title={
           <>

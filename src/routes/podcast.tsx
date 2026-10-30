@@ -36,6 +36,7 @@ function PodcastPage() {
   return (
     <div>
       <PageHero
+        cmsKey="podcast"
         eyebrow="Education for Liberty"
         title={
           <>
