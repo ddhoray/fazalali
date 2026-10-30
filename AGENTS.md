@@ -6,3 +6,5 @@
 - Books, gallery, palimpsest, readings and testimonials share the `cms_entries` table keyed by `collection`; editable page text lives in `cms_pages` with defaults declared in `src/lib/cms-schema.ts`.
 - Media lives in the private `cms-media` bucket served through long-lived signed URLs, because the workspace blocks public buckets.
 - Public content uses CMS-first collections with static source files only as an empty-database fallback, so the site remains available before editors populate a section.
+- Every public text/media item is declared as a field in `PAGE_SCHEMAS` (src/lib/cms-schema.ts) and read via `useCmsText`/`useCmsSaved`; banners use `<PageHero cmsKey>`, so adding a field there makes it editable in /admin without new admin code.
+- Page edits can be scheduled (`cms_pages.scheduled_data/scheduled_at`) and entries via `cms_entries.publish_at`; schedules are applied lazily on the next public read, so no cron is required.
