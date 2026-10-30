@@ -134,6 +134,7 @@ export type Database = {
           image_url: string | null
           link_url: string | null
           position: number
+          publish_at: string | null
           published: boolean
           subtitle: string | null
           title: string
@@ -149,6 +150,7 @@ export type Database = {
           image_url?: string | null
           link_url?: string | null
           position?: number
+          publish_at?: string | null
           published?: boolean
           subtitle?: string | null
           title?: string
@@ -164,6 +166,7 @@ export type Database = {
           image_url?: string | null
           link_url?: string | null
           position?: number
+          publish_at?: string | null
           published?: boolean
           subtitle?: string | null
           title?: string
@@ -267,18 +270,24 @@ export type Database = {
         Row: {
           data: Json
           key: string
+          scheduled_at: string | null
+          scheduled_data: Json | null
           updated_at: string
           updated_by: string | null
         }
         Insert: {
           data?: Json
           key: string
+          scheduled_at?: string | null
+          scheduled_data?: Json | null
           updated_at?: string
           updated_by?: string | null
         }
         Update: {
           data?: Json
           key?: string
+          scheduled_at?: string | null
+          scheduled_data?: Json | null
           updated_at?: string
           updated_by?: string | null
         }
