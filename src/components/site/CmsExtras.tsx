@@ -1,5 +1,6 @@
 import { queryOptions, useQuery } from "@tanstack/react-query";
 import { Fragment, type ReactNode } from "react";
+import { getRouteApi } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { getPublicEntries, getPublicPages } from "@/lib/cms.functions";
 import { PAGE_SCHEMAS, parseLinks } from "@/lib/cms-schema";
@@ -28,15 +29,24 @@ export function useCmsEntries(collection: string) {
 /** All saved page content; prefetched in the root loader so the first paint is already correct. */
 export const cmsPagesQuery = queryOptions({ queryKey: ["cms", "pages"], queryFn: () => getPublicPages(), staleTime: 30_000 });
 
+const rootApi = getRouteApi("__root__");
+
+/** Saved pages, seeded from the root loader so server and browser render the same content. */
+function usePages() {
+  const initial = rootApi.useLoaderData() as Record<string, Record<string, string>> | undefined;
+  const { data } = useQuery({ ...cmsPagesQuery, initialData: initial });
+  return data;
+}
+
 /** Saved value only ("" when the editor hasn't set it). Use for media overrides. */
 export function useCmsSaved(page: string, field: string) {
-  const { data } = useQuery(cmsPagesQuery);
+  const data = usePages();
   return (data?.[page]?.[field] ?? "").trim();
 }
 
 /** Editable page text with the site's default copy as fallback. */
 export function useCmsText(page: string, field: string) {
-  const { data } = useQuery(cmsPagesQuery);
+  const data = usePages();
   const def = PAGE_SCHEMAS.find((p) => p.key === page)?.fields.find((f) => f.key === field)?.def ?? "";
   const v = data?.[page]?.[field];
   return v === undefined || v === "" ? def : v;
