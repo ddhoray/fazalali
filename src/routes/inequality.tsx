@@ -1,4 +1,5 @@
 import { CmsReadings, useCmsEntries, useCmsText } from "@/components/site/CmsExtras";
+import { withSeo } from "@/lib/seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
@@ -23,7 +24,8 @@ const rotation = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10].m
 );
 
 export const Route = createFileRoute("/inequality")({
-  head: () => ({
+  head: (ctx) =>
+    withSeo("inequality", ctx, ({
     meta: [
       { title: "Inequality, Education for Liberty | Fazal Ali" },
       {
@@ -60,7 +62,7 @@ export const Route = createFileRoute("/inequality")({
         }),
       },
     ],
-  }),
+  })),
   component: InequalityPage,
 });
 
@@ -86,6 +88,8 @@ function InequalityPage() {
   const heroIntro = useCmsText("inequality", "heroIntro");
   const cmsSections = useCmsEntries("inequality");
   const sections = cmsSections.length ? cmsSections.map((s) => ({ h: s.title, body: (s.body ?? "").split(/\n\s*\n/).filter(Boolean) })) : inequality.sections;
+  const cmsStrip = useCmsEntries("field_notes").filter((e) => (e.data as { page?: string })?.page === "inequality" && e.image_url).map((e) => e.image_url!);
+  const photos = cmsStrip.length ? cmsStrip : rotation;
   return (
     <div>
       <PageHero
@@ -106,7 +110,7 @@ function InequalityPage() {
             <span>After Sen</span>
           </>
         }
-        image={rotation[0]}
+        image={photos[0]}
         imageAlt="Field and archive photographs from the Caribbean"
       />
 
@@ -114,7 +118,7 @@ function InequalityPage() {
         <div className="mx-auto max-w-[1500px] py-12">
           <p className="eyebrow px-5 text-muted-foreground sm:px-8">A set in rotation</p>
           <ImageMarquee
-            images={rotation}
+            images={photos}
             alt="Rotating field and archive photographs"
             className="mt-6 w-full"
             speed={70}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import fiaLogo from "@/assets/brand-omeros-lockup-transparent.png";
+import { useCmsSaved, useCmsText } from "@/components/site/CmsExtras";
 
 /**
  * Splash screen shown on first load of the session.
@@ -8,10 +9,15 @@ import fiaLogo from "@/assets/brand-omeros-lockup-transparent.png";
  */
 export function SplashScreen() {
   const [show, setShow] = useState(true);
+  const logo = useCmsSaved("site", "splashLogo") || fiaLogo;
+  const customLogo = !!useCmsSaved("site", "splashLogo");
+  const enabled = !/^(no|off|false|0)$/i.test(useCmsText("site", "splashEnabled").trim());
+  const seconds = Math.min(10, Math.max(0.5, parseFloat(useCmsText("site", "splashSeconds")) || 1.6));
+  const tagline = useCmsText("site", "splashTagline").trim();
 
   useEffect(() => {
-    if (sessionStorage.getItem("fia-splash-seen")) setShow(false);
-  }, []);
+    if (!enabled || sessionStorage.getItem("fia-splash-seen")) setShow(false);
+  }, [enabled]);
 
   useEffect(() => {
     if (!show) return;
@@ -19,12 +25,12 @@ export function SplashScreen() {
     const t = setTimeout(() => {
       sessionStorage.setItem("fia-splash-seen", "1");
       setShow(false);
-    }, 1600);
+    }, seconds * 1000);
     return () => {
       clearTimeout(t);
       document.body.style.overflow = "";
     };
-  }, [show]);
+  }, [show, seconds]);
 
   return (
     <AnimatePresence>
@@ -42,11 +48,12 @@ export function SplashScreen() {
             className="flex flex-col items-center gap-5"
           >
             <img
-              src={fiaLogo}
+              src={logo}
               alt="Omeros AI"
-              className="h-16 w-auto object-contain brightness-0 invert sm:h-20"
+              className={customLogo ? "h-16 w-auto object-contain sm:h-20" : "h-16 w-auto object-contain brightness-0 invert sm:h-20"}
               draggable={false}
             />
+            {tagline && <p className="text-[11px] uppercase tracking-[0.28em] opacity-70">{tagline}</p>}
           </motion.div>
         </motion.div>
       )}

@@ -1,4 +1,5 @@
 import { useCmsEntries, useCmsText } from "@/components/site/CmsExtras";
+import { withSeo } from "@/lib/seo";
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
 
@@ -34,7 +35,8 @@ import newUnfinishedTropical from "@/assets/gallery/unfinished-tropical-painting
 import { assetUrl } from "@/lib/asset-url";
 
 export const Route = createFileRoute("/gallery")({
-  head: () => ({
+  head: (ctx) =>
+    withSeo("gallery", ctx, ({
     meta: [
       { title: "Gallery, Fazal Ali" },
       {
@@ -52,7 +54,7 @@ export const Route = createFileRoute("/gallery")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/gallery" }],
-  }),
+  })),
   component: GalleryPage,
 });
 

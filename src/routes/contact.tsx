@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { withSeo } from "@/lib/seo";
 import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
 import { Reveal } from "@/components/site/Reveal";
@@ -8,7 +9,8 @@ import { ArrowRight, Check } from "lucide-react";
 import { useCmsText } from "@/components/site/CmsExtras";
 
 export const Route = createFileRoute("/contact")({
-  head: () => ({
+  head: (ctx) =>
+    withSeo("contact", ctx, ({
     meta: [
       { title: "Write to Him, Fazal Ali" },
       {
@@ -20,7 +22,7 @@ export const Route = createFileRoute("/contact")({
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/contact" },
     ],
     links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/contact" }],
-  }),
+  })),
   component: ContactPage,
 });
 

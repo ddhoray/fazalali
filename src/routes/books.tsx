@@ -1,4 +1,5 @@
-import { useCmsEntries, useCmsText } from "@/components/site/CmsExtras";
+import { InlineLinks, useCmsEntries, useCmsText } from "@/components/site/CmsExtras";
+import { withSeo } from "@/lib/seo";
 import { useState, type ReactNode } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "motion/react";
@@ -17,7 +18,8 @@ const secureDevelopmentCover = assetUrl(secureDevelopmentAsset);
 const abbreviatedDevelopmentCover = assetUrl(abbreviatedDevelopmentAsset);
 
 export const Route = createFileRoute("/books")({
-  head: () => ({
+  head: (ctx) =>
+    withSeo("books", ctx, ({
     meta: [
       { title: "Books, Fazal Ali" },
       {
@@ -35,7 +37,7 @@ export const Route = createFileRoute("/books")({
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/books" },
     ],
     links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/books" }],
-  }),
+  })),
   component: BooksPage,
 });
 
@@ -148,11 +150,11 @@ function BooksPage() {
     title: e.title,
     note: (
       <>
-        {e.body}
+        <InlineLinks text={e.body ?? ""} linkClass={cardLink} />
         {e.link_url ? (
           <>
             {" "}
-            <a href={e.link_url} target="_blank" rel="noreferrer" className="underline">Read more</a>
+            <a href={e.link_url} target="_blank" rel="noreferrer" className={cardLink}>Read more</a>
           </>
         ) : null}
       </>

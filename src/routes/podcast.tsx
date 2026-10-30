@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { withSeo } from "@/lib/seo";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
 import { AudioPlayer } from "@/components/site/AudioPlayer";
@@ -8,7 +9,8 @@ import heroPodcast from "@/assets/hero-podcast.jpg";
 import { useCmsEntries, useCmsText } from "@/components/site/CmsExtras";
 
 export const Route = createFileRoute("/podcast")({
-  head: () => ({
+  head: (ctx) =>
+    withSeo("podcast", ctx, ({
     meta: [
       { title: "Podcast, Education for Liberty | Fazal Ali" },
       {
@@ -24,7 +26,7 @@ export const Route = createFileRoute("/podcast")({
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/podcast" },
     ],
     links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/podcast" }],
-  }),
+  })),
   component: PodcastPage,
 });
 

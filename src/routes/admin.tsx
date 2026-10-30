@@ -61,6 +61,8 @@ const NAV: { group: string; items: NavItem[] }[] = [
       { to: "/admin/collections/$collection", params: { collection: "books" }, label: "Books", icon: <BookOpen /> },
       { to: "/admin/collections/$collection", params: { collection: "gallery" }, label: "Gallery", icon: <Images /> },
       { to: "/admin/collections/$collection", params: { collection: "palimpsest" }, label: "Palimpsest", icon: <Layers /> },
+      { to: "/admin/collections/$collection", params: { collection: "education_chapters" }, label: "Education themes", icon: <BookOpen /> },
+      { to: "/admin/collections/$collection", params: { collection: "field_notes" }, label: "Field notes photos", icon: <Images /> },
       { to: "/admin/collections/$collection", params: { collection: "readings" }, label: "Ecology & Inequality", icon: <Trees /> },
       { to: "/admin/collections/$collection", params: { collection: "testimonials" }, label: "Testimonials", icon: <MessageSquareQuote /> },
       { to: "/admin/collections/$collection", params: { collection: "ecology" }, label: "Ecology sections", icon: <Trees /> },

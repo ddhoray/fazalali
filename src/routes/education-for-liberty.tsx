@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { withSeo } from "@/lib/seo";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
 import { Flipbook } from "@/components/site/Flipbook";
@@ -6,10 +7,13 @@ import { Flipbook } from "@/components/site/Flipbook";
 import { ArrowUpRight, Download, ShoppingCart } from "lucide-react";
 import bookCoverAsset from "@/assets/book-education-for-liberty-cover.png.asset.json";
 import { assetUrl } from "@/lib/asset-url";
+import { useCmsEntries } from "@/components/site/CmsExtras";
+import { builtinChapters } from "@/content/education";
 const heroBook = assetUrl(bookCoverAsset);
 
 export const Route = createFileRoute("/education-for-liberty")({
-  head: () => ({
+  head: (ctx) =>
+    withSeo("education", ctx, ({
     meta: [
       { title: "Education for Liberty, Fazal Ali" },
       {
@@ -60,7 +64,7 @@ export const Route = createFileRoute("/education-for-liberty")({
         }),
       },
     ],
-  }),
+  })),
   component: BookPage,
 });
 
@@ -68,41 +72,12 @@ const PDF_URL = "https://fazalali.com/wp-content/uploads/2026/02/EducationforLib
 const AMAZON_URL =
   "https://www.amazon.com/Education-Liberty-future-open-suggestions-ebook/dp/B072KJSQ6P/";
 
-const chapters = [
-  {
-    n: "I",
-    title: "Freedom",
-    body:
-      "The emphasis is on what learners are released for as against what they were released from in the West Indies. It is about releasing the imagination. It is about removing every unfreedom that is a deprivation of capability.",
-  },
-  {
-    n: "II",
-    title: "The Veil of Ignorance",
-    body:
-      "From behind such a cloak one will always choose liberties, policies, institutions, opportunities, aims, and laws that minimise harm to the least advantaged in society; because they simply cannot know beforehand who they may turn out to be, when the cloak is lifted.",
-  },
-  {
-    n: "III",
-    title: "Justice as Algorithmic Fairness",
-    body:
-      "Inforgs online and offline have six ethical concerns: traceability, unfair outcomes, unintended consequences, misguided evidence, inconclusive evidence, and inscrutable evidence.",
-  },
-  {
-    n: "IV",
-    title: "Running from Failure",
-    body:
-      "In pursuit of massive goals we must learn to fail small, adapt, iterate, and recover with velocity. Failure is redefined. Failure is a data point, not a catastrophic defect. Measure the net useful output overall.",
-  },
-  {
-    n: "V",
-    title: "Epistemic Justice",
-    body:
-      "The world is shifting, and those who innovate with digital and data will lead the way. Opacity and the transport of prior prejudices and prejudgments accelerate epistemic injustice.",
-  },
-];
+
 
 
 function BookPage() {
+  const cmsChapters = useCmsEntries("education_chapters");
+  const chapters = cmsChapters.length ? cmsChapters.map((c, i) => ({ n: c.subtitle || String(i + 1), title: c.title, body: c.body ?? "" })) : builtinChapters;
   return (
     <div>
       <PageHero
@@ -197,7 +172,7 @@ function BookPage() {
         </Reveal>
         <div className="mt-16 border-t hairline">
           {chapters.map((c, i) => (
-            <Reveal key={c.n} delay={i * 0.04}>
+            <Reveal key={c.n + c.title} delay={i * 0.04}>
               <div className="grid gap-6 border-b hairline py-10 md:grid-cols-[120px_1fr_2fr] md:gap-12 md:py-12">
                 <p className="font-display text-5xl text-muted-foreground">{c.n}</p>
                 <p className="font-display text-2xl leading-tight md:text-3xl">{c.title}</p>

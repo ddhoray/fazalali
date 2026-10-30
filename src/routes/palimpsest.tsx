@@ -1,12 +1,14 @@
-import { CmsPalimpsest, useCmsText } from "@/components/site/CmsExtras";
+import { useCmsEntries, useCmsText } from "@/components/site/CmsExtras";
+import { withSeo } from "@/lib/seo";
 import { createFileRoute } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
-import { palimpsest } from "@/content/palimpsest";
+import { palimpsest as builtinPalimpsest } from "@/content/palimpsest";
 import heroPalimpsest from "@/assets/hero-palimpsest.jpg";
 
 export const Route = createFileRoute("/palimpsest")({
-  head: () => ({
+  head: (ctx) =>
+    withSeo("palimpsest", ctx, ({
     meta: [
       { title: "A Palimpsest of West Indian Education, Fazal Ali" },
       {
@@ -22,11 +24,15 @@ export const Route = createFileRoute("/palimpsest")({
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/palimpsest" },
     ],
     links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/palimpsest" }],
-  }),
+  })),
   component: PalimpsestPage,
 });
 
 function PalimpsestPage() {
+  const cms = useCmsEntries("palimpsest");
+  const palimpsest = cms.length
+    ? cms.map((e, i) => ({ id: `section-${i + 1}`, title: e.title, image: e.image_url ?? "", imageAlt: ((e.data as { alt?: string })?.alt) || e.title, imageCaption: e.subtitle ?? "", entries: (e.body ?? "").split(/\n\s*\n/).filter(Boolean).map((text) => ({ text })) }))
+    : builtinPalimpsest;
   const heroTitle = useCmsText("palimpsest", "heroTitle");
   const heroIntro = useCmsText("palimpsest", "heroIntro");
   return (
@@ -124,7 +130,6 @@ function PalimpsestPage() {
           </div>
         </div>
       </section>
-      <CmsPalimpsest />
     </div>
   );
 }
