@@ -1,18 +1,117 @@
-/** Editable page text fields. `def` is the current site copy, used when nothing is saved. */
-export type PageField = { key: string; label: string; def: string; long?: boolean };
+/**
+ * Every editable item on the public site. `def` is the built-in copy used when nothing is saved.
+ * Media fields default to "" which means "use the built-in file".
+ * Text supports *asterisks* for the accent italic; `links` fields hold one "Label | /path" per line.
+ */
+export type FieldType = "text" | "long" | "image" | "video" | "audio" | "url" | "links";
+export type PageField = { key: string; label: string; def: string; long?: boolean; type?: FieldType; group?: string };
 export type PageSchema = { key: string; label: string; path: string; fields: PageField[] };
 
+const t = (key: string, label: string, def: string, group?: string): PageField => ({ key, label, def, group });
+const l = (key: string, label: string, def: string, group?: string): PageField => ({ key, label, def, long: true, type: "long", group });
+const img = (key: string, label: string, group?: string): PageField => ({ key, label, def: "", type: "image", group });
+const vid = (key: string, label: string, group?: string): PageField => ({ key, label, def: "", type: "video", group });
+const url = (key: string, label: string, def: string, group?: string): PageField => ({ key, label, def, type: "url", group });
+const links = (key: string, label: string, def: string, group?: string): PageField => ({ key, label, def, type: "links", group });
+
+/** Standard banner fields read by <PageHero cmsKey="…">. */
+const hero = (eyebrow: string, title: string, intro: string): PageField[] => [
+  t("heroEyebrow", "Banner label", eyebrow, "Banner"),
+  t("heroTitle", "Banner title", title, "Banner"),
+  l("heroIntro", "Banner introduction", intro, "Banner"),
+  img("heroImage", "Banner image", "Banner"),
+  vid("heroVideo", "Banner video (replaces image)", "Banner"),
+];
+
+export function fieldType(f: PageField): FieldType {
+  return f.type ?? (f.long ? "long" : "text");
+}
+
 export const PAGE_SCHEMAS: PageSchema[] = [
+  {
+    key: "site",
+    label: "Navigation & footer",
+    path: "/",
+    fields: [
+      links("navPrimary", "Menu: main links", "Profile | /about\nBooks | /books\nJournal | /writing\nPodcast | /podcast\nGallery | /gallery", "Desktop menu"),
+      links("navSecondary", "Menu: secondary links", "Ecology | /ecology\nInequality | /inequality\nPalimpsest | /palimpsest\nEducation for Liberty | /education-for-liberty\nOmeros AI | /omeros-ai", "Desktop menu"),
+      t("menuLabel", "Menu panel label", "Menu", "Desktop menu"),
+      t("menuCta", "Menu button text", "Write to him", "Desktop menu"),
+      img("dockLogo", "Menu logo", "Desktop menu"),
+      links("navMobile", "Mobile menu links", "Education for Liberty | /education-for-liberty\nBooks | /books\nJournal | /writing\nPodcast | /podcast\nProfile | /about\nGallery | /gallery\nEcology | /ecology\nInequality | /inequality\nPalimpsest | /palimpsest\nOmeros AI | /omeros-ai", "Mobile menu"),
+      img("mobileLogo", "Mobile logo", "Mobile menu"),
+      t("contactLabel", "Contact label", "Write to him", "Footer"),
+      t("email", "Contact email", "writeme@fazalali.com", "Footer"),
+      t("location", "Location line", "Trinidad & Tobago, West Indies", "Footer"),
+      t("indexLabel", "Index label", "Index", "Footer"),
+      links("footerLinks", "Footer links", "Books | /books\nJournal | /writing\nPodcast | /podcast\nProfile | /about\nEducation for Liberty | /education-for-liberty\nPalimpsest | /palimpsest\nInequality | /inequality\nEcology | /ecology\nGallery | /gallery", "Footer"),
+      t("elsewhereLabel", "Social label", "Elsewhere", "Footer"),
+      links("socialLinks", "Social links (Instagram etc.)", "Instagram, @thefazalali | https://www.instagram.com/thefazalali/", "Footer"),
+      t("wordmark", "Large footer wordmark", "FAZAL ALI", "Footer"),
+      t("copyright", "Copyright name", "Fazal Ibrahim Ali", "Footer"),
+      t("creditPrefix", "Credit text", "Designed & developed by", "Footer"),
+      t("creditName", "Credit name", "HyperRevamp", "Footer"),
+      url("creditUrl", "Credit link", "https://hyperrevamp.com", "Footer"),
+      t("nlEyebrow", "Newsletter label", "The Letter · No. 01", "Newsletter"),
+      t("nlHeading", "Newsletter heading", "A letter, *now and then.*", "Newsletter"),
+      l("nlBody", "Newsletter text", "Occasional dispatches, new journal entries, notes from forthcoming books, and quiet reports from Omeros AI. No noise. No tracking. Read once, leave anytime.", "Newsletter"),
+      t("nlButton", "Newsletter button", "Subscribe", "Newsletter"),
+      t("nlSuccess", "Newsletter thank-you", "Thank you. The next letter will find you.", "Newsletter"),
+      t("nlFine", "Newsletter small print", "By subscribing you agree to receive occasional emails. No spam, ever.", "Newsletter"),
+    ],
+  },
   {
     key: "home",
     label: "Homepage",
     path: "/",
     fields: [
-      { key: "journalEyebrow", label: "Journal section label", def: "From the Journal" },
-      { key: "journalHeading", label: "Journal section heading", def: "Recent pieces." },
-      { key: "coreEyebrow", label: "Core statement label", def: "A core statement" },
-      { key: "coreHeading", label: "Core statement heading", def: "The ethics of AI must be the preserve of all cultures and continents." },
-      { key: "coreBody", label: "Core statement body", def: "Every agency, company, institution and country designing, developing and deploying AI architectures has an obligation to incorporate a more geographically, culturally and socially diverse array of perspectives.", long: true },
+      vid("heroVideo", "Hero video (with its sound)", "Hero banner"),
+      img("heroLogo", "Hero logo", "Hero banner"),
+      t("heroEyebrow", "Hero label", "Omeros AI :West Indies & the World", "Hero banner"),
+      t("heroTitle", "Hero title", "A prophet provocateur, schooled in freedom.", "Hero banner"),
+      l("heroIntro", "Hero text", "Dr. Fazal Ibrahim Ali, born here in Trinidad and educated at Cambridge. Critical theory on artificial intelligence, written from the West Indies, for a reader anywhere who suspects the conversation has been *too narrow for too long - and who wants to change its nature.*", "Hero banner"),
+      t("heroHint", "Scroll hint", "Scroll to explore", "Hero banner"),
+      t("quietLeft", "Strip: left", "Est. Trinidad, 1974", "Strip under hero"),
+      t("quietCenter", "Strip: centre", "This is the next world.", "Strip under hero"),
+      t("quietRight", "Strip: right", "Issue 01 / Folio I", "Strip under hero"),
+      t("coreEyebrow", "Core statement label", "A core statement", "Core statement"),
+      t("coreHeading", "Core statement heading", "The ethics of AI must be the preserve of all cultures and continents.", "Core statement"),
+      l("coreBody", "Core statement body", "Every agency, company, institution and country designing, developing and deploying AI architectures has an obligation to incorporate a more geographically, culturally and socially diverse array of perspectives.", "Core statement"),
+      t("ideasEyebrow", "Ideas label", "Ideas & themes", "Ideas & themes"),
+      t("ideasHeading", "Ideas heading", "Areas of *inquiry.*", "Ideas & themes"),
+      t("ideasCta", "Ideas link text", "All entries →", "Ideas & themes"),
+      t("ideasCardCta", "Card link text", "Read", "Ideas & themes"),
+      img("deskImage", "Quiet desk image", "Quiet desk"),
+      t("deskEyebrow", "Quiet desk label", "A quiet desk", "Quiet desk"),
+      t("deskHeading", "Quiet desk heading", "Slow reading, *long sentences.*", "Quiet desk"),
+      t("noteEyebrow", "Note label", "A note before reading", "Note before reading"),
+      l("noteText", "Note text", "Goodness, as rationality, does not attribute any special virtue to the process of deciding. Human thinking is imperfect. The AI frontier opens the possibility to augment each person's Agility Quotient (AQ) to think better. In that ferment lies the possibility of a blossoming of human ideas boosted by AI. The true challenge is therefore to build AI systems that prompt us to think more benevolently than we naturally do.", "Note before reading"),
+      img("portraitImage", "Fazal Ali portrait", "Portrait"),
+      t("portraitWord1", "Wordmark line 1", "FAZAL", "Portrait"),
+      t("portraitWord2", "Wordmark line 2", "ALI", "Portrait"),
+      t("portraitNameplate", "Nameplate", "Trinidad · Cambridge · 2026", "Portrait"),
+      t("portraitCta", "Button text", "More about Fazal", "Portrait"),
+      url("portraitCtaLink", "Button link", "/about", "Portrait"),
+      t("bookEyebrowLeft", "Top label (left)", "The Monograph · 2026", "Monograph"),
+      t("bookEyebrowRight", "Top label (right)", "Foreword · Epilogue", "Monograph"),
+      img("bookCover", "Book cover", "Monograph"),
+      t("bookKicker", "Small label", "A Monograph · FIA", "Monograph"),
+      t("bookTitle", "Title", "Education for Liberty.", "Monograph"),
+      l("bookTagline", "Tagline", "A manifesto for releasing the imagination.", "Monograph"),
+      t("forewordName", "Foreword by", "Sir George Alleyne", "Monograph"),
+      t("forewordCreds", "Foreword credentials", "M.D., F.R.C.P., F.A.C.P. (Hon), DSc (Hon)", "Monograph"),
+      t("epilogueName", "Epilogue by", "Archbishop Joseph Everard Harris", "Monograph"),
+      t("epilogueCreds", "Epilogue credentials", "C.S.Sp.", "Monograph"),
+      t("bookCta1", "First button", "Read the monograph", "Monograph"),
+      url("bookCta1Link", "First button link", "/education-for-liberty", "Monograph"),
+      t("bookCta2", "Second button", "Request a copy", "Monograph"),
+      url("bookCta2Link", "Second button link", "/contact", "Monograph"),
+      t("streamsEyebrow", "Label", "Omeros, the house, not a project inside it", "Omeros, the house"),
+      t("streamsHeading", "Heading", "One practice, *three streams.*", "Omeros, the house"),
+      l("streamsIntro", "Introduction", "One body of work under a single name, research, publishing, and the conversation around both.", "Omeros, the house"),
+      t("journalEyebrow", "Journal label", "From the Journal", "Journal"),
+      t("journalHeading", "Journal heading", "Recent pieces.", "Journal"),
+      t("journalCta", "Journal link text", "All entries →", "Journal"),
     ],
   },
   {
@@ -20,51 +119,43 @@ export const PAGE_SCHEMAS: PageSchema[] = [
     label: "Profile",
     path: "/about",
     fields: [
-      { key: "testimonialsHeading", label: "Testimonials heading", def: "In others' words" },
-      { key: "testimonialsIntro", label: "Testimonials intro", def: "Colleagues, students and collaborators on the work.", long: true },
-      { key: "heroEyebrow", label: "Hero label", def: "Profile" },
-      { key: "heroTitle", label: "Hero title", def: "A prophet provocateur, schooled in freedom." },
-      { key: "heroIntro", label: "Hero introduction", def: "Dr. Fazal Ibrahim Ali, Cambridge Commonwealth Scholar, former Provost of the University of Trinidad and Tobago, President of NIHERST, and the author of Education for Liberty.", long: true },
-      { key: "aboutBody", label: "About paragraph", def: "A thinker, consultant, academic and technical expert exploring how AI is shaping the future of innovation, drawing upon Amartya Sen's Development as Freedom and John Rawls' A Theory of Justice.", long: true },
+      ...hero("Profile", "A prophet provocateur, schooled in freedom.", "Dr. Fazal Ibrahim Ali, Cambridge Commonwealth Scholar, former Provost of the University of Trinidad and Tobago, President of NIHERST, and the author of Education for Liberty."),
+      l("aboutBody", "About paragraph", "A thinker, consultant, academic and technical expert exploring how AI is shaping the future of innovation, drawing upon Amartya Sen's Development as Freedom and John Rawls' A Theory of Justice.", "About"),
+      t("testimonialsHeading", "Testimonials heading", "In others' words", "Testimonials"),
+      l("testimonialsIntro", "Testimonials intro", "Colleagues, students and collaborators on the work.", "Testimonials"),
     ],
   },
   { key: "books", label: "Books", path: "/books", fields: [
-    { key: "heroTitle", label: "Hero title", def: "The work, in volumes." },
-    { key: "heroIntro", label: "Hero introduction", def: "A body of writing built on Amartya Sen's Development as Freedom and John Rawls' A Theory of Justice, Caribbean in origin, global in address.", long: true },
-    { key: "forthcomingHeading", label: "Forthcoming heading", def: "Books to come." },
-    { key: "forthcomingIntro", label: "Forthcoming introduction", def: "Three volumes in preparation, each extending the Omeros AI argument into a distinct register of public life.", long: true },
+    ...hero("Books", "The work, in volumes.", "A body of writing built on Amartya Sen's Development as Freedom and John Rawls' A Theory of Justice, Caribbean in origin, global in address."),
+    t("forthcomingHeading", "Forthcoming heading", "Books to come.", "Forthcoming"),
+    l("forthcomingIntro", "Forthcoming introduction", "Three volumes in preparation, each extending the Omeros AI argument into a distinct register of public life.", "Forthcoming"),
   ]},
-  { key: "gallery", label: "Gallery", path: "/gallery", fields: [
-    { key: "heroTitle", label: "Hero title", def: "The gallery." },
-    { key: "heroIntro", label: "Hero introduction", def: "A curated selection of paintings, colour, coastline, and the canvas life of a working writer.", long: true },
-  ]},
-  { key: "ecology", label: "Ecology", path: "/ecology", fields: [
-    { key: "heroTitle", label: "Hero title", def: "Ecology." },
-    { key: "heroIntro", label: "Hero introduction", def: "Not a body of work, a note. Ecology appears in the writing mostly where it is borrowed: the ethics we now ask of artificial intelligence were first argued out in conservation.", long: true },
-  ]},
-  { key: "inequality", label: "Inequality", path: "/inequality", fields: [
-    { key: "heroTitle", label: "Hero title", def: "Inequality." },
-    { key: "heroIntro", label: "Hero introduction", def: "No one is enough. No single thought is the perfect answer to all of our problems in the age of AI. We need everyone to collaborate and produce new knowledge.", long: true },
-  ]},
-  { key: "palimpsest", label: "Palimpsest", path: "/palimpsest", fields: [
-    { key: "heroTitle", label: "Hero title", def: "A palimpsest of West Indian education." },
-    { key: "heroIntro", label: "Hero introduction", def: "Set inside a frame of world events before and after Christopher Columbus set sail for the New World in 1492, from Oxford in 1096 to the JFK Library in 1969, from the Encomienda to Eric Williams.", long: true },
-  ]},
+  { key: "education", label: "Education for Liberty", path: "/education-for-liberty", fields: hero("", "", "") },
+  { key: "writing", label: "Journal", path: "/writing", fields: hero("", "", "") },
+  { key: "gallery", label: "Gallery", path: "/gallery", fields: hero("", "The gallery.", "A curated selection of paintings, colour, coastline, and the canvas life of a working writer.") },
+  { key: "ecology", label: "Ecology", path: "/ecology", fields: hero("", "Ecology.", "Not a body of work, a note. Ecology appears in the writing mostly where it is borrowed: the ethics we now ask of artificial intelligence were first argued out in conservation.") },
+  { key: "inequality", label: "Inequality", path: "/inequality", fields: hero("", "Inequality.", "No one is enough. No single thought is the perfect answer to all of our problems in the age of AI. We need everyone to collaborate and produce new knowledge.") },
+  { key: "palimpsest", label: "Palimpsest", path: "/palimpsest", fields: hero("", "A palimpsest of West Indian education.", "Set inside a frame of world events before and after Christopher Columbus set sail for the New World in 1492, from Oxford in 1096 to the JFK Library in 1969, from the Encomienda to Eric Williams.") },
   { key: "omeros", label: "Omeros AI", path: "/omeros-ai", fields: [
-    { key: "heroTitle", label: "Hero title", def: "Omeros." },
-    { key: "heroIntro", label: "Hero introduction", def: "Omeros is the Greek name for Homer, the poet of the sea, of journeys, of voices passed from one generation to the next. It is the name Fazal Ali gives to a Caribbean initiative in artificial intelligence.", long: true },
-    { key: "manifesto", label: "Manifesto quote", def: "Omeros AI exists to open up honest debate about AI in the West Indies, to build capacity across the region, and to nest our small island futures inside the global conversation on intelligence, on terms set, in part, from here.", long: true },
+    ...hero("", "Omeros.", "Omeros is the Greek name for Homer, the poet of the sea, of journeys, of voices passed from one generation to the next. It is the name Fazal Ali gives to a Caribbean initiative in artificial intelligence."),
+    l("manifesto", "Manifesto quote", "Omeros AI exists to open up honest debate about AI in the West Indies, to build capacity across the region, and to nest our small island futures inside the global conversation on intelligence, on terms set, in part, from here.", "Manifesto"),
   ]},
-  { key: "podcast", label: "Podcast", path: "/podcast", fields: [
-    { key: "heroTitle", label: "Hero title", def: "The podcast." },
-    { key: "heroIntro", label: "Hero introduction", def: "A monograph, read aloud. Begin at the Preface, continue with the Prolegomenon, long-form, unhurried, made for headphones.", long: true },
-  ]},
+  { key: "podcast", label: "Podcast", path: "/podcast", fields: hero("", "The podcast.", "A monograph, read aloud. Begin at the Preface, continue with the Prolegomenon, long-form, unhurried, made for headphones.") },
   { key: "contact", label: "Contact", path: "/contact", fields: [
-    { key: "heading", label: "Heading", def: "A short note is enough." },
-    { key: "intro", label: "Introduction", def: "Press, residencies, teaching, or a question about the writing, all read by him personally.", long: true },
-    { key: "success", label: "Success message", def: "Thank you. He will reply as soon as he can.", long: true },
+    t("heading", "Heading", "A short note is enough."),
+    l("intro", "Introduction", "Press, residencies, teaching, or a question about the writing, all read by him personally."),
+    l("success", "Success message", "Thank you. He will reply as soon as he can."),
   ]},
 ];
+
+/** Parse a `links` field: one "Label | /path" per line. */
+export function parseLinks(v: string): { label: string; to: string }[] {
+  return v
+    .split("\n")
+    .map((line) => line.split("|").map((x) => x.trim()))
+    .filter(([a, b]) => a && b)
+    .map(([label, to]) => ({ label, to }));
+}
 
 export const COLLECTIONS = {
   books: {
