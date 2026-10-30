@@ -77,27 +77,6 @@ function Home() {
 
         {/* Fixed-background photographic break, image stays anchored while content scrolls */}
         <QuietDesk />
-        {false && <section
-          aria-label="A quiet desk"
-          className="relative h-[70vh] w-full overflow-hidden sm:h-[85vh]"
-          style={{
-            backgroundImage: `url(${heroDesk})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundAttachment: "fixed",
-          }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/55" />
-          <div className="text-on-image relative flex h-full w-full items-end p-6 sm:p-12">
-            <div className="max-w-xl">
-              <p className="eyebrow opacity-85">A quiet desk</p>
-              <h3 className="mt-3 font-display text-3xl leading-[1.04] sm:text-5xl">
-                Slow reading, <em className="text-accent">long sentences.</em>
-              </h3>
-            </div>
-          </div>
-        </section>}
-
         <Manifesto />
         <Portrait />
         <BookSection />
@@ -529,7 +508,6 @@ function Manifesto() {
         className="font-display text-[8vw] leading-[1.04] tracking-[-0.025em] text-balance sm:text-[5vw] sm:leading-[1.08] md:text-[3.4vw]"
         key={text}
         text={text}
-        data-default="Goodness, as rationality, does not attribute any special virtue to the process of deciding. Human thinking is imperfect. The AI frontier opens the possibility to augment each person's Agility Quotient (AQ) to think better. In that ferment lies the possibility of a blossoming of human ideas boosted by AI. The true challenge is therefore to build AI systems that prompt us to think more benevolently than we naturally do."
       />
     </section>
   );
