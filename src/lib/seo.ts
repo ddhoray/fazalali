@@ -1,19 +1,18 @@
 type Meta = Record<string, unknown> & { title?: string; name?: string; property?: string; content?: string };
-type Head = { meta?: Meta[]; links?: unknown[]; scripts?: unknown[] } & Record<string, unknown>;
 type Ctx = { matches?: Array<{ routeId?: string; loaderData?: unknown }> };
 
 /**
  * Applies the admin's "Search & sharing" fields (cms_pages[pageKey].seoTitle / seoDescription / seoImage)
  * on top of a route's built-in head. Pages content comes from the root loader, so this works during SSR.
  */
-export function withSeo(pageKey: string, ctx: Ctx, head: Head): Head {
+export function withSeo<H extends { meta?: unknown[] }>(pageKey: string, ctx: Ctx, head: H): H {
   const pages = ctx.matches?.find((m) => m.routeId === "__root__")?.loaderData as Record<string, Record<string, string>> | undefined;
   const p = pages?.[pageKey] ?? {};
   const title = (p.seoTitle ?? "").trim();
   const desc = (p.seoDescription ?? "").trim();
   const image = (p.seoImage ?? "").trim();
   if (!title && !desc && !image) return head;
-  let meta = [...(head.meta ?? [])];
+  let meta = [...((head.meta ?? []) as Meta[])];
   const set = (match: (m: Meta) => boolean, entry: Meta) => {
     meta = meta.filter((m) => !match(m));
     meta.push(entry);
