@@ -2,6 +2,7 @@ import { useState, type FormEvent } from "react";
 import { ArrowUpRight, Mail } from "lucide-react";
 import { BlurReveal } from "./BlurReveal";
 import { subscribe } from "@/lib/cms.functions";
+import { Rich, useCmsText } from "./CmsExtras";
 
 /**
  * Editorial newsletter sign-up block.
@@ -10,6 +11,8 @@ import { subscribe } from "@/lib/cms.functions";
 export function Newsletter() {
   const [email, setEmail] = useState("");
   const [done, setDone] = useState(false);
+  const c = (k: string) => useCmsText("site", k);
+  const [eyebrow, heading, body, button, success, fine] = [c("nlEyebrow"), c("nlHeading"), c("nlBody"), c("nlButton"), c("nlSuccess"), c("nlFine")];
 
   function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -24,7 +27,7 @@ export function Newsletter() {
         <div className="md:col-span-6">
           <BlurReveal as="p" className="eyebrow text-muted-foreground">
             <span className="inline-flex items-center gap-2">
-              <Mail className="size-3.5 opacity-70" /> The Letter · No. 01
+              <Mail className="size-3.5 opacity-70" /> {eyebrow}
             </span>
           </BlurReveal>
           <BlurReveal
@@ -32,14 +35,13 @@ export function Newsletter() {
             delay={0.08}
             className="mt-5 font-display text-[12vw] leading-[0.95] tracking-[-0.03em] sm:text-5xl md:text-6xl lg:text-7xl"
           >
-            A letter, <em className="">now and then.</em>
+            <Rich text={heading} accent="" />
           </BlurReveal>
           <BlurReveal
             delay={0.16}
             className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground md:text-base"
           >
-            Occasional dispatches, new journal entries, notes from forthcoming books, and quiet
-            reports from Omeros AI. No noise. No tracking. Read once, leave anytime.
+            {body}
           </BlurReveal>
         </div>
 
@@ -49,7 +51,7 @@ export function Newsletter() {
               <div className="flex h-full min-h-[160px] flex-col justify-center border-t hairline pt-8">
                 <p className="eyebrow text-muted-foreground">Received</p>
                 <p className="mt-3 font-display text-2xl leading-snug md:text-3xl">
-                  Thank you. The next letter will find you.
+                  {success}
                 </p>
               </div>
             ) : (
@@ -68,12 +70,12 @@ export function Newsletter() {
                     className="w-full bg-transparent font-display text-2xl tracking-tight outline-none placeholder:text-muted-foreground/60 md:text-3xl"
                   />
                   <button type="submit" className="group btn-cta btn-on-blue shrink-0">
-                    Subscribe
+                    {button}
                     <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </button>
                 </div>
                 <p className="mt-4 text-xs text-muted-foreground">
-                  By subscribing you agree to receive occasional emails. No spam, ever.
+                  {fine}
                 </p>
               </form>
             )}

@@ -165,6 +165,7 @@ function BooksPage() {
   return (
     <div>
       <PageHero
+        cmsKey="books"
         eyebrow="Books"
         title={
           <>

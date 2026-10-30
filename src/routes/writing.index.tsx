@@ -82,6 +82,7 @@ function WritingIndex() {
   return (
     <div data-auto-reveal="off">
       <PageHero
+        cmsKey="writing"
         eyebrow="Journal"
         title={
           <>

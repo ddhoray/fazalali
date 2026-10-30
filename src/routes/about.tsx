@@ -104,6 +104,7 @@ function AboutPage() {
   return (
     <div>
       <PageHero
+        cmsKey="profile"
         eyebrow={heroEyebrow}
         title={
           <>

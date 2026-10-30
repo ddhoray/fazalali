@@ -5,6 +5,7 @@ import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { openContactDrawer } from "@/components/site/ContactDrawer";
 import fiaLogo from "@/assets/brand-fia.png";
+import { useCmsLinks, useCmsSaved, useCmsText } from "@/components/site/CmsExtras";
 
 const links = [
   { to: "/books", label: "Books" },
@@ -24,6 +25,10 @@ const links = [
 export function MobileTopBar() {
   const [open, setOpen] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const cmsLinks = useCmsLinks("site", "navMobile");
+  const navLinks = cmsLinks.length ? cmsLinks : links;
+  const logo = useCmsSaved("site", "mobileLogo") || fiaLogo;
+  const cta = useCmsText("site", "menuCta");
 
   useEffect(() => {
     setOpen(false);
@@ -44,7 +49,7 @@ export function MobileTopBar() {
           aria-label="Fazal Ali, Home"
           className="inline-flex min-h-11 min-w-11 items-center justify-center"
         >
-          <img src={fiaLogo} alt="FIA" className="h-8 w-8 object-contain" draggable={false} />
+          <img src={logo} alt="FIA" className="h-8 w-8 object-contain" draggable={false} />
         </Link>
         <button
           type="button"
@@ -67,12 +72,12 @@ export function MobileTopBar() {
             className="fixed inset-0 z-[55] flex flex-col bg-[#f1efec] pt-16 lg:hidden"
           >
             <nav className="flex flex-col overflow-y-auto px-6 py-6">
-              {links.map((l) => {
+              {navLinks.map((l) => {
                 const active = pathname === l.to || pathname.startsWith(l.to + "/");
                 return (
                   <Link
                     key={l.to}
-                    to={l.to}
+                    to={l.to as "/"}
                     onClick={() => setOpen(false)}
                     className={cn(
                       "border-b border-black/10 py-4 text-[13px] font-medium uppercase tracking-[0.18em]",
@@ -91,7 +96,7 @@ export function MobileTopBar() {
                 }}
                 className="mt-6 rounded-[0.6rem] bg-[#1c1c1c] px-6 py-4 text-[13px] font-medium uppercase tracking-[0.18em] text-white"
               >
-                Write to him
+                {cta}
               </button>
             </nav>
           </motion.div>

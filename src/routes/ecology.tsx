@@ -72,6 +72,7 @@ function EcologyPage() {
   return (
     <div>
       <PageHero
+        cmsKey="ecology"
         eyebrow={ecology.eyebrow}
         title={
           <>

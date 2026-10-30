@@ -110,6 +110,7 @@ function GalleryPage() {
   return (
     <div>
       <PageHero
+        cmsKey="gallery"
         eyebrow="Visual field notes"
         title={
           <>

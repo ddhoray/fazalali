@@ -57,7 +57,7 @@ const NAV: { group: string; items: NavItem[] }[] = [
     group: "Content",
     items: [
       { to: "/admin/articles", label: "Journal", icon: <Newspaper /> },
-      { to: "/admin/pages", label: "Page text", icon: <PanelsTopLeft /> },
+      { to: "/admin/pages", label: "Site pages", icon: <PanelsTopLeft /> },
       { to: "/admin/collections/$collection", params: { collection: "books" }, label: "Books", icon: <BookOpen /> },
       { to: "/admin/collections/$collection", params: { collection: "gallery" }, label: "Gallery", icon: <Images /> },
       { to: "/admin/collections/$collection", params: { collection: "palimpsest" }, label: "Palimpsest", icon: <Layers /> },

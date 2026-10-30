@@ -263,6 +263,7 @@ const EntryInput = z.object({
   published: z.boolean().default(true),
   featured: z.boolean().default(false),
   position: z.number().int().optional(),
+  publish_at: z.string().datetime().nullable().optional(),
 });
 
 export const adminListEntries = createServerFn({ method: "GET" })
@@ -334,13 +335,39 @@ export const adminGetPages = createServerFn({ method: "GET" }).handler(async () 
 });
 
 export const adminSavePage = createServerFn({ method: "POST" })
-  .inputValidator(z.object({ key: z.string().max(60), data: z.record(z.string(), z.string().max(20000)) }))
+  .inputValidator(
+    z.object({
+      key: z.string().max(60),
+      data: z.record(z.string(), z.string().max(20000)),
+      scheduleAt: z.string().datetime().nullable().optional(),
+    }),
+  )
   .handler(async ({ data }) => {
     const s = await S();
     const me = await s.requireStaff("editor");
     const db = await DB();
-    await db.from("cms_pages").upsert({ key: data.key, data: data.data, updated_at: new Date().toISOString(), updated_by: me.id });
-    await s.audit(me, "update", "page", data.key, `Edited ${data.key} page text`);
+    const now = new Date().toISOString();
+    if (data.scheduleAt && new Date(data.scheduleAt).getTime() > Date.now()) {
+      const { data: ex } = await db.from("cms_pages").select("key").eq("key", data.key).maybeSingle();
+      const sched = { scheduled_data: data.data, scheduled_at: data.scheduleAt, updated_at: now, updated_by: me.id };
+      if (ex) await db.from("cms_pages").update(sched).eq("key", data.key);
+      else await db.from("cms_pages").insert({ key: data.key, data: {}, ...sched });
+      await s.audit(me, "schedule", "page", data.key, `Scheduled ${data.key} update for ${data.scheduleAt}`);
+      return { ok: true, scheduled: true };
+    }
+    await db.from("cms_pages").upsert({ key: data.key, data: data.data, scheduled_data: null, scheduled_at: null, updated_at: now, updated_by: me.id });
+    await s.audit(me, "update", "page", data.key, `Published ${data.key} content`);
+    return { ok: true, scheduled: false };
+  });
+
+export const adminCancelPageSchedule = createServerFn({ method: "POST" })
+  .inputValidator(z.object({ key: z.string().max(60) }))
+  .handler(async ({ data }) => {
+    const s = await S();
+    const me = await s.requireStaff("editor");
+    const db = await DB();
+    await db.from("cms_pages").update({ scheduled_data: null, scheduled_at: null }).eq("key", data.key);
+    await s.audit(me, "update", "page", data.key, `Cancelled scheduled ${data.key} update`);
     return { ok: true };
   });
 

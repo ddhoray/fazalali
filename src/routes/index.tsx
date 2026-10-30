@@ -1,4 +1,4 @@
-import { useCmsEntries, useCmsText } from "@/components/site/CmsExtras";
+import { Rich, useCmsEntries, useCmsSaved, useCmsText } from "@/components/site/CmsExtras";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { motion, useScroll, useTransform, useMotionValueEvent } from "motion/react";
 import { useEffect, useRef, useState } from "react";
@@ -76,27 +76,7 @@ function Home() {
         <IdeasAndThemes />
 
         {/* Fixed-background photographic break, image stays anchored while content scrolls */}
-        <section
-          aria-label="A quiet desk"
-          className="relative h-[70vh] w-full overflow-hidden sm:h-[85vh]"
-          style={{
-            backgroundImage: `url(${heroDesk})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundAttachment: "fixed",
-          }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/55" />
-          <div className="text-on-image relative flex h-full w-full items-end p-6 sm:p-12">
-            <div className="max-w-xl">
-              <p className="eyebrow opacity-85">A quiet desk</p>
-              <h3 className="mt-3 font-display text-3xl leading-[1.04] sm:text-5xl">
-                Slow reading, <em className="text-accent">long sentences.</em>
-              </h3>
-            </div>
-          </div>
-        </section>
-
+        <QuietDesk />
         <Manifesto />
         <Portrait />
         <BookSection />
@@ -106,6 +86,29 @@ function Home() {
         <Newsletter />
       </div>
     </>
+  );
+}
+
+function QuietDesk() {
+  const image = useCmsSaved("home", "deskImage") || heroDesk;
+  const eyebrow = useCmsText("home", "deskEyebrow");
+  const heading = useCmsText("home", "deskHeading");
+  return (
+    <section
+      aria-label={eyebrow}
+      className="relative h-[70vh] w-full overflow-hidden sm:h-[85vh]"
+      style={{ backgroundImage: `url(${image})`, backgroundSize: "cover", backgroundPosition: "center", backgroundAttachment: "fixed" }}
+    >
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/55" />
+      <div className="text-on-image relative flex h-full w-full items-end p-6 sm:p-12">
+        <div className="max-w-xl">
+          <p className="eyebrow opacity-85">{eyebrow}</p>
+          <h3 className="mt-3 font-display text-3xl leading-[1.04] sm:text-5xl">
+            <Rich text={heading} />
+          </h3>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -185,6 +188,10 @@ const ideas = [
 
 function IdeasAndThemes() {
   const cmsIdeas = useCmsEntries("home_ideas");
+  const ideasEyebrow = useCmsText("home", "ideasEyebrow");
+  const ideasHeading = useCmsText("home", "ideasHeading");
+  const ideasCta = useCmsText("home", "ideasCta");
+  const cardCta = useCmsText("home", "ideasCardCta");
   const displayedIdeas = cmsIdeas.length ? cmsIdeas.map((idea) => ({ title: idea.title, note: idea.body ?? "", to: idea.link_url || "/writing" })) : ideas;
   return (
     <section className="border-b hairline bg-background">
@@ -192,19 +199,19 @@ function IdeasAndThemes() {
         <div className="mb-10 flex flex-wrap items-end justify-between gap-6 border-b hairline pb-5">
           <div>
             <BlurReveal as="p" className="eyebrow text-muted-foreground">
-              Ideas &amp; themes
+              {ideasEyebrow}
             </BlurReveal>
             <BlurReveal
               as="h2"
               delay={0.08}
               className="mt-3 font-display text-4xl leading-[1] md:text-6xl"
             >
-              Areas of <em className="text-accent">inquiry.</em>
+              <Rich text={ideasHeading} />
             </BlurReveal>
           </div>
           <BlurReveal delay={0.16}>
             <Link to="/writing" className="nav-link">
-              All entries →
+              {ideasCta}
             </Link>
           </BlurReveal>
         </div>
@@ -224,7 +231,7 @@ function IdeasAndThemes() {
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{idea.note}</p>
                 </div>
                 <span className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-muted-foreground transition-colors group-hover:text-foreground">
-                  Read
+                  {cardCta}
                   <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </span>
                </a>
@@ -239,6 +246,12 @@ function IdeasAndThemes() {
 /* ───────────────────────── Hero ───────────────────────── */
 
 function Hero() {
+  const videoSrc = useCmsSaved("home", "heroVideo") || heroVideo;
+  const logoSrc = useCmsSaved("home", "heroLogo") || fiaLogo;
+  const hEyebrow = useCmsText("home", "heroEyebrow");
+  const hTitle = useCmsText("home", "heroTitle");
+  const hIntro = useCmsText("home", "heroIntro");
+  const hHint = useCmsText("home", "heroHint");
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -374,7 +387,7 @@ function Hero() {
         >
           <video
             ref={videoRef}
-            src={heroVideo}
+            src={videoSrc}
             
             autoPlay
             muted
@@ -406,7 +419,7 @@ function Hero() {
             className="pointer-events-none absolute inset-x-0 top-6 z-20 hidden justify-center sm:top-10 lg:flex"
           >
             <img
-              src={fiaLogo}
+              src={logoSrc}
               alt="Omeros AI, Fazal Ibrahim Ali"
               className="h-14 w-auto object-contain brightness-0 invert drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)] sm:h-20"
               draggable={false}
@@ -423,22 +436,19 @@ function Hero() {
             aria-hidden={!revealed}
             className="text-on-image absolute inset-0 z-10 flex flex-col justify-between px-6 pt-28 pb-12 text-white sm:px-12 sm:pt-32 sm:pb-16"
           >
-            <p className="eyebrow opacity-85">Omeros AI :West Indies &amp; the World</p>
+            <p className="eyebrow opacity-85">{hEyebrow}</p>
 
             <div>
               <h1 className="font-display text-[clamp(2.5rem,12vw,6.5rem)] leading-[1.02] tracking-[-0.035em] text-balance md:leading-[0.96]">
-                A prophet provocateur, schooled in <span className="">freedom.</span>
+                <Rich text={hTitle} />
               </h1>
 
               <p className="mt-5 max-w-md text-[13px] leading-relaxed opacity-90 sm:mt-6 sm:text-sm md:text-base">
-                Dr. Fazal Ibrahim Ali, born here in Trinidad and educated at Cambridge. Critical
-                theory on artificial intelligence, written from the West Indies, for a reader
-                anywhere who suspects the conversation has been{" "}
-                <em className="text-accent">too narrow for too long - and who wants to change its nature.</em>
+                <Rich text={hIntro} />
               </p>
 
               <p className="mt-8 text-[10px] uppercase tracking-[0.3em] opacity-70">
-                Scroll to explore
+                {hHint}
               </p>
             </div>
           </motion.div>
@@ -464,17 +474,20 @@ function Hero() {
 /* ───────────────── Quiet editorial divider ──────────────── */
 
 function Quietline() {
+  const left = useCmsText("home", "quietLeft");
+  const center = useCmsText("home", "quietCenter");
+  const right = useCmsText("home", "quietRight");
   return (
     <section className="border-y hairline bg-background">
       <div className="mx-auto grid max-w-[1700px] grid-cols-1 items-center gap-4 px-5 py-5 sm:grid-cols-3 sm:px-8 sm:py-6">
         <BlurReveal as="span" className="eyebrow text-muted-foreground">
-          Est. Trinidad, 1974
+          {left}
         </BlurReveal>
         <BlurReveal delay={0.1} className="text-center font-display text-xl md:text-2xl">
-          This is the next world.
+          <Rich text={center} />
         </BlurReveal>
         <BlurReveal as="span" delay={0.2} className="eyebrow text-right text-muted-foreground">
-          Issue 01 / Folio I
+          {right}
         </BlurReveal>
       </div>
     </section>
@@ -484,14 +497,17 @@ function Quietline() {
 /* ─────────────────────── Manifesto (word-by-word scroll reveal) ────────────────────── */
 
 function Manifesto() {
+  const eyebrow = useCmsText("home", "noteEyebrow");
+  const text = useCmsText("home", "noteText");
   return (
     <section className="mx-auto max-w-[1400px] bg-background px-5 py-8 sm:px-8 md:py-12">
       <BlurReveal as="p" className="eyebrow mb-5 flex items-center gap-3 text-muted-foreground">
-        <Compass className="size-4" /> A note before reading
+        <Compass className="size-4" /> {eyebrow}
       </BlurReveal>
       <WordScrollReveal
         className="font-display text-[8vw] leading-[1.04] tracking-[-0.025em] text-balance sm:text-[5vw] sm:leading-[1.08] md:text-[3.4vw]"
-        text="Goodness, as rationality, does not attribute any special virtue to the process of deciding. Human thinking is imperfect. The AI frontier opens the possibility to augment each person's Agility Quotient (AQ) to think better. In that ferment lies the possibility of a blossoming of human ideas boosted by AI. The true challenge is therefore to build AI systems that prompt us to think more benevolently than we naturally do."
+        key={text}
+        text={text}
       />
     </section>
   );
@@ -501,6 +517,12 @@ function Manifesto() {
 
 function Portrait() {
   const navigateRoot = useNavigate();
+  const pImage = useCmsSaved("home", "portraitImage") || fazalPortrait;
+  const w1 = useCmsText("home", "portraitWord1");
+  const w2 = useCmsText("home", "portraitWord2");
+  const plate = useCmsText("home", "portraitNameplate");
+  const cta = useCmsText("home", "portraitCta");
+  const ctaLink = useCmsText("home", "portraitCtaLink");
   return (
     <section data-nav="dark" className="section-invert relative min-h-[88vh] overflow-hidden">
       <Grain />
@@ -509,7 +531,7 @@ function Portrait() {
         {/* Left: large full-height portrait */}
         <div className="relative order-1 min-h-[60vh] overflow-hidden md:min-h-[88vh]">
           <img
-            src={fazalPortrait}
+            src={pImage}
             alt="Dr. Fazal Ibrahim Ali"
             className="absolute inset-0 size-full object-cover [filter:grayscale(1)_contrast(1.12)_brightness(0.94)]"
             loading="lazy"
@@ -528,15 +550,15 @@ function Portrait() {
             as="div"
             className="pointer-events-none select-none font-display leading-[1.05] tracking-[-0.05em] text-white/[0.10]"
           >
-            <span className="block text-[19vw] md:text-[9vw]">FAZAL</span>
-            <span className="block text-[19vw] md:text-[9vw]">ALI</span>
+            <span className="block text-[19vw] md:text-[9vw]">{w1}</span>
+            <span className="block text-[19vw] md:text-[9vw]">{w2}</span>
           </BlurReveal>
 
           {/* Nameplate */}
           <div className="mt-12 flex items-center gap-4">
             <span className="h-px w-12 bg-white/30" />
             <BlurReveal as="p" delay={0.15} className="eyebrow text-white/70">
-              Trinidad · Cambridge · 2026
+              {plate}
             </BlurReveal>
           </div>
 
@@ -544,10 +566,10 @@ function Portrait() {
           <BlurReveal delay={0.3} className="mt-8">
             <button
               type="button"
-              onClick={() => navigateRoot({ to: "/about" })}
+              onClick={() => (/^https?:/.test(ctaLink) ? window.open(ctaLink, "_blank") : navigateRoot({ to: ctaLink as "/" }))}
               className="btn-cta btn-on-blue"
             >
-              More about Fazal
+              {cta}
               <ArrowRight className="size-3.5" />
             </button>
           </BlurReveal>
@@ -595,6 +617,9 @@ const streams = [
 function Range() {
   const [active, setActive] = useState(0);
   const cmsStreams = useCmsEntries("home_streams");
+  const sEyebrow = useCmsText("home", "streamsEyebrow");
+  const sHeading = useCmsText("home", "streamsHeading");
+  const sIntro = useCmsText("home", "streamsIntro");
   const displayedStreams = cmsStreams.length ? cmsStreams.map((stream, i) => ({ n: stream.subtitle ?? String(i + 1).padStart(2, "0"), title: stream.title, kicker: (stream.data as { kicker?: string })?.kicker ?? stream.subtitle ?? "", body: stream.body ?? "", icon: streams[i % streams.length].icon, image: stream.image_url || streams[i % streams.length].image, to: stream.link_url || "/writing", cta: (stream.data as { cta?: string })?.cta ?? "Open" })) : streams;
 
   return (
@@ -607,22 +632,21 @@ function Range() {
         <div className="grid gap-6 border-b hairline pb-8 md:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] md:items-end md:gap-16">
           <div className="min-w-0">
             <BlurReveal as="p" className="eyebrow text-muted-foreground">
-              Omeros, the house, not a project inside it
+              {sEyebrow}
             </BlurReveal>
             <BlurReveal
               as="h2"
               delay={0.08}
               className="mt-4 font-display text-[13vw] leading-[0.95] sm:text-6xl md:text-7xl"
             >
-              One practice, <em className="text-accent">three streams.</em>
+              <Rich text={sHeading} />
             </BlurReveal>
           </div>
           <BlurReveal
             delay={0.14}
             className="text-base leading-relaxed text-muted-foreground md:pb-2"
           >
-            One body of work under a single name, research, publishing, and the conversation around
-            both.
+            {sIntro}
           </BlurReveal>
         </div>
 
@@ -756,6 +780,7 @@ function LatestWriting() {
   const navigate = useNavigate();
   const eyebrow = useCmsText("home", "journalEyebrow");
   const heading = useCmsText("home", "journalHeading");
+  const jCta = useCmsText("home", "journalCta");
   return (
     <section className="mx-auto max-w-[1700px] scroll-mt-24 bg-background px-5 py-10 sm:px-8 md:py-14">
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4 border-b hairline pb-5">
@@ -773,7 +798,7 @@ function LatestWriting() {
         </div>
         <BlurReveal delay={0.16}>
           <Link to="/writing" className="nav-link">
-            All entries →
+            {jCta}
           </Link>
         </BlurReveal>
       </div>
