@@ -147,7 +147,7 @@ export const PAGE_SCHEMAS: PageSchema[] = [
     ...hero("", "Omeros.", "Omeros is the Greek name for Homer, the poet of the sea, of journeys, of voices passed from one generation to the next. It is the name Fazal Ali gives to a Caribbean initiative in artificial intelligence."),
     l("manifesto", "Manifesto quote", "Omeros AI exists to open up honest debate about AI in the West Indies, to build capacity across the region, and to nest our small island futures inside the global conversation on intelligence, on terms set, in part, from here.", "Manifesto"),
   ]},
-  { key: "podcast", label: "Podcast", path: "/podcast", fields: hero("", "The podcast.", "A monograph, read aloud. Begin at the Preface, continue with the Prolegomenon, long-form, unhurried, made for headphones.") },
+  { key: "podcast", label: "Podcast", path: "/podcast", fields: hero("", "The podcast.", "Listen to the Preface, and continue to the Prolegomenon") },
   { key: "contact", label: "Contact", path: "/contact", fields: [
     t("heading", "Heading", "A short note is enough."),
     l("intro", "Introduction", "Press, residencies, teaching, or a question about the writing, all read by him personally."),

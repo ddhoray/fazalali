@@ -78,9 +78,11 @@ function PodcastPage() {
                     {ep.subtitle}
                   </p>
                   <h2 className="font-display text-4xl leading-tight md:text-6xl">{ep.title}</h2>
-                  <p className="max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-                    {ep.description}
-                  </p>
+                  {ep.description ? (
+                    <p className="max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
+                      {ep.description}
+                    </p>
+                  ) : null}
                   <div className="mt-2 max-w-xl border-t hairline pt-6">
                     <AudioPlayer src={ep.audio} />
                   </div>
