@@ -48,6 +48,8 @@ export function AutoReveal() {
         const items = Array.from(
           section.querySelectorAll<HTMLElement>(ITEM_SELECTOR),
         ).filter((el) => {
+          // Skip items inside widgets that animate themselves (e.g. carousels).
+          if (el.closest("[data-auto-reveal='off']")) return false;
           // Skip nested items whose ancestor is already an item.
           return !el.parentElement?.closest("[data-reveal-item]");
         });

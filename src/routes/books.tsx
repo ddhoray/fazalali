@@ -5,6 +5,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "motion/react";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
+import { QuoteCarousel, parseQuotes } from "@/components/site/QuoteCarousel";
 import { ArrowUpRight, Download, ShoppingCart, BookOpen, X } from "lucide-react";
 import bookCoverAsset from "@/assets/book-education-for-liberty-cover.png.asset.json";
 import afterTheFutureAsset from "@/assets/after-the-future-cover.jpg.asset.json";
@@ -142,6 +143,7 @@ const forthcoming: {
 function BooksPage() {
   const heroTitle = useCmsText("books", "heroTitle");
   const heroIntro = useCmsText("books", "heroIntro");
+  const printQuotes = useCmsText("books", "printQuotes");
   const forthcomingHeading = useCmsText("books", "forthcomingHeading");
   const forthcomingIntro = useCmsText("books", "forthcomingIntro");
   const [active, setActive] = useState<number | null>(null);
@@ -217,12 +219,9 @@ function BooksPage() {
 
           <Reveal delay={0.1} className="md:col-span-7">
             <p className="eyebrow text-muted-foreground">First edition · 142 pages</p>
-            <p className="mt-6 font-display text-2xl leading-snug md:text-3xl">
-              "Standing on the shoulders of Amartya Sen's Development as Freedom and John Rawls' A
-              Theory of Justice, Omeros AI builds a body of work that adds to the critical theory on
-              AI, written from the West Indies, for a reader anywhere who suspects the conversation
-              has been too narrow for too long."
-            </p>
+            <div className="mt-6">
+              <QuoteCarousel quotes={parseQuotes(printQuotes)} source="Education for Liberty" />
+            </div>
             <p className="mt-8 max-w-xl text-base leading-relaxed text-foreground/75 md:text-lg">
               A manifesto for releasing the imagination.
             </p>
