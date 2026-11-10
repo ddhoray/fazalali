@@ -144,8 +144,8 @@ export const PAGE_SCHEMAS: PageSchema[] = [
   { key: "inequality", label: "Inequality", path: "/inequality", fields: hero("", "Inequality.", "No one is enough. No single thought is the perfect answer to all of our problems in the age of AI. We need everyone to collaborate and produce new knowledge.") },
   { key: "palimpsest", label: "Palimpsest", path: "/palimpsest", fields: hero("", "A palimpsest of West Indian education.", "Set inside a frame of world events before and after Christopher Columbus set sail for the New World in 1492, from Oxford in 1096 to the JFK Library in 1969, from the Encomienda to Eric Williams.") },
   { key: "omeros", label: "Omeros AI", path: "/omeros-ai", fields: [
-    ...hero("", "Omeros.", "Omeros is the Greek name for Homer, the poet of the sea, of journeys, of voices passed from one generation to the next. It is the name Fazal Ali gives to a Caribbean initiative in artificial intelligence."),
-    l("manifesto", "Manifesto quote", "Omeros AI exists to open up honest debate about AI in the West Indies, to build capacity across the region, and to nest our small island futures inside the global conversation on intelligence, on terms set, in part, from here.", "Manifesto"),
+    ...hero("", "Omeros.", ""),
+    l("manifesto", "Manifesto quote", "We need open and honest conversations about AI in the West Indies to build capacity and nest our small island futures inside the global conversation on terms set, in part, from here.", "Manifesto"),
   ]},
   { key: "podcast", label: "Podcast", path: "/podcast", fields: hero("", "The podcast.", "Listen to the Preface, and continue to the Prolegomenon") },
   { key: "contact", label: "Contact", path: "/contact", fields: [

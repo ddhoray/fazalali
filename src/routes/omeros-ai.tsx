@@ -117,11 +117,7 @@ function OmerosPage() {
             {heroTitle}
           </>
         }
-        standfirst={
-          <>
-            {heroIntro}
-          </>
-        }
+        standfirst={heroIntro ? <>{heroIntro}</> : undefined}
         meta={
           <>
             <span>AI in the West Indies</span>
