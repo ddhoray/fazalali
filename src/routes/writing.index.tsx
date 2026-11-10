@@ -4,7 +4,8 @@ import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
 import { getJournal } from "@/lib/cms.functions";
 import { ArrowUpRight } from "lucide-react";
-import heroBook from "@/assets/hero-writing.jpg";
+import heroAsset from "@/assets/journal-hero.jpg.asset.json";
+const heroBook = heroAsset.url;
 
 export const Route = createFileRoute("/writing/")({
   loader: () => getJournal(),
@@ -93,8 +94,7 @@ function WritingIndex() {
         }
         standfirst={
           <>
-            A weekly note on AI, education and the West Indian future. Read in order, or pick a
-            thread.
+            A weekly reflection on AI and the future of American Mediterranean. Read in any order or click on a thread.
           </>
         }
         meta={
@@ -107,7 +107,7 @@ function WritingIndex() {
           </>
         }
         image={heroBook}
-        imageAlt="A stack of books on a dark surface"
+        imageAlt="Journal banner"
       />
 
       {/* Featured */}
