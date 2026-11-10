@@ -445,7 +445,7 @@ function Hero() {
                 <Rich text={hTitle} />
               </h1>
 
-              <p className="mt-5 max-w-md text-[13px] leading-relaxed opacity-90 sm:mt-6 sm:text-sm md:text-base">
+              <p className="mt-5 max-w-md text-[13px] leading-relaxed opacity-90 sm:mt-6 sm:max-w-lg sm:text-sm md:max-w-xl md:text-base">
                 <Rich text={hIntro} />
               </p>
 

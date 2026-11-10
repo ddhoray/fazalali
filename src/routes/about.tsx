@@ -96,10 +96,20 @@ const roles = [
   },
 ];
 
+/** Splits an editable list field into items (newlines, commas or middots). */
+function splitItems(text: string) {
+  return text
+    .split(/[\n,·•]/)
+    .map((s) => s.trim())
+    .filter(Boolean);
+}
+
 function AboutPage() {
   const heroEyebrow = useCmsText("profile", "heroEyebrow");
   const heroTitle = useCmsText("profile", "heroTitle");
   const heroIntro = useCmsText("profile", "heroIntro");
+  const affiliations = splitItems(useCmsText("profile", "affiliationsShort"));
+  const affiliationsFull = splitItems(useCmsText("profile", "affiliationsFull"));
   const aboutBody = useCmsText("profile", "aboutBody");
   const cmsRoles = useCmsEntries("profile_roles");
   const displayedRoles = cmsRoles.length ? cmsRoles.map((role) => ({ year: role.title, text: role.body ?? "" })) : roles;
@@ -118,16 +128,32 @@ function AboutPage() {
             {heroIntro}
           </>
         }
-        meta={
-          <>
-            <span>Trinidad &amp; Tobago</span>
-            <span className="size-1 bg-white/40" />
-            <span>Cambridge · UWI · UTT</span>
-            <span className="size-1 bg-white/40" />
-            <span>Omeros AI</span>
-          </>
-        }
       />
+
+      {/* Affiliations masthead */}
+      <section className="border-t hairline bg-[#f5f3f0]">
+        <div className="mx-auto max-w-[1500px] px-5 pb-12 pt-9 sm:px-8 sm:pb-14 sm:pt-10">
+          <Reveal>
+            <p className="eyebrow text-muted-foreground">Affiliations</p>
+            <p className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-3 font-display text-2xl leading-none text-foreground sm:text-3xl md:text-[2.35rem]">
+              {affiliations.map((a, i) => (
+                <span key={a} className="flex items-center gap-x-4">
+                  {i > 0 && <span aria-hidden className="size-1 shrink-0 bg-accent/70" />}
+                  {a}
+                </span>
+              ))}
+            </p>
+            <p className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-[11px] uppercase tracking-[0.2em] text-muted-foreground sm:text-xs">
+              {affiliationsFull.map((a, i) => (
+                <span key={a} className="flex items-center gap-x-4">
+                  {i > 0 && <span aria-hidden className="size-1 shrink-0 bg-foreground/25" />}
+                  {a}
+                </span>
+              ))}
+            </p>
+          </Reveal>
+        </div>
+      </section>
 
       {/* Portrait + profile details */}
       <section className="mx-auto max-w-[1500px] px-5 py-14 sm:px-8 sm:py-20">
