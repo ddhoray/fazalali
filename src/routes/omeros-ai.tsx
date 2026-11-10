@@ -41,42 +41,42 @@ const pillars = [
   {
     k: "01",
     t: "Prophet provocateur",
-    b: "Be a prophet provocateur for AI in the West Indies, starting honest public debate that refuses both hype and panic.",
+    b: "Initiating dialogue.",
   },
   {
     k: "02",
     t: "Open source & AI security",
-    b: "Support the adoption of open-source AI innovations across the Caribbean, alongside the AI security initiatives that make that adoption safe.",
+    b: "Making AI adoption safe.",
   },
   {
     k: "03",
     t: "Convene the frontier",
-    b: "Bring AI experts from Google, Apple, NVIDIA, Netflix, AWS, OpenAI, Anthropic, Google DeepMind, Hugging Face, Lovable, Cursor and leading OSS communities into Caribbean rooms.",
+    b: "Inviting OSS communities into Caribbean rooms.",
   },
   {
     k: "04",
     t: "Build capacity",
-    b: "Deliver workshops, fellowships and curricula that grow AI literacy and engineering depth across the region, from school benches to government cabinets.",
+    b: "Building depth from connected classrooms to connected cabinets.",
   },
   {
     k: "05",
     t: "Industrial digitalisation",
-    b: "Drive autonomous machines, robotics, accelerated computing, data centres, national data libraries and data embassies across the Caribbean.",
+    b: "Establishing national data libraries, data centres and data embassies.",
   },
   {
     k: "06",
     t: "Fair algorithms, fair knowledge",
-    b: "Make sure algorithms are fair and that small island developing states are counted, measured and represented on their own terms.",
+    b: "Ensuring that SIDS are counted, measured and represented on their own terms.",
   },
   {
     k: "07",
     t: "Global–local linkages",
-    b: "Link AI adoption in Brazil, Chile and Uruguay to SIDS in the West Indies, and nest regional initiatives inside global AI agendas and projects.",
+    b: "Layering the Neural Lace of global AI agendas onto projects in Brazil, Chile, and Uruguay, and the West Indies, to build scale.",
   },
   {
     k: "08",
-    t: "Energy-aware architectures",
-    b: "Accelerate AI-optimised architectures that augment performance while reducing energy cost, from cloud to edge, so high-performance AI is democratised, not gated.",
+    t: "Energy and the Earth",
+    b: "Accelerate AI-optimised architectures so AI is democratised, not gated, and guided by an Earth AI Manifesto.",
   },
 ];
 
@@ -163,9 +163,8 @@ function OmerosPage() {
             <p className="eyebrow text-white/55">What Omeros AI sets out to do</p>
             <h2 className="mt-5 font-display text-4xl md:text-6xl">Eight pillars of the work.</h2>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/65 md:text-lg">
-              From convening the world's frontier labs in the Caribbean to driving open-source
-              adoption, industrial digitalisation and algorithmic fairness, the work is plural, and
-              it is regional.
+              Convening frontier labs in the West Indies to drive industrial digitalisation and
+              algorithmic fairness.
             </p>
           </Reveal>
 
