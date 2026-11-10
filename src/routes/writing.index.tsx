@@ -5,7 +5,8 @@ import { PageHero } from "@/components/site/PageHero";
 import { getJournal } from "@/lib/cms.functions";
 import { ArrowUpRight } from "lucide-react";
 import heroAsset from "@/assets/journal-hero.jpg.asset.json";
-const heroBook = heroAsset.url;
+import { assetUrl } from "@/lib/asset-url";
+const heroBook = assetUrl(heroAsset);
 
 export const Route = createFileRoute("/writing/")({
   loader: () => getJournal(),
