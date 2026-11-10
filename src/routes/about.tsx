@@ -135,15 +135,15 @@ function AboutPage() {
         <div className="mx-auto max-w-[1500px] px-5 pb-12 pt-9 sm:px-8 sm:pb-14 sm:pt-10">
           <Reveal>
             <p className="eyebrow text-muted-foreground">Affiliations</p>
-            <p className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-3 font-display text-2xl leading-none text-foreground sm:text-3xl md:text-[2.35rem]">
+            <p className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-base leading-[1.7] text-muted-foreground md:text-[17px]">
               {affiliations.map((a, i) => (
                 <span key={a} className="flex items-center gap-x-4">
-                  {i > 0 && <span aria-hidden className="size-1 shrink-0 bg-accent/70" />}
+                  {i > 0 && <span aria-hidden className="size-1 shrink-0 bg-foreground/25" />}
                   {a}
                 </span>
               ))}
             </p>
-            <p className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-[11px] uppercase tracking-[0.2em] text-muted-foreground sm:text-xs">
+            <p className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-2 text-base leading-[1.7] text-muted-foreground md:text-[17px]">
               {affiliationsFull.map((a, i) => (
                 <span key={a} className="flex items-center gap-x-4">
                   {i > 0 && <span aria-hidden className="size-1 shrink-0 bg-foreground/25" />}
@@ -207,16 +207,14 @@ function AboutPage() {
 
               <Reveal delay={0.16}>
                 <div className="grid gap-2 border-b hairline py-8 xl:grid-cols-[160px_minmax(0,1fr)] xl:gap-10">
-                  <p className="eyebrow text-muted-foreground xl:pt-1">Contact</p>
+                  <p className="eyebrow text-muted-foreground xl:pt-1">Write to him</p>
                   <p className="max-w-[60ch] text-base leading-[1.7] text-muted-foreground md:text-[17px]">
-                    He can be reached at{" "}
                     <a
                       href="mailto:fazalalitsc@gmail.com"
                       className="underline underline-offset-4 decoration-accent-cool hover:text-accent-cool transition-colors"
                     >
                       fazalalitsc@gmail.com
                     </a>
-                    .
                   </p>
                 </div>
               </Reveal>
