@@ -70,11 +70,7 @@ function PalimpsestPage() {
         }
         meta={
           <>
-            <span>10 sections</span>
-            <span className="size-1 bg-muted-foreground/40" />
             <span>1096 → 1979</span>
-            <span className="size-1 bg-muted-foreground/40" />
-            <span>Sources: Williams · Campbell · PNM</span>
           </>
         }
       />

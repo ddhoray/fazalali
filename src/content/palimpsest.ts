@@ -17,7 +17,7 @@ import p3 from "@/assets/palimpsest/palimpsest-final-3.jpg.asset.json";
 import p4 from "@/assets/palimpsest/palimpsest-final-4.jpg.asset.json";
 import p5 from "@/assets/palimpsest/palimpsest-final-5.jpg.asset.json";
 import p6 from "@/assets/palimpsest/palimpsest-final-6.jpg.asset.json";
-import gPrelude from "@/assets/palimpsest/gen-prelude.jpg";
+import gPrelude from "@/assets/palimpsest/prelude-slave-mosaic.jpg.asset.json";
 import gGordon from "@/assets/palimpsest/gen-gordon.jpg";
 import gUcwi from "@/assets/palimpsest/gen-ucwi.jpg";
 import gLewis from "@/assets/palimpsest/gen-lewis.jpg";
@@ -27,8 +27,8 @@ export const palimpsest: PalimpsestSection[] = [
   {
     id: "prelude",
     title: "Prelude, The Old World",
-    image: gPrelude,
-    imageAlt: "A gothic stone university quadrangle beside a modern white ribbed walkway",
+    image: assetUrl(gPrelude),
+    imageAlt: "A mosaic of an enslaved man in chains carrying a net beside a mounted commander",
     entries: [
       { text: "The University of Oxford. No clear date of foundation, but teaching commenced in some form in 1096 and developed rapidly from 1167 onwards when Henry II banned English students from attending the University of Paris." },
       { text: "The University of Cambridge was established in 1209 and given royal charter status by King Henry III in 1231." },
