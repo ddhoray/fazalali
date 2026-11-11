@@ -1,8 +1,9 @@
-import { useCmsEntries, useCmsText } from "@/components/site/CmsExtras";
+import { useCmsEntries, useCmsSaved, useCmsText } from "@/components/site/CmsExtras";
 import { withSeo } from "@/lib/seo";
 import { createFileRoute } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
+import { ImageExpand } from "@/components/site/ImageExpand";
 import { palimpsest as builtinPalimpsest } from "@/content/palimpsest";
 import heroPalimpsest from "@/assets/hero-palimpsest.jpg";
 
@@ -35,11 +36,12 @@ function PalimpsestPage() {
     : builtinPalimpsest;
   const heroTitle = useCmsText("palimpsest", "heroTitle");
   const heroIntro = useCmsText("palimpsest", "heroIntro");
+  const heroEyebrow = useCmsSaved("palimpsest", "heroEyebrow");
+  const heroImage = useCmsSaved("palimpsest", "heroImage") || heroPalimpsest;
   return (
     <div>
       <PageHero
-        cmsKey="palimpsest"
-        eyebrow="Long read"
+        eyebrow={heroEyebrow || "Long read"}
         title={
           <>
             {heroTitle}
@@ -59,9 +61,9 @@ function PalimpsestPage() {
             <span>Sources: Williams · Campbell · PNM</span>
           </>
         }
-        image={heroPalimpsest}
-        imageAlt="An open manuscript on a dark desk"
       />
+
+      <ImageExpand src={heroImage} alt="The Palimpsest opening image" height="h-[160vh]" />
 
       <section className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8 sm:py-10">
         <div className="grid gap-16 lg:grid-cols-[260px_1fr] lg:gap-24">
