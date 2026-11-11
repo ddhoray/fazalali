@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { openContactDrawer } from "@/components/site/ContactDrawer";
+import menuImage from "@/assets/menu-archive.jpg.asset.json";
 import omerosMark from "@/assets/omeros-dock-mark.png.asset.json";
 import { assetUrl } from "@/lib/asset-url";
 import { useCmsLinks, useCmsSaved, useCmsText } from "@/components/site/CmsExtras";
@@ -69,12 +70,34 @@ export function FloatingBottomNav() {
       <AnimatePresence initial={false}>
         {expanded && (
           <motion.div
+            key="menu-backdrop"
+            aria-hidden
+            onClick={() => setExpanded(false)}
+            initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
+            animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
+            exit={{ clipPath: "inset(0% 0% 100% 0%)", transition: { duration: 0.6, ease: easing, delay: 0.15 } }}
+            transition={{ duration: 0.9, ease: easing }}
+            className="pointer-events-auto fixed inset-0 z-0 overflow-hidden bg-[#111]"
+          >
+            <motion.img
+              src={assetUrl(menuImage)}
+              alt=""
+              initial={{ scale: 1.25, y: "8%" }}
+              animate={{ scale: 1.04, y: "0%" }}
+              exit={{ scale: 1.12 }}
+              transition={{ duration: 1.4, ease: easing }}
+              className="absolute inset-0 size-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-black/25" />
+          </motion.div>
+        )}
+        {expanded && (
+          <motion.div
             key="panel"
-            initial={{ opacity: 0, y: 12, height: 0 }}
-            animate={{ opacity: 1, y: 0, height: "auto" }}
-            exit={{ opacity: 0, y: 12, height: 0 }}
-            transition={{ duration: 0.45, ease: easing }}
-            className="pointer-events-auto mb-3 w-[480px] max-w-[86vw] overflow-hidden border border-white/10 bg-[#1c1c1c]/85 backdrop-blur-2xl shadow-[0_40px_90px_-40px_rgba(0,0,0,0.8)]"
+            initial={{ opacity: 0, y: 40, height: 0 }}
+            animate={{ opacity: 1, y: 0, height: "auto", transition: { duration: 0.6, ease: easing, delay: 0.55 } }}
+            exit={{ opacity: 0, y: 16, height: 0, transition: { duration: 0.35, ease: easing } }}
+            className="pointer-events-auto relative z-10 mb-3 w-[480px] max-w-[86vw] overflow-hidden border border-white/10 bg-[#1c1c1c]/55 backdrop-blur-2xl backdrop-saturate-150 shadow-[0_40px_90px_-40px_rgba(0,0,0,0.8)]"
           >
             <div className="px-10 py-10">
               <p className="text-[10px] uppercase tracking-[0.32em] text-white/40">
@@ -133,8 +156,8 @@ export function FloatingBottomNav() {
         layout
         transition={{ duration: 0.45, ease: easing }}
         className={cn(
-          "pointer-events-auto flex items-center overflow-hidden",
-          "border border-white/10 bg-[#1c1c1c]/85 backdrop-blur-2xl",
+          "pointer-events-auto relative z-10 flex items-center overflow-hidden",
+          "border border-white/10 bg-[#1c1c1c]/55 backdrop-blur-2xl backdrop-saturate-150",
           "shadow-[0_30px_70px_-30px_rgba(0,0,0,0.7)]",
         )}
       >
