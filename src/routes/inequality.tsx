@@ -96,6 +96,57 @@ const tracked = articles
   .filter((a) => TRACK.test([a.title, a.excerpt, ...a.body].join(" ")))
   .slice(0, 8);
 
+const essayLayouts = [
+  { frame: "col-span-2 md:col-span-7", ratio: "aspect-[4/3]" },
+  { frame: "col-span-1 md:col-span-4 md:col-start-9 md:mt-32", ratio: "aspect-square" },
+  { frame: "col-span-1 md:col-span-4 md:col-start-2 md:mt-4", ratio: "aspect-square" },
+  { frame: "col-span-2 md:col-span-6 md:col-start-7 md:mt-28", ratio: "aspect-[4/3]" },
+  { frame: "col-span-1 md:col-span-5 md:mt-10", ratio: "aspect-[4/3]" },
+  { frame: "col-span-1 md:col-span-5 md:col-start-8 md:-mt-12", ratio: "aspect-square" },
+  { frame: "col-span-2 md:col-span-7 md:col-start-2 md:mt-20", ratio: "aspect-[16/10]" },
+  { frame: "col-span-2 md:col-span-4 md:col-start-9 md:mt-40", ratio: "aspect-square" },
+];
+
+function EssayGridCard({ article, index }: { article: (typeof articles)[number]; index: number }) {
+  const ref = useRef<HTMLElement>(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const frameScale = useTransform(scrollYProgress, [0, 0.38, 1], [0.9, 1, 1]);
+  const clipPath = useTransform(scrollYProgress, [0, 0.38, 1], ["inset(8% 7% 8% 7%)", "inset(0% 0% 0% 0%)", "inset(0% 0% 0% 0%)"]);
+  const imageScale = useTransform(scrollYProgress, [0, 0.55, 1], [1.18, 1.04, 1]);
+  const imageY = useTransform(scrollYProgress, [0, 1], ["-2%", "2%"]);
+  const layout = essayLayouts[index % essayLayouts.length];
+
+  return (
+    <article ref={ref} className={`min-w-0 ${layout.frame}`}>
+      <Link to="/writing/$slug" params={{ slug: article.slug }} className="group block h-full">
+        <motion.div
+          style={reduceMotion ? undefined : { scale: frameScale, clipPath }}
+          className={`relative w-full overflow-hidden bg-muted will-change-transform ${layout.ratio}`}
+        >
+          <motion.img
+            src={article.image}
+            alt={article.title}
+            loading={index < 2 ? "eager" : "lazy"}
+            decoding="async"
+            style={reduceMotion ? undefined : { scale: imageScale, y: imageY }}
+            className="absolute inset-0 size-full object-cover transition-[filter] duration-500 group-hover:brightness-95 will-change-transform"
+          />
+          <span className="absolute right-3 top-3 grid size-9 place-items-center bg-background/90 text-foreground opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
+            <ArrowUpRight className="size-4" />
+          </span>
+        </motion.div>
+        <div className="mt-4 flex items-start justify-between gap-3 text-[10px] uppercase tracking-[0.2em] text-muted-foreground sm:mt-5 sm:text-[11px]">
+          <span>{String(index + 1).padStart(2, "0")}</span>
+          <span className="text-right">{article.date}</span>
+        </div>
+        <h3 className="mt-3 font-display text-lg leading-snug sm:text-xl md:text-2xl">{article.title}</h3>
+        <p className="mt-3 hidden text-sm leading-relaxed text-foreground/65 sm:line-clamp-3">{article.excerpt}</p>
+      </Link>
+    </article>
+  );
+}
+
 function InequalityPage() {
   const heroTitle = useCmsText("inequality", "heroTitle");
   const heroIntro = useCmsText("inequality", "heroIntro");
@@ -210,28 +261,11 @@ function InequalityPage() {
             The recurring argument of the journal. These entries carry it directly.
           </p>
 
-          <ul className="mt-10 border-t hairline">
-            {tracked.map((a) => (
-              <li key={a.slug} className="border-b hairline">
-                <Link
-                  to="/writing/$slug"
-                  params={{ slug: a.slug }}
-                  className="group grid gap-2 py-6 md:grid-cols-[1fr_auto] md:items-baseline md:gap-8"
-                >
-                  <div className="min-w-0">
-                    <h3 className="font-display text-xl leading-snug md:text-2xl">{a.title}</h3>
-                    <p className="mt-2 max-w-3xl text-sm leading-relaxed text-foreground/65">
-                      {a.excerpt}
-                    </p>
-                  </div>
-                  <span className="inline-flex shrink-0 items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-                    {a.date}
-                    <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </span>
-                </Link>
-              </li>
+          <div data-auto-reveal="off" className="mt-14 grid grid-flow-dense grid-cols-2 items-start gap-x-3 gap-y-12 sm:gap-x-5 sm:gap-y-16 md:mt-20 md:grid-cols-12 md:gap-x-8 md:gap-y-20">
+            {tracked.map((article, index) => (
+              <EssayGridCard key={article.slug} article={article} index={index} />
             ))}
-          </ul>
+          </div>
 
           <Link
             to="/writing"
