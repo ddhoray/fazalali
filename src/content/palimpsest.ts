@@ -11,7 +11,6 @@ export interface PalimpsestSection {
   entries: PalimpsestEntry[];
 }
 
-import p1 from "@/assets/palimpsest/palimpsest-final-1.jpg.asset.json";
 import p2 from "@/assets/palimpsest/palimpsest-final-2.jpg.asset.json";
 import p3 from "@/assets/palimpsest/palimpsest-final-3.jpg.asset.json";
 import p4 from "@/assets/palimpsest/palimpsest-final-4.jpg.asset.json";
@@ -19,6 +18,7 @@ import p5 from "@/assets/palimpsest/palimpsest-final-5.jpg.asset.json";
 import p6 from "@/assets/palimpsest/palimpsest-final-6.jpg.asset.json";
 import gPrelude from "@/assets/palimpsest/prelude-slave-mosaic.jpg.asset.json";
 import gGordon from "@/assets/palimpsest/gordon-boat.jpg.asset.json";
+import gIcta from "@/assets/palimpsest/icta-church.jpg.asset.json";
 import gUcwi from "@/assets/palimpsest/gen-ucwi.jpg";
 import gLewis from "@/assets/palimpsest/gen-lewis.jpg";
 import { assetUrl } from "@/lib/asset-url";
@@ -103,8 +103,8 @@ export const palimpsest: PalimpsestSection[] = [
   {
     id: "icta",
     title: "1921, Sir Francis Watts and the ICTA",
-    image: assetUrl(p1),
-    imageAlt: "A long ribbed cylindrical walkway through a green park",
+    image: assetUrl(gIcta),
+    imageAlt: "Visitors entering a historic stone church through a tall arched doorway",
     entries: [
       { text: "After cacao production declined in 1921, the Old Yaws Hospital was selected as the first site for the Imperial College of Tropical Agriculture (ICTA) in Trinidad, the first tertiary site of learning on the island." },
       { text: "ICTA was a school for the British Empire, not Trinidad and Tobago. It granted no degrees. It guarded its imperial character. It failed to be a university, a bastion of English civilisation in a colony tightly controlled from England, unlikely to be reformed into a University for the West Indies." },
