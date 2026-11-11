@@ -140,7 +140,7 @@ export const PAGE_SCHEMAS: PageSchema[] = [
   { key: "education", label: "Education for Liberty", path: "/education-for-liberty", fields: hero("", "", "") },
   { key: "writing", label: "Journal", path: "/writing", fields: hero("", "", "") },
   { key: "gallery", label: "Gallery", path: "/gallery", fields: hero("", "The gallery.", "A curated selection of paintings that highlights the canvas life of a working writer.") },
-  { key: "ecology", label: "Ecology", path: "/ecology", fields: hero("", "Ecology.", "Not a body of work, a note. Ecology appears in the writing mostly where it is borrowed: the ethics we now ask of artificial intelligence were first argued out in conservation.") },
+  { key: "ecology", label: "Ecology", path: "/ecology", fields: hero("", "Ecology.", "The ethics of AI finds its footing in earth sciences.") },
   { key: "inequality", label: "Inequality", path: "/inequality", fields: hero("", "Inequality.", "No one is enough. No single thought is the perfect answer to all of our problems in the age of AI. We need everyone to collaborate and produce new knowledge.") },
   { key: "palimpsest", label: "Palimpsest", path: "/palimpsest", fields: hero("", "A palimpsest of West Indian education.", "Set inside a frame of world events before and after Christopher Columbus set sail for the New World in 1492, from Oxford in 1096 to the JFK Library in 1969, from the Encomienda to Eric Williams.") },
   { key: "omeros", label: "Omeros AI", path: "/omeros-ai", fields: [
