@@ -2,11 +2,20 @@ import { useCmsEntries, useCmsText } from "@/components/site/CmsExtras";
 import { withSeo } from "@/lib/seo";
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
-
-
+import { VirtualGallery, type VirtualGalleryItem } from "@/components/site/VirtualGallery";
 import { Instagram } from "lucide-react";
 
 import galleryHero from "@/assets/gallery/fazal-piano-hero.jpg.asset.json";
+import v1 from "@/assets/gallery/virtual/01-piano.png.asset.json";
+import v2 from "@/assets/gallery/virtual/02-gallery-visit.jpg.asset.json";
+import v3 from "@/assets/gallery/virtual/03-nocturne.webp.asset.json";
+import v4 from "@/assets/gallery/virtual/04-angels.jpg.asset.json";
+import v5 from "@/assets/gallery/virtual/05-ground.jpg.asset.json";
+import v6 from "@/assets/gallery/virtual/06-beach-figure.webp.asset.json";
+import v7 from "@/assets/gallery/virtual/07-boats.jpg.asset.json";
+import v8 from "@/assets/gallery/virtual/08-urban-carrying.webp.asset.json";
+import v9 from "@/assets/gallery/virtual/09-empty-branches.jpg.asset.json";
+import v10 from "@/assets/gallery/virtual/10-inner-light.jpg.asset.json";
 import { assetUrl } from "@/lib/asset-url";
 
 export const Route = createFileRoute("/gallery")({
@@ -33,20 +42,25 @@ export const Route = createFileRoute("/gallery")({
   component: GalleryPage,
 });
 
-type Work = {
-  src: string;
-  title: string;
-  year?: string;
-  medium?: string;
-  hideCaption?: boolean;
-};
-
-const works: Work[] = [];
+const works: VirtualGalleryItem[] = [
+  { src: assetUrl(v1), alt: "Fazal Ali seated beside a grand piano" },
+  { src: assetUrl(v2), alt: "A visitor at the gallery show" },
+  { src: assetUrl(v3), alt: "A nocturnal painting of a house and palms" },
+  { src: assetUrl(v4), alt: "An expressive blue painting with an angelic figure" },
+  { src: assetUrl(v5), alt: "An abstract painting in yellow, black and red" },
+  { src: assetUrl(v6), alt: "A figure walking through palms beside the sea" },
+  { src: assetUrl(v7), alt: "Boats resting beside a house in a lush landscape" },
+  { src: assetUrl(v8), alt: "An urban scene with a carried corrugated panel" },
+  { src: assetUrl(v9), alt: "A green landscape with a path through empty branches" },
+  { src: assetUrl(v10), alt: "Figures moving through a vivid blue and orange landscape" },
+];
 
 function GalleryPage() {
   const heroTitle = useCmsText("gallery", "heroTitle");
   const heroIntro = useCmsText("gallery", "heroIntro");
-  const cmsWorks: Work[] = useCmsEntries("gallery").filter((e) => e.image_url).map((e) => ({ src: e.image_url!, title: e.body || e.title, year: e.subtitle ?? undefined, hideCaption: !e.subtitle }));
+  const cmsWorks: VirtualGalleryItem[] = useCmsEntries("gallery")
+    .filter((e) => e.image_url)
+    .map((e, index) => ({ src: e.image_url!, alt: e.body || e.title || `Gallery image ${index + 1}` }));
   const allWorks = cmsWorks.length ? cmsWorks : works;
   return (
     <div>
@@ -90,32 +104,7 @@ function GalleryPage() {
         imageAlt="Fazal Ali beside a grand piano in a wood-panelled room"
       />
 
-      <section className="border-t hairline">
-        <div className="mx-auto max-w-[1500px] px-5 py-16 sm:px-8 sm:py-24">
-          <div className="columns-2 gap-5 md:columns-3 md:gap-6 xl:columns-4 [column-fill:_balance]">
-            {allWorks.map((w) => (
-              <figure key={w.src} className="group mb-5 break-inside-avoid md:mb-6">
-                <div className="relative overflow-hidden border hairline bg-muted">
-                  <img
-                    src={w.src}
-                    alt={w.title}
-                    loading="lazy"
-                    className="w-full h-auto object-cover transition-transform duration-[1000ms] ease-out group-hover:scale-[1.04]"
-                  />
-                </div>
-                {!w.hideCaption && (
-                  <figcaption className="mt-2 flex items-baseline justify-between gap-3">
-                    <h3 className="truncate font-display text-xs md:text-sm">{w.title}</h3>
-                    <span className="text-[10px] uppercase tracking-[0.16em] text-muted-foreground shrink-0">
-                      {w.year}
-                    </span>
-                  </figcaption>
-                )}
-              </figure>
-            ))}
-          </div>
-        </div>
-      </section>
+      <VirtualGallery items={allWorks} />
     </div>
   );
 }
