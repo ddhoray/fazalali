@@ -80,33 +80,13 @@ const pillars = [
   },
 ];
 
-const goals = [
-  {
-    year: "2026",
-    title: "Caribbean Algorithmic Equity Framework",
-    body: "Launch a regional framework on fair algorithms and fair representation, designed in the Caribbean, built for small islands, shared outward.",
-  },
-  {
-    year: "2029",
-    title: "15 joint LATAM–Caribbean AI products",
-    body: "Formal partnerships with Brazil, Chile and Uruguay on shared datasets, talent exchange and joint ventures, yielding 15 cross-border products serving both markets.",
-  },
-  {
-    year: "2030",
-    title: "Caribbean as a strategic AI hub",
-    body: "Measured by regional AI startups scaled, government AI policies adopted, and Caribbean representation in global standards bodies, UN, G20, OECD and frontier-lab safety protocols.",
-  },
-];
-
 function OmerosPage() {
   const heroTitle = useCmsText("omeros", "heroTitle");
   const heroIntro = useCmsText("omeros", "heroIntro");
   const manifesto = useCmsText("omeros", "manifesto");
   const cmsItems = useCmsEntries("omeros");
   const cmsPillars = cmsItems.filter((i) => (i.data as { page?: string })?.page === "pillar").map((i, n) => ({ k: i.subtitle ?? String(n + 1).padStart(2, "0"), t: i.title, b: i.body ?? "" }));
-  const cmsGoals = cmsItems.filter((i) => (i.data as { page?: string })?.page === "goal").map((i) => ({ year: i.subtitle ?? "", title: i.title, body: i.body ?? "" }));
   const displayedPillars = cmsPillars.length ? cmsPillars : pillars;
-  const displayedGoals = cmsGoals.length ? cmsGoals : goals;
   return (
     <div>
       <PageHero
@@ -179,34 +159,6 @@ function OmerosPage() {
               </Reveal>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Strategic goals */}
-      <section className="mx-auto max-w-[1500px] px-5 py-16 sm:px-8 sm:py-24">
-        <Reveal>
-          <p className="eyebrow text-muted-foreground">Where we are headed</p>
-          <h2 className="mt-5 font-display text-4xl md:text-6xl">
-            Strategic horizons, 2026, 2029, 2030.
-          </h2>
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-            Concrete commitments on a fixed timeline, a flagship summit series connecting 500+
-            regional builders annually with teams from OpenAI, Anthropic, Google DeepMind, NVIDIA,
-            AWS, Hugging Face and key OSS communities, with a target of 50+ cross-border
-            collaborations a year.
-          </p>
-        </Reveal>
-
-        <div className="mt-12 grid gap-px bg-foreground/15 md:grid-cols-3">
-           {displayedGoals.map((g, i) => (
-            <Reveal key={g.year} delay={i * 0.06}>
-              <div className="bg-background p-8 md:p-10 h-full">
-                <p className="font-display text-6xl text-accent">{g.year}</p>
-                <p className="mt-6 font-display text-2xl leading-tight">{g.title}</p>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{g.body}</p>
-              </div>
-            </Reveal>
-          ))}
         </div>
       </section>
 

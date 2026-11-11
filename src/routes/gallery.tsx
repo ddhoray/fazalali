@@ -6,7 +6,6 @@ import { PageHero } from "@/components/site/PageHero";
 
 import { Instagram } from "lucide-react";
 
-import p1 from "@/assets/paintings/1.runintotheshimmeringlightthb.jpg.asset.json";
 import p2 from "@/assets/paintings/2.plungeintoyourdepths.jpg.asset.json";
 import p3 from "@/assets/paintings/3.everyonehereissearching.jpg.asset.json";
 import p5 from "@/assets/paintings/5.andtheangelswillleap.jpg.asset.json";
@@ -30,6 +29,7 @@ import newNocturneHouse from "@/assets/gallery/nocturne-house-painting.webp.asse
 import newBeachFigure from "@/assets/gallery/beach-figure-painting.webp.asset.json";
 import newUrbanCarrying from "@/assets/gallery/urban-carrying-painting.webp.asset.json";
 import newFazalPiano from "@/assets/gallery/fazal-piano-upscaled.png.asset.json";
+import galleryHero from "@/assets/gallery/fazal-piano-hero.jpg.asset.json";
 import newBluePalms from "@/assets/gallery/blue-palms-painting.png.asset.json";
 import newUnfinishedTropical from "@/assets/gallery/unfinished-tropical-painting.webp.asset.json";
 import { assetUrl } from "@/lib/asset-url";
@@ -147,18 +147,16 @@ function GalleryPage() {
             </a>
           </>
         }
-        image={assetUrl(p1)}
-        imageAlt="Run Into the Shimmering Light, abstract painting"
+        image={assetUrl(galleryHero)}
+        imageAlt="Fazal Ali beside a grand piano in a wood-panelled room"
       />
 
-      <section className="mx-auto max-w-[1400px] px-4 md:px-8 py-12 md:py-20">
-        <div className="columns-2 md:columns-3 lg:columns-4 gap-4 md:gap-6 [column-fill:_balance]">
-          {allWorks.map((w, i) => {
-            // irregular sizing: vary widths via margin offsets & varied aspect feel
-            const tilt = ["mt-0", "mt-6", "mt-12", "mt-2", "mt-8"][i % 5];
-            return (
-              <figure key={w.src} className={`group mb-4 md:mb-6 break-inside-avoid ${tilt}`}>
-                <div className="relative overflow-hidden bg-muted">
+      <section className="border-t hairline">
+        <div className="mx-auto max-w-[1500px] px-5 py-16 sm:px-8 sm:py-24">
+          <div className="columns-2 gap-5 md:columns-3 md:gap-6 xl:columns-4 [column-fill:_balance]">
+            {allWorks.map((w) => (
+              <figure key={w.src} className="group mb-5 break-inside-avoid md:mb-6">
+                <div className="relative overflow-hidden border hairline bg-muted">
                   <img
                     src={w.src}
                     alt={w.title}
@@ -168,15 +166,15 @@ function GalleryPage() {
                 </div>
                 {!w.hideCaption && (
                   <figcaption className="mt-2 flex items-baseline justify-between gap-3">
-                    <h3 className="text-xs md:text-sm font-serif truncate">{w.title}</h3>
+                    <h3 className="truncate font-display text-xs md:text-sm">{w.title}</h3>
                     <span className="text-[10px] uppercase tracking-[0.16em] text-muted-foreground shrink-0">
                       {w.year}
                     </span>
                   </figcaption>
                 )}
               </figure>
-            );
-          })}
+            ))}
+          </div>
         </div>
       </section>
     </div>
