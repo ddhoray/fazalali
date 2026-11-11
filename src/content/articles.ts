@@ -149,6 +149,8 @@ import journalImg137 from "@/assets/journal/eabe8fb7-AIAgri.jpg.asset.json";
 import journalImg138 from "@/assets/journal/d73d93b0-Mi.jpg.asset.json";
 import journalImg139 from "@/assets/journal/76f0e314-gate.jpg.asset.json";
 import journalImg140 from "@/assets/journal/d14b2503-optimizedAI.jpg.asset.json";
+import openToTheNewImage from "@/assets/journal/open-to-the-new.png.asset.json";
+import slowViolenceImage from "@/assets/journal/slow-violence-house.png.asset.json";
 
 export interface Article {
   slug: string;
@@ -1374,7 +1376,7 @@ export const articles: Article[] = [
     excerpt: `A nonstop low-grade fever of optimism fuels Wall Street. Over the last few months, markets have climbed sharply, propelled by the belief that AI will usher in a new Golden Era. No one knows for sure, but we are certain that optimism can be inebriating.`,
     date: "2025-10-26",
     topic: `Technology`,
-    image: assetUrl(journalImg95),
+    image: assetUrl(openToTheNewImage),
     tags: [`Technology`, `AI`, `artificial intelligence`],
     body: [
       `A nonstop low-grade fever of optimism fuels Wall Street. Over the last few months, markets have climbed sharply, propelled by the belief that AI will usher in a new Golden Era. No one knows for sure, but we are certain that optimism can be inebriating.`,
@@ -1510,7 +1512,7 @@ export const articles: Article[] = [
     excerpt: `Habitually, when we think of “violence,” it brings to mind acts that have the features of observability, intentionality, and perceptibility. But in the Age of AI, there is an alternate framing of “violence” – it is slow. “Slow violence” is attritional.`,
     date: "2025-09-13",
     topic: `Technology`,
-    image: assetUrl(journalImg98),
+    image: assetUrl(slowViolenceImage),
     tags: [`Technology`, `AI`, `artificial intelligence`, `colonisation`, `decolonisation`],
     body: [
       `Habitually, when we think of “violence,” it brings to mind acts that have the features of observability, intentionality, and perceptibility. But in the Age of AI, there is an alternate framing of “violence” – it is slow. “Slow violence” is attritional. It is progressive, unhurried, out of sight, and spreads across time and space. What is worse is that attritional violence is not viewed as violence at all.`,
