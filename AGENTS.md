@@ -10,3 +10,4 @@
 - Page edits can be scheduled (`cms_pages.scheduled_data/scheduled_at`) and entries via `cms_entries.publish_at`; schedules are applied lazily on the next public read, so no cron is required.
 - Collection pages offer "Import what the site shows now" from `src/lib/cms-builtins.ts`; keep it in sync when a page's built-in fallback content changes, so editors never start from a blank list.
 - Public route `head()`s are wrapped in `withSeo(pageKey, ctx, …)` (src/lib/seo.ts), which overlays the admin "Search & sharing" fields from the root loader, so SEO edits apply during SSR.
+- Palimpsest photo framing is a responsive, repeating layout rhythm in its route; keep the CMS images and section order unchanged so visual changes never detach photos from their historical text.

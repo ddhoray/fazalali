@@ -7,6 +7,20 @@ import { ImageExpand } from "@/components/site/ImageExpand";
 import { palimpsest as builtinPalimpsest } from "@/content/palimpsest";
 import heroPalimpsest from "@/assets/hero-palimpsest.jpg";
 
+// An editorial rhythm of wide, square and upright photographs, without cards.
+const photoLayouts = [
+  { frame: "mr-auto w-[92%] md:w-[88%]", ratio: "aspect-[4/3]" },
+  { frame: "ml-auto w-[82%] md:w-[66%]", ratio: "aspect-square" },
+  { frame: "mx-auto w-full", ratio: "aspect-[16/10]" },
+  { frame: "mr-auto w-[78%] md:ml-[8%] md:w-[58%]", ratio: "aspect-[4/5]" },
+  { frame: "ml-auto w-[94%] md:w-[90%]", ratio: "aspect-[3/2]" },
+  { frame: "mr-auto w-[86%] md:w-[72%]", ratio: "aspect-square" },
+  { frame: "ml-auto w-[92%] md:w-[84%]", ratio: "aspect-[4/3]" },
+  { frame: "mr-auto w-full md:w-[94%]", ratio: "aspect-[16/9]" },
+  { frame: "mx-auto w-[82%] md:mr-[5%] md:w-[64%]", ratio: "aspect-square" },
+  { frame: "mr-auto w-[94%] md:w-[86%]", ratio: "aspect-[5/4]" },
+];
+
 export const Route = createFileRoute("/palimpsest")({
   head: (ctx) =>
     withSeo("palimpsest", ctx, ({
@@ -23,6 +37,8 @@ export const Route = createFileRoute("/palimpsest")({
         content: "Periods of West Indian education set inside a frame of world events.",
       },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/palimpsest" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/palimpsest" }],
   })),
@@ -55,9 +71,9 @@ function PalimpsestPage() {
         meta={
           <>
             <span>10 sections</span>
-            <span className="size-1 bg-white/40" />
+            <span className="size-1 bg-muted-foreground/40" />
             <span>1096 → 1979</span>
-            <span className="size-1 bg-white/40" />
+            <span className="size-1 bg-muted-foreground/40" />
             <span>Sources: Williams · Campbell · PNM</span>
           </>
         }
@@ -65,8 +81,8 @@ function PalimpsestPage() {
 
       <ImageExpand src={heroImage} alt="The Palimpsest opening image" height="h-[160vh]" />
 
-      <section className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8 sm:py-10">
-        <div className="grid gap-16 lg:grid-cols-[260px_1fr] lg:gap-24">
+      <section className="mx-auto max-w-[1800px] bg-background px-5 py-16 sm:px-8 sm:py-24 lg:px-12">
+        <div className="grid gap-16 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-20 xl:gap-28">
           {/* Sticky section index */}
           <aside className="lg:sticky lg:top-32 lg:self-start">
             <p className="eyebrow text-muted-foreground">Index</p>
@@ -87,8 +103,10 @@ function PalimpsestPage() {
           </aside>
 
           {/* Timeline */}
-          <div className="space-y-24">
-            {palimpsest.map((s, si) => (
+          <div className="min-w-0 space-y-24 md:space-y-36">
+            {palimpsest.map((s, si) => {
+              const layout = photoLayouts[si % photoLayouts.length];
+              return (
               <Reveal key={s.id}>
                 <section id={s.id} className="scroll-mt-32">
                   <div className="flex items-baseline gap-5 border-b hairline pb-6">
@@ -98,13 +116,13 @@ function PalimpsestPage() {
                     <h2 className="font-display text-3xl leading-tight md:text-5xl">{s.title}</h2>
                   </div>
 
-                  <figure className="mt-10 overflow-hidden bg-foreground/5">
-                    <div className="relative aspect-[16/9] w-full overflow-hidden">
+                  <figure className={`palimpsest-photo my-12 md:my-16 ${layout.frame}`}>
+                    <div className={`relative w-full overflow-hidden ${layout.ratio}`}>
                       <img
                         src={s.image}
                         alt={s.imageAlt}
                         loading="lazy"
-                        className="size-full object-cover transition-transform duration-[1200ms] ease-out hover:scale-[1.03]"
+                        className="size-full object-cover transition-transform duration-[1200ms] ease-out motion-safe:hover:scale-[1.03]"
                       />
                     </div>
                     {s.imageCaption ? (
@@ -114,7 +132,7 @@ function PalimpsestPage() {
                     ) : null}
                   </figure>
 
-                  <ol className="mt-10 space-y-8">
+                  <ol className="mx-auto mt-10 max-w-[760px] space-y-8">
                     {s.entries.map((e, ei) => (
                       <li key={ei} className="grid gap-4 md:grid-cols-[40px_1fr]">
                         <span className="font-mono text-xs text-muted-foreground md:pt-1.5">
@@ -128,7 +146,8 @@ function PalimpsestPage() {
                   </ol>
                 </section>
               </Reveal>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
