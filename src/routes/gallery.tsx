@@ -16,6 +16,13 @@ import v7 from "@/assets/gallery/virtual/07-boats.jpg.asset.json";
 import v8 from "@/assets/gallery/virtual/08-urban-carrying.webp.asset.json";
 import v9 from "@/assets/gallery/virtual/09-empty-branches.jpg.asset.json";
 import v10 from "@/assets/gallery/virtual/10-inner-light.jpg.asset.json";
+import v11 from "@/assets/gallery/virtual/11-world-movement.jpg.asset.json";
+import v12 from "@/assets/gallery/virtual/12-spiritual-baptists.jpg.asset.json";
+import v13 from "@/assets/gallery/virtual/13-paramin-house.jpg.asset.json";
+import v14 from "@/assets/gallery/virtual/14-gallery-visitors.jpg.asset.json";
+import v15 from "@/assets/gallery/virtual/15-forest-path.jpg.asset.json";
+import v16 from "@/assets/gallery/virtual/16-blue-umbrellas.jpg.asset.json";
+import v17 from "@/assets/gallery/virtual/17-red-sails.jpg.asset.json";
 import { assetUrl } from "@/lib/asset-url";
 
 export const Route = createFileRoute("/gallery")({
@@ -53,6 +60,13 @@ const works: VirtualGalleryItem[] = [
   { src: assetUrl(v8), alt: "An urban scene with a carried corrugated panel" },
   { src: assetUrl(v9), alt: "A green landscape with a path through empty branches" },
   { src: assetUrl(v10), alt: "Figures moving through a vivid blue and orange landscape" },
+  { src: assetUrl(v11), alt: "An expressive painting in red, pink and white" },
+  { src: assetUrl(v12), alt: "Two spiritual figures against a vivid orange sky" },
+  { src: assetUrl(v13), alt: "A weathered wooden house in Paramin" },
+  { src: assetUrl(v14), alt: "Three visitors viewing paintings at the gallery show" },
+  { src: assetUrl(v15), alt: "A painting of a sunlit path through a dense forest" },
+  { src: assetUrl(v16), alt: "An architectural painting with blue umbrellas" },
+  { src: assetUrl(v17), alt: "A painting of red sails among trees" },
 ];
 
 function GalleryPage() {
