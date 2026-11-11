@@ -6,22 +6,35 @@ import { PageHero } from "@/components/site/PageHero";
 import { inequality } from "@/content/inequality";
 import { articles } from "@/content/articles";
 import { ArrowUpRight } from "lucide-react";
-import { ImageMarquee } from "@/components/site/ImageMarquee";
+import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { useRef } from "react";
 import { assetUrl } from "@/lib/asset-url";
-import img1 from "@/assets/inequality/1.asset.json";
-import img2 from "@/assets/inequality/2.asset.json";
-import img3 from "@/assets/inequality/3.asset.json";
-import img4 from "@/assets/inequality/4.asset.json";
-import img5 from "@/assets/inequality/5.asset.json";
-import img6 from "@/assets/inequality/6.asset.json";
-import img7 from "@/assets/inequality/7.asset.json";
-import img8 from "@/assets/inequality/8.asset.json";
-import img9 from "@/assets/inequality/9.asset.json";
-import img10 from "@/assets/inequality/10.asset.json";
+import heroHouse from "@/assets/inequality/paramin-house.jpg.asset.json";
+import imgArchive from "@/assets/inequality/4.asset.json";
+import imgMall from "@/assets/inequality/2.asset.json";
+import imgFirstNations from "@/assets/inequality/10.asset.json";
 
-const rotation = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10].map((p) =>
-  assetUrl(p),
-);
+const trio = [
+  { src: assetUrl(imgArchive), alt: "Two women reviewing records in a national archive", frame: "md:col-span-7", ratio: "aspect-[4/3]" },
+  { src: assetUrl(imgFirstNations), alt: "Fazal Ali with a First Nations leader", frame: "md:col-span-5 md:mt-40", ratio: "aspect-[4/5]" },
+  { src: assetUrl(imgMall), alt: "Sculptures in a high-end shopping mall", frame: "md:col-span-8 md:col-start-3 md:-mt-10", ratio: "aspect-[16/9]" },
+];
+
+function GrowingFrame({ item, index }: { item: (typeof trio)[number]; index: number }) {
+  const ref = useRef<HTMLElement>(null);
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const scale = useTransform(scrollYProgress, [0, 0.42, 1], [0.84, 1, 1]);
+  const clipPath = useTransform(scrollYProgress, [0, 0.42], ["inset(12% 9% 12% 9%)", "inset(0% 0% 0% 0%)"]);
+  const imgScale = useTransform(scrollYProgress, [0, 0.6, 1], [1.25, 1.04, 1]);
+  return (
+    <figure ref={ref} className={`min-w-0 ${item.frame}`}>
+      <motion.div style={reduce ? undefined : { scale, clipPath }} className={`relative w-full overflow-hidden bg-muted will-change-transform ${item.ratio}`}>
+        <motion.img src={item.src} alt={item.alt} loading={index === 0 ? "eager" : "lazy"} decoding="async" style={reduce ? undefined : { scale: imgScale }} className="absolute inset-0 size-full object-cover" />
+      </motion.div>
+    </figure>
+  );
+}
 
 export const Route = createFileRoute("/inequality")({
   head: (ctx) =>
@@ -89,7 +102,7 @@ function InequalityPage() {
   const cmsSections = useCmsEntries("inequality");
   const sections = cmsSections.length ? cmsSections.map((s) => ({ h: s.title, body: (s.body ?? "").split(/\n\s*\n/).filter(Boolean) })) : inequality.sections;
   const cmsStrip = useCmsEntries("field_notes").filter((e) => (e.data as { page?: string })?.page === "inequality" && e.image_url).map((e) => e.image_url!);
-  const photos = cmsStrip.length ? cmsStrip : rotation;
+  const heroImage = cmsStrip[0] ?? assetUrl(heroHouse);
   return (
     <div>
       <PageHero
@@ -110,19 +123,15 @@ function InequalityPage() {
             <span>After Sen</span>
           </>
         }
-        image={photos[0]}
-        imageAlt="Field and archive photographs from the Caribbean"
+        image={heroImage}
+        imageAlt="A weathered wooden house on stilts in Paramin, Trinidad"
       />
 
-      <section className="border-b hairline">
-        <div className="mx-auto max-w-[1500px] py-12">
-          <p className="eyebrow px-5 text-muted-foreground sm:px-8">A set in rotation</p>
-          <ImageMarquee
-            images={photos}
-            alt="Rotating field and archive photographs"
-            className="mt-6 w-full"
-            speed={70}
-          />
+      <section className="border-b hairline" data-auto-reveal="off">
+        <div className="mx-auto grid max-w-[1500px] grid-cols-1 gap-6 px-5 py-16 sm:px-8 md:grid-cols-12 md:gap-8 md:py-28">
+          {trio.map((item, i) => (
+            <GrowingFrame key={item.src} item={item} index={i} />
+          ))}
         </div>
       </section>
 
@@ -173,10 +182,10 @@ function InequalityPage() {
       </section>
 
 
-      <article className="mx-auto max-w-[820px] px-5 py-12 sm:px-8 sm:py-10">
+      <article className="mx-auto flex max-w-[820px] flex-col gap-20 px-5 py-16 sm:px-8 md:gap-28 md:py-24">
         {sections.map((s, i) => (
           <Reveal key={s.h} delay={i * 0.04}>
-            <section className="mb-16 last:mb-0">
+            <section>
               <p className="eyebrow text-muted-foreground">
                 {String(i + 1).padStart(2, "0")} · Section
               </p>

@@ -21,8 +21,8 @@ export const inequality = {
     {
       h: "What the classroom owes",
       body: [
-        "We owe the child who arrived hungry the same standard of work as the child who arrived rested. We owe both of them an honest account of the world they will enter, including the parts they will have to change.",
-        "Inequality is not a problem to be solved in a single chapter. It is a condition to be argued with, openly, in front of the students it most affects.",
+        "We owe every student an honest account of the world they have inherited, and the parts they will have to change.",
+        "Colonial schooling transmits pre-selected, static content to passive spectators, treating them as blank slates and empty vessels. This method does transform the horizons of the text, the teacher, and the topic. The Cartesian method was designed to manage and maintain power imbalances.",
       ],
     },
   ],
