@@ -18,7 +18,7 @@ import p4 from "@/assets/palimpsest/palimpsest-final-4.jpg.asset.json";
 import p5 from "@/assets/palimpsest/palimpsest-final-5.jpg.asset.json";
 import p6 from "@/assets/palimpsest/palimpsest-final-6.jpg.asset.json";
 import gPrelude from "@/assets/palimpsest/prelude-slave-mosaic.jpg.asset.json";
-import gGordon from "@/assets/palimpsest/gen-gordon.jpg";
+import gGordon from "@/assets/palimpsest/gordon-boat.jpg.asset.json";
 import gUcwi from "@/assets/palimpsest/gen-ucwi.jpg";
 import gLewis from "@/assets/palimpsest/gen-lewis.jpg";
 import { assetUrl } from "@/lib/asset-url";
@@ -92,8 +92,8 @@ export const palimpsest: PalimpsestSection[] = [
   {
     id: "gordon-gladstone",
     title: "1870, Gordon–Gladstone Dual System of Control",
-    image: gGordon,
-    imageAlt: "Ruins of a Caribbean sugar estate with a stone chimney beside cane fields",
+    image: assetUrl(gGordon),
+    imageAlt: "A two-masted sailing boat moored beside a tree-lined lakeside promenade",
     entries: [
       { text: "Governor Gordon, following William Gladstone and the findings of the Keenan Inquiry of 1869, introduced a system by which government-controlled and denominational schools would receive aid and compete on specific terms for government grants." },
       { text: "1875, System adjusted to make it easier for denominational schools to get grants. 1890, Government to establish schools only where the church could not or would not. 1901–1902, Fees abolished, increasing government funding burden; building and apparatus grants to existing denominational schools discontinued." },
