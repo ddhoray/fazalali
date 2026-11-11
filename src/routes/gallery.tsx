@@ -6,7 +6,6 @@ import { VirtualGallery, type VirtualGalleryItem } from "@/components/site/Virtu
 import { Instagram } from "lucide-react";
 
 import galleryHero from "@/assets/gallery/fazal-piano-hero.jpg.asset.json";
-import v1 from "@/assets/gallery/virtual/01-piano.png.asset.json";
 import v2 from "@/assets/gallery/virtual/02-gallery-visit.jpg.asset.json";
 import v3 from "@/assets/gallery/virtual/03-nocturne.webp.asset.json";
 import v4 from "@/assets/gallery/virtual/04-angels.jpg.asset.json";
@@ -50,7 +49,6 @@ export const Route = createFileRoute("/gallery")({
 });
 
 const works: VirtualGalleryItem[] = [
-  { src: assetUrl(v1), alt: "Fazal Ali seated beside a grand piano" },
   { src: assetUrl(v2), alt: "A visitor at the gallery show" },
   { src: assetUrl(v3), alt: "A nocturnal painting of a house and palms" },
   { src: assetUrl(v4), alt: "An expressive blue painting with an angelic figure" },
