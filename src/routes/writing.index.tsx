@@ -17,7 +17,7 @@ export const Route = createFileRoute("/writing/")({
       {
         name: "description",
         content:
-          "The journal of Fazal Ali, 140+ essays on critical theory in AI, education, ecology, inequality, decolonial thought, and the West Indian future.",
+          "The complete journal of Fazal Ali: 480+ essays on critical theory in AI, education, ecology, inequality, decolonial thought, and the West Indian future.",
       },
       {
         name: "keywords",
@@ -27,7 +27,7 @@ export const Route = createFileRoute("/writing/")({
       { property: "og:title", content: "Journal, Fazal Ali" },
       {
         property: "og:description",
-        content: "140+ essays on critical theory in AI, education, and Caribbean futures.",
+        content: "480+ essays on critical theory in AI, education, and Caribbean futures.",
       },
       { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/writing" },
       { property: "og:type", content: "website" },
@@ -35,7 +35,7 @@ export const Route = createFileRoute("/writing/")({
       { name: "twitter:title", content: "Journal, Fazal Ali" },
       {
         name: "twitter:description",
-        content: "140+ essays on critical theory in AI, education, and Caribbean futures.",
+        content: "480+ essays on critical theory in AI, education, and Caribbean futures.",
       },
     ],
     links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/writing" }],
@@ -76,7 +76,7 @@ function fmtDate(d: string) {
     month: "short",
     year: "numeric",
     timeZone: "UTC",
-  }).format(new Date(Date.UTC(year, month, 1, day)));
+  }).format(new Date(Date.UTC(year, month - 1, day)));
 }
 
 function WritingIndex() {

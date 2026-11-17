@@ -14,3 +14,6 @@
 - [x] Audit every public and admin screen at phone, tablet, and desktop widths.
 - [x] Fix responsive overflow, clipping, navigation, forms, tables, dialogs, and tap targets.
 - [x] Browser-verify representative public and admin workflows at all three widths.
+- [x] Copy all 331 missing articles from fazalali.com with complete text, metadata, and independent media.
+- [x] Publish the complete 486-article archive to the Journal and admin CMS.
+- [ ] Verify imported articles, media, search indexing, and admin editing end to end.

@@ -228,13 +228,16 @@ export const adminImportArticles = createServerFn({ method: "POST" }).handler(as
     slug: a.slug,
     title: a.title,
     excerpt: a.excerpt,
-    body_html: a.body.map((p) => `<p>${esc(p)}</p>`).join(""),
+    body_html: a.html ?? a.body.map((p) => `<p>${esc(p)}</p>`).join(""),
     cover_image: a.image,
     topic: a.topic,
     tags: a.tags ?? [],
     status: "published",
     publish_at: new Date(`${a.date}T09:00:00Z`).toISOString(),
     principles: a.principles ?? null,
+    seo_title: a.seoTitle ?? a.title,
+    seo_description: a.seoDescription ?? a.excerpt.slice(0, 390),
+    og_image: a.image,
     author_id: me.id,
   }));
   let imported = 0;

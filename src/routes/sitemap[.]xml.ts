@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
-import { articles } from "@/content/articles";
+import { getJournal } from "@/lib/cms.functions";
 
 const BASE_URL = "https://omeros-cipher-glass.lovable.app";
 
@@ -15,8 +15,9 @@ export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
+        const journal = await getJournal();
         const today = new Date().toISOString().slice(0, 10);
-        const latestArticleDate = articles
+        const latestArticleDate = journal
           .map((a) => a.date)
           .sort()
           .reverse()[0] ?? today;
@@ -34,7 +35,7 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/contact", lastmod: today, changefreq: "yearly", priority: "0.5" },
         ];
 
-        const articleEntries: SitemapEntry[] = articles.map((a) => ({
+        const articleEntries: SitemapEntry[] = journal.map((a) => ({
           path: `/writing/${a.slug}`,
           lastmod: a.date,
           changefreq: "monthly",

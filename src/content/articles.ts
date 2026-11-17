@@ -151,6 +151,7 @@ import journalImg139 from "@/assets/journal/76f0e314-gate.jpg.asset.json";
 import journalImg140 from "@/assets/journal/d14b2503-optimizedAI.jpg.asset.json";
 import openToTheNewImage from "@/assets/journal/open-to-the-new.png.asset.json";
 import slowViolenceImage from "@/assets/journal/slow-violence-house.png.asset.json";
+import { archiveArticles } from "./archive-articles";
 
 export interface Article {
   slug: string;
@@ -168,7 +169,7 @@ export interface Article {
   seoDescription?: string;
 }
 
-export const articles: Article[] = [
+const currentArticles: Article[] = [
 {
     "slug": "recklessness-risk-responsibility-and-ai",
     "title": "Recklessness Risk Responsibility and AI",
@@ -4171,7 +4172,11 @@ On Monday 13th August, 2023, District Court Judge Kathy Seeley ruled that the ap
 			
 				
                     
-                				Follow on Instagram`,
+                    Follow on Instagram`,
     ],
   },
 ];
+
+export const articles: Article[] = [...currentArticles, ...archiveArticles].sort((a, b) =>
+  b.date.localeCompare(a.date),
+);

@@ -141,7 +141,7 @@ function fmtDate(d: string) {
     month: "long",
     year: "numeric",
     timeZone: "UTC",
-  }).format(new Date(Date.UTC(year, month, 1, day)));
+  }).format(new Date(Date.UTC(year, month - 1, day)));
 }
 
 function ArticlePage() {
