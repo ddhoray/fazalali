@@ -22,6 +22,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { cn } from "@/lib/utils";
+import { Paginator } from "@/components/site/Paginator";
 
 export const Route = createFileRoute("/admin/articles/")({ component: ArticlesPage });
 
@@ -41,6 +42,11 @@ function ArticlesPage() {
     queryKey: ["admin", "articles", dq, status],
     queryFn: () => list({ data: { q: dq || undefined, status } }),
   });
+  const PER = 25;
+  const [page, setPage] = useState(1);
+  const totalPages = Math.max(1, Math.ceil(data.length / PER));
+  const cur = Math.min(page, totalPages);
+  const rows = data.slice((cur - 1) * PER, cur * PER);
   const refresh = () => qc.invalidateQueries({ queryKey: ["admin", "articles"] });
 
   return (
@@ -80,13 +86,13 @@ function ArticlesPage() {
       <div className="flex flex-col gap-3 md:flex-row md:items-center">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-          <input className={cn(inputCls, "pl-9")} placeholder="Search by title…" value={q} onChange={(e) => setQ(e.target.value)} />
+          <input className={cn(inputCls, "pl-9")} placeholder="Search by title…" value={q} onChange={(e) => { setQ(e.target.value); setPage(1); }} />
         </div>
         <div className="flex border border-border bg-background">
           {["all", "published", "scheduled", "draft"].map((s) => (
             <button
               key={s}
-              onClick={() => setStatus(s)}
+              onClick={() => { setStatus(s); setPage(1); }}
               className={cn("px-4 py-2.5 text-xs uppercase tracking-[0.14em]", status === s ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground")}
             >
               {s}
@@ -117,7 +123,7 @@ function ArticlesPage() {
                 </tr>
               </thead>
               <tbody>
-                {data.map((a) => (
+                {rows.map((a) => (
                   <tr key={a.id} className="group border-b border-border last:border-0 hover:bg-muted/50">
                     <td className="px-4 py-3">
                       <Link to="/admin/articles/$id" params={{ id: a.id }} className="flex items-center gap-3">
@@ -160,7 +166,12 @@ function ArticlesPage() {
           </div>
         )}
       </Panel>
-      <p className="text-xs text-muted-foreground">{data.length} articles</p>
+      <div className="flex flex-col items-center justify-between gap-3 md:flex-row">
+        <p className="text-xs text-muted-foreground">
+          {data.length ? `Showing ${(cur - 1) * PER + 1}–${Math.min(cur * PER, data.length)} of ${data.length} articles` : "0 articles"}
+        </p>
+        <Paginator page={cur} total={totalPages} onChange={(p) => { setPage(p); window.scrollTo({ top: 0, behavior: "smooth" }); }} />
+      </div>
 
       <AlertDialog open={!!confirm} onOpenChange={(o) => !o && setConfirm(null)}>
         <AlertDialogContent>

@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { Paginator } from "@/components/site/Paginator";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { withSeo } from "@/lib/seo";
 import { Reveal } from "@/components/site/Reveal";
@@ -81,7 +83,15 @@ function fmtDate(d: string) {
 
 function WritingIndex() {
   const articles = Route.useLoaderData();
-  const [featured, ...rest] = articles;
+  const [featured, ...all] = articles;
+  const PER = 12;
+  const [page, setPage] = useState(1);
+  const totalPages = Math.max(1, Math.ceil(all.length / PER));
+  const rest = all.slice((page - 1) * PER, page * PER);
+  const go = (p: number) => {
+    setPage(p);
+    document.getElementById("journal-grid")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   return (
     <div data-auto-reveal="off">
@@ -147,7 +157,8 @@ function WritingIndex() {
       </section>
 
       {/* Editorial grid, alternating */}
-      <section className="mx-auto max-w-[1800px] px-5 py-12 sm:px-8 sm:py-14">
+      <section id="journal-grid" className="mx-auto max-w-[1800px] scroll-mt-24 px-5 py-12 sm:px-8 sm:py-14">
+        <p className="mb-10 text-center text-[11px] uppercase tracking-[0.22em] text-muted-foreground">Page {page} of {totalPages}</p>
         <div className="grid gap-x-10 gap-y-20 md:grid-cols-2 md:gap-y-28">
           {rest.map((a, i) => (
             <Reveal key={a.slug} delay={(i % 2) * 0.06}>
@@ -185,6 +196,7 @@ function WritingIndex() {
             </Reveal>
           ))}
         </div>
+        <Paginator page={page} total={totalPages} onChange={go} className="mt-24 border-t hairline pt-10" />
       </section>
     </div>
   );
