@@ -644,8 +644,7 @@ export const adminAiAssist = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     const s = await S();
     await s.requireStaff("author");
-    const key = process.env.LOVABLE_API_KEY;
-    if (!key) return { suggestions: [] as string[], error: "AI is not available right now." };
+    if (!process.env.ANTHROPIC_API_KEY) return { suggestions: [] as string[], error: "AI is not available right now." };
     const asks: Record<typeof data.kind, string> = {
       seo_title: "Write 3 SEO page titles (max 60 characters each).",
       seo_description: "Write 3 meta descriptions (140–155 characters each).",
@@ -653,33 +652,28 @@ export const adminAiAssist = createServerFn({ method: "POST" })
       alt: "Write 3 concise, descriptive image alt texts (max 120 characters).",
       tags: "Suggest 3 comma-separated tag sets of 4–6 tags each.",
     };
-    const res = await fetch("https://ai.gateway.lovable.dev/v1/responses", {
-      method: "POST",
-      headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: "openai/gpt-6-astra",
-        store: false,
-        input: [
-          {
-            role: "system",
-            content:
-              "You are the editorial assistant for Dr. Fazal Ibrahim Ali, a Trinidad-born, Cambridge-educated writer on critical theory in AI. Write in a measured, literary British-English voice, third person, no hype, no em dashes. Reply ONLY with a JSON array of strings.",
-          },
+    const { default: Anthropic } = await import("@anthropic-ai/sdk");
+    const client = new Anthropic();
+    let raw = "[]";
+    try {
+      const res = await client.beta.messages.create({
+        model: "claude-opus-5-5",
+        max_tokens: 16000,
+        betas: ["server-side-fallback-2026-07-01"],
+        fallbacks: "default",
+        system:
+          "You are the editorial assistant for Dr. Fazal Ibrahim Ali, a Trinidad-born, Cambridge-educated writer on critical theory in AI. Write in a measured, literary British-English voice, third person, no hype, no em dashes. Reply ONLY with a JSON array of strings.",
+        messages: [
           { role: "user", content: `${asks[data.kind]}\n\nTitle: ${data.title}\n\nContent:\n${data.text.slice(0, 12000)}` },
         ],
-      }),
-    });
-    if (res.status === 429) return { suggestions: [], error: "Too many requests, try again in a moment." };
-    if (res.status === 402) return { suggestions: [], error: "AI credits are exhausted for this workspace." };
-    if (!res.ok) return { suggestions: [], error: "AI request failed." };
-    const json = (await res.json()) as {
-      output_text?: string;
-      output?: { content?: { type?: string; text?: string }[] }[];
-    };
-    const raw =
-      json.output_text ??
-      (json.output ?? []).flatMap((o) => o.content ?? []).map((c) => c.text ?? "").join("") ??
-      "[]";
+      });
+      if (res.stop_reason === "refusal") return { suggestions: [], error: "AI declined this request." };
+      raw = res.content.map((b) => (b.type === "text" ? b.text : "")).join("") || "[]";
+    } catch (err) {
+      if (err instanceof Anthropic.RateLimitError) return { suggestions: [], error: "Too many requests, try again in a moment." };
+      console.error("adminAiAssist", err);
+      return { suggestions: [], error: "AI request failed." };
+    }
     try {
       const arr = JSON.parse(raw.replace(/```json|```/g, "").trim());
       return { suggestions: (Array.isArray(arr) ? arr : []).map(String).slice(0, 3) };
