@@ -1,5 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
+import { assertArticleReadyToPublish, resolveArticlePublication } from "./article-publishing";
 
 const S = () => import("./session.server");
 const DB = async () => (await import("@/integrations/supabase/client.server")).supabaseAdmin;
@@ -117,7 +118,7 @@ const ArticleInput = z.object({
   topic: z.string().max(80).default("Technology"),
   tags: z.array(z.string().max(60)).max(30).default([]),
   status: z.enum(["draft", "scheduled", "published"]),
-  publish_at: z.string(),
+  publish_at: z.string().datetime({ offset: true }),
   seo_title: z.string().max(200).nullable().optional(),
   seo_description: z.string().max(400).nullable().optional(),
   og_image: z.string().max(2000).nullable().optional(),
@@ -165,8 +166,11 @@ export const adminSaveArticle = createServerFn({ method: "POST" })
         if (ex && ex.author_id !== me.id) throw new Error("Authors can only edit their own drafts.");
       }
     }
+    assertArticleReadyToPublish(data);
+    const publication = resolveArticlePublication(data);
     const row = {
       ...data,
+      ...publication,
       body_html: s.sanitizeHtml(data.body_html),
       updated_at: new Date().toISOString(),
     };

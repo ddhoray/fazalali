@@ -2,7 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useMemo, useState } from "react";
-import { ArrowLeft, Eye, EyeOff, Loader2, Save } from "lucide-react";
+import { ArrowLeft, CalendarClock, Eye, EyeOff, Loader2, Save, Send } from "lucide-react";
 import { toast } from "sonner";
 import { adminGetArticle, adminSaveArticle } from "@/lib/admin/admin.functions";
 import { AiAssist, Field, ImageField, Panel, StatusBadge, TagInput, inputCls } from "@/components/admin/AdminUi";
@@ -123,7 +123,7 @@ function EditorPage() {
       setD((p) => ({ ...p, id: r.id, slug, status, publish_at: publishAt }));
       setDirty(false);
       qc.invalidateQueries({ queryKey: ["admin"] });
-      toast.success(status === "published" ? "Published" : status === "scheduled" ? "Scheduled" : "Draft saved");
+      toast.success(status === "published" ? "Published — live on the Journal and homepage" : status === "scheduled" ? `Scheduled for ${new Date(publishAt).toLocaleString()}` : "Draft saved");
       if (isNew) navigate({ to: "/admin/articles/$id", params: { id: r.id }, replace: true });
     } catch (e) {
       toast.error((e as Error).message);
@@ -155,14 +155,23 @@ function EditorPage() {
                 <Save className="size-4" /> Save draft
               </button>
               {!isAuthor && (
-                <button
-                  disabled={saving}
-                  onClick={() => onSave(new Date(d.publish_at) > new Date() ? "scheduled" : "published")}
-                  className="inline-flex items-center gap-2 bg-omeros px-4 py-2 text-sm text-background"
-                >
-                  {saving && <Loader2 className="size-4 animate-spin" />}
-                  {new Date(d.publish_at) > new Date() ? "Schedule" : d.status === "published" ? "Update" : "Publish"}
-                </button>
+                <>
+                  <button
+                    disabled={saving}
+                    onClick={() => onSave("scheduled")}
+                    className="inline-flex items-center gap-2 border border-border bg-background px-3 py-2 text-sm"
+                  >
+                    <CalendarClock className="size-4" /> Schedule
+                  </button>
+                  <button
+                    disabled={saving}
+                    onClick={() => onSave("published")}
+                    className="inline-flex items-center gap-2 bg-omeros px-4 py-2 text-sm text-background"
+                  >
+                    {saving ? <Loader2 className="size-4 animate-spin" /> : <Send className="size-4" />}
+                    {d.status === "published" ? "Update" : "Publish now"}
+                  </button>
+                </>
               )}
             </>
           )}
@@ -214,7 +223,7 @@ function EditorPage() {
           <aside className="space-y-4">
             <Panel className="space-y-4 p-5">
               <p className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">Publishing</p>
-              <Field label="Publish date & time" hint={new Date(d.publish_at) > new Date() ? "Will be scheduled" : undefined}>
+              <Field label="Publish date & time" hint={new Date(d.publish_at) > new Date() ? "Future date: use Schedule, or Publish now to go live immediately" : "Use Schedule with a future date, or Publish now"}>
                 <input type="datetime-local" className={inputCls} value={toLocal(d.publish_at)} onChange={(e) => e.target.value && set("publish_at", new Date(e.target.value).toISOString())} />
               </Field>
               <Field label="Topic">

@@ -8,10 +8,13 @@ import { getJournal } from "@/lib/cms.functions";
 import { ArrowUpRight } from "lucide-react";
 import heroAsset from "@/assets/journal-hero.jpg.asset.json";
 import { assetUrl } from "@/lib/asset-url";
+import { formatArticleDate } from "@/lib/article-date";
 const heroBook = assetUrl(heroAsset);
 
 export const Route = createFileRoute("/writing/")({
   loader: () => getJournal(),
+  shouldReload: true,
+  headers: () => ({ "cache-control": "no-store" }),
   head: (ctx) =>
     withSeo("writing", ctx, (({ loaderData }) => ({
     meta: [
@@ -70,16 +73,6 @@ export const Route = createFileRoute("/writing/")({
   }))(ctx)),
   component: WritingIndex,
 });
-
-function fmtDate(d: string) {
-  const [year, month, day] = d.split("-").map(Number);
-  return new Intl.DateTimeFormat("en-GB", {
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-    timeZone: "UTC",
-  }).format(new Date(Date.UTC(year, month - 1, day)));
-}
 
 function WritingIndex() {
   const articles = Route.useLoaderData();
@@ -148,7 +141,7 @@ function WritingIndex() {
                 <div className="mt-10 inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em]">
                   <span>Read entry</span>
                   <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  <span className="ml-4 opacity-60">{fmtDate(featured.date)}</span>
+                  <span className="ml-4 opacity-60">{formatArticleDate(featured.date)}</span>
                 </div>
               </div>
             </Reveal>
@@ -180,7 +173,7 @@ function WritingIndex() {
                 <div className="mt-7 flex items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
                   <span>{a.topic}</span>
                   <span className="size-1 bg-muted-foreground/60" />
-                  <span>{fmtDate(a.date)}</span>
+                  <span>{formatArticleDate(a.date)}</span>
                 </div>
                 <h3 className="mt-4 font-display text-3xl leading-tight text-balance md:text-4xl">
                   {a.title}

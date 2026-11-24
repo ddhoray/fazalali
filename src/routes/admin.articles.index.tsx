@@ -153,8 +153,8 @@ function ArticlesPage() {
                         >
                           <Copy />
                         </button>
-                        {a.status !== "draft" && (
-                          <a href={`/writing/${a.slug}`} target="_blank" rel="noreferrer" title="View" className="hover:text-foreground"><ExternalLink /></a>
+                        {(a.status === "published" || (a.status === "scheduled" && new Date(a.publish_at) <= new Date())) && (
+                          <a href={`/writing/${a.slug}`} target="_blank" rel="noreferrer" title="View live article" className="hover:text-foreground"><ExternalLink /></a>
                         )}
                         <button title="Delete" className="hover:text-destructive" onClick={() => setConfirm({ id: a.id, title: a.title })}><Trash2 /></button>
                       </div>

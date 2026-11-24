@@ -14,8 +14,8 @@ import { Grain } from "@/components/site/Grain";
 import { BookSection } from "@/components/site/BookSection";
 
 import { Newsletter } from "@/components/site/Newsletter";
-import { articles } from "@/content/articles";
 import { getJournal } from "@/lib/cms.functions";
+import { formatArticleDate } from "@/lib/article-date";
 import fazalPortrait from "@/assets/fazal-portrait.jpg";
 import heroVideoAsset from "@/assets/hero-loop-web.mp4.asset.json";
 import { assetUrl } from "@/lib/asset-url";
@@ -33,18 +33,10 @@ import streamResearch from "@/assets/stream-research.jpg";
 import streamPublications from "@/assets/stream-publications.jpg";
 import streamConversation from "@/assets/stream-conversation.jpg";
 
-function formatArticleDate(date: string) {
-  const [year, month, day] = date.split("-").map(Number);
-  return new Intl.DateTimeFormat("en-GB", {
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-    timeZone: "UTC",
-  }).format(new Date(Date.UTC(year, month, 1, day)));
-}
-
 export const Route = createFileRoute("/")({
   loader: () => getJournal(),
+  shouldReload: true,
+  headers: () => ({ "cache-control": "no-store" }),
   head: (ctx) =>
     withSeo("home", ctx, ({
     meta: [

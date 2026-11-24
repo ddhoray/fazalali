@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
 import { getJournal, getJournalEntry } from "@/lib/cms.functions";
+import { formatArticleDate } from "@/lib/article-date";
 
 export const Route = createFileRoute("/writing/$slug")({
   loader: async ({ params }) => {
@@ -14,6 +15,8 @@ export const Route = createFileRoute("/writing/$slug")({
     const next = list.length ? list[(i + 1) % list.length] : article;
     return { article, next: { slug: next.slug, title: next.title, topic: next.topic, excerpt: next.excerpt } };
   },
+  shouldReload: true,
+  headers: () => ({ "cache-control": "no-store" }),
   head: ({ loaderData, params }) =>
     loaderData
       ? {
@@ -134,16 +137,6 @@ export const Route = createFileRoute("/writing/$slug")({
   component: ArticlePage,
 });
 
-function fmtDate(d: string) {
-  const [year, month, day] = d.split("-").map(Number);
-  return new Intl.DateTimeFormat("en-GB", {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-    timeZone: "UTC",
-  }).format(new Date(Date.UTC(year, month - 1, day)));
-}
-
 function ArticlePage() {
   const { article, next } = Route.useLoaderData();
   const readingTime = Math.max(3, Math.round(article.body.join(" ").split(/\s+/).length / 220));
@@ -169,7 +162,7 @@ function ArticlePage() {
           </h1>
           <p className="mt-10 max-w-3xl text-xl leading-relaxed text-white/80">{article.excerpt}</p>
           <div className="mt-14 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-white/15 pt-6 text-xs uppercase tracking-[0.22em] text-white/55">
-            <time>{fmtDate(article.date)}</time>
+            <time>{formatArticleDate(article.date, "long")}</time>
             <span className="size-1 bg-white/40" />
             <span>{readingTime} min read</span>
             <span className="size-1 bg-white/40" />
@@ -226,7 +219,7 @@ function ArticlePage() {
         <Reveal>
           <hr className="my-20 border-foreground/15" />
           <p className="text-center text-xs uppercase tracking-[0.3em] text-muted-foreground">
-            , Fazal Ali · {fmtDate(article.date)} -
+            , Fazal Ali · {formatArticleDate(article.date, "long")} -
           </p>
         </Reveal>
       </section>

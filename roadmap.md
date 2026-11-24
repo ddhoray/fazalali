@@ -17,3 +17,5 @@
 - [x] Copy all 331 missing articles from fazalali.com with complete text, metadata, and independent media.
 - [x] Publish the complete 486-article archive to the Journal and admin CMS.
 - [x] Verify imported articles, media, search indexing, and admin editing end to end.
+- [x] Fix public CMS reads, stale article snapshots, and incorrect homepage publication dates.
+- [x] Verify immediate and scheduled article publishing end to end and remove all temporary test articles.

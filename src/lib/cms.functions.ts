@@ -3,6 +3,7 @@ import { z } from "zod";
 import type { Article } from "@/content/articles";
 
 const DB = async () => (await import("@/integrations/supabase/client.server")).supabaseAdmin;
+const publicDB = async () => (await import("./cms-public.server")).createPublicCmsClient();
 
 type Row = {
   slug: string;
@@ -38,7 +39,7 @@ function toArticle(r: Row, withBody: boolean): Article {
 /** Is the CMS the source of truth yet (i.e. has anything been imported/created)? */
 async function cmsActive() {
   try {
-    const db = await DB();
+    const db = await publicDB();
     const { count } = await db.from("cms_articles").select("id", { count: "exact", head: true });
     return (count ?? 0) > 0;
   } catch {
@@ -50,7 +51,7 @@ export const getJournal = createServerFn({ method: "GET" }).handler(async () => 
   const { articles } = await import("@/content/articles");
   const fallback = articles.map((a) => ({ ...a, body: [] as string[] }));
   if (!(await cmsActive())) return fallback;
-  const db = await DB();
+  const db = await publicDB();
   const { data, error } = await db
     .from("cms_articles")
     .select("slug, title, excerpt, cover_image, topic, tags, publish_at, principles")
@@ -68,14 +69,15 @@ export const getJournalEntry = createServerFn({ method: "GET" })
     const { articles } = await import("@/content/articles");
     const staticOne = articles.find((a) => a.slug === data.slug) ?? null;
     if (!(await cmsActive())) return staticOne;
-    const db = await DB();
-    const { data: r } = await db
+    const db = await publicDB();
+    const { data: r, error } = await db
       .from("cms_articles")
       .select("*")
       .eq("slug", data.slug)
       .in("status", ["published", "scheduled"])
       .lte("publish_at", new Date().toISOString())
       .maybeSingle();
+    if (error) return staticOne;
     return r ? toArticle(r as Row, true) : null;
   });
 
@@ -83,7 +85,7 @@ export const getPublicEntries = createServerFn({ method: "GET" })
   .inputValidator(z.object({ collection: z.string().max(40) }))
   .handler(async ({ data }) => {
     try {
-      const db = await DB();
+      const db = await publicDB();
       const { data: rows } = await db
         .from("cms_entries")
         .select("id, title, subtitle, body, image_url, link_url, data, featured")
@@ -99,7 +101,7 @@ export const getPublicEntries = createServerFn({ method: "GET" })
 
 export const getPublicPages = createServerFn({ method: "GET" }).handler(async () => {
   try {
-    const db = await DB();
+    const db = await publicDB();
     const { data } = await db.from("cms_pages").select("key, data, scheduled_data, scheduled_at");
     const out: Record<string, Record<string, string>> = {};
     const now = Date.now();
@@ -108,10 +110,15 @@ export const getPublicPages = createServerFn({ method: "GET" }).handler(async ()
       // A scheduled update goes live the first time the site is read after its time.
       if (r.scheduled_at && r.scheduled_data && new Date(r.scheduled_at).getTime() <= now) {
         d = { ...d, ...(r.scheduled_data as Record<string, string>) };
-        await db
-          .from("cms_pages")
-          .update({ data: d, scheduled_data: null, scheduled_at: null, updated_at: new Date().toISOString() })
-          .eq("key", r.key);
+        try {
+          const admin = await DB();
+          await admin
+            .from("cms_pages")
+            .update({ data: d, scheduled_data: null, scheduled_at: null, updated_at: new Date().toISOString() })
+            .eq("key", r.key);
+        } catch {
+          // The scheduled values still go live for readers if persistence is unavailable.
+        }
       }
       out[r.key] = d;
     }
