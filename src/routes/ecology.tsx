@@ -29,10 +29,10 @@ export const Route = createFileRoute("/ecology")({
         content: "Precaution, stewardship, irreversibility: AI ethics borrowed from conservation.",
       },
       { property: "og:type", content: "article" },
-      { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/ecology" },
+      { property: "og:url", content: "https://omeros.hyperrevamp.com/ecology" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/ecology" }],
+    links: [{ rel: "canonical", href: "https://omeros.hyperrevamp.com/ecology" }],
     scripts: [
       {
         type: "application/ld+json",
@@ -46,10 +46,10 @@ export const Route = createFileRoute("/ecology")({
           author: {
             "@type": "Person",
             name: "Fazal Ibrahim Ali",
-            url: "https://omeros-cipher-glass.lovable.app/about",
+            url: "https://omeros.hyperrevamp.com/about",
           },
           publisher: { "@type": "Person", name: "Fazal Ibrahim Ali" },
-          mainEntityOfPage: "https://omeros-cipher-glass.lovable.app/ecology",
+          mainEntityOfPage: "https://omeros.hyperrevamp.com/ecology",
         }),
       },
     ],

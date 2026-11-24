@@ -34,7 +34,7 @@ export const Route = createFileRoute("/writing/")({
         property: "og:description",
         content: "480+ essays on critical theory in AI, education, and Caribbean futures.",
       },
-      { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/writing" },
+      { property: "og:url", content: "https://omeros.hyperrevamp.com/writing" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Journal, Fazal Ali" },
@@ -43,7 +43,7 @@ export const Route = createFileRoute("/writing/")({
         content: "480+ essays on critical theory in AI, education, and Caribbean futures.",
       },
     ],
-    links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/writing" }],
+    links: [{ rel: "canonical", href: "https://omeros.hyperrevamp.com/writing" }],
     scripts: [
       {
         type: "application/ld+json",
@@ -52,17 +52,17 @@ export const Route = createFileRoute("/writing/")({
           "@type": "Blog",
           name: "The Fazal Ali Journal",
           description: "Essays on critical theory in AI, education, and the West Indies.",
-          url: "https://omeros-cipher-glass.lovable.app/writing",
+          url: "https://omeros.hyperrevamp.com/writing",
           author: {
             "@type": "Person",
             name: "Fazal Ibrahim Ali",
-            url: "https://omeros-cipher-glass.lovable.app/about",
+            url: "https://omeros.hyperrevamp.com/about",
           },
           inLanguage: "en",
           blogPost: (loaderData ?? []).slice(0, 20).map((a) => ({
             "@type": "BlogPosting",
             headline: a.title,
-            url: `https://omeros-cipher-glass.lovable.app/writing/${a.slug}`,
+            url: `https://omeros.hyperrevamp.com/writing/${a.slug}`,
             datePublished: a.date,
             image: a.image,
             keywords: (a.tags ?? []).join(", "),

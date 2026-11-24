@@ -36,11 +36,11 @@ export const Route = createFileRoute("/palimpsest")({
         property: "og:description",
         content: "Periods of West Indian education set inside a frame of world events.",
       },
-      { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/palimpsest" },
+      { property: "og:url", content: "https://omeros.hyperrevamp.com/palimpsest" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/palimpsest" }],
+    links: [{ rel: "canonical", href: "https://omeros.hyperrevamp.com/palimpsest" }],
   })),
   component: PalimpsestPage,
 });

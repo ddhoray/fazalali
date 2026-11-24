@@ -23,4 +23,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://omeros-cipher-glass.lovable.app/sitemap.xml
+Sitemap: https://omeros.hyperrevamp.com/sitemap.xml

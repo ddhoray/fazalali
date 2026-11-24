@@ -131,14 +131,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "@graph": [
             {
               "@type": "Person",
-              "@id": "https://omeros-cipher-glass.lovable.app/#person",
+              "@id": "https://omeros.hyperrevamp.com/#person",
               name: "Fazal Ibrahim Ali",
               alternateName: "Dr. Fazal Ali",
               jobTitle: "Writer, Scholar, Founder of Omeros AI",
               nationality: "Trinidadian",
               birthPlace: "Trinidad and Tobago",
               alumniOf: { "@type": "CollegeOrUniversity", name: "University of Cambridge" },
-              url: "https://omeros-cipher-glass.lovable.app",
+              url: "https://omeros.hyperrevamp.com",
               sameAs: ["https://fazalali.com"],
               knowsAbout: [
                 "Critical theory in artificial intelligence",
@@ -149,11 +149,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
             },
             {
               "@type": "WebSite",
-              "@id": "https://omeros-cipher-glass.lovable.app/#website",
-              url: "https://omeros-cipher-glass.lovable.app",
+              "@id": "https://omeros.hyperrevamp.com/#website",
+              url: "https://omeros.hyperrevamp.com",
               name: "Fazal Ali",
               description: "Writer, scholar, and founder of Omeros AI.",
-              publisher: { "@id": "https://omeros-cipher-glass.lovable.app/#person" },
+              publisher: { "@id": "https://omeros.hyperrevamp.com/#person" },
               inLanguage: "en",
             },
           ],

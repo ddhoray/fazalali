@@ -30,11 +30,11 @@ export const Route = createFileRoute("/education-for-liberty")({
       { property: "og:type", content: "book" },
       {
         property: "og:url",
-        content: "https://omeros-cipher-glass.lovable.app/education-for-liberty",
+        content: "https://omeros.hyperrevamp.com/education-for-liberty",
       },
     ],
     links: [
-      { rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/education-for-liberty" },
+      { rel: "canonical", href: "https://omeros.hyperrevamp.com/education-for-liberty" },
     ],
     scripts: [
       {
@@ -46,11 +46,11 @@ export const Route = createFileRoute("/education-for-liberty")({
           author: {
             "@type": "Person",
             name: "Fazal Ibrahim Ali",
-            url: "https://omeros-cipher-glass.lovable.app/about",
+            url: "https://omeros.hyperrevamp.com/about",
           },
           inLanguage: "en",
           bookFormat: "https://schema.org/EBook",
-          url: "https://omeros-cipher-glass.lovable.app/education-for-liberty",
+          url: "https://omeros.hyperrevamp.com/education-for-liberty",
           workExample: {
             "@type": "Book",
             isbn: "",

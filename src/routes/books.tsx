@@ -35,9 +35,9 @@ export const Route = createFileRoute("/books")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/books" },
+      { property: "og:url", content: "https://omeros.hyperrevamp.com/books" },
     ],
-    links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/books" }],
+    links: [{ rel: "canonical", href: "https://omeros.hyperrevamp.com/books" }],
   })),
   component: BooksPage,
 });

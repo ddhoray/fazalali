@@ -30,9 +30,9 @@ export const Route = createFileRoute("/omeros-ai")({
         content:
           "Prophet provocateur for AI in the West Indies, convening, capacity-building, and Global South leadership in AI governance.",
       },
-      { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/omeros-ai" },
+      { property: "og:url", content: "https://omeros.hyperrevamp.com/omeros-ai" },
     ],
-    links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/omeros-ai" }],
+    links: [{ rel: "canonical", href: "https://omeros.hyperrevamp.com/omeros-ai" }],
   })),
   component: OmerosPage,
 });

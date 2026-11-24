@@ -39,11 +39,11 @@ export const Route = createFileRoute("/gallery")({
         property: "og:description",
         content: "Paintings and visual field notes from Trinidad and elsewhere.",
       },
-      { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/gallery" },
+      { property: "og:url", content: "https://omeros.hyperrevamp.com/gallery" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/gallery" }],
+    links: [{ rel: "canonical", href: "https://omeros.hyperrevamp.com/gallery" }],
   })),
   component: GalleryPage,
 });

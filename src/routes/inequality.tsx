@@ -57,9 +57,9 @@ export const Route = createFileRoute("/inequality")({
         content: "A capability reading of inequality from a West Indian classroom.",
       },
       { property: "og:type", content: "article" },
-      { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/inequality" },
+      { property: "og:url", content: "https://omeros.hyperrevamp.com/inequality" },
     ],
-    links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/inequality" }],
+    links: [{ rel: "canonical", href: "https://omeros.hyperrevamp.com/inequality" }],
     scripts: [
       {
         type: "application/ld+json",
@@ -73,10 +73,10 @@ export const Route = createFileRoute("/inequality")({
           author: {
             "@type": "Person",
             name: "Fazal Ibrahim Ali",
-            url: "https://omeros-cipher-glass.lovable.app/about",
+            url: "https://omeros.hyperrevamp.com/about",
           },
           publisher: { "@type": "Person", name: "Fazal Ibrahim Ali" },
-          mainEntityOfPage: "https://omeros-cipher-glass.lovable.app/inequality",
+          mainEntityOfPage: "https://omeros.hyperrevamp.com/inequality",
         }),
       },
     ],

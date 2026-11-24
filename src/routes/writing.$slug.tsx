@@ -39,7 +39,7 @@ export const Route = createFileRoute("/writing/$slug")({
             { property: "og:image", content: loaderData.article.image },
             {
               property: "og:url",
-              content: `https://omeros-cipher-glass.lovable.app/writing/${params.slug}`,
+              content: `https://omeros.hyperrevamp.com/writing/${params.slug}`,
             },
             { name: "twitter:image", content: loaderData.article.image },
             { name: "twitter:card", content: "summary_large_image" },
@@ -47,7 +47,7 @@ export const Route = createFileRoute("/writing/$slug")({
           links: [
             {
               rel: "canonical",
-              href: `https://omeros-cipher-glass.lovable.app/writing/${params.slug}`,
+              href: `https://omeros.hyperrevamp.com/writing/${params.slug}`,
             },
           ],
           scripts: [
@@ -77,13 +77,13 @@ export const Route = createFileRoute("/writing/$slug")({
                     author: {
                       "@type": "Person",
                       name: "Fazal Ibrahim Ali",
-                      url: "https://omeros-cipher-glass.lovable.app/about",
+                      url: "https://omeros.hyperrevamp.com/about",
                     },
                     publisher: {
                       "@type": "Person",
                       name: "Fazal Ibrahim Ali",
                     },
-                    mainEntityOfPage: `https://omeros-cipher-glass.lovable.app/writing/${params.slug}`,
+                    mainEntityOfPage: `https://omeros.hyperrevamp.com/writing/${params.slug}`,
                   },
                   {
                     "@type": "BreadcrumbList",
@@ -92,19 +92,19 @@ export const Route = createFileRoute("/writing/$slug")({
                         "@type": "ListItem",
                         position: 1,
                         name: "Home",
-                        item: "https://omeros-cipher-glass.lovable.app/",
+                        item: "https://omeros.hyperrevamp.com/",
                       },
                       {
                         "@type": "ListItem",
                         position: 2,
                         name: "Journal",
-                        item: "https://omeros-cipher-glass.lovable.app/writing",
+                        item: "https://omeros.hyperrevamp.com/writing",
                       },
                       {
                         "@type": "ListItem",
                         position: 3,
                         name: loaderData.article.title,
-                        item: `https://omeros-cipher-glass.lovable.app/writing/${params.slug}`,
+                        item: `https://omeros.hyperrevamp.com/writing/${params.slug}`,
                       },
                     ],
                   },

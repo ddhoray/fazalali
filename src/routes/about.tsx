@@ -23,9 +23,9 @@ export const Route = createFileRoute("/about")({
         content:
           "Cambridge Commonwealth Scholar, scholar of Amartya Sen and John Rawls, writer on AI from the West Indies.",
       },
-      { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/about" },
+      { property: "og:url", content: "https://omeros.hyperrevamp.com/about" },
     ],
-    links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/about" }],
+    links: [{ rel: "canonical", href: "https://omeros.hyperrevamp.com/about" }],
   })),
   component: AboutPage,
 });

@@ -19,9 +19,9 @@ export const Route = createFileRoute("/contact")({
       },
       { property: "og:title", content: "Write to Him, Fazal Ali" },
       { property: "og:description", content: "Send a note to Fazal Ali." },
-      { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/contact" },
+      { property: "og:url", content: "https://omeros.hyperrevamp.com/contact" },
     ],
-    links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/contact" }],
+    links: [{ rel: "canonical", href: "https://omeros.hyperrevamp.com/contact" }],
   })),
   component: ContactPage,
 });

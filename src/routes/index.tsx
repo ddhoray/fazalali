@@ -52,10 +52,10 @@ export const Route = createFileRoute("/")({
         content:
           "Critical theory in AI, from the West Indies. The Omeros AI identity and the book Education for Liberty.",
       },
-      { property: "og:url", content: "https://omeros-cipher-glass.lovable.app/" },
+      { property: "og:url", content: "https://omeros.hyperrevamp.com/" },
       { property: "og:type", content: "website" },
     ],
-    links: [{ rel: "canonical", href: "https://omeros-cipher-glass.lovable.app/" }],
+    links: [{ rel: "canonical", href: "https://omeros.hyperrevamp.com/" }],
   })),
   component: Home,
 });

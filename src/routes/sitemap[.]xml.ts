@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import { getJournal } from "@/lib/cms.functions";
 
-const BASE_URL = "https://omeros-cipher-glass.lovable.app";
+const BASE_URL = "https://omeros.hyperrevamp.com";
 
 interface SitemapEntry {
   path: string;
