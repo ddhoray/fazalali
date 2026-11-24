@@ -644,7 +644,15 @@ export const adminAiAssist = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     const s = await S();
     await s.requireStaff("author");
-    if (!process.env.ANTHROPIC_API_KEY) return { suggestions: [] as string[], error: "AI is not available right now." };
+    const local = async () => {
+      const { localSuggestions } = await import("./suggest.server");
+      const suggestions = await localSuggestions(data.kind, data.title, data.text);
+      return suggestions.length
+        ? { suggestions }
+        : { suggestions, error: "Add a title or some body text first, then try again." };
+    };
+    // Without a Claude key, use the built-in suggestion engine (no external service).
+    if (!process.env.ANTHROPIC_API_KEY) return local();
     const asks: Record<typeof data.kind, string> = {
       seo_title: "Write 3 SEO page titles (max 60 characters each).",
       seo_description: "Write 3 meta descriptions (140–155 characters each).",
@@ -654,7 +662,6 @@ export const adminAiAssist = createServerFn({ method: "POST" })
     };
     const { default: Anthropic } = await import("@anthropic-ai/sdk");
     const client = new Anthropic();
-    let raw = "[]";
     try {
       const res = await client.beta.messages.create({
         model: "claude-opus-5-5",
@@ -667,17 +674,13 @@ export const adminAiAssist = createServerFn({ method: "POST" })
           { role: "user", content: `${asks[data.kind]}\n\nTitle: ${data.title}\n\nContent:\n${data.text.slice(0, 12000)}` },
         ],
       });
-      if (res.stop_reason === "refusal") return { suggestions: [], error: "AI declined this request." };
-      raw = res.content.map((b) => (b.type === "text" ? b.text : "")).join("") || "[]";
+      if (res.stop_reason === "refusal") return local();
+      const raw = res.content.map((b) => (b.type === "text" ? b.text : "")).join("").replace(/```json|```/g, "").trim();
+      const arr = JSON.parse(raw || "[]");
+      const suggestions = (Array.isArray(arr) ? arr : []).map(String).filter(Boolean).slice(0, 3);
+      return suggestions.length ? { suggestions } : local();
     } catch (err) {
-      if (err instanceof Anthropic.RateLimitError) return { suggestions: [], error: "Too many requests, try again in a moment." };
-      console.error("adminAiAssist", err);
-      return { suggestions: [], error: "AI request failed." };
-    }
-    try {
-      const arr = JSON.parse(raw.replace(/```json|```/g, "").trim());
-      return { suggestions: (Array.isArray(arr) ? arr : []).map(String).slice(0, 3) };
-    } catch {
-      return { suggestions: [raw.trim()] };
+      console.error("adminAiAssist: Claude unavailable, using built-in suggestions", err);
+      return local();
     }
   });
