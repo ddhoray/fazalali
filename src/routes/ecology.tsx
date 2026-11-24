@@ -6,10 +6,14 @@ import { PageHero } from "@/components/site/PageHero";
 import ecoHeroVideo from "@/assets/ecology/eco-hero-enhanced-web.mp4.asset.json";
 import { assetUrl } from "@/lib/asset-url";
 import { ecology } from "@/content/ecology";
-import { articles } from "@/content/articles";
+import { getJournal } from "@/lib/cms.functions";
+import { formatArticleDate } from "@/lib/article-date";
 import { ArrowUpRight } from "lucide-react";
 
 export const Route = createFileRoute("/ecology")({
+  loader: () => getJournal(),
+  shouldReload: true,
+  headers: () => ({ "cache-control": "no-store" }),
   head: (ctx) =>
     withSeo("ecology", ctx, ({
     meta: [
@@ -60,13 +64,12 @@ const READING_SLUGS = [
   "finding-the-still-point-in-the-age-of-ai",
 ];
 
-const FEATURED_MANIFESTO = articles.find((a) => a.slug === "the-ai-earth-manifesto");
-
-const ECOLOGY_READINGS = READING_SLUGS.map((s) => articles.find((a) => a.slug === s)).filter(
-  (a): a is (typeof articles)[number] => Boolean(a),
-);
-
 function EcologyPage() {
+  const journal = Route.useLoaderData();
+  const featuredManifesto = journal.find((a) => a.slug === "the-ai-earth-manifesto");
+  const ecologyReadings = READING_SLUGS.map((slug) => journal.find((a) => a.slug === slug)).filter(
+    (a): a is (typeof journal)[number] => Boolean(a),
+  );
   const heroTitle = useCmsText("ecology", "heroTitle");
   const heroIntro = useCmsText("ecology", "heroIntro");
   const cmsSections = useCmsEntries("ecology");
@@ -152,17 +155,17 @@ function EcologyPage() {
         </div>
       </section>
 
-      {FEATURED_MANIFESTO && (
+      {featuredManifesto && (
         <section className="border-t hairline bg-[#f5f3f0]">
           <div className="mx-auto grid max-w-[1800px] gap-10 px-5 py-16 sm:px-8 md:grid-cols-2 md:items-center">
             <Reveal>
               <Link
                 to="/writing/$slug"
-                params={{ slug: FEATURED_MANIFESTO.slug }}
+                params={{ slug: featuredManifesto.slug }}
                 className="group block overflow-hidden border hairline"
               >
                 <img
-                  src={FEATURED_MANIFESTO.image}
+                  src={featuredManifesto.image}
                   alt="A Geneva street beneath Swiss flags, featured image for The AI Earth Manifesto"
                   className="aspect-video w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                   loading="lazy"
@@ -170,16 +173,16 @@ function EcologyPage() {
               </Link>
             </Reveal>
             <Reveal delay={0.06}>
-              <p className="eyebrow text-muted-foreground">Featured manifesto · 30 August 2026</p>
+              <p className="eyebrow text-muted-foreground">Featured manifesto · {formatArticleDate(featuredManifesto.date, "long")}</p>
               <h2 className="mt-5 font-display text-4xl leading-tight md:text-6xl">
-                {FEATURED_MANIFESTO.title}
+                {featuredManifesto.title}
               </h2>
               <p className="mt-6 max-w-xl text-lg leading-relaxed text-foreground/75">
-                {FEATURED_MANIFESTO.excerpt}
+                {featuredManifesto.excerpt}
               </p>
               <Link
                 to="/writing/$slug"
-                params={{ slug: FEATURED_MANIFESTO.slug }}
+                params={{ slug: featuredManifesto.slug }}
                 className="mt-8 inline-flex items-center gap-2 border-b border-foreground pb-1 text-xs uppercase tracking-[0.2em]"
               >
                 Read the manifesto
@@ -202,7 +205,7 @@ function EcologyPage() {
           </p>
 
           <div className="mt-12 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-            {ECOLOGY_READINGS.map((a, i) => (
+            {ecologyReadings.map((a, i) => (
               <Reveal key={a.slug} delay={i * 0.05}>
                 <Link
                   to="/writing/$slug"
@@ -218,7 +221,7 @@ function EcologyPage() {
                     />
                   </div>
                   <p className="mt-5 text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
-                    {String(i + 1).padStart(2, "0")} · {a.date}
+                    {String(i + 1).padStart(2, "0")} · {formatArticleDate(a.date)}
                   </p>
                   <h3 className="mt-3 font-display text-2xl leading-snug">{a.title}</h3>
                   <p className="mt-3 line-clamp-4 text-sm leading-relaxed text-foreground/65">

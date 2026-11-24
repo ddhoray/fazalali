@@ -1,5 +1,10 @@
 export type ArticlePublicationStatus = "draft" | "scheduled" | "published";
 
+export function isArticleLive(status: string, publishAt: string, now = new Date()) {
+  const time = new Date(publishAt).getTime();
+  return !Number.isNaN(time) && time <= now.getTime() && (status === "published" || status === "scheduled");
+}
+
 export function resolveArticlePublication(
   input: { status: ArticlePublicationStatus; publish_at: string },
   now = new Date(),

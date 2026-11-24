@@ -19,3 +19,5 @@
 - [x] Verify imported articles, media, search indexing, and admin editing end to end.
 - [x] Fix public CMS reads, stale article snapshots, and incorrect homepage publication dates.
 - [x] Verify immediate and scheduled article publishing end to end and remove all temporary test articles.
+- [x] Align Ecology and Inequality article cards, admin status counts, and sitemap freshness with the publishing rule.
+- [x] Re-run the complete cross-surface publishing sweep and save the verified result.

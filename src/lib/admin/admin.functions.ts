@@ -1,6 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-import { assertArticleReadyToPublish, resolveArticlePublication } from "./article-publishing";
+import { assertArticleReadyToPublish, isArticleLive, resolveArticlePublication } from "./article-publishing";
 
 const S = () => import("./session.server");
 const DB = async () => (await import("@/integrations/supabase/client.server")).supabaseAdmin;
@@ -70,21 +70,22 @@ export const adminDashboard = createServerFn({ method: "GET" }).handler(async ()
   const s = await S();
   await s.requireStaff();
   const db = await DB();
+  const now = new Date().toISOString();
   const since7 = new Date(Date.now() - 7 * 864e5).toISOString();
   const since30 = new Date(Date.now() - 30 * 864e5).toISOString();
   const count = async (q: PromiseLike<{ count: number | null }>) => (await q).count ?? 0;
   const [published, drafts, scheduled, media, unread, subs, views7, viewsRows, recent, upcoming] =
     await Promise.all([
-      count(db.from("cms_articles").select("id", { count: "exact", head: true }).eq("status", "published")),
+      count(db.from("cms_articles").select("id", { count: "exact", head: true }).in("status", ["published", "scheduled"]).lte("publish_at", now)),
       count(db.from("cms_articles").select("id", { count: "exact", head: true }).eq("status", "draft")),
-      count(db.from("cms_articles").select("id", { count: "exact", head: true }).eq("status", "scheduled")),
+      count(db.from("cms_articles").select("id", { count: "exact", head: true }).eq("status", "scheduled").gt("publish_at", now)),
       count(db.from("cms_media").select("id", { count: "exact", head: true })),
       count(db.from("cms_messages").select("id", { count: "exact", head: true }).eq("read", false).eq("archived", false)),
       count(db.from("cms_subscribers").select("id", { count: "exact", head: true })),
       count(db.from("cms_page_views").select("id", { count: "exact", head: true }).gte("created_at", since7)),
       db.from("cms_page_views").select("path, created_at").gte("created_at", since30).limit(20000),
       db.from("cms_audit").select("*").order("created_at", { ascending: false }).limit(8),
-      db.from("cms_articles").select("id, title, publish_at").eq("status", "scheduled").order("publish_at").limit(5),
+      db.from("cms_articles").select("id, title, publish_at").eq("status", "scheduled").gt("publish_at", now).order("publish_at").limit(5),
     ]);
   const byDay: Record<string, number> = {};
   const byPath: Record<string, number> = {};
@@ -135,12 +136,18 @@ export const adminListArticles = createServerFn({ method: "GET" })
       .select("id, slug, title, status, publish_at, topic, tags, cover_image, updated_at")
       .order("publish_at", { ascending: false })
       .limit(1000);
-    if (data.status && data.status !== "all") q = q.eq("status", data.status);
+    const now = new Date().toISOString();
+    if (data.status === "published") q = q.in("status", ["published", "scheduled"]).lte("publish_at", now);
+    else if (data.status === "scheduled") q = q.eq("status", "scheduled").gt("publish_at", now);
+    else if (data.status === "draft") q = q.eq("status", "draft");
     if (data.topic && data.topic !== "all") q = q.eq("topic", data.topic);
     if (data.q) q = q.ilike("title", `%${data.q}%`);
     const { data: rows, error } = await q;
     if (error) throw new Error(error.message);
-    return rows ?? [];
+    return (rows ?? []).map((row) => ({
+      ...row,
+      status: isArticleLive(row.status, row.publish_at) ? "published" : row.status,
+    }));
   });
 
 export const adminGetArticle = createServerFn({ method: "GET" })
@@ -150,7 +157,7 @@ export const adminGetArticle = createServerFn({ method: "GET" })
     await s.requireStaff();
     const db = await DB();
     const { data: row } = await db.from("cms_articles").select("*").eq("id", data.id).maybeSingle();
-    return row;
+    return row && isArticleLive(row.status, row.publish_at) ? { ...row, status: "published" } : row;
   });
 
 export const adminSaveArticle = createServerFn({ method: "POST" })

@@ -4,7 +4,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
 import { PageHero } from "@/components/site/PageHero";
 import { inequality } from "@/content/inequality";
-import { articles } from "@/content/articles";
+import type { Article } from "@/content/articles";
+import { getJournal } from "@/lib/cms.functions";
+import { formatArticleDate } from "@/lib/article-date";
 import { ArrowUpRight } from "lucide-react";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
@@ -37,6 +39,9 @@ function GrowingFrame({ item, index }: { item: (typeof trio)[number]; index: num
 }
 
 export const Route = createFileRoute("/inequality")({
+  loader: () => getJournal(),
+  shouldReload: true,
+  headers: () => ({ "cache-control": "no-store" }),
   head: (ctx) =>
     withSeo("inequality", ctx, ({
     meta: [
@@ -87,15 +92,6 @@ const SELECTED_SLUGS = [
   "ai-assemblages-and-the-end-of-historical-struggles",
 ];
 
-const SELECTED = SELECTED_SLUGS.map((s) => articles.find((a) => a.slug === s)).filter(
-  (a): a is (typeof articles)[number] => Boolean(a),
-);
-
-
-const tracked = articles
-  .filter((a) => TRACK.test([a.title, a.excerpt, ...a.body].join(" ")))
-  .slice(0, 8);
-
 const essayLayouts = [
   { frame: "col-span-2 md:col-span-7", ratio: "aspect-[4/3]" },
   { frame: "col-span-1 md:col-span-4 md:col-start-9 md:mt-32", ratio: "aspect-square" },
@@ -107,7 +103,7 @@ const essayLayouts = [
   { frame: "col-span-2 md:col-span-4 md:col-start-9 md:mt-40", ratio: "aspect-square" },
 ];
 
-function EssayGridCard({ article, index }: { article: (typeof articles)[number]; index: number }) {
+function EssayGridCard({ article, index }: { article: Article; index: number }) {
   const ref = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
@@ -138,7 +134,7 @@ function EssayGridCard({ article, index }: { article: (typeof articles)[number];
         </motion.div>
         <div className="mt-4 flex items-start justify-between gap-3 text-[10px] uppercase tracking-[0.2em] text-muted-foreground sm:mt-5 sm:text-[11px]">
           <span>{String(index + 1).padStart(2, "0")}</span>
-          <span className="text-right">{article.date}</span>
+          <span className="text-right">{formatArticleDate(article.date)}</span>
         </div>
         <h3 className="mt-3 font-display text-lg leading-snug sm:text-xl md:text-2xl">{article.title}</h3>
         <p className="mt-3 hidden text-sm leading-relaxed text-foreground/65 sm:line-clamp-3">{article.excerpt}</p>
@@ -148,6 +144,13 @@ function EssayGridCard({ article, index }: { article: (typeof articles)[number];
 }
 
 function InequalityPage() {
+  const journal = Route.useLoaderData();
+  const selected = SELECTED_SLUGS.map((slug) => journal.find((a) => a.slug === slug)).filter(
+    (a): a is Article => Boolean(a),
+  );
+  const tracked = journal
+    .filter((a) => TRACK.test([a.title, a.excerpt, ...(a.tags ?? [])].join(" ")))
+    .slice(0, 8);
   const heroTitle = useCmsText("inequality", "heroTitle");
   const heroIntro = useCmsText("inequality", "heroIntro");
   const cmsSections = useCmsEntries("inequality");
@@ -198,7 +201,7 @@ function InequalityPage() {
           </p>
 
           <div className="mt-12 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-            {SELECTED.map((a, i) => (
+            {selected.map((a, i) => (
               <Reveal key={a.slug} delay={i * 0.05}>
                 <Link
                   to="/writing/$slug"
@@ -214,7 +217,7 @@ function InequalityPage() {
                     />
                   </div>
                   <p className="mt-5 text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
-                    {String(i + 1).padStart(2, "0")} · {a.date}
+                    {String(i + 1).padStart(2, "0")} · {formatArticleDate(a.date)}
                   </p>
                   <h3 className="mt-3 font-display text-2xl leading-snug">{a.title}</h3>
                   <p className="mt-3 line-clamp-4 text-sm leading-relaxed text-foreground/65">

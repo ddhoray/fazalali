@@ -3,7 +3,7 @@
 - `/admin` uses its own phone + code login (cms_staff, cms_staff_roles, cms_sessions with an httpOnly cookie), not Lovable Cloud Auth, because staff sign in by mobile number without email accounts.
 - Every admin server function calls `requireStaff(minRole)` from `src/lib/admin/session.server.ts` and uses the service-role client; CMS tables have no anon write policies.
 - Public CMS reads use `createPublicCmsClient` with the publishable key and RLS, never the staff credential, so public rendering also works on Vercel without admin-only environment access.
-- Once any row exists in `cms_articles`, the Journal reads only from the database; `src/content/articles.ts` is the fallback/seed source for "Sync existing entries".
+- Homepage, Journal, article pages, thematic article cards and the sitemap share `getJournal`; once any row exists in `cms_articles`, they read only from the database, with `src/content/articles.ts` as the empty-database fallback and "Sync existing entries" seed source.
 - Books, gallery, palimpsest, readings and testimonials share the `cms_entries` table keyed by `collection`; editable page text lives in `cms_pages` with defaults declared in `src/lib/cms-schema.ts`.
 - Media lives in the private `cms-media` bucket served through long-lived signed URLs, because the workspace blocks public buckets.
 - Public content uses CMS-first collections with static source files only as an empty-database fallback, so the site remains available before editors populate a section.
